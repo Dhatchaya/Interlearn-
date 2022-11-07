@@ -1,0 +1,136 @@
+/* ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: indigo;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+li{
+    float: left;
+}
+
+li a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover{
+    background-color: blueviolet;
+}
+
+.active{
+    background-color: darkmagenta;
+}
+
+.logo{
+    padding-top: 0;
+    width: 3vw;
+    height: 5vh;
+} */
+
+*{
+    font-family: 'Roboto', sans-serif;
+}
+
+li, a, button{
+    font-weight: 500;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    padding: 15px 10%;
+}
+
+.logo{
+    cursor: pointer;
+    width: 5vw;
+    height: 8vh;
+    padding-left: 10%;
+}
+
+.nav_links{
+    list-style: none;
+}
+
+.nav_links li{
+    display: inline-block;
+    padding: 0 20px;
+}
+
+.nav_links li:hover{
+    background-color: cornflowerblue;
+}
+
+button{
+    padding: 9px 25px;
+    background-color:#895bd3;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color:#682CC6;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    background-color:#3E206D;
+    top: 0;
+    width: 100%;
+    padding-right: 10px;
+}
+
+h1{
+    padding-top: 10vh;
+    text-align: center;
+}
+
+hr{
+    width: auto;
+}
+
+.container{
+    border-radius: 2%;
+    text-align: justify;
+    padding-left: 25vw;
+    position: relative;
+}
+
+input, select{
+    vertical-align: middle;
+    margin: 5px 10px 5px 0;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    width: 50vw;
+}
+
+.btn {
+    /* padding: 15px 20px;
+    background-color: rgb(173, 75, 230);
+    font-size: medium; */
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    margin: auto;
+    cursor: pointer;
+}
+
+/* #btn{
+    font-size: medium;
+    color: rgb(0, 0, 0);
+}
+
+.btn:hover{
+    background-color: blueviolet;
+} */
