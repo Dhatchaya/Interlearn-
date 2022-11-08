@@ -35,15 +35,15 @@
     <div class="container">
         <!--Personal Details-->
         <h2><u>Personal Details</u></h2>
-        <form action="">
+        <form action="http://localhost/index.php" method="post">
             NIC:<label for="nic" style="color:red;"> *</label><br>
-            <input type="text" placeholder="Enter your NIC No" required><br>
+            <input type="text" name="nic" placeholder="Enter your NIC No" required><br>
 
             First Name:<label for="fname" style="color:red;"> *</label><br>
-            <input type="text" id="fname" placeholder="Enter your First Name" required><br>
+            <input type="text" name="fname" id="fname" placeholder="Enter your First Name" required><br>
 
-            Last Name:<label for="fname" style="color:red;"> *</label><br>
-            <input type="text" id="lname" placeholder="Enter your Last Name" required><br>
+            Last Name:<label for="lname" style="color:red;"> *</label><br>
+            <input type="text" name="lname"  id="lname" placeholder="Enter your Last Name" required><br>
 
             Name with initials:<label for="fname" style="color:red;"> *</label><br>
             <input type="text" id="initials" placeholder="Enter your Name with Initials" required><br>
@@ -67,21 +67,21 @@
             <input type="text" name="whasapp" id="whatsapp" placeholder="Enter Your whatsapp mobile number" required><br>
 
             Address Line 01:<label for="address" style="color:red;"> *</label><br>
-            <input type="text" placeholder="Enter your Home No or Road" required><br>
+            <input type="text" name= "addr1" placeholder="Enter your Home No or Road" required><br>
 
             Address Line 02:<label for="address" style="color:red;"> *</label><br>
-            <input type="text" placeholder="Enter your Area" required><br>
+            <input type="text" name= "addr2" placeholder="Enter your Area" required><br>
 
             City:<label for="address" style="color:red;"> *</label><br>
-            <input type="text" placeholder="Enter your City" required><br>
+            <input type="text" name= "addr3" placeholder="Enter your City" required><br>
             
             School:<label for="school" style="color:red;"> *</label><br>
-            <input type="text" placeholder="Enter your School" required><br><br>
-        </form>
+            <input type="text" name= "school" placeholder="Enter your School" required><br><br>
+    
    
         <!--Academic Details-->
         <h2><u>Academic Details</u></h2>
-        <form action="">
+    
             <label for="grade">Grade:</label><br>
             <!-- <div class="dropdwon">
                 <button onclick="myFunction()" class="dropbtn">Grade</button>
@@ -101,22 +101,22 @@
             <!--for grade 6-11-->
             <label for="grade">Grade:</label><br>
             <select name="grade">
-                <option value="">Grade 6</option>
-                <option value="">Grade 7</option>
-                <option value="">Grade 8</option>
-                <option value="">Grade 9</option>
-                <option value="">Grade 10</option>
-                <option value="">Grade 11</option>
+                <option value="G6">Grade 6</option>
+                <option value="G7">Grade 7</option>
+                <option value="G8">Grade 8</option>
+                <option value="G9">Grade 9</option>
+                <option value="G10">Grade 10</option>
+                <option value="G11">Grade 11</option>
             </select>
         </div>
             <br><br>
             <!--for A/L-->
             <div id="AL"class = "grade-select">
             <label for="grade">A/L Exam Year:</label><br>
-            <select name="year" id="year">
-                <option value="">2023</option>
-                <option value="">2024</option>
-                <option value="">2025</option>
+            <select name="grade" id="year">
+                <option value="AL23">2023</option>
+                <option value="AL24">2024</option>
+                <option value="AL25">2025</option>
             </select>
         </div>
     </div>
@@ -126,6 +126,7 @@
             <label for="sinhala">Sinhala&nbsp;&nbsp;</label>
             <input type="radio" name="medium" id="english" value="english">
             <label for="english">English&nbsp;&nbsp;</label><br><br>
+            <input type="submit" name="submit"  value="submit">
         </form>
     </div>
     <!-- <input type="button" class="btn" value="Submit"> -->
