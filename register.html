@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@500&family=Roboto&family=Roboto+Condensed&display=swap" rel="stylesheet">
+  
     <title>Register</title>
 </head>
 <body>
@@ -18,7 +19,7 @@
         <li style="float: right" class="active"><a href="#login">Login</a></li>
     </ul> -->
 
-    <header>
+    <div class="header">
         <img src="logo1.png" alt="" class="logo">
         <!-- <nav>
             <ul class="nav_links">
@@ -26,8 +27,8 @@
             </ul>
         </nav> -->
         <a href="#" class="login"><button>Login</button></a>
-    </header>
-    
+    </div>
+    <div class = "scollable-container">
     <h1>Welcome to Interlearn Academic Institute</h1>
     <hr>
     <h5 style="color: red; text-align: center;">Please be kind enough to fill correct details</h5>
@@ -77,7 +78,7 @@
             School:<label for="school" style="color:red;"> *</label><br>
             <input type="text" placeholder="Enter your School" required><br><br>
         </form>
-        <hr>
+   
         <!--Academic Details-->
         <h2><u>Academic Details</u></h2>
         <form action="">
@@ -90,13 +91,16 @@
                 </div>
             </div> -->
             <select name="class" id="class">
-                <option value="">Grade 6-11</option>
-                <option value="">Advanced Level</option>
+                <option value="">--</option>
+                <option value="secondary">Grade 6-11</option>
+                <option value="AL">Advanced Level</option>
             </select>
             <br><br>
+            <div class="grade-container" >
+            <div id = "grade" class = "grade-select">
             <!--for grade 6-11-->
             <label for="grade">Grade:</label><br>
-            <select name="grade" id="grade">
+            <select name="grade">
                 <option value="">Grade 6</option>
                 <option value="">Grade 7</option>
                 <option value="">Grade 8</option>
@@ -104,14 +108,18 @@
                 <option value="">Grade 10</option>
                 <option value="">Grade 11</option>
             </select>
+        </div>
             <br><br>
             <!--for A/L-->
+            <div id="AL"class = "grade-select">
             <label for="grade">A/L Exam Year:</label><br>
-            <select name="class" id="class">
+            <select name="year" id="year">
                 <option value="">2023</option>
                 <option value="">2024</option>
                 <option value="">2025</option>
             </select>
+        </div>
+    </div>
             <br>
             <label for="medium">Medium:</label><br>
             <input type="radio" name="medium" id="sinhala" value="sinhala">
@@ -124,8 +132,8 @@
     <div class="btn">
         <button type="submit">Submit</button>
     </div>
-    
-    
+</div>
+<script src="register.js"></script>
 </body>
 <!-- <script src="register.js"></script> -->
 </html>

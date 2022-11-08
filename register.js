@@ -1,17 +1,17 @@
-function myFunction(){
-    document.getElementById("myDropdown").classList.toggle("show");
-}
+const e = document.getElementById('class');
 
-//close the dropdown
-window.onclick = function(event){
-    if(!event.target.matches('.dropbtn')){
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for(i = 0; i<dropdowns.length; i++){
-            var openDropdown = dropdowns[i];
-            if(openDropdown.classList.contains('show')){
-                openDropdown.classList.remove('show');
-            }
-        }
+const AL = document.getElementById('AL');
+const secondary = document.getElementById('grade');
+
+e.addEventListener('change', function handleChange(event){
+    if(event.target.value === 'secondary'){
+
+        secondary.style.display = 'block';
+        AL.style.display='none';
+
     }
-}
+    else{
+        AL.style.display='block';
+        secondary.style.display = 'none';
+    }
+});

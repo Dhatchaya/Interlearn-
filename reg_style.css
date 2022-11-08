@@ -35,8 +35,19 @@ li a:hover{
     height: 5vh;
 } */
 
+.scollable-container{
+    position: fixed;
+    top: 15%; /* same height as navbar */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: scroll;
+  
+  
+}
 *{
     font-family: 'Roboto', sans-serif;
+    
 }
 
 li, a, button{
@@ -79,15 +90,19 @@ button:hover{
     background-color:#682CC6;
 }
 
-header{
+.header{
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: fixed;
     background-color:#3E206D;
+    height: 12%;
     top: 0;
+    left:0;
+    right: 0;
     width: 100%;
     padding-right: 10px;
+ 
 }
 
 h1{
@@ -95,9 +110,7 @@ h1{
     text-align: center;
 }
 
-hr{
-    width: auto;
-}
+
 
 .container{
     border-radius: 2%;
@@ -125,7 +138,22 @@ input, select{
     margin: auto;
     cursor: pointer;
 }
+input[type="radio"]{
+    width: 13px;
+}
 
+#AL,#grade{
+    display: none;
+}
+.grade-select{
+    position: absolute;
+    top:0;
+
+}
+.grade-container{
+    position: relative;
+    margin-bottom: 4vh;
+}
 /* #btn{
     font-size: medium;
     color: rgb(0, 0, 0);
