@@ -1,0 +1,166 @@
+@media only screen and (max-width: 1000px) {
+    
+    .nav-bar{
+        position: fixed;
+        height: 80px;
+        width: 100%;
+        background-color: gray;
+    }
+    .logo{
+        display: none;
+        float: left;
+        margin: 10px 10px;
+    }
+    .punchi-logo{
+        display: block;
+        float: left;
+        margin: 10px 10px;
+    }
+    
+    
+    /*  search bar  */
+    .search-bar{
+        position: fixed;
+        left: 170px;
+        height: 40px;
+        width: 300px;
+        margin: 20px;
+        border-radius: 10px;
+        
+    }
+    .search-bar:hover{
+        max-width: 350px;
+        height: 44px;
+        margin: 18px;
+    }
+    /*  nav bar  */
+    ul {
+        position: fixed;
+        right: 200px;
+        top: 10px;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: gray;
+        /*background-color: #333;*/
+      }
+    
+      .nav-list ul li{
+        text-decoration: underline;
+      }
+    
+      li {
+        float: left;
+      }
+    
+      li a, .dropbtn {
+        display: inline-block;
+        color: white;
+        text-align: center;
+        padding: 20px 25px;
+        text-decoration: none;
+      }
+      
+      li a:hover, .dropdown:hover .dropbtn {
+        background-color: rgb(41, 40, 40);
+      }
+      
+      li.dropdown {
+        display: inline-block;
+      }
+      
+      .dropdown-content {
+        display: none;
+        position: fixed;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px #f1f1f1;
+        z-index: 1;
+      }
+      
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+      }
+      
+      .dropdown-content a:hover {background-color: #f1f1f1;}
+      
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+    
+    
+    /*notification*/
+    
+    .notification{
+        display: inline-block;
+    }
+    
+    .notification{
+        position: fixed;
+        right: 60px;
+        padding-top: 10px;
+        display: inline-block;
+    }
+    
+    .notifi-up{
+        position: absolute;
+        left: 0px;
+        opacity: 0;
+        transition: all 0.2s ease;
+    }
+    
+    .notifi-up:hover{
+        opacity: 1;
+    }
+    
+    
+    .profile-dwn:hover{
+        opacity: 0;
+    }
+    
+    .profile{
+        position: absolute;
+        right: 0px;
+        padding-top: 10px;
+        display: inline-block;
+    }
+    
+    .profile-dwn{
+        position: absolute;
+        right: 0px;
+    }
+    
+    .profile-up{
+        position: absolute;
+        top: opx;
+        right: 0px;
+        opacity: 0;
+    }
+    
+    .profile-up:hover{
+        opacity: 1;
+        transition: all 0.2s ease;
+    }
+    .profile-dwn:hover{
+        opacity: 0;
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+  }
