@@ -197,39 +197,20 @@
     min-height: 400px;
     background-color: #3E206D;
 }
-
-.segment-out{
-    padding: 0.9vh 0vw ;
-    padding-bottom: 6vh;
+.sidebar-container{
+    width: 8vw;
+    left: 1vw;
 }
 
-.side-col div:hover{
+
+.side-col .segment:hover{
     background-color: #682CC6;
 }
-/*when footer appier*/
-
-.sidebar-short{
-    height: 15vh;
-    min-height: 15vh;
-} 
-.side-col .segment-out{
-    display: none;
-    transition-duration: 1s;
+.side-col .logout:hover{
+    background-color: #682CC6;
 }
 
-/*............*/
-
-
-.sidebar-hr{
-    position: absolute;
-    top: 50px;
-    left: 0.5vw;
-    width: 7vw;
-    height: 1px;
-    border: 1px solid #3E206D ;
-}
-
-.side-col .profile-dwn:hover{
+.side-col .profile:hover .profile-dwn{
     opacity: 0;
 }
 
@@ -267,9 +248,6 @@
 }
 
 
-.side-col .profile:hover .sidebar-hr{
-    opacity: 0;
-}
 
 
 h3{
@@ -299,7 +277,6 @@ h3{
     position: absolute;
     width: 8vw;
     height: 60px;
-    left: 1vw;
     border-radius: 10px;
     display: block;
 
@@ -337,6 +314,7 @@ h3{
 
 .logout{
     bottom: 10px;
+    left: 1vw;
 }
 
 
@@ -355,5 +333,21 @@ h3{
 }
 
 
+/*when footer appier*/
 
+.sidebar-short{
+    height: 15vh;
+    min-height: 150px;
+} 
+.side-col .segment-out{
+    display: none;
+    transition-duration: 1s;
+}
+
+.no-hover:hover{
+    display: none;
+}
+
+
+/*............*/
 

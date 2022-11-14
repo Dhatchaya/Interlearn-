@@ -60,35 +60,37 @@
             </a>
         </div>
 
-
-
-        <div class="edit-profile segment">
-            <a href="">
-                <img class="edit-img" src="edit2.png" alt="">
-                <h3 class="side-bar-txt" > Edit profile</h3>
-            </a>
+        <div class="sidebar-container">
+            <div class="edit-profile segment">
+                <a href="">
+                    <img class="edit-img" src="edit2.png" alt="">
+                    <h3 class="side-bar-txt" > Edit profile</h3>
+                </a>
+            </div>
+    
+            <div class="dashboard segment">
+                <a href="">
+                    <img class="edit-img" src="edit2.png" alt="">
+                    <h3 class="side-bar-txt" > Dashboard</h3>
+                </a>
+            </div>
+    
+            <div class="payment segment">
+                <a href="">
+                    <img class="edit-img" src="edit2.png" alt="">
+                    <h3 class="side-bar-txt" > My payment</h3>
+                </a>
+            </div>
+    
+            <div class="enquiry segment">
+                <a href="">
+                    <img class="edit-img" src="edit2.png" alt="">
+                    <h3 class="side-bar-txt" > Enquiry</h3>
+                </a>
+            </div>
         </div>
 
-        <div class="dashboard segment">
-            <a href="">
-                <img class="edit-img" src="edit2.png" alt="">
-                <h3 class="side-bar-txt" > Dashboard</h3>
-            </a>
-        </div>
-
-        <div class="payment segment">
-            <a href="">
-                <img class="edit-img" src="edit2.png" alt="">
-                <h3 class="side-bar-txt" > My payment</h3>
-            </a>
-        </div>
-
-        <div class="enquiry segment">
-            <a href="">
-                <img class="edit-img" src="edit2.png" alt="">
-                <h3 class="side-bar-txt" > Enquiry</h3>
-            </a>
-        </div>
+        
 
         <div class="logout ">
             <a href="">
@@ -226,7 +228,7 @@ x <br>
 
 const footer = document.querySelector(".footer")
 const sidebar = document.querySelector(".side-col")
-const segment = document.querySelector(".side-col .segment")
+const container = document.querySelector(".sidebar-container")
 
 const footerApperOptions = {
     rootMargin: "0px 0px 200px 0px"
@@ -241,11 +243,11 @@ const observer = new IntersectionObserver
         console.log(entry.target)
         if (entry.isIntersecting){
             sidebar.classList.add("sidebar-short");
-            segment.classList.add("segment-out");
+            container.classList.add("segment-out");
         }
         else{
             sidebar.classList.remove("sidebar-short");
-            segment.classList.remove("segment-out");
+            container.classList.remove("segment-out");
         }
     });
 },
