@@ -1,4 +1,59 @@
 <!DOCTYPE html>
+<?php
+
+require_once('../connection.php');
+
+
+if(isset($_POST['submit'])){
+    
+session_start();
+$user = $_POST['username'];
+$pass = $_POST['password'];
+if(empty($user)||empty($pass)){
+if(empty($user)&& empty($pass)){
+    header("location:index.php?Empty= Enter Username and password");
+}
+    else if(empty($user)){
+        header("location:index.php?Empty= Enter UserName");
+    }
+    
+    else if (empty($pass)){
+        header("location:index.php?Empty= Enter Password");
+     
+    }
+
+   
+}
+
+   
+
+else{
+
+
+$stmt = $conn->prepare("select SID, Username,Password from users where Username= ? and User_email_status = 'verified' ");
+$stmt -> bind_param("s",$user);
+$stmt->execute();
+$stmt->store_result();
+$stmt ->bind_result($userid,$username,$password);
+if($stmt -> num_rows == 1){
+    $stmt -> fetch();
+    if(password_verify($pass,$password)){
+ 
+        $_SESSION['User'] = $user;
+        $_SESSION['userid'] = $userid;
+        header("location:welcome.php");
+    }
+    else{
+        header("location:index.php?Empty= Incorrect username or password");
+
+    }
+}
+else{
+    header("location:index.php?Empty= No user found");
+}
+}
+}
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -40,6 +95,7 @@
             <h2>Login </h2>
             <!-- display warning -->
             <?php 
+                
                 if(@$_GET['Empty'] == true)
                 {
                     ?>
@@ -47,7 +103,7 @@
                 <?php
                 }
             ?>
-            <form action="./process.php" method="POST">
+            <form action="" method="POST">
             <div class="login-row"><label for="username">Username </label>
             <input class= "login-inp"type="text" id="username" name="username" placeholder="Enter Username"></div>
             <div class="login-row">

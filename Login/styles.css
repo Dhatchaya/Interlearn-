@@ -251,7 +251,7 @@ label {
 }
 .login button:hover {
     background-color: #916DD5;
-    border: none;
+    border-color: #916DD5;
     color: var(--secondary-color);
 }
 .warning{

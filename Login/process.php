@@ -31,13 +31,11 @@ if($stmt -> num_rows == 1){
         $_SESSION['userid'] = $userid;
     }
     else{
-        $_SESSION=[];
-        session_destroy();
-        echo "password is incorrect";
+        header("location:process.php?Empty= Please Enter the OTP");
     }
 }
 else{
-    echo "0 results. nobody with that username and password";
+    
     $_SESSION=[];
     session_destroy();
 }
