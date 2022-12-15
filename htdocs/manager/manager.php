@@ -3,6 +3,7 @@
     require_once (__DIR__ . "/database.php" ) ;
     $sql = "SELECT * FROM staff";
     $employee = $mysqli->query($sql);
+    session_start();
     // D:/software/xampp/htdocs/manager/adding new user
 
 ?>
@@ -56,7 +57,10 @@
             <a href="">
                 <img class="profile-dwn"  src="2.png" alt="">
                 <img class="profile-up" src="1.png" alt="">
-                <h3 id="user-name"> Manoj</h3>
+                <h3 id="user-name">   <span class="user-name"><?php 
+                        
+                        echo $_SESSION['User'];
+                        ?></span></h3>
                 <!-- <hr class="sidebar-hr"> -->
             </a>
         </div>
@@ -96,7 +100,7 @@
         <div class="logout ">
             <a href="">
                 <img class="edit-img" src="edit2.png" alt="" id="logout-img">
-                <h3 id="logout-txt" > Logout</h3>
+                <h3 id="logout-txt" > <a href ="../manager/logout.php?logout"> Logout </a></h3>
             </a>
         </div>
 
