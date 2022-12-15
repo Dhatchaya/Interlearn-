@@ -3,7 +3,7 @@
 $host = "localhost";
 $dbname = "interlearn";
 $username = "root";
-$password = "";
+$password = "user";
 
 
 $mysqli = new mysqli( $host,  $username, $password,  $dbname);

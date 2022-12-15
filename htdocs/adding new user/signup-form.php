@@ -52,17 +52,17 @@ $sql = "INSERT INTO staff (first_name,
                                 NIC_no,
                                 jobtype,
                                 mobile_no, 
-                                Addressline1,
-                                Addressline2,
+                                address_line1,
+                                address_line2,
                                 email_address, 
                                 password_hash)
                             VALUES (?, ?,?, ?,?,?,?,?,?,?)";
         
 $stmt = $mysqli->stmt_init();
 
-if ( $stmt->prepare($sql)) {
-   
-
+if ( ! $stmt->prepare($sql)) {
+    die("SQL error: " . $mysqli->error);
+}
 
 $stmt->bind_param("ssssssssss",
                   $_POST["first-name"],
@@ -81,11 +81,9 @@ $stmt->bind_param("ssssssssss",
 $result=$stmt->execute();
 if($result) {
 
-    header("location: ../manager.php");
+    header(" Location: login.php");
     exit;
     
-}
-die("hello");
 }
 //
 else {

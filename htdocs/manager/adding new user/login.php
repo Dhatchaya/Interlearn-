@@ -6,25 +6,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     $mysqli = require __DIR__ . "/database.php";
     
-    $sql = sprintf("SELECT * FROM staff
+    $sql = sprintf("SELECT * FROM staff_test
                     WHERE email = '%s'",
                    $mysqli->real_escape_string($_POST["email"]));
     
     $result = $mysqli->query($sql);
     
-    $user = $result->fetch_assoc();
+    $staff_test = $result->fetch_assoc();
     
-    if ($user) {
+    if ($staff_test) {
         
-        if (password_verify($_POST["password"], $user["password_hash"])) {
+        if (password_verify($_POST["password"], $staff_test["password_hash"])) {
             
             session_start();
             
             session_regenerate_id();
             
-            $_SESSION["staff_id"] = $user["id"];
+            $_SESSION["staff_test_id"] = $staff_tes["id"];
             
-            header("Location: manager/manager.php");
+            header("Location: index.php");
             exit;
         }
     }
@@ -38,45 +38,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <title>Login</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="login_stylesheet.css">
-    <link rel="stylesheet" href="../navbar-last.css">
-    <link rel="stylesheet" media="screen and (max-width: 100px)" href="../mobile-nav-bar.css">
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 </head>
 <body>
-<div class="nav-bar">
-        <img  id="navbar-logo"  src="../logo_bg_rm.png" alt="">
-        <img class="punchi-logo" src="../logo.jpeg" alt="">
-
-   
-
-   
-
-    </div>
-    <div class="login-container">
-    <h1 class="login-title">Login</h1>
+    
+    <h1>Login</h1>
     
     <?php if ($is_invalid): ?>
         <em>Invalid login</em>
     <?php endif; ?>
     
     <form method="post">
-        <label class="label" for="email">E-mail</label>
-        <br>
-        <input class="input" type="email" name="email" id="email"
+        <label for="email">email</label>
+        <input type="email" name="email" id="email"
                value="<?= htmlspecialchars($_POST["email"] ?? "") ?>">
-               <br>
         
-        <label class="label" for="password">Password</label> <br>
-        <input class="input" type="password" name="password" id="password"><br>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password">
         
-        <button class= "login-button">Log in</button>
-
-        
-    </form>               
-
-    </div>
-       
+        <button>Log in</button>
+    </form>
     
 </body>
 </html>
