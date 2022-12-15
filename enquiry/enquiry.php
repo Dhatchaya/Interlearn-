@@ -103,6 +103,7 @@
                 <lable class="label" for= "category" id="category">Category:  </lable>
                 <select class="label four" name = "category">
                     <option value = "" selected>Personal</option>
+                    <option value = "personal">Personal</option>
                     <option value = "suggestion">General Suggestion</option>
 
                 </select></br><br>
