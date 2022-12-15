@@ -1,0 +1,33 @@
+@import "buttons.css";
+.item{
+    width: 300px;
+    height: 400px;
+    background-color: red;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+.row{
+    display: flex;
+    /* align-items: center; */
+}
+
+.space_even{
+    justify-content: space-evenly;
+}
+
+.space_between{
+    justify-content: space-between;
+}
+
+.space_around{
+    justify-content: space-around;
+}
+
+.center{
+    justify-content: center;
+}
+
+.f_colomn{
+    flex-direction: column;
+}
