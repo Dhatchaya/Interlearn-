@@ -217,14 +217,15 @@ ul{
     color: white;
   }
 .enq_tbl tr:hover {background-color: #e7e5e9;}
+
 .modal{
-    transform: translate(-35%, -30%) scale(0);
+    transform: translate(-35%, -35%) scale(0);
     transition: 200ms ease-in-out;
     position: fixed;
     width: 40%;
-    max-width: 40%;
-    height: 70%;
-    top: 50%;
+    max-width: 50%;
+    height: 80%;
+    top: 40%;
     left: 50%;
     margin-left: auto;
     margin-right: auto;
@@ -232,31 +233,83 @@ ul{
     justify-content: center;
     align-items: center;
     border: 1px solid var(--primary-color);
-    box-shadow: 2px 5px #eaeaea;
+    box-shadow: 2px 3px 3px #5c2e79;
     z-index: 5;
-    background-color: var(--secondary-color);
+    /* background-color: var(--secondary-color); */
+    background-color: rgb(219, 187, 237);
+    border-radius: 5px;
+    padding: 30px;
 }
 .modal.active{
     transform: translate(-35%, -30%) scale(1);
 }
-form{
+
+/* .modal h2 {
+    
+} */
+.modal form{
     position: absolute;
     display: flex;
     flex-direction: column;
-   
+    align-items: center;
+    /* left: 10%;
+    top: 0%;
+    right: 0%; */
+    padding-left: 0%;
 }
 select,input[type="text"]{
-    width: 60%;
+    width: 70%;
+    height: 4vh;
+    border-style: hidden;
+    
+}
+
+/* .label{
+    clear: left;
+    text-align: right;
+} */
+
+/* .label{
+    position: relative;   
+    left: 1vw; 
+}
+
+
+.two{
+    left: 1vw;
+}
+
+.four{
+    right: 7vw;
+}
+
+.five{
+    bottom: 4vh;
+}
+.six{
+    left: -3vw;
+} */
+
+
+.input{
+    position: relative;
 }
 
 .sub_btn{
-    width:8vw;
+    width:18vw;
     height: 2vw;
     background-color: var(--primary-color);
     color: var(--secondary-color);
     border-radius: 0.2em;
     cursor: pointer;
+    border: none;
 }
+
+.sub_btn:hover{
+    background-color: #682CC6;
+    border: none;
+}
+
 .enq_heading{
     text-align: center;
     margin-bottom: 2vw;
@@ -268,6 +321,20 @@ select,input[type="text"]{
     justify-content: space-between;
     align-items: baseline;
 }
+
+#category{
+    /* background-color: #682CC6; */
+    float: left;
+}
+
+label{
+    flex-direction: row;
+}
+
+.enquiry{
+    display: grid;
+}
+
 .Add_enq{
     background-color: var(--primary-color);
     color: var(--secondary-color);
@@ -291,6 +358,7 @@ select,input[type="text"]{
 .clm2{
     flex-grow:1;
 }
+
 .side-bar {
     background-color: #682CC6;
 	display: flex;
@@ -308,8 +376,8 @@ select,input[type="text"]{
 }
 
 .side-bar img {
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
     object-fit: cover;
 }
 .user-name{
@@ -337,9 +405,12 @@ select,input[type="text"]{
     text-align: center;
 
 }
-.middle div{
-    text-align: center;
-
+.middle {
+    /* text-align: center;
+    padding: 5px;
+    display: flex;
+    align-items: center; */
+    padding: 10px;
 }
 .bottom img{
     width: 2rem;
@@ -369,21 +440,25 @@ select,input[type="text"]{
     margin: 2rem 0 2rem 0;
 }
 .close-btn{
-    position: relative;
+    position: absolute;
+    right: 0%;
+    top: 0%;
     cursor: pointer;
     width: 40px;
     background-color: transparent;
-    border: none;
+    /* border: 2px solid black; */
     outline: none;
     font-size: 1.5rem;
     font-weight: bold;
     top:0;
- 
+
 }
+
+.close-btn:hover { background-color: rgb(193, 115, 202);}
 #overlay{
     position: fixed;
     opacity: 0;
-    transition: 200ms ease-in-out;
+    transition: 100ms ease-in-out;
     top:0;
     left: 0;
     right: 0;

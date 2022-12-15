@@ -97,18 +97,20 @@
             <h2 class="enq_heading">New Enquiry</h2>
             <button type="button" data-close-button class ="close-btn">&times;</button>
             </div>
-            <lable for= "StudentID">Teacher ID</lable></br>
-            <input type = "text" name="sid"/></br>
-            <lable for= "category">Category</lable></br>
-            <select name = "category">
-                <option value = "" selected>--</option>
-                <option value = "personal">Personal</option>
-                <option value = "suggestion">General Suggestion</option>
-                
-            </select></br>
-            <lable for= "Subject">Description</lable></br>
-            <textarea id="sub" name="sub" rows="8" cols="50" placeholder="Type your concern"></textarea></br>  
-            <input type = "submit" class ="sub_btn" name="submit" value="Submit"/>
+            <div class="enquiry">
+                <lable class="label" for= "StudentID">Teacher ID: </lable>
+                <input class="input two" type = "text" name="sid" required/></br><br>
+                <lable class="label" for= "category" id="category">Category:  </lable>
+                <select class="label four" name = "category">
+                    <option value = "" selected>Personal</option>
+                    <option value = "suggestion">General Suggestion</option>
+
+                </select></br><br>
+                <lable  class="label five"  for= "Subject">Description: </lable>
+                <textarea id="sub" name="sub" rows="8" cols="50" placeholder="Type your concern"></textarea></br><br>  
+                <input type = "submit" class ="sub_btn" name="submit" value="Submit"/>
+            </div>
+            
         </form>
   
     <?php 
