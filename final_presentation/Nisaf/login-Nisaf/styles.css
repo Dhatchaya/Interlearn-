@@ -1,0 +1,130 @@
+body{
+    height: 100%;
+    background-color: aliceblue;
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    right: 0%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+    background-color: #3E206D;
+}
+
+.nav-left img {
+    /* display: flex; */
+    /* justify-content: center;
+    align-items: left; */
+    height: 140px;
+    width: 140px;
+    object-fit: cover;
+}
+
+.nav-center input{
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin-top: 4px;
+    margin-bottom: 10px;
+    resize: vertical;
+    width: 200px;
+  }
+
+.nav-right a{
+    padding: 10px;
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 100;
+    font-size: 17px;
+    line-height: 20px;
+    text-transform: capitalize;
+    
+}
+
+.front {
+    height: 500px;
+    margin-left: 100px;
+    margin-right: 100px;
+    position: absolute;
+    top: 25%;
+    left: 20%;
+    background: aliceblue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 10px;
+    align-items: center;
+    text-align: center;
+    box-shadow: 1px 2px 4px 5px #888888;
+    border-radius: 10px;
+    
+}
+
+.v1 {
+    border-left: 2px solid black;
+    height: 400px;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    padding: 7px;
+}
+
+.left {
+    width: 40%;
+    padding: 10px;
+    /* display: flex;
+    justify-content: center; */
+    align-items: center;
+    text-align: center;
+}
+
+h2 {
+    margin: 40px;
+}
+
+.right {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+.inputs {
+    grid-template-columns: repeat(1, 0px);
+}
+
+input {
+    width: 70%;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    border-bottom: 2px solid black;
+}
+.input1, .input2, .button1 {
+    margin-top: 10px;
+    padding: 5px;
+}
+
+button{
+    border: 1px;
+    display: inline-block;
+    padding: 10px 30px;
+    background-color: #682CC6;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.warning{
+    color: red;
+}

@@ -1,0 +1,130 @@
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;	
+	font-family: Raleway, sans-serif;
+}
+
+body {
+	background: linear-gradient(90deg, #C7C5F4, #682CC6);		
+}
+.warning{
+	color: red;
+}
+a{
+    text-decoration: none;
+    text-align: center;
+    color: rgb(206, 204, 204);
+    font-size: small;
+}
+
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+}
+
+#image{
+    padding: 5px 30px;
+    width: 10vw;
+    height: 15vh;
+}
+
+.screen {		
+	background: linear-gradient(90deg, #3b3a40, #682CC6);		
+	position: relative;	
+	height: 600px;
+	width: 360px;	
+	box-shadow: 0px 0px 24px #452957;
+}
+
+.screen__content {
+	z-index: 1;
+	position: relative;	
+	height: 100%;
+}
+
+.login {
+	width: 320px;
+	padding: 30px;
+	padding-top: 60px;
+}
+
+.login__field {
+	padding: 20px 0px;	
+	position: relative;	
+}
+
+.login__icon {
+	position: absolute;
+	top: 30px;
+	color: #682CC6;
+}
+
+.login__input {
+	border: none;
+	border-bottom: 2px solid #D1D1D4;
+	background: none;
+	padding: 10px;
+	padding-left: 24px;
+	font-weight: 700;
+	width: 75%;
+	transition: .2s;
+}
+
+.login__input:active,
+.login__input:focus,
+.login__input:hover {
+	outline: none;
+	border-bottom-color: #756289;
+}
+
+#rmbr{
+    cursor: pointer;
+
+}
+
+.login__submit {
+	/* background: #fff; */
+	font-size: 14px;
+	margin-top: 30px;
+	padding: 16px 20px;
+	border-radius: 26px;
+	border: 1px solid #D4D3E8;
+	text-transform: uppercase;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	color: #4C489D;
+	box-shadow: 0px 2px 2px #2d2c3b;
+	cursor: pointer;
+	transition: .2s;
+}
+
+.login__submit:active,
+.login__submit:focus,
+.login__submit:hover {
+	border-color: #682CC6;
+	outline: none;
+}
+
+.button__icon {
+	font-size: 24px;
+	margin-left: auto;
+	color: #7875B5;
+}
+
+.social-login {	
+	position: absolute;
+	height: 140px;
+	width: 160px;
+	text-align: center;
+	bottom: 0px;
+	right: 0px;
+	color: #fff;
+}
