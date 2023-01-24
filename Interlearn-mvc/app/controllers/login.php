@@ -7,31 +7,7 @@ class Login extends Controller
     public function index()
     {   
         
-        $data['errors'] = [];
-        $data['title'] = "login";
-        $user = new User();
-
-        if($_SERVER['REQUEST_METHOD'] == "POST")
-        {
-            $row = $user -> first([
-                'email' => $_POST['email'],
-            ]);
-            if($row)
-            {
-                if(in_array($row['role'],$user->$roles))
-                {
-                    if(password_verify($_POST['password'],$row -> password ))
-                    {
-                        Auth::authenticate($row);
-                        redirect(lcfirst($row['role']).'/home');
-                    }
-                }
-                $data['errors']['role']= "No user found please retry";
-            }
-            $data['errors']['email']= "wrong email or password";
-        }
-        
-        $this->view('login',$data);
+        $this->view('home');
     }
 
 
@@ -49,15 +25,22 @@ class Login extends Controller
             ]);
             if($row)
             {
+                if($row -> role === "Student"){
                 
-                if(password_verify($_POST['password'],$row -> password ))
-                {
+                    if(password_verify($_POST['password'],$row -> password ))
+                    {
 
-                Auth::authenticate($row);
-                    redirect('home');
+                    Auth::authenticate($row);
+                    header('Location: ../'.$row -> role.'/home');
+                    }
+                    $data['errors']['email']= "wrong email or password";
                 }
+                message("Please login as staff");
             }
-            $data['errors']['email']= "wrong email or password";
+            else{
+                $data['errors']['email']= "wrong email or password";
+            }
+           
         }
         $this->view('student/login',$data);
     }
@@ -72,22 +55,33 @@ class Login extends Controller
 
         if($_SERVER['REQUEST_METHOD'] == "POST")
         {
-            $row = $user -> role([
+            $row = $user -> first([
                 'email' => $_POST['email'],
             ]);
-            // show($row);die;
+            $staff=$user -> role([
+                'email' => $_POST['email'],
+            ]);
             if($row)
             {
-                
-                if(password_verify($_POST['password'],$row -> password ))
-                {
-                Auth::authenticate($row);
                
-                   header('location:../'.$row->role);
-                
+                if ($staff) {
+                    if(password_verify($_POST['password'],$row -> password ))
+                    {
+                    Auth::authenticate($row);
+                    header('Location: ../'.$row -> role.'/home');
+                    
+                    }
+                    $data['errors']['email']= "wrong email or password";
                 }
-            }
-            $data['errors']['email']= "wrong email or password";
+                message("Please login as ".$row->role);
+         
+                }
+                else{
+                    $data['errors']['email']= "wrong email or password";
+                }
+            
+
+            
         }
         $this->view('staff/login',$data);
     }

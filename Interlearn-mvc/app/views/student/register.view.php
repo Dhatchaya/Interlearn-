@@ -4,7 +4,7 @@
 <body>
     <div class="reg_header">
         <img src="<?=ROOT?>/assets/images/logo_bg_rm.png" alt="" class="logo">
-        <a href="../Login/index.php"><button class="reg_buttons"> <p style="display: inline; color:white"><i class="arrow left" ></i></p>Login</button></a>
+        <a href="<?=ROOT?>/login/student"><button class="reg_buttons"> <p style="display: inline; color:white"><i class="arrow left" ></i></p>Login</button></a>
     </div>
     
     <div class = "scollable-container">
@@ -16,7 +16,7 @@
         <!--Personal Details-->
         <h2 class="reg_subtitle"><u>Personal Details</u></h2>
         <form name= "Reg_form" method="post" enctype="multipart/form-data" onsubmit="return validate()">
-            <!-- NIC:<label for="nic" style="color:red;"> *</label><p id="nic_err" class="warning"></p>
+            NIC:<label for="nic" style="color:red;"> *</label><p id="nic_err" class="warning"></p>
             <input class="reg_inp" type="text" name="nic" id = "nic"placeholder="Enter your NIC No" ><br>
             First Name:<label for="fname" style="color:red;"> *</label><p id="fname_err" class="warning"></p>
             <input class="reg_inp" type="text" name="fname"  placeholder="Enter your First Name" ><br>
@@ -33,7 +33,7 @@
             <input class="reg_inp reg_radio" type="radio" name="gender" id="male" value="male">
             <label for="male">Male&nbsp;&nbsp;</label>
             <input class="reg_inp reg_radio" type="radio" name="gender" id="female" value="female">
-            <label for="female">Female&nbsp;&nbsp;</label><br>  -->
+            <label for="female">Female&nbsp;&nbsp;</label><br> 
 
             Email:<label for="email" style="color:red;"> *</label><br/>
             <?php if(!empty($errors['email'])):?>
@@ -42,7 +42,7 @@
             <!-- change email to semail -->
             <input class="reg_inp" type="email" name= "email" id="semail" placeholder="Enter your Email" ><br> 
       
-<!-- 
+
             Mobile Number:<label for="mobile" style="color:red;"> *</label><p id="s_mobile" class="warning"></p>
             <input class="reg_inp" type="text" name="smobile" id="smobile" placeholder="Enter Your Permanent mobile number" ><br>
 
@@ -114,7 +114,7 @@
             <input class="reg_inp reg_radio" type="radio" name="medium" id="sinhala" value="sinhala">
             <label for="sinhala">Sinhala&nbsp;&nbsp;</label>
             <input class="reg_inp reg_radio" type="radio" name="medium" id="english" value="english">
-            <label for="english">English&nbsp;&nbsp;</label><br><br> -->
+            <label for="english">English&nbsp;&nbsp;</label><br><br> 
             <h2 class="reg_subtitle"><u>Profile</u></h2> 
             Username: <label for="Username" style="color:red;">*</label><br/>
               <?php if(!empty($errors['username'])):?>

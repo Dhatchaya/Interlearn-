@@ -22,29 +22,41 @@
       
             <div class="nav-right" id="nav-right">
                 <ul class="login-nav">
-                    <li class="nav-li"> <a href="#">Home</a></li>
+                    <li class="nav-li"> <a href="<?=ROOT?>/home">Home</a></li>
                     <li class="nav-li"> <a href="#">About</a></li>
                     <li class="nav-li"> <a href="#">Classes</a></li>
                     <li class="nav-li"> <a href="#">Contact</a></li>
                 </ul>
+                <?php if(!Auth::logged_in()):?>
                     <div class="dropdown">
-                        <div class="loginas">
-                            <button class="dropbtn">Login as</button>
-                            <i class="material-icons">arrow_drop_down</i>
-                        </div>
-                        <div class="login-content">
-                        <li class="nav-li">  <a href="<?= ROOT ?>/login/student">Student</a></li>
-                        <li class="nav-li">  <a href="<?= ROOT ?>/login/staff">Teacher</a></li>
-                        <li class="nav-li">  <a href="<?= ROOT ?>/login/staff">Instructor</a></li>
-                        <li class="nav-li">  <a href="<?= ROOT ?>/login/staff">Admin</a></li>
-                        <li class="nav-li">  <a href="<?= ROOT ?>/login/staff">Receptionist</a></li>
-                        </div>
+                    <div class="loginas">
+                        <button class="dropbtn">Login as</button>
+                        <i class="material-icons">arrow_drop_down</i>
                     </div>
-                    <div class="menu" id="menu" onclick="displayNav()">
-                        <div class="menu-icon"></div>
-                        <div class="menu-icon"></div>
-                        <div class="menu-icon"></div>
+                    
+                <div class="login-content"><ul>
+                 <li class="nav-li">  <a href="<?= ROOT ?>/login/student">Student</a></li>
+                 <li class="nav-li">  <a href="<?= ROOT ?>/login/staff">Staff</a></li>
+
+                 </ul>
                     </div>
+  
+                </div>
+                <?php else:?>
+                    <li class="dropdown_logout">
+                    <span>Hi, <?= ucfirst(Auth::getusername())?></span>
+                    <div class="logout-content">
+                    <ul>
+                        <li class="lo-nav"> <a href="<?= ROOT ?>/logout">Logout</a></li>
+                    </ul>
+                    </div>
+                    </li>
+                <?php endif; ?>
+                <div class="menu" id="menu" onclick="displayNav()">
+                    <div class="menu-icon"></div>
+                    <div class="menu-icon"></div>
+                    <div class="menu-icon"></div>
+                </div>
             </div>
            
             

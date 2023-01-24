@@ -8,6 +8,7 @@ class Auth
     {
         if(is_object($row)){
             $_SESSION['USER_DATA'] = $row;
+            
         }
         
 
@@ -20,7 +21,47 @@ class Auth
     }
     public static function  is_admin(){
         if(!empty($_SESSION['USER_DATA'])){
-            if($_SESSION['USER_DATA'] -> role == 'admin'){
+            if($_SESSION['USER_DATA'] -> role == 'Admin'){
+            return true;
+            }
+        }
+        return false;
+    }
+    public static function  is_student(){
+        if(!empty($_SESSION['USER_DATA'])){
+            if($_SESSION['USER_DATA'] -> role == 'Student'){
+            return true;
+            }
+        }
+        return false;
+    }
+    public static function  is_manager(){
+        if(!empty($_SESSION['USER_DATA'])){
+            if($_SESSION['USER_DATA'] -> role == 'Manager'){
+            return true;
+            }
+        }
+        return false;
+    }
+    public static function  is_receptionist(){
+        if(!empty($_SESSION['USER_DATA'])){
+            if($_SESSION['USER_DATA'] -> role == 'Receptionist'){
+            return true;
+            }
+        }
+        return false;
+    }
+    public static function  is_teacher(){
+        if(!empty($_SESSION['USER_DATA'])){
+            if($_SESSION['USER_DATA'] -> role == 'Teacher'){
+            return true;
+            }
+        }
+        return false;
+    }
+    public static function  is_instructor(){
+        if(!empty($_SESSION['USER_DATA'])){
+            if($_SESSION['USER_DATA'] -> role == 'Instructor'){
             return true;
             }
         }

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Login</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title><?=ucfirst(APP::$page)?> - <?=APP_NAME?></title>
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles.css?v=<?php echo time(); ?>">
 </head>
 <body class="staff_login">
@@ -12,14 +13,24 @@
         <div class="staff_login_nav-left">
             <img src="<?=ROOT?>/assets/images/logo_bg_rm.png" alt="logo">
         </div>
-        <div class="staff_login_nav-center">
-            <input type="text" placeholder="search for anything" name="search">
+        <div class="header_right">
+            <div class="login-nav" id="login-nav">
+                <ul>
+                <li class="nav-li"> <a href="<?=ROOT?>/home">Home</a></li>
+                </ul>
             </div>
-        <div class="staff_login_nav-right">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Classes</a>
-            <a href="#">Contact Us</a>
+            <div class="dropdown">
+                <div class="loginas">
+                    <button class="dropbtn">Login as</button>
+                    <i class="material-icons">arrow_drop_down</i>
+                </div>
+                <div class="login-content">
+                    
+                 <li class="nav-li">  <a href="<?= ROOT ?>/login/student">Student</a></li>
+                 <li class="nav-li">  <a href="<?= ROOT ?>/login/staff">Staff</a></li>
+
+                </div>
+            </div>
         </div>
     </header>
     <div class="staff_login_front">
@@ -30,16 +41,21 @@
         <div class="staff_login_v1"></div>
         <div class="staff_login_right">
             <h2 class ="staff_login_title">Receptionist Login</h2>
-    
-            <?php 
-                
-                if(@$_GET['Empty'] == true)
-                {
-                    ?>
-                    <div class = "warning"> <?php echo $_GET['Empty'] ?></div>
-                <?php
-                }
-            ?>
+            <?php if(message()):?>
+            <div class="display-msg">
+                <?=message('',true)?>
+            </div>
+            <?php endif;?>
+            <?php if(!empty($errors['email'])):?>
+            <div class="display-error">
+                <?=$errors['email']?>
+            </div>
+            <?php endif;?>
+            <?php if(!empty($errors['password'])):?>
+            <div class="display-error">
+                <?=$errors['password']?>
+            </div>
+            <?php endif;?>
             <div class="staff_login_inputs">
                 <form  method="POST">
                     <div class="staff_login_input1">

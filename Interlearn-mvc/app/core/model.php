@@ -58,7 +58,7 @@ class Model extends Database {
     }
     public function role($data){
         $keys = array_keys($data);
-        $query ="select * from ".$this->table." where ";
+        $query ="select role from ".$this->table." where ";
 
         foreach($keys as $key){
             $query .= $key. " =:".$key." && ";
@@ -66,12 +66,10 @@ class Model extends Database {
         $query = trim($query,"&& ");
         $query .= " order by SID desc limit 1";
         $res = $this -> query($query,$data);
-        
-        if(is_array($res)){
        
-           
-            if(in_array($res[0]->role,$this->roles)){
-                return $res[0];
+        if(is_array($res)){
+            if(in_array($res[0]->role,$this->staffs)){
+                return true;
             }
            
         }

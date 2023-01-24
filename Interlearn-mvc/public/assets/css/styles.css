@@ -576,10 +576,10 @@
 }
 
 .login_header {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0%;
-    height: 75px;
+    height: 100px;
     width: 100%;
     padding: 10px;
     background-color: var(--primary-color);
@@ -587,6 +587,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    
 }
 
 .login_logo {
@@ -809,10 +810,11 @@ border-radius: 41px;
     
 
   
-  .dropdown:hover .login-content {
+.dropdown:hover .login-content {
     display: block;
   }
-  
+
+
 .dropdown:hover .material-icons {
     background-color:rgba(255, 255, 255, 0.3);
     color: var(--primary-color);
@@ -834,6 +836,49 @@ border-radius: 41px;
 .fa, .fab{
     line-height:2;
     
+}
+.nav-li{
+    font-size: 16px;
+	text-transform: capitalize;
+	color: #ffffff;
+	text-decoration: none;
+	font-weight: 300;
+	color: #bbbbbb;
+	display: block;
+	transition: all 0.3s ease;
+ }
+
+.dropdown_logout {
+    position: relative;
+    color: #bbbbbb;
+}
+
+.logout-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 2rem;
+    background-color: var(--page-color);
+   
+}
+
+.dropdown_logout:hover .logout-content {
+    display: block;
+}
+.dropdown_logout:hover{
+    color: var(--page-color);
+}
+.lo-nav a{  
+    color: #111010;
+    font-weight: bold;
+}
+.lo-nav a:hover{
+    color: #5f5959;
+}
+li.lo-nav {
+    padding: 0.4rem 1rem 0.2rem 0;
 }
 /*responsive*/
 @media(max-width: 767px){
@@ -889,6 +934,7 @@ border-radius: 41px;
     opacity: 0.8;
     width: 10rem;
  }
+
   }
   @media(max-width: 574px){
     .footer-col{
@@ -937,7 +983,7 @@ border-radius: 41px;
 .nav-right li{
       display: inline-block;
   }
-.nav-right li:after,.header_right li:after{
+.nav-right-login li:after,.header_right li:after,.login-content li:after{
 	content: '';
 	display: block;
 	margin: auto;
@@ -946,7 +992,7 @@ border-radius: 41px;
 	background: transparent;
 	transition: width .5s ease, background-color .5s ease;
 }
-.nav-right li:hover:after,.login-content li:hover:after{
+.nav-right-login li:hover:after,.login-content li:hover:after{
 	width: 100%;
 	background: purple;
 }
@@ -1130,8 +1176,8 @@ border-radius: 41px;
 }
 
 .display-msg{
-    color: #115414;
-    background-color: #91b668;
+    color: #e42113;
+    background-color: #ded1f6;
 }
 :root{
     --primary-color:#3E206D;
@@ -1210,7 +1256,7 @@ border-radius: 41px;
     right: 0%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     height: 100px;
     background-color: #3E206D;

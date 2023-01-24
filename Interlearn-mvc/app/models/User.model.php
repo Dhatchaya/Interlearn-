@@ -16,13 +16,12 @@ class User extends Model
         'user_activation_code',
         'user_otp'
     ];
-    protected $roles = [
+    protected $staffs = [
         'Manager',
-        'Student',
         'Teacher',
         'Instructor',
         'Receptionist',
-        'Admin'
+
     ];
     public function validate($data)
     {   

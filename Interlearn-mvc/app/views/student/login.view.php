@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title><?=ucfirst(APP::$page)?> - <?=APP_NAME?></title>
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles.css?v=<?php echo time(); ?>">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,13 +16,13 @@
 <body>
     <span class = "login_body">
     <header class = "login_header">
-        <div class="logo">
-            <img  class = "login_logo" src="<?=ROOT?>/assets/images/logo_bg_rm.png" alt="logo">
+    <div class="staff_login_nav-left">
+            <img src="<?=ROOT?>/assets/images/logo_bg_rm.png" alt="logo">
         </div>
         <div class="header_right">
             <div class="login-nav" id="login-nav">
                 <ul>
-                <li class="nav-li"> <a href="#">Home</a></li>
+                <li class="nav-li"> <a href="<?=ROOT?>/home">Home</a></li>
                 </ul>
             </div>
             <div class="dropdown">
@@ -33,10 +33,8 @@
                 <div class="login-content">
                     
                  <li class="nav-li">  <a href="<?= ROOT ?>/login/student">Student</a></li>
-                 <li class="nav-li">  <a href="<?= ROOT ?>/login/staff">Teacher</a></li>
-                 <li class="nav-li">  <a href="<?= ROOT ?>/login/staff">Instructor</a></li>
-                 <li class="nav-li">  <a href="<?= ROOT ?>/login/staff">Admin</a></li>
-                 <li class="nav-li">  <a href="<?= ROOT ?>/login/staff">Receptionist</a></li>
+                 <li class="nav-li">  <a href="<?= ROOT ?>/login/staff">Staff</a></li>
+
                 </div>
             </div>
         </div>
