@@ -1,23 +1,21 @@
 <?php
 /**
- *Enquiry class
+ *user class
  */
-class Enquiry extends Model
+class User extends Model
 {
     //says what table it has to target
     public $error = [];
-    protected $table = "enquiry";
+    protected $table = "users";
     protected $allowed_columns = [
-        'enquiry_no',
-        'title',
-        'content',
-        'type',
-        'status',
-        'date',
-        'user_Id',	
+        'username',
+        'email',
+        'password',
         'role',
-        'reply',
-
+        'user_datetime',
+        'user_activation_code',
+        'user_otp',
+       "display_picture",
     ];
     protected $staffs = [
         'Manager',
@@ -37,15 +35,15 @@ class Enquiry extends Model
             }
          }
     
-            // // checks email is valid if so it'll check whther it already exists
-            // if(!filter_var($data['email'],FILTER_VALIDATE_EMAIL))
-            // {
-            //     $this->error['email'] = "Email is not valid";
-            // }else
-            // if($this->where(['email'=>$data['email']])){
-            //         $this->error['email'] = "Email already exists";
+            // checks email is valid if so it'll check whther it already exists
+            if(!filter_var($data['email'],FILTER_VALIDATE_EMAIL))
+            {
+                $this->error['email'] = "Email is not valid";
+            }else
+            if($this->where(['email'=>$data['email']],'uid')){
+                    $this->error['email'] = "Email already exists";
                 
-            // }
+            }
         if(empty($this->error)){
             return true;
         }

@@ -22,6 +22,7 @@ class Login extends Controller
         {
             $row = $user -> first([
                 'email' => $_POST['email'],
+                'User_email_status' => 'verified'
             ],'uid');
             if($row)
             {
@@ -57,6 +58,7 @@ class Login extends Controller
         {
             $row = $user -> first([
                 'email' => $_POST['email'],
+                'User_email_status' => 'verified'
             ],'uid');
             $staff=$user -> role([
                 'email' => $_POST['email'],
