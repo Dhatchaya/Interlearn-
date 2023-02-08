@@ -96,8 +96,8 @@ class Model extends Database {
                 $mail -> Host = 'smtp.gmail.com';
                 $mail->Port = 465;
                 $mail -> SMTPAuth = true;
-                $mail -> Username ='interlearnsl@gmail.com';
-                $mail -> Password = 'qeffokfsaebqwngl';
+                $mail -> Username ='add interlearn email';
+                $mail -> Password = 'add your password';
                 $mail->SMTPSecure ='ssl';
                 $mail->SMTPOptions = array(
                     'ssl' => array(
