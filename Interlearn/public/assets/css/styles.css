@@ -1180,7 +1180,7 @@ li.lo-nav {
 .side-bar {
     background-color: #682CC6;
 	display: flex;
-    width: 15%;
+    /* width: 15%; */
     max-width: 10rem;
     height: 80vh;
     margin: 10px;
@@ -1715,4 +1715,80 @@ li.lo-nav {
     margin: 0.5rem;
     background-color: var(--primary-color);
     color: var(--secondary-color);
+}
+
+
+/* quiz page */
+
+.mid-container {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.quizz_right {
+    width: 70%;
+    background: aliceblue;
+    border: 2px solid #808080bf;
+    padding: 3rem;
+    margin: 4rem 0 2rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.quizz_right input[text] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 12px;
+    resize: vertical;
+
+}
+
+
+.quiz-next-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.quizz_right hr {
+    width: 85%;
+    margin: auto;
+    border: 1px solid #ccc;
+}
+
+.quiz-head {
+    margin-left: 25px;
+    margin-bottom: 20px;
+}
+
+.quiz-name {
+    margin-left: 25px;
+    margin-top: 20px;
+}
+
+.quiz-description {
+    margin-left: 25px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.quiz-next-options {
+    margin-left: 25px;
+}
+
+.question_right {
+    width: 70%;
+    background: aliceblue;
+    border: 2px solid #808080bf;
+    padding: 3rem;
+    margin: 4rem 0 2rem 0;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
 }
