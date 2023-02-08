@@ -27,4 +27,16 @@ class Teacher extends Controller
         
         $this->view('teacher/profile',$data);
     }
+    public function quizz($action=null)
+    { 
+        if(!Auth::is_teacher()){
+            redirect('home');
+           
+        }
+        if($action=='add'){
+            $this->view('teacher/quiz-add');
+            exit();
+        }
+        $this->view('teacher/quizz');
+    }
 }
