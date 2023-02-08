@@ -1180,7 +1180,7 @@ li.lo-nav {
 .side-bar {
     background-color: #682CC6;
 	display: flex;
-    /* width: 15%; */
+    width: 15%;
     max-width: 10rem;
     height: 80vh;
     margin: 10px;
@@ -1718,77 +1718,492 @@ li.lo-nav {
 }
 
 
-/* quiz page */
 
-.mid-container {
-    display:flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-.quizz_right {
-    width: 70%;
-    background: aliceblue;
-    border: 2px solid #808080bf;
-    padding: 3rem;
-    margin: 4rem 0 2rem 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
 
-.quizz_right input[text] {
+
+
+/* student profile view */
+
+.std_profile_container{
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 12px;
-    resize: vertical;
-
-}
-
-
-.quiz-next-options {
+    height: 100vh;
+    margin-top: 3%;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 10px;
 }
 
-.quizz_right hr {
-    width: 85%;
+.std_profile_content{
+    margin-top: 5%;
+    margin-left: 2%;
+}
+
+.std_profile_heading{
+    margin-left: 20%;
+    margin-top: 5%;
+}
+
+.std_profile_rectangle{
+    width: 60%;
+    height: 85vh;
+    background-color: rgba(104, 44, 198, 9%);
+    /* display: flex; */
+    /* justify-content: center; */
     margin: auto;
-    border: 1px solid #ccc;
+    margin-top: 1%;
+    border-radius: 7%;
 }
 
-.quiz-head {
-    margin-left: 25px;
-    margin-bottom: 20px;
+.std_profile_content{
+    margin-left: 9%;
+    margin-top: 3%;
+    width: 100%;
+    display: flex;
+    padding-top: 3%;
+    padding-left: 2%;
 }
 
-.quiz-name {
-    margin-left: 25px;
-    margin-top: 20px;
+.std_profile_image{
+    border-radius: 50%;
+    width: 8vw;
+    height: 11vh;
+    margin-right: 10%;
 }
 
-.quiz-description {
-    margin-left: 25px;
-    margin-top: 20px;
-    margin-bottom: 50px;
+.std_profile_name{
+    padding-top: 2%;
 }
 
-.quiz-next-options {
-    margin-left: 25px;
+.std_profile_content2{
+    display: flex;
+    width: 8vw;
+    height: 3vh;
+    padding-left: 2%;
+    cursor: pointer;
+    margin-left: 9%;
+    padding-top: 1%;
+    align-items: center;
 }
 
-.question_right {
-    width: 70%;
-    background: aliceblue;
-    border: 2px solid #808080bf;
-    padding: 3rem;
-    margin: 4rem 0 2rem 0;
-    /* display: flex;
+.std_profile_edit{
+    width: 1vw;
+    height: 1vh;
+    padding-left: 3%;
+    padding-top: 4%;
+    margin-right: 4%;
+}
+
+.std_profile_profilepic{
+    text-decoration: none;
+    padding-top: 0%;
+    margin-top: 0%;
+    font-size: smaller;
+}
+
+.std_profile_form{
+    margin-left: 10%;
+    margin-top: 2%;
+    display:flex;
+}
+
+.std_profile_grade{
+    display: flex;
     flex-direction: column;
-    justify-content: center; */
+}
+
+
+.std_profile_grade2{
+    margin-left: 3.15em;
+}
+
+.std_profile_field{
+    float: right;
+}
+
+.std_profile_parentdet{
+    margin-left: 5%;
+}
+
+.std_profile_phead{
+    margin-top: 0%;
+}
+
+.std_profile_btn{
+    width: 6vw;
+    height: 4vh;
+    background-color: #3E206D;
+    border-radius: 8%;
+    border-color: darkgray;
+    cursor: pointer;
+    margin-left: 65%;
+    color: white;
+}
+
+.std_profile_btn:hover{
+    background-color: rgba(62, 32, 109, 70%);
+}
+
+
+
+
+/* profile teacher/instructor view */
+
+.teacher_profile_container{
+    width: 100%;
+    height: 100vh;
+    margin-top: 3%;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+}
+
+.teacher_profile_content{
+    margin-top: 5%;
+    margin-left: 2%;
+}
+
+.teacher_profile_heading{
+    margin-left: 20%;
+    margin-top: 5%;
+}
+
+.teacher_profile_rectangle{
+    width: 60%;
+    height: 85vh;
+    background-color: rgba(104, 44, 198, 9%);
+    /* display: flex; */
+    /* justify-content: center; */
+    margin: auto;
+    margin-top: 1%;
+    border-radius: 7%;
+}
+
+.teacher_profile_content{
+    margin-left: 9%;
+    margin-top: 3%;
+    width: 100%;
+    display: flex;
+    padding-top: 3%;
+    padding-left: 2%;
+}
+
+.teacher_profile_image{
+    border-radius: 50%;
+    width: 7vw;
+    height: 11vh;
+    margin-right: 10%;
+}
+
+.teacher_profile_name{
+    padding-top: 2%;
+}
+
+.teacher_profile_content2{
+    display: flex;
+    width: 8vw;
+    height: 3vh;
+    padding-left: 2%;
+    cursor: pointer;
+    margin-left: 9%;
+    padding-top: 1%;
+    align-items: center;
+}
+
+.teacher_profile_edit{
+    width: 1vw;
+    height: 1vh;
+    padding-left: 3%;
+    padding-top: 4%;
+    margin-right: 4%;
+}
+
+.teacher_profile_profilepic{
+    text-decoration: none;
+    padding-top: 0%;
+    margin-top: 0%;
+    font-size: smaller;
+}
+
+.teacher_profile_form{
+    margin-left: 10%;
+    margin-top: 2%;
+    width: 80%;
+}
+
+.teacher_profile_subject{
+    width: 100%;
+    display: flex;
+}
+
+.teacher_profile_sub1, .teacher_profile_sub2, .teacher_profile_sub3, .teacher_profile_sub4{
+    padding-left: 2%;
+    margin-right: 0%;
+    width: 30%;
+    padding-right: 0%;
+}
+
+.teacher_profile_sub1{
+    margin-left: 13%;
+}
+
+.teacher_profile_field{
+    float: right;
+    width: 40%;
+    margin-right: 35%;
+}
+
+.teacher_profile_grade{
+    padding-right: 2%;
+    margin-right: 14%;
+}
+
+.teacher_profile_btn{
+    width: 6vw;
+    height: 4vh;
+    background-color: #3E206D;
+    border-radius: 8%;
+    border-color: darkgray;
+    cursor: pointer;
+    margin-left: 65%;
+    color: white;
+}
+
+.teacher_profile_btn:hover{
+    background-color: rgba(62, 32, 109, 70%);
+}
+
+
+
+/* view teacher/instructor */
+
+.teacher_view_container{
+    text-align: center;
+    padding-left: 2%;
+    display: flex;
+    padding-bottom: 2%;
+}
+
+.teacher_view_content{
+    margin-top: 5%;
+    margin-left: 2%;
+}
+
+.teacher_view_greeting{
+    padding-top: 5%;
+    padding-left: 0;
+    float: left;
+    margin-right: 50%;
+}
+
+.teacher_view_Rectangle{
+    background-color: rgb(104, 44, 198,9%);
+    border-radius: 10%;
+    width: 15vw;
+    height: 50vh;
+    float: left;
+    margin-right: 8%;
+    margin-top: 5%;
+    margin: bottom 5%; 
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+}
+
+
+.teacher_view_Rectangle:hover{
+    transform: scale(1.02);
+    /* transition: ; */
+}
+
+.teacher_view_Rectangle a{
+    text-decoration: none;
+}
+
+.teacher_view_Img{
+    width: 15vw;
+    height: 20vh;
+    border-radius: 10%;
+    position: relative;
+    transition: width 1s, height 1s;
+}
+
+.teacher_view_Rectangle p{
+    font-weight: 500;
+    font-size: large;
+    color: #000000;
+    margin-bottom: 5%;
+    padding: 3%;
+}
+
+
+/* student course page */
+
+.std_crs_container{
+    text-align: center;
+    padding-left: 2%;
+    display: flex;
+}
+
+.std_crs_content{
+    margin-top: 5%;
+    margin-left: 2%;
+}
+
+.std_crs_heading{
+    display: flex;
+    align-items: center;
+    width: 30vw;
+    height: 10vh;
+    padding-left: 5%;
+    text-align: center;
+}
+
+.std_crs_search{
+    width: 15vw;
+    height: 5vh;
+    border-radius: 4%;
+    background-color: rgb(104, 44, 198,9%);
+    padding-top: 1%;
+}
+
+.std_crs_searchIcon{
+    width: 2vw;
+    height: 2vh;
+    padding-left: 2%;
+    cursor: pointer;
+}
+
+.std_crs_searchbox{
+    width: 12vw;
+    height: 3vh;
+    border-radius: 10%;
+    background-color: rgb(104, 44, 198,9%);
+    padding: 4%;
+    border: none;
+}
+
+.std_crs_dropbtn {
+    background-color:rgb(104, 44, 198,12%);
+    color: rgb(0, 0, 0);
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5%;
+    cursor: pointer;
+}
+
+.std_crs_dropbtn:hover, .std_crs_dropbtn:focus {
+    background-color: rgb(104, 44, 198,35%);
+}
+
+.std_crs_dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.std_crs_dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.std_crs_dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.std_crs_dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* .show {
+    display:block;
+} */
+
+.std_crs_rectangle{
+    background-color: rgb(104, 44, 198,9%);
+    border-radius: 10%;
+    width: 15vw;
+    height: 50vh;
+    float: left;
+    margin-right: 8%;
+    margin-top: 5%;
+    margin: bottom 5%; 
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+}
+
+
+.std_crs_rectangle:hover{
+    transform: scale(1.02);
+    /* transition: ; */
+}
+
+.std_crs_rectangle a{
+    text-decoration: none;
+}
+
+
+
+/* student view page */
+
+.std_view_container{
+    text-align: center;
+    padding-left: 2%;
+    position: relative;
+    display: flex;
+    margin-bottom: 2%;
+}
+
+.std_view_content{
+    margin-top: 5%;
+    margin-left: 2%;
+}
+
+.std_view_greeting{
+    display: inline;
+    width: 50vw;
+    height: 16vh;
+    text-align: center;
+    display: flex;
+    border-style: solid;
+    border-color: rgba(62, 32, 109, 100%);
+    border-radius: 2%;
+}
+
+.std_view_greet{
+    text-align: center;
+    position: relative;
+    padding-top: 4%;
+    width: 35vw;
+    font-size: larger;
+    line-height: 150%;
+}
+
+.std_view_announcement{
+    width: 50vw;
+    /* height: 50vh; */
+}
+
+.std_view_text{
+    text-align: left;
+}
+
+.std_view_box{
+    border: solid;
+    border-color: rgba(62, 32, 109, 20%);
+    padding: 2%;
+    align-items: center;
+}
+
+.std_view_msg{
+    text-align: left;
+    border-style: solid;
+    border-color: rgba(62, 32, 109, 100%);
+    padding-top: 2%;
+    padding-left: 2%;
+    width: 47vw;
+    height: 20vh;
 }
