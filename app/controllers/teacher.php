@@ -24,6 +24,10 @@ class Teacher extends Controller
             $this->view('teacher/quiz-add');
             exit();
         }
+        if($action=='final'){
+            $this->view('teacher/quizz-final');
+            exit();
+        }
         $this->view('teacher/quizz');
     }
 }

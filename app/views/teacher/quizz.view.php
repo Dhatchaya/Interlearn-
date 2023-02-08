@@ -12,7 +12,7 @@
         </div>
         <form action="" method="post">
             <div class="quiz-name">
-                <h3>Quiz name *</h3>
+                <h3>Quiz Title *</h3>
                 
                 <input class="home_cnt_inp" type=text name="text" value="" placeholder="Eg : sample quiz">
             </div>
