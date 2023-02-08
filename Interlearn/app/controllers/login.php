@@ -57,10 +57,10 @@ class Login extends Controller
         {
             $row = $user -> first([
                 'email' => $_POST['email'],
-            ]);
+            ],'uid');
             $staff=$user -> role([
                 'email' => $_POST['email'],
-            ]);
+            ],'uid');
             if($row)
             {
                

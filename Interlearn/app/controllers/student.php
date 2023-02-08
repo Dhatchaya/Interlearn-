@@ -13,12 +13,16 @@ class Student extends Controller
         
         $this->view('student/home');
     }
-    public function profile()
+    public function profile($id = null)
     { 
         if(!Auth::is_student()){
             redirect('home');
            
         }
+
+        $id = $id ?? Auth::getID();
+        $user = new User();
+        $data['row'] = $user->first(['id'=>$id]);
         
         $this->view('student/profile');
     }

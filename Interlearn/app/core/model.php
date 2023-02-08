@@ -97,7 +97,7 @@ class Model extends Database {
                 $mail->Port = 465;
                 $mail -> SMTPAuth = true;
                 $mail -> Username ='add interlearn email';
-                $mail -> Password = 'add your password';
+                $mail -> Password = 'add your password'; 
                 $mail->SMTPSecure ='ssl';
                 $mail->SMTPOptions = array(
                     'ssl' => array(
