@@ -1,31 +1,30 @@
 <?php
 /**
- *Enquiry class
+ *Reply class
  */
-class Enquiry extends Model
+class Reply extends Model
 {
     //says what table it has to target
     public $error = [];
-    protected $table = "enquiry";
+    protected $table = "reply";
     protected $allowed_columns = [
-        'enquiry_no',
-        'title',
+        'eid',
+        'repId',
+        'senderId',
+        'receiverId',
         'content',
-        'type',
-        'status',
         'date',
-        'user_Id',	
-        'role',
-        'reply',
-
+        'reply_user',
+        'status',
+        
     ];
-    protected $staffs = [
-        'Manager',
+    protected $users = [
+
         'Teacher',
         'Instructor',
-        'Receptionist',
-
+        'Student',
     ];
+
     public function validate($data)
     {   
         $this->error = [];

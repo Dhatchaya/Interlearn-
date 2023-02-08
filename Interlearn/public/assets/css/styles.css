@@ -1166,13 +1166,16 @@ li.lo-nav {
    opacity: 0.8;
    border: none;
 }
-.add_heading{
+.add_heading,.add_heading_init{
     margin: 3vh 3vh 0 3vh;
     font-size: 2rem;
+    display: block;
 }
+
 .center-body {
 	display: flex;
 	flex-direction: row;
+    gap: 8vw;
 }
 .clm2{
     flex-grow:1;
@@ -1633,25 +1636,24 @@ li.lo-nav {
 /* enquiry view */
 .enq_view_body {
     width: 70%;
-    background: aliceblue;
+    background: #d5d8ed;
     border: 2px solid #808080bf;
     padding: 3rem;
     margin: 4rem 0 2rem 0;
    
 }
-.view{
-    justify-content: space-around;
-}
+
 .init_enq{
     overflow: hidden;
     position: relative;
-    background: #d5d8ed;
+    background: var(--secondary-color);
     width: 60%;
     height: auto;
     margin: 1rem 0 1rem 0;
     border: 1px solid gray;
     padding: 1rem;
     border-radius: 10px;
+  
 
 }
 .init_enq >span :first-child{
@@ -1699,14 +1701,18 @@ li.lo-nav {
     height: 25vh;
     padding: 1rem;
     display: none;
+    transition: .5s;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 .enq-view-form input[type="text"]{
     height: 15vh;
     width: 100%;
     border: 1px solid #80808059;
-    text-align: center;
+    text-align: left;
+    transition: .5s;
+    
 }
-.enq-view-form input[type="submit"]{
+.enq-view-form .reply-btn{
     border: 1px;
     /* display: inline-block; */
     padding: 5px 24px;
@@ -1716,12 +1722,55 @@ li.lo-nav {
     background-color: var(--primary-color);
     color: var(--secondary-color);
 }
-
-
-
-
-
-
+.resolve-btn{
+    border: 1px;
+    display: inline-block;
+    padding: 10px 30px;
+    background-color: #76c266;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    float:right;
+    margin-right: 50px;
+}
+.sender{
+    margin-left:23vw;
+}
+.enq_full_body{
+    line-height: 0.5;
+  text-align: center;
+  margin: 2rem 0 1rem 0;
+    
+}
+.add_heading {
+    display: inline-block;
+    position: relative;
+    color: var(--primary-color);
+    /* text-shadow: 0.3px 1px 3px #171718;  */
+  }
+  .add_heading:before,
+  .add_heading:after {
+    content: "";
+    position: absolute;
+    height: 5px;
+    border-bottom: 1px solid rgb(20, 15, 15);
+    /* //border-top: 1px solid rgb(24, 18, 18); */
+    top: 0;
+    width: 600px;
+  }
+  .add_heading:before {
+    right: 100%;
+    margin-right: 15px;
+  }
+  .add_heading:after {
+    left: 100%;
+    margin-left: 15px;
+  }
+.enqStatus{
+    background-color: transparent;
+    border-radius: 5px;
+}
 /* student profile view */
 
 .std_profile_container{
@@ -1963,9 +2012,7 @@ li.lo-nav {
     border-color: darkgray;
     cursor: pointer;
     margin-left: 65%;
-    color: white;
 }
-
 .teacher_profile_btn:hover{
     background-color: rgba(62, 32, 109, 70%);
 }

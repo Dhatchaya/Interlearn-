@@ -53,7 +53,22 @@ const modal1 = document.getElementById('modal1');
 const currentURL = "http://localhost/Interlearn/public/Student/enquiry";
 const newURL = "http://localhost/Interlearn/public/Student/enquiry/add";
 const editURL = "http://localhost/Interlearn/public/Student/enquiry/edit/";
+const statuses = document.getElementById("status");
 
+statuses.addEventListener('change',function(e){
+  var statusVal = statuses.value;
+  var eid = statuses.dataset.eid;
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "update_status.php", true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+      console.log(xhr.responseText);
+    }
+  };
+  xhr.send("eid=" + encodeURIComponent(eid) + "&status=" + encodeURIComponent(status));
+
+});
 function addEnquiry(){
 
   modal1.classList. add('active');
@@ -106,7 +121,6 @@ function closeEnquiry(){
    window.history.pushState({}, "", currentURL);
 
 }
-
 
 
 
