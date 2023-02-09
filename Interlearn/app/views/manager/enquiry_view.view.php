@@ -1,12 +1,15 @@
 <?php $this->view("includes/header");?>
 <?php $this->view("includes/nav");?>
 
+<div class= "enq_full_body">
+    <h2 class="add_heading">Enquiry <?=$enq->eid;?></h2>
+</div>
 <div class="center-body view">
     <?php $this->view("includes/sidebar");?>
     
     <div class="enq_view_body">
-        <h2 class="add_heading">Enquiry <?=$enq->eid;?></h2>
-        <button class="resolve-btn"> Resolved </button>
+   
+        <!-- <button class="resolve-btn"> Resolved </button> -->
         <div class="enq-body">
 
                      <script>

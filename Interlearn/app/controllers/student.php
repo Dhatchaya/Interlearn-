@@ -19,7 +19,6 @@ class Student extends Controller
             redirect('home');
            
         }
-
         $id = $id ?? Auth::getID();
         $user = new User();
         $data['row'] = $user->first(['id'=>$id]);
@@ -30,9 +29,11 @@ class Student extends Controller
     {   $result = false;
         if(!Auth::logged_in())
 		{
-			message('please login to view the admin section');
-			redirect('login');
+			message('please login');
+            redirect('login/student');
 		}
+  
+
         if(!Auth::is_student()){
             redirect('home');
            
@@ -46,7 +47,7 @@ class Student extends Controller
         $orderby = 'eid';
         $data['enquiry_title'] = 'New Enquiry';
         $data['some']=" ";
-
+        $data['reply'] = "set";
         if($action == "add"){
             $data['action']= "add";
             $title = new stdClass();
@@ -120,10 +121,40 @@ class Student extends Controller
             header("Location:http://localhost/Interlearn/public/Student/enquiry");
         }
         if($action == "view"){
+            $reply = new Reply();
+            $enq = $enquiry->first([
+                'eid'=>$eid
+            ],'eid');
+            
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                if(isset($_GET['rid'])){
+                    $reParent = $_GET['rid'];
+                }
+                $_POST['eid']=$eid;
+                $_POST['senderId']=$user_id;
+                $_POST['receiverId']= $enq->user_Id;
+                $_POST['reply_user']=$role;
+                
+           
+                $result= $reply->insert($_POST);
+             
+                if($result){
+                    if($enq->status == 'pending'){
+                       $updateStatus= $enquiry->update(['eid'=>$eid],['status'=>'In progress']);
+                    }
+                   $replied = $reply -> update(['repId'=>$reParent],['status'=>'replied']);
+                }
+                else{
+                    echo"fail";
+                }
+
+            }
+            $data['reply'] = $reply -> where(['eid'=>$eid],'eid');
             $enq = $enquiry->first([
                 'eid'=>$eid
             ],'eid');
             $data['enq']=$enq;
+         
             $this->view('student/enquiry_view',$data);
             exit;
            

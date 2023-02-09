@@ -4,7 +4,7 @@
 <div class="teacher_view_container">
     <?php $this->view("includes/sidebar");?>
     <div class="teacher_view_content">
-        <h1 class="teacher_view_greeting">Welcome Dhatchaya!</h1><br>
+        <h1 class="teacher_view_greeting">Good Morning Monica!</h1><br>
             <div class="teacher_view_Rectangle">
                 <a href="#">
                     <img src="<?=ROOT?>/assets/images/2023.jpg" alt="" class="teacher_view_Img">
