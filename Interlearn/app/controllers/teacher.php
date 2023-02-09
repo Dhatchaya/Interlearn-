@@ -13,16 +13,20 @@ class Teacher extends Controller
         
         $this->view('teacher/home');
     }
-    public function profile($id = null)
+
+
+    public function profile($action=null,$id = null)
     { 
         if(!Auth::is_teacher()){
             redirect('home');
-           
+           exit;
         }
+        // if($action=='add'){
 
-        $id = $id ?? Auth::getID();
-        $user = new User();
-        $data['row'] = $user->first(['id'=>$id]);
+        // }
+        $id = $id ?? Auth::getEMP_ID();
+        $staff = new Staff();
+        $data['row'] = $staff->first(['emp_id'=>$id],'emp_id');
         $data['title'] = "Profile";
         
         $this->view('teacher/profile',$data);
