@@ -167,7 +167,7 @@ class Student extends Controller
 
     public function progress()
     { 
-        if(!Auth::is_teacher()){
+        if(!Auth::is_student()){
             redirect('home');
            
         }
