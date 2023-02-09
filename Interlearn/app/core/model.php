@@ -71,8 +71,9 @@ class Model extends Database {
     
         $query = trim($query,"&& ");
         $query .= " order by $orderby  $order limit 1";
+
         $res = $this -> query($query,$data);
-        
+      
         if(is_array($res)){
            return $res[0];
         }

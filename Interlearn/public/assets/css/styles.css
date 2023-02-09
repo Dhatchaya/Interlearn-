@@ -1191,7 +1191,7 @@ li.lo-nav {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10vh;
+    /* margin-top: 10vh; */
     margin-bottom: 10vh;
 }
 
@@ -1721,17 +1721,18 @@ li.lo-nav {
     background-color: var(--primary-color);
     color: var(--secondary-color);
 }
-.resolve-btn{
+.profile_submit_btn{
     border: 1px;
     display: inline-block;
     padding: 10px 30px;
-    background-color: #76c266;
+    background-color: var(--primary-color);
     color: white;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
     float:right;
     margin-right: 50px;
+    width:8rem;
 }
 .sender{
     margin-left:23vw;
@@ -1991,11 +1992,18 @@ li.lo-nav {
 .teacher_profile_sub1{
     margin-left: 13%;
 }
-
-.teacher_profile_field{
+.teacher_profile_field {
     float: right;
     width: 40%;
-    margin-right: 35%;
+    margin-right: 20%;
+    height: 2rem;
+    border-radius: 5px;
+    padding: 1rem;
+    border: 1px solid #80808087;
+}
+.teacher_profile_label{
+    line-height: 2.4rem;
+    margin-left: 5rem;
 }
 
 .teacher_profile_grade{
