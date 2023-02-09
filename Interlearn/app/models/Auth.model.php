@@ -81,7 +81,6 @@ class Auth
     {
         //if we call the function getEmail it will remove the get part and make the res of the string  lower case
         $key = str_replace("get","",strtolower($funcname));
-        
         if(!empty($_SESSION['USER_DATA']->$key)){
             return $_SESSION['USER_DATA']->$key;
         }

@@ -13,8 +13,7 @@ class User extends Model
         'password',
         'role',
         'user_datetime',
-        'User_activation_code',
-        'User_email_status',
+        'user_activation_code',
         'user_otp',
        "display_picture",
     ];
