@@ -4,14 +4,14 @@
 <?php if(!empty($row)):?>
 
 <div class="teacher_profile_container">
-<?php $this->view("includes/sidebar");?>
+<?php $this->view("includes/sidebar_teach");?>
         <div class="teacher_profile_heading">
             <h2>Teacher Profile Settings</h2>
         </div>
         <div class="teacher_profile_rectangle">
             <div class="teacher_profile_content">
                 <img src="<?=ROOT?>/assets/images/teacher.png" class="teacher_profile_image" alt="" srcset="">
-                <h3 class="teacher_profile_name"><?=esc($row->firstname)?> <?=esc($row->lastname)?></h3>
+                <h3 class="teacher_profile_name"><?=esc($row->first_name)?> <?=esc($row->last_name)?></h3>
             </div>
             <div class="teacher_profile_content2">
                 <img src="<?=ROOT?>/assets/images/edit.png" class="teacher_profile_edit" alt="" srcset="">

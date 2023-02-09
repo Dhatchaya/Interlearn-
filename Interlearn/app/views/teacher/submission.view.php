@@ -2,7 +2,7 @@
 <?php $this->view("includes/nav");?>
 
 <div class="teacher_subm_container">
-<?php $this->view("includes/sidebar");?>
+<?php $this->view("includes/sidebar_teach");?>
         <div class="teacher_subm_content">
             <h2>Mathematics</h2><br>
             <h4>Name of Submission</h4>

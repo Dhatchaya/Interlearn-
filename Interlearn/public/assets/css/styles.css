@@ -1199,7 +1199,7 @@ li.lo-nav {
 	display: flex;
     width: 100%;
     max-width: 10rem;
-    height: 80vh;
+    height: 85vh;
     margin: 10px;
     margin-left: 15px;
     border-radius: 10px;
@@ -2532,10 +2532,12 @@ std_view_bottom{
 
 .std_crs_ov_container{
     width: 100%;
+    margin-top: 5%;
+    display: flex;
 }
 .std_crs_ov_content{
-    margin-top: 10%;
-    margin-left: 20%;
+    margin: 0 10% 10% 10%;
+    /* margin-left: 20%; */
 }
 
 .std_crs_ov_top{
@@ -2800,13 +2802,12 @@ std_view_bottom{
 
 .teacher_prg_container{
     width: 100%;
+    display: flex;
+    margin-top: 5%;
 }
 
 .teacher_prg_content{
-    margin-top: 5%;
-    margin-left: 10%;
-    justify-content: center;
-    margin-bottom: 2%;
+    margin: 0 10% 10% 10%;
 }
 
 .teacher_prg_topstd{
@@ -3249,14 +3250,7 @@ teacher_crs_dropbtn {
     height: 10vh;
     padding: 3%;
 }
-.dropbtn {
-    background-color: rgb(104, 44, 198,9%);
-    color: black;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    width: 10vw;
-}
+
 .recp_det_dura{
     display: flex;
 }

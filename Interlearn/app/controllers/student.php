@@ -19,9 +19,9 @@ class Student extends Controller
             redirect('home');
            
         }
-        $id = $id ?? Auth::getID();
+        $id = $id ?? Auth::getUID();
         $user = new User();
-        $data['row'] = $user->first(['id'=>$id]);
+        $data['row'] = $user->first(['uid'=>$id],'uid');
         
         $this->view('student/profile');
     }
@@ -173,6 +173,24 @@ class Student extends Controller
         }
         
         $this->view('student/course');
+    }
+    public function progress()
+    { 
+        if(!Auth::is_student()){
+            redirect('home');
+           
+        }
+        
+        $this->view('student/progress');
+    }
+    public function overall()
+    { 
+        if(!Auth::is_student()){
+            redirect('home');
+           
+        }
+        
+        $this->view('student/crsoverall');
     }
 
     public function coursepg()

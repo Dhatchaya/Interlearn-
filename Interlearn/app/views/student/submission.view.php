@@ -19,7 +19,9 @@
                 <div class="std_subm_inner_box"></div>
             </div>
             <br><br>
+            <a href="<?=ROOT?>/student/coursepg">
             <button type="submit" class="std_subm_btn">Submit</button>
+            </a>
             <button type="reset" class="std_subm_btn">Cancel</button>
         </div>
     </div>

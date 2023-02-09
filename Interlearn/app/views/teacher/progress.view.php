@@ -2,7 +2,7 @@
 <?php $this->view("includes/nav");?>
 
 <div class="teacher_prg_container">
-<?php $this->view("includes/sidebar");?>
+<?php $this->view("includes/sidebar_teach");?>
         <div class="teacher_prg_content">
             <div class="teacher_prg_topstd">
                 <h2>Top Students</h2>
@@ -64,3 +64,4 @@
             
         </div>
     </div>
+    <?php $this->view("includes/footer");?>

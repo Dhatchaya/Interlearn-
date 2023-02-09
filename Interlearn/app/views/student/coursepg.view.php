@@ -10,11 +10,13 @@
                 <h3>Mr. V. J. Viraj</h3>
             </div>
             <div class="std_crs_pg_butn">
+            <a href="<?=ROOT?>/student/overall">
                 <button class="std_crs_pg_btn">View Progress</button>
+            </a>
             </div>
         </div>
         <div class="std_crs_pg_content2">
-            <a href="#"><img src="<?=ROOT?>/assets/images/forum.png" class="std_crs_pg_img">Forum</a><br><br>
+            <a href="<?=ROOT?>/forums/1"><img src="<?=ROOT?>/assets/images/forum.png" class="std_crs_pg_img">Forum</a><br><br>
             <a href="#"><img src="<?=ROOT?>/assets/images/fdb.png" class="std_crs_pg_img">Feedback Form</a><br><br><hr><br>
             <h4>Day 1</h4><br>
             <a href="#"><img src="<?=ROOT?>/assets/images/rec.png" class="std_crs_pg_img"></img>Recording</a>
@@ -23,7 +25,7 @@
             <input type="checkbox" name="d1rec" id="d1rec" class="std_crs_pg_check"><br>
             <a href="#"><img src="<?=ROOT?>/assets/images/pp.png" class="std_crs_pg_img">Past Paper 2020</a>
             <input type="checkbox" name="d1rec" id="d1rec" class="std_crs_pg_check"><br>
-            <a href="#"><img src="<?=ROOT?>/assets/images/hw.png" class="std_crs_pg_img">Home work 1</a>
+            <a href="<?=ROOT?>/student/submissionstat"><img src="<?=ROOT?>/assets/images/hw.png" class="std_crs_pg_img">Home work 1</a>
             <input type="checkbox" name="d1rec" id="d1rec" class="std_crs_pg_check"><br><br><hr><br>
             <h4>Day 2</h4><br>
             <a href="#"><img src="<?=ROOT?>/assets/images/rec.png" class="std_crs_pg_img">Recording</a>

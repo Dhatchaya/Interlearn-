@@ -16,7 +16,9 @@
                     <div class="std_op_loader">
                         <p class="std_op_perc">50%</p>
                     </div>
-                    <button class="std_op_btn">View Full Report</button>
+                    <a href="<?=ROOT?>/student/overall">
+                        <button class="std_op_btn">View Full Report</button>
+                    </a>
                 </div>
                 <div class="std_op_subject">
                 <br>

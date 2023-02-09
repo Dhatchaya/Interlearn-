@@ -2,7 +2,7 @@
 <?php $this->view("includes/nav");?>
 
 <div class="teacher_upl_container">
-<?php $this->view("includes/sidebar");?>
+<?php $this->view("includes/sidebar_teach");?>
         <div class="teacher_upl_content">
             <h2>Mathematics</h2><br>
             <h3>Upload Materials/Recording</h3>
@@ -15,7 +15,9 @@
                 <div class="teacher_upl_inner_box"></div>
             </div>
             <br><br>
+            <a href="<?=ROOT?>/teacher/upload">
             <button type="submit" class="teacher_upl_btn">Upload</button>
+</a>
             <button type="reset" class="teacher_upl_btn">Cancel</button>
         </div>
     </div>

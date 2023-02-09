@@ -2,7 +2,7 @@
 <?php $this -> view('includes/nav'); ?>
 <div class="mid-container">
     <div class="quizz_left">
-        <?php $this -> view('includes/sidebar'); ?>
+        <?php $this -> view('includes/sidebar_teach'); ?>
     </div>
     <div class="quizz_right">
         <div class="quiz-head">
@@ -10,7 +10,7 @@
             <p>Give your quizz a name and description. so, 
             it gives clearification to the student</p>
         </div>
-        <form action="" method="post">
+        <form action="<?=ROOT?>/teacher/quizz/add" method="post">
             <div class="quiz-name">
                 <h3>Quiz name *</h3>
                 
@@ -24,7 +24,9 @@
             <hr>
             <div class="quiz-next-options">
                 <input  class = "home_form_sbt" type="submit" value="Cancel">
+            
                 <input  class = "home_form_sbt" type="submit" value="Save & Continue">
+                
             </div>
             
         </form>

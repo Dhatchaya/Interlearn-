@@ -2,7 +2,7 @@
 <?php $this->view("includes/nav");?>
 
 <div class="teacher_crs_container">
-<?php $this->view("includes/sidebar");?>
+<?php $this->view("includes/sidebar_teach");?>
 <div class="teacher_crs_main">
     <div class="teacher_crs_content">
         <img src="<?=ROOT?>/assets/images/tchrview.png" class="teacher_crs_topimg">
@@ -11,9 +11,9 @@
             <div class="teacher_crs_dropdown">
                 <img src="<?=ROOT?>/assets/images/settings.png" class="teacher_crs_imgset">
                 <div class="teacher_crs_dropdown-content">
-                  <a href="#">View Progress</a>
-                  <a href="#">Add Quiz</a>
-                  <a href="#">Add Submission</a>
+                  <a href="<?=ROOT?>/teacher/progress">View Progress</a>
+                  <a href="<?=ROOT?>/teacher/quizz">Add Quiz</a>
+                  <a href="<?=ROOT?>/teacher/submission">Add Submission</a>
                   <a href="#">Add Materials/Recording</a>
                   <a href="#">Add References</a>
                 </div>

@@ -2,14 +2,14 @@
 <?php $this -> view('includes/nav'); ?>
 <div class="mid-container">
     <div class="quizz_left">
-        <?php $this -> view('includes/sidebar'); ?>
+        <?php $this -> view('includes/sidebar_teach'); ?>
     </div>
     <div class="question_right">
         <h1>Confirmation Path</h1>
         <p>Add the time slots and confirmation details</p>
         <br>
         
-        <form action="" method="POST">
+        <form action="<?=ROOT?>/teacher/course" method="POST">
             <label for="question_total">Total Question <strong> *</strong> : </label>
             <input class="home_cnt_inp" type=number name="number" value="" placeholder="Total number of questions">
 

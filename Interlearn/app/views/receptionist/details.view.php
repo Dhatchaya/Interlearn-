@@ -2,7 +2,7 @@
 <?php $this->view("includes/nav");?>
 
 <div class="recp_det_container">
-<?php $this->view("includes/sidebar");?>
+<?php $this->view("includes/sidebar_recep");?>
     <div class="recp_det_content">
         <h4>Name of Course:</h4>
         <input type="text" class="recp_det_name"><br><br>
@@ -29,7 +29,9 @@
             <input type="time" name="" id="" class="recp_det_time">
         </div>
         <br><br>
+        <a href="<?=ROOT?>/receptionist/course">
         <button type="submit" class="recp_det_btn">Save</button>
+        </a>
     </div>
 </div>
 

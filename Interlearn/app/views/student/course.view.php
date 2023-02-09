@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="std_crs_rectangle">
-            <a href="#">
+            <a href="<?=ROOT?>/student/coursepg">
                 <img src="<?=ROOT?>/assets/images/book.png" alt="" class="std_crs_img">
                 <p>Science by Mr. V.J Viraj</p>
             </a>

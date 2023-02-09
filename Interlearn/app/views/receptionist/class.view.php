@@ -2,7 +2,7 @@
 <?php $this->view("includes/nav");?>
 
 <div class="recp_cl_container">
-<?php $this->view("includes/sidebar");?>
+<?php $this->view("includes/sidebar_recep");?>
     <div class="recp_cl_content">
         <h2>Grade 11 - Mathematics</h2><br>
         <div class="recp_cl_names">

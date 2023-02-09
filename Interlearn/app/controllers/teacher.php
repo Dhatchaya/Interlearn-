@@ -32,6 +32,15 @@ class Teacher extends Controller
         
         $this->view('teacher/upload');
     }
+    public function progress()
+    { 
+        if(!Auth::is_teacher()){
+            redirect('home');
+           
+        }
+        
+        $this->view('teacher/progress');
+    }
 
     public function submission()
     { 

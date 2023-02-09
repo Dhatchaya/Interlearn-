@@ -2,14 +2,16 @@
 <?php $this->view("includes/nav");?>
 
 <div class="recp_crs_container">
-<?php $this->view("includes/sidebar");?>
+<?php $this->view("includes/sidebar_recep");?>
     <div class="recp_crs_content">
+    <a href="<?=ROOT?>/receptionist/details">
         <div class="recp_crs_butn">
             <button class="recp_crs_btn">Add new course</button>
         </div>
+    </a>
         <br><br>
         <div class="recp_crs_rectangle">
-            <a href="#">
+            <a href="<?=ROOT?>/receptionist/class">
                 <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
                 <p>Grade 11 Mathematics</p>
             </a>

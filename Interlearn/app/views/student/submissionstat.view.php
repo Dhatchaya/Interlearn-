@@ -28,7 +28,9 @@
             </div>
             <br><br>
             <div class="std_sub_grd_bottom">
+                <a href="<?=ROOT?>/student/submission">
                 <button type="submit" class="std_sub_grd_btn">Add Submission</button><br><br>
+                </a>
                 <p>You have not made a submission yet.</p>
             </div>
             

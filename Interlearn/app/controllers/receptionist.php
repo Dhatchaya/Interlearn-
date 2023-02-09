@@ -55,7 +55,7 @@ class Receptionist extends Controller
             redirect('home');
            exit;
         }
-        $user_id = Auth::getUid();
+        $user_id = Auth::getemp_id();
         $role = Auth::getrole();
         $enquiry = new Enquiry();
         $data = [];
