@@ -22,7 +22,6 @@ class Model extends Database {
             $keys = array_keys($data);
             
             $query = "insert into ".$this->table."(".implode(",",$keys) .") values (:".implode(",:",$keys).")";
-          
             $this -> query($query,$data);
             return true;
     }
@@ -35,20 +34,6 @@ class Model extends Database {
             $query .= $key. " =:".$key." && ";
         }
         $query = trim($query,"&& ");
-        $query .= " order by $orderby  $order";
-        $res = $this -> query($query,$data);
-
-        if(is_array($res)){
-            return $res;
-        }
-        return false;
-           
-    }
-    //select all the records
-    public function select($data=null,$orderby=null,$order = 'desc'){
-        
-        $query ="select * from ".$this->table;
-  
         $query .= " order by $orderby  $order";
         $res = $this -> query($query,$data);
 
@@ -71,9 +56,8 @@ class Model extends Database {
     
         $query = trim($query,"&& ");
         $query .= " order by $orderby  $order limit 1";
-
         $res = $this -> query($query,$data);
-      
+        
         if(is_array($res)){
            return $res[0];
         }
@@ -83,7 +67,7 @@ class Model extends Database {
     public function role($data,$orderby=null){
         $keys = array_keys($data);
         $query ="select role from ".$this->table." where ";
-        
+        $id = $this->table[0]."id";
         foreach($keys as $key){
             $query .= $key. " =:".$key." && ";
         }
@@ -112,8 +96,8 @@ class Model extends Database {
                 $mail -> Host = 'smtp.gmail.com';
                 $mail->Port = 465;
                 $mail -> SMTPAuth = true;
-                $mail -> Username ='add interlearn email';
-                $mail -> Password = 'add your password'; 
+                $mail -> Username ='interlearnsl@gmail.com';
+                $mail -> Password = 'qeffokfsaebqwngl';
                 $mail->SMTPSecure ='ssl';
                 $mail->SMTPOptions = array(
                     'ssl' => array(
@@ -168,19 +152,17 @@ class Model extends Database {
 
     public function update($cred=[],$data=[])
 	{
-    
+
 		//remove unwanted columns
-		if(!empty($this->allowed_columns))
+		if(!empty($this->allowedColumns))
 		{
 			foreach ($data as $key => $value) {
-				if(!in_array($key, $this->allowed_columns))
+				if(!in_array($key, $this->allowedColumns))
 				{
-                    
 					unset($data[$key]);
 				}
 			}
 		}
-   
         $id = array_keys($cred);
 		$keys = array_keys($data);
 		$query = "update ".$this->table." set ";
@@ -192,9 +174,9 @@ class Model extends Database {
 
 		$query = trim($query,",");
 		$query .= " where ".$id[0]." =:".$id[0];
-
+		
 		$data[$id[0]] = array_values($cred)[0] ;
-
+      
         $result=$this->update_table($query,$data);
      
 		if($result){

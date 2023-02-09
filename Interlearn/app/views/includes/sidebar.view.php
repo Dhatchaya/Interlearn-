@@ -2,7 +2,7 @@
 <div class="side-bar">
                 <div class="top">    
                     <div class="aboutme">
-                        <img src="<?=ROOT?>/uploads/images/<?= Auth::getdisplay_picture();?>" alt="picture"/> 
+                        <img src="<?=ROOT?>/uploads/images/<?= Auth::getdisplay_picture()?>" alt="picture"/> 
                         <span class="user-name">
                         
                         <?= ucfirst(Auth::getusername())?>

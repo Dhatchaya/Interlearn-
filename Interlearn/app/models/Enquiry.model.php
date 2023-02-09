@@ -16,7 +16,6 @@ class Enquiry extends Model
         'date',
         'user_Id',	
         'role',
-        'reply',
 
     ];
     protected $staffs = [
