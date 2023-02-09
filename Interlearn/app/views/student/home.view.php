@@ -7,7 +7,7 @@
 
     <div class="std_view_content">
         <div class="std_view_greeting">
-            <div class="std_view_greet">Welcome Back,<br> Dhatchaya!</div>
+            <div class="std_view_greet">Welcome Back,<br> John!</div>
             <img src="<?=ROOT?>/assets/images/education.png" alt="">
         </div>
         <br><br>
@@ -39,7 +39,8 @@
                         <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_view_img">
                         <p>Science by Mr. V.J. Viraj</p>
                         </a>
-                    </div>
+            </div>
+          
                     <div class="std_view_rectangle">
                         <a href="#">
                         <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_view_img">
@@ -59,7 +60,7 @@
                         </a>
                     </div>
                 </div>
-            </div>
+                </div>
         </div>
     </div>
 </div>

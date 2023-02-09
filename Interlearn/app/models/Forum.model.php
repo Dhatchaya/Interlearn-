@@ -1,22 +1,19 @@
 <?php
 /**
- *Enquiry class
+ *Forum class
  */
-class Enquiry extends Model
+class Forum extends Model
 {
     //says what table it has to target
     public $error = [];
-    protected $table = "enquiry";
+    protected $table = "forum";
     protected $allowed_columns = [
-        'enquiry_no',
-        'title',
-        'content',
-        'type',
-        'status',
+        'forum_id',
         'date',
-        'user_Id',	
-        'role',
-        'reply',
+        'content',
+        'course_id',
+        'topic',
+        'creator'
 
     ];
     protected $staffs = [

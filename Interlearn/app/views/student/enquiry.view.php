@@ -4,7 +4,7 @@
     <div class="center-body">
     <?php $this->view("includes/sidebar");?>
         <div class="clm2">
-            <h2 class="add_heading">Enquiry</h2>
+            <h2 class="add_heading_init">Enquiry</h2>
           
             <button type="button" data-modal-target= "#modal" class="Add_enq" onclick=addEnquiry(); >+ Add Enquiry</button>
             <?=$some?>

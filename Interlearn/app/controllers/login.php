@@ -22,6 +22,7 @@ class Login extends Controller
         {
             $row = $user -> first([
                 'email' => $_POST['email'],
+                'User_email_status' => 'verified'
             ],'uid');
             if($row)
             {
@@ -51,21 +52,22 @@ class Login extends Controller
         
         $data['errors'] = [];
         $data['title'] = "login";
-        $user = new User();
+        $staff = new Staff();
 
         if($_SERVER['REQUEST_METHOD'] == "POST")
         {
-            $row = $user -> first([
+            $row = $staff -> first([
                 'email' => $_POST['email'],
-            ],'uid');
-            $staff=$user -> role([
+                
+            ],'emp_id');
+            $role=$staff -> role([
                 'email' => $_POST['email'],
-            ],'uid');
+            ],'emp_id');
             if($row)
             {
                
-                if ($staff) {
-                    if(password_verify($_POST['password'],$row -> password ))
+                if ($role) {
+                    if($_POST['password']==$row -> password )
                     {
                     Auth::authenticate($row);
                     header('Location: ../'.$row -> role.'/home');
