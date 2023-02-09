@@ -2430,3 +2430,61 @@ select {
     flex-direction: column;
     margin-right: 100px;
 }
+
+
+/* This is overall progress from student view */
+
+.std_op_content{
+    margin-top: 10px;
+    margin-left: 10%;
+}
+
+.std_op_progress{
+    float: left;
+}
+
+.std_op_subject{
+    border-radius: 10%;
+    width: 20vw;
+    height: 48vh;
+    float: left;
+    margin-right: 8%;
+    margin-top: 5%;
+    margin: bottom 5%; 
+    margin-left: 2%;
+    background-color: white;
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+    text-align: center;
+    border-style: groove;
+}
+
+.std_op_loader{
+    border-right: 30px solid #00ff73;
+    border-left: 30px solid #DC3545;
+    border-radius: 60%;
+    margin: 10% 16%;
+    border-top: 30px solid #DC3545;
+    border-bottom: 30px solid #00ff73;
+    width: 180px;
+    height: 180px;
+}
+
+.std_op_perc{
+    margin-top: 40%;
+    font-size: larger;
+}
+
+.std_op_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+.std_op_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+
+}
