@@ -1,0 +1,60 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.paynow-btn{
+    position: relative;
+    top: 150px;
+    left: 80vw;
+    background-color: #3E206D;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.payment-history{
+    position: relative;
+    top: 180px;
+    left: 350px;
+}
+
+.student-payment{
+    background-color: brown;
+    position: relative;
+    width: 80vw;
+    left: 250px;
+    top: 200px;
+    height: 50px;
+    display: grid;
+    grid-template-columns: 2fr 2fr 3fr 2fr 2fr 2fr;
+
+}
+
+
+table.payment-table {
+    width: 80vw;
+    border-collapse: collapse;
+  }
+  
+  table.payment-table th,
+  table.payment-table td {
+    padding: 8px;
+    height: 50px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+  
+  table.payment-table th {
+    background-color: #ddd;
+  }
+  
+  table.payment-table button {
+    background-color: #3E206D;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
