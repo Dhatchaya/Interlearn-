@@ -164,4 +164,14 @@ class Student extends Controller
             
         $this->view('student/enquiry',$data);
     }
+
+    public function progress()
+    { 
+        if(!Auth::is_teacher()){
+            redirect('home');
+           
+        }
+        
+        $this->view('student/progress');
+    }
 }
