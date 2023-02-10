@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +6,7 @@
   <link rel="stylesheet" href="<?= ROOT ?>/assets/css/navbar-last.css">
   <link rel="stylesheet" href="<?= ROOT ?>/assets/css/student-payment.css">
   <link rel="stylesheet" href="<?= ROOT ?>/assets/css/footer-style.css">
-  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/cash-payment-style.css">
+  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/card-payment-style.css">
   <link rel="stylesheet" media="screen and (max-width: 100px)" href="<?= ROOT ?>/assets/css/mobile-nav-bar.css">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -79,7 +75,7 @@
       <div class="dashboard segment">
         <a href="">
           <img class="edit-img" src="<?= ROOT ?>/assets/images/edit2.png" alt="">
-          <h3 class="side-bar-txt"> Finance Report</h3>
+          <h3 class="side-bar-txt"> Dashboard</h3>
         </a>
       </div>
 
@@ -108,173 +104,160 @@
     </div>
 
   </div>
-  <button id="btn" class="paynow-btn">Add payment</button>
-  <div class="payment-history">
+  <button id="btn" class="paynow-btn">paynow</button>
 
-    <h2>Transaction history</h2>
-  </div>
 
   <div class="payment-form-popup" id="hiddenDiv">
     <div class="payment-form-container">
-      <button class="close-button" id="close-button">&times</button>
       <div class="payment-form-header">
         <h3>Card Payment</h3>
-
+        <button class="close-button" id="close-button">&times;</button>
       </div>
       <div class="payment-form-body">
+
         <form action="#">
 
           <div class="form-group">
-            <label class="payment-label" for="student-id">Student ID</label>
+            <label class="payment-label" for="card-number">Card Number</label>
             <div class="errorSpace1"></div>
-            <input class="payment-input" type="text" id="student-id" placeholder="   2020/cs/127" maxlength="11">
+            <input class="payment-input" type="text" id="card-number" placeholder="   0000 0000 0000 0000" maxlength="16">
           </div>
 
           <div class="form-group">
-            <label class="payment-label" for="card-holder-name">Student Name</label>
+            <label class="payment-label" for="card-holder-name">Card Holder Name</label>
             <div class="errorSpace2"></div>
-            <input class="payment-input" type="text" id="student-name" placeholder="   Pavithra H.M.M.">
+            <input class="payment-input" type="text" id="card-holder-name" placeholder="   Pavithra H.M.M.">
           </div>
 
 
           <div class="form-group div-adjest-1">
-            <label class="payment-label" for="payment-month">Payment Month</label>
+            <label class="payment-label" for="expiry-month">Expiry Month/Year</label>
             <div class="errorSpace3"></div>
-            <div class="div-adjest-3">
-              <select id="month" class="select-month " name="month">
-                <option value="january">January</option>
-                <option value="february">February</option>
-                <option value="march">March</option>
-                <option value="april">April</option>
-                <option value="may">May</option>
-                <option value="june">June</option>
-                <option value="july">July</option>
-                <option value="august">August</option>
-                <option value="september">September</option>
-                <option value="october">October</option>
-                <option value="november">November</option>
-                <option value="december">December</option>
-              </select>
+            <div class="div-adjest-2">
+              <input class="payment-input" type="text" id="expiry-month" placeholder="MM" maxlength="2">
+              <input class="payment-input" type="text" id="expiry-year" placeholder=" YY" maxlength="2">
             </div>
           </div>
 
 
           <div class="form-group div-adjest-1">
-            <label class="payment-label" for="class-ID">Class ID</label>
+            <label class="payment-label" for="cvv">CVV</label>
             <div class="errorSpace4"></div>
-            <input class="payment-input " type="text" id="couese-ID" placeholder="SCS2202" maxlength="7">
-          </div>
-
-          <div class="form-group">
-            <label class="payment-label" for="payment value">Payment value</label>
-            <div class="payment-input">
-              |
-            </div>
+            <input class="payment-input div-adjest-3" type="text" id="cvv" placeholder="***" maxlength="3">
           </div>
 
 
           <div class="form-group">
             <!-- <label class="payment-label" for="card-type">Select Card Type</label> -->
 
-
+            <img src="<?= ROOT ?>/assets/images/mastercard-logo.png" class="card-type-icon" alt="Mastercard logo">
+            <img src="<?= ROOT ?>/assets/images/visa-logo.png" class="card-type-icon" alt="Visa logo">
+            <img src="<?= ROOT ?>/assets/images/amex-logo.jpg" class="card-type-icon" alt="American Express logo">
           </div>
           <button class="paynow" id="payment-submission" type="submit">Pay Now</button>
         </form>
       </div>
     </div>
   </div>
+  <div class="main-page-container">
 
-  <div class="student-payment">
-    <table class="payment-table">
-      <thead>
-        <tr>
-          <th>Print payment slip</th>
-          <th>Student Name</th>
-          <th>Student ID</th>
-          <th>Payment date</th>
-          <th>Amount</th>
-          <th>Subject code</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><button>Print</button></td>
-          <td>January</td>
-          <td>01/01/2023</td>
-          <td>$100</td>
-          <td>Credit Card</td>
-          <td>ABC123</td>
-        </tr>
-        <tr>
-          <td><button>Print</button></td>
-          <td>February</td>
-          <td>02/01/2023</td>
-          <td>$200</td>
-          <td>Card Payment</td>
-          <td>XYZ456</td>
-        </tr>
-        <tr>
-          <td><button>Print</button></td>
-          <td>February</td>
-          <td>02/01/2023</td>
-          <td>$200</td>
-          <td>Card Payment</td>
-          <td>XYZ456</td>
-        </tr>
-        <tr>
-          <td><button>Print</button></td>
-          <td>February</td>
-          <td>02/01/2023</td>
-          <td>$200</td>
-          <td>Card Payment</td>
-          <td>XYZ456</td>
-        </tr>
-        <tr>
-          <td><button>Print</button></td>
-          <td>February</td>
-          <td>02/01/2023</td>
-          <td>$200</td>
-          <td>Card Payment</td>
-          <td>XYZ456</td>
-        </tr>
-        <tr>
-          <td><button>Print</button></td>
-          <td>February</td>
-          <td>02/01/2023</td>
-          <td>$200</td>
-          <td>Cash</td>
-          <td>XYZ456</td>
-        </tr>
-        <tr>
-          <td><button>Print</button></td>
-          <td>February</td>
-          <td>02/01/2023</td>
-          <td>$200</td>
-          <td>Card Payment</td>
-          <td>XYZ456</td>
-        </tr>
-        <tr>
-          <td><button>Print</button></td>
-          <td>February</td>
-          <td>02/01/2023</td>
-          <td>$200</td>
-          <td>Card Payment</td>
-          <td>XYZ456</td>
-        </tr>
-        <tr>
-          <td><button>Print</button></td>
-          <td>February</td>
-          <td>02/01/2023</td>
-          <td>$200</td>
-          <td>Card Payment</td>
-          <td>XYZ456</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-container">
 
+      <h2 class="table-title">Payment history</h2>
+
+      <div class="student-payment">
+
+        <table class="payment-table">
+          <thead>
+            <tr>
+              <th>Payment status</th>
+              <th>Payment month</th>
+              <th>Payment date</th>
+              <th>Amount</th>
+              <th>Method</th>
+              <th>Subject code</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><button>Print</button></td>
+              <td>January</td>
+              <td>01/01/2023</td>
+              <td>$100</td>
+              <td>Credit Card</td>
+              <td>ABC123</td>
+            </tr>
+            <tr>
+              <td><button>Print</button></td>
+              <td>February</td>
+              <td>02/01/2023</td>
+              <td>$200</td>
+              <td>Card Payment</td>
+              <td>XYZ456</td>
+            </tr>
+            <tr>
+              <td><button>Print</button></td>
+              <td>February</td>
+              <td>02/01/2023</td>
+              <td>$200</td>
+              <td>Card Payment</td>
+              <td>XYZ456</td>
+            </tr>
+            <tr>
+              <td><button>Print</button></td>
+              <td>February</td>
+              <td>02/01/2023</td>
+              <td>$200</td>
+              <td>Card Payment</td>
+              <td>XYZ456</td>
+            </tr>
+            <tr>
+              <td><button>Print</button></td>
+              <td>February</td>
+              <td>02/01/2023</td>
+              <td>$200</td>
+              <td>Card Payment</td>
+              <td>XYZ456</td>
+            </tr>
+            <tr>
+              <td><button>Print</button></td>
+              <td>February</td>
+              <td>02/01/2023</td>
+              <td>$200</td>
+              <td>Cash</td>
+              <td>XYZ456</td>
+            </tr>
+            <tr>
+              <td><button>Print</button></td>
+              <td>February</td>
+              <td>02/01/2023</td>
+              <td>$200</td>
+              <td>Card Payment</td>
+              <td>XYZ456</td>
+            </tr>
+            <tr>
+              <td><button>Print</button></td>
+              <td>February</td>
+              <td>02/01/2023</td>
+              <td>$200</td>
+              <td>Card Payment</td>
+              <td>XYZ456</td>
+            </tr>
+            <tr>
+              <td><button>Print</button></td>
+              <td>February</td>
+              <td>02/01/2023</td>
+              <td>$200</td>
+              <td>Card Payment</td>
+              <td>XYZ456</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
   </div>
   </div>
-
   </div>
   <div class="footer-support"></div>
 
@@ -319,7 +302,7 @@
     </div>
   </footer>
   <!-- <script src="salaryCal.js"></script> -->
-  <script src="<?= ROOT ?>/assets/js/cash-payment-popup.js"></script>
+  <script src="<?= ROOT ?>/assets/js/card-payment-validation.js"></script>
   <script src="<?= ROOT ?>/assets/js/switching.js"></script>
   <script>
     // *******************************************************************************//

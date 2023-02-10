@@ -174,4 +174,15 @@ class Student extends Controller
         
         $this->view('student/progress');
     }
+
+
+    public function paymentse()
+    { 
+        if(!Auth::is_teacher()){
+            redirect('home');
+           
+        }
+        
+        $this->view('student/card-payment');
+    }
 }
