@@ -32,7 +32,7 @@
                    
                     
                         <div class="home">
-                         <a href="#">
+                         <a href="<?=ROOT?>/student/course">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/card.png" alt="card"></br>
                             <span>My payments</span>
                          </a>
@@ -47,7 +47,7 @@
                     </div>
                     <div class="Progress">
                             <a href="<?=ROOT?>/student/progress">
-                            <img src="<?=ROOT?>/assets/images/sidebar_icons/progress.png" alt="progress"></br>
+                            <img src="<?=ROOT?>/assets/images/sidebar_icons/progress.svg" alt="progress"></br>
                             <span>Progress</span>
                             </a>
                         </div>

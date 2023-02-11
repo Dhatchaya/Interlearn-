@@ -14,7 +14,7 @@
                   <a href="<?=ROOT?>/teacher/progress">View Progress</a>
                   <a href="<?=ROOT?>/teacher/quizz">Add Quiz</a>
                   <a href="<?=ROOT?>/teacher/submission">Add Submission</a>
-                  <a href="#">Add Materials/Recording</a>
+                  <a href="<?=ROOT?>/teacher/upload">Add Materials/Recording</a>
                   <a href="#">Add References</a>
                 </div>
             </div>

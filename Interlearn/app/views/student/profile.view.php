@@ -3,10 +3,11 @@
 
 <div class="std_profile_container">
     <?php $this->view("includes/sidebar");?>
-        <div class="std_profile_heading">
-            <h2>Profile Settings</h2>
-        </div>
+       
         <div class="std_profile_rectangle">
+            <div class="std_profile_heading">
+                <h2>Profile Settings</h2>
+            </div>
             <div class="std_profile_content">
                 <img src="<?=ROOT?>/assets/images/student.png" class="std_profile_image" alt="" srcset="">
                 <h3 class="std_profile_name">Danodya Supun</h3>

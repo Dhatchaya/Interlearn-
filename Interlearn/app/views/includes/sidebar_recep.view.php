@@ -47,7 +47,7 @@
                     </div>
                     <div class="Courses">
                             <a href="<?=ROOT?>/receptionist/course">
-                            <img src="<?=ROOT?>/assets/images/sidebar_icons/book.png" alt="Courses"></br>
+                            <img src="<?=ROOT?>/assets/images/sidebar_icons/book.svg" alt="Courses"></br>
                             <span>Courses</span>
                             </a>
                         </div>

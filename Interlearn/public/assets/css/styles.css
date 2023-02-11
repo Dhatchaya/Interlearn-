@@ -1,7 +1,7 @@
 :root{
     --primary-color:#3E206D;
     --secondary-color: rgba(255,255,255);
-    --page-color:aliceblue;
+    --page-color:#f6f5f7;
     --left-sidebar-color:#682CC6;
     --light-purple-bg:rgba(104, 44, 198, 0.09);
     --black-text: #000000;
@@ -25,6 +25,9 @@
     background-color: var(--page-color);
 
 } */
+body{
+    background-color: var(--page-color);
+}
 .login_body{
     background-color: linear-gradient(90deg, #C7C5F4, #682CC6);
 }
@@ -635,9 +638,10 @@
     width: 100%;
     max-width: 653px;
     height: 490px;
-    border-style: solid;
-    border-color: var(--primary-color);;
+    /* border-style: solid;
+    border-color: var(--primary-color);; */
     border-radius: 12px;
+    box-shadow: 0 14px 20px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
 }
 
 .login, .signup {
@@ -686,8 +690,14 @@
     width: 85%;
     display: flex;
     flex-direction: column;
+    position: relative;
+    height: 50%;
+    justify-content: flex-start;
 }
-
+.st_lgn_btn{
+    position: absolute;
+    bottom:0;
+}
 .lgn_form{
     position: relative;
     margin-bottom: 0.5em;
@@ -1031,7 +1041,7 @@ li.lo-nav {
 	margin-left: auto;
 	margin-right: auto;
     border-collapse: collapse;
-    width: 100%;
+    width: 80%;
     margin-top: 10vh;
     margin-bottom: 10vh;
 }
@@ -1189,13 +1199,13 @@ li.lo-nav {
 .center-body {
 	display: flex;
 	flex-direction: row;
-    gap: 8vw;
+    /* gap: 8vw; */
 }
 .clm2{
     flex-grow:1;
 }
 .side-bar {
-    background-color: #682CC6;
+    background-color: var(--primary-color);
 	display: flex;
     width: 100%;
     max-width: 10rem;
@@ -1206,8 +1216,9 @@ li.lo-nav {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    /* margin-top: 10vh; */
+    margin-top: 4.5rem;
     margin-bottom: 10vh;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 .side-bar img {
@@ -1444,19 +1455,18 @@ li.lo-nav {
     margin: 0;
 }
 .display-error,.display-msg{
-    color: var(--error);
+    color: #e42113;
     height: 2.5rem;
-    width: 90%;
-    border-radius: 2px;
-    background-color: #c96687;
-    text-align: center;
-    font-size: large;
+
     padding-top: 0.5rem;
+    font-weight: 600;
 }
 
 .display-msg{
     color: #e42113;
-    background-color: #ded1f6;
+    background-color: transparent;
+    /* border: 1px solid black; */
+    font-weight: 600;
 }
 :root{
     --primary-color:#3E206D;
@@ -1785,13 +1795,14 @@ li.lo-nav {
 .enqStatus{
     background-color: transparent;
     border-radius: 5px;
+    height: 3rem;
 }
 /* student profile view */
 
 .std_profile_container{
     width: 100%;
     height: 100vh;
-    margin-top: 3%;
+    /* margin-top: 3%; */
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
 }
@@ -1803,7 +1814,7 @@ li.lo-nav {
 
 .std_profile_heading{
     margin-left: 20%;
-    margin-top: 5%;
+    /* margin-top: 5%; */
 }
 
 .std_profile_rectangle{
@@ -1914,7 +1925,6 @@ li.lo-nav {
 .teacher_profile_container{
     width: 100%;
     height: 100vh;
-    margin-top: 3%;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
 }
@@ -1926,7 +1936,7 @@ li.lo-nav {
 
 .teacher_profile_heading{
     margin-left: 20%;
-    margin-top: 5%;
+
 }
 
 .teacher_profile_rectangle{
@@ -2045,7 +2055,7 @@ li.lo-nav {
 
 .teacher_view_container{
     text-align: center;
-    padding-left: 2%;
+
     display: flex;
     padding-bottom: 2%;
 }
@@ -2109,7 +2119,7 @@ li.lo-nav {
 }
 .std_crs_container{
     text-align: center;
-    padding-left: 2%;
+    /* padding-left: 2%; */
     display: flex;
 }
 
@@ -2298,7 +2308,6 @@ li.lo-nav {
 
 .std_view_container{
     text-align: center;
-    padding-left: 2%;
     position: relative;
     display: flex;
     margin-bottom: 2%;
@@ -3285,7 +3294,8 @@ teacher_crs_dropbtn {
 .mid-container {
     display:flex;
     flex-direction: row;
-    justify-content: space-around;
+    /* justify-content: space-around; */
+    gap:8vw;
 }
 .quizz_right {
     width: 70%;
@@ -3479,13 +3489,44 @@ select {
 .discuss_content p{
     margin: 1rem 0 2rem 0;
 }
+.quizz_date , .time_period{
+    /* background-color: #f2f2f2;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px; */
+    /* width: 20%; */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 12px;
+    resize: vertical;
+}
+
+.select_duration {
+    display:flex;
+
+}
+
+.enable_disable {
+    display: flex;
+    flex-direction: row;
+}
+
+.enable {
+    display: flex;
+    flex-direction: column;
+    margin-right: 100px;
+}
 
 .std_op_btn:hover{
     background-color: rgb(62, 32, 109,75%);
 
 }
+/* Individual performance */
 
-/* individual performance */
+
+
 
 .performance {
     display: flex;

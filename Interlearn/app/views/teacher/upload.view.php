@@ -15,7 +15,7 @@
                 <div class="teacher_upl_inner_box"></div>
             </div>
             <br><br>
-            <a href="<?=ROOT?>/teacher/upload">
+            <a href="<?=ROOT?>/teacher/course">
             <button type="submit" class="teacher_upl_btn">Upload</button>
 </a>
             <button type="reset" class="teacher_upl_btn">Cancel</button>

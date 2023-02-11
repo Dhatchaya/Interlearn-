@@ -171,10 +171,20 @@ class Student extends Controller
             redirect('home');
 
         }
+
+        $this->view('student/course');
+    }
+    public function progress($action=null)
+    {
+        if(!Auth::is_student()){
+            redirect('home');
+
+        }
         if($action=='performance'){
             $this->view('student/performance');
             exit();
         }
+
         $this->view('student/progress');
     }
     public function overall()
@@ -191,7 +201,7 @@ class Student extends Controller
     {
         if(!Auth::is_student()){
             redirect('home');
-           
+
         }
 
         $this->view('student/coursepg');

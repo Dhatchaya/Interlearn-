@@ -6,7 +6,7 @@
 <div class="discuss_card">
     <div class="discuss_content">
         <div class="discuss_creator">
-            <img src="<?=ROOT?>/uploads/images/<?= Auth::getdisplay_picture();?>" alt="picture"/> 
+            <img src="<?=ROOT?>/uploads/imaes/<?= Auth::getdisplay_picture();?>" alt="picture"/> 
             <h3> <?=esc($discuss->creator)?></h3>
             <h6> <?=esc($discuss->date)?></h6>
         </div>
