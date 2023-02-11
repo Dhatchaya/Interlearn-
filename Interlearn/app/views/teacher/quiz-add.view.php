@@ -2,14 +2,14 @@
 <?php $this -> view('includes/nav'); ?>
 <div class="mid-container">
     <div class="quizz_left">
-        <?php $this -> view('includes/sidebar'); ?>
+        <?php $this -> view('includes/sidebar_teach'); ?>
     </div>
     <div class="question_right">
         <h1>Create Question</h1>
         <p>Here, you can add the questions to the question bank</p>
         <br>
         
-        <form action="">
+        <form action="<?=ROOT?>/teacher/quizz/final">
             <label for="question_name">Question Name <strong> *</strong> : </label>
             <input class="home_cnt_inp" type=text name="text" value="" placeholder="Eg : When UCSC is established ?">
 

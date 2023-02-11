@@ -5,24 +5,24 @@
 class Student extends Controller
 {
     public function index()
-    { 
+    {
         if(!Auth::is_student()){
             redirect('home');
-           
+
         }
-        
+
         $this->view('student/home');
     }
     public function profile($id = null)
-    { 
+    {
         if(!Auth::is_student()){
             redirect('home');
-           
+
         }
-        $id = $id ?? Auth::getID();
+        $id = $id ?? Auth::getUID();
         $user = new User();
-        $data['row'] = $user->first(['id'=>$id]);
-        
+        $data['row'] = $user->first(['uid'=>$id],'uid');
+
         $this->view('student/profile');
     }
     public function enquiry($action=null, $eid=null)
@@ -32,11 +32,11 @@ class Student extends Controller
 			message('please login');
             redirect('login/student');
 		}
-  
+
 
         if(!Auth::is_student()){
             redirect('home');
-           
+
         }
         $user_id = Auth::getUid();
         $role = Auth::getrole();
@@ -54,25 +54,25 @@ class Student extends Controller
             $title->enquiry_title= 'Add enquiry';
             header('Content-Type: application/json; charset=utf-8');
             echo json_encode($title);
-          
-            
+
+
             if($_SERVER['REQUEST_METHOD'] == "POST")
 			{
-            
+
                 if($enquiry->validate($_POST)){
                     $_POST['user_Id']= $user_id;
                     $_POST['date']= date("Y-m-d H:i:s");
                     $_POST['status']="pending";
                     $_POST['role']=$role;
                     $result= $enquiry->insert($_POST);
-                
+
                 }
                 if($result){
                     header("Location:http://localhost/Interlearn/public/Student/enquiry");
                 }
-                
+
             }
-         
+
             exit;
         }
 
@@ -82,8 +82,8 @@ class Student extends Controller
                 'eid'=>$eid
             ],'eid');
             $data['edit']->enquiry_title='Edit Enquiry ';
-           
-           
+
+
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     try {
                     $data = json_decode(file_get_contents("php://input"), true);
@@ -108,11 +108,11 @@ class Student extends Controller
                     exit;
             }
             else {
-               
+
                     header('Content-Type: application/json; charset=utf-8');
                     echo json_encode($data['edit']);
                     exit;
-                
+
             }
         }
 
@@ -125,7 +125,7 @@ class Student extends Controller
             $enq = $enquiry->first([
                 'eid'=>$eid
             ],'eid');
-            
+
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if(isset($_GET['rid'])){
                     $reParent = $_GET['rid'];
@@ -134,10 +134,10 @@ class Student extends Controller
                 $_POST['senderId']=$user_id;
                 $_POST['receiverId']= $enq->user_Id;
                 $_POST['reply_user']=$role;
-                
-           
+
+
                 $result= $reply->insert($_POST);
-             
+
                 if($result){
                     if($enq->status == 'pending'){
                        $updateStatus= $enquiry->update(['eid'=>$eid],['status'=>'In progress']);
@@ -154,27 +154,66 @@ class Student extends Controller
                 'eid'=>$eid
             ],'eid');
             $data['enq']=$enq;
-         
+
             $this->view('student/enquiry_view',$data);
             exit;
-           
+
         }
-     
+
         $data['rows']  = $enquiry->where(['user_Id'=>$user_id], $orderby);
-            
+
         $this->view('student/enquiry',$data);
     }
 
     public function progress($action=null)
-    { 
+    {
         if(!Auth::is_student()){
             redirect('home');
-           
+
         }
         if($action=='performance'){
             $this->view('student/performance');
             exit();
         }
         $this->view('student/progress');
+    }
+    public function overall()
+    {
+        if(!Auth::is_student()){
+            redirect('home');
+
+        }
+
+        $this->view('student/crsoverall');
+    }
+
+    public function coursepg()
+    {
+        if(!Auth::is_student()){
+            redirect('home');
+           
+        }
+
+        $this->view('student/coursepg');
+    }
+
+    public function submission()
+    {
+        if(!Auth::is_student()){
+            redirect('home');
+
+        }
+
+        $this->view('student/submission');
+    }
+
+    public function submissionstat()
+    {
+        if(!Auth::is_student()){
+            redirect('home');
+
+        }
+
+        $this->view('student/submissionstat');
     }
 }

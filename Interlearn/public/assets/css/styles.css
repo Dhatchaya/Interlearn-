@@ -7,18 +7,18 @@
     --black-text: #000000;
     --error: #721519;
 
-    
+
 }
 *{
     font-family: 'Roboto', sans-serif;
     margin:0;
 	padding:0;
 	box-sizing: border-box;
-  
-    
-  
- 
-} 
+
+
+
+
+}
 /* body, html {
     height: 100%;
     margin: 0;
@@ -26,7 +26,7 @@
 
 } */
 .login_body{
-    background-color: linear-gradient(90deg, #C7C5F4, #682CC6);		
+    background-color: linear-gradient(90deg, #C7C5F4, #682CC6);
 }
 
 .front {
@@ -38,7 +38,7 @@
     background-size: cover;
     position: relative;
     background-attachment: fixed;
-    clip-path: circle(180vh at 50% -80vh); 
+    clip-path: circle(180vh at 50% -80vh);
 }
 .nav-right .menu{
     display: none;
@@ -49,7 +49,7 @@
     justify-content: space-around;
     align-items: center;
     height: 100px;
-   
+
 }
 .all_header {
     display: flex;
@@ -57,7 +57,7 @@
     justify-content: space-around;
     align-items: center;
     height: 100px;
-    background-color: var(--primary-color); 
+    background-color: var(--primary-color);
 }
 .nav-left img {
     /* display: flex; */
@@ -89,8 +89,8 @@
     line-height: 20px;
     text-transform: capitalize;
     border-bottom:0px;
-   
-    
+
+
 }
 
 .slogan {
@@ -121,11 +121,11 @@
 
 .slogan button:hover {
     background-color: #3E206D;
-    
+
 }
 
 .second {
-   
+
     /* width: 100%; */
     height: 100%;
     background-position: center;
@@ -162,7 +162,7 @@
 
 .service {
     margin: 15px;
-     width: 8rem; 
+     width: 8rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -200,7 +200,7 @@
 
 .service img:hover {
     opacity: 0.5;
-} 
+}
 
 .intro {
     width: 100%;
@@ -211,7 +211,7 @@
     /* align-content: center;
     position: absolute;
     top: 50%; */
-  
+
 
 }
 
@@ -233,8 +233,8 @@
     width: 25vw;
     height: 18rem;
     object-fit: cover;
-    margin-left: 3vw; 
-    margin-right: 3vw; 
+    margin-left: 3vw;
+    margin-right: 3vw;
     margin-top: 5vh;
     cursor: pointer;
 }
@@ -256,7 +256,7 @@
     height: 23rem;
     width: 18rem;
     object-fit: contain;
-} 
+}
 
 /* .curve {
     background-color: #3E206D;
@@ -285,7 +285,7 @@
     color: #fff;
     position: relative;
     margin-left: 5vw;
-    
+
 }
 
 .description h3 {
@@ -323,12 +323,12 @@
     margin-right: auto; */
     /* width: 50%; */
     /* object-fit: cover;
-    padding: 20px; 
+    padding: 20px;
     height: 23rem; */
     max-width: 100%;
     object-fit: contain;
 
-    
+
 }
 
 .third-second {
@@ -375,7 +375,7 @@
     border-radius: 4px;
     cursor: pointer;
   }
-  
+
   .home_form_sbt:hover {
     background-color: #682CC6;
 }
@@ -543,15 +543,15 @@
     border: none;
     cursor: pointer;
     /* font-family: 'roboto'; */
-   
+
   }
-  
+
   .dropdown {
     margin-right: 25px;
     position: relative;
     display: inline-block;
   }
-  
+
   .login-content {
     display: none;
     position: absolute;
@@ -586,7 +586,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    
+
 }
 
 .login_logo {
@@ -605,7 +605,7 @@
     padding: 15px;
     cursor: pointer;
     font-size: 17px;
-    
+
     /* font-family: 'roboto'; */
 }
 
@@ -616,14 +616,14 @@
 } */
 .header_right {
     margin-right: 8vw;
-    
+
 }
 .header_right>div{
     display: inline-block;
 }
-/*   
+/*
 .a_nst{
-    
+
 } */
 
 .login_container {
@@ -655,13 +655,13 @@
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-top-left-radius: 7px;
     border-bottom-left-radius: 7px;
-    
+
 }
 .signup {
     background-color: var(--secondary-color);
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-    
+
 }
 
 .login_title {
@@ -710,7 +710,7 @@
     font-size: 1.05rem;
     padding: 1em 3.5em;
     border-radius: 2em;
-    cursor: pointer; 
+    cursor: pointer;
 } */
 
 .login button {
@@ -790,25 +790,25 @@ border-radius: 41px;
     margin-top: 3rem;
     background-color: var(--secondary-color);
     color: var(--primary-color);
-   
+
 }
 .description button:hover {
     background-color: rgb(201, 197, 197);
     color: var(--secondary-color);
 }
 
-  
+
 .login-content a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
     align-items: center;
-   
-  }
-    
 
-  
+  }
+
+
+
 .dropdown:hover .login-content {
     display: block;
   }
@@ -822,19 +822,19 @@ border-radius: 41px;
 
   .material-icons{
     color: var(--secondary-color);
-   
+
   }
 .menu-icon{
     width: 35px;
     height: 5px;
     background-color: var(--secondary-color);
     margin: 6px 0;
-  
+
 }
 
 .fa, .fab{
     line-height:2;
-    
+
 }
 .nav-li{
     font-size: 16px;
@@ -860,7 +860,7 @@ border-radius: 41px;
     width: 100%;
     height: 2rem;
     background-color: var(--page-color);
-   
+
 }
 
 .dropdown_logout:hover .logout-content {
@@ -869,7 +869,7 @@ border-radius: 41px;
 .dropdown_logout:hover{
     color: var(--page-color);
 }
-.lo-nav a{  
+.lo-nav a{
     color: #111010;
     font-weight: bold;
 }
@@ -885,7 +885,7 @@ li.lo-nav {
       width: 33%;
       margin-bottom: 30px;
   }
-  
+
   .third-first {
       flex-direction: column-reverse;
   }
@@ -898,7 +898,7 @@ li.lo-nav {
   .slogan h1 {
     font-size: 30px;
   }
-  .nav-right a,.dropdown{ 
+  .nav-right a,.dropdown{
     display: none;
 }
   .nav-right .menu{
@@ -907,7 +907,7 @@ li.lo-nav {
   }
   .nav-right.responsive {
     position: relative;
-    
+
 
   }
   .nav-right.responsive .menu{
@@ -922,7 +922,7 @@ li.lo-nav {
     position: relative;
     color: #000000;
     margin-bottom: 0rem;
-    
+
   }
   .nav-right.responsive .login-nav{
     display: block;
@@ -939,7 +939,7 @@ li.lo-nav {
     .footer-col{
       width: 100%;
   }
-  
+
   .third-first {
       flex-direction: column-reverse;
   }
@@ -952,7 +952,7 @@ li.lo-nav {
   .slogan h1 {
     font-size: 30px;
   }
-  .nav-right a,.dropdown{ 
+  .nav-right a,.dropdown{
       display: none;
   }
   .nav-right .menu{
@@ -966,7 +966,7 @@ li.lo-nav {
 
 
 
-  
+
   .close {
     position: absolute;
     right: 32px;
@@ -1028,17 +1028,17 @@ li.lo-nav {
 /* form */
 
 .enq_tbl{
-	margin-left: auto; 
+	margin-left: auto;
 	margin-right: auto;
     border-collapse: collapse;
-    width: 80%;
+    width: 100%;
     margin-top: 10vh;
     margin-bottom: 10vh;
 }
 .enq_tbl td, .enq_tbl th{
     border: 1px solid #ddd;
     padding: 8px;
-  
+
 }
 .enq_tbl tr:nth-child(even){
     background-color: var(--light-purple-bg);
@@ -1100,7 +1100,7 @@ li.lo-nav {
     display: flex;
     flex-direction: column;
     max-width: 80%;
-   
+
 }
 .enq_cat{
     width: 80%;
@@ -1139,16 +1139,16 @@ li.lo-nav {
     width: 50%;
     text-align: center;
   }
-  
+
 .enq_actions > * > * >img,.enq_actions > * > img {
     display: block;
     margin: 0 auto;
     height: inherit;
     width: inherit;
   }
- 
+
 .form-header{
-   
+
     display: flex;
     justify-content: space-between;
     align-items: baseline;
@@ -1164,6 +1164,21 @@ li.lo-nav {
     cursor: pointer;
    opacity: 0.8;
    border: none;
+   background-color: var(--left-sidebar-color);
+}
+.Add_forum{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    height: 3rem;
+    width: 12rem;
+    margin: 3vh;
+    border:none;
+}
+.Add_forum:hover{
+    cursor: pointer;
+   opacity: 0.8;
+   border: none;
+   background-color: var(--left-sidebar-color);
 }
 .add_heading,.add_heading_init{
     margin: 3vh 3vh 0 3vh;
@@ -1182,9 +1197,9 @@ li.lo-nav {
 .side-bar {
     background-color: #682CC6;
 	display: flex;
-    /* width: 15%; */
+    width: 100%;
     max-width: 10rem;
-    height: 80vh;
+    height: 85vh;
     margin: 10px;
     margin-left: 15px;
     border-radius: 10px;
@@ -1210,7 +1225,7 @@ li.lo-nav {
     align-items: center;
     margin: 0.5rem;
 
-}    
+}
 
 .top img {
     height: 53px;
@@ -1266,7 +1281,7 @@ li.lo-nav {
     font-size: 1.5rem;
     font-weight: bold;
     top:0;
- 
+
 }
 #overlay{
     position: fixed;
@@ -1314,8 +1329,8 @@ li.lo-nav {
     right: 0;
     bottom: 0;
     overflow-y: scroll;
-  
-  
+
+
 }
 
 .arrow {
@@ -1370,7 +1385,7 @@ li.lo-nav {
     right: 0;
     width: 100%;
     padding-right: 10px;
- 
+
 }
 
 .reg_title{
@@ -1409,7 +1424,7 @@ li.lo-nav {
 }
 .reg_radio{
     width: 13px;
-  
+
 }
 
 #AL,#grade{
@@ -1451,15 +1466,15 @@ li.lo-nav {
     --light-purple-bg:rgba(104, 44, 198, 0.09);
     --black-text: #000000;
 
-    
+
 }
 *{
     font-family: 'Roboto', sans-serif;
-   
 
-    
- 
-} 
+
+
+
+}
 .warning{
     color: red;
 }
@@ -1480,7 +1495,7 @@ li.lo-nav {
     padding: 2rem;
     text-align: center;
     box-shadow: 1px 5px #d3c4c4;
-  
+
 
 }
 .otp-form{
@@ -1493,7 +1508,7 @@ li.lo-nav {
     border-radius: 5px;
     padding-left: 10px;
     border: 1px solid #bab8b8;
-   
+
 }
 .otp-inp[type="submit"]{
     background-color: var(--left-sidebar-color);
@@ -1556,7 +1571,7 @@ li.lo-nav {
     font-size: 17px;
     line-height: 20px;
     text-transform: capitalize;
-    
+
 }
 
 .staff_login_front {
@@ -1575,7 +1590,7 @@ li.lo-nav {
     text-align: center;
     box-shadow: 1px 2px 4px 5px #888888;
     border-radius: 10px;
-    
+
 }
 
 .staff_login_v1 {
@@ -1595,7 +1610,7 @@ li.lo-nav {
 
 .staff_login_title {
     margin: 40px;
-   
+
 }
 
 .staff_login_right {
@@ -1618,7 +1633,7 @@ li.lo-nav {
 .staff_login_input1, .staff_login_input2, .staff_login_button1 {
     margin-top: 10px;
     padding: 5px;
-  
+
 }
 
 .staff_login_btn{
@@ -1639,7 +1654,7 @@ li.lo-nav {
     border: 2px solid #808080bf;
     padding: 3rem;
     margin: 4rem 0 2rem 0;
-   
+
 }
 
 .init_enq{
@@ -1652,16 +1667,16 @@ li.lo-nav {
     border: 1px solid gray;
     padding: 1rem;
     border-radius: 10px;
-  
+
 
 }
 .init_enq >span :first-child{
     float: left;
-    
+
 }
 .init_enq >span :last-child{
     float: right;
-    
+
 }
 .enq-view-titlebar{
     display: block;
@@ -1709,9 +1724,9 @@ li.lo-nav {
     border: 1px solid #80808059;
     text-align: left;
     transition: .5s;
-    
+
 }
-.enq-view-form .reply-btn{
+ .reply-btn{
     border: 1px;
     /* display: inline-block; */
     padding: 5px 24px;
@@ -1741,7 +1756,7 @@ li.lo-nav {
     line-height: 0.5;
   text-align: center;
   margin: 2rem 0 1rem 0;
-    
+
 }
 .add_heading {
     display: inline-block;
@@ -2055,7 +2070,7 @@ li.lo-nav {
     float: left;
     margin-right: 8%;
     margin-top: 5%;
-    margin: bottom 5%; 
+    margin: bottom 5%;
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
 }
@@ -2088,7 +2103,10 @@ li.lo-nav {
 
 
 /* student course page */
-
+.std_crs_pg_container{
+    /* width: 100%; */
+    display: flex;
+}
 .std_crs_container{
     text-align: center;
     padding-left: 2%;
@@ -2115,6 +2133,7 @@ li.lo-nav {
     border-radius: 4%;
     background-color: rgb(104, 44, 198,9%);
     padding-top: 1%;
+    display: flex;
 }
 
 .std_crs_searchIcon{
@@ -2122,6 +2141,8 @@ li.lo-nav {
     height: 2vh;
     padding-left: 2%;
     cursor: pointer;
+    margin-top: 3%;
+    margin-right: 2%;
 }
 
 .std_crs_searchbox{
@@ -2131,6 +2152,7 @@ li.lo-nav {
     background-color: rgb(104, 44, 198,9%);
     padding: 4%;
     border: none;
+    text-align: center;
 }
 
 .std_crs_dropbtn {
@@ -2142,7 +2164,25 @@ li.lo-nav {
     border-radius: 5%;
     cursor: pointer;
 }
-
+.std_crs_pg_content{
+    margin-top: 10%;
+    margin-left: 5%;
+    display: flex;
+}
+.std_crs_pg_butn{
+    padding-left: 60%;
+    padding-top: 5%;
+}
+.std_crs_pg_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    cursor: pointer;
+}
+.std_crs_pg_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+}
 .std_crs_dropbtn:hover, .std_crs_dropbtn:focus {
     background-color: rgb(104, 44, 198,35%);
 }
@@ -2150,6 +2190,7 @@ li.lo-nav {
 .std_crs_dropdown {
     position: relative;
     display: inline-block;
+    margin-right: 38vw;
 }
 
 .std_crs_dropdown-content {
@@ -2184,7 +2225,7 @@ li.lo-nav {
     float: left;
     margin-right: 8%;
     margin-top: 5%;
-    margin: bottom 5%; 
+    margin: bottom 5%;
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
 }
@@ -2197,9 +2238,61 @@ li.lo-nav {
 
 .std_crs_rectangle a{
     text-decoration: none;
+    color: #000000;
+    text-align: center;
 }
 
+.std_crs_rectangle p{
+    padding-top: 5%;
+    align-items: center;
+}
+.std_view_bottom{
+    text-align: left;
+}
 
+.std_view_like{
+    display: flex;
+}
+
+.std_view_rectangle{
+    background-color: white;
+    border: solid rgba(62, 32, 109, 100%);
+    border-radius: 10%;
+    width: 20vw;
+    height: 30vh;
+    float: left;
+    margin-right: 8%;
+    margin-top: 5%;
+    margin: bottom 5%;
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+}
+.std_crs_img{
+    width: 15vw;
+    height: 20vh;
+    border-radius: 10%;
+}
+.std_view_rectangle:hover{
+    transform: scale(1.02);
+}
+
+.std_view_rectangle a{
+    text-decoration: none;
+}
+
+.std_view_img{
+    width: 15vw;
+    height: 20vh;
+    transition: width 1s, height 1s;
+    border-radius: 10%;
+}
+.std_view_rectangle p{
+    font-weight: 500;
+    font-size: large;
+    color: #000000;
+    margin-bottom: 5%;
+    padding: 3%;
+    text-align: center;}
 
 /* student view page */
 
@@ -2261,7 +2354,932 @@ li.lo-nav {
     width: 47vw;
     height: 20vh;
 }
+std_crs_pg_content2{
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 3%;
+    padding: 2%;
+    border: solid;
+    font-size: large;
+}
 
+.std_crs_pg_content2 a{
+    text-decoration: none;
+    color: black;
+}
+
+.std_crs_pg_img{
+    width: 1vw;
+    height: 2vh;
+    margin-top: 1%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.std_crs_pg_check{
+    float: right;
+}
+
+std_view_bottom{
+    text-align: left;
+}
+
+.std_view_like{
+    display: flex;
+}
+
+.std_view_rectangle{
+    background-color: white;
+    border: solid rgba(62, 32, 109, 100%);
+    border-radius: 10%;
+    width: 20vw;
+    height: 30vh;
+    float: left;
+    margin-right: 8%;
+    margin-top: 5%;
+    margin: bottom 5%;
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+}
+
+.std_view_rectangle:hover{
+    transform: scale(1.02);
+}
+
+.std_view_rectangle a{
+    text-decoration: none;
+}
+
+.std_view_img{
+    width: 15vw;
+    height: 20vh;
+    transition: width 1s, height 1s;
+    border-radius: 10%;
+}
+
+.std_view_rectangle p{
+    font-weight: 500;
+    font-size: large;
+    color: #000000;
+    margin-bottom: 5%;
+    padding: 3%;
+    text-align: center;
+}
+
+
+
+
+/* student course page view */
+
+.std_crs_pg_container{
+    /* width: 100%; */
+    display: flex;
+}
+
+.std_crs_main{
+    width: 60vw;
+    margin-bottom: 5%;
+}
+
+.std_crs_pg_content{
+    margin-top: 10%;
+    margin-left: 5%;
+    display: flex;
+}
+
+.std_crs_pg_butn{
+    padding-left: 60%;
+    padding-top: 5%;
+}
+
+.std_crs_pg_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    cursor: pointer;
+}
+
+.std_crs_pg_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+
+}
+
+
+/* student overall progress view */
+
+.std_op_container{
+    font-family: sans-serif;
+}
+.std_op_content{
+    margin-top: 10%;
+    margin-left: 20%;
+}
+
+.std_op_progress{
+    float: left;
+}
+
+.std_op_subject{
+    border-radius: 10%;
+    width: 25vw;
+    height: 60vh;
+    float: left;
+    margin-right: 8%;
+    margin-top: 5%;
+    margin: bottom 5%;
+    margin-left: 2%;
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+    text-align: center;
+    border-style: groove;
+}
+
+.std_op_loader{
+    border-right: 30px solid #00ff73;
+    border-left: 30px solid #ac1102;
+    border-radius: 60%;
+    margin: 10% 16%;
+    border-top: 30px solid #ac1102;
+    border-bottom: 30px solid #00ff73;
+    width: 180px;
+    height: 180px;
+}
+
+.std_op_perc{
+    margin-top: 40%;
+    font-size: larger;
+}
+
+.std_op_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+.std_op_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+
+}
+
+
+
+
+/* student course overall progress */
+
+.std_crs_ov_container{
+    width: 100%;
+    margin-top: 5%;
+    display: flex;
+}
+.std_crs_ov_content{
+    margin: 0 10% 10% 10%;
+    /* margin-left: 20%; */
+}
+
+.std_crs_ov_top{
+    display: flex;
+    margin-right: 5%;
+    padding-left: 1%;
+}
+
+.std_crs_ov_name{
+    margin-top: 5%;
+    margin-right: 2%;
+}
+
+.std_crs_ov_progress{
+    border-radius: 10%;
+    width: 50vw;
+    height: 40vh;
+    float: left;
+    margin-right: 8%;
+    margin-top: 0%;
+    margin: bottom 5%;
+    margin-left: 2%;
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+    text-align: center;
+    border-style: groove;
+    display: flex;
+    text-align: center;
+}
+
+.std_crs_ov_op{
+    margin-top: 5%;
+    text-align: center;
+    padding-top: 12%;
+    padding-left: 2%;
+    font-size: x-large;
+}
+
+.std_crs_ov_loader{
+    border-right: 30px solid #00ff73;
+    border-left: 30px solid #ac1102;
+    border-radius: 60%;
+    margin: 5% 16%;
+    border-top: 30px solid #ac1102;
+    border-bottom: 30px solid #00ff73;
+    width: 180px;
+    height: 180px;
+}
+
+.std_crs_ov_perc{
+    margin-top: 40%;
+    font-size: xx-large;
+}
+
+.std_crs_ov_tablep{
+    width: 60vw;
+    text-align: center;
+    background-color: rgb(62, 32, 109,9%);
+}
+
+.std_crs_ov_tablep table, th, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.std_crs_ov_trow, .heading{
+    height: 7vh;
+}
+
+.std_crs_ov_col1{
+    padding-left: 3%;
+    text-align: left;
+    width: 15vw;
+}
+
+
+
+/* student submission page */
+
+.std_subm_container{
+    width: 100%;
+    display: flex;
+}
+
+.std_subm_content{
+    margin-top: 5%;
+    margin-left: 5%;
+    width: 75vw;
+}
+
+.std_subm_outerline{
+    border-style: 1px solid black;
+    display: flex;
+}
+
+.std_subm_outerline h4{
+    width: 48vw;
+}
+
+.std_subm_outerline p{
+    float: right;
+}
+
+.std_subm_file{
+    display: flex;
+}
+
+.std_subm_name{
+    width: 60vw;
+    height: 8vh;
+}
+
+.std_subm_img{
+    width: 2vw;
+    height: 3vh;
+    cursor: pointer;
+    margin-right: 1vw;
+}
+
+.std_subm_box{
+    width: 75vw;
+    height: 30vh;
+    border: solid;
+    padding: 2%;
+    text-align: center;
+}
+
+.std_subm_inner_box{
+    width: 70vw;
+    height: 25vh;
+    border-style: dashed;
+    margin: 0 auto;
+}
+
+.std_subm_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    cursor: pointer;
+    margin-right: 2%;
+}
+
+.std_subm_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+
+}
+
+
+
+
+/* student submission status view */
+
+.std_sub_grd_container{
+    width: 100%;
+    display: flex;
+}
+
+.std_sub_grd_content{
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.std_sub_grd_row1, .std_sub_grd_row2{
+    width: 80vw;
+    height: 10vh;
+    display: flex;
+    padding-left: 1%;
+}
+
+.std_sub_grd_row1 p, .std_sub_grd_row2 p{
+    font-size: medium;
+    display: flex;
+    align-items: center;
+}
+
+.std_sub_grd_row1{
+    background-color: rgb(104, 44, 198,12%);
+}
+
+.std_sub_grd_col1{
+    width: 15vw;
+}
+
+.std_sub_grd_bottom{
+    text-align: center;
+}
+
+.std_sub_grd_btn{
+    width: 15vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    cursor: pointer;
+    margin-right: 2%;
+}
+
+.std_sub_grd_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+
+}
+
+
+
+
+/* teacher upload materials */
+
+.teacher_upl_container{
+    width: 100%;
+    display: flex;
+}
+
+.teacher_upl_content{
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.teacher_upl_name{
+    width: 60vw;
+    height: 8vh;
+}
+
+.teacher_upl_img{
+    width: 2vw;
+    height: 3vh;
+    cursor: pointer;
+}
+
+.teacher_upl_box{
+    width: 80vw;
+    height: 30vh;
+    border: solid;
+    padding-top: 2%;
+    text-align: center;
+}
+
+.teacher_upl_inner_box{
+    width: 75vw;
+    height: 25vh;
+    border-style: dashed;
+    margin: 0 auto;
+}
+
+.teacher_upl_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    cursor: pointer;
+    margin-right: 2%;
+}
+
+.teacher_upl_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+
+}
+
+
+
+
+/* teacher progress view-student */
+
+.teacher_prg_container{
+    width: 100%;
+    display: flex;
+    margin-top: 5%;
+}
+
+.teacher_prg_content{
+    margin: 0 10% 10% 10%;
+}
+
+.teacher_prg_topstd{
+    background-color: rgb(104, 44, 198,9%);
+    border-radius: 10%;
+    width: 35vw;
+    height: 70vh;
+    margin-right: 8%;
+    margin-top: 5%;
+    margin: bottom 5%;
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+    justify-content: center;
+    margin-left: 30%;
+    padding-left: 5%;
+}
+
+.teacher_prg_topstd h2{
+    text-align: center;
+    padding-top: 2%;
+}
+
+.teacher_prg_std{
+    display: flex;
+    width: 30vw;
+    height: 5vh;
+    padding-left: 4%;
+}
+
+.teacher_prg_name{
+    float: left;
+    padding: 1%;
+    width: 25vw;
+    height: 5vh;
+}
+
+.teacher_prg_mark{
+    float: right;
+    position: relative;
+    padding-left: 10%;
+    width: 5vw;
+    height: 5vh;
+}
+
+.teacher_prg_viewmark{
+    background-color: rgb(104, 44, 198,9%);
+    border-radius: 2%;
+    width: 60vw;
+    /* height: 5vh; */
+    margin-right: 8%;
+    margin-top: 5%;
+    margin: bottom 5%;
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+    justify-content: center;
+    margin-left: 10%;
+    padding: 3%;
+}
+
+.teacher_prg_view{
+    display: flex;
+}
+
+.teacher_prg_mkinput{
+    width: 40vw;
+}
+
+.teacher_prg_mktext{
+    width: 15vw;
+    height: 3vh;
+    margin-left: 2%;
+}
+
+.teacher_prg_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+.teacher_prg_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+
+}
+
+.teacher_prg_loader{
+    border-right: 30px solid #00ff73;
+    border-left: 30px solid #ac1102;
+    border-radius: 60%;
+    margin: 5% 36%;
+    border-top: 30px solid #ac1102;
+    border-bottom: 30px solid #00ff73;
+    width: 180px;
+    height: 180px;
+}
+
+.teacher_prg_perc{
+    margin-top: 40%;
+    margin-left: 25%;
+    font-size: xx-large;
+}
+
+
+
+
+
+/* teacher submission view */
+
+.teacher_subm_container{
+    width: 100%;
+    display: flex;
+}
+
+.teacher_subm_content{
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.teacher_subm_name{
+    width: 60vw;
+    height: 10vh;
+}
+
+.teacher_subm_type{
+    margin-right: 2%;
+}
+
+.teacher_subm_date{
+    width: 15vw;
+    height: 6vh;
+}
+
+.teacher_subm_butn{
+    margin-bottom: 5%;
+}
+
+
+
+
+
+
+/* teacher course page */
+
+.teacher_crs_container{
+    /* width: 100%; */
+    display: flex;
+}
+
+.teacher_crs_main{
+    margin-bottom: 5%;
+}
+
+.teacher_crs_content{
+    margin-top: 5%;
+    margin-left: 5%;
+    display: flex;
+}
+
+.teacher_crs_tophead{
+    text-align: right;
+    width: 60vw;
+    padding-top: 5%;
+}
+
+.teacher_crs_tophead a{
+    text-decoration: none;
+    color: black;
+}
+teacher_crs_dropbtn {
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.teacher_crs_dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.teacher_crs_dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgb(62, 32, 109,9%);
+  min-width: 140px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,1);
+  z-index: 1;
+  text-align: left;
+}
+
+.teacher_crs_dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.teacher_crs_dropdown-content a:hover {
+    background-color: rgb(62, 32, 109,50%);
+}
+
+.teacher_crs_dropdown:hover .teacher_crs_dropdown-content {
+    display: block;
+}
+
+.teacher_crs_imgset{
+    width: 2vw;
+    height: 3vh;
+}
+
+.teacher_crs_topimg{
+    width: 12vw;
+    height: 20vh;
+}
+
+.teacher_crs_butn{
+    padding-left: 60%;
+    padding-top: 5%;
+}
+
+.teacher_crs_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+.teacher_crs_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+
+}
+.std_view_bottom{
+    text-align: left;
+}
+
+.std_crs_pg_content2{
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 3%;
+    padding: 2%;
+    border: solid;
+    font-size: large;
+}
+.std_crs_pg_content2 a{
+    text-decoration: none;
+    color: black;
+}
+.std_crs_pg_img{
+    width: 1vw;
+    height: 2vh;
+    margin-top: 1%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+.std_crs_pg_check{
+    float: right;
+}
+/* student overall progress view */
+
+.teacher_crs_dropbtn {
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    padding: 2%;
+    border: solid;
+}
+.teacher_crs_content2 a{
+    text-decoration: none;
+    color: black;
+}
+.teacher_crs_img{
+    width: 1vw;
+    height: 2vh;
+    margin-top: 1%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+.teacher_crs_img2{
+    width: 1vw;
+    height: 2vh;
+    float: right;
+    margin-top: 1%;
+    margin-right: 1%;
+}
+/* receptionist view page */
+.recp_view_container{
+    width: 100%;
+    display: flex;
+}
+.recp_view_content{
+    margin-top: 5%;
+    margin-left: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 50vw;
+}
+.recp_view_rectangle{
+    background-color: white;
+    border: solid rgba(62, 32, 109, 100%);
+    border-radius: 10%;
+    width: 20vw;
+    height: 30vh;
+    float: left;
+    margin-right: 8%;
+    margin: bottom 5%;
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+}
+.recp_view_rectangle:hover{
+    transform: scale(1.02);
+}
+.recp_view_rectangle a{
+    text-decoration: none;
+}
+.recp_view_img{
+    width: 18vw;
+    height: 20vh;
+    border-radius: 10%;
+    transition: width 1s, height 1s;
+}
+.recp_view_rectangle p{
+    font-weight: 500;
+    font-size: large;
+    color: #000000;
+    margin-bottom: 5%;
+    padding: 3%;
+    text-align: center;
+}
+/* receptionist course page */
+.recp_crs_container{
+    width: 100%;
+    display: flex;
+}
+.recp_crs_content{
+    margin-top: 5%;
+    margin-left: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 60vw;
+}
+.recp_crs_butn{
+    padding-left: 60%;
+    padding-top: 0%;
+    margin-bottom: 5%;
+    width: 60vw;
+}
+.recp_crs_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    cursor: pointer;
+    float: right;
+}
+.recp_crs_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+}
+.recp_crs_rectangle{
+    background-color: white;
+    border: solid rgba(62, 32, 109, 100%);
+    border-radius: 10%;
+    width: 15vw;
+    height: 20vh;
+    float: left;
+    margin-right: 8%;
+    margin-bottom: 4%;
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+}
+.recp_crs_rectangle:hover{
+    transform: scale(1.02);
+}
+.recp_crs_rectangle a{
+    text-decoration: none;
+}
+.recp_crs_img{
+    width: 14.7vw;
+    height: 10vh;
+    border-radius: 10%;
+    transition: width 1s, height 1s;
+}
+.recp_crs_rectangle p{
+    font-weight: 500;
+    font-size: large;
+    color: #000000;
+    margin-bottom: 5%;
+    padding: 3%;
+    text-align: center;
+}
+/* receptionist class details view */
+.recp_cl_container{
+    width: 100%;
+    display: flex;
+}
+.recp_cl_content{
+    margin-top: 5%;
+    margin-left: 5%;
+    flex-wrap: wrap;
+    max-width: 60vw;
+}
+.recp_cl_names{
+    width: 40vw;
+    text-align: left;
+}
+.recp_cl_row, .recp_cl_row1{
+    width: 40vw;
+    height: 7vh;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding-left: 2%;
+}
+.recp_cl_row{
+    background-color: rgb(104, 44, 198,12%);
+}
+.recp_cl_row:hover, .recp_cl_row1:hover{
+    background-color: rgb(104, 44, 198,35%);
+}
+.recp_cl_row1{
+    background-color: white;
+}
+/* receptionist- add course details */
+.recp_det_container{
+    width: 100%;
+    display: flex;
+}
+.recp_det_content{
+    margin-top: 5%;
+    margin-left: 5%;
+    flex-wrap: wrap;
+    max-width: 60vw;
+}
+.recp_det_name{
+    width: 60vw;
+    height: 10vh;
+    padding: 3%;
+}
+
+.recp_det_dura{
+    display: flex;
+}
+.recp_det_dura p{
+    margin-left: 3%;
+    margin-right: 3%;
+}
+.recp_det_time{
+    width: 8vw;
+    height: 4vh;
+}
+.recp_det_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    cursor: pointer;
+    float: right;
+}
+.recp_det_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+}
+.teacher_crs_content2{
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 3%;
+    padding: 2%;
+    border: solid;
+}
 /* quiz page */
 
 .mid-container {
@@ -2375,7 +3393,7 @@ select {
     cursor: pointer;
     /* margin-left: 80%; */
   }
-  
+
 .home_sbt:hover, .home_sbtd:hover {
     background-color: #682CC6;
 }
@@ -2400,88 +3418,66 @@ select {
     color: red;
   }
 
-  
-.quizz_date , .time_period{
-    /* background-color: #f2f2f2;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 12px; */
-    /* width: 20%; */
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 12px;
-    resize: vertical;
+  /* forum style */
+
+  .forum_heading{
+      margin-left: 17%;
+  }
+  .forum_body{
+      display: flex;
+      /* grid-template-areas: "side heading .."
+                            "side discuss discuss discuss"; */
+      gap:6vw
+  }
+  .forum_discussion {
+    width: 90%;
 }
-
-.select_duration {
-    display:flex;
-
+.new_discussion {
+    /* background-color: red; */
+    /* width: 80%; */
+    width: 36rem;
+    height: 30rem;
+    border: 1px solid gray;
+    padding: 2rem;
+    display: none;
 }
+.add_view {
+    width: 100%;
+}
+.new_discussion input[type="text"]{
+    height: 2rem;
+    width: 15rem;
+    margin-bottom: 2rem;
+}
+.forum_right{
 
-.enable_disable {
+    position: relative;
+    bottom: 0;
+}
+.descrip{
+    margin-bottom: 2rem;
+}
+.enq_view img{
+    height: 1rem;
+    width: 1rem;
+}
+.discuss_body{
     display: flex;
-    flex-direction: row;
-}
-
-.enable {
-    display: flex;
-    flex-direction: column;
-    margin-right: 100px;
-}
-
-
-/* This is overall progress from student view */
-
-.std_op_content{
-    margin-top: 10px;
-    margin-left: 10%;
-}
-
-.std_op_progress{
-    float: left;
-}
-
-.std_op_subject{
-    border-radius: 10%;
-    width: 20vw;
-    height: 48vh;
-    float: left;
-    margin-right: 8%;
+    gap:5rem;
     margin-top: 5%;
-    margin: bottom 5%; 
-    margin-left: 2%;
-    background-color: white;
-    transition: width 0.5s, height 0.5s;
-    cursor: pointer;
-    text-align: center;
-    border-style: groove;
 }
-
-.std_op_loader{
-    border-right: 30px solid #00ff73;
-    border-left: 30px solid #DC3545;
-    border-radius: 60%;
-    margin: 10% 16%;
-    border-top: 30px solid #DC3545;
-    border-bottom: 30px solid #00ff73;
-    width: 180px;
-    height: 180px;
+.discuss_card{
+    height: 15rem;
+    width: 60%;
+    background-color: #f1f1f3;
+    border: 1px solid #54515194;
+    padding: 2rem;
 }
-
-.std_op_perc{
-    margin-top: 40%;
-    font-size: larger;
+.discuss_creator h3{
+    display: inline;
 }
-
-.std_op_btn{
-    width: 10vw;
-    height: 5vh;
-    background-color: rgb(62, 32, 109);
-    color: white;
-    border-radius: 10%;
-    cursor: pointer;
+.discuss_content p{
+    margin: 1rem 0 2rem 0;
 }
 
 .std_op_btn:hover{
@@ -2505,7 +3501,7 @@ select {
     float: left;
     margin-right: 8%;
     margin-top: 5%;
-    margin: bottom 5%; 
+    margin: bottom 5%;
     margin-left: 2%;
     background-color: white;
     transition: width 0.5s, height 0.5s;
@@ -2525,13 +3521,13 @@ table {
     border-collapse: collapse;
     width: 100%;
   }
-  
+
 td, th {
     border: 1px solid black;
     text-align: left;
     padding: 8px;
 }
-  
+
 tr:nth-child(even) {
     background: rgba(104, 44, 198, 0.09);
 }

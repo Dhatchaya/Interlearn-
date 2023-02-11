@@ -2,7 +2,7 @@
 <?php $this->view("includes/nav");?>
 
 <div class="teacher_view_container">
-<?php $this->view("includes/sidebar");?>
+<?php $this->view("includes/sidebar_ins");?>
     <div class="teacher_view_content">
         <h1 class="teacher_view_greeting">Good Morning Monica!</h1><br>
             <div class="teacher_view_rectangle">

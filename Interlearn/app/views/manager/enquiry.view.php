@@ -5,8 +5,7 @@
     <?php $this->view("includes/sidebar");?>
         <div class="clm2">
         <h2 class="add_heading_init">Enquiry</h2>
-          
-            <button type="button" data-modal-target= "#modal" class="Add_enq" onclick=addEnquiry(); >+ Add Enquiry</button>
+      
             <?=$some?>
                     <!-- add form -->
             <div class="modal1" id="modal1" >
@@ -35,7 +34,7 @@
             </form>
         </div>
         <!-- edit form -->
-            <div class="modal " id="modal" >
+            <!-- <div class="modal " id="modal" >
             
                 <form method= "POST" class= "enq_form" id="enq_form2" >
                     <div class = "form-header">
@@ -58,7 +57,7 @@
 
 
                 </form>
-            </div>
+            </div> -->
  
                     <table border= 1 class='enq_tbl'>
                         <tr>
@@ -87,24 +86,24 @@
                                 <option value = "escalated">Escalated</option>
                                 </select></br>
                                 
-                            <?=esc($row->status)?></td>
+                   
                             <td><?=esc($row->date)?></td>
                             <td><?=esc($row->role)?></td>
                             <td>
                             
                             <div class="enq_actions">
                             <div class="enq_edit" onclick=editEnquiry(<?=esc($row->eid)?>);>
-                                <!-- <a href="<?=ROOT?>/receptionist/enquiry/edit/<?=esc($row->eid)?>"> -->
-                                    <img  src= "<?=ROOT?>/assets/images/edit.png"/>
+                                <!-- <a href="<?=ROOT?>/manager/enquiry/edit/<?=esc($row->eid)?>"> -->
+                                    <!-- <img  src= "<?=ROOT?>/assets/images/edit.png"/> -->
                                 <!-- </a> -->
                             </div>
                             <div class="enq_delete">
-                                <a href="<?=ROOT?>/receptionist/enquiry/delete/<?=esc($row->eid)?>">
+                                <a href="<?=ROOT?>/manager/enquiry/delete/<?=esc($row->eid)?>">
                                     <img src= "<?=ROOT?>/assets/images/delete.png"/>
                                 </a>
                                 </div>
                             <div class="enq_view">
-                                <a href="<?=ROOT?>/receptionist/enquiry/view/<?=esc($row->eid)?>">
+                                <a href="<?=ROOT?>/manager/enquiry/view/<?=esc($row->eid)?>">
                                     <img src= "<?=ROOT?>/assets/images/view.png"/>
                                 </a>
                                 </div>

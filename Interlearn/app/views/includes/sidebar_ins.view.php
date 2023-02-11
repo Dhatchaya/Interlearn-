@@ -16,7 +16,7 @@
                 <div class="middle">
                     
                         <div class="profile">
-                            <a href="<?=ROOT?>/student/profile">
+                            <a href="<?=ROOT?>/instructor/profile">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/profile.png" alt="profile"></br>
                             <span>Edit Profile</span>
                             </a>
@@ -24,31 +24,26 @@
                     
                    
                         <div class="dashboard">
-                            <a href="<?=ROOT?>/student/course">
+                            <a href="<?=ROOT?>/instructor/course">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/dashboard.png" alt="Dashboard"></br>
                             <span>Dashboard</span>
                             </a>
                         </div>
                    
                     
-                        <div class="home">
-                         <a href="#">
-                            <img src="<?=ROOT?>/assets/images/sidebar_icons/card.png" alt="card"></br>
-                            <span>My payments</span>
-                         </a>
-                        </div>
+                      
                     
                     <div class="enquiry">
-                    <a href="<?=ROOT?>/student/enquiry">       
+                    <a href="<?=ROOT?>/instructor/enquiry">       
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/enquiry.png" alt="enquiry"></br>
                             <span>Enquiry</span>
                        
                     </a>
                     </div>
-                    <div class="Progress">
-                            <a href="<?=ROOT?>/student/progress">
-                            <img src="<?=ROOT?>/assets/images/sidebar_icons/progress.png" alt="progress"></br>
-                            <span>Progress</span>
+                    <div class="Courses">
+                            <a href="<?=ROOT?>/instructor/course">
+                            <img src="<?=ROOT?>/assets/images/sidebar_icons/book.png" alt="Courses"></br>
+                            <span>Courses</span>
                             </a>
                         </div>
                     

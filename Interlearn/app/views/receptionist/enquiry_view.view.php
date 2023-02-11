@@ -5,7 +5,7 @@
     <h2 class="add_heading">Enquiry <?=$enq->eid;?></h2>
 </div>
 <div class="center-body view">
-    <?php $this->view("includes/sidebar");?>
+    <?php $this->view("includes/sidebar_recep");?>
     
     <div class="enq_view_body">
    

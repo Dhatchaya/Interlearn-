@@ -20,9 +20,9 @@ class Instructor extends Controller
            
         }
 
-        $id = $id ?? Auth::getID();
-        $user = new User();
-        $data['row'] = $user->first(['id'=>$id]);
+        $id = $id ?? Auth::getemp_id();
+        $user = new Staff();
+        $data['row'] = $user->first(['emp_id'=>$id],'emp_id');
         
         $this->view('instructor/profile');
     }

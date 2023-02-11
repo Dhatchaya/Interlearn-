@@ -2,7 +2,7 @@
 <?php $this->view("includes/nav");?>
 
 <div class="teacher_profile_container">
-<?php $this->view("includes/sidebar");?>
+<?php $this->view("includes/sidebar_ins");?>
         <div class="teacher_profile_heading">
             <h2>Instructor Profile Settings</h2>
         </div>

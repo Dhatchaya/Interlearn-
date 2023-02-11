@@ -13,7 +13,44 @@ class Teacher extends Controller
         
         $this->view('teacher/home');
     }
+    public function course()
+    { 
+        if(!Auth::is_teacher()){
+            redirect('home');
+           
+        }
+        
+        $this->view('teacher/course');
+    }
 
+    public function upload()
+    { 
+        if(!Auth::is_teacher()){
+            redirect('home');
+           
+        }
+        
+        $this->view('teacher/upload');
+    }
+    public function progress()
+    { 
+        if(!Auth::is_teacher()){
+            redirect('home');
+           
+        }
+        
+        $this->view('teacher/progress');
+    }
+
+    public function submission()
+    { 
+        if(!Auth::is_teacher()){
+            redirect('home');
+           
+        }
+        
+        $this->view('teacher/submission');
+    }
 
     public function profile($action=null,$id = null)
     { 
