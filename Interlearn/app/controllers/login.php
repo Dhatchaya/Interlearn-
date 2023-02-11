@@ -52,22 +52,22 @@ class Login extends Controller
         
         $data['errors'] = [];
         $data['title'] = "login";
-        $staff = new Staff();
+        $user = new User();
 
         if($_SERVER['REQUEST_METHOD'] == "POST")
         {
-            $row = $staff -> first([
+            $row = $user -> first([
                 'email' => $_POST['email'],
                 
-            ],'emp_id');
-            $role=$staff -> role([
+            ],'uid');
+            $role=$user -> role([
                 'email' => $_POST['email'],
-            ],'emp_id');
+            ],'uid');
             if($row)
             {
                
                 if ($role) {
-                    if($_POST['password']==$row -> password )
+                    if(password_verify($_POST['password'],$row -> password ))
                     {
                     Auth::authenticate($row);
                     header('Location: ../'.$row -> role.'/home');

@@ -40,7 +40,7 @@
         </div>
         <div class="staff_login_v1"></div>
         <div class="staff_login_right">
-            <h2 class ="staff_login_title">Receptionist Login</h2>
+            <h2 class ="staff_login_title">Staff Login</h2>
             <?php if(message()):?>
             <div class="display-msg">
                 <?=message('',true)?>

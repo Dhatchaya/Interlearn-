@@ -18,7 +18,7 @@ class Register extends Controller
                 $_POST['date'] =date("Y-m-d H:i:s");
                 $_POST['role'] ='Student';
                 $_POST['password'] = password_hash($_POST['password'],PASSWORD_DEFAULT);//hash password
-                $_POST['user_activation_code'] = $user_activation_code;
+                $_POST['User_activation_code'] = $user_activation_code;
                 $_POST['user_otp'] = $user_otp ;
                 if(isset($_FILES['pic']['name']) AND !empty($_FILES['pic']['name'])){
                     $pic_tmp = $_FILES['pic']["tmp_name"];
