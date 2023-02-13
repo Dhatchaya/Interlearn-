@@ -30,8 +30,37 @@
                     <h5>Mathematics</h5><br>
                     <p>Please note that tomorrow(24th) class has been cancelled.</p>
                 </div>
+            </div><br><br>
+            <div class="std_view_bottom">
+                <h3>You may also like:</h3>
+                <div class="std_view_like">
+                    <div class="std_view_rectangle">
+                        <a href="#">
+                        <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_view_img">
+                        <p>Science by Mr. V.J. Viraj</p>
+                        </a>
             </div>
-            
+          
+                    <div class="std_view_rectangle">
+                        <a href="#">
+                        <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_view_img">
+                        <p>Mathematics by Mrs. V.J. Kumari</p>
+                        </a>
+                    </div>
+                    <div class="std_view_rectangle">
+                        <a href="#">
+                        <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_view_img">
+                        <p>History by Mr. A.L. Perera</p>
+                        </a>
+                    </div>
+                    <div class="std_view_rectangle">
+                        <a href="#">
+                        <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_view_img">
+                        <p>Sinhala by Mr. A.B. Salgado</p>
+                        </a>
+                    </div>
+                </div>
+                </div>
         </div>
     </div>
 </div>

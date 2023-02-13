@@ -16,7 +16,7 @@
                 <div class="middle">
                     
                         <div class="profile">
-                            <a href="#">
+                            <a href="<?=ROOT?>/student/profile">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/profile.png" alt="profile"></br>
                             <span>Edit Profile</span>
                             </a>
@@ -24,7 +24,7 @@
                     
                    
                         <div class="dashboard">
-                            <a href="#">
+                            <a href="<?=ROOT?>/student/course">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/dashboard.png" alt="Dashboard"></br>
                             <span>Dashboard</span>
                             </a>
@@ -32,19 +32,25 @@
                    
                     
                         <div class="home">
-                         <a href="#">
+                         <a href="<?=ROOT?>/student/course">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/card.png" alt="card"></br>
                             <span>My payments</span>
                          </a>
                         </div>
                     
                     <div class="enquiry">
-                    <a href="#">       
+                    <a href="<?=ROOT?>/student/enquiry">       
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/enquiry.png" alt="enquiry"></br>
                             <span>Enquiry</span>
                        
                     </a>
                     </div>
+                    <div class="Progress">
+                            <a href="<?=ROOT?>/student/progress">
+                            <img src="<?=ROOT?>/assets/images/sidebar_icons/progress.svg" alt="progress"></br>
+                            <span>Progress</span>
+                            </a>
+                        </div>
                     
                  
                 

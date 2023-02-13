@@ -2,11 +2,12 @@
 <?php $this->view("includes/nav");?>
 
 <div class="teacher_profile_container">
-<?php $this->view("includes/sidebar");?>
-        <div class="teacher_profile_heading">
-            <h2>Instructor Profile Settings</h2>
-        </div>
+<?php $this->view("includes/sidebar_ins");?>
+       
         <div class="teacher_profile_rectangle">
+            <div class="teacher_profile_heading">
+                <h2>Instructor Profile Settings</h2>
+            </div>
             <div class="teacher_profile_content">
                 <img src="<?=ROOT?>/assets/images/teacher.png" class="teacher_profile_image" alt="" srcset="">
                 <h3 class="name">Viharsha Jayathilake</h3>

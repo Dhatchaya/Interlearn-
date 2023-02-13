@@ -67,13 +67,13 @@
             <input value ="<?= set_value('password')?>" class= "login-inp"  type="password" id="password" name="password" placeholder="Enter Password">
             </div>
             <br>
-          <button type="submit" name="submit" >Login</button>
+          <button type="submit" name="submit" class="st_lgn_btn">Login</button>
             
         </form>
         </div>
         <div class="signup">
             <h2 class="login_title">Don't have an account?</h2>
-            <a href= "../register" class="a_nst"> <button type="submit"> Register</button></a> 
+            <a href= "<?= ROOT ?>/register" class="a_nst"> <button type="submit"> Register</button></a> 
         </div>
     </div>
 </span>

@@ -1,7 +1,7 @@
 :root{
     --primary-color:#3E206D;
     --secondary-color: rgba(255,255,255);
-    --page-color:aliceblue;
+    --page-color:#f6f5f7;
     --left-sidebar-color:#682CC6;
     --light-purple-bg:rgba(104, 44, 198, 0.09);
     --black-text: #000000;
@@ -14,7 +14,7 @@
     margin:0;
 	padding:0;
 	box-sizing: border-box;
-  
+ 
     
   
  
@@ -25,6 +25,9 @@
     background-color: var(--page-color);
 
 } */
+body{
+    background-color: var(--page-color);
+}
 .login_body{
     background-color: linear-gradient(90deg, #C7C5F4, #682CC6);		
 }
@@ -635,9 +638,10 @@
     width: 100%;
     max-width: 653px;
     height: 490px;
-    border-style: solid;
-    border-color: var(--primary-color);;
+    /* border-style: solid;
+    border-color: var(--primary-color);; */
     border-radius: 12px;
+    box-shadow: 0 14px 20px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
 }
 
 .login, .signup {
@@ -686,8 +690,14 @@
     width: 85%;
     display: flex;
     flex-direction: column;
+    position: relative;
+    height: 50%;
+    justify-content: flex-start;
 }
-
+.st_lgn_btn{
+    position: absolute;
+    bottom:0;
+}
 .lgn_form{
     position: relative;
     margin-bottom: 0.5em;
@@ -1164,6 +1174,21 @@ li.lo-nav {
     cursor: pointer;
    opacity: 0.8;
    border: none;
+   background-color: var(--left-sidebar-color);
+}
+.Add_forum{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    height: 3rem;
+    width: 12rem;
+    margin: 3vh;
+    border:none;
+}
+.Add_forum:hover{
+    cursor: pointer;
+   opacity: 0.8;
+   border: none;
+   background-color: var(--left-sidebar-color);
 }
 .add_heading,.add_heading_init{
     margin: 3vh 3vh 0 3vh;
@@ -1174,25 +1199,26 @@ li.lo-nav {
 .center-body {
 	display: flex;
 	flex-direction: row;
-    gap: 8vw;
+    /* gap: 8vw; */
 }
 .clm2{
     flex-grow:1;
 }
 .side-bar {
-    background-color: #682CC6;
+    background-color: var(--primary-color);
 	display: flex;
-    /* width: 15%; */
+    width: 100%;
     max-width: 10rem;
-    height: 80vh;
+    height: 85vh;
     margin: 10px;
     margin-left: 15px;
     border-radius: 10px;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    /* margin-top: 10vh; */
+    margin-top: 4.5rem;
     margin-bottom: 10vh;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 .side-bar img {
@@ -1429,19 +1455,18 @@ li.lo-nav {
     margin: 0;
 }
 .display-error,.display-msg{
-    color: var(--error);
+    color: #e42113;
     height: 2.5rem;
-    width: 90%;
-    border-radius: 2px;
-    background-color: #c96687;
-    text-align: center;
-    font-size: large;
+  
     padding-top: 0.5rem;
+    font-weight: 600;
 }
 
 .display-msg{
     color: #e42113;
-    background-color: #ded1f6;
+    background-color: transparent;
+    /* border: 1px solid black; */
+    font-weight: 600;
 }
 :root{
     --primary-color:#3E206D;
@@ -1711,7 +1736,7 @@ li.lo-nav {
     transition: .5s;
     
 }
-.enq-view-form .reply-btn{
+ .reply-btn{
     border: 1px;
     /* display: inline-block; */
     padding: 5px 24px;
@@ -1770,13 +1795,14 @@ li.lo-nav {
 .enqStatus{
     background-color: transparent;
     border-radius: 5px;
+    height: 3rem;
 }
 /* student profile view */
 
 .std_profile_container{
     width: 100%;
     height: 100vh;
-    margin-top: 3%;
+    /* margin-top: 3%; */
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
 }
@@ -1788,7 +1814,7 @@ li.lo-nav {
 
 .std_profile_heading{
     margin-left: 20%;
-    margin-top: 5%;
+    /* margin-top: 5%; */
 }
 
 .std_profile_rectangle{
@@ -1899,7 +1925,6 @@ li.lo-nav {
 .teacher_profile_container{
     width: 100%;
     height: 100vh;
-    margin-top: 3%;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
 }
@@ -1911,7 +1936,7 @@ li.lo-nav {
 
 .teacher_profile_heading{
     margin-left: 20%;
-    margin-top: 5%;
+   
 }
 
 .teacher_profile_rectangle{
@@ -2030,7 +2055,7 @@ li.lo-nav {
 
 .teacher_view_container{
     text-align: center;
-    padding-left: 2%;
+  
     display: flex;
     padding-bottom: 2%;
 }
@@ -2088,10 +2113,13 @@ li.lo-nav {
 
 
 /* student course page */
-
+.std_crs_pg_container{
+    /* width: 100%; */
+    display: flex;
+}
 .std_crs_container{
     text-align: center;
-    padding-left: 2%;
+    /* padding-left: 2%; */
     display: flex;
 }
 
@@ -2114,7 +2142,8 @@ li.lo-nav {
     height: 5vh;
     border-radius: 4%;
     background-color: rgb(104, 44, 198,9%);
-    padding-top: 1%;
+    padding-top: 1%; 
+    display: flex;
 }
 
 .std_crs_searchIcon{
@@ -2122,6 +2151,8 @@ li.lo-nav {
     height: 2vh;
     padding-left: 2%;
     cursor: pointer;
+    margin-top: 3%;
+    margin-right: 2%;
 }
 
 .std_crs_searchbox{
@@ -2131,6 +2162,7 @@ li.lo-nav {
     background-color: rgb(104, 44, 198,9%);
     padding: 4%;
     border: none;
+    text-align: center;
 }
 
 .std_crs_dropbtn {
@@ -2142,7 +2174,25 @@ li.lo-nav {
     border-radius: 5%;
     cursor: pointer;
 }
-
+.std_crs_pg_content{
+    margin-top: 10%;
+    margin-left: 5%;
+    display: flex;
+}
+.std_crs_pg_butn{
+    padding-left: 60%;
+    padding-top: 5%;
+}
+.std_crs_pg_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    cursor: pointer;
+}
+.std_crs_pg_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+}
 .std_crs_dropbtn:hover, .std_crs_dropbtn:focus {
     background-color: rgb(104, 44, 198,35%);
 }
@@ -2150,6 +2200,7 @@ li.lo-nav {
 .std_crs_dropdown {
     position: relative;
     display: inline-block;
+    margin-right: 38vw;
 }
 
 .std_crs_dropdown-content {
@@ -2197,15 +2248,66 @@ li.lo-nav {
 
 .std_crs_rectangle a{
     text-decoration: none;
+    color: #000000;
+    text-align: center;
 }
 
+.std_crs_rectangle p{
+    padding-top: 5%;
+    align-items: center;
+}
+.std_view_bottom{
+    text-align: left;
+}
 
+.std_view_like{
+    display: flex;
+}
+
+.std_view_rectangle{
+    background-color: white;
+    border: solid rgba(62, 32, 109, 100%);
+    border-radius: 10%;
+    width: 20vw;
+    height: 30vh;
+    float: left;
+    margin-right: 8%;
+    margin-top: 5%;
+    margin: bottom 5%; 
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+}
+.std_crs_img{
+    width: 15vw;
+    height: 20vh;
+    border-radius: 10%;
+}
+.std_view_rectangle:hover{
+    transform: scale(1.02);
+}
+
+.std_view_rectangle a{
+    text-decoration: none;
+}
+
+.std_view_img{
+    width: 15vw;
+    height: 20vh;
+    transition: width 1s, height 1s;
+    border-radius: 10%;
+}
+.std_view_rectangle p{
+    font-weight: 500;
+    font-size: large;
+    color: #000000;
+    margin-bottom: 5%;
+    padding: 3%;
+    text-align: center;}
 
 /* student view page */
 
 .std_view_container{
     text-align: center;
-    padding-left: 2%;
     position: relative;
     display: flex;
     margin-bottom: 2%;
@@ -2261,13 +2363,939 @@ li.lo-nav {
     width: 47vw;
     height: 20vh;
 }
+std_crs_pg_content2{
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 3%;
+    padding: 2%;
+    border: solid;
+    font-size: large;
+}
 
+.std_crs_pg_content2 a{
+    text-decoration: none;
+    color: black;
+}
+
+.std_crs_pg_img{
+    width: 1vw;
+    height: 2vh;
+    margin-top: 1%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.std_crs_pg_check{
+    float: right;
+}
+
+std_view_bottom{
+    text-align: left;
+}
+
+.std_view_like{
+    display: flex;
+}
+
+.std_view_rectangle{
+    background-color: white;
+    border: solid rgba(62, 32, 109, 100%);
+    border-radius: 10%;
+    width: 20vw;
+    height: 30vh;
+    float: left;
+    margin-right: 8%;
+    margin-top: 5%;
+    margin: bottom 5%; 
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+}
+
+.std_view_rectangle:hover{
+    transform: scale(1.02);
+}
+
+.std_view_rectangle a{
+    text-decoration: none;
+}
+
+.std_view_img{
+    width: 15vw;
+    height: 20vh;
+    transition: width 1s, height 1s;
+    border-radius: 10%;
+}
+
+.std_view_rectangle p{
+    font-weight: 500;
+    font-size: large;
+    color: #000000;
+    margin-bottom: 5%;
+    padding: 3%;
+    text-align: center;
+}
+
+
+
+
+/* student course page view */
+
+.std_crs_pg_container{
+    /* width: 100%; */
+    display: flex;
+}
+
+.std_crs_main{
+    width: 60vw;
+    margin-bottom: 5%;
+}
+
+.std_crs_pg_content{
+    margin-top: 10%;
+    margin-left: 5%;
+    display: flex;
+}
+
+.std_crs_pg_butn{
+    padding-left: 60%;
+    padding-top: 5%;
+}
+
+.std_crs_pg_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    cursor: pointer;
+}
+
+.std_crs_pg_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+
+}
+
+
+/* student overall progress view */
+
+.std_op_container{
+    font-family: sans-serif;
+}
+.std_op_content{
+    margin-top: 10%;
+    margin-left: 20%;
+}
+
+.std_op_progress{
+    float: left;
+}
+
+.std_op_subject{
+    border-radius: 10%;
+    width: 25vw;
+    height: 60vh;
+    float: left;
+    margin-right: 8%;
+    margin-top: 5%;
+    margin: bottom 5%; 
+    margin-left: 2%;
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+    text-align: center;
+    border-style: groove;
+}
+
+.std_op_loader{
+    border-right: 30px solid #00ff73;
+    border-left: 30px solid #ac1102;
+    border-radius: 60%;
+    margin: 10% 16%;
+    border-top: 30px solid #ac1102;
+    border-bottom: 30px solid #00ff73;
+    width: 180px;
+    height: 180px;
+}
+
+.std_op_perc{
+    margin-top: 40%;
+    font-size: larger;
+}
+
+.std_op_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+.std_op_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+
+}
+
+
+
+
+/* student course overall progress */
+
+.std_crs_ov_container{
+    width: 100%;
+    margin-top: 5%;
+    display: flex;
+}
+.std_crs_ov_content{
+    margin: 0 10% 10% 10%;
+    /* margin-left: 20%; */
+}
+
+.std_crs_ov_top{
+    display: flex;
+    margin-right: 5%;
+    padding-left: 1%;
+}
+
+.std_crs_ov_name{
+    margin-top: 5%;
+    margin-right: 2%;
+}
+
+.std_crs_ov_progress{
+    border-radius: 10%;
+    width: 50vw;
+    height: 40vh;
+    float: left;
+    margin-right: 8%;
+    margin-top: 0%;
+    margin: bottom 5%; 
+    margin-left: 2%;
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+    text-align: center;
+    border-style: groove;
+    display: flex;
+    text-align: center;
+}
+
+.std_crs_ov_op{
+    margin-top: 5%;
+    text-align: center;
+    padding-top: 12%;
+    padding-left: 2%;
+    font-size: x-large;
+}
+
+.std_crs_ov_loader{
+    border-right: 30px solid #00ff73;
+    border-left: 30px solid #ac1102;
+    border-radius: 60%;
+    margin: 5% 16%;
+    border-top: 30px solid #ac1102;
+    border-bottom: 30px solid #00ff73;
+    width: 180px;
+    height: 180px;
+}
+
+.std_crs_ov_perc{
+    margin-top: 40%;
+    font-size: xx-large;
+}
+
+.std_crs_ov_tablep{
+    width: 60vw;
+    text-align: center;
+    background-color: rgb(62, 32, 109,9%);
+}
+
+.std_crs_ov_tablep table, th, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.std_crs_ov_trow, .heading{
+    height: 7vh;
+}
+
+.std_crs_ov_col1{
+    padding-left: 3%;
+    text-align: left;
+    width: 15vw;
+}
+
+
+
+/* student submission page */
+
+.std_subm_container{
+    width: 100%;
+    display: flex;
+}
+
+.std_subm_content{
+    margin-top: 5%;
+    margin-left: 5%;
+    width: 75vw;
+}
+
+.std_subm_outerline{
+    border-style: 1px solid black;
+    display: flex;
+}
+
+.std_subm_outerline h4{
+    width: 48vw;
+}
+
+.std_subm_outerline p{
+    float: right;
+}
+
+.std_subm_file{
+    display: flex;
+}
+
+.std_subm_name{
+    width: 60vw;
+    height: 8vh;
+}
+
+.std_subm_img{
+    width: 2vw;
+    height: 3vh;
+    cursor: pointer;
+    margin-right: 1vw;
+}
+
+.std_subm_box{
+    width: 75vw;
+    height: 30vh;
+    border: solid;
+    padding: 2%;
+    text-align: center;
+}
+
+.std_subm_inner_box{
+    width: 70vw;
+    height: 25vh;
+    border-style: dashed;
+    margin: 0 auto;
+}
+
+.std_subm_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    cursor: pointer;
+    margin-right: 2%;
+}
+
+.std_subm_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+
+}
+
+
+
+
+/* student submission status view */
+
+.std_sub_grd_container{
+    width: 100%;
+    display: flex;
+}
+
+.std_sub_grd_content{
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.std_sub_grd_row1, .std_sub_grd_row2{
+    width: 80vw;
+    height: 10vh;
+    display: flex;
+    padding-left: 1%;
+}
+
+.std_sub_grd_row1 p, .std_sub_grd_row2 p{
+    font-size: medium;
+    display: flex;
+    align-items: center;
+}
+
+.std_sub_grd_row1{
+    background-color: rgb(104, 44, 198,12%);
+}
+
+.std_sub_grd_col1{
+    width: 15vw;
+}
+
+.std_sub_grd_bottom{
+    text-align: center;
+}
+
+.std_sub_grd_btn{
+    width: 15vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    cursor: pointer;
+    margin-right: 2%;
+}
+
+.std_sub_grd_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+
+}
+
+
+
+
+/* teacher upload materials */
+
+.teacher_upl_container{
+    width: 100%;
+    display: flex;
+}
+
+.teacher_upl_content{
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.teacher_upl_name{
+    width: 60vw;
+    height: 8vh;
+}
+
+.teacher_upl_img{
+    width: 2vw;
+    height: 3vh;
+    cursor: pointer;
+}
+
+.teacher_upl_box{
+    width: 80vw;
+    height: 30vh;
+    border: solid;
+    padding-top: 2%;
+    text-align: center;
+}
+
+.teacher_upl_inner_box{
+    width: 75vw;
+    height: 25vh;
+    border-style: dashed;
+    margin: 0 auto;
+}
+
+.teacher_upl_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    cursor: pointer;
+    margin-right: 2%;
+}
+
+.teacher_upl_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+
+}
+
+
+
+
+/* teacher progress view-student */
+
+.teacher_prg_container{
+    width: 100%;
+    display: flex;
+    margin-top: 5%;
+}
+
+.teacher_prg_content{
+    margin: 0 10% 10% 10%;
+}
+
+.teacher_prg_topstd{
+    background-color: rgb(104, 44, 198,9%);
+    border-radius: 10%;
+    width: 35vw;
+    height: 70vh;
+    margin-right: 8%;
+    margin-top: 5%;
+    margin: bottom 5%; 
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+    justify-content: center;
+    margin-left: 30%;
+    padding-left: 5%;
+}
+
+.teacher_prg_topstd h2{
+    text-align: center;
+    padding-top: 2%;
+}
+
+.teacher_prg_std{
+    display: flex;
+    width: 30vw;
+    height: 5vh;
+    padding-left: 4%;
+}
+
+.teacher_prg_name{
+    float: left;
+    padding: 1%;
+    width: 25vw;
+    height: 5vh;
+}
+
+.teacher_prg_mark{
+    float: right;
+    position: relative;
+    padding-left: 10%;
+    width: 5vw;
+    height: 5vh;
+}
+
+.teacher_prg_viewmark{
+    background-color: rgb(104, 44, 198,9%);
+    border-radius: 2%;
+    width: 60vw;
+    /* height: 5vh; */
+    margin-right: 8%;
+    margin-top: 5%;
+    margin: bottom 5%; 
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+    justify-content: center;
+    margin-left: 10%;
+    padding: 3%;
+}
+
+.teacher_prg_view{
+    display: flex;
+}
+
+.teacher_prg_mkinput{
+    width: 40vw;
+}
+
+.teacher_prg_mktext{
+    width: 15vw;
+    height: 3vh;
+    margin-left: 2%;
+}
+
+.teacher_prg_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+.teacher_prg_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+
+}
+
+.teacher_prg_loader{
+    border-right: 30px solid #00ff73;
+    border-left: 30px solid #ac1102;
+    border-radius: 60%;
+    margin: 5% 36%;
+    border-top: 30px solid #ac1102;
+    border-bottom: 30px solid #00ff73;
+    width: 180px;
+    height: 180px;
+}
+
+.teacher_prg_perc{
+    margin-top: 40%;
+    margin-left: 25%;
+    font-size: xx-large;
+}
+
+
+
+
+
+/* teacher submission view */
+
+.teacher_subm_container{
+    width: 100%;
+    display: flex;
+}
+
+.teacher_subm_content{
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.teacher_subm_name{
+    width: 60vw;
+    height: 10vh;
+}
+
+.teacher_subm_type{
+    margin-right: 2%;
+}
+
+.teacher_subm_date{
+    width: 15vw;
+    height: 6vh;
+}
+
+.teacher_subm_butn{
+    margin-bottom: 5%;
+}
+
+
+
+
+
+
+/* teacher course page */
+
+.teacher_crs_container{
+    /* width: 100%; */
+    display: flex;
+}
+
+.teacher_crs_main{
+    margin-bottom: 5%;
+}
+
+.teacher_crs_content{
+    margin-top: 5%;
+    margin-left: 5%;
+    display: flex;
+}
+
+.teacher_crs_tophead{
+    text-align: right;
+    width: 60vw;
+    padding-top: 5%;
+}
+
+.teacher_crs_tophead a{
+    text-decoration: none;
+    color: black;
+}
+teacher_crs_dropbtn {
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+  
+.teacher_crs_dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.teacher_crs_dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgb(62, 32, 109,9%);
+  min-width: 140px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,1);
+  z-index: 1;
+  text-align: left;
+}
+
+.teacher_crs_dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.teacher_crs_dropdown-content a:hover {
+    background-color: rgb(62, 32, 109,50%);
+}
+
+.teacher_crs_dropdown:hover .teacher_crs_dropdown-content {
+    display: block;
+}
+
+.teacher_crs_imgset{
+    width: 2vw;
+    height: 3vh;
+}
+
+.teacher_crs_topimg{
+    width: 12vw;
+    height: 20vh;
+}
+
+.teacher_crs_butn{
+    padding-left: 60%;
+    padding-top: 5%;
+}
+
+.teacher_crs_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+.teacher_crs_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+
+}
+.std_view_bottom{
+    text-align: left;
+}
+
+.std_crs_pg_content2{
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 3%;
+    padding: 2%;
+    border: solid;
+    font-size: large;
+}
+.std_crs_pg_content2 a{
+    text-decoration: none;
+    color: black;
+}
+.std_crs_pg_img{
+    width: 1vw;
+    height: 2vh;
+    margin-top: 1%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+.std_crs_pg_check{
+    float: right;
+}
+/* student overall progress view */
+
+.teacher_crs_dropbtn {
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    padding: 2%;
+    border: solid;
+}
+.teacher_crs_content2 a{
+    text-decoration: none;
+    color: black;
+}
+.teacher_crs_img{
+    width: 1vw;
+    height: 2vh;
+    margin-top: 1%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+.teacher_crs_img2{
+    width: 1vw;
+    height: 2vh;
+    float: right;
+    margin-top: 1%;
+    margin-right: 1%;
+}
+/* receptionist view page */
+.recp_view_container{
+    width: 100%;
+    display: flex;
+}
+.recp_view_content{
+    margin-top: 5%;
+    margin-left: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 50vw;
+}
+.recp_view_rectangle{
+    background-color: white;
+    border: solid rgba(62, 32, 109, 100%);
+    border-radius: 10%;
+    width: 20vw;
+    height: 30vh;
+    float: left;
+    margin-right: 8%;
+    margin: bottom 5%; 
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+}
+.recp_view_rectangle:hover{
+    transform: scale(1.02);
+}
+.recp_view_rectangle a{
+    text-decoration: none;
+}
+.recp_view_img{
+    width: 18vw;
+    height: 20vh;
+    border-radius: 10%;
+    transition: width 1s, height 1s;
+}
+.recp_view_rectangle p{
+    font-weight: 500;
+    font-size: large;
+    color: #000000;
+    margin-bottom: 5%;
+    padding: 3%;
+    text-align: center;
+}
+/* receptionist course page */
+.recp_crs_container{
+    width: 100%;
+    display: flex;
+}
+.recp_crs_content{
+    margin-top: 5%;
+    margin-left: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 60vw;
+}
+.recp_crs_butn{
+    padding-left: 60%;
+    padding-top: 0%;
+    margin-bottom: 5%;
+    width: 60vw;
+}
+.recp_crs_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    cursor: pointer;
+    float: right;
+}
+.recp_crs_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+}
+.recp_crs_rectangle{
+    background-color: white;
+    border: solid rgba(62, 32, 109, 100%);
+    border-radius: 10%;
+    width: 15vw;
+    height: 20vh;
+    float: left;
+    margin-right: 8%;
+    margin-bottom: 4%;
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+}
+.recp_crs_rectangle:hover{
+    transform: scale(1.02);
+}
+.recp_crs_rectangle a{
+    text-decoration: none;
+}
+.recp_crs_img{
+    width: 14.7vw;
+    height: 10vh;
+    border-radius: 10%;
+    transition: width 1s, height 1s;
+}
+.recp_crs_rectangle p{
+    font-weight: 500;
+    font-size: large;
+    color: #000000;
+    margin-bottom: 5%;
+    padding: 3%;
+    text-align: center;
+}
+/* receptionist class details view */
+.recp_cl_container{
+    width: 100%;
+    display: flex;
+}
+.recp_cl_content{
+    margin-top: 5%;
+    margin-left: 5%;
+    flex-wrap: wrap;
+    max-width: 60vw;
+}
+.recp_cl_names{
+    width: 40vw;
+    text-align: left;
+}
+.recp_cl_row, .recp_cl_row1{
+    width: 40vw;
+    height: 7vh;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding-left: 2%;
+}
+.recp_cl_row{
+    background-color: rgb(104, 44, 198,12%);
+}
+.recp_cl_row:hover, .recp_cl_row1:hover{
+    background-color: rgb(104, 44, 198,35%);
+}
+.recp_cl_row1{
+    background-color: white;
+}
+/* receptionist- add course details */
+.recp_det_container{
+    width: 100%;
+    display: flex;
+}
+.recp_det_content{
+    margin-top: 5%;
+    margin-left: 5%;
+    flex-wrap: wrap;
+    max-width: 60vw;
+}
+.recp_det_name{
+    width: 60vw;
+    height: 10vh;
+    padding: 3%;
+}
+
+.recp_det_dura{
+    display: flex;
+}
+.recp_det_dura p{
+    margin-left: 3%;
+    margin-right: 3%;
+}
+.recp_det_time{
+    width: 8vw;
+    height: 4vh;
+}
+.recp_det_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    cursor: pointer;
+    float: right;
+}
+.recp_det_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+}
+.teacher_crs_content2{
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 3%;
+    padding: 2%;
+    border: solid;
+}
 /* quiz page */
 
 .mid-container {
     display:flex;
     flex-direction: row;
-    justify-content: space-around;
+    /* justify-content: space-around; */
+    gap:8vw;
 }
 .quizz_right {
     width: 70%;
@@ -2400,7 +3428,67 @@ select {
     color: red;
   }
 
-  
+  /* forum style */
+
+  .forum_heading{
+      margin-left: 17%;
+  }
+  .forum_body{
+      display: flex;
+      /* grid-template-areas: "side heading .."
+                            "side discuss discuss discuss"; */
+      gap:6vw
+  }
+  .forum_discussion {
+    width: 90%;
+}
+.new_discussion {
+    /* background-color: red; */
+    /* width: 80%; */
+    width: 36rem;
+    height: 30rem;
+    border: 1px solid gray;
+    padding: 2rem;
+    display: none;
+}
+.add_view {
+    width: 100%;
+}
+.new_discussion input[type="text"]{
+    height: 2rem;
+    width: 15rem;
+    margin-bottom: 2rem;
+}
+.forum_right{
+
+    position: relative;
+    bottom: 0;
+}
+.descrip{
+    margin-bottom: 2rem;
+}
+.enq_view img{
+    height: 1rem;
+    width: 1rem;
+}
+.discuss_body{
+    display: flex;
+    gap:5rem;
+    margin-top: 5%;
+}
+.discuss_card{
+    height: 15rem;
+    width: 60%;
+    background-color: #f1f1f3;
+    border: 1px solid #54515194;
+    padding: 2rem;
+}
+.discuss_creator h3{
+    display: inline;
+}
+.discuss_content p{
+    margin: 1rem 0 2rem 0;
+}
 .quizz_date , .time_period{
     /* background-color: #f2f2f2;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -2429,4 +3517,250 @@ select {
     display: flex;
     flex-direction: column;
     margin-right: 100px;
+}
+
+
+/* Individual performance */
+
+
+
+
+.performance {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.std_per_subject{
+    border-radius: 10%;
+    width: 30vw;
+    height: 40vh;
+    float: left;
+    margin-right: 8%;
+    margin-top: 5%;
+    margin: bottom 5%; 
+    margin-left: 2%;
+    background-color: white;
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+    text-align: center;
+    border-style: groove;
+    display: flex;
+    flex-direction: row;
+}
+
+.std_per_subject h3 {
+    margin-top: 100px;
+}
+/* styling table */
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+td, th {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+}
+  
+tr:nth-child(even) {
+    background: rgba(104, 44, 198, 0.09);
+}
+
+.que_right {
+    width: 70%;
+    /* background: aliceblue; */
+    border: 2px solid #808080bf;
+    padding: 3rem;
+    margin: 4rem 0 2rem 0;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+}
+/* student course page */
+
+.std_crs_container{
+    text-align: center;
+    /* padding-left: 2%; */
+    display: flex;
+}
+
+.std_crs_content{
+    margin-top: 5%;
+    margin-left: 2%;
+}
+
+.std_crs_heading{
+    display: flex;
+    align-items: center;
+    width: 30vw;
+    height: 10vh;
+    padding-left: 5%;
+    text-align: center;
+}
+
+.std_crs_search{
+    /* width: 15vw;
+    height: 5vh;
+    border-radius: 4%;
+    background-color: rgb(104, 44, 198,9%);
+    padding-top: 1%; */
+    display: flex;
+}
+
+.std_crs_searchIcon{
+    width: 2vw;
+    height: 2vh;
+    padding-left: 2%;
+    cursor: pointer;
+    margin-top: 3%;
+    margin-right: 2%;
+}
+
+.std_crs_searchbox{
+    width: 12vw;
+    height: 5vh;
+    background-color: rgb(104, 44, 198,9%);
+    padding: 4%;
+    border: none;
+    text-align: center;
+}
+
+.std_crs_dropbtn {
+    background-color:rgb(104, 44, 198,12%);
+    color: rgb(0, 0, 0);
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5%;
+    cursor: pointer;
+}
+
+.std_crs_dropbtn:hover, .std_crs_dropbtn:focus {
+    background-color: rgb(104, 44, 198,35%);
+}
+
+.std_crs_dropdown {
+    position: relative;
+    display: inline-block;
+    margin-right: 38vw;
+}
+
+.std_crs_dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.std_crs_dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.std_crs_dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* .show {
+    display:block;
+} */
+
+.std_crs_rectangle{
+    background-color: rgb(104, 44, 198,9%);
+    border-radius: 10%;
+    width: 15vw;
+    height: 30vh;
+    float: left;
+    margin-right: 8%;
+    margin: bottom 5%; 
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+    margin-bottom: 5%;
+}
+
+
+.std_crs_rectangle:hover{
+    transform: scale(1.02);
+    /* transition: ; */
+}
+
+.std_crs_rectangle a{
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+}
+
+.std_crs_rectangle p{
+    padding-top: 5%;
+    align-items: center;
+}
+
+.std_crs_img{
+    width: 15vw;
+    height: 20vh;
+    border-radius: 10%;
+}
+/* This is overall progress from student view */
+
+.std_op_content{
+    margin-top: 10px;
+    margin-left: 10%;
+}
+
+.std_op_progress{
+    float: left;
+}
+
+.std_op_subject{
+    border-radius: 10%;
+    width: 20vw;
+    height: 48vh;
+    float: left;
+    margin-right: 8%;
+    margin-top: 5%;
+    margin: bottom 5%; 
+    margin-left: 2%;
+    background-color: white;
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+    text-align: center;
+    border-style: groove;
+}
+
+.std_op_loader{
+    border-right: 30px solid #00ff73;
+    border-left: 30px solid #DC3545;
+    border-radius: 60%;
+    margin: 10% 16%;
+    border-top: 30px solid #DC3545;
+    border-bottom: 30px solid #00ff73;
+    width: 180px;
+    height: 180px;
+}
+
+.std_op_perc{
+    margin-top: 40%;
+    font-size: larger;
+}
+
+.std_op_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+.std_op_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+
 }

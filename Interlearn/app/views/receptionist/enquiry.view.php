@@ -2,11 +2,11 @@
 <?php $this->view("includes/nav");?>
 
     <div class="center-body">
-    <?php $this->view("includes/sidebar");?>
+    <?php $this->view("includes/sidebar_recep");?>
         <div class="clm2">
         <h2 class="add_heading_init">Enquiry</h2>
           
-            <button type="button" data-modal-target= "#modal" class="Add_enq" onclick=addEnquiry(); >+ Add Enquiry</button>
+            <!-- <button type="button" data-modal-target= "#modal" class="Add_enq" onclick=addEnquiry(); >+ Add Enquiry</button> -->
             <?=$some?>
                     <!-- add form -->
             <div class="modal1" id="modal1" >

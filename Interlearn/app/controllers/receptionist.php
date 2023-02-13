@@ -13,6 +13,36 @@ class Receptionist extends Controller
         
         $this->view('receptionist/home');
     }
+    
+    public function course()
+    { 
+        if(!Auth::is_receptionist()){
+            redirect('home');
+           
+        }
+        
+        $this->view('receptionist/course');
+    }
+
+    public function class()
+    { 
+        if(!Auth::is_receptionist()){
+            redirect('home');
+           
+        }
+        
+        $this->view('receptionist/class');
+    }
+
+    public function details()
+    { 
+        if(!Auth::is_receptionist()){
+            redirect('home');
+           
+        }
+        
+        $this->view('receptionist/details');
+    }
     public function enquiry($action=null, $eid=null)
     {   $result = false;
         if(!Auth::logged_in())
@@ -25,7 +55,7 @@ class Receptionist extends Controller
             redirect('home');
            exit;
         }
-        $user_id = Auth::getUid();
+        $user_id = Auth::getemp_id();
         $role = Auth::getrole();
         $enquiry = new Enquiry();
         $data = [];
@@ -121,6 +151,7 @@ class Receptionist extends Controller
            
         }
      
+
         $data['rows']  = $enquiry->select(null, $orderby);
             
         $this->view('receptionist/enquiry',$data);

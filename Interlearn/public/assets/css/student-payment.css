@@ -20,7 +20,6 @@
 }
 
 .student-payment{
-    background-color: brown;
     position: relative;
     width: 80vw;
     left: 250px;
@@ -32,7 +31,9 @@
 }
 
 
-table.payment-table {
+.payment-table {
+  position: relative;
+    top: -100px;
     width: 80vw;
     border-collapse: collapse;
   }

@@ -2,11 +2,11 @@
 <?php $this->view("includes/nav");?>
 
 <div class="teacher_view_container">
-<?php $this->view("includes/sidebar");?>
+    <?php $this->view("includes/sidebar_ins");?>
     <div class="teacher_view_content">
         <h1 class="teacher_view_greeting">Good Morning Monica!</h1><br>
-            <div class="teacher_view_rectangle">
-                <a href="#">
+            <div class="teacher_view_Rectangle">
+                <a href="<?=ROOT?>/instructor/course">
                     <img src="<?=ROOT?>/assets/images/2023.jpg" alt="" class="teacher_view_Img">
                     <p>2023 A/L</p>
                     <p>Combined Maths</p>
@@ -48,7 +48,7 @@
                 </a>
             </div>
         </div>
-    </div> 
+    </div>
 </div> 
     <div  id="overlay"></div>
     <script defer src="./enquiry.js"></script>
