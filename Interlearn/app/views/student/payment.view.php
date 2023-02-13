@@ -144,6 +144,12 @@
               <div class="errorSpace4"></div>
               <input class="payment-input    " type="text" id="NIC" placeholder="990331472v" maxlength="12">
             </div>
+            <div class="form-group  ">
+              <label class="payment-label" for="cvv">Payment Slip Image (.pdf is only acceptable)</label>
+              <div class="errorSpace4"></div>
+              <input class="payment-input    " type="file" id="file-upload" accept=".pdf" onchange="showUploadButton()">
+              <button id="upload-button" disabled>Upload</button>
+            </div>
 
           </div>
           <div class="sub-container">
@@ -394,6 +400,7 @@
   </footer>
   <!-- <script src="salaryCal.js"></script> -->
   <script src="<?= ROOT ?>/assets/js/card-payment-validation.js"></script>
+  <script src="<?= ROOT ?>/assets/js/show-upload-button.js"></script>
   <script src="<?= ROOT ?>/assets/js/switching.js"></script>
   <script>
     // *******************************************************************************//
