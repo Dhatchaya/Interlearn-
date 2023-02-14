@@ -10,20 +10,26 @@
             <p>Give your quizz a name and description. so, 
             it gives clearification to the student</p>
         </div>
-        <form action="<?=ROOT?>/teacher/quizz/add" method="post">
+        <form action="" method="post">
             <div class="quiz-name">
-                <h3>Quiz name *</h3>
+                <h3>Quiz name <strong>*</strong></h3>
                 
-                <input class="home_cnt_inp" type=text name="text" value="" placeholder="Eg : sample quiz">
+                <input class="home_cnt_inp" type=text name="quizz_name" value="" placeholder="Eg : sample quiz">
             </div>
 
             <div class="quiz-description">
-                <h3>Quiz Description *</h3>
-                <textarea class="home_cnt_inp" id="message" name="message" placeholder="Insert a quiz description" style="height:50px"></textarea>
+                <h3>Quiz Description <strong>*</strong></h3>
+                <textarea class="home_cnt_inp" id="message" name="quizz_description" placeholder="Insert a quiz description" style="height:50px"></textarea>
+            </div>
+
+            <div class="quiz-total">
+                <h3>Total Number of questions in quizz bank <strong>*</strong></h3>
+                
+                <input class="home_cnt_inp" type=number name="quizz_bank" value="" placeholder="Eg : 25">
             </div>
             <hr>
             <div class="quiz-next-options">
-                <input  class = "home_form_sbt" type="submit" value="Cancel">
+                
             
                 <input  class = "home_form_sbt" type="submit" value="Save & Continue">
                 

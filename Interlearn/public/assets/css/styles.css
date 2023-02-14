@@ -3329,9 +3329,10 @@ teacher_crs_dropbtn {
 }
 
 .quizz_right hr {
-    width: 85%;
+    width: 97%;
     margin: auto;
-    border: 1px solid #ccc;
+    margin-left: 25px;
+    border: 2px solid #ccc;
 }
 
 .quiz-head {
@@ -3347,11 +3348,18 @@ teacher_crs_dropbtn {
 .quiz-description {
     margin-left: 25px;
     margin-top: 20px;
+    /* margin-bottom: 50px; */
+}
+
+.quiz-total {
+    margin-left: 25px;
+    margin-top: 20px;
     margin-bottom: 50px;
 }
 
 .quiz-next-options {
     margin-left: 25px;
+    margin-top: 50px;
 }
 
 .question_right {

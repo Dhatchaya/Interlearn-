@@ -165,15 +165,15 @@ class Student extends Controller
         $this->view('student/enquiry',$data);
     }
 
-    public function progress($action=null)
-    {
-        if(!Auth::is_student()){
-            redirect('home');
+    // public function progress($action=null)
+    // {
+    //     if(!Auth::is_student()){
+    //         redirect('home');
 
-        }
+    //     }
 
-        $this->view('student/course');
-    }
+    //     $this->view('student/course');
+    // }
     public function progress($action=null)
     {
         if(!Auth::is_student()){

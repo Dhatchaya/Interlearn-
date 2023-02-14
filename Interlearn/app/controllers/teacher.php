@@ -74,14 +74,38 @@ class Teacher extends Controller
             redirect('home');
            
         }
+   
         if($action=='add'){
             $this->view('teacher/quiz-add');
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+                $question_number = uniqid();
+                $_POST['question_number']=$question_number;
+            
+                $question = new Question();
+                $result = $question-> insert($_POST);
+                // if($result) {
+                //     echo"sucecessfully" ; die;
+                // }
+                $choice = new Choices();
+                $result = $choice-> insert($_POST);
+            }
             exit();
         }
         if($action=='final'){
             $this->view('teacher/quizz-final');
             exit();
         }
+        
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $quizz = new Quizz();
+            $result = $quizz-> insert($_POST);
+         
+            if($result) {
+                header("Location:http://localhost/Interlearn/public/teacher/quizz/add");
+            }
+        }
+        
         $this->view('teacher/quizz');
     }
 }

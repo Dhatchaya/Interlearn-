@@ -9,7 +9,7 @@ class Model extends Database {
     public function insert($data){
         //remove unwanted columns
         if(!empty($this->allowed_columns))
- {
+ {         
             foreach($data as $key => $value){
                 if(!in_array($key,$this->allowed_columns))
                 {
@@ -19,10 +19,10 @@ class Model extends Database {
                
             }
         }
+     
             $keys = array_keys($data);
             
             $query = "insert into ".$this->table."(".implode(",",$keys) .") values (:".implode(",:",$keys).")";
-          
             $this -> query($query,$data);
             return true;
     }
