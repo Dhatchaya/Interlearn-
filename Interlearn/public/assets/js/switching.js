@@ -1,26 +1,14 @@
-const btn2 = document.getElementById("card-btn");
-const btn1 = document.getElementById("bank-btn");
-const hiddenDiv2 = document.getElementById("hiddenDiv-2");
-const hiddenDiv1 = document.getElementById("hiddenDiv-1");
-const closeBtn2 = document.getElementById("close-button-2");
-const closeBtn1 = document.getElementById("close-button-1");
+const btn = document.getElementById("btn");
+const hiddenDiv = document.getElementById("hiddenDiv");
+const paynow = document.getElementById("payment-submission");
+const closeBtn = document.getElementById("close-button");
   
 
-btn1.addEventListener("click", function() {
-  hiddenDiv1.style.display = "flex";
+btn.addEventListener("click", function() {
+  hiddenDiv.style.display = "flex";
 });
 
 
-closeBtn1.addEventListener("click", function() {
-  hiddenDiv1.style.display = "none";
-});
-
-
-btn2.addEventListener("click", function() {
-  hiddenDiv2.style.display = "flex";
-});
-
-
-closeBtn2.addEventListener("click", function() {
-  hiddenDiv2.style.display = "none";
+closeBtn.addEventListener("click", function() {
+  hiddenDiv.style.display = "none";
 });
