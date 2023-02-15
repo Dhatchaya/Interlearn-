@@ -94,6 +94,14 @@ class Teacher extends Controller
         }
         if($action=='final'){
             $this->view('teacher/quizz-final');
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+                $confirm = new Confirm();
+                $result = $confirm-> insert($_POST);
+                // if($result) {
+                //     echo"sucecessfully" ; die;
+                // }
+            }
             exit();
         }
         
