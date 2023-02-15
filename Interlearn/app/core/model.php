@@ -30,7 +30,7 @@ class Model extends Database {
     public function where($data,$orderby=null,$order = 'desc'){
         $keys = array_keys($data);
         $query ="select * from ".$this->table." where ";
-        $id = $this->table[0]."id";
+       
         foreach($keys as $key){
             $query .= $key. " =:".$key." && ";
         }

@@ -12,7 +12,7 @@ class Question extends Model
         'question_number', 
         'question_title', 
         'question_mark',
-
+        'quizz_id',
     ];
     protected $staffs = [
         'Manager',
