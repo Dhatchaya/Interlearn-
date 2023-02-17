@@ -1,61 +1,33 @@
 <?php
 /**
- *Receptionist  class
+ *academic class
+ *common for student teacher and instructor
  */
-class Receptionist extends Controller
+class Academic extends Controller
 {
     public function index()
-    { 
-        if(!Auth::is_receptionist()){
-            redirect('home');
-           
-        }
-
-        $this->view('receptionist/home');
-    }
-    
-    public function course()
-    { 
-        if(!Auth::is_receptionist()){
-            redirect('home');
-           
-        }
-        
-        $this->view('receptionist/course');
+    {   
+       $db = new Database();
+       $res= $db ->query("select *  from users");      
+       $data['title'] = "Home";
+       $data['role'] = "";
+       $this->view('home',$data);
     }
 
-    public function class()
-    { 
-        if(!Auth::is_receptionist()){
-            redirect('home');
-           
-        }
-        
-        $this->view('receptionist/class');
-    }
-
-    public function details()
-    { 
-        if(!Auth::is_receptionist()){
-            redirect('home');
-           
-        }
-        
-        $this->view('receptionist/details');
-    }
     public function enquiry($action=null, $eid=null)
     {   $result = false;
         if(!Auth::logged_in())
 		{
-			message('please login');
-			redirect('login/staff');
-            exit;
+			
+            redirect('home');
 		}
-        if(!Auth::is_receptionist()){
+  
+
+        if(!Auth::is_student()&&!Auth::is_teacher()&&!Auth::is_instructor()){
             redirect('home');
            exit;
         }
-        $user_id = Auth::getuid();
+        $user_id = Auth::getUid();
         $role = Auth::getrole();
         $enquiry = new Enquiry();
         $data = [];
@@ -65,7 +37,33 @@ class Receptionist extends Controller
         $data['enquiry_title'] = 'New Enquiry';
         $data['some']=" ";
         $data['reply'] = "set";
-        $state="";
+        if($action == "add"){
+            $data['action']= "add";
+            $title = new stdClass();
+            $title->enquiry_title= 'Add enquiry';
+            header('Content-Type: application/json; charset=utf-8');
+            echo json_encode($title);
+          
+            
+            if($_SERVER['REQUEST_METHOD'] == "POST")
+			{
+            
+                if($enquiry->validate($_POST)){
+                    $_POST['user_Id']= $user_id;
+                    $_POST['date']= date("Y-m-d H:i:s");
+                    $_POST['status']="pending";
+                    $_POST['role']=$role;
+                    $result= $enquiry->insert($_POST);
+                
+                }
+                if($result){
+                    header("Location:http://localhost/Interlearn/public/academic/enquiry");
+                }
+                
+            }
+         
+            exit;
+        }
 
         if($action == "edit"){
             $data['enquiry_title'] = 'Edit Enquiry '.$eid;
@@ -87,7 +85,6 @@ class Receptionist extends Controller
                         throw new Exception("Update failed");
                         }
                     }
-
                     } catch (Exception $e) {
                     $response = array("status" => "error", "message" => $e->getMessage());
                     header("Content-Type: application/json");
@@ -110,7 +107,7 @@ class Receptionist extends Controller
 
         if($action == "delete"){
             $result = $enquiry->delete(['eid'=>$eid]);
-            header("Location:http://localhost/Interlearn/public/receptionist/enquiry");
+            header("Location:http://localhost/Interlearn/public/academic/enquiry");
         }
         if($action == "view"){
             $reply = new Reply();
@@ -123,7 +120,9 @@ class Receptionist extends Controller
                 //     $reParent = $_GET['rid'];
                 // }
                 $_POST['eid']=$eid;
+             
                 $_POST['senderId']=$user_id;
+                //receiver unnecessary consider deleting that
                 $_POST['receiverId']= $enq->user_Id;
                 $_POST['reply_user']=$role;
                 
@@ -146,40 +145,15 @@ class Receptionist extends Controller
                 'eid'=>$eid
             ],'eid');
             $data['enq']=$enq;
-            $this->view('receptionist/enquiry_view',$data);
+         
+            $this->view('academic/enquiry_view',$data);
             exit;
            
         }
-        // change the status value 
-        if(isset($_GET['id'])&&isset($_GET['status'])){
-            $id=$_GET['id'];
-            $value = $_GET['status'];
-            $status = $enquiry -> update(['eid'=>$id],['status'=>$value]);
-         
-        }
-        // if(isset($_GET['status'])){
-        //     $state = $_GET['status'];
-        //     if($state == "All"){
-        //         $items= $enquiry->select(null, $orderby);
-        //         show($items);die;
-        //     }
-        //     elseif($state == "resolved"){
-        //         $items= $enquiry ->where(['status'=>$state],'eid');
-        //     }
-        //     // elseif($state == "escalated"){
-        //     //     $items= $enquiry  -> where(['status'=>$state],'eid');
-
-        //     // }
-        //     echo json_encode($items);
-        // }
-        
-
-       // $data['items'] = $items= $enquiry  -> where(['status'=>$state],'eid');
-        // echo json_encode($items);
      
-
-        $data['rows']  = $enquiry->select(null, $orderby);
+        $data['rows']  = $enquiry->where(['user_Id'=>$user_id], $orderby);
             
-        $this->view('receptionist/enquiry',$data);
+        $this->view('academic/enquiry',$data);
     }
+
 }

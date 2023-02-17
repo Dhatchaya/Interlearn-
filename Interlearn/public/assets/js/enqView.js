@@ -12,18 +12,21 @@ if ( window.history.replaceState ) {
   window.history.replaceState( null, null, window.location.href );
 }
 
-for (let i = 0; i < replies.length; i++) {
-  replies[i].addEventListener('click', function(e) {
-    replies[i].parentNode.insertAdjacentElement("afterend", viewForm);
-    viewForm.style.display = "block";
-    history.replaceState({}, null, "?rid=" + repId);
-    viewForm.addEventListener("submit", function(event) {
+// for (let i = 0; i < replies.length; i++) {
+//   replies[i].addEventListener('click', function(e) {
+//     replies[i].parentNode.insertAdjacentElement("afterend", viewForm);
+//     viewForm.style.display = "block";
+//     history.replaceState({}, null, "?rid=" + repId);
+//     viewForm.addEventListener("submit", function(event) {
         
-        replies[i].style.display = 'none';
-    });
-  });
-}
+//         replies[i].style.display = 'none';
+//     });
+//   });
+// }
+// viewForm.addEventListener("submit", function(event) {
+//   history.replaceState({}, null, "?rid=" + repId);
 
+// });
 replyBox.addEventListener('focus',function(e){
 
   this.setAttribute('placeholder',' ');

@@ -1,24 +1,33 @@
 <?php
 /**
- *Forum class
- *changed to course
+ *Student class
  */
-class Course extends Model
+class Student extends Model
 {
     //says what table it has to target
     public $error = [];
-    protected $table = "course";
+    public $table = "student";
+    public $key = 'studentID';
+
     protected $allowed_columns = [
 
-'course_id',
-'grade',
-'created_date',
-'language_medium',
-'emp_ID',
-'course_material',
-'description',
-'subject',
-'name',
+
+    'studentID',	
+    'NIC',	
+    'first_name',	
+    'last_name',	
+    'birthday',
+      'gender',
+    'email',
+    'mobile_number',
+    'address_line1',
+    'address_line2',
+    'address_line3',
+    'school',
+    'grade',
+    'language_medium',
+    'Picture',
+    'course_id',
 
     ];
     protected $staffs = [

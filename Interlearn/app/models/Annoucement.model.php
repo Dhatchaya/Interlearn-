@@ -1,25 +1,19 @@
 <?php
 /**
- *Forum class
- *changed to course
+ *Annoucement class
  */
-class Course extends Model
+class Annoucement extends Model
 {
     //says what table it has to target
     public $error = [];
-    protected $table = "course";
+    public $table = "annoucement";
+    public $key = 'aid';
     protected $allowed_columns = [
 
-'course_id',
-'grade',
-'created_date',
-'language_medium',
-'emp_ID',
-'course_material',
-'description',
-'subject',
-'name',
-
+        'title',
+        'description',
+        'course_id',
+        'aid',
     ];
     protected $staffs = [
         'Manager',

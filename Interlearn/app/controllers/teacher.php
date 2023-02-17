@@ -75,26 +75,25 @@ class Teacher extends Controller
             redirect('home');
            
         }
-   
         if($action=='add'){
             $this->view('teacher/quiz-add');
 
             $quizz  = new Quizz();
             $id = $_GET['id'];
             $quizz_row = $quizz -> where(['quizz_id'=>$id], 'quizz_id');
-            
+
             foreach($quizz_row as $row){
                 $GLOBALS['total_question'] = $row->quizz_bank;
                 // echo ($GLOBALS['total_question']);
             }
-          
+
             while($GLOBALS['total_question'] >= 0) {
                 if($GLOBALS['total_question'] > 0) {
                     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     $question_number = uniqid();
                     $_POST['question_number']=$question_number;
-                    
+
                     //  $id = $_GET['id'];
                     $_POST['quizz_id']=esc($id);
                     // show($_POST);die;
@@ -110,14 +109,14 @@ class Teacher extends Controller
                     exit();
                     $GLOBALS['total_question']--;
                 }
-                
+
             }
-            
+
         }
         if($action=='final'){
             $this->view('teacher/quizz-final');
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            
+
                 $confirm = new Confirm();
                 $result = $confirm-> insert($_POST);
                 // if($result) {
@@ -126,20 +125,21 @@ class Teacher extends Controller
             }
             exit();
         }
-        
+
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            
+
                 $quizz_id = uniqid();
                 $_POST['quizz_id'] = $quizz_id;
                 $quizz = new Quizz();
                 // $id = $_POST['quizz_id'];
                 $result = $quizz-> insert($_POST);
-         
+
             if($result) {
                 header("Location:http://localhost/Interlearn/public/teacher/quizz/add?id=".$quizz_id);
             }
         }
-        
+
         $this->view('teacher/quizz');
     }
+    
 }

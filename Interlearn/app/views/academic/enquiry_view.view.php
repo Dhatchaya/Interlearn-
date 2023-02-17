@@ -1,7 +1,6 @@
 <?php $this->view("includes/header");?>
 <?php $this->view("includes/nav");?>
 
-
 <div class="center-body view">
     <?php $this->view("includes/sidebar_recep");?>
     <div class="enq_right_body">
@@ -16,6 +15,7 @@
                         <script>
                             var repId = <?php echo json_encode($enq->eid); ?>;
                         </script>
+            
                         <?php if($enq->role != Auth::getrole()):?>
                         <div class="init_enq">
                         <?php else:?>
@@ -33,19 +33,13 @@
                     <span class="view-date">
                         <?=$enq->date;?>
                     </span>
-                <?php if($enq->status == 'pending'):?>
-                    <div class="view-reply" id="enq-reply">
-                        <img src = "<?=ROOT?>/assets/images/reply.png" alt="Reply"/>
-                    </div>
-                <?php endif;?>
                 </div>
-  
+
                 <?php if(!empty($reply)):?>
                     <?php foreach($reply as $reply):?>
                         <script>
                             var repId = <?php echo json_encode($reply->repId); ?>;
                         </script>
-
                         <?php if($reply->reply_user != Auth::getrole()):?>
                         <div class="init_enq">
                         <?php else:?>
@@ -63,30 +57,25 @@
                             <span class="view-date">
                                 <?=$reply->date;?>
                             </span>
-                            <!-- <?php if($reply->status != 'replied'&& $reply->reply_user != Auth::getrole()):?>
-                                <div class="view-reply" id="enq-reply">
-                                    <img src = "<?=ROOT?>/assets/images/reply.png" alt="Reply"/>
-                                </div>
-                            <?php endif;?> -->
+                     
                         </div>
                     <?php endforeach;?>
                 <?php endif?>
 
         </div>   
-        <?php if($enq->status != 'resolved' and ( $enq->status != 'escalated')):?>
-            <div class="enq_form_body">
-                    <form method="POST" class="enq-view-form" id="view-form">
-                        <input name = "content" id="reply" type="text" placeholder="write your reply"/></br>
-                        <input class="reply-btn" type="submit" value="Reply" name = "reply_submit"/>
-                        <input class="reply-btn" type="reset" value="Cancel" id = "reply_cancel" name = "reply_cancel"/>
-                    </form>
-            </div>
-        
-        <?php endif;?>
+        <?php if($enq->status != 'resolved'):?>
+        <div class="enq_form_body">
+                <form method="POST" class="enq-view-form" id="view-form">
+                    <input name = "content" id="reply" type="text" placeholder="write your reply"/></br>
+                    <input class="reply-btn" type="submit" value="Reply" name = "reply_submit"/>
+                    <input class="reply-btn" type="reset" value="Cancel" id = "reply_cancel" name = "reply_cancel"/>
+                </form>
+                </div>
+        <?php endif?>
+    </div>
+    </div> 
+    
     </div>
 
-</div> 
-   
-</div>
 <script defer src="<?=ROOT?>/assets/js/enqView.js?v=<?php echo time(); ?>"></script>
 <?php $this->view("includes/footer");?>
