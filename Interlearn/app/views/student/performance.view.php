@@ -35,7 +35,6 @@
             <tr>
                 <td>October</td>
                 <td>E001</td>
-                <td>E001</td>
                 <td>60</td>
                 <td>C</td>
             </tr>

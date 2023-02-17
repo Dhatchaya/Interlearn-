@@ -9,7 +9,7 @@ class Model extends Database {
     public function insert($data){
         //remove unwanted columns
         if(!empty($this->allowed_columns))
- {         
+ {
             foreach($data as $key => $value){
                 if(!in_array($key,$this->allowed_columns))
                 {
@@ -19,10 +19,10 @@ class Model extends Database {
                
             }
         }
-     
             $keys = array_keys($data);
             
             $query = "insert into ".$this->table."(".implode(",",$keys) .") values (:".implode(",:",$keys).")";
+          
             $this -> query($query,$data);
             return true;
     }
@@ -30,7 +30,7 @@ class Model extends Database {
     public function where($data,$orderby=null,$order = 'desc'){
         $keys = array_keys($data);
         $query ="select * from ".$this->table." where ";
-       
+
         foreach($keys as $key){
             $query .= $key. " =:".$key." && ";
         }
@@ -220,6 +220,41 @@ class Model extends Database {
        
         if($res){
             return true;
+        }
+        return false;
+    }
+    public function join($data=null){
+        // "select * from student inner join  course on 
+        // course.course_id= student.course_id inner join annoucement on
+        // annoucement.course_id= course.course_id";
+
+        //call it in this way 
+
+        // $student = new Student();
+        // $annoucement = new Annoucement();
+        // $course = new Course();
+ 
+        // $res=$student->join(
+        //     [$student->table=>'course_id',
+        //     $course->table=>'course_id',
+        //     $annoucement->table=>'course_id',
+           
+        //     ]
+        // );
+
+        $keys = array_keys($data);
+        $values = array_values($data);
+        $query= "select * from ".$keys[0]." INNER JOIN " . $keys[1] . " on ";
+        $query .= $keys[0] .".". $values[0]." = ". $keys[1] .".". $values[1];
+        $query .= " INNER JOIN " . $keys[2] . " on ";
+        $query .= $keys[1] .".". $values[1]." = ". $keys[2] .".". $values[2];
+
+        $res = $this ->query($query);
+        //show($res);die;
+
+       
+        if($res){
+            return $res;
         }
         return false;
     }

@@ -39,7 +39,7 @@
                         </div>
                     
                     <div class="enquiry">
-                    <a href="<?=ROOT?>/receptionist/enquiry">       
+                    <a href="<?=ROOT?>/academic/enquiry">       
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/enquiry.png" alt="enquiry"></br>
                             <span>Enquiry</span>
                        

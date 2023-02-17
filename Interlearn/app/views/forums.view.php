@@ -1,12 +1,14 @@
 <?php $this -> view('includes/header'); ?>
 <?php $this -> view('includes/nav'); ?>
 
+  
+    <div class="forum_body">
+    <?php $this -> view('includes/sidebar'); ?>
+    <div class="forum_discussion">
     <div class = "forum_heading">
         <h2 class="add_heading_init">Mathematics grade 11</h2>
         <button type="button" data-modal-target= "#modal" class="Add_forum" id="Add_forum" >+ Add new discussion</button>
     </div>
-    <div class="forum_body">
-    <?php $this -> view('includes/sidebar'); ?>
     <div class = "add_view">
         <div class="new_discussion" id="new_discussion">
             <form method= "POST" >
@@ -17,8 +19,9 @@
                 <input type ="submit" name = "submit" class = "home_form_sbt forum_right" value="Submit"/>
             </form>
         </div>
-        <div class="forum_discussion">
-            <table border= 1 class='enq_tbl'>
+        
+            <table border= 1 class='enq_tbl setWidth'>
+                
                     <tr>
                         <th>Topic</th>
                         <th>Created by</th>
@@ -40,7 +43,10 @@
                         <td>
                             <div class="enq_view">
                                     <a href="<?=ROOT?>/forums/discussion/<?=esc($row->forum_id)?>">
-                                        <img src= "<?=ROOT?>/assets/images/view.png"/>
+
+                                        <button class="view_enq_btn">View</button>
+  
+                                </div>
                                     </a>
                             </div>
                         </td>
