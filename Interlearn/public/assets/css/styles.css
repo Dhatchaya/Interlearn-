@@ -387,6 +387,7 @@ body{
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin-left: 86%;
   }
   
   .home_form_sbt:hover {
@@ -402,6 +403,7 @@ body{
     margin-top: 6px;
     margin-bottom: 12px;
     resize: vertical;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   }
 
 .home_form {
@@ -3422,8 +3424,10 @@ teacher_crs_dropbtn {
 }
 .quizz_right {
     width: 70%;
-    background: aliceblue;
-    border: 2px solid #808080bf;
+    background: white;
+    border-radius: 8px;
+    /* border: 2px solid #808080bf; */
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
     padding: 3rem;
     margin: 4rem 0 2rem 0;
     display: flex;
@@ -3452,8 +3456,9 @@ teacher_crs_dropbtn {
 }
 
 .quizz_right hr {
-    width: 85%;
+    width: 97%;
     margin: auto;
+    margin-left: 25px;
     border: 1px solid #ccc;
 }
 
@@ -3470,19 +3475,28 @@ teacher_crs_dropbtn {
 .quiz-description {
     margin-left: 25px;
     margin-top: 20px;
+    /* margin-bottom: 50px; */
+}
+
+.quiz-total {
+    margin-left: 25px;
+    margin-top: 20px;
     margin-bottom: 50px;
 }
 
 .quiz-next-options {
     margin-left: 25px;
+    margin-top: 50px;
 }
 
 .question_right {
     width: 70%;
-    background: aliceblue;
-    border: 2px solid #808080bf;
+    background: white;
+    /* border: 2px solid #808080bf; */
     padding: 3rem;
     margin: 4rem 0 2rem 0;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
     /* display: flex;
     flex-direction: column;
     justify-content: center; */
@@ -3500,11 +3514,11 @@ teacher_crs_dropbtn {
     margin-top: 6px;
     margin-bottom: 12px;
     resize: vertical;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    /* box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset; */
 }
 
-/*commented for enquiry section*/
-
-/* select {
+select {
     width: 10%;
     padding: 8px;
     border: 1px solid #ccc;
@@ -3513,7 +3527,9 @@ teacher_crs_dropbtn {
     margin-top: 6px;
     margin-bottom: 12px;
     resize: vertical;
-} */
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    /* box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset; */
+}
 
 /* .question_right input[text] {
     margin-left: 300px;
@@ -3623,14 +3639,15 @@ teacher_crs_dropbtn {
     /* background-color: #f2f2f2;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px; */
-    /* width: 20%; */
-    padding: 8px;
+    width: 250px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
     margin-top: 6px;
     margin-bottom: 12px;
     resize: vertical;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 
 .select_duration {
@@ -3639,6 +3656,7 @@ teacher_crs_dropbtn {
 }
 
 .enable_disable {
+    padding-top: 15px;
     display: flex;
     flex-direction: row;
 }
