@@ -1,0 +1,47 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.staff-payments{
+    width: 81vw;
+    height: auto;
+    position: relative;
+    right: -15vw;
+    top: 150px;
+    
+}
+
+.fields{
+    height: 100px;
+}
+h2{
+    
+}
+.record-items{
+    display: inline-block;
+    width: 15.7vw;
+    height: 70px;
+    text-align: center;
+    top: 10px;
+}
+.staff{
+    text-align: left;
+    padding-left: 2vw;
+}
+
+.employee-record img{
+    height: 50px;
+    position: relative;
+    top: 20px;
+    border-radius: 50px;
+}
+
+.employee-record{
+    margin: 2vh 0vh;
+    border-radius: 2vh;
+    border-style: groove;
+}
+
+.employee-record:hover{
+    border-color: #3E206D;
+}

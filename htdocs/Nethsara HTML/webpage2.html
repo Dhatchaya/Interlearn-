@@ -1,0 +1,44 @@
+<html>
+<head>
+	<title> second web page </title>
+
+</head>
+<body>
+<h1 class="heaeline" id="test"> second webpage<h1>
+
+	<div class="apple">
+		my name is apple
+	</div>
+	<div class="apple">
+		my name is apple
+	</div>
+	<div class="apple">
+		my name is apple
+	</div>
+	<div class="apple">
+		my name is apple
+	</div>
+	<div class="apple">
+		my name is apples
+	</div>
+
+
+
+
+	<script >
+
+	function myFunction(){
+		var name = document.getElementsByClassName('apple');
+		for(var i = 0; i < name.length; i++){
+			name[i].innerHTML = "My name is orange"
+		}
+	}
+
+
+	var heaeline = document.getElementById('test');
+	console.log(headline);
+	headline.textContent = "Manoj Pavithra";
+
+	</script>
+</body>
+</html>

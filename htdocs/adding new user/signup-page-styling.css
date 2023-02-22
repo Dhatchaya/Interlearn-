@@ -1,0 +1,96 @@
+
+.signup-container{
+    display: flex;
+    width: 100%;
+}
+
+.signup-form{
+    display: inline;
+    position: absolute;
+    top: 120px;
+    left: 20%;
+    margin: 0px auto ;
+    padding: 20px;
+    border-radius: 10px;
+    border: groove;
+    border-color: blueviolet;
+    width: 60%;
+    min-width: 500px;
+    align-items: center;
+}
+
+.sub-container{
+    height: 100px;
+}
+
+.submit{
+    padding: 10px;
+    border-radius: 12px;
+    font-size: 10;
+    font-style: bold;
+    background-color: blueviolet;
+    border: none;
+}
+
+.label{
+    position: relative;
+    left: 5vw;
+    font-size: 20px;
+    padding: 5px;
+    padding-left: 1vw;
+    color: #3E206D;
+    
+}
+
+.input,  .select{
+    position: relative;
+    left: 5vw;
+    padding: 8px;
+    margin-left:5vw ;
+    border-radius: 8px;
+    margin: 10px;
+    height: 40px;
+    width: 80%;
+    min-width: 400px;
+    font-size: 18px;
+    margin-bottom: 2vh;
+    
+}
+.input:hover{
+    
+    border: solid;
+    border-color: #3E206D;
+}
+
+.select:hover{
+    border: solid;
+    border-color: #3E206D;
+}
+
+
+
+#address, #address-line2{
+   rows:2;
+   row-gap: 5px;
+}
+
+.submit{
+    margin: auto;
+    font-size: 20px;
+    position: absolute;
+    left: 45%;
+    bottom: 10px;
+}
+
+.submit:hover{
+    border: solid;
+    border-color: #3E206D;
+    left: 44.8%;
+    bottom: 10px;
+}
+.bottom-space{
+    height: 1vh;
+    width: 100%;
+    background-color: blue;
+}
+
