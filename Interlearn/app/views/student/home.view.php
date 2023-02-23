@@ -15,7 +15,20 @@
         <div class="std_view_announcement">
             <h3 class="std_view_text">Announcements</h3><br>
             <div class="std_view_box">
+            
                 <div class="std_view_msg">
+                <?php if(!empty($announcement)):?>
+                    <?php foreach($announcement as $row):?>
+                    <!-- <h5>Mr. Edward</h5>
+                    <h5>Mathematics</h5><br> -->
+                    <h5><?=$row->title?></h5>
+                    <p><?=$row->content?></p><br><br>
+                    <p><?=$row->date?></p>
+                    <?php endforeach;?>
+                <?php endif?>
+                </div><br>
+                
+                <!-- <div class="std_view_msg">
                     <h5>Mr. Edward</h5>
                     <h5>Mathematics</h5><br>
                     <p>Please note that tomorrow(24th) class has been cancelled.</p>
@@ -24,15 +37,10 @@
                     <h5>Mr. Edward</h5>
                     <h5>Mathematics</h5><br>
                     <p>Please note that tomorrow(24th) class has been cancelled.</p>
-                </div><br>
-                <div class="std_view_msg">
-                    <h5>Mr. Edward</h5>
-                    <h5>Mathematics</h5><br>
-                    <p>Please note that tomorrow(24th) class has been cancelled.</p>
-                </div>
+                </div> -->
             </div><br><br>
             <div class="std_view_bottom">
-                <h3>You may also like:</h3>
+                <a href="<?=ROOT?>/courses"><h3>You may also like:</h3></a>
                 <div class="std_view_like">
                     <div class="std_view_rectangle">
                         <a href="#">

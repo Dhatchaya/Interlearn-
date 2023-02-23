@@ -7,7 +7,7 @@
     <div class="std_crs_content">
         <div class="std_crs_heading">
             <div class="std_crs_dropdown">
-                <button onclick="myFunction()" class="std_crs_dropbtn">Dropdown</button>
+                <button onclick="myFunction()" class="std_crs_dropbtn">All</button>
                 <div id="myDropdown" class="std_crs_dropdown-content">
                   <a href="#">Science</a>
                   <a href="#">Maths</a>
@@ -21,39 +21,40 @@
                 <input type="text" placeholder="Search for classes" class="std_crs_searchbox">
             </div>
         </div>
+        <br><br>
         <div class="std_crs_rectangle">
-            <a href="<?=ROOT?>/student/coursepg">
-                <img src="<?=ROOT?>/assets/images/book.png" alt="" class="std_crs_img">
+            <a href="#">
+                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_crs_img">
                 <p>Science by Mr. V.J Viraj</p>
             </a>
         </div>
         <div class="std_crs_rectangle">
             <a href="#">
-                <img src="<?=ROOT?>/assets/images/book.png" alt="" class="std_crs_img">
+                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_crs_img">
                 <p>Science by Mrs. V.J Ridmi</p>
             </a>
         </div>
         <div class="std_crs_rectangle">
             <a href="#">
-                <img src="<?=ROOT?>/assets/images/book.png" alt="" class="std_crs_img">
+                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_crs_img">
                 <p>Maths by Mrs. S.N. Perera</p>
             </a>
         </div>
         <div class="std_crs_rectangle">
             <a href="#">
-                <img src="<?=ROOT?>/assets/images/book.png" alt="" class="std_crs_img">
+                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_crs_img">
                 <p>Sinhala by Mrs. S.N. Perera</p>
             </a>
         </div>
         <div class="std_crs_rectangle">
             <a href="#">
-                <img src="<?=ROOT?>/assets/images/book.png" alt="" class="std_crs_img">
+                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_crs_img">
                 <p>History by Mrs. S.N. Perera</p>
             </a>
         </div>
         <div class="std_crs_rectangle">
             <a href="#">
-                <img src="<?=ROOT?>/assets/images/book.png" alt="" class="img">
+                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_crs_img">
                 <p>English by Mrs. S.N. Perera</p>
             </a>
         </div>

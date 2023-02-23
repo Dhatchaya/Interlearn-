@@ -23,4 +23,10 @@ class Home extends Controller
     {
         echo "delete page".$id1;
     }
+
+    // public function courses()
+    // {
+    //     // echo "edit page";
+    //     $this->view('courses');
+    // }
 }

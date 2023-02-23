@@ -2,23 +2,14 @@
 /**
  *Course class
  */
-class Course extends Model
+class StudentCourse extends Model
 {
     //says what table it has to target
     public $error = [];
-    public $table = "course";
+    public $table = "student_course";
     protected $allowed_columns = [
-
-        'course_id',
-        'subject_id',
-        'created_date',
-        'teacher_id',
-        'course_material',
-        'description',
-        'day',
-        'timefrom',
-        'timeto',
-
+        'student_id',
+        'course_id'
     ];
     // protected $staffs = [
     //     'Manager',
@@ -53,6 +44,5 @@ class Course extends Model
         return false;
     }
 
-    
 
 }

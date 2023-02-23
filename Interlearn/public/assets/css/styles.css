@@ -255,6 +255,11 @@ body{
     align-content: center;
 }
 
+.class a, .teacher a{
+    text-decoration: none;
+    color: white;
+}
+
 .post img {
     height: 23rem;
     width: 18rem;
@@ -2361,7 +2366,7 @@ li.lo-nav {
     padding-top: 2%;
     padding-left: 2%;
     width: 47vw;
-    height: 20vh;
+    /* height: 20vh; */
 }
 std_crs_pg_content2{
     margin-top: 5%;
@@ -3126,7 +3131,7 @@ teacher_crs_dropbtn {
     height: 30vh;
     float: left;
     margin-right: 8%;
-    margin: bottom 5%; 
+    margin-bottom: 4%;
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
 }
@@ -3158,15 +3163,21 @@ teacher_crs_dropbtn {
 .recp_crs_content{
     margin-top: 5%;
     margin-left: 5%;
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 60vw;
+    /* display: flex;
+    flex-wrap: wrap; */
+    max-width: 80vw;
 }
 .recp_crs_butn{
     padding-left: 60%;
     padding-top: 0%;
     margin-bottom: 5%;
     width: 60vw;
+}
+.recp_crs_butn2{
+    padding-top: 0%;
+    margin-bottom: 5%;
+    display: flex;
+    justify-content: center;
 }
 .recp_crs_btn{
     width: 10vw;
@@ -3175,16 +3186,26 @@ teacher_crs_dropbtn {
     color: white;
     cursor: pointer;
     float: right;
+    /* margin-bottom: 5%; */
 }
-.recp_crs_btn:hover{
+.recp_crs_btn2{
+    width: 8vw;
+    height: 4vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    cursor: pointer;
+    float: right;
+    text-align: center;
+    /* margin-bottom: 5%; */
+}
+.recp_crs_btn:hover, .recp_crs_btn2:hover{
     background-color: rgb(62, 32, 109,75%);
 }
 .recp_crs_rectangle{
     background-color: white;
     border: solid rgba(62, 32, 109, 100%);
-    border-radius: 10%;
-    width: 15vw;
-    height: 20vh;
+    width: 17vw;
+    height: 40vh;
     float: left;
     margin-right: 8%;
     margin-bottom: 4%;
@@ -3193,14 +3214,14 @@ teacher_crs_dropbtn {
 }
 .recp_crs_rectangle:hover{
     transform: scale(1.02);
+    box-shadow: 10px 10px 5px rgb(104, 44, 198,25%);
 }
 .recp_crs_rectangle a{
     text-decoration: none;
 }
 .recp_crs_img{
-    width: 14.7vw;
-    height: 10vh;
-    border-radius: 10%;
+    width: 16.7vw;
+    height: 15vh;
     transition: width 1s, height 1s;
 }
 .recp_crs_rectangle p{
@@ -3219,15 +3240,65 @@ teacher_crs_dropbtn {
 .recp_cl_content{
     margin-top: 5%;
     margin-left: 5%;
+    /* flex-wrap: wrap; */
+    width: 60vw;
+}
+.recp_cl_medium{
+    /* list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(104, 44, 198,12%); */
+    margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+}
+/* .recp_cl_medium li{
+    float: left;
+}
+.recp_cl_medium li a{
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    width: 20vw;
+}
+.recp_cl_medium li a:hover:not(.active) {
+    background-color: rgb(104, 44, 198,25%);
+} */
+.recp_cl_navbar{
+    background-color: rgb(104, 44, 198,9%);
+}
+.recp_cl_nav{
+    display: block;
+    float: left;
+  padding: 15px;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  width: 20vw;
+}
+.recp_cl_nav:hover{
+    background-color: rgb(104, 44, 198,25%);
+}
+.recp_cl_nav.active{
+  background-color: rgb(104, 44, 198,55%);
+}
+.recp_cl_staff{
+    display: flex;
     flex-wrap: wrap;
-    max-width: 60vw;
+}
+.recp_cl_teacher{
+    width: 30vw;
 }
 .recp_cl_names{
-    width: 40vw;
+    width: 30vw;
     text-align: left;
 }
 .recp_cl_row, .recp_cl_row1{
-    width: 40vw;
+    /* width: 40vw; */
     height: 7vh;
     cursor: pointer;
     display: flex;
@@ -3243,6 +3314,95 @@ teacher_crs_dropbtn {
 .recp_cl_row1{
     background-color: white;
 }
+.recp_cl_butn{
+    /* padding-left: 60%;
+    padding-top: 0%; */
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    margin-bottom: 5%;
+    /* width: 60vw; */
+    margin: 0 auto;
+}
+.recp_cl_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    cursor: pointer;
+    /* margin-bottom: 5%; */
+}
+/* .overlay_popup{
+    position: absolute;
+    top: 15vh;
+    background-color: rgb(104, 44, 198,9%);
+    transition: opacity 500ms;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 10vw;
+}
+.overlay_popup:target{
+    visibility: visible;
+    opacity: 1;
+}
+.wrapper_popup{
+    margin: 70px auto;
+    padding: 20px;
+    border-radius: 5px;
+    width: 30vw;
+    height: 60vh;
+    position: relative;
+    transition: all 5s ease-in-out;
+    background-color: white;
+}
+.wrapper_popup .close{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 50%;
+} */
+#popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.popup-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 400px;
+}
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
 /* receptionist- add course details */
 .recp_det_container{
     width: 100%;
@@ -3253,10 +3413,20 @@ teacher_crs_dropbtn {
     margin-left: 5%;
     flex-wrap: wrap;
     max-width: 60vw;
+    margin-bottom: 5%;
+}
+/* .recp_det_box{
+    background-color: rgb(104, 44, 198,9%);
+    width: 60vw;
+    height: 10vh;
+} */
+.recp_det_box:hover{
+    box-shadow: 10px 10px 5px rgb(104, 44, 198,25%);
+    cursor: pointer;
 }
 .recp_det_name{
     width: 60vw;
-    height: 10vh;
+    height: 5vh;
     padding: 3%;
 }
 
@@ -3278,6 +3448,7 @@ teacher_crs_dropbtn {
     color: white;
     cursor: pointer;
     float: right;
+    margin-right: 3%;
 }
 .recp_det_btn:hover{
     background-color: rgb(62, 32, 109,75%);
@@ -3763,4 +3934,102 @@ tr:nth-child(even) {
 .std_op_btn:hover{
     background-color: rgb(62, 32, 109,75%);
 
+}
+
+
+
+
+
+
+
+/* manager home page */
+
+.mng_view_content{
+    margin-top: 5%;
+    margin-left: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    max-width: 80vw;
+}
+
+.mng_view_rectangle{
+    background-color: rgb(104, 44, 198,12%);
+    border: solid rgba(62, 32, 109, 100%);
+    border-radius: 10%;
+    width: 20vw;
+    height: 30vh;
+    float: left;
+    margin-right: 10%;
+    margin-bottom: 7%; 
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+    text-align: center;
+}
+
+.mng_view_rectangle:hover{
+    transform: scale(1.02);
+}
+
+.mng_view_rectangle a{
+    text-align: center;
+    text-decoration: none;
+    color: #000000;
+}
+
+.mng_view_rectangle p, .mng_view_rectangle h3{
+    /* font-weight: 500; */
+    /* font-size: large; */
+    color: #000000;
+    /* margin-bottom: 2%; */
+    /* padding: 3%; */
+    text-align: center;
+}
+
+.mng_view_rectangle h3{
+    margin-top: 3%;
+}
+
+.mng_view_img{
+    width: 10vw;
+    height: 8vh;
+    margin-top: 15%;
+    transition: width 1s, height 1s;
+}
+
+
+
+
+
+/* receptionist announcement view */
+
+.recp_ann_container{
+    width: 100%;
+    display: flex;
+}
+.recp_ann_content{
+    margin-top: 5%;
+    margin-left: 5%;
+    width: 65vw;
+    margin-bottom: 5%;
+}
+
+.recp_ann_name, .recp_ann_cont{
+    width: 65vw;
+    height: 10vh;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.recp_ann_cont{
+    height: 30vh;
+}
+
+.recp_ann_clz{
+    width: 20vw;
+    cursor: pointer;
+}
+
+.recp_ann_bot{
+    font-size: small;
 }

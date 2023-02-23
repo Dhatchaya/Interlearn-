@@ -1,24 +1,19 @@
 <?php
-/**
- *Course class
- */
-class Course extends Model
-{
-    //says what table it has to target
+
+//Annuncement class
+
+class Announcement extends Model{
     public $error = [];
-    public $table = "course";
+    public $table = "announcement";
     protected $allowed_columns = [
-
+        'aid',
+        'title',
+        'content',
+        'attachment',
         'course_id',
-        'subject_id',
-        'created_date',
         'teacher_id',
-        'course_material',
-        'description',
-        'day',
-        'timefrom',
-        'timeto',
-
+        'date'
+ 
     ];
     // protected $staffs = [
     //     'Manager',
@@ -27,6 +22,7 @@ class Course extends Model
     //     'Receptionist',
 
     // ];
+
     public function validate($data)
     {   
         $this->error = [];
@@ -52,7 +48,4 @@ class Course extends Model
         }
         return false;
     }
-
-    
-
 }

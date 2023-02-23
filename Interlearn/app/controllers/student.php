@@ -10,8 +10,19 @@ class Student extends Controller
             redirect('home');
            
         }
+        $user = Auth::getUID();
+        $announcement = new Announcement();
+        $student_course = new StudentCourse();
+ 
+        // $res=$student_course->join(
+        //     [$announcement->table=>'classid',
+        //     $student_course->table=>'course_id'
+        // ]);
+
+        $res=$student_course->join(['uid'=>$user]);
+        $data['announcement'] = $res;
         
-        $this->view('student/home');
+        $this->view('student/home',$data);
     }
     public function profile($id = null)
     { 
