@@ -30,7 +30,6 @@ class Model extends Database {
     public function where($data,$orderby=null,$order = 'desc'){
         $keys = array_keys($data);
         $query ="select * from ".$this->table." where ";
-        $id = $this->table[0]."id";
         foreach($keys as $key){
             $query .= $key. " =:".$key." && ";
         }
@@ -240,7 +239,7 @@ class Model extends Database {
     }
 
     public function join($data=null){
-        $query= "SELECT * FROM announcement WHERE (select course_id from student_course,users,student where users.uid=student.uid AND student.studentID= student_course.student_id AND users.uid=3);";
+        $query= "SELECT * FROM announcement WHERE (select student_course.course_id from student_course,users,student where users.uid=student.uid AND student.studentID= student_course.student_id AND users.uid=3);";
        //" select course_id from student_course,users,student where users.uid=student.uid AND student.studentID= student_course.student_id AND users.uid=3";
         // inner join  course on 
         // course.course_id= student.course_id inner join annoucement on
@@ -308,12 +307,18 @@ class Model extends Database {
     }
 
     public function selectTeachers($data=[],$medium='English',$id=null){
-
+        $keys = array_keys($data);
         $query ="SELECT subject.*,course.*,course_instructor.instructor_id,teachers.firstname AS teacherName, instructor.firstname AS instructorName FROM ".$this->table;
         $query .=" INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN course_instructor ON course.course_id = course_instructor.course_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id INNER JOIN instructor ON instructor.instructor_id = course_instructor.instructor_id WHERE";
-        $query .= " subject.language_medium = '".$medium."'"." and subject.subject_id = '".$id."'";
+        $query .= " subject.language_medium = '".$medium."'"." and ";
+       
 
-    //  echo $query;die;
+
+        foreach($keys as $key){
+            $query .= "subject.".$key." =:".$key." and ";
+        }
+        $query = trim($query," and ");
+      //echo $query;die;
         $res = $this -> query($query,$data);
     
         if(is_array($res)){

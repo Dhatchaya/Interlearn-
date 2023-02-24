@@ -128,18 +128,25 @@ class Receptionist extends Controller
                 $data = [];
                 $data['action'] = $action;
                 $data['id'] = $id;
+                $subject = new Subject();
+    
                 //show($data['id']);die;
 
                 //if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                     if(isset($_GET['id'])){
                         $subject_id = $_GET['id'];
                         $data['subject_id'] = $subject_id;
-                    }
+                        $allSubjects = $subject -> where(['subject_id'=>$subject_id],'subject_id');
+                                 //show($allSubjects[0]->subject);die;
+                    
+           
     
                     $medium = "Sinhala";
+                   
                     if($id==1){
-                        $data['subjects']=$subject->selectTeachers([],$medium,$subject_id);
-                        show($data['subjects']);die;
+                        $medium = "Sinhala";
+                        $data['subjects']=$subject->selectTeachers(['subject'=>$allSubjects[0]->subject, 'grade'=>$allSubjects[0]->grade],$medium,$subject_id);
+                       // show($data['subjects']);die;
                         
                     }
                     if($id==2){
@@ -149,11 +156,13 @@ class Receptionist extends Controller
                     if($id==3){
                         $medium = "Tamil";
                         $data['subjects']=$subject->selectTeachers([],$medium,$subject_id);
-                        show($data['subjects']);die;
-                    //}
+                        //show($data['subjects']);die;
+                    
+                    }
                 }
 
                 $this->view('receptionist/class',$data);
+                exit;
         }
        
         $data['rows']= $course->select([],'course_id');
@@ -197,6 +206,7 @@ class Receptionist extends Controller
         // $data['teachers'] = $teacher->select([],'teacher_id','asc');
         // $data['instructor'] = $instructor->select([],'instructor_id','asc');
         //$this->view('receptionist/class',$data);
+       // $this->view('receptionist/class');
     }
 
     // public function addCourse($action = null, $id = null)
