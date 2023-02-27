@@ -2,17 +2,94 @@
 /**
  *teacher  class
  */
-$total_question = 0;
 class Teacher extends Controller
 {
-    public function index()
+    public function index($action = null, $id = null)
     { 
         if(!Auth::is_teacher()){
             redirect('home');
            
         }
+        $user_id = Auth::getuid();
+        $subject = new Subject();
+        $course = new Course();
+        $teacher = new Teacher();
+        $instructor = new Instructor();
+        $data = [];
+
+        if($action == 'view')
+        {
+            if(isset($_POST['save-btn']))
+            {
+                $inputs=array("subject_id"=>$_GET['id'],"teacher_id"=>$_POST['teacher_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto']);
+                $course->insert($inputs);
+            }
+            if(isset($_POST['save-btn2']))
+            {
+                $inputs=array("subject_id"=>$_GET['id'],"instructor_id"=>$_POST['instructor_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto']);
+                $course->insert($inputs);
+            }
+            
+                $data = [];
+                $data['action'] = $action;
+                $data['id'] = $id;
+                $subject = new Subject();
+                //show($data['id']);die;
+
+                //if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+                    if(isset($_GET['id'])){
+                        $subject_id = $_GET['id'];
+                        $data['subject_id'] = $subject_id;
+                        $allSubjects = $subject -> where(['subject_id'=>$subject_id],'subject_id');
+                        $data['subjectgrd'] = $allSubjects;
+                        //show($data['subjectgrd']);die;
+                                 //show($allSubjects);die;
+                    $medium = "Sinhala";
+                    
+                    $data['subjects']=$subject->selectTeachers(['subject'=>$allSubjects[0]->subject, 'grade'=>$allSubjects[0]->grade],$medium,$subject_id);
+                    if($id==1){
+                        $medium = "Sinhala";
+                        $data['subjects']=$subject->selectTeachers(['subject'=>$allSubjects[0]->subject, 'grade'=>$allSubjects[0]->grade],$medium,$subject_id);
+                        
+                        //show($data['subjects']);die;
+                        
+                    }
+                    if($id==2){
+                        $medium = "English";
+                        $data['subjects']=$subject->selectTeachers(['subject'=>$allSubjects[0]->subject, 'grade'=>$allSubjects[0]->grade],$medium,$subject_id);
+                    }
+                    if($id==3){
+                        $medium = "Tamil";
+                        $data['subjects']=$subject->selectTeachers(['subject'=>$allSubjects[0]->subject, 'grade'=>$allSubjects[0]->grade],$medium,$subject_id);
+                     
+                        
+                        //show($data['subjects']);die;
+                    
+                    }
+                }
+                $data['teachers'] = $teacher->select([],'teacher_id','asc');
+                $data['instructors'] = $instructor->select([],'instructor_id','asc');
+
+                $this->view('teacher/course',$data);
+                exit;
+        }
+        $data['rows']= $course->select([],'course_id');
+        //show($data['rows']);die;
+        // $data['sums']= $subject -> distinctSubject([],'subject');
+        // if(isset($_GET['id'])){
+        //     $teacher_id = $_GET['id'];
+        //     $data['teacher_id'] = $teacher_id;
+        //     $allSubjects = $course -> where(['teacher_id'=>$teacher_id],'teacher_id');
+        //     $data['subjectgrd'] = $allSubjects;
+        //     //show($data['subjectgrd']);die;
+        // }
+        // var_dump($_GET);
+        // var_dump($user_id);
+        // exit;
+        $data['sums']= $subject -> teacherCourse([],$user_id);
+          //show($data['sums']);die;
         
-        $this->view('teacher/home');
+        $this->view('teacher/home',$data);
     }
     public function course()
     { 
@@ -69,108 +146,20 @@ class Teacher extends Controller
         
         $this->view('teacher/profile',$data);
     }
-    public function quizz($action=null,$id = null)
+    public function quizz($action=null)
     { 
         if(!Auth::is_teacher()){
             redirect('home');
            
         }
-   
         if($action=='add'){
-            
-                $data = [];
-                $data['quizz_id']=[];
-            $quizz  = new Quizz();
-            $id = $_GET['id'];
-            $quizz_row = $quizz -> where(['quizz_id'=>$id], 'quizz_id');
-            
-            foreach($quizz_row as $row){
-                $GLOBALS['total_question'] = $row->quizz_bank;
-                $GLOBALS['qid'] = $row->quizz_id;  // getting the quizz_id to qid global
-                // echo ($GLOBALS['total_question']);
-            }
-          
-            // while($GLOBALS['total_question'] >= 0) {
-                // if($GLOBALS['total_question'] > 0) {
-                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-                    $question_number = uniqid();
-                    $_POST['question_number']=$question_number;
-                    
-                    //  $id = $_GET['id'];
-                    $_POST['quizz_id']=esc($id);
-                    // show($_POST);die;
-
-                    $question = new Question();
-                    $result = $question-> insert($_POST);
-                    // if($result) {
-                    //     echo"sucecessfully" ; die;
-                    // }
-                    $choice = new Choices();
-                    $result = $choice-> insert($_POST);
-                    $GLOBALS['total_question']--;
-                    // echo ($GLOBALS['total_question']);
-                    // if($GLOBALS['total_question'] == 3) {
-                    //     echo "Im 3";
-                    // }
-                    }
-                    $data['quizz_id']=$GLOBALS['qid'];
-                    $this->view('teacher/quiz-add',$data);
-                    exit();
-                    // $GLOBALS['total_question']--;
-
-                    // header("Location:http://localhost/Interlearn/public/teacher/quizz/add?id=".$quizz_id);
-                // }
-                
-            // }
-            
+            $this->view('teacher/quiz-add');
+            exit();
         }
         if($action=='final'){
             $this->view('teacher/quizz-final');
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            
-                $confirm = new Confirm();
-                $result = $confirm-> insert($_POST);
-                // if($result) {
-                //     echo"sucecessfully" ; die;
-                // }
-            }
             exit();
         }
-        if($action=='all'){
-            $this->view('teacher/quizz_all');
-
-            // $quizz = new Quizz();
-            // $id = $_GET['id'];
-            
-            // $data['row'] = $quizz->first(['quizz_id'=>$id],'quizz_id');
-            // show($data['row']);
-            exit();
-        }
-        
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            
-                $quizz_id = uniqid();
-                $_POST['quizz_id'] = $quizz_id;
-
-                
-                $quizz = new Quizz();
-                // $id = $_POST['quizz_id'];
-                $result = $quizz-> insert($_POST);
-
-                
-                $data['quizz_id']=$quizz_id;
-                $learn = new Learning();
-                $quizz_url = "http://localhost/Interlearn/public/student/quizz/add?id=".$quizz_id;
-                $_POST['url'] = $quizz_url;
-                $result = $learn->insert($_POST);
-                
-            if($result) {
-                header("Location:http://localhost/Interlearn/public/teacher/quizz/add?id=".$quizz_id);
-            }
-        }
-        
         $this->view('teacher/quizz');
     }
-    
 }

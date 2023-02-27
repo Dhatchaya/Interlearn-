@@ -10,8 +10,25 @@ class Student extends Controller
             redirect('home');
            
         }
+        $user = Auth::getUID();
+        $course = new Course();
+        $subject = new Subject();
+        $teacher = new Teacher();
+        $announcement = new Announcement();
+        $ann_course = new AnnouncementCourse();
+        $student_course = new StudentCourse();
+ 
+        // $res=$student_course->join(
+        //     [$announcement->table=>'classid',
+        //     $student_course->table=>'course_id'
+        // ]);
+
+        $res=$student_course->join(['uid'=>$user]);
+        $data['announcements'] = $subject->allAnnouncements([]);
+        //$data['announcement'] = $res;
+        //show($data['announcements']);die;
         
-        $this->view('student/home');
+        $this->view('student/home',$data);
     }
     public function profile($id = null)
     { 
@@ -25,14 +42,194 @@ class Student extends Controller
         
         $this->view('student/profile');
     }
-   
+    public function enquiry($action=null, $eid=null)
+    {   $result = false;
+        if(!Auth::logged_in())
+		{
+			message('please login');
+            redirect('login/student');
+		}
+  
 
-    public function course()
+        if(!Auth::is_student()){
+            redirect('home');
+           
+        }
+        $user_id = Auth::getUid();
+        $role = Auth::getrole();
+        $enquiry = new Enquiry();
+        $data = [];
+		$data['action'] = $action;
+		$data['id'] = $eid;
+        $orderby = 'eid';
+        $data['enquiry_title'] = 'New Enquiry';
+        $data['some']=" ";
+        $data['reply'] = "set";
+        if($action == "add"){
+            $data['action']= "add";
+            $title = new stdClass();
+            $title->enquiry_title= 'Add enquiry';
+            header('Content-Type: application/json; charset=utf-8');
+            echo json_encode($title);
+          
+            
+            if($_SERVER['REQUEST_METHOD'] == "POST")
+			{
+            
+                if($enquiry->validate($_POST)){
+                    $_POST['user_Id']= $user_id;
+                    $_POST['date']= date("Y-m-d H:i:s");
+                    $_POST['status']="pending";
+                    $_POST['role']=$role;
+                    $result= $enquiry->insert($_POST);
+                
+                }
+                if($result){
+                    header("Location:http://localhost/Interlearn/public/Student/enquiry");
+                }
+                
+            }
+         
+            exit;
+        }
+
+        if($action == "edit"){
+            $data['enquiry_title'] = 'Edit Enquiry '.$eid;
+            $data['edit']=$edit=$enquiry->first([
+                'eid'=>$eid
+            ],'eid');
+            $data['edit']->enquiry_title='Edit Enquiry ';
+           
+           
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    try {
+                    $data = json_decode(file_get_contents("php://input"), true);
+                    if (!$data) {
+                        $error = json_last_error_msg();
+                        throw new Exception($error);
+                    }else{
+                        $result = $enquiry->update(['eid'=>$eid], $data);
+                        if (!$result) {
+                        throw new Exception("Update failed");
+                        }
+                    }
+                    } catch (Exception $e) {
+                    $response = array("status" => "error", "message" => $e->getMessage());
+                    header("Content-Type: application/json");
+                    echo json_encode($response);
+                    exit;
+                    }
+                    $response = array("status" => "success");
+                    header("Content-Type: application/json");
+                    echo json_encode($response);
+                    exit;
+            }
+            else {
+               
+                    header('Content-Type: application/json; charset=utf-8');
+                    echo json_encode($data['edit']);
+                    exit;
+                
+            }
+        }
+
+        if($action == "delete"){
+            $result = $enquiry->delete(['eid'=>$eid]);
+            header("Location:http://localhost/Interlearn/public/Student/enquiry");
+        }
+        if($action == "view"){
+            $reply = new Reply();
+            $enq = $enquiry->first([
+                'eid'=>$eid
+            ],'eid');
+            
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                if(isset($_GET['rid'])){
+                    $reParent = $_GET['rid'];
+                }
+                $_POST['eid']=$eid;
+                $_POST['senderId']=$user_id;
+                $_POST['receiverId']= $enq->user_Id;
+                $_POST['reply_user']=$role;
+                
+           
+                $result= $reply->insert($_POST);
+             
+                if($result){
+                    if($enq->status == 'pending'){
+                       $updateStatus= $enquiry->update(['eid'=>$eid],['status'=>'In progress']);
+                    }
+                   $replied = $reply -> update(['repId'=>$reParent],['status'=>'replied']);
+                }
+                else{
+                    echo"fail";
+                }
+
+            }
+            $data['reply'] = $reply -> where(['eid'=>$eid],'eid');
+            $enq = $enquiry->first([
+                'eid'=>$eid
+            ],'eid');
+            $data['enq']=$enq;
+         
+            $this->view('student/enquiry_view',$data);
+            exit;
+           
+        }
+     
+        $data['rows']  = $enquiry->where(['user_Id'=>$user_id], $orderby);
+            
+        $this->view('student/enquiry',$data);
+    }
+
+    public function course($action = null, $id = null)
     { 
         if(!Auth::is_student()){
             redirect('home');
            
         }
+        $user_id = Auth::getuid();
+        $subject = new Subject();
+        $course = new Course();
+        $teacher = new Teacher();
+        $instructor = new Instructor();
+        $data = [];
+
+        if($action == 'view')
+        {
+                $data = [];
+                $data['action'] = $action;
+                $data['id'] = $id;
+                //show($data['id']);die;
+
+                //if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+                //     if(isset($_GET['id'])){
+                //         $subject_id = $_GET['id'];
+                //         $data['subject_id'] = $subject_id;
+                //     }
+    
+                //     $medium = "Sinhala";
+                //     if($id==1){
+                //         $data['subjects']=$subject->selectTeachers([],$medium,$subject_id);
+                //         show($data['subjects']);die;
+                        
+                //     }
+                //     if($id==2){
+                //         $medium = "English";
+                //         $data['subjects']=$subject->selectTeachers([],$medium,$subject_id);
+                //     }
+                //     if($id==3){
+                //         $medium = "Tamil";
+                //         $data['subjects']=$subject->selectTeachers([],$medium,$subject_id);
+                //         show($data['subjects']);die;
+                //     //}
+                // }
+
+                $this->view('stucent/coursepg',$data);
+                
+        }
+        $data['rows']= $course->select([],'course_id');
+        $data['sums']= $subject -> distinctSubject([],'subject');
         
         $this->view('student/course');
     }
@@ -87,42 +284,5 @@ class Student extends Controller
         }
         
         $this->view('student/submissionstat');
-    }
-
-    public function quiz()
-    { 
-        if(!Auth::is_student()){
-            redirect('home');
-           
-        }
-        
-
-        // $result = mysqli_query($conn, $query);
-        $question = new Question();
-        $result = $question->ChoicejoinQuestion();
-        $quiz = array();
-        foreach ($result as $row) {
-            $question = array(
-                'q' => $row->question_title,
-                'options' => array(
-                    array('text' => $row->choice1, 'marks' => intval($row->choice1_mark)),
-                    array('text' => $row->choice2, 'marks' => intval($row->choice2_mark)),
-                    array('text' => $row->choice3, 'marks' => intval($row->choice3_mark)),
-                    array('text' => $row->choice4, 'marks' => intval($row->choice4_mark))
-                )
-            );
-            array_push($quiz, $question);
-        }
-        // show($quiz);
-        header('Content-Type: application/json');
-        // convert the PHP array to a JSON object
-        // $quiz_json = json_encode($quiz);
-
-        // return the JSON object
-        
-        echo json_encode($quiz);
-        // show($quiz_json);
-        $this->view('student/quiz');
-        die();
     }
 }

@@ -62,7 +62,9 @@ class Manager extends Controller{
             ],'eid');
             
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      
+                if(isset($_GET['rid'])){
+                    $reParent = $_GET['rid'];
+                }
                 $_POST['eid']=$eid;
                 $_POST['senderId']=$user_id;
                 $_POST['receiverId']= $enq->user_Id;
@@ -71,18 +73,17 @@ class Manager extends Controller{
            
                 $result= $reply->insert($_POST);
              
-                // if($result){
-                //     if($enq->status == 'pending'){
-                //        $updateStatus= $enquiry->update(['eid'=>$eid],['status'=>'In progress']);
-                //     }
-                //    $replied = $reply -> update(['repId'=>$reParent],['status'=>'replied']);
-                // }
-                // else{
-                //     echo"fail";
-                // }
+                if($result){
+                    if($enq->status == 'pending'){
+                       $updateStatus= $enquiry->update(['eid'=>$eid],['status'=>'In progress']);
+                    }
+                   $replied = $reply -> update(['repId'=>$reParent],['status'=>'replied']);
+                }
+                else{
+                    echo"fail";
+                }
 
             }
-
             $data['reply'] = $reply -> where(['eid'=>$eid],'eid');
             $enq = $enquiry->first([
                 'eid'=>$eid
@@ -93,18 +94,8 @@ class Manager extends Controller{
             exit;
            
         }
-      
-           // change the status value 
-        if(isset($_GET['id'])&&isset($_GET['status'])){
-          
-            $id=$_GET['id'];
-            $value = $_GET['status'];
-           
-            $status = $enquiry -> update(['eid'=>$id],['status'=>$value]);
-           
-        }
      
-        $data['rows']  = $enquiry->where(['status'=>"escalated"], $orderby);
+        $data['rows']  = $enquiry->where(['status'=>"Escalated"], $orderby);
             
         $this->view('manager/enquiry',$data);
     }
