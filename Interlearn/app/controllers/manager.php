@@ -1,103 +1,118 @@
-<?php /**
-*manager class
-*/
-class Manager extends Controller{
+<?php
+
+/**
+ *manager class
+ */
+class Manager extends Controller
+{
 
     public function index()
-    {   
+    {
         //if not logged in as manager redirect to home 
-        if(!Auth::is_manager()){
+        if (!Auth::is_manager()) {
             redirect('home');
-           
         }
         $data['title'] = "manager";
-        $this->view('manager/home',$data);
+        $this->view('manager/home', $data);
     }
     public function profile($id = null)
-    {    if(!Auth::is_manager()){
+    {
+        if (!Auth::is_manager()) {
             redirect('home');
-           
         }
         //check whether ID exists if not 
         //it'll get the Id of the logged in user
-        $id = $id?? Auth::getId();
+        $id = $id ?? Auth::getId();
         $user = new User();
         //for it to go to view we have to put it inside data
-        $data['row'] = $user -> first(['id' => $id]);
+        $data['row'] = $user->first(['id' => $id]);
         $data['title'] = "Profile";
-        $this->view('manager/profile',$data);
+        $this->view('manager/profile', $data);
     }
-    public function enquiry($action=null, $eid=null)
-    {   $result = false;
-        if(!Auth::logged_in())
-		{
-			message('please login');
-            redirect('login/manager');
-		}
-  
 
-        if(!Auth::is_manager()){
+    public function staff($id = null)
+    {
+        if (!Auth::is_manager()) {
             redirect('home');
-           
+        }
+        //check whether ID exists if not 
+        //it'll get the Id of the logged in user
+        $id = $id ?? Auth::getId();
+        $user = new User();
+        //for it to go to view we have to put it inside data
+        $data['row'] = $user->first(['id' => $id]);
+        $data['title'] = "Profile";
+        $this->view('manager/view_staff', $data);
+    }
+
+
+
+    public function enquiry($action = null, $eid = null)
+    {
+        $result = false;
+        if (!Auth::logged_in()) {
+            message('please login');
+            redirect('login/manager');
+        }
+
+
+        if (!Auth::is_manager()) {
+            redirect('home');
         }
         $user_id = Auth::getUid();
         $role = Auth::getrole();
         $enquiry = new Enquiry();
         $data = [];
-		$data['action'] = $action;
-		$data['id'] = $eid;
+        $data['action'] = $action;
+        $data['id'] = $eid;
         $orderby = 'eid';
         $data['enquiry_title'] = 'New Enquiry';
-        $data['some']=" ";
+        $data['some'] = " ";
         $data['reply'] = "set";
-        
-        if($action == "delete"){
-            $result = $enquiry->delete(['eid'=>$eid]);
+
+        if ($action == "delete") {
+            $result = $enquiry->delete(['eid' => $eid]);
             header("Location:http://localhost/Interlearn/public/manager/enquiry");
         }
-        if($action == "view"){
+        if ($action == "view") {
             $reply = new Reply();
             $enq = $enquiry->first([
-                'eid'=>$eid
-            ],'eid');
-            
+                'eid' => $eid
+            ], 'eid');
+
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                if(isset($_GET['rid'])){
+                if (isset($_GET['rid'])) {
                     $reParent = $_GET['rid'];
                 }
-                $_POST['eid']=$eid;
-                $_POST['senderId']=$user_id;
-                $_POST['receiverId']= $enq->user_Id;
-                $_POST['reply_user']=$role;
-                
-           
-                $result= $reply->insert($_POST);
-             
-                if($result){
-                    if($enq->status == 'pending'){
-                       $updateStatus= $enquiry->update(['eid'=>$eid],['status'=>'In progress']);
-                    }
-                   $replied = $reply -> update(['repId'=>$reParent],['status'=>'replied']);
-                }
-                else{
-                    echo"fail";
-                }
+                $_POST['eid'] = $eid;
+                $_POST['senderId'] = $user_id;
+                $_POST['receiverId'] = $enq->user_Id;
+                $_POST['reply_user'] = $role;
 
+
+                $result = $reply->insert($_POST);
+
+                if ($result) {
+                    if ($enq->status == 'pending') {
+                        $updateStatus = $enquiry->update(['eid' => $eid], ['status' => 'In progress']);
+                    }
+                    $replied = $reply->update(['repId' => $reParent], ['status' => 'replied']);
+                } else {
+                    echo "fail";
+                }
             }
-            $data['reply'] = $reply -> where(['eid'=>$eid],'eid');
+            $data['reply'] = $reply->where(['eid' => $eid], 'eid');
             $enq = $enquiry->first([
-                'eid'=>$eid
-            ],'eid');
-            $data['enq']=$enq;
-         
-            $this->view('manager/enquiry_view',$data);
+                'eid' => $eid
+            ], 'eid');
+            $data['enq'] = $enq;
+
+            $this->view('manager/enquiry_view', $data);
             exit;
-           
         }
-     
-        $data['rows']  = $enquiry->where(['status'=>"Escalated"], $orderby);
-            
-        $this->view('manager/enquiry',$data);
+
+        $data['rows']  = $enquiry->where(['status' => "Escalated"], $orderby);
+
+        $this->view('manager/enquiry', $data);
     }
-    
 }

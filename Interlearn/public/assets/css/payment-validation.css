@@ -2,10 +2,10 @@
     padding: 0px;
     margin: 0px;
 }
-.paynow-btn{
+#cash-btn{
     position: relative;
     top: 150px;
-    left: 80vw;
+    left: 75vw;
     background-color: #3E206D;
     color: white;
     padding: 8px 16px;
@@ -13,10 +13,21 @@
     cursor: pointer;
     border-radius: 5px;
 }
+#validate-btn-1{
+  position: relative;
+  top: 150px;
+  left: 17vw;
+  background-color: #3E206D;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
 .payment-history{
     position: relative;
     top: 180px;
-    left: 350px;
+    margin-left: 350px;
 }
 
 .student-payment{
@@ -30,10 +41,15 @@
 
 }
 
+.table-title{
+  position: absolute;
+  top: -70px;
+  left: 44%
+
+}
 
 .payment-table {
   position: relative;
-    top: -100px;
     width: 80vw;
     border-collapse: collapse;
   }

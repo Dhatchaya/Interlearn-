@@ -1,4 +1,5 @@
 /* CSS for pop-up card payment form */
+
 .payment-form-popup {
   display: none;
   position: fixed;
@@ -10,6 +11,7 @@
   justify-content: center;
   align-items: center;
 }
+
 
 .blurred {
   filter: blur(1px);
@@ -99,7 +101,7 @@
   /* right: 50px; */
   width: 100px;
   padding: 10px 0;
-  background-color: blue;
+  background-color:#3E206D;
   color: white;
   border: 0;
   border-radius: 5px;
@@ -118,3 +120,4 @@
   top: 20px;
   left: 0;
 }
+
