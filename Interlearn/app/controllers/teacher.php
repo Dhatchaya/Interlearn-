@@ -77,8 +77,9 @@ class Teacher extends Controller
         }
    
         if($action=='add'){
-            $this->view('teacher/quiz-add');
-
+            
+                $data = [];
+                $data['quizz_id']=[];
             $quizz  = new Quizz();
             $id = $_GET['id'];
             $quizz_row = $quizz -> where(['quizz_id'=>$id], 'quizz_id');
@@ -86,7 +87,7 @@ class Teacher extends Controller
             foreach($quizz_row as $row){
                 $GLOBALS['total_question'] = $row->quizz_bank;
                 $GLOBALS['qid'] = $row->quizz_id;  // getting the quizz_id to qid global
-                echo ($GLOBALS['total_question']);
+                // echo ($GLOBALS['total_question']);
             }
           
             // while($GLOBALS['total_question'] >= 0) {
@@ -108,11 +109,13 @@ class Teacher extends Controller
                     $choice = new Choices();
                     $result = $choice-> insert($_POST);
                     $GLOBALS['total_question']--;
-                    echo ($GLOBALS['total_question']);
+                    // echo ($GLOBALS['total_question']);
                     // if($GLOBALS['total_question'] == 3) {
                     //     echo "Im 3";
                     // }
                     }
+                    $data['quizz_id']=$GLOBALS['qid'];
+                    $this->view('teacher/quiz-add',$data);
                     exit();
                     // $GLOBALS['total_question']--;
 
@@ -155,6 +158,8 @@ class Teacher extends Controller
                 // $id = $_POST['quizz_id'];
                 $result = $quizz-> insert($_POST);
 
+                
+                $data['quizz_id']=$quizz_id;
                 $learn = new Learning();
                 $quizz_url = "http://localhost/Interlearn/public/student/quizz/add?id=".$quizz_id;
                 $_POST['url'] = $quizz_url;

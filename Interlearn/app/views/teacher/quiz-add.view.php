@@ -90,10 +90,15 @@
                     </li>
                 </ul>
             </div>
-            <label for="question_mark">Question Marks <strong> *</strong> : </label>
+            <label for="question_mark">Question Marks <?=esc($quizz_id)?><strong> *</strong> : </label>
             <input class="choice_inp" type=number name="question_mark" value="" placeholder="10 ">
             <!-- <br> -->
-            <input  class = "home_sbtd" type="submit" value="Add question">
+            <!-- <input  class = "home_sbtd" type="button" value="Confirm">
+
+            <input  class = "home_sbtd" type="submit" value="Add question">             -->
+            <!-- <button type="submit" class="std_sub_grd_btn">Add Submission</button> -->
+            <button>Hello</button>
+            <a href="<?=ROOT?>/teacher/quizz/final?id=<?=esc($quizz_id)?>"><button type="button" class="std_sub_grd_btn">Confirm</button></a><br><br>
             <br><br>
             <!-- <div class="buttons">
                 <div>

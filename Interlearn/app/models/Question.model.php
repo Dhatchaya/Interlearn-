@@ -48,4 +48,19 @@ class Question extends Model
     }
 
 
+    public function ChoicejoinQuestion($data= null){
+
+        $query = "SELECT c.choice1, c.choice2, c.choice3, c.choice4, c.choice1_mark, c.choice2_mark, c.choice3_mark,c.choice4_mark,q.question_title
+        FROM choice c
+        INNER JOIN question q ON c.question_number = q.question_number";
+
+        $res = $this -> query($query,$data);
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;
+           
+    }
+
 }
