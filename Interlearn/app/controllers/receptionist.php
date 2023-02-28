@@ -292,6 +292,12 @@ class Receptionist extends Controller
             redirect('home');
            
         }
+        
+        
+
+            
+
+
         $course = new Course();
         $subject = new Subject();
         $teacher = new Teacher();
@@ -331,6 +337,9 @@ class Receptionist extends Controller
                 //show($_POST);die;
                 
             }
+
+            
+
             $this->view('receptionist/addAnnouncement',$data);
         }
 
@@ -339,10 +348,20 @@ class Receptionist extends Controller
             header("Location:http://localhost/Interlearn/public/receptionist/announcement");
             $this->view('receptionist/addAnnouncement',$data);
         }
+        
 
         $data['announcements'] = $subject->allAnnouncements([]);
          //show($data['announcements']);die;
+          $isEditable = $announcement->isAnnEditable('time');
+          $data['editable'] = $isEditable;
+
         $this->view('receptionist/announcement',$data);
+        // private function isCourseEditable($createdAt) {
+        //     $expiryTime = strtotime($createdAt) + 60 * 60; // expiry time is 1 hour after creation
+        //     $currentTime = time();
+        //     return ($currentTime < $expiryTime);
+        // }
+
     }
     public function enquiry($action=null, $eid=null)
     {   $result = false;

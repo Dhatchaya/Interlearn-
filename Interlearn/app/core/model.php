@@ -22,7 +22,7 @@ class Model extends Database {
             $keys = array_keys($data);
             
             $query = "insert into ".$this->table."(".implode(",",$keys) .") values (:".implode(",:",$keys).")";
-        //   echo $query;
+           echo $query;exit;
             $this -> query($query,$data);
             return true;
     }
@@ -352,8 +352,8 @@ class Model extends Database {
 
         $query ="SELECT concat(teachers.firstname,' ',teachers.lastname) AS fullname, subject.subject, subject.grade,subject.language_medium,course.*,announcement.*,announcement_course.* FROM ".$this->table;
         $query .=" INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN announcement_course ON course.course_id = announcement_course.course_id INNER JOIN announcement ON announcement_course.aid = announcement.aid INNER JOIN teachers ON teachers.teacher_id = course.teacher_id";
-        $query .= " order by announcement.date  $order";
-    //  echo $query;die;
+        $query .= " order by announcement.date $order, announcement.time  $order";
+    // echo $query;die;
         $res = $this -> query($query,$data);
     
         if(is_array($res)){
@@ -398,10 +398,100 @@ class Model extends Database {
     //select subject.subject_id,subject.subject,grade from subject INNER JOIN course ON course.subject_id = subject.subject_id WHERE course.teacher_id = '1' group by subject, grade;
 
     public function teacherCourse($data=[],$id,$orderby = null, $order=null){
-        $query = "select subject.subject_id,subject.subject,grade from ".$this->table;
+        $query = "SELECT subject.subject_id,subject.subject,grade,language_medium,course.* from ".$this->table;
         $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id ";
         $query .= " WHERE teachers.uid = $id";
         $query .= " group by subject, grade";
+        // $query .= " order by $orderby  $order";
+        //var_dump($_SESSION);exit;
+        $res = $this -> query($query,$data);
+         //show($query);die;
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;
+    }
+
+    // select subject.subject_id,subject.subject,grade,language_medium,course.* from subject INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id WHERE teachers.uid = '27' AND course.course_id = '6' group by subject, grade;
+
+    public function CoursePg($data=[],$id,$orderby = null, $order=null){
+        $query = "SELECT subject.subject_id,subject.subject,grade,language_medium from ".$this->table;
+        $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id ";
+        $query .= " WHERE teachers.uid = $id AND course.course_id = '6'";
+        $query .= " group by subject, grade";
+        // $query .= " order by $orderby  $order";
+        //var_dump($_SESSION);exit;
+        $res = $this -> query($query,$data);
+         //show($query);die;
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;
+    }
+
+    //select subject.subject_id,subject.subject,subject.grade,subject.language_medium from subject INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN student_course ON student_course.course_id = course.course_id INNER JOIN student ON student.studentID = student_course.student_id WHERE student.uid = '24'  group by subject, grade;
+
+    public function studentCourse($data=[],$id,$orderby = null, $order=null){
+        $query = "SELECT concat(teachers.firstname,' ',teachers.lastname) AS fullname, subject.subject_id,subject.subject,subject.grade,subject.language_medium,course.* from ".$this->table;
+        $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN student_course ON student_course.course_id = course.course_id INNER JOIN teachers ON course.teacher_id = teachers.teacher_id INNER JOIN student ON student.studentID = student_course.student_id ";
+        $query .= " WHERE student.uid = $id";
+        $query .= " group by subject, grade";
+        // $query .= " order by $orderby  $order";
+        //var_dump($_SESSION);exit;
+        $res = $this -> query($query,$data);
+         //show($query);die;
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;
+    }
+
+    //SELECT concat(teachers.firstname,' ',teachers.lastname) AS fullname, subject.subject, subject.grade,subject.language_medium,course.*,announcement.*,announcement_course.*,student_course.* FROM subject INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN announcement_course ON course.course_id = announcement_course.course_id INNER JOIN announcement ON announcement_course.aid = announcement.aid INNER JOIN student_course ON student_course.course_id = announcement_course.course_id INNER JOIN student ON student.studentID = student_course.student_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id WHERE student.uid = '3' order by announcement.date DESC, announcement.time  DESC
+
+    public function stdAnnouncements($data=[],$id=null,$orderby=null,$order = 'desc'){
+
+        $query ="SELECT concat(teachers.firstname,' ',teachers.lastname) AS fullname, subject.subject, subject.grade,subject.language_medium,course.*,announcement.*,announcement_course.*,student_course.student_id FROM ".$this->table;
+        $query .=" INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN announcement_course ON course.course_id = announcement_course.course_id INNER JOIN announcement ON announcement_course.aid = announcement.aid INNER JOIN student_course ON student_course.course_id = announcement_course.course_id INNER JOIN student ON student.studentID = student_course.student_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id ";
+        $query .= " WHERE student.uid = $id ";
+        $query .= " order by announcement.date $order, announcement.time  $order";
+     //echo $query;die;
+        $res = $this -> query($query,$data);
+    
+        if(is_array($res)){
+            return $res;
+        }
+        return false;
+           
+    }
+
+    //select subject.subject_id,subject.subject,subject.grade,subject.language_medium,course_material.* from subject INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN course_material ON course_material.course_id = course.course_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id INNER JOIN student_course ON student_course.course_id = course.course_id INNER JOIN student ON student.studentID = student_course.student_id WHERE course.course_id = '6' group by subject, grade;
+
+    public function stdCoursePg($data=[],$id,$orderby = null, $order=null){
+        $query = "SELECT subject.subject_id,subject.subject,subject.grade,subject.language_medium,course_material.* from ".$this->table;
+        $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN course_material ON course_material.course_id = course.course_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id INNER JOIN student_course ON student_course.course_id = course.course_id INNER JOIN student ON student.studentID = student_course.student_id";
+        $query .= " WHERE course.course_id = $id ";
+        $query .= " group by subject, grade";
+        // $query .= " order by $orderby  $order";
+        //var_dump($_SESSION);exit;
+        $res = $this -> query($query,$data);
+         //show($query);die;
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;
+    }
+
+    //select subject.subject_id,subject.subject,subject.grade,subject.language_medium,course_material.*,course.*,teachers.* from subject INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN course_material ON course_material.course_id = course.course_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id INNER JOIN student_course ON student_course.course_id = course.course_id INNER JOIN student ON student.studentID = student_course.student_id WHERE course.course_id = '6' group by subject, grade;
+
+    public function stdCourseDetails($data=[],$id,$orderby = null, $order=null){
+        $query = "SELECT subject.subject_id,subject.subject,subject.grade,subject.language_medium,course_material.*,course.*,teachers.* from ".$this->table;
+        $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN course_material ON course_material.course_id = course.course_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id INNER JOIN student_course ON student_course.course_id = course.course_id INNER JOIN student ON student.studentID = student_course.student_id";
+        $query .= " WHERE course.course_id = $id ";
+        $query .= " group by subject.subject, subject.grade";
         // $query .= " order by $orderby  $order";
         //var_dump($_SESSION);exit;
         $res = $this -> query($query,$data);

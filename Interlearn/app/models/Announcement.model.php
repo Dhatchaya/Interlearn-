@@ -22,6 +22,12 @@ class Announcement extends Model{
 
     // ];
 
+    public function isAnnEditable($createdAt) {
+        $expiryTime = strtotime($createdAt) + 60*60; // expiry time is 1 hour after creation
+        $currentTime = time();
+        return ($currentTime < $expiryTime);
+    }
+
     public function addClassid($data){
         $query = "insert into announcement_course(course_id) values(classid) ";
         $this -> query($query,$data);

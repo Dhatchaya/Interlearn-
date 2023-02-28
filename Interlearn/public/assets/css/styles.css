@@ -2060,7 +2060,6 @@ li.lo-nav {
 
 .teacher_view_container{
     text-align: center;
-  
     display: flex;
     padding-bottom: 2%;
 }
@@ -2068,13 +2067,15 @@ li.lo-nav {
 .teacher_view_content{
     margin-top: 5%;
     margin-left: 2%;
+    width: 70vw;
 }
 
 .teacher_view_greeting{
-    padding-top: 5%;
     padding-left: 0;
     float: left;
     margin-right: 50%;
+    font-size: xx-large;
+    padding-bottom: 1%;
 }
 
 .teacher_view_Rectangle{
@@ -2184,9 +2185,8 @@ li.lo-nav {
     margin-left: 5%;
     display: flex;
 }
-.std_crs_pg_butn{
-    padding-left: 60%;
-    padding-top: 5%;
+.std_crs_pg_name{
+    width: 60vw;
 }
 .std_crs_pg_btn{
     width: 10vw;
@@ -2194,6 +2194,8 @@ li.lo-nav {
     background-color: rgb(62, 32, 109);
     color: white;
     cursor: pointer;
+    float: right;
+    margin-top: 3%;
 }
 .std_crs_pg_btn:hover{
     background-color: rgb(62, 32, 109,75%);

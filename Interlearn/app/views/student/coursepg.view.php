@@ -6,14 +6,20 @@
     <div class="std_crs_main">
         <div class="std_crs_pg_content">
             <div class="std_crs_pg_name">
-                <h2>Grade 9 - Science</h2><br>
-                <h3>Mr. V. J. Viraj</h3>
+            <?php if(!empty($courses)):?>
+            <?php foreach($courses as $course):?>
+                <h2>Grade <?=$course->grade?> - <?=$course->subject?></h2>
+                <h3><?=$course->firstname?> <?=$course->lastname?></h3>
+                <!-- <h2>Grade 9 - Science</h2><br>
+                <h3>Mr. V. J. Viraj</h3> -->
+                <?php endforeach;?>
+            <?php endif;?>
             </div>
-            <div class="std_crs_pg_butn">
+            <!-- <div class="std_crs_pg_butn"> -->
             <a href="<?=ROOT?>/student/overall">
                 <button class="std_crs_pg_btn">View Progress</button>
             </a>
-            </div>
+            <!-- </div> -->
         </div>
         <div class="std_crs_pg_content2">
             <a href="<?=ROOT?>/forums/1"><img src="<?=ROOT?>/assets/images/forum.png" class="std_crs_pg_img">Forum</a><br><br>

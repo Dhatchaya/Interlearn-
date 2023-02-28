@@ -23,8 +23,8 @@ class Student extends Controller
         //     $student_course->table=>'course_id'
         // ]);
 
-        $res=$student_course->join(['uid'=>$user]);
-        $data['announcements'] = $subject->allAnnouncements([]);
+        // $res=$student_course->join(['uid'=>$user]);
+        $data['announcements'] = $subject->stdAnnouncements([],$user);
         //$data['announcement'] = $res;
         //show($data['announcements']);die;
         
@@ -193,45 +193,30 @@ class Student extends Controller
         $course = new Course();
         $teacher = new Teacher();
         $instructor = new Instructor();
+        $student_course = new StudentCourse();
         $data = [];
 
         if($action == 'view')
         {
-                $data = [];
+            // print_r($id);exit;    
+            $data = [];
                 $data['action'] = $action;
                 $data['id'] = $id;
-                //show($data['id']);die;
-
-                //if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-                //     if(isset($_GET['id'])){
-                //         $subject_id = $_GET['id'];
-                //         $data['subject_id'] = $subject_id;
-                //     }
-    
-                //     $medium = "Sinhala";
-                //     if($id==1){
-                //         $data['subjects']=$subject->selectTeachers([],$medium,$subject_id);
-                //         show($data['subjects']);die;
-                        
-                //     }
-                //     if($id==2){
-                //         $medium = "English";
-                //         $data['subjects']=$subject->selectTeachers([],$medium,$subject_id);
-                //     }
-                //     if($id==3){
-                //         $medium = "Tamil";
-                //         $data['subjects']=$subject->selectTeachers([],$medium,$subject_id);
-                //         show($data['subjects']);die;
-                //     //}
-                // }
-
-                $this->view('stucent/coursepg',$data);
+                
+                //$data['courses'] = $subject -> CoursePg([],$user_id);
+                $data['courses'] = $subject -> stdCourseDetails([],$id);
+                //show($data['courses']);die;
+                $this->view('student/coursepg',$data);
                 
         }
         $data['rows']= $course->select([],'course_id');
-        $data['sums']= $subject -> distinctSubject([],'subject');
+        $data['sums']= $subject -> studentCourse([],$user_id);
+        //show($data['sums']);die;
         
-        $this->view('student/course');
+
+        //$data['courses'] = $subject->stdCoursePg([],$course_id);
+        
+        $this->view('student/course',$data);
     }
     public function progress($action=null)
     { 
