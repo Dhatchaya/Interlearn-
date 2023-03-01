@@ -3434,6 +3434,12 @@ teacher_crs_dropbtn {
     justify-content: center;
 }
 
+.confirm_submit_button {
+    display:flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+}
 .quizz_right input[text] {
     width: 100%;
     padding: 8px;
@@ -3471,10 +3477,14 @@ teacher_crs_dropbtn {
     margin-top: 20px;
 }
 
+
+.quiz-head p {
+    color: #b7b0b0;
+}
 .quiz-description {
     margin-left: 25px;
     margin-top: 20px;
-    /* margin-bottom: 50px; */
+    margin-bottom: 50px;
 }
 
 .quiz-total {
@@ -3503,6 +3513,11 @@ teacher_crs_dropbtn {
 
 .question_right p {
     color: #808080bf;
+}
+
+.choices {
+    border-top: 1px solid #cccccc;
+    margin-top: 30px;
 }
 .choice_inp {
     width: 100%;
@@ -3561,7 +3576,7 @@ select {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin-left: 86.5%;
+    /* margin-left: 86.5%; */
   }
 
   strong {

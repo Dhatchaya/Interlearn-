@@ -215,7 +215,7 @@ function StartQuiz() {
     timerDisplay.innerHTML = formatTime(timeRemaining);
         // console.log(timeRemaining);
     // Alert participants when time is running out
-    if (timeRemaining < 295) {
+    if (timeRemaining < 60) {
         timerDisplay.classList.add('warning');
     }
 

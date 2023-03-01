@@ -89,7 +89,7 @@ class Student extends Controller
         $this->view('student/submissionstat');
     }
 
-    public function quiz()
+    public function quiz($action ='null')
     { 
         if(!Auth::is_student()){
             redirect('home');
@@ -98,31 +98,44 @@ class Student extends Controller
         
 
         // $result = mysqli_query($conn, $query);
+        
         $question = new Question();
-        $result = $question->ChoicejoinQuestion();
-        $quiz = array();
-        foreach ($result as $row) {
-            $question = array(
-                'q' => $row->question_title,
-                'options' => array(
-                    array('text' => $row->choice1, 'marks' => intval($row->choice1_mark)),
-                    array('text' => $row->choice2, 'marks' => intval($row->choice2_mark)),
-                    array('text' => $row->choice3, 'marks' => intval($row->choice3_mark)),
-                    array('text' => $row->choice4, 'marks' => intval($row->choice4_mark))
-                )
-            );
-            array_push($quiz, $question);
-        }
-        // show($quiz);
+  
+        
+        if($action == "view"){
+            $result = $question->ChoicejoinQuestion();
+            $quiz = array();
+            foreach ($result as $row) {
+                $question = array(
+                    'q' => $row->question_title,
+                    'options' => array(
+                        array('text' => $row->choice1, 'marks' => intval($row->choice1_mark)),
+                        array('text' => $row->choice2, 'marks' => intval($row->choice2_mark)),
+                        array('text' => $row->choice3, 'marks' => intval($row->choice3_mark)),
+                        array('text' => $row->choice4, 'marks' => intval($row->choice4_mark))
+                    )
+                );
+                array_push($quiz, $question);
+            }
+        $json_data = json_encode($quiz);
+
         header('Content-Type: application/json');
+        echo $json_data;
+        exit;
+        }
+
+
         // convert the PHP array to a JSON object
         // $quiz_json = json_encode($quiz);
 
-        // return the JSON object
-        
-        echo json_encode($quiz);
+        // // return the JSON object
+        // header('Content-Type: application/json');
+
+        // echo $quiz_json;
         // show($quiz_json);
         $this->view('student/quiz');
-        die();
+        
+        
+        // die();
     }
 }

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
-body {
+/* body {
     margin: 0;
     font-size: 16px;
     background-color: #8452c5;
@@ -13,14 +13,32 @@ body {
     margin: 0;
     padding: 0;
     outline: none;
+} */
+
+
+.do_quiz_right {
+    width: 70%;
+    background: white;
+    border-radius: 8px;
+    /* border: 2px solid #808080bf; */
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    padding: 3rem;
+    margin: 4rem 0 2rem 0;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    background-color: aliceblue;
 }
 
 .custom-box {
     max-width: 700px;
+    width: 100%;
     background-color: #ffffff;
     margin: 40px auto;
     padding: 30px;
     border-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 }
 
 .custom-box::before,

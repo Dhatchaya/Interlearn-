@@ -3,6 +3,7 @@
  *teacher  class
  */
 $total_question = 0;
+$qid = 0;
 class Teacher extends Controller
 {
     public function index()
@@ -76,10 +77,10 @@ class Teacher extends Controller
            
         }
    
-        if($action=='add'){
+        if($action=='add') {
             
-                $data = [];
-                $data['quizz_id']=[];
+            $data = [];
+            $data['quizz_id']=[];
             $quizz  = new Quizz();
             $id = $_GET['id'];
             $quizz_row = $quizz -> where(['quizz_id'=>$id], 'quizz_id');
@@ -92,7 +93,7 @@ class Teacher extends Controller
           
             // while($GLOBALS['total_question'] >= 0) {
                 // if($GLOBALS['total_question'] > 0) {
-                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     $question_number = uniqid();
                     $_POST['question_number']=$question_number;
@@ -108,15 +109,15 @@ class Teacher extends Controller
                     // }
                     $choice = new Choices();
                     $result = $choice-> insert($_POST);
-                    $GLOBALS['total_question']--;
+                    // $GLOBALS['total_question']--;
                     // echo ($GLOBALS['total_question']);
                     // if($GLOBALS['total_question'] == 3) {
                     //     echo "Im 3";
                     // }
-                    }
-                    $data['quizz_id']=$GLOBALS['qid'];
-                    $this->view('teacher/quiz-add',$data);
-                    exit();
+                }
+                $data['quizz_id']=$GLOBALS['qid'];
+                $this->view('teacher/quiz-add',$data);
+                exit();    
                     // $GLOBALS['total_question']--;
 
                     // header("Location:http://localhost/Interlearn/public/teacher/quizz/add?id=".$quizz_id);
@@ -126,18 +127,25 @@ class Teacher extends Controller
             
         }
         if($action=='final'){
-            $this->view('teacher/quizz-final');
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $confirm = new Confirm();
+            $id = $_GET['id'];
+            // echo $id;
+            if($_SERVER["REQUEST_METHOD"]=="POST") {
             
-                $confirm = new Confirm();
+                $_POST['quizz_id']=$id ;
+                
                 $result = $confirm-> insert($_POST);
-                // if($result) {
-                //     echo"sucecessfully" ; die;
-                // }
+                
+                if($result) {
+                    header("Location:http://localhost/Interlearn/public/teacher/course");
+                }
             }
+            // $data['quizz_id']=$GLOBALS['qid'];
+            $this->view('teacher/quizz-final');
             exit();
         }
         if($action=='all'){
+
             $this->view('teacher/quizz_all');
 
             // $quizz = new Quizz();
@@ -145,6 +153,7 @@ class Teacher extends Controller
             
             // $data['row'] = $quizz->first(['quizz_id'=>$id],'quizz_id');
             // show($data['row']);
+
             exit();
         }
         

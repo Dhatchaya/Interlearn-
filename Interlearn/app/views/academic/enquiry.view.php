@@ -30,8 +30,6 @@
                 <textarea class="whiteInput" id="sub" name="content" rows="8" cols="50" placeholder="Type your concern"></textarea></br>  
                 <input type = "submit" id ="sub_btn" class ="sub_btn" name="submit" value="Submit" />
 
-        
-
             </form>
         </div>
         <!-- edit form -->

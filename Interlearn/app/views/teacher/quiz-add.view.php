@@ -12,10 +12,12 @@
         <br>
         
         <form action="" method="POST">
-            <label for="question_name">Question Name <strong> *</strong> : </label>
+            <label for="question_name">Question <strong> *</strong> : </label>
             <input class="home_cnt_inp" type=text name="question_title" value="" placeholder="Eg : When UCSC is established ?">
 
             <div class="choices">
+                
+                <h3>Choices</h3><br>
                 <ul>
                     <li>
                         <label for="choice_#1">Choice #1 <strong> *</strong> : </label>
@@ -25,6 +27,8 @@
                             </div>
                             <div>
                                 <select name="choice1_mark" id="marks">
+                                    <option value="-50"> -50% </option>
+                                    <option value="-25"> -25% </option>
                                     <option value="0"> 0% </option>
                                     <option value="25"> 25% </option>
                                     <option value="33"> 33.3% </option>
@@ -44,6 +48,8 @@
                             <div>
     
                                 <select name="choice2_mark" id="marks">
+                                    <option value="-50"> -50% </option>
+                                    <option value="-25"> -25% </option>
                                     <option value="0"> 0% </option>
                                     <option value="25"> 25% </option>
                                     <option value="33"> 33.3% </option>
@@ -61,6 +67,8 @@
                             </div>
                             <div>
                                 <select name="choice3_mark" id="marks">
+                                    <option value="-50"> -50% </option>
+                                    <option value="-25"> -25% </option>
                                     <option value="0"> 0% </option>
                                     <option value="25"> 25% </option>
                                     <option value="33"> 33.3% </option>
@@ -79,6 +87,8 @@
                             </div>
                             <div>
                                 <select name="choice4_mark" id="marks">
+                                    <option value="-50"> -50% </option>
+                                    <option value="-25"> -25% </option>
                                     <option value="0"> 0% </option>
                                     <option value="25"> 25% </option>
                                     <option value="33"> 33.3% </option>
@@ -90,15 +100,23 @@
                     </li>
                 </ul>
             </div>
-            <label for="question_mark">Question Marks <?=esc($quizz_id)?><strong> *</strong> : </label>
+            <label for="question_mark">Question Marks <strong> *</strong> : </label>
             <input class="choice_inp" type=number name="question_mark" value="" placeholder="10 ">
             <!-- <br> -->
-            <!-- <input  class = "home_sbtd" type="button" value="Confirm">
+            <!-- <input  class = "home_sbtd" type="button" value="Confirm">  -->
 
-            <input  class = "home_sbtd" type="submit" value="Add question">             -->
+            <div class="confirm_submit_button">
+                <div class="confirm_button">
+                    <input  class = "home_sbtd" type="submit" value="Add question">
+                </div>
+                <div class="submit_button">
+                    <a href="<?=ROOT?>/teacher/quizz/final?id=<?=esc($quizz_id)?>"><button type="button" class="home_sbtd">Confirm</button></a>
+                </div>
+            </div>
+             
             <!-- <button type="submit" class="std_sub_grd_btn">Add Submission</button> -->
-            <button>Hello</button>
-            <a href="<?=ROOT?>/teacher/quizz/final?id=<?=esc($quizz_id)?>"><button type="button" class="std_sub_grd_btn">Confirm</button></a><br><br>
+            <!-- <button>Hello</button> -->
+            <!-- <a href="<?=ROOT?>/teacher/quizz/final?id=<?=esc($quizz_id)?>"><button type="button" class="home_sbtd">Confirm</button></a><br><br> -->
             <br><br>
             <!-- <div class="buttons">
                 <div>
