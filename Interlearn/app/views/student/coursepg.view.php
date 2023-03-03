@@ -25,7 +25,7 @@
             <input type="checkbox" name="d1rec" id="d1rec" class="std_crs_pg_check"><br>
             <a href="#"><img src="<?=ROOT?>/assets/images/pp.png" class="std_crs_pg_img">Past Paper 2020</a>
             <input type="checkbox" name="d1rec" id="d1rec" class="std_crs_pg_check"><br>
-            <a href="<?=ROOT?>/student/submissionstat"><img src="<?=ROOT?>/assets/images/hw.png" class="std_crs_pg_img">Home work 1</a>
+            <a href="<?=ROOT?>/student/coursepg/submissionstatus/4?id=M.Pavithra63fb0e481edef3.79614533"><img src="<?=ROOT?>/assets/images/hw.png" class="std_crs_pg_img">Home work 1</a>
             <input type="checkbox" name="d1rec" id="d1rec" class="std_crs_pg_check"><br><br><hr><br>
             <h4>Day 2</h4><br>
             <a href="#"><img src="<?=ROOT?>/assets/images/rec.png" class="std_crs_pg_img">Recording</a>

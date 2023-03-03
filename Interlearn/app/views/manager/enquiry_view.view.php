@@ -74,7 +74,7 @@
                 <form method="POST" class="enq-view-form" id="view-form">
                     <input name = "content" id="reply" type="text" placeholder="write your reply"/></br>
                     <input class="reply-btn" type="submit" value="Reply" name = "reply_submit"/>
-                    <input class="reply-btn" type="reset" value="Cancel" id = "reply_cancel" name = "reply_cancel"/>
+                    <!-- <input class="reply-btn" type="reset" value="Cancel" id = "reply_cancel" name = "reply_cancel"/> -->
                 </form>
                 </div>
         <?php endif;?>
