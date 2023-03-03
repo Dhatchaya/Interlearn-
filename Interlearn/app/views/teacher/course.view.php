@@ -13,7 +13,7 @@
                 <div class="teacher_crs_dropdown-content">
                   <a href="<?=ROOT?>/teacher/progress">View Progress</a>
                   <a href="<?=ROOT?>/teacher/quizz">Add Quiz</a>
-                  <a href="<?=ROOT?>/teacher/submission">Add Submission</a>
+                  <a href="<?=ROOT?>/teacher/course/assignment/4/view">Add Submission</a>
                   <a href="<?=ROOT?>/teacher/upload">Add Materials/Recording</a>
                   <a href="#">Add References</a>
                 </div>
@@ -34,7 +34,10 @@
             <a href="#"><img src="<?=ROOT?>/assets/images/pp.png" class="teacher_crs_img">Past Paper 2020</a>
             <a href="#"><img src="<?=ROOT?>/assets/images/delete.png" class="teacher_crs_img2"><img src="<?=ROOT?>/assets/images/edit.png" class="teacher_crs_img2"></a><br>
             <a href="#"><img src="<?=ROOT?>/assets/images/hw.png" class="teacher_crs_img">Home work 1</a>
-            <a href="#"><img src="<?=ROOT?>/assets/images/delete.png" class="teacher_crs_img2"><img src="<?=ROOT?>/assets/images/edit.png" class="teacher_crs_img2"></a><br><br><hr><br>
+            <a href="#edit"><img src="<?=ROOT?>/assets/images/delete.png" class="teacher_crs_img2"></a> 
+            <a href="http://localhost/Interlearn/public/teacher/course/assignment/4/?id=M.Pavithra63ff86b2a81db8.59037514">
+                <img src="<?=ROOT?>/assets/images/edit.png" class="teacher_crs_img2" >
+            </a><br><br><hr><br>
 
             <h4>Day 2</h4><br>
             <a href="#"><img src="<?=ROOT?>/assets/images/rec.png" class="teacher_crs_img">Recording</a>
@@ -68,5 +71,6 @@
         </div>
     </div>    
 </div>
-
+<script defer src="<?=ROOT?>/assets/js/assignmentEdit.js?v=<?php echo time(); ?>"></script>
+ 
 <?php $this->view("includes/footer");?>

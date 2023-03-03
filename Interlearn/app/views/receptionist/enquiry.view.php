@@ -55,11 +55,11 @@
                             <td>
                         
                             <div class="enq_actions">
-                            <div class="enq_delete">
+                            <!-- <div class="enq_delete">
                                 <a href="<?=ROOT?>/receptionist/enquiry/delete/<?=esc($row->eid)?>">
                                 <button class="delete_enq_btn">Delete</button>
                                 </a>
-                                </div>
+                                </div> -->
                             <div class="enq_view">
                                 <a href="<?=ROOT?>/receptionist/enquiry/view/<?=esc($row->eid)?>">
                                 <button class="view_enq_btn">View</button>

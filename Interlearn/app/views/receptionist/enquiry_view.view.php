@@ -61,7 +61,8 @@
                             </span>
                             <p class="view_content"><?=$reply->content;?></p>
                             <span class="view-date">
-                                <?=$reply->date;?>
+                                <?=$reply->date;?> - 
+                                <?=$reply->reply_user;?>
                             </span>
                             <!-- <?php if($reply->status != 'replied'&& $reply->reply_user != Auth::getrole()):?>
                                 <div class="view-reply" id="enq-reply">
@@ -73,12 +74,12 @@
                 <?php endif?>
 
         </div>   
-        <?php if($enq->status != 'resolved' and ( $enq->status != 'escalated')):?>
+        <?php if($enq->status != 'resolved'):?>
             <div class="enq_form_body">
                     <form method="POST" class="enq-view-form" id="view-form">
                         <input name = "content" id="reply" type="text" placeholder="write your reply"/></br>
                         <input class="reply-btn" type="submit" value="Reply" name = "reply_submit"/>
-                        <input class="reply-btn" type="reset" value="Cancel" id = "reply_cancel" name = "reply_cancel"/>
+                        <!-- <input class="reply-btn" type="reset" value="Cancel" id = "reply_cancel" name = "reply_cancel"/> -->
                     </form>
             </div>
         

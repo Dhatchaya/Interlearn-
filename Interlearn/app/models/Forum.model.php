@@ -13,7 +13,9 @@ class Forum extends Model
         'content',
         'course_id',
         'topic',
-        'creator'
+        'creator',
+        'attachment',
+        'uid',
 
     ];
     protected $staffs = [
@@ -48,6 +50,30 @@ class Forum extends Model
         }
         return false;
     }
+    public function joinforumfirst($data=[],$orderby=null,$order='desc'){
 
+        $keys = array_keys($data);
+
+        $query =" select forum.*, users.username, users.display_picture FROM ".$this->table." INNER JOIN users on users.uid =forum.uid where ";
+        foreach($keys as $key){
+            $query .= $key. " =:".$key." && ";
+        }
+    
+
+    
+        $query = trim($query,"&& ");
+        $query .= " order by $orderby  $order limit 1";
+
+        $res = $this -> query($query,$data);
+      
+        if(is_array($res)){
+           return $res[0];
+        }
+        return false;
+    }
 
 }
+//trigger used in discussion
+// BEGIN
+// INSERT INTO discussion(discussion_id,parent_id,topic,last_replied,content,uid)VALUES(new.forum_id, new.forum_id,new.topic, new.creator,new.content,new.uid);
+// END

@@ -1,33 +1,21 @@
 <?php
 /**
- *Student class
+ *Discuss class
  */
-class Student extends Model
+class Discuss extends Model
 {
     //says what table it has to target
     public $error = [];
-    public $table = "student";
-    public $key = 'studentID';
-
+    protected $table = "discussion";
     protected $allowed_columns = [
-
-
-    'studentID',	
-    'NIC',	
-    'first_name',	
-    'last_name',	
-    'birthday',
-      'gender',
-    'email',
-    'mobile_number',
-    'address_line1',
-    'address_line2',
-    'address_line3',
-    'school',
-    'grade',
-    'language_medium',
-    'Picture',
-    'course_id',
+    'discussion_id',
+    'parent_id',
+    'topic',
+    'last_replied',
+    'Date',
+    'content',
+    'uid',
+    'attachment',
 
     ];
     protected $staffs = [

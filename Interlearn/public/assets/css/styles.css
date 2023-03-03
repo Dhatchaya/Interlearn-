@@ -1,13 +1,12 @@
 :root{
     --primary-color:#3E206D;
     --secondary-color: rgba(255,255,255);
-    --page-color:#f6f5f7;
+    --page-color:  #f3f3f3;
     --left-sidebar-color:#682CC6;
     --light-purple-bg:rgba(104, 44, 198, 0.09);
     --black-text: #000000;
     --error: #721519;
 
-    
 }
 *{
     font-family: 'Roboto', sans-serif;
@@ -36,7 +35,8 @@ input,select,textarea{
 
 } */
 body{
-    background-color: var(--page-color);
+    background-color: #f5f5f5;
+    /* overflow-x: hidden; */
 }
 .login_body{
     background-color: linear-gradient(90deg, #C7C5F4, #682CC6);		
@@ -387,7 +387,7 @@ body{
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin-left: 86%;
+    margin-right: 2rem;
   }
   
   .home_form_sbt:hover {
@@ -403,7 +403,6 @@ body{
     margin-top: 6px;
     margin-bottom: 12px;
     resize: vertical;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   }
 
 .home_form {
@@ -785,7 +784,8 @@ body{
 }
 .warning{
     color: red;
-    font-size: small;
+    font-size: 1rem;
+    font-weight: 600;
 }
 .home_parent{
     display: flex;
@@ -1051,9 +1051,9 @@ li.lo-nav {
 
 .enq_tbl{
 	/* margin-left: auto;  */
-	margin-right: auto;
+	/* margin-right: auto; */
     border-collapse: collapse;
-    max-width: 90%;
+    width: 95%;
     margin-top: 6vh;
     margin-bottom: 10vh;
     box-shadow: 0 2px 10px rgba(0, 67, 115, 0.2);
@@ -1156,6 +1156,8 @@ li.lo-nav {
     border-radius: 4px;
     margin: 0.5rem;
     cursor: pointer;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
     
 
 }
@@ -1243,9 +1245,9 @@ li.lo-nav {
     margin: 3vh 3vh 3vh 0;
 
 }
-.enq_actions > * >*>:hover{
+/* .enq_actions > * >*>:hover{
     background-color: var(--light-purle-bg);
-}
+} */
 .Add_enq:hover{
     cursor: pointer;
    opacity: 0.8;
@@ -1535,7 +1537,7 @@ li.lo-nav {
 }
 .display-error,.display-msg{
     color: #e42113;
-    height: 2.5rem;
+    /* height: 2.5rem; */
   
     padding-top: 0.5rem;
     font-weight: 600;
@@ -1547,23 +1549,7 @@ li.lo-nav {
     /* border: 1px solid black; */
     font-weight: 600;
 }
-:root{
-    --primary-color:#3E206D;
-    --secondary-color: rgba(255,255,255);
-    --page-color:#FAFAFA;
-    --left-sidebar-color:#682CC6;
-    --light-purple-bg:rgba(104, 44, 198, 0.09);
-    --black-text: #000000;
 
-    
-}
-*{
-    font-family: 'Roboto', sans-serif;
-   
-
-    
- 
-} 
 .warning{
     color: red;
 }
@@ -1840,7 +1826,9 @@ li.lo-nav {
     margin: 0.5rem;
     background-color: var(--primary-color);
     color: var(--secondary-color);
+    float: right;
 }
+
 .profile_submit_btn{
     border: 1px;
     display: inline-block;
@@ -2749,76 +2737,7 @@ std_view_bottom{
 
 
 
-/* student submission page */
 
-.std_subm_container{
-    width: 100%;
-    display: flex;
-}
-
-.std_subm_content{
-    margin-top: 5%;
-    margin-left: 5%;
-    width: 75vw;
-}
-
-.std_subm_outerline{
-    border-style: 1px solid black;
-    display: flex;
-}
-
-.std_subm_outerline h4{
-    width: 48vw;
-}
-
-.std_subm_outerline p{
-    float: right;
-}
-
-.std_subm_file{
-    display: flex;
-}
-
-.std_subm_name{
-    width: 60vw;
-    height: 8vh;
-}
-
-.std_subm_img{
-    width: 2vw;
-    height: 3vh;
-    cursor: pointer;
-    margin-right: 1vw;
-}
-
-.std_subm_box{
-    width: 75vw;
-    height: 30vh;
-    border: solid;
-    padding: 2%;
-    text-align: center;
-}
-
-.std_subm_inner_box{
-    width: 70vw;
-    height: 25vh;
-    border-style: dashed;
-    margin: 0 auto;
-}
-
-.std_subm_btn{
-    width: 10vw;
-    height: 5vh;
-    background-color: rgb(62, 32, 109);
-    color: white;
-    cursor: pointer;
-    margin-right: 2%;
-}
-
-.std_subm_btn:hover{
-    background-color: rgb(62, 32, 109,75%);
-
-}
 
 
 
@@ -2826,17 +2745,18 @@ std_view_bottom{
 /* student submission status view */
 
 .std_sub_grd_container{
-    width: 100%;
+    width: 80%;
     display: flex;
 }
 
 .std_sub_grd_content{
     margin-top: 5%;
     margin-left: 5%;
+    width: 80%;
 }
 
 .std_sub_grd_row1, .std_sub_grd_row2{
-    width: 80vw;
+    /* width: 80vw; */
     height: 10vh;
     display: flex;
     padding-left: 1%;
@@ -3058,15 +2978,24 @@ std_view_bottom{
 }
 
 .teacher_subm_content{
-    margin-top: 5%;
+    /* margin-top: 5%; */
     margin-left: 5%;
+    width: 80%;
+    /* height: 100%; */
+    margin-bottom: 5%;
 }
 
 .teacher_subm_name{
-    width: 60vw;
-    height: 10vh;
+    width: 30vw;
+    height: 3rem;
 }
-
+.teacher_subm_desc{
+height: 10rem;
+width: 45vw;
+}
+.teacher_subm_file{
+    width: 25vw;
+}
 .teacher_subm_type{
     margin-right: 2%;
 }
@@ -3569,72 +3498,7 @@ select {
     color: red;
   }
 
-  /* forum style */
 
-  /* .forum_heading{
-      margin-left: 17%;
-  } */
-  .forum_body{
-      display: flex;
-      /* grid-template-areas: "side heading .."
-                            "side discuss discuss discuss"; */
-      gap:6vw
-  }
-  .forum_discussion {
-    width: 90%;
-}
-.new_discussion {
-    /* background-color: red; */
-    /* width: 80%; */
-    width: 36rem;
-    height: 30rem;
-    border: 1px solid gray;
-    padding: 2rem;
-    display: none;
-}
-.add_view {
-    width: 100%;
-}
-.new_discussion input[type="text"]{
-    height: 2rem;
-    width: 15rem;
-    margin-bottom: 2rem;
-}
-.forum_right{
-
-    position: relative;
-    bottom: 0;
-}
-.descrip{
-    margin-bottom: 2rem;
-}
-.enq_view img{
-    height: 1rem;
-    width: 1rem;
-}
-.enq_sender{
-    float: right;
-    margin-right:2rem ;
-
-}
-.discuss_body{
-    display: flex;
-    gap:5rem;
-    margin-top: 5%;
-}
-.discuss_card{
-    height: 15rem;
-    width: 60%;
-    background-color: #f1f1f3;
-    border: 1px solid #54515194;
-    padding: 2rem;
-}
-.discuss_creator h3{
-    display: inline;
-}
-.discuss_content p{
-    margin: 1rem 0 2rem 0;
-}
 .quizz_date , .time_period{
     /* background-color: #f2f2f2;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -3735,6 +3599,7 @@ tr:nth-child(even) {
     /* padding-left: 2%; */
     display: flex;
 }
+
 
 .std_crs_content{
     margin-top: 5%;
@@ -3918,4 +3783,487 @@ tr:nth-child(even) {
 .setWidth{
     width: 100%;
 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+  /* forum style */
+
+  /* .forum_heading{
+      margin-left: 17%;
+  } */
+  .forum_body{
+    display: flex;
+    /* grid-template-areas: "side heading .."
+                          "side discuss discuss discuss"; */
+    gap:6vw
+}
+.forum_discussion {
+  width: 90%;
+}
+.new_discussion {
+   background-color: var(--secondary-color); 
+  /* width: 80%; */
+  width: 36rem;
+  /* height: 30rem; */
+  /* border: 1px solid gray; */
+  padding: 2rem;
+  display: none;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
+}
+.add_view {
+  width: 100%;
+}
+.new_discussion input[type="text"]{
+  height: 2rem;
+  width: 15rem;
+  margin-bottom: 2rem;
+}
+.forum_right{
+
+  position: relative;
+  bottom: 0;
+}
+.descrip{
+  margin-bottom: 2rem;
+}
+.enq_view img{
+  height: 1rem;
+  width: 1rem;
+}
+.enq_sender{
+  float: right;
+  margin-right:2rem ;
+
+}
+.discuss_body{
+  display: flex;
+  gap:5rem;
+  margin-bottom: 5rem;
+
+}
+.all_discussions{
+    width: 90%;
+    margin-top: 5%;
+}
+.discuss_card{
+
+  width: 70%;
+  padding: 2rem;
+  position: relative;
+  height: auto; /* Set the height to auto */
+  overflow: visible; /* Set the overflow property to visible */
+  background-color: #fff;
+  background-clip: border-box;
+  border: 0 solid rgba(0,0,0,.125);
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
+  border-radius: 0.25rem;
+  border-left: 7px solid var(--left-sidebar-color);
+}
+
+.discuss_content p{
+  margin: 1rem 0 2rem 0;
+}
+
+.forum_reply_form{
+    background: white;
+    border: 1px solid #80808059;
+    padding: 1rem;
+    bottom:2rem;
+    display: none; 
+    transition: .5s;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    overflow: hidden;
+}
+.forum_reply_form input[type="text"]{
+    height: 18vh;
+    width: 100%;
+    border: 1px solid #80808059;
+    text-align: left;
+    transition: .5s;
+    
+}
+
+.each_thread_reply{
+    margin: 1rem 0 1rem 0rem;
+    position: relative;
+    /* left: 2rem; */
+    width: calc(100% - 7rem);
+    margin-left: 5rem;
+
+}
+.each_thread {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user_img{
+    height: 53px;
+    width: 57px;
+    margin-right: 3px;
+    border-radius: 50%;
+    display: inline;
+}
+.user_title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
+}
+.discuss_creator {
+    display: flex;
+    flex-direction: row;
+    gap:2rem;
+}
+.discuss_creator h3{
+    font-size: 1rem;
+    font-weight: 700;
+}
+.discuss_creator h2{
+    font-size: .9375rem;
+    font-weight: normal;
+}
+.discuss_content{
+    display: grid;
+}
+.forum_reply_btn{
+    float: right;
+}
+.file_attachment {
+    width: 350px;
+    max-width: 100%;
+    color: #444;
+    padding: 5px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #555;
+    margin: 1rem 0 0 0;
+  }
+  
+  .file_attachment::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: var(--left-sidebar-color);
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+  }
+  
+  .file_attachment::file-selector-button:hover {
+    background: #441492;
+  }
+  .attachment-link{
+      text-decoration: none;
+      color: var(--left-sidebar-color);
+      font-weight: bolder;
+  }
+  .reply-textarea{
+    width: 100%; 
+    height: 20vh; 
+    resize: vertical;
+  }
+
+ /* student submission page */
+
+.std_subm_container {
+    width: 100%;
+    display: flex;
+    margin-bottom: 2rem;
+    /* flex-direction: column; */
+
+}
+.std_subm_container2 {
+    width: 100%;
+    display: flex;
+    margin-bottom: 2rem;
+    flex-direction: column;
+
+}
+.std_subm_content{
+    margin-top: 5%;
+    margin-left: 5%;
+    width: 75vw;
+}
+
+.std_subm_outerline{
+    border-style: 1px solid black;
+    display: flex;
+}
+
+.std_subm_outerline h4{
+    width: 48vw;
+}
+
+.std_subm_outerline p{
+    float: right;
+}
+
+.std_subm_file{
+    display: flex;
+}
+
+.std_subm_name{
+    width: 60vw;
+    height: 8vh;
+}
+
+.std_subm_img{
+    width: 2vw;
+    height: 3vh;
+    cursor: pointer;
+    margin-right: 1vw;
+}
+
+.std_subm_box{
+    width: 75vw;
+    height: 30vh;
+    border: solid;
+    padding: 2%;
+    text-align: center;
+}
+
+.std_subm_inner_box{
+    position: relative;
+    border: 1px dashed #e0e0e0;
+    border-radius: 6px;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    text-align: center;
+
+}
+.std_subm_inner_box:focus {
+    border-color: #6a64f1;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+  }
+.std_subm_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    cursor: pointer;
+    margin-right: 2%;
+}
+
+.std_subm_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+
+}
+
+  .sub_title{
+    width: 60%;
+    max-height: 5rem;
+    min-height: 3rem;
+  }
+  .std_sub_input_div label{
+    position: relative;
+    border: 1px dashed #bcbcbc;
+    border-radius: 6px;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    text-align: center;
+    width: 98%;
+  }
+.sub-browse{
+  font-weight: 500;
+  font-size: 16px;
+  color: #07074d;
+  display: inline-block;
+  padding: 8px 28px;
+  border: 1px solid  #e0e0e0;
+  border-radius: 4px;
+}
+.sub_file_input{
+    opacity:0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+   
+}
+.std_sub_input_div{
+    margin-bottom: 20px;
+}
+.sub-drag{
+    display: block;
+    font-weight: 600;
+    color: #07074d;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+.sub-or{
+    font-weight: 500;
+    font-size: 16px;
+    color: #6b7280;
+    display: block;
+    margin-bottom: 8px;
+}
+.sub-file-list {
+
+    display: none;
+}
+.sub-file-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    border-radius: 6px;
+    background: #e6e6e7;
+    padding: 16px 32px;
+    margin-bottom: 20px;
+    width: 70%;
+    max-height: 4rem;
+
+}
+.sub-file-name {
+    font-weight: 500;
+    font-size: 16px;
+    color: #07074d;
+    padding-right: 12px;
+   
+}
+.sub-file-item button {
+  
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+.teacher_sub_form  input,.teacher_sub_form textarea{
+    /* width: 100%; */
+    padding: 12px 24px;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+    background: white;
+    font-weight: 500;
+    font-size: 16px;
+    color: #6b7280;
+    outline: none;
+    resize: none;
+}
+/* .content_width input,textarea{
+     width: 100%; 
+
+} */
+.teacher_sub_form label{
+    display: block;
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+.teacher_sub_form{
+    width: 85%;
+    padding: 2rem;
+    border-radius: 6px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 67, 115, 0.2);
+}
+.file_div {
+    display: flex;
+    gap: 1rem;
+    height: 2rem;
+}
+.assignmentIcon{
+    width: 15px;
+    height: 15px;
+    margin-top: 3px;
+}
+.closebtn {
+    border: none;
+    background-color: transparent;
+}
+.teacher_assignment_container{
+display: flex;
+flex-direction: row;
+gap: 8vw;
+}
+
+.subm_details{
+    width: 90%;
+}
+.subm_details h1 {
+
+    padding: 0;
+    margin: 0;
+    margin: 8vh 3vh 0 0;
+    font-weight: 300;
+    font-size: 40px;
+    color: #080808;
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.5em;
+    padding-bottom: 15px;
+    position: relative;
+    -webkit-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+  }
+  
+  .subm_details h1 span {
+    display: block;
+    font-size: 1.5rem;
+    line-height: 1.3;
+    font-weight: bold;
+}
+  
+
+
+  .subm_details h1:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 5px;
+    width: 55px;
+    background-color:var(--primary-color);
+  }
+  .subm_details h1:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 2px;
+    height: 1px;
+    width: 95%;
+    max-width: 255px;
+    background-color: var(--primary-color);
+  }
+  .subm_details h4{
+  margin-top: 3rem;
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    display: inline-block;
+  }
+  .files_display{
+      margin:0.5rem;
+  }
+  .check_files{
+      height: 100%;
+      padding: 0.5rem 0.5rem 0.5rem 0;
+
+  }
+ 
+  .check_files .reply-btn {
+    margin-top: 0;
+    height: 2rem;
+}
+.assign_body table{
+    width: 80%;
+    margin-top: 0rem;
 }

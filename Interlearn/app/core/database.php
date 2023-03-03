@@ -44,6 +44,10 @@ class Database{
         return false;
         
     }
+    public function lastInserted(){
+        $conn = $this -> connect();
+        return $conn ->lastInsertId();
+    }
     public function update_table($query,$data = [], $type = 'object')
     {
 

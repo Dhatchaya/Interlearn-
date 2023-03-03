@@ -4,13 +4,11 @@
     <div class="quizz_left">
         <?php $this -> view('includes/sidebar_teach'); ?>
     </div>
-
     <div class="question_right">
-            
         <h1>Create Question</h1>
         <p>Here, you can add the questions to the question bank </p>
         <br>
-        
+
         <form action="" method="POST">
             <label for="question_name">Question Name <strong> *</strong> : </label>
             <input class="home_cnt_inp" type=text name="question_title" value="" placeholder="Eg : When UCSC is established ?">
@@ -42,7 +40,7 @@
                                 <input class="choice_inp" type=text name="choice2" value="" placeholder="Eg : In, 2000 ">
                             </div>
                             <div>
-    
+
                                 <select name="choice2_mark" id="marks">
                                     <option value="0"> 0% </option>
                                     <option value="25"> 25% </option>
@@ -51,7 +49,7 @@
                                     <option value="100"> 100% </option>
                                 </select>
                             </div>
-                        </div> 
+                        </div>
                     </li>
                     <li>
                         <label for="choice_#3">Choice #3 <strong> *</strong> : </label>
@@ -67,7 +65,7 @@
                                     <option value="50"> 50% </option>
                                     <option value="100"> 100% </option>
                                 </select>
-                            
+
                             </div>
                         </div>
                     </li>
@@ -102,9 +100,9 @@
                 <div>
                     <input  class = "home_sbt" type="submit" value="Save & Continue  > ">
                 </div>
-                
+
             </div> -->
-        </form>   
+        </form>
     </div>
 </div>
 

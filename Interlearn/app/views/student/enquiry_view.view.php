@@ -38,7 +38,7 @@
                 <form method="POST" class="enq-view-form" id="view-form">
                     <input name = "content" id="reply" type="text" placeholder="write your reply"/></br>
                     <input class="reply-btn" type="submit" value="Reply" name = "reply_submit"/>
-                    <input class="reply-btn" type="reset" value="Cancel" id = "reply_cancel" name = "reply_cancel"/>
+                    <!-- <input class="reply-btn" type="reset" value="Cancel" id = "reply_cancel" name = "reply_cancel"/> -->
                 </form>
                 <?php if(!empty($reply)):?>
                     <?php foreach($reply as $reply):?>
@@ -62,11 +62,11 @@
                             <span class="view-date">
                                 <?=$reply->date;?>
                             </span>
-                            <?php if($reply->status != 'replied'&& $reply->reply_user != Auth::getrole()):?>
+                            <!-- <?php if($reply->status != 'replied'&& $reply->reply_user != Auth::getrole()):?>
                                 <div class="view-reply" id="enq-reply">
                                     <img src = "<?=ROOT?>/assets/images/reply.png" alt="Reply"/>
                                 </div>
-                            <?php endif;?>
+                            <?php endif;?> -->
                         </div>
                     <?php endforeach;?>
                 <?php endif?>

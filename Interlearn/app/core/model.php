@@ -22,7 +22,8 @@ class Model extends Database {
             $keys = array_keys($data);
             
             $query = "insert into ".$this->table."(".implode(",",$keys) .") values (:".implode(",:",$keys).")";
-          
+       
+    //   echo $query;die;
             $this -> query($query,$data);
             return true;
     }
@@ -45,12 +46,13 @@ class Model extends Database {
            
     }
     //select all the records
-    public function select($data=null,$orderby=null,$order = 'desc'){
+    
+    public function select($orderby=null,$order = 'desc'){
         
         $query ="select * from ".$this->table;
   
         $query .= " order by $orderby  $order";
-        $res = $this -> query($query,$data);
+        $res = $this -> query($query);
 
         if(is_array($res)){
             return $res;
@@ -59,6 +61,7 @@ class Model extends Database {
            
     }
     //select only the first record that matches 
+ 
     public function first($data,$orderby=null,$order = 'desc'){
         $keys = array_keys($data);
         $id = $this->table[0]."id";
@@ -99,7 +102,7 @@ class Model extends Database {
         }
         return false;
     }
-
+ 
 
     public function sendemail($data){
       
@@ -205,7 +208,38 @@ class Model extends Database {
         }
 
 	}
+    public function joinDiscuss($data=[],$orderby=null,$order='desc'){
+        $query= "SELECT discussion.*, users.username, users.display_picture from $this->table INNER JOIN users on users.uid =discussion.uid"; 
+        $query .= " order by $orderby  $order";
+        $res = $this ->query($query,$data);
+       
+        if($res){
+            return $res;
+        }
+        return false;
+    }
+    public function joinDiscussfirst($data=[],$orderby=null,$order='desc'){
+
+        $keys = array_keys($data);
+
+        $query =" select discussion.*, users.username, users.display_picture FROM ".$this->table." INNER JOIN users on users.uid =discussion.uid where ";
+        foreach($keys as $key){
+            $query .= $key. " =:".$key." && ";
+        }
     
+
+    
+        $query = trim($query,"&& ");
+        $query .= " order by $orderby  $order limit 1";
+
+        $res = $this -> query($query,$data);
+      
+        if(is_array($res)){
+           return $res[0];
+        }
+        return false;
+    }
+ 
     public function delete($data){
     
         $keys = array_keys($data);
@@ -250,7 +284,7 @@ class Model extends Database {
         $query .= $keys[1] .".". $values[1]." = ". $keys[2] .".". $values[2];
 
         $res = $this ->query($query);
-        //show($res);die;
+       
 
        
         if($res){
@@ -258,4 +292,8 @@ class Model extends Database {
         }
         return false;
     }
+
+
+  
 }
+

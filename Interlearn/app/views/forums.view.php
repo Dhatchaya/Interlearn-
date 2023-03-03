@@ -7,20 +7,27 @@
     <div class="forum_discussion">
     <div class = "forum_heading">
         <h2 class="add_heading_init">Mathematics grade 11</h2>
+        <?php  if($role == "Teacher" ||$role == "Instructor"):?>
         <button type="button" data-modal-target= "#modal" class="Add_forum" id="Add_forum" >+ Add new discussion</button>
     </div>
     <div class = "add_view">
         <div class="new_discussion" id="new_discussion">
-            <form method= "POST" >
+            <form method= "POST" enctype="multipart/form-data" >
                 <label class="forum_subject" for="fsubject"> Subject: </label></br>
                 <input type ="text" name="topic"/></br>
                 <label class="forum_subject" for="fsubject"> Description: </label></br>
                 <textarea id="descrip" name="content" rows="15" cols="70"></textarea></br></br>
+                <label class="forum_subject" for="fsubject"> Attachments: </label></br></br>
+                <input type ="file" class = "file_attachment" name="attachment" /></br></br>
                 <input type ="submit" name = "submit" class = "home_form_sbt forum_right" value="Submit"/>
+                <input type ="button" class = "home_form_sbt forum_right" value="Cancel" id="forum_cancel"name ="cancel"/>
             </form>
         </div>
+        <?php else:?>
+            </div>
+        <?php endif;?>
         
-            <table border= 1 class='enq_tbl setWidth'>
+            <table border= 1 class='enq_tbl'>
                 
                     <tr>
                         <th>Topic</th>

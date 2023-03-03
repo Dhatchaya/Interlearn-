@@ -6,7 +6,7 @@
     <div class="teacher_view_content">
         <h1 class="teacher_view_greeting">Good Morning Monica!</h1><br>
             <div class="teacher_view_Rectangle">
-                <a href="<?=ROOT?>/teacher/course">
+                <a href="<?=ROOT?>/teacher/course/view">
                     <img src="<?=ROOT?>/assets/images/2023.jpg" alt="" class="teacher_view_Img">
                     <p>2023 A/L</p>
                     <p>Combined Maths</p>

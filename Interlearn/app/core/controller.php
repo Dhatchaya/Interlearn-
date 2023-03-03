@@ -2,6 +2,7 @@
 /**
  * main controller class
  */
+
 class Controller
 {
     public function view($view, $data =[]){
