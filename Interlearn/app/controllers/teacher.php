@@ -146,6 +146,10 @@ class Teacher extends Controller
         }
         if($action=='all'){
 
+            $question = new Question();
+            $data['rows'] = $question->ChoicejoinQuestion();
+
+
             $this->view('teacher/quizz_all');
 
             // $quizz = new Quizz();

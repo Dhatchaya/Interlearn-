@@ -11,10 +11,12 @@
         <p>Here, you can add the questions to the question bank </p>
         <br>
         
-        <form action="" method="POST">
-            <label for="question_name">Question <strong> *</strong> : </label>
-            <input class="home_cnt_inp" type=text name="question_title" value="" placeholder="Eg : When UCSC is established ?">
+        <form name="myForm" action="" method="POST" onsubmit="return validateForm();">
 
+            <span id="sum-error" class="sum-error" style="color:red; margin-left:35%"></span><br>
+            <label for="question_name" style="font-size:16px; font-weight:500;">Question <strong> *</strong> : </label>
+            <input class="home_cnt_inp" type=text name="question_title" value="" placeholder="Eg : When UCSC is established ?">
+            <span id="question-error" style="color:red"></span>
             <div class="choices">
                 
                 <h3>Choices</h3><br>
@@ -24,16 +26,20 @@
                         <div class="choices_percentage">
                             <div>
                                 <input class="choice_inp" type=text name="choice1" value="" placeholder="Eg : In, 1898 ">
+                                
                             </div>
+                            <span id="choice1-error" style="color:red"></span>
                             <div>
                                 <select name="choice1_mark" id="marks">
-                                    <option value="-50"> -50% </option>
-                                    <option value="-25"> -25% </option>
+                                    <option value="-1.00"> -100% </option>
+                                    <option value="-0.75"> -75% </option>
+                                    <option value="-0.50"> -50% </option>
+                                    <option value="-0.25"> -25% </option>
                                     <option value="0"> 0% </option>
-                                    <option value="25"> 25% </option>
-                                    <option value="33"> 33.3% </option>
-                                    <option value="50"> 50% </option>
-                                    <option value="100"> 100% </option>
+                                    <option value="0.25"> 25% </option>
+                                    <option value="0.33"> 33.3% </option>
+                                    <option value="0.50"> 50% </option>
+                                    <option value="1.00"> 100% </option>
                                 </select>
                                 <!-- <input class="choice_inp" type=number name="text" value="" placeholder="Eg : In, 1898 "> -->
                             </div>
@@ -44,17 +50,21 @@
                         <div class="choices_percentage">
                             <div>
                                 <input class="choice_inp" type=text name="choice2" value="" placeholder="Eg : In, 2000 ">
+                                
                             </div>
+                            <span id="choice2-error" style="color:red"></span>
                             <div>
     
                                 <select name="choice2_mark" id="marks">
-                                    <option value="-50"> -50% </option>
-                                    <option value="-25"> -25% </option>
+                                    <option value="-1.00"> -100% </option>
+                                    <option value="-0.75"> -75% </option>
+                                    <option value="-0.50"> -50% </option>
+                                    <option value="-0.25"> -25% </option>
                                     <option value="0"> 0% </option>
-                                    <option value="25"> 25% </option>
-                                    <option value="33"> 33.3% </option>
-                                    <option value="50"> 50% </option>
-                                    <option value="100"> 100% </option>
+                                    <option value="0.25"> 25% </option>
+                                    <option value="0.33"> 33.3% </option>
+                                    <option value="0.50"> 50% </option>
+                                    <option value="1.00"> 100% </option>
                                 </select>
                             </div>
                         </div> 
@@ -64,16 +74,20 @@
                         <div class="choices_percentage">
                             <div>
                                 <input class="choice_inp" type=text name="choice3" value="" placeholder="Eg : In, 1899 ">
+                                
                             </div>
+                            <span id="choice3-error" style="color:red"></span>
                             <div>
                                 <select name="choice3_mark" id="marks">
-                                    <option value="-50"> -50% </option>
-                                    <option value="-25"> -25% </option>
+                                    <option value="-1.00"> -100% </option>
+                                    <option value="-0.75"> -75% </option>
+                                    <option value="-0.50"> -50% </option>
+                                    <option value="-0.25"> -25% </option>
                                     <option value="0"> 0% </option>
-                                    <option value="25"> 25% </option>
-                                    <option value="33"> 33.3% </option>
-                                    <option value="50"> 50% </option>
-                                    <option value="100"> 100% </option>
+                                    <option value="0.25"> 25% </option>
+                                    <option value="0.33"> 33.3% </option>
+                                    <option value="0.50"> 50% </option>
+                                    <option value="1.00"> 100% </option>
                                 </select>
                             
                             </div>
@@ -84,16 +98,20 @@
                         <div class="choices_percentage">
                             <div>
                                 <input class="choice_inp" type=text name="choice4" value="" placeholder="Eg : In, 2002 ">
+                                
                             </div>
+                            <span id="choice4-error" style="color:red"></span>
                             <div>
                                 <select name="choice4_mark" id="marks">
-                                    <option value="-50"> -50% </option>
-                                    <option value="-25"> -25% </option>
+                                    <option value="-1.00"> -100% </option>
+                                    <option value="-0.75"> -75% </option>
+                                    <option value="-0.50"> -50% </option>
+                                    <option value="-0.25"> -25% </option>
                                     <option value="0"> 0% </option>
-                                    <option value="25"> 25% </option>
-                                    <option value="33"> 33.3% </option>
-                                    <option value="50"> 50% </option>
-                                    <option value="100"> 100% </option>
+                                    <option value="0.25"> 25% </option>
+                                    <option value="0.33"> 33.3% </option>
+                                    <option value="0.50"> 50% </option>
+                                    <option value="1.00"> 100% </option>
                                 </select>
                             </div>
                         </div>
@@ -102,6 +120,7 @@
             </div>
             <label for="question_mark">Question Marks <strong> *</strong> : </label>
             <input class="choice_inp" type=number name="question_mark" value="" placeholder="10 ">
+            <span id="marks-error" style="color:red"></span>
             <!-- <br> -->
             <!-- <input  class = "home_sbtd" type="button" value="Confirm">  -->
 
@@ -130,5 +149,5 @@
         </form>   
     </div>
 </div>
-
+<script defer src="<?=ROOT?>/assets/js/validate_quiz.js?v=<?php echo time(); ?>"></script>
 <?php $this -> view('includes/footer'); ?>

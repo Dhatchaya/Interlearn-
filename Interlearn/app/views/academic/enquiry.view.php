@@ -58,7 +58,7 @@
                 </form>
             </div>
  
-                    <table border= 1 class='enq_tbl'>
+                    <table border = 1 class='enq_tbl'>
                         <tr>
                             <th class="eno">Enquiry No</th>
                             <th>Subject</th>
