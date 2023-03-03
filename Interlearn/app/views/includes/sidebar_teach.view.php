@@ -34,7 +34,7 @@
                     
                     
                     <div class="enquiry">
-                    <a href="<?=ROOT?>/academic/enquiry">       
+                    <a href="<?=ROOT?>/teacher/enquiry">       
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/enquiry.png" alt="enquiry"></br>
                             <span>Enquiry</span>
                        

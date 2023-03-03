@@ -105,12 +105,12 @@
         
             <div  class="classes">
                 <img src="<?=ROOT?>/assets/images/claasses.jpg" alt="classes">
-                <div  class="class">Classes</div>
+                <div  class="class"><a href="<?=ROOT?>/courses">Classes</a></div>
             </div>
        
             <div class="teachers">
                 <img src="<?=ROOT?>/assets/images/teachers.jpg" alt="teachers">
-                <div class="teacher" >Teachers</div>
+                <div class="teacher" ><a href="#">Teachers</a></div>
             </div>
             <div class="vacancies">
                 <img src="<?=ROOT?>/assets/images/vacancyy.jpg" alt="vacancies">

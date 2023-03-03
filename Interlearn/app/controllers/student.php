@@ -10,8 +10,25 @@ class Student extends Controller
             redirect('home');
            
         }
-        
-        $this->view('student/home');
+        $user = Auth::getUID();
+        $course = new Course();
+        $subject = new Subject();
+        $teacher = new Teacher();
+        $announcement = new Announcement();
+        $ann_course = new AnnouncementCourse();
+        $student_course = new StudentCourse();
+
+        // $res=$student_course->join(
+        //     [$announcement->table=>'classid',
+        //     $student_course->table=>'course_id'
+        // ]);
+
+        // $res=$student_course->join(['uid'=>$user]);
+        $data['announcements'] = $subject->stdAnnouncements([],$user);
+        //$data['announcement'] = $res;
+        //show($data['announcements']);die;
+
+        $this->view('student/home',$data);
     }
     public function profile($id = null)
     { 
@@ -27,14 +44,41 @@ class Student extends Controller
     }
 
 
-    public function course()
+    public function course($action = null, $id = null)
     { 
         if(!Auth::is_student()){
             redirect('home');
            
         }
-        
-        $this->view('student/course');
+        $user_id = Auth::getuid();
+        $subject = new Subject();
+        $course = new Course();
+        $teacher = new Teacher();
+        $instructor = new Instructor();
+        $student_course = new StudentCourse();
+        $data = [];
+
+        if($action == 'view')
+        {
+            // print_r($id);exit;
+            $data = [];
+                $data['action'] = $action;
+                $data['id'] = $id;
+
+                //$data['courses'] = $subject -> CoursePg([],$user_id);
+                $data['courses'] = $subject -> stdCourseDetails([],$id);
+                //show($data['courses']);die;
+                $this->view('student/coursepg',$data);
+
+        }
+        $data['rows']= $course->select([],'course_id');
+        $data['sums']= $subject -> studentCourse([],$user_id);
+        //show($data['sums']);die;
+
+
+        //$data['courses'] = $subject->stdCoursePg([],$course_id);
+
+        $this->view('student/course',$data);
     }
     public function progress($action=null)
     { 
@@ -62,7 +106,7 @@ class Student extends Controller
     public function coursepg($action = null , $id = null)
     { 
         if(!Auth::is_student()){
-            redirect('home');   
+            redirect('home');
         }
 
         //submission status page
@@ -90,10 +134,10 @@ class Student extends Controller
             if($getstatus){
                 $data['assignment']->status = $getstatus->status;
                 $data['assignment']->modified = $getstatus->modified;
-                
+
             }
             else{
-                
+
                 $data['assignment']->status = "No attempt";
                 $data['assignment']->modified = "-";
             }
@@ -111,7 +155,7 @@ class Student extends Controller
 
         //file upload page
         if($action == "submission"){
-           
+
             if(isset($_GET['id'])){
                 $assignment_id = $_GET['id'];
             }
@@ -124,7 +168,7 @@ class Student extends Controller
             $userid = Auth::getUID();
             $student = new Students();
             $studentdetails = $student -> first(['uid'=>$userid],'studentID');
-       
+
             $student_id = $studentdetails -> studentID;
             $data['errors'] = [];
             $submissionFiles = new SubmissionFiles();
@@ -135,21 +179,21 @@ class Student extends Controller
                 $_POST['submissionId']=$submissionid=uniqid($user,true);
                 if($submissionFiles -> validate($_FILES)){
                     if(isset($_FILES['submission']['name']) AND !empty($_FILES['submission']['name'])){
-                      
+
                         //checks every file inside the $_FILES array of files
                         for($i=0; $i<count($_FILES['submission']['name']); $i++) {
                             $submission_tmp = $_FILES['submission']["tmp_name"][$i];
                             $submission_name = $_FILES['submission']["name"][$i];
                             $error= $_FILES['submission']['error'][$i];
-                    
+
                             if($error === 0){
                                 $file_ext = pathinfo($submission_name,PATHINFO_EXTENSION);
                                 $file_final_ext = strtolower($file_ext);
-                        
+
                                 $allowed_ext = array('jpg','jpeg','doc','png','pdf','xls','html','css','js');
                                 if(in_array($file_final_ext,$allowed_ext)){
                                     $new_file_name = uniqid($user,true).'.'.$file_final_ext;
-                                
+
                                     $directory = "/xampp/htdocs/Interlearn/uploads/".$id."/submissions/".$assignment_id;
                                     if (!is_dir($directory)){
                                         mkdir($directory,0644, true);
@@ -157,17 +201,17 @@ class Student extends Controller
                                     }
                                     $destination =  $directory."/".$new_file_name;
                                     move_uploaded_file($submission_tmp,$destination);
-                                
-                                 
-                                    
-                                   
-                                 
-                                   
+
+
+
+
+
+
                                     $new_fileID=uniqid();
                                     $filenames[]=['filename'=> $new_file_name,'fileID'=> $new_fileID];
 
-                                    
-                                    
+
+
                                 }
                                 else{
                                     $data['errors']['submission']='Unsupported file type : '.$file_final_ext;
@@ -177,14 +221,14 @@ class Student extends Controller
                             else{
                                 $data['errors']['submission'] ="Unknown error occured";
                                 break;
-                            
+
                                 }
-                           
+
                         }
-                   
+
                     }
                 }
-                else{        
+                else{
                     $data['errors'] =  $submissionFiles->error;
                 }
                 if(empty($data['errors'])){
@@ -192,27 +236,27 @@ class Student extends Controller
                     $_POST['assignmentId']= $assignment_id;
                     $_POST['status'] = "Submitted";
                     $result2 = $submission->insert($_POST);
-                    
+
                     foreach($filenames as $file){
-                        
-                       
+
+
                         $_POST['filename'] = $file['filename'] ;
                         $_POST['fileID'] = $file['fileID'];
                         $_POST['submissionId']=$submissionid;
-               
+
                         $result = $submissionFiles->insert($_POST);
-               
-                    
+
+
                 }
                     echo('success');
                 }
                 else{
                     echo json_encode($data['errors']);
                 }
-    
+
                 exit();
               }
-            
+
             $this->view('student/submission',$data);
             exit;
         }
@@ -225,7 +269,7 @@ class Student extends Controller
     }
 
     // public function submission()
-    // { 
+    // {
     //     if(!Auth::is_student()){
     //         redirect('home');
     //         exit;
@@ -243,7 +287,7 @@ class Student extends Controller
     //     $data['errors'] = [];
     //     $submissionFiles = new SubmissionFiles();
         
-  
+
     //       if($_SERVER["REQUEST_METHOD"]=="POST"){
     //         if($submissionFiles -> validate($_FILES)){
     //             if(isset($_FILES['submission']['name']) AND !empty($_FILES['submission']['name'])){
@@ -252,11 +296,11 @@ class Student extends Controller
     //                     $submission_tmp = $_FILES['submission']["tmp_name"][$i];
     //                     $submission_name = $_FILES['submission']["name"][$i];
     //                     $error= $_FILES['submission']['error'][$i];
-                
+
     //                     if($error === 0){
     //                         $file_ext = pathinfo($submission_name,PATHINFO_EXTENSION);
     //                         $file_final_ext = strtolower($file_ext);
-                    
+
     //                         $allowed_ext = array('jpg','jpeg','doc','png','pdf','xls','html','css','js');
     //                         if(in_array($file_final_ext,$allowed_ext)){
     //                             $new_file_name = uniqid($user,true).'.'.$file_final_ext;
@@ -275,18 +319,18 @@ class Student extends Controller
     //                     else{
     //                         $data['errors']['submission'] ="Unknown error occured";
     //                         break;
-                        
+
     //                         }
-                       
+
     //                 }
-               
+
     //             }
     //         }
-    //         else{        
+    //         else{
     //             $data['errors'] =  $submissionFiles->error;
     //         }
     //         if(empty($data['errors'])){
-             
+
     //             echo('success');
     //         }
     //         else{
@@ -295,7 +339,7 @@ class Student extends Controller
 
     //         exit();
     //       }
-        
+
     //     $this->view('student/submission',$data);
     // }
 
@@ -305,24 +349,23 @@ class Student extends Controller
             redirect('home');
            
         }
-
         
         $this->view('student/submissionstatus');
     }
 
     public function quiz($action ='null')
-    { 
+    {
         if(!Auth::is_student()){
             redirect('home');
-           
+
         }
-        
+
 
         // $result = mysqli_query($conn, $query);
-        
+
         $question = new Question();
-  
-        
+
+
         if($action == "view"){
             $result = $question->ChoicejoinQuestion();
             $quiz = array();
@@ -355,8 +398,8 @@ class Student extends Controller
         // echo $quiz_json;
         // show($quiz_json);
         $this->view('student/quiz');
-        
-        
+
+
         // die();
     }
 }

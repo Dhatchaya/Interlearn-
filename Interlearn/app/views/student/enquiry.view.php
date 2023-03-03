@@ -1,5 +1,9 @@
 <?php $this->view("includes/header");?>
 <?php $this->view("includes/nav");?>
+<?php 
+// var_dump($rows);
+// exit;
+?>
 
     <div class="center-body">
     <?php $this->view("includes/sidebar");?>

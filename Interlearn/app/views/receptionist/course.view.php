@@ -4,157 +4,33 @@
 <div class="recp_crs_container">
 <?php $this->view("includes/sidebar_recep");?>
     <div class="recp_crs_content">
-    <a href="<?=ROOT?>/receptionist/details">
         <div class="recp_crs_butn">
-            <button class="recp_crs_btn">Add new course</button>
+            <a href="<?=ROOT?>/receptionist/course/add">
+                <button class="recp_crs_btn">Add new course</button>
+            </a>
+        </div><br><br>
+ 
+        <?php if(!empty($sums)):?>
+            <?php foreach($sums as $sum):?>
+        <div class="recp_crs_rectangle">
+        
+            <a href="<?=ROOT?>/receptionist/course/view/1?id=<?=esc($sum->subject_id)?> ">
+                <!-- <img src="<?=ROOT?>/uploads/images/<?= Auth::getdisplay_picture();?>" alt="" class="recp_crs_img"> -->
+                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
+                <!-- <p>Grade 11 Mathematics</p> -->
+                <p>Grade <?=esc($sum->grade)?> - <?=esc($sum->subject)?></p><br>
+                <div class="recp_crs_butn2">
+                    <a href="<?=ROOT?>/receptionist/course/view/1/?id=<?=esc($sum->subject_id)?>">
+                        <button class="recp_crs_btn2">More info</button>
+                    </a>
+                </div>
+                
+            </a>
+            
         </div>
-    </a>
-        <br><br>
-        <div class="recp_crs_rectangle">
-            <a href="<?=ROOT?>/receptionist/class">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 11 Mathematics</p>
-            </a>
-        </div>
-        <div class="recp_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 11 Science</p>
-            </a>
-        </div><br>
-        <div class="recp_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 11 Sinhala</p>
-            </a>
-        </div>
-        <div class="recp_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 11 English</p>
-            </a>
-        </div>
-        <div class="recp_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 11 ICT</p>
-            </a>
-        </div>
-        <div class="recp_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 11 History</p>
-            </a>
-        </div>
-        <div class="recp_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 10 Mathematics</p>
-            </a>
-        </div>
-        <div class="recp_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 10 Science</p>
-            </a>
-        </div><br>
-        <div class="recp_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 10 Sinhala</p>
-            </a>
-        </div>
-        <div class="recp_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 10 English</p>
-            </a>
-        </div>
-        <div class="recp_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 10 ICT</p>
-            </a>
-        </div>
-        <div class="recp_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 10 History</p>
-            </a>
-        </div>
-        <div class="recp_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 9 Mathematics</p>
-            </a>
-        </div>
-        <div class="recp_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 9 Science</p>
-            </a>
-        </div><br>
-        <div class="recp_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 9 Sinhala</p>
-            </a>
-        </div>
-        <div class="recp_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 9 English</p>
-            </a>
-        </div>
-        <div class="recp_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 9 ICT</p>
-            </a>
-        </div>
-        <div class="recp_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 9 History</p>
-            </a>
-        </div>
-        <div class="recp_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 8 Mathematics</p>
-            </a>
-        </div>
-        <div class="recp_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 8 Science</p>
-            </a>
-        </div><br>
-        <div class="recp_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 8 Sinhala</p>
-            </a>
-        </div>
-        <div class="recp_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 8 English</p>
-            </a>
-        </div>
-        <div class="recp_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 8 ICT</p>
-            </a>
-        </div>
-        <div class="recp_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                <p>Grade 8 History</p>
-            </a>
-        </div>
+        <?php endforeach;?>
+        <?php endif;?>
+        
     </div>
 </div>
-
 <?php $this->view("includes/footer");?>

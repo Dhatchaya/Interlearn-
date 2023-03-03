@@ -61,7 +61,7 @@
                             </span>
                             <p class="view_content"><?=$reply->content;?></p>
                             <span class="view-date">
-                                <?=$reply->date;?> - 
+                                <?=$reply->date;?> -
                                 <?=$reply->reply_user;?>
                             </span>
                             <!-- <?php if($reply->status != 'replied'&& $reply->reply_user != Auth::getrole()):?>

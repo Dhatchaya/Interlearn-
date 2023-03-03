@@ -24,7 +24,7 @@
 
             <!-- <div class="quiz-total">
                 <h3>Total Number of questions in quizz bank <strong>*</strong></h3>
-                
+
                 <input class="home_cnt_inp" type=number name="quizz_bank" value="" placeholder="Eg : 25">
             </div> -->
             <hr>

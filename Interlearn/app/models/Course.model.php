@@ -1,33 +1,31 @@
 <?php
 /**
- *Forum class
- *changed to course
+ *Course class
  */
 class Course extends Model
 {
     //says what table it has to target
     public $error = [];
-    protected $table = "course";
+    public $table = "course";
     protected $allowed_columns = [
 
-'course_id',
-'grade',
-'created_date',
-'language_medium',
-'emp_ID',
-'course_material',
-'description',
-'subject',
-'name',
+        'course_id',
+        'subject_id',
+        'created_date',
+        'teacher_id',
+        'course_material',
+        'day',
+        'timefrom',
+        'timeto',
 
     ];
-    protected $staffs = [
-        'Manager',
-        'Teacher',
-        'Instructor',
-        'Receptionist',
+    // protected $staffs = [
+    //     'Manager',
+    //     'Teacher',
+    //     'Instructor',
+    //     'Receptionist',
 
-    ];
+    // ];
     public function validate($data)
     {   
         $this->error = [];
@@ -54,5 +52,6 @@ class Course extends Model
         return false;
     }
 
+    
 
 }

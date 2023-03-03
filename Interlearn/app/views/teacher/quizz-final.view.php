@@ -33,7 +33,7 @@
                 </div>
                 <span id="disable-error" style="color:red"></span>
             </div>
-            
+
             <br>
             <label for="time_period">Duration <strong> *</strong> : </label><br>
             <div class="select_duration">

@@ -7,7 +7,11 @@
     <div class="teacher_crs_content">
         <img src="<?=ROOT?>/assets/images/tchrview.png" class="teacher_crs_topimg">
         <div class="teacher_crs_tophead">
-            <h2 class="teacher_crs_subject">Mathematics</h2>
+        <?php if(!empty($courses)):?>
+            <?php foreach($courses as $course):?>
+            <h2 class="teacher_crs_subject">Grade <?=esc($course->grade)?> - <?=esc($course->subject)?></h2>
+            <?php endforeach;?>
+            <?php endif;?>
             <div class="teacher_crs_dropdown">
                 <img src="<?=ROOT?>/assets/images/settings.png" class="teacher_crs_imgset">
                 <div class="teacher_crs_dropdown-content">
