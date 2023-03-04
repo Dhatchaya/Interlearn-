@@ -4,7 +4,7 @@
 <div class="teacher_upl_container">
 <?php $this->view("includes/sidebar_teach");?>
         <div class="teacher_upl_content">
-        <?php if(!empty($courses)):print_r($courses);exit;?>
+        <?php if(!empty($courses)):?>
             <?php foreach($courses as $course):?>
             <h2>Grade <?=esc($course->grade)?> - <?=esc($course->subject)?></h2>
             <?php endforeach;?>
@@ -12,8 +12,9 @@
             <h3>Upload Materials/Recording</h3>
             <br>
             <form action="" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="week_no" value="<?=$week_no?>">
                 <p>Name of the Upload</p>
-                <input type="text" class="teacher_upl_name"><br><br>
+                <input type="text" class="teacher_upl_name" name="upload_name"><br><br>
                 <input type="file" name="file" id="">
                 <img src="<?=ROOT?>/assets/images/files.png" class="teacher_upl_img">
                 <img src="<?=ROOT?>/assets/images/folder.png" class="teacher_upl_img">

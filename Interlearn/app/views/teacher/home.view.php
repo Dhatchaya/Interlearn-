@@ -1,7 +1,7 @@
 <?php $this->view("includes/header");?>
 <?php $this->view("includes/nav");?>
-<!-- <?php
-var_dump($sums);
+<!-- <?php 
+var_dump($sums); 
 ?> -->
 
 <div class="teacher_view_container">
@@ -19,8 +19,8 @@ var_dump($sums);
             <?php if(!empty($sums)):?>
             <?php foreach($sums as $sum):?>
         <div class="recp_crs_rectangle">
-
-            <a href="<?=ROOT?>/teacher/course/<?=$sum->course_id?> ">
+        
+            <a href="<?=ROOT?>/teacher/course/view/<?=$sum->course_id?> ">
                 <!-- <img src="<?=ROOT?>/uploads/images/<?= Auth::getdisplay_picture();?>" alt="" class="recp_crs_img"> -->
                 <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
                 <br><br>
@@ -31,9 +31,9 @@ var_dump($sums);
                         <button class="recp_crs_btn2">More info</button>
                     </a>
                 </div> -->
-
+                
             </a>
-
+            
         </div>
         <?php endforeach;?>
         <?php endif;?>
