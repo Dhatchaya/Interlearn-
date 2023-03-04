@@ -428,5 +428,19 @@ class Student extends Controller
         }
         $this->view("student/student-payment");
     }
+    public function calendar()
+    {
+        if (!Auth::is_student()) {
+            redirect('home');
+        }
+        $assignment = new Assignment();
+        $userid = Auth::getUID();;
+        $result= $assignment->getallAssignments(['uid'=>$userid]);
+
+
+        header('Content-Type: application/json');
+        echo json_encode($result);
+       // $this->view('includes/calendar');
+    }
 
 }

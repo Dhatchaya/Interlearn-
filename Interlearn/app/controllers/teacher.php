@@ -13,6 +13,7 @@ class Teacher extends Controller
 
         }
         $user_id = Auth::getuid();
+
         $subject = new Subject();
         $course = new Course();
         $teacher = new Teacher();
@@ -89,6 +90,7 @@ class Teacher extends Controller
         // var_dump($user_id);
         // exit;
         $data['sums']= $subject -> teacherCourse([],$user_id);
+        
           //show($data['sums']);die;
 
         $this->view('teacher/home',$data);
@@ -98,6 +100,7 @@ class Teacher extends Controller
     //access that course
     public function course($action=null,$id = null,$option = null,$extra=null)
     {
+       
         if(!Auth::is_teacher()){
             redirect('home');
 
@@ -108,7 +111,7 @@ class Teacher extends Controller
             $data = [];
             $data['action'] = $action;
             $data['id'] = $id;
-            print_r($id);exit;
+            //print_r($id);exit;
 
             $user_id = Auth::getuid();
             $subject = new Subject();
@@ -125,7 +128,7 @@ class Teacher extends Controller
             $data['courses'] = $subject -> stdCourseDetails([],$id);
             //$data['courses'] = $subject -> CoursePg([],$user_id);
             //show($data['sums']);die;
-            show($data['courses']);die;
+//            show($data['courses']);die;
             $this->view('teacher/course',$data);
         }
         if($action == "assignment")
@@ -349,13 +352,15 @@ class Teacher extends Controller
             //Get all submission details
             $submissions = $submission->allsubmissions(['assignmentId'=> $assignmentID]);
            // show($submissions);die;
-
-            foreach ($submissions as $submission){
-                $files = explode(",",$submission->Files);
-                $submission->Files = $files;
-            }
+            if( $submissions){
+                foreach ($submissions as $submission){
+                    $files = explode(",",$submission->Files);
+                    $submission->Files = $files;
+                }
+        
             $data ['assignment']= $submissions[0]->title;
             $data['submissions'] = $submissions;
+            }
             //create a zip file of all the submissions
             $file_path = "/xampp/htdocs/Interlearn/uploads/submissions/allfiles.zip";
             if($_SERVER["REQUEST_METHOD"]=="POST"){
@@ -685,7 +690,7 @@ class Teacher extends Controller
 
     //-------------After the changes --------------------------------//
     public function quiz($action=null)
-    { 
+    {
         if(!Auth::is_teacher()){
             redirect('home');
            exit;
@@ -704,14 +709,14 @@ class Teacher extends Controller
 
                 // $question = new ZQuestion();
                 $result = $question-> insert($_POST);
-                
+
                 // $choice = new ZChoices();
                 $result = $choice-> insert($_POST);
                 if($result) {
                     header("Location:http://localhost/Interlearn/public/teacher/quiz/");
                 }
             }
-            
+
             $this->view('teacher/Zquiz_new');
             exit();
         }

@@ -420,7 +420,7 @@ class Model extends Database {
         // $query .= " order by $orderby  $order";
         //var_dump($_SESSION);exit;
         $res = $this -> query($query,$data);
-         //show($query);die;
+        //  show($query);die;
 
         if(is_array($res)){
             return $res;
@@ -471,8 +471,9 @@ class Model extends Database {
         $query ="SELECT concat(teachers.firstname,' ',teachers.lastname) AS fullname, subject.subject, subject.grade,subject.language_medium,course.*,announcement.*,announcement_course.*,student_course.student_id FROM ".$this->table;
         $query .=" INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN announcement_course ON course.course_id = announcement_course.course_id INNER JOIN announcement ON announcement_course.aid = announcement.aid INNER JOIN student_course ON student_course.course_id = announcement_course.course_id INNER JOIN student ON student.studentID = student_course.student_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id ";
         $query .= " WHERE student.uid = $id ";
-        $query .= " order by announcement.date $order, announcement.time  $order";
-     //echo $query;die;
+        $query .= " order by announcement.date $order";
+        // announcement.time  $order";
+    // echo $query;die;
         $res = $this -> query($query,$data);
 
         if(is_array($res)){
@@ -517,4 +518,23 @@ class Model extends Database {
         }
         return false;
     }
+    public function getallAssignments($data=[]){
+
+        $keys = array_keys($data);
+        $query ="select * from ".$this->table." INNER JOIN course on assignment.courseId = course.course_id";
+        $query.= " INNER JOIN student_course on student_course.course_id= course.course_id";
+        $query.=" INNER JOIN student on student.studentID=student_course.student_id WHERE";
+        foreach($keys as $key){
+            $query .= " student.".$key. " =:".$key." && ";
+        }
+        $query = trim($query,"&& ");
+        $res = $this -> query($query,$data);
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;
+
+    }
+    
 }

@@ -81,6 +81,12 @@
                 </div>
         </div>
     </div>
+    <div class="student_calendar">
+        <?php $this->view("includes/calendar");?>
+        <div id = "assignment_today" class ="assignment_today"></div>
+    </div>
+    <script defer src="<?=ROOT?>/assets/js/calendar.js?v=<?php echo time(); ?>"></script>
+
 </div>
 
     <?php $this->view("includes/footer");?>

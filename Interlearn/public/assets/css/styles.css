@@ -2447,6 +2447,7 @@ li.lo-nav {
     position: relative;
     display: flex;
     margin-bottom: 2%;
+    justify-content: space-between;
 }
 
 .std_view_content{
@@ -4873,4 +4874,12 @@ gap: 8vw;
 .assign_body table{
     width: 80%;
     margin-top: 0rem;
+}
+
+
+/* student calendar */
+
+.student_calendar{
+    margin-right: 2%;
+    margin-top: 5%;
 }
