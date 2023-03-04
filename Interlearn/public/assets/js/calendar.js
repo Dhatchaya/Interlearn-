@@ -28,9 +28,7 @@ const renderCalendar = () => {
     }
 
     for (let i = 1; i <= lastDateofMonth; i++) { // creating li of all days of current month
-        // adding active class to li if the current day, month, and year matched
-        // let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
-        //              && currYear === new Date().getFullYear() ? "active" : "";
+
         let isToday ="";
         for (j in days){
             isToday = i === Number(days[j][2]) && currMonth === (days[j][1]-1)
