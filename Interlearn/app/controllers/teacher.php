@@ -128,7 +128,7 @@ class Teacher extends Controller
             $data['courses'] = $subject -> stdCourseDetails([],$id);
             //$data['courses'] = $subject -> CoursePg([],$user_id);
             //show($data['sums']);die;
-//            show($data['courses']);die;
+           // show($data['courses']);die;
             $this->view('teacher/course',$data);
         }
         if($action == "assignment")

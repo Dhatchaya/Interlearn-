@@ -436,7 +436,7 @@ class Student extends Controller
         $assignment = new Assignment();
         $userid = Auth::getUID();;
         $result= $assignment->getallAssignments(['uid'=>$userid]);
-
+        
 
         header('Content-Type: application/json');
         echo json_encode($result);

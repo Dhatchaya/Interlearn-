@@ -1,9 +1,12 @@
 const allDays = document.querySelector(".days"),
 Today = document.querySelector(".current-date"),
 prevNextIcon = document.querySelectorAll(".calendar_icons span");
-var viewDate = document.querySelectorAll(".clickdate");
+const viewDate = document.getElementsByClassName("active");
+const assignmentContainer = document.getElementById("assignment_today");
+
 let assignmentDates = [];
 let days = [];
+let allAssignments = [];
 // getting new date, current year and month
 let date = new Date(),
 currYear = date.getFullYear(),
@@ -21,7 +24,7 @@ const renderCalendar = () => {
     let liTag = "";
 
     for (let i = firstDayofMonth; i > 0; i--) { // creating li of previous month last days
-        liTag += `<li class="inactive clickdate">${lastDateofLastMonth - i + 1}</li>`;
+        liTag += `<li class="inactive clickdate"  data-today = ${lastDateofLastMonth - i + 1}>${lastDateofLastMonth - i + 1}</li>`;
     }
 
     for (let i = 1; i <= lastDateofMonth; i++) { // creating li of all days of current month
@@ -39,23 +42,58 @@ const renderCalendar = () => {
         }
 
          
-        liTag += `<li class="${isToday} clickdate">${i}</li>`;
+        liTag += `<li class="${isToday} clickdate" data-today = ${i}>${i}</li>`;
        
 
     }
 
     for (let i = lastDayofMonth; i < 6; i++) { // creating li of next month first days
-        liTag += `<li class="inactive clickdate">${i - lastDayofMonth + 1}</li>`
+        liTag += `<li class="inactive clickdate" data-today = ${i - lastDayofMonth + 1}>${i - lastDayofMonth + 1}</li>`
     }
     Today.innerText = `${months[currMonth]} ${currYear}`; // passing current mon and yr as Today text
     allDays.innerHTML = liTag;
+    
      //triggered when you click a date
-        viewDate.forEach(day=>{
-            day.addEventListener("click",()=>{
-                console.log("here");
-                 console.log(day.value);
+     for (let i = 0; i < viewDate.length; i++) {
+
+        viewDate[i].addEventListener("click", () => {
+           assignmentContainer.innerHTML='';
+           //console.log(allAssignments);
+            if (!viewDate[i]) {
+                return;
+              }
+             let dateofAssignment =(currMonth+1)+"-"+viewDate[i].dataset.today+"-"+currYear;  
+             let assignmentDate = new Date(dateofAssignment);
+             assignmentDate.setHours(0, 0, 0, 0); // set hours to 0 to compare dates only
+
+            for (let j in allAssignments){
+                let deadline = new Date(allAssignments[j].deadline);
+                deadline.setHours(0, 0, 0, 0);
+       
+                if (deadline.getTime() === assignmentDate.getTime()) {
+                    let assignmentcard = ` 
+                    <a href ="http://localhost/Interlearn/public/student/coursepg/submissionstatus/${allAssignments[j].courseId}?id=${allAssignments[j].assignmentId}"> 
+                        <div  class ="assignment_card">
+                        <div class ="assignment_card_title"><p>${allAssignments[j].title}<p></div>
+                        <ul>
+                        
+                            <li> Deadline: ${allAssignments[j].deadline}</li>
+                            <li> Subject: ${allAssignments[j].subject}</li>
+                    
+                        </ul>
+                        </div>
+                    
+                    </a>`;
+                    //console.log(allAssignments[j].title);
+                    assignmentContainer.innerHTML+=assignmentcard;
+                  }
+                
+            }
+       
+        
+        
         });
-    });
+      }
 }
 
 prevNextIcon.forEach(icon => { // getting prev and next icons
@@ -83,7 +121,7 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
     
         success: function(data) { 
         //   console.log(data);
-        
+        allAssignments = data;
 
           for(i in data){
            
@@ -103,6 +141,8 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
           console.log(days);
           renderCalendar();
        
+    
+       
         },
         error: function(xhr, status, error) {
           console.log("Error: " + error);
@@ -110,8 +150,7 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
         
       });
     
-
-   
+ 
 
       
 //}

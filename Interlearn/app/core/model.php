@@ -521,9 +521,9 @@ class Model extends Database {
     public function getallAssignments($data=[]){
 
         $keys = array_keys($data);
-        $query ="select * from ".$this->table." INNER JOIN course on assignment.courseId = course.course_id";
+        $query ="select assignment.*, subject.* from ".$this->table." INNER JOIN course on assignment.courseId = course.course_id";
         $query.= " INNER JOIN student_course on student_course.course_id= course.course_id";
-        $query.=" INNER JOIN student on student.studentID=student_course.student_id WHERE";
+        $query.=" INNER JOIN student on student.studentID=student_course.student_id  INNER JOIN subject ON subject.subject_id = course.subject_Id  WHERE";
         foreach($keys as $key){
             $query .= " student.".$key. " =:".$key." && ";
         }

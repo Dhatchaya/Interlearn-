@@ -57,6 +57,6 @@ class Submission extends Model
         return false;
            
     }
-    
+    // course/upload/course_id/week_no
    
 }
