@@ -27,11 +27,29 @@ class Manager extends Controller{
         $data['title'] = "Profile";
         $this->view('manager/profile',$data);
     }
-    public function enquiry($action=null, $eid=null)
-    {   $result = false;
-        if(!Auth::logged_in())
-		{
-			message('please login');
+
+    public function staff($id = null)
+    {
+        if (!Auth::is_manager()) {
+            redirect('home');
+        }
+        //check whether ID exists if not
+        //it'll get the Id of the logged in user
+        $id = $id ?? Auth::getId();
+        $user = new User();
+        //for it to go to view we have to put it inside data
+        $data['row'] = $user->first(['id' => $id]);
+        $data['title'] = "Profile";
+        $this->view('manager/view_staff', $data);
+    }
+
+
+
+    public function enquiry($action = null, $eid = null)
+    {
+        $result = false;
+        if (!Auth::logged_in()) {
+            message('please login');
             redirect('login/manager');
 		}
   
@@ -50,7 +68,7 @@ class Manager extends Controller{
         $data['enquiry_title'] = 'New Enquiry';
         $data['some']=" ";
         $data['reply'] = "set";
-        
+
         if($action == "delete"){
             $result = $enquiry->delete(['eid'=>$eid]);
             header("Location:http://localhost/Interlearn/public/manager/enquiry");

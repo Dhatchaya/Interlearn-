@@ -14,9 +14,9 @@
     margin:0;
 	padding:0;
 	box-sizing: border-box;
- 
- 
-} 
+
+
+}
 
 .whiteInput:hover{
     box-shadow: 0 0 5pt 0.5pt #D3D3D3;
@@ -1127,7 +1127,7 @@ li.lo-nav {
     z-index: 5;
     background-color: var(--secondary-color);
     border-radius: 10px;
-   
+
 }
 .modal1.active{
     transform: translate(-35%, -30%) scale(1);
@@ -1199,7 +1199,7 @@ li.lo-nav {
     border: solid 1.5px #D3D3D3;
     -webkit-transition:0.5s;
     transition: 0.5s;
-    
+
 }
 #sub{
     margin: 0rem 0 1rem 0;
@@ -1225,7 +1225,7 @@ li.lo-nav {
     width: inherit;
   }
   .enq_actions>div {
-  
+
     text-align: center;
   }
   
@@ -1543,7 +1543,7 @@ li.lo-nav {
 .display-error,.display-msg{
     color: #e42113;
     height: 2.5rem;
-  
+
     padding-top: 0.5rem;
     font-weight: 600;
 }
@@ -1775,7 +1775,7 @@ li.lo-nav {
     padding: 1rem;
     border-radius: 10px;
     box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.3);
-  
+
 
 }
 .init_enq >span :first-child{
@@ -1806,7 +1806,7 @@ li.lo-nav {
     height: 30rem;
     overflow-y: scroll;
     overflow-x: auto;
-  
+
 }
 .view-reply {
     /* position: absolute; */
@@ -1902,11 +1902,11 @@ li.lo-nav {
 }
 .enq_tabs_container{
     display: flex;
-    justify-content: center; 
+    justify-content: center;
      align-items: center;
     margin:1rem 3rem 1rem 0;
     text-align: center;
-    
+
 }
 .enq_tab{
     flex: 1;
@@ -2069,7 +2069,7 @@ li.lo-nav {
 
 .teacher_profile_heading{
     margin-left: 20%;
-   
+
 }
 
 .teacher_profile_rectangle{
@@ -2188,7 +2188,7 @@ li.lo-nav {
 
 .teacher_view_container{
     text-align: center;
-  
+
     display: flex;
     padding-bottom: 2%;
 }
@@ -2277,7 +2277,7 @@ li.lo-nav {
     height: 5vh;
     border-radius: 4%;
     background-color: rgb(104, 44, 198,9%);
-    padding-top: 1%; 
+    padding-top: 1%;
     display: flex;
 }
 
@@ -2409,7 +2409,7 @@ li.lo-nav {
     float: left;
     margin-right: 8%;
     margin-top: 5%;
-    margin: bottom 5%; 
+    margin: bottom 5%;
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
 }
@@ -2542,7 +2542,7 @@ std_view_bottom{
     float: left;
     margin-right: 8%;
     margin-top: 5%;
-    margin: bottom 5%; 
+    margin: bottom 5%;
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
 }
@@ -2632,7 +2632,7 @@ std_view_bottom{
     float: left;
     margin-right: 8%;
     margin-top: 5%;
-    margin: bottom 5%; 
+    margin: bottom 5%;
     margin-left: 2%;
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
@@ -2703,7 +2703,7 @@ std_view_bottom{
     float: left;
     margin-right: 8%;
     margin-top: 0%;
-    margin: bottom 5%; 
+    margin: bottom 5%;
     margin-left: 2%;
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
@@ -2963,7 +2963,7 @@ std_view_bottom{
     height: 70vh;
     margin-right: 8%;
     margin-top: 5%;
-    margin: bottom 5%; 
+    margin: bottom 5%;
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
     justify-content: center;
@@ -3005,7 +3005,7 @@ std_view_bottom{
     /* height: 5vh; */
     margin-right: 8%;
     margin-top: 5%;
-    margin: bottom 5%; 
+    margin: bottom 5%;
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
     justify-content: center;
@@ -3140,7 +3140,7 @@ width: 45vw;
     border: none;
     cursor: pointer;
 }
-  
+
 .teacher_crs_dropdown {
   position: relative;
   display: inline-block;
@@ -3879,7 +3879,7 @@ select {
     float: left;
     margin-right: 8%;
     margin-top: 5%;
-    margin: bottom 5%; 
+    margin: bottom 5%;
     margin-left: 2%;
     background-color: white;
     transition: width 0.5s, height 0.5s;
@@ -3899,13 +3899,13 @@ table {
     border-collapse: collapse;
     width: 100%;
   }
-  
+
 td, th {
     border: 1px solid black;
     text-align: left;
     padding: 8px;
 }
-  
+
 tr:nth-child(even) {
     background: rgba(104, 44, 198, 0.09);
 } */
@@ -4020,7 +4020,7 @@ tr:nth-child(even) {
     height: 30vh;
     float: left;
     margin-right: 8%;
-    margin: bottom 5%; 
+    margin: bottom 5%;
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
     margin-bottom: 5%;
@@ -4066,7 +4066,7 @@ tr:nth-child(even) {
     float: left;
     margin-right: 8%;
     margin-top: 5%;
-    margin: bottom 5%; 
+    margin: bottom 5%;
     margin-left: 2%;
     background-color: white;
     transition: width 0.5s, height 0.5s;

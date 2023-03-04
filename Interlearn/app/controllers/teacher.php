@@ -7,10 +7,10 @@ $qid = 0;
 class Teacher extends Controller
 {
     public function index($action = null, $id = null)
-    { 
+    {
         if(!Auth::is_teacher()){
             redirect('home');
-           
+
         }
         $user_id = Auth::getuid();
         $subject = new Subject();
@@ -97,10 +97,10 @@ class Teacher extends Controller
     //each course will have a ID when clicked get that ID pass it as a parameter and
     //access that course
     public function course($action=null,$id = null,$option = null,$extra=null)
-    { 
+    {
         if(!Auth::is_teacher()){
             redirect('home');
-           
+
         }
         $user = Auth::getUsername();
         if($action == "view")
@@ -543,16 +543,16 @@ class Teacher extends Controller
     { 
         if(!Auth::is_teacher()){
             redirect('home');
-           
+           exit;
         }
-        
+
         $this->view('teacher/progress');
     }
 
 
 
     public function profile($action=null,$id = null)
-    { 
+    {
         if(!Auth::is_teacher()){
             redirect('home');
            exit;
@@ -573,7 +573,7 @@ class Teacher extends Controller
             redirect('home');
            
         }
-   
+
         if($action=='add') {
 
             $data = [];
@@ -619,9 +619,9 @@ class Teacher extends Controller
 
                     // header("Location:http://localhost/Interlearn/public/teacher/quizz/add?id=".$quizz_id);
                 // }
-                
+
             // }
-            
+
         }
         if($action=='final'){
             $confirm = new Confirm();
@@ -674,13 +674,13 @@ class Teacher extends Controller
                 $quizz_url = "http://localhost/Interlearn/public/student/quizz/add?id=".$quizz_id;
                 $_POST['url'] = $quizz_url;
                 $result = $learn->insert($_POST);
-                
+
             if($result) {
                 header("Location:http://localhost/Interlearn/public/teacher/quizz/add?id=".$quizz_id);
             }
         }
-        
+
         $this->view('teacher/quizz');
     }
-    
+
 }

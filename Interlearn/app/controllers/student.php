@@ -402,4 +402,31 @@ class Student extends Controller
 
         // die();
     }
+    public function payment($id = null)
+    {
+        if (!Auth::is_student()) {
+            redirect('home');
+        }
+        $id = $id ?? Auth::getUID();
+        $user = new User();
+        $data['row'] = $user->first(['uid' => $id], 'uid');
+
+        $this->view('student/student-payment');
+    }
+
+    public function getBankPayment()
+    {
+        if (!Auth::is_student()) {
+            redirect('home');
+        }
+
+
+        if (isset($_POST)) {
+            $payment_model = new BankPayment();
+            $payment_model->insert($_POST);
+            $this->view("student/student-payment");
+        }
+        $this->view("student/student-payment");
+    }
+
 }

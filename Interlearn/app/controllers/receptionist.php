@@ -13,12 +13,12 @@ class Receptionist extends Controller
         
         $this->view('receptionist/home');
     }
-    
+
     public function course($action = null, $id = null)
-    { 
+    {
         if(!Auth::is_receptionist()){
             redirect('home');
-           
+
         }
         $user_id = Auth::getuid();
         $subject = new Subject();
@@ -28,12 +28,12 @@ class Receptionist extends Controller
         $data = [];
         // echo $user_id;die;
         // $teacher_id = $teacher-> selectTeacher(['uid'=>$user_id]);
-       
+
         if($action == 'add'){
-   
+
             $data = [];
             $data['action'] = $action;
-            $data['id'] = $id; 
+            $data['id'] = $id;
 
             // $data['days'] = $day->findAll('asc');
             $data['teachers'] = $teacher->select([],'teacher_id','asc');
@@ -49,7 +49,7 @@ class Receptionist extends Controller
             //             $msg = '<div class="alert">Fill all the fields!</div>';
             //         }
             //     }
-        
+
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 // var_dump($_POST);
 // exit;
@@ -68,12 +68,12 @@ class Receptionist extends Controller
                     $uploadimg = $_FILES['uploadimg']['name'];
                 }
 
-                if (isset($_POST["submit"])) 
+                if (isset($_POST["submit"]))
                 {
                     $target_dir = "uploads/images/";
                     $target_file = $target_dir . basename($_FILES["uploadimg"]["name"]);
                     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-                    
+
                     // Check if image file is a actual image or fake image
                     $check = getimagesize($_FILES["uploadimg"]["tmp_name"]);
                     if($check !== false) {
@@ -102,14 +102,14 @@ class Receptionist extends Controller
                     }
                 }
 
-                
+
 
                 if(isset($_POST['subject']))
                 {
                     $subject_id = uniqid();
                     $_POST['subject_id']=$subject_id;
                     $result = $subject->insert($_POST);
-                }  
+                }
                 // $_POST['subject_id']='1';
                 $result2 = $course->insert($_POST);
                     // show ($course);die;
@@ -121,7 +121,7 @@ class Receptionist extends Controller
                     //     redirect('receptionist/course/edit/'.$row->id);
                     // }else{
                     //     redirect('receptionist/course');
-                    // }  
+                    // }
 
                     if($result == TRUE && $result2 == TRUE){
                         $msg = '<div class="alert">Course added successfully!</div>';
@@ -136,11 +136,11 @@ class Receptionist extends Controller
             //     $pic_tmp = $_FILES['uploadimg']["tmp_name"];
             //     $pic_name = $_FILES['uploadimg']["name"];
             //     $error= $_FILES['uploadimg']['error'];
-            
+
             //     if($error === 0){
             //         $img_ext = pathinfo($pic_name,PATHINFO_EXTENSION);
             //         $img_final_ext = strtolower($img_ext);
-            
+
             //         $allowed_ext = array('jpg','png','jpeg');
             //         if(in_array($img_final_ext,$allowed_ext)){
             //             $new_image_name = uniqid($_POST['username'],true).'.'.$img_final_ext;
@@ -158,10 +158,10 @@ class Receptionist extends Controller
             //     }
             // }
 
-            
 
-            
-           
+
+
+
         }
 
         if($action == 'view')
@@ -176,7 +176,7 @@ class Receptionist extends Controller
                 $inputs=array("subject_id"=>$_GET['id'],"instructor_id"=>$_POST['instructor_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto']);
                 $course->insert($inputs);
             }
-            
+
                 $data = [];
                 $data['action'] = $action;
                 $data['id'] = $id;
@@ -192,14 +192,14 @@ class Receptionist extends Controller
                         //show($data['subjectgrd']);die;
                                  //show($allSubjects);die;
                     $medium = "Sinhala";
-                    
+
                     $data['subjects']=$subject->selectTeachers(['subject'=>$allSubjects[0]->subject, 'grade'=>$allSubjects[0]->grade],$medium,$subject_id);
                     if($id==1){
                         $medium = "Sinhala";
                         $data['subjects']=$subject->selectTeachers(['subject'=>$allSubjects[0]->subject, 'grade'=>$allSubjects[0]->grade],$medium,$subject_id);
-                        
+
                         //show($data['subjects']);die;
-                        
+
                     }
                     if($id==2){
                         $medium = "English";
@@ -208,10 +208,10 @@ class Receptionist extends Controller
                     if($id==3){
                         $medium = "Tamil";
                         $data['subjects']=$subject->selectTeachers(['subject'=>$allSubjects[0]->subject, 'grade'=>$allSubjects[0]->grade],$medium,$subject_id);
-                     
-                        
+
+
                         //show($data['subjects']);die;
-                    
+
                     }
                 }
                 $data['teachers'] = $teacher->select([],'teacher_id','asc');
@@ -231,7 +231,7 @@ class Receptionist extends Controller
         //         // $result2 = $ann_course->insert($_POST);
         //         echo "Announcement successfully published!";
         //         //show($_POST);die;
-                
+
         //     }
         //     $this->view('receptionist/class',$data);
         // }
@@ -241,20 +241,20 @@ class Receptionist extends Controller
             header("Location:http://localhost/Interlearn/public/receptionist/course");
             $this->view('receptionist/class',$data);
         }
-       
+
         $data['rows']= $course->select([],'course_id');
         $data['sums']= $subject -> distinctSubject([],'subject');
         //  show($data['sums']);die;
-       
-           
+
+
          $this->view('receptionist/course',$data);
     }
 
     public function class($action=null, $id = null)
-    { 
+    {
         if(!Auth::is_receptionist()){
             redirect('home');
-           
+
         }
         // if(isset($_GET['id'])){
         //     $subject_id = $_GET['id'];
@@ -272,30 +272,30 @@ class Receptionist extends Controller
         // if($id==2){
         //     $medium = "English";
         //     $data['subjects']=$subject->selectTeachers([],$medium,$subject_id);
-            
+
         // }
         // if($id==3){
         //     $medium = "Tamil";
         //     $data['subjects']=$subject->selectTeachers([],$medium,$subject_id);
         // }
-        
+
 
         // $data['teachers'] = $teacher->select([],'teacher_id','asc');
         // $data['instructor'] = $instructor->select([],'instructor_id','asc');
         //$this->view('receptionist/class',$data);
     }
 
-  
+
     public function announcement($action=null,$aid=null)
-    { 
+    {
         if(!Auth::is_receptionist()){
             redirect('home');
-           
-        }
-        
-        
 
-            
+        }
+
+
+
+
 
 
         $course = new Course();
@@ -307,7 +307,7 @@ class Receptionist extends Controller
         $data['id'] = $aid;
         $result1 = $subject->selectCourse([]);
         $data['courses']=$result1;
-      
+
         //show($data['courses']);die;
 
         if($action == 'add'){
@@ -320,7 +320,7 @@ class Receptionist extends Controller
                 $result2 = $ann_course->insert($_POST);
                 echo "Announcement successfully published!";
                 //show($_POST);die;
-                
+
             }
             $this->view('receptionist/addAnnouncement',$data);
         }
@@ -335,10 +335,10 @@ class Receptionist extends Controller
                 $result2 = $ann_course->insert($_POST);
                 echo "Announcement successfully published!";
                 //show($_POST);die;
-                
+
             }
 
-            
+
 
             $this->view('receptionist/addAnnouncement',$data);
         }
@@ -348,7 +348,7 @@ class Receptionist extends Controller
             header("Location:http://localhost/Interlearn/public/receptionist/announcement");
             $this->view('receptionist/addAnnouncement',$data);
         }
-        
+
 
         $data['announcements'] = $subject->allAnnouncements([]);
          //show($data['announcements']);die;
@@ -375,7 +375,7 @@ class Receptionist extends Controller
             redirect('home');
            exit;
         }
-        $user_id = Auth::getemp_id();
+        $user_id = Auth::getUid();
         $role = Auth::getrole();
         $enquiry = new Enquiry();
         $data = [];
@@ -470,10 +470,42 @@ class Receptionist extends Controller
             exit;
            
         }
-     
+
 
         $data['rows']  = $enquiry->select(null, $orderby);
             
         $this->view('receptionist/enquiry',$data);
     }
+}
+
+public function payments()
+{
+    if (!Auth::is_receptionist()) {
+        redirect('home');
+    }
+
+    $this->view('receptionist/receptionist-payments');
+}
+
+public function getPayment()
+{
+    if (!Auth::is_receptionist()) {
+        redirect('home');
+    }
+    // show($_POST);
+    if (isset($_POST)) {
+        $payment_model = new Payment();
+        $_POST['method'] = 'cash';
+        $_POST['status'] = '1';
+        $payment_model->insert($_POST);
+        $this->view("receptionist/receptionist-payments");
+    }
+}
+
+
+public function getPaymentData()
+{
+    $payment = new Payment();
+    $data = $payment->getAll();
+    return $data;
 }
