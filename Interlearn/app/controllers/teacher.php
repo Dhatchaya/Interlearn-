@@ -683,4 +683,61 @@ class Teacher extends Controller
         $this->view('teacher/quizz');
     }
 
+    //-------------After the changes --------------------------------//
+    public function quiz($action=null)
+    { 
+        if(!Auth::is_teacher()){
+            redirect('home');
+           exit;
+        }
+        
+        if($action == 'new'){
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+                $question_number = uniqid();
+                $_POST['question_number']=$question_number;
+
+                $_POST['course_id'] = 1;
+
+                $question = new ZQuestion();
+                $result = $question-> insert($_POST);
+                
+                $choice = new ZChoices();
+                $result = $choice-> insert($_POST);
+                if($result) {
+                    header("Location:http://localhost/Interlearn/public/teacher/quiz/");
+                }
+            }
+            
+            $this->view('teacher/Zquiz_new');
+            exit();
+        }
+
+        if($action == 'create') {
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+                $quiz_id = uniqid();
+                $_POST['quiz_id']=$quiz_id;
+
+                $_POST['course_id'] = 1;
+
+                $quiz = new ZQuiz();
+                $result = $quiz-> insert($_POST);
+
+                if($result) {
+                    echo "success";die;
+                }
+            }
+            $this->view('teacher/Zquiz_add');
+            exit();
+        }
+        $this->view('teacher/Zquiz');
+    }
+
+
+
+    //--------------------------------------------------------------///
+
 }
