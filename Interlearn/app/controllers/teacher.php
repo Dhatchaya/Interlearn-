@@ -104,7 +104,7 @@ class Teacher extends Controller
 
     //each course will have a ID when clicked get that ID pass it as a parameter and
     //access that course
-    public function course($action=null,$id = null,$option = null,$extra=null)
+    public function course($action=null,$id = null,$week_no=null,$option = null,$extra=null)
     {
         if(!Auth::is_teacher()){
             redirect('home');
@@ -138,6 +138,7 @@ class Teacher extends Controller
               //show($data['sums']);die;
               //show($data['courses'][0]->getWeekName(6,1));die;
             $data['materials'] = $subject -> teacherCourseMaterial([],$id);
+            //show($data['materials']);die;
             // if(isset($_POST['submit'])){
             //     $week_name = $_POST['title'];
             //     $result = $course_week->UpdateWeekName();

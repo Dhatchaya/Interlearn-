@@ -2899,11 +2899,18 @@ std_view_bottom{
 .teacher_upl_content{
     margin-top: 5%;
     margin-left: 5%;
+    margin-bottom: 2%;
+    border: solid;
+    border-color: rgb(0 0 0 / 30%);
+    padding: 2%;
+    height: 60vh;
+    border-radius: 5px;
 }
 
 .teacher_upl_name{
     width: 60vw;
     height: 8vh;
+    border-radius: 3px;
 }
 
 .teacher_upl_img{
@@ -5095,7 +5102,20 @@ gap: 8vw;
     padding-top: 1px;
     margin-top: 5px;
 }
-
+.teacher-upload-file{
+    display: none;
+}
+.teacher-upload-btn{
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: rgb(104, 44, 198,100%);
+    color: white;
+    cursor: pointer;
+    padding: 1%;
+}
+.teacher-upload-btn:hover{
+    background-color: rgb(104, 44, 198,75%);
+}
 
 
 

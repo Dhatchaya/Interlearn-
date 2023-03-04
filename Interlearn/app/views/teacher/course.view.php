@@ -7,12 +7,12 @@
         <div class="teacher_crs_content">
             <img src="<?=ROOT?>/assets/images/tchrview.png" class="teacher_crs_topimg">
             <div class="teacher_crs_tophead">
-            <?php if(!empty($courses)):?>
-            <div id="course_id" style="display: none;"><?=$courses[0]->course_id?></div>
-            <h2 class="teacher_crs_subject">Grade <?=esc($courses[0]->grade)?> - <?=esc($courses[0]->subject)?></h2>
-            <?php endif;?>
+                <?php if(!empty($courses)):?>
+                <div id="course_id" style="display: none;"><?=$courses[0]->course_id?></div>
+                <h2 class="teacher_crs_subject">Grade <?=esc($courses[0]->grade)?> - <?=esc($courses[0]->subject)?></h2>
+                <?php endif;?>
+            </div>
         </div>
-        </dv>
         <div class="teacher_crs_content2" id="aaa">
             <?php
                 $i = 1;
