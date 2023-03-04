@@ -44,7 +44,7 @@ class Manager extends Controller
         // $data['title'] = "Profile";
         $this->view('manager/view_staff');
     }
-
+    
 
 
     public function enquiry($action = null, $eid = null)

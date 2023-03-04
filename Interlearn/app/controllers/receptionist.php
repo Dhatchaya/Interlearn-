@@ -35,14 +35,6 @@ class Receptionist extends Controller
     }
 
 
-    public function staffSignUp()
-    {
-        if (!Auth::is_receptionist()) {
-            redirect('home');
-        }
-
-        $this->view('receptionist/staff_signup_form');
-    }
 
 
 
