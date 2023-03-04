@@ -27,6 +27,14 @@
                     <label for="time_period">Total Marks <strong> *</strong> : </label>
                     <input class="time_period" type=number name="total_points" value="" placeholder="">
                 </div>
+                <div class="enable">
+                    <label for="time_period">Category <strong> *</strong> : </label>
+                    <select name="category" id="marks">
+                        <option value="low"> Low </option>
+                        <option value="Medium"> Medium </option>
+                        <option value="Hard"> Hard </option>
+                    </select>
+                </div>
                 <span id="points-error" style="color:red"></span>
             </div>
 

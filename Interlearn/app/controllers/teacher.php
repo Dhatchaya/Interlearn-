@@ -690,7 +690,9 @@ class Teacher extends Controller
             redirect('home');
            exit;
         }
-        
+        $question = new ZQuestion();
+        $choice = new ZChoices();
+
         if($action == 'new'){
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -698,12 +700,12 @@ class Teacher extends Controller
                 $question_number = uniqid();
                 $_POST['question_number']=$question_number;
 
-                $_POST['course_id'] = 1;
+                $_POST['course_id'] = 6;
 
-                $question = new ZQuestion();
+                // $question = new ZQuestion();
                 $result = $question-> insert($_POST);
                 
-                $choice = new ZChoices();
+                // $choice = new ZChoices();
                 $result = $choice-> insert($_POST);
                 if($result) {
                     header("Location:http://localhost/Interlearn/public/teacher/quiz/");
@@ -721,7 +723,7 @@ class Teacher extends Controller
                 $quiz_id = uniqid();
                 $_POST['quiz_id']=$quiz_id;
 
-                $_POST['course_id'] = 1;
+                $_POST['course_id'] = 6;
 
                 $quiz = new ZQuiz();
                 $result = $quiz-> insert($_POST);
@@ -733,10 +735,12 @@ class Teacher extends Controller
             $this->view('teacher/Zquiz_add');
             exit();
         }
-        $this->view('teacher/Zquiz');
+
+        $data =[];
+        $data['rows'] = $question->ChoiceInnerjoinQuestion();
+        // show($data);
+        $this->view('teacher/Zquiz', $data);
     }
-
-
 
     //--------------------------------------------------------------///
 
