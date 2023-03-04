@@ -1,9 +1,8 @@
 <?php
 /**
  *Forum class
- *changed to course
  */
-class Course extends Model
+class Forum extends Model
 {
     //says what table it has to target
     public $error = [];

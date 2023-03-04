@@ -4,103 +4,88 @@
     <div class="quizz_left">
         <?php $this -> view('includes/sidebar_teach'); ?>
     </div>
-
     <div class="question_right">
-            
         <h1>Create Question</h1>
-        <p>Here, you can add the questions to the question bank </p>
+        <p>Here, you can add the questions to the question bank</p>
         <br>
         
-        <form action="" method="POST">
+        <form action="<?=ROOT?>/teacher/quizz/final">
             <label for="question_name">Question Name <strong> *</strong> : </label>
-            <input class="home_cnt_inp" type=text name="question_title" value="" placeholder="Eg : When UCSC is established ?">
+            <input class="home_cnt_inp" type=text name="text" value="" placeholder="Eg : When UCSC is established ?">
 
             <div class="choices">
                 <ul>
                     <li>
-                        <label for="choice_#1">Choice #1 <strong> *</strong> : </label>
+                        <label for="question_name">Choice #1 <strong> *</strong> : </label>
                         <div class="choices_percentage">
                             <div>
-                                <input class="choice_inp" type=text name="choice1" value="" placeholder="Eg : In, 1898 ">
+                                <input class="choice_inp" type=text name="text" value="" placeholder="Eg : In, 1898 ">
                             </div>
                             <div>
-                                <select name="choice1_mark" id="marks">
-                                    <option value="0"> 0% </option>
-                                    <option value="25"> 25% </option>
-                                    <option value="33"> 33.3% </option>
-                                    <option value="50"> 50% </option>
-                                    <option value="100"> 100% </option>
+                                <select name="marks" id="marks">
+                                    <option value="all_correct"> 25% </option>
+                                    <option value="three_correct"> 33.3% </option>
+                                    <option value="fifty_fifty"> 50% </option>
+                                    <option value="full_marks"> 100% </option>
                                 </select>
-                                <!-- <input class="choice_inp" type=number name="text" value="" placeholder="Eg : In, 1898 "> -->
                             </div>
                         </div>
                     </li>
                     <li>
-                        <label for="choice_#2">Choice #2 <strong> *</strong> : </label>
+                        <label for="question_name">Choice #2 <strong> *</strong> : </label>
                         <div class="choices_percentage">
                             <div>
-                                <input class="choice_inp" type=text name="choice2" value="" placeholder="Eg : In, 2000 ">
+                                <input class="choice_inp" type=text name="text" value="" placeholder="Eg : In, 2000 ">
                             </div>
                             <div>
-    
-                                <select name="choice2_mark" id="marks">
-                                    <option value="0"> 0% </option>
-                                    <option value="25"> 25% </option>
-                                    <option value="33"> 33.3% </option>
-                                    <option value="50"> 50% </option>
-                                    <option value="100"> 100% </option>
+                                <select name="marks" id="marks">
+                                    <option value="all_correct"> 25% </option>
+                                    <option value="three_correct"> 33.3% </option>
+                                    <option value="fifty_fifty"> 50% </option>
+                                    <option value="full_marks"> 100% </option>
                                 </select>
                             </div>
                         </div> 
                     </li>
                     <li>
-                        <label for="choice_#3">Choice #3 <strong> *</strong> : </label>
+                        <label for="question_name">Choice #3 <strong> *</strong> : </label>
                         <div class="choices_percentage">
                             <div>
-                                <input class="choice_inp" type=text name="choice3" value="" placeholder="Eg : In, 1899 ">
+                                <input class="choice_inp" type=text name="text" value="" placeholder="Eg : In, 1899 ">
                             </div>
                             <div>
-                                <select name="choice3_mark" id="marks">
-                                    <option value="0"> 0% </option>
-                                    <option value="25"> 25% </option>
-                                    <option value="33"> 33.3% </option>
-                                    <option value="50"> 50% </option>
-                                    <option value="100"> 100% </option>
+                                <select name="marks" id="marks">
+                                    <option value="all_correct"> 25% </option>
+                                    <option value="three_correct"> 33.3% </option>
+                                    <option value="fifty_fifty"> 50% </option>
+                                    <option value="full_marks"> 100% </option>
                                 </select>
-                            
                             </div>
                         </div>
                     </li>
                     <li>
-                        <label for="choice_#4">Choice #4 <strong> *</strong> : </label>
+                        <label for="question_name">Choice #4 <strong> *</strong> : </label>
                         <div class="choices_percentage">
                             <div>
-                                <input class="choice_inp" type=text name="choice4" value="" placeholder="Eg : In, 2002 ">
+                                <input class="choice_inp" type=text name="text" value="" placeholder="Eg : In, 2002 ">
                             </div>
                             <div>
-                                <select name="choice4_mark" id="marks">
-                                    <option value="0"> 0% </option>
-                                    <option value="25"> 25% </option>
-                                    <option value="33"> 33.3% </option>
-                                    <option value="50"> 50% </option>
-                                    <option value="100"> 100% </option>
+                                <select name="marks" id="marks">
+                                    <option value="all_correct"> 25% </option>
+                                    <option value="three_correct"> 33.3% </option>
+                                    <option value="fifty_fifty"> 50% </option>
+                                    <option value="full_marks"> 100% </option>
                                 </select>
                             </div>
                         </div>
                     </li>
                 </ul>
             </div>
-            <label for="question_mark">Question Marks <?=esc($quizz_id)?><strong> *</strong> : </label>
-            <input class="choice_inp" type=number name="question_mark" value="" placeholder="10 ">
+            
             <!-- <br> -->
-            <!-- <input  class = "home_sbtd" type="button" value="Confirm">
-
-            <input  class = "home_sbtd" type="submit" value="Add question">             -->
-            <!-- <button type="submit" class="std_sub_grd_btn">Add Submission</button> -->
-            <button>Hello</button>
-            <a href="<?=ROOT?>/teacher/quizz/final?id=<?=esc($quizz_id)?>"><button type="button" class="std_sub_grd_btn">Confirm</button></a><br><br>
+            <input  class = "home_sbtd" type="submit" value="Add question">
             <br><br>
-            <!-- <div class="buttons">
+            <div class="buttons">
                 <div>
                     <input  class = "home_sbt" type="submit" value="Cancel">
                 </div>
@@ -108,9 +93,9 @@
                     <input  class = "home_sbt" type="submit" value="Save & Continue  > ">
                 </div>
                 
-            </div> -->
+            </div>
         </form>   
     </div>
 </div>
 
-<?php $this -> view('includes/footer'); ?>
+<?php $this -> view('includes/footer'); ?> ?>

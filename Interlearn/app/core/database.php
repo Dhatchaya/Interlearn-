@@ -56,8 +56,6 @@ class Database{
              
                     return true;
                 }
-            
-          
         }
         return false;
         
@@ -74,8 +72,6 @@ class Database{
              
                     return true;
                 }
-            
-          
         }
         return false;
         
