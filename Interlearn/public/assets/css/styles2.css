@@ -1,0 +1,10 @@
+.edit_delete {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.edit, .delete {
+    padding-left: 10px;
+    padding-right: 10px;
+}

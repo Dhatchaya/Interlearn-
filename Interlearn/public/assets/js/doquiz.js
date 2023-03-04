@@ -1,7 +1,28 @@
 // After modified
 
 // import {quiz} from './question.js';
-// console.log(quiz);
+//  console.log(quiz);
+
+
+// Select two random objects
+const randomObjects = [];
+const usedIndexes = [];
+let count = 0;
+while (count < 2 && usedIndexes.length < quiz.length) {
+  const randomIndex = Math.floor(Math.random() * quiz.length);
+  if (!usedIndexes.includes(randomIndex)) {
+    usedIndexes.push(randomIndex);
+    randomObjects.push(quiz[randomIndex]);
+    count++;
+  }
+}
+
+// Create a new array with the selected objects
+const newArray = [...randomObjects];
+
+// Log the new array to the console
+console.log(newArray);
+
 // console.log(typeof(quiz));
 
 const questionNumber = document.querySelector(".question-number");

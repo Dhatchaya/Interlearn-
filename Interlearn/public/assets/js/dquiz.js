@@ -60,4 +60,4 @@ xhr.onload = () => {
 
 xhr.send();
 
-console.log(quiz);
+// console.log(quiz);
