@@ -328,7 +328,7 @@ class Model extends Database {
         $query ="SELECT subject.*,course.*,course_instructor.instructor_id,concat(teachers.firstname,' ',teachers.lastname) AS teacherName, concat(instructor.firstname,' ',instructor.lastname) AS instructorName FROM ".$this->table;
         $query .=" RIGHT JOIN course ON course.subject_id = subject.subject_id LEFT JOIN course_instructor ON course.course_id = course_instructor.course_id RIGHT JOIN teachers ON teachers.teacher_id = course.teacher_id LEFT JOIN instructor ON instructor.instructor_id = course_instructor.instructor_id WHERE";
         $query .= " subject.language_medium = '".$medium."'"." and ";
-        // $query .= " group by language_medium";
+        // $query .= " group by teacherName, course.day, course.time";
 
 
         foreach($keys as $key){
@@ -546,7 +546,7 @@ class Model extends Database {
         $query = "SELECT subject.subject_id,subject.subject,subject.grade,subject.language_medium,course_material.*,course.*,teachers.* from ".$this->table;
         $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN course_material ON course_material.course_id = course.course_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id INNER JOIN student_course ON student_course.course_id = course.course_id INNER JOIN student ON student.studentID = student_course.student_id";
         $query .= " WHERE course.course_id = $id ";
-        $query .= " group by course_material.type, course_material.course_material,course_material.week_no";
+        $query .= " group by course_material.course_material";
         // $query .= " order by $orderby  $order";
         //var_dump($_SESSION);exit;
         //show($query);die;
@@ -590,10 +590,10 @@ class Model extends Database {
     }
 
     public function teacherCourseMaterial($data=[],$id,$orderby = null, $order=null){
-        $query = "SELECT subject.subject_id,subject.subject,subject.grade,subject.language_medium,course_material.*,course.*,teachers.* from ".$this->table;
-        $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN course_material ON course_material.course_id = course.course_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id";
+        $query = "SELECT subject.subject_id,subject.subject,subject.grade,subject.language_medium,course_material.*,course.*,teachers.*,course_content.* from ".$this->table;
+        $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN course_material ON course_material.course_id = course.course_id INNER JOIN course_content ON course_content.cid = course_material.cid INNER JOIN teachers ON teachers.teacher_id = course.teacher_id";
         $query .= " WHERE course.course_id = $id ";
-        $query .= " group by course_material.type, course_material.course_material,course_material.week_no";
+        $query .= " group by course_material.course_material";
         // $query .= " order by $orderby  $order";
         //var_dump($_SESSION);exit;
         //show($query);die;

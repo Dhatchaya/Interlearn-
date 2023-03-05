@@ -9,11 +9,10 @@ class CourseMaterial extends Model
     public $table = "course_material";
     protected $allowed_columns = [
         'file_id',
+        'cid',
         'course_id',
-        'week_no',
         'course_material',
-        'upload_name',
-        'type',
+        'file_type',
         'size',
         'downloads'
 
@@ -51,19 +50,19 @@ class CourseMaterial extends Model
         return false;
     }
 
-    public function UpdateUploadName($course_id,$file_id,$updated_name){
-        $query = "UPDATE ".$this->table." SET upload_name= :updateName WHERE course_id = :courseId and file_id= :fileId";
-        $data['updateName'] = $updated_name;
-        $data['courseId'] = $course_id;
-        $data['fileId'] = $file_id;
-        $res = $this -> update_table($query,$data);
+    // public function UpdateUploadName($course_id,$file_id,$updated_name){
+    //     $query = "UPDATE ".$this->table." SET upload_name= :updateName WHERE course_id = :courseId and file_id= :fileId";
+    //     $data['updateName'] = $updated_name;
+    //     $data['courseId'] = $course_id;
+    //     $data['fileId'] = $file_id;
+    //     $res = $this -> update_table($query,$data);
 
-        if($res){
-            return true;
-        }else{
-            return false;
-        }
-    }
+    //     if($res){
+    //         return true;
+    //     }else{
+    //         return false;
+    //     }
+    // }
 
     public function deleteUpload($file_no){
 

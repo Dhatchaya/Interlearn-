@@ -10,7 +10,12 @@ class CourseContent extends Model
 
         'cid',
         'type',
-        'week_no'
+        'course_id',
+        'week_no',
+        'upload_name',
+        'view_URL',
+        'edit_URL',
+        'delete_URL'
 
     ];
 
@@ -38,5 +43,21 @@ class CourseContent extends Model
             return true;
         }
         return false;
+    }
+
+    public function UpdateUploadName($course_id,$cid,$updated_name){
+        $query = "UPDATE ".$this->table." SET upload_name =:updateName WHERE course_id =:courseId and cid =:cId";
+        $data['updateName'] = $updated_name;
+        $data['courseId'] = $course_id;
+        $data['cId'] = $cid;
+        $res = $this -> update_table($query,$data);
+        // echo $res;die;
+        // show($query);die;
+
+        if($res){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

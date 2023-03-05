@@ -59,4 +59,21 @@ class Announcement extends Model{
         }
         return false;
     }
+
+    // SELECT concat(teachers.firstname, ' ', teachers.lastname), announcement.* FROM announcement INNER JOIN announcement_course ON announcement_course.aid = announcement.aid INNER JOIN course ON course.course_id = announcement_course.course_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id WHERE announcement_course.course_id =79
+    public function showAnnouncement($course_id){
+        $query = "SELECT concat(teachers.firstname, ' ', teachers.lastname) AS fullname, announcement.* FROM ".$this->table;
+        $query .= " INNER JOIN announcement_course ON announcement_course.aid = announcement.aid INNER JOIN course ON course.course_id = announcement_course.course_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id";
+        $query .= " WHERE announcement_course.course_id =:courseID";
+        $data['courseID'] = $course_id;
+
+        $res = $this -> query($query, $data);
+        // echo $res;die;
+
+        if($res){
+            return $res;
+        }else{
+            return false;
+        }
+    }
 }

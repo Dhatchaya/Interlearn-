@@ -27,6 +27,7 @@ class Receptionist extends Controller
         $teacher = new Teacher();
         $instructor = new Instructor();
         $course_week = new CourseWeek();
+        $course_instructor = new CourseInstructor();
         // $instructor_course = new InstructorCourse();
         $data = [];
         // echo $user_id;die;
@@ -96,8 +97,9 @@ class Receptionist extends Controller
             }
             if(isset($_POST['save-btn2']))
             {
-                $inputs=array("subject_id"=>$_GET['id'],"instructor_id"=>$_POST['instructor_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto']);
-                $course->insert($inputs);
+                // $inputs=array("subject_id"=>$_GET['id'],"instructor_id"=>$_POST['instructor_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto']);
+                $inputs=array("course_id"=>$_GET['id'],"instructor_id"=>$_POST['instructor_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto']);
+                $course_instructor->insert($inputs);
             }
             
                 $data = [];
@@ -131,7 +133,16 @@ class Receptionist extends Controller
                     $data['sinhalaid'] = $subject->getSubjectId($subjectName,$grade,"Sinhala");
                     $data['englishid'] = $subject->getSubjectId($subjectName,$grade,"English");
                     $data['tamilid'] = $subject->getSubjectId($subjectName,$grade,"Tamil");
-                    //show($data['subjects']);die;
+                    // show($data['subjects']);die;
+
+                    for($i=0; $i<count($data['subjects']); $i++){
+                        //show($data['subjects'][$i]->course_id);
+                        $data['instructors'] = $course_instructor -> getInstructors($data['subjects'][$i]->course_id);
+                        
+                    }
+                    // show($data['instructors']);
+                    // die;
+
                     // if($id==1){
                     //     $medium = "Sinhala";
                     //     $data['subjects']=$subject->selectTeachers(['subject'=>$allSubjects[0]->subject, 'grade'=>$allSubjects[0]->grade],$medium,$subject_id);
@@ -222,11 +233,6 @@ class Receptionist extends Controller
             redirect('home');
 
         }
-
-
-
-
-
 
         $course = new Course();
         $subject = new Subject();
