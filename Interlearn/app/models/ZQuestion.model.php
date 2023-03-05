@@ -66,18 +66,22 @@ class ZQuestion extends Model
     }
 
     public function QuizInnerjoinQuestion($data= null){
+        
+        $keys = array_keys($data);
+        $query = "SELECT  question_number
+        FROM myquestion where ";
 
-        $query = "SELECT  q.question_number, c.quiz_id
-        FROM myquestion q
-        INNER JOIN myquiz c ON q.course_id = c.course_id";
 
+        foreach($keys as $key){
+            $query .= $key. " =:".$key." && ";
+        }
+        $query = trim($query,"&& ");
         $res = $this -> query($query,$data);
 
         if(is_array($res)){
             return $res;
         }
-        return false;
-           
+        return false;       
     }
 
 }

@@ -26,6 +26,8 @@ class Model extends Database {
             $this -> query($query,$data);
             return true;
     }
+
+    
     //select all the records that matches 
     public function where($data,$orderby=null,$order = 'desc'){
         $keys = array_keys($data);

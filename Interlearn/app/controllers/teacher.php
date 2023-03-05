@@ -451,12 +451,36 @@ class Teacher extends Controller
                         $result = $quiz-> insert($_POST);
                         
                         if($result) {
-                            $category = $_GET['category'];
 
                             $quiz_question = new ZQuizQuestion();
-                            $result = $question->QuizInnerjoinQuestion();
-                            $result = $quiz_question->insert($_POST);
-                            echo $category;
+                            $result1 = $question->QuizInnerjoinQuestion(['category'=>$_POST['category']]);
+                            // $array = json_decode(json_encode($result1), true);
+
+                            $data1 =[];
+                            $data1 = (array) $result1;
+                            show($data1);
+
+                            foreach($result1 as $i ) {
+                                print_r($i);
+                                array_push($i,(object)['quiz_id'=>$quiz_id]);
+                                print_r($i);
+                                $result = $quiz_question-> insert($i);
+                            }
+                            show($result1);
+                            $questions = array();
+
+                            // Loop through each object and extract the question number
+                            foreach ($result1 as $obj) {
+                                $questions[] = $obj->question_number;
+                            }
+
+                            // Output the resulting array of question numbers
+                            print_r($questions);
+                            // show($array);
+                            show($_POST);
+                            die;
+                            // $result2 = $quiz_question->insert($result1);
+                            // show($result2);
                         }
                     }
                     $this->view('teacher/Zquiz_add');
