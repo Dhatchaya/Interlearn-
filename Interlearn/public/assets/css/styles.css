@@ -2447,7 +2447,6 @@ li.lo-nav {
     position: relative;
     display: flex;
     margin-bottom: 2%;
-    justify-content: space-between;
 }
 
 .std_view_content{
@@ -2900,18 +2899,11 @@ std_view_bottom{
 .teacher_upl_content{
     margin-top: 5%;
     margin-left: 5%;
-    margin-bottom: 2%;
-    border: solid;
-    border-color: rgb(0 0 0 / 30%);
-    padding: 2%;
-    height: 60vh;
-    border-radius: 5px;
 }
 
 .teacher_upl_name{
     width: 60vw;
     height: 8vh;
-    border-radius: 3px;
 }
 
 .teacher_upl_img{
@@ -3549,28 +3541,20 @@ width: 45vw;
 }
 .recp_det_content{
     margin-top: 5%;
-    margin-left: 2%;
+    margin-left: 5%;
     flex-wrap: wrap;
-    width: 70vw;
+    max-width: 60vw;
     margin-bottom: 5%;
-    padding: 2%;
-    background-color: rgb(0 0 0 / 6%);
 }
-.recp_crs_add{
-    display: flex;
-    flex-wrap: wrap;
-    width: 80vw;
-}
-.recp_det_box{
-    /* background-color: rgb(104, 44, 198,9%); */
-    width: 20vw;
+/* .recp_det_box{
+    background-color: rgb(104, 44, 198,9%);
+    width: 60vw;
     height: 10vh;
-    /* margin: 5%; */
-}
-/* .recp_det_box:hover{
+} */
+.recp_det_box:hover{
     box-shadow: 10px 10px 5px rgb(104, 44, 198,25%);
     cursor: pointer;
-} */
+}
 .recp_det_name{
     width: 60vw;
     height: 5vh;
@@ -3587,9 +3571,6 @@ width: 45vw;
 .recp_det_time{
     width: 8vw;
     height: 4vh;
-}
-.recp_add_butn{
-    width: 25vw;
 }
 .recp_det_btn{
     width: 10vw;
@@ -3730,7 +3711,7 @@ width: 45vw;
 }
 
 select {
-    width: 10%;
+    width: 100px;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -4893,273 +4874,3 @@ gap: 8vw;
     width: 80%;
     margin-top: 0rem;
 }
-
-
-/* student calendar */
-
-.student_calendar{
-    margin-right: 2%;
-    margin-top: 5%;
-}
-.assignment_card{
-    background-color: white;
-    box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
-    width: 100%;
-    height: 8rem;
-    margin: 1rem 0 1rem 0;
-        border-radius: 5px;
-        cursor: pointer;
-}
-.assignment_card ul{
-    list-style-type: none;
-    text-align: left;
-    margin-left: 15%;
-}
-.assignment_card li{
-   line-height: 2rem;
-   color: var(--black-text);
-}
-.assignment_card_title {
-    height: 35%;
-    background-color: var(--left-sidebar-color);
-     text-align: left;
-    padding-top: 0.8rem;
-    border-radius: inherit;
-    color: white;
-    font-weight: 500;
-}
-.assignment_card_title p{
-    margin-left: 15%;
-}
-.assignment_today a{
-    text-decoration: none;
-}
-
-
-
-
-
-
-
-/* student cards */
-
-.teacher_crs_content2{
-    margin-top: 2%;
-    margin-left: 5%;
-    margin-right: 3%;
-    padding: 2%;
-    border: solid;
-    display: grid;
-    margin-bottom: 4%;
-    gap: 1rem;
-    /* grid-template-rows: minmax(30rem,1fr); */
-    align-items: start;
-}
-.teacher-grid-item{
-    box-sizing: border-box;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    /* cursor: pointer; */
-    transition: 0.2s;
-    padding-bottom: 2%;
-    padding-top: 1%;
-}
-.teacher-card{
-    /* margin-bottom: 1%; */
-}
-.teacher-card-head{
-    display: flex;
-    padding: 1%;
-}
-.teacher-card-head-title{
-    margin-right: 2%;
-    padding-bottom: 0.2px;
-    font-size: larger;
-    color: rgb(104, 44, 198,95%);
-}
-.teacher_card_img2{
-    width: 1vw;
-    height: 2vh;
-    float: right;
-    /* margin-top: 1%; */
-    margin-right: 1%;
-    cursor: pointer;
-    /* margin-bottom: 1%; */
-    padding-bottom: 0.1px;
-}
-.teacher-card-content{
-    width: 100%;
-    /* object-fit: cover; */
-    padding: 2%;
-}
-.teacher-card-body{
-    font-size: medium;
-    line-height: 1.7;
-    color: rgb(104, 44, 198,25%);
-    margin-bottom: 2%;
-}
-.add-week{
-    /* float: right; */
-    letter-spacing: 0.1rem;
-    margin-right: 2%;
-    justify-content: center;
-    text-align: right;
-}
-.add-activity{
-    float: right;
-    letter-spacing: 0.1rem;
-}
-.teacher-crs-activities{
-    display: flex;
-    flex-wrap: wrap;
-    width: 35vw;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-}
-.teacher-crs-activity{
-    width: 10vw;
-    height: 10vh;
-    margin: 2%;
-    justify-content: center;
-    display: flex;
-    text-align: center;
-    background-color: white;
-    align-items: center;
-    width: 10vw;
-    height: 15vh;
-}
-.teacher-crs-activity:hover{
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-.teacher-crs-activity a{
-    font-size: small;
-}
-.teacher-crs-img{
-    width: 3vw;
-    height: 5vh;
-}
-.tchr-popupmodal-content {
-    background-color: #efefef;
-    margin: 10% auto; /* 10% from the top and centered */
-    padding: 25px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    max-width: 600px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-.value-button {
-    display: flex;
-    border: 1px solid #ddd;
-    margin: 0px;
-    width: 3vw;
-    height: 5vh;
-    text-align: center;
-    vertical-align: middle;
-    justify-content: center;
-    padding: 11px 0;
-    background: #ffd2ff;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.value-button:hover {
-  cursor: pointer;
-}
-
-#decrease {
-  margin-right: -4px;
-  padding-bottom: 8%;
-  border-radius: 8px 0 0 8px;
-}
-
-#increase {
-  margin-left: -5px;
-  border-radius: 0 8px 8px 0;
-  padding-bottom: 8%;
-}
-
-#input-wrap {
-  margin: 0px;
-  padding: 0px;
-}
-
-#card-number {
-  text-align: center;
-  border: none;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  margin: 0px;
-  width: 2.8vw;
-    height: 6.5vh;
-}
-
-#card-number::-webkit-inner-spin-button,
-#card-number::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-.teacher-crs-activities2{
-    width: 25vw;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-}
-.teacher-inc-head{
-    float: left;
-}
-.teacher-increment{
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-}
-.tchr-popupmodal-content2 {
-    background-color: #efefef;
-    margin: 10% auto; /* 10% from the top and centered */
-    padding: 25px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    max-width: 450px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-.teacher-edit{
-    text-align: left;
-}
-.teacher-edit-title{
-    width: 22vw;
-    height: 5vh;
-    padding: 1%;
-}
-.teacher_card_img3{
-    width: 1vw;
-    height: 2vh;
-    float: left;
-    margin-right: 1%;
-    cursor: pointer;
-    padding-top: 1px;
-    margin-top: 5px;
-}
-.teacher-upload-file{
-    display: none;
-}
-.teacher-upload-btn{
-    font-size: 14px;
-    border-radius: 5px;
-    background-color: rgb(104, 44, 198,100%);
-    color: white;
-    cursor: pointer;
-    padding: 1%;
-}
-.teacher-upload-btn:hover{
-    background-color: rgb(104, 44, 198,75%);
-}
-
-
-
-/* add course */
-

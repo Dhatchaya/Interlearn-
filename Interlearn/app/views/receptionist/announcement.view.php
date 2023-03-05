@@ -14,13 +14,10 @@
                 <?php if(!empty($announcements)):?>
                 <?php foreach($announcements as $row):?>
                 <div class="ann_view_msg">
-                    
-                    <!-- <?php 
-                        $expiryTime = strtotime($row->time) + 60*60; // expiry time is 1 hour after creation
-                        $currentTime = time(); //timestap
-                        if($expiryTime > $currentTime): 
-                        ?> -->
-                        <img src="<?=ROOT?>/assets/images/edit.png" class="teacher_crs_img2" id="button28" onclick="openModal()">
+                    <?php if($editable): ?>
+                    <a href="<?=ROOT?>/receptionist/announcement/edit/<?=esc($row->aid)?>">
+                            <img src="<?=ROOT?>/assets/images/edit.png" class="teacher_crs_img2" id="button28" onclick="openModal()">
+                        </a>
                     <?php else :?>
                         <!-- <?php echo "Editing is no longer allowed for this record.";?> -->
                     <?php endif; ?>
@@ -107,8 +104,8 @@
                         </a>
                     </div><br>
                     <p class="recp_ann_bot"><?=esc($row->fullname)?></p>
-                    <!-- <p class="recp_ann_bot"><?=$row->time?></p> -->
-                    <p class="recp_ann_bot"><?=$row->date_time?></p><br>
+                    <p class="recp_ann_bot"><?=$row->time?></p>
+                    <p class="recp_ann_bot"><?=$row->date?></p><br>
                     
                 </div><br>
                 <?php endforeach;?>

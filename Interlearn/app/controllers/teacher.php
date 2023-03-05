@@ -96,193 +96,39 @@ class Teacher extends Controller
 
     //each course will have a ID when clicked get that ID pass it as a parameter and
     //access that course
-    public function course($action=null,$id = null,$option = null,$extra=null)
+    public function course($action=null,$id = null,$week = null, $option = null,$extra=null)
     {
         if(!Auth::is_teacher()){
             redirect('home');
 
         }
+        // http://localhost/Interlearn/public/teacher/course/quiz/4/79/create
         $user = Auth::getUsername();
         if($action == "view")
         {
             $data = [];
             $data['action'] = $action;
             $data['id'] = $id;
-            //print_r($id);exit;
+            print_r($id);exit;
 
-            $user = Auth::getUsername();
-            $user_id = Auth::getUid();
+            $user_id = Auth::getuid();
             $subject = new Subject();
             $course = new Course();
             $teacher = new Teacher();
             $instructor = new Instructor();
             $course_material = new CourseMaterial();
-            $course_week = new CourseWeek();
             $student_course = new StudentCourse();
             // $data = [];
 
             $data['rows']= $course->select([],'course_id');
             //show($data['rows']);die;
             //$data['sums']= $subject -> teacherCourse([],$user_id);
-            $data['courses'] = $subject -> teacherCourseDetails([],$id);
-            //show($data['courses']);die;
-            $data['noOfWeeks'] = $course->getWeekCount($id)->No_Of_Weeks;
-            $data['courseWeeks'] = $course_week->getWeeks($id);
-            // show($course_week->getWeeks($id));
-            // show($data['courseWeeks']);die;
+            $data['courses'] = $subject -> stdCourseDetails([],$id);
             //$data['courses'] = $subject -> CoursePg([],$user_id);
             //show($data['sums']);die;
-           // show($data['courses']);die;
-              //show($data['sums']);die;
-              //show($data['courses'][0]->getWeekName(6,1));die;
-            $data['materials'] = $subject -> teacherCourseMaterial([],$id);
-            //show($data['materials']);die;
-            // if(isset($_POST['submit'])){
-            //     $week_name = $_POST['title'];
-            //     $result = $course_week->UpdateWeekName();
-            // }
-
-            if(isset($_POST['submit-weeks'])){
-                $currentWeeks = $course->getWeekCount($id)->No_Of_Weeks;
-                $course->UpdateNoOfWeeks($id,$currentWeeks + $_POST['no_of_weeks']);
-                for ($i=1; $i <= $_POST['no_of_weeks'] ; $i++) {
-                    $course_week->createWeek($id,$currentWeeks+$i);
-                    header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
-                }
-            }
-
-            if(isset($_POST['submit-title'])){
-
-                $result = $course_week->UpdateWeekName($id,$_POST['weeknumber'],$_POST['title']);
-            }
-
-            if(isset($_POST['submit-upload'])){
-                $result = $course_material->UpdateUploadName($id,$_POST['filenumber'],$_POST['upload-title']);
-            }
-
-            if(isset($_POST['submit-delete-week'])){
-                $result = $course_week->deleteWeek($_POST['delete-weeknumber']);
-                $currentWeeks = $course->getWeekCount($id)->No_Of_Weeks;
-                $course->UpdateNoOfWeeks($id,$currentWeeks - 1);
-                header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
-            }
-
-            if(isset($_POST['submit-delete-up'])){
-                $result = $course_material->deleteUpload($_POST['delete-filenumber']);
-                header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
-            }
-
+            show($data['courses']);die;
             $this->view('teacher/course',$data);
         }
-
-        if($action == 'upload')
-        {
-            if(isset($_POST['submit']))
-            {
-                $file = $_FILES['file'];
-
-                $fileName = $_FILES['file']['name'];
-                $fileTmpName = $_FILES['file']['tmp_name'];
-                $fileSize = $_FILES['file']['size'];
-                $fileError = $_FILES['file']['error'];
-                $fileType = $_FILES['file']['type'];
-
-                $fileExt = explode('.',$fileName);
-                $fileActualExt = strtolower(end($fileExt));
-
-                $allowed1 = array('jpg','jpeg','png');
-                $allowed2 = array('pdf','zip','txt','sql','docx','xml','doc','ppt');
-                $allowed3 = array('mp3','mp4');
-
-                if(in_array($fileActualExt, $allowed1)){
-                    // print_r($_FILES['file']);exit;
-                    if($fileError === 0){
-                        if($fileSize < 1000000){
-                            $fileNameNew = uniqid('',true).".".$fileActualExt;
-                            $fileDestination = 'uploads/images/'.$fileNameNew;
-                            move_uploaded_file($fileTmpName,$fileDestination);
-                            //echo $fileActualExt;exit;
-                            //var_dump($_POST);exit;
-                            //print_r($fileType);exit;
-                            $_POST['course_material'] = $fileNameNew;
-                            $_POST['type'] = $fileType;
-                            $_POST['size'] = $fileSize;
-                            $_POST['course_id'] = $id;
-                            //show($_POST);die;
-                            $result = $course_material->insert($_POST);
-                            // $result = $course->insert($_POST);
-                            header("location: http://localhost/Interlearn/public/teacher/course?uploadsuccess");
-                        }else{
-                            echo "Image is too large!";
-                        }
-                    }else{
-                        echo "There was an error uploading image!";
-                    }
-                }else{
-                    echo "You cannot upload this file!";
-                }
-
-                if(in_array($fileActualExt, $allowed2)){
-                    // print_r($_FILES['file']);exit;
-                    if($fileError === 0){
-                        if($fileSize < 10000000){
-
-                            $fileNameNew = uniqid('',true).".".$fileActualExt;
-                            $fileDestination = 'uploads/documents/'.$fileNameNew;
-                            move_uploaded_file($fileTmpName,$fileDestination);
-                            $_POST['course_material'] = $fileNameNew;
-                            $_POST['type'] = $fileType;
-                            $_POST['size'] = $fileSize;
-                            $_POST['course_id'] = $id;
-                            //show($_POST);die;
-                            $result = $course_material->insert($_POST);
-                            header("location: http://localhost/Interlearn/public/teacher/course?uploadsuccess");
-                        }else{
-                            echo "File is too large!";
-                        }
-                    }else{
-                        echo "There was an error uploading file!";
-                    }
-                }else{
-                    echo "You cannot upload this file!";
-                }
-
-                if(in_array($fileActualExt, $allowed3)){
-                    // print_r($_FILES['file']);exit;
-                    if($fileError === 0){
-                        if($fileSize < 1000000000){
-
-                            $fileNameNew = uniqid('',true).".".$fileActualExt;
-                            $fileDestination = 'uploads/videos/'.$fileNameNew;
-                            move_uploaded_file($fileTmpName,$fileDestination);
-                            $_POST['course_material'] = $fileNameNew;
-                            $_POST['type'] = $fileType;
-                            $_POST['size'] = $fileSize;
-                            $_POST['course_id'] = $id;
-                            //show($_POST);die;
-                            $result = $course_material->insert($_POST);
-                            header("location: http://localhost/Interlearn/public/teacher/course?uploadsuccess");
-                        }else{
-                            echo "File is too large!";
-                        }
-                    }else{
-                        echo "There was an error uploading file!";
-                    }
-                }else{
-                    echo "You cannot upload this file!";
-                }
-                // $result = $course_material->insert($_POST);
-            }
-            $data['rows']= $course->select([],'course_id');
-            //show($data['rows']);die;
-            $data['sums']= $subject -> teacherCourse([],$user_id);
-            //show($data['sums']);die;
-            $data['courses'] = $subject -> CoursePg([],$user_id);
-            $data['week_no'] = $week_no;
-              //show($data['courses']);die;
-            $this->view('teacher/upload',$data);
-        }
-
         if($action == "assignment")
         {
             $assignment = new Assignment();
@@ -504,15 +350,13 @@ class Teacher extends Controller
             //Get all submission details
             $submissions = $submission->allsubmissions(['assignmentId'=> $assignmentID]);
            // show($submissions);die;
-            if( $submissions){
-                foreach ($submissions as $submission){
-                    $files = explode(",",$submission->Files);
-                    $submission->Files = $files;
-                }
 
+            foreach ($submissions as $submission){
+                $files = explode(",",$submission->Files);
+                $submission->Files = $files;
+            }
             $data ['assignment']= $submissions[0]->title;
             $data['submissions'] = $submissions;
-            }
             //create a zip file of all the submissions
             $file_path = "/xampp/htdocs/Interlearn/uploads/submissions/allfiles.zip";
             if($_SERVER["REQUEST_METHOD"]=="POST"){
@@ -583,6 +427,75 @@ class Teacher extends Controller
             }
             $this->view('teacher/assignment_submission',$data);
         }
+        // $action=null,$id = null,$week = null, $option = null,$extra=null
+        // http://localhost/Interlearn/public/teacher/course/quiz/4/79/create
+        if($action == 'quiz') {
+            $question = new ZQuestion();
+            $choice = new ZChoices();
+            $quiz = new ZQuiz();
+            $data = [];
+            $data['id'] = $id;
+            if(isset($_GET['qnum'])) {
+                $qnum = $_GET['qnum'];
+            }
+            
+
+            if($option == 'create') {
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+                        $quiz_id = uniqid();
+                        $_POST['quiz_id']=$quiz_id;
+        
+                        $_POST['course_id'] = $id;
+        
+                        $result = $quiz-> insert($_POST);
+                        
+                        if($result) {
+                            $category = $_GET['category'];
+
+                            $quiz_question = new ZQuizQuestion();
+                            $result = $question->QuizInnerjoinQuestion();
+                            $result = $quiz_question->insert($_POST);
+                            echo $category;
+                        }
+                    }
+                    $this->view('teacher/Zquiz_add');
+                    exit();
+            }
+            if($option == 'new') {
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+                    $question_number = uniqid();
+                    $_POST['question_number']=$question_number;
+    
+                    $_POST['course_id'] = $id;
+    
+                    // $question = new ZQuestion();
+                    $result = $question-> insert($_POST);
+                    
+                    // $choice = new ZChoices();
+                    $result = $choice-> insert($_POST);
+                    if($result) {
+                        header("Location:http://localhost/Interlearn/public/teacher/course/quiz/".$id."/".$week);
+                    }
+                }
+                
+                $this->view('teacher/Zquiz_new');
+                exit();
+            }
+
+            if($option == 'delete') {
+                // $id = $_GET['id'];
+                $result = $question->delete(['question_number'=>$qnum]);
+                header("Location:http://localhost/Interlearn/public/teacher/course/quiz/".$id."/".$week);
+                exit();
+            }
+
+            $data['rows'] = $question->ChoiceInnerjoinQuestion();
+            // show($data);
+            $this->view('teacher/Zquiz', $data);    
+        }
+
     }
 
     public function upload()
@@ -724,6 +637,8 @@ class Teacher extends Controller
         
         $this->view('teacher/profile',$data);
     }
+
+    // -----------------------Not used ------------------------------------//
     public function quizz($action=null,$id = null)
     { 
         if(!Auth::is_teacher()){
@@ -840,64 +755,82 @@ class Teacher extends Controller
         $this->view('teacher/quizz');
     }
 
+    // -------------------------------------------------------------------------//
+
+
     //-------------After the changes --------------------------------//
-    public function quiz($action=null)
-    {
-        if(!Auth::is_teacher()){
-            redirect('home');
-           exit;
-        }
-        $question = new ZQuestion();
-        $choice = new ZChoices();
+    // public function quiz($action=null, $id = null)
+    // { 
+    //     if(!Auth::is_teacher()){
+    //         redirect('home');
+    //        exit;
+    //     }
+    //     $question = new ZQuestion();
+    //     $choice = new ZChoices();
+    //     $quiz = new ZQuiz();
+    //     $data = [];
+    //     $data['id'] = $id;
 
-        if($action == 'new'){
+    //     if($action == 'new'){
 
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-                $question_number = uniqid();
-                $_POST['question_number']=$question_number;
+    //             $question_number = uniqid();
+    //             $_POST['question_number']=$question_number;
 
-                $_POST['course_id'] = 6;
+    //             $_POST['course_id'] = 4;
 
-                // $question = new ZQuestion();
-                $result = $question-> insert($_POST);
+    //             // $question = new ZQuestion();
+    //             $result = $question-> insert($_POST);
+                
+    //             // $choice = new ZChoices();
+    //             $result = $choice-> insert($_POST);
+    //             if($result) {
+    //                 header("Location:http://localhost/Interlearn/public/teacher/quiz/");
+    //             }
+    //         }
+            
+    //         $this->view('teacher/Zquiz_new');
+    //         exit();
+    //     }
 
-                // $choice = new ZChoices();
-                $result = $choice-> insert($_POST);
-                if($result) {
-                    header("Location:http://localhost/Interlearn/public/teacher/quiz/");
-                }
-            }
+    //     if($action == 'create') {
 
-            $this->view('teacher/Zquiz_new');
-            exit();
-        }
+    //         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        if($action == 'create') {
+    //             $quiz_id = uniqid();
+    //             $_POST['quiz_id']=$quiz_id;
 
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //             $_POST['course_id'] = 4;
 
-                $quiz_id = uniqid();
-                $_POST['quiz_id']=$quiz_id;
+    //             $result = $quiz-> insert($_POST);
 
-                $_POST['course_id'] = 6;
+    //             if($result) {
+    //                 echo "success";die;
+    //             }
+    //         }
+    //         $this->view('teacher/Zquiz_add');
+    //         exit();
+    //     }
 
-                $quiz = new ZQuiz();
-                $result = $quiz-> insert($_POST);
+    //     if($action == 'delete') {
 
-                if($result) {
-                    echo "success";die;
-                }
-            }
-            $this->view('teacher/Zquiz_add');
-            exit();
-        }
+    //         // $id = $_GET['id'];
+    //         $result = $question->delete(['question_number'=>$id]);
+    //         header("Location:http://localhost/Interlearn/public/teacher/quiz");
+    //     }
 
-        $data =[];
-        $data['rows'] = $question->ChoiceInnerjoinQuestion();
-        // show($data);
-        $this->view('teacher/Zquiz', $data);
-    }
+    //     if($action == 'edit') {
+
+    //         // $id = $_GET['id'];
+    //         $result = $question->update(['question_number'=>$id]);
+    //         header("Location:http://localhost/Interlearn/public/teacher/quiz");
+    //     }
+    //     // $data =[];
+    //     $data['rows'] = $question->ChoiceInnerjoinQuestion();
+    //     // show($data);
+    //     $this->view('teacher/Zquiz', $data);
+    // }
 
     //--------------------------------------------------------------///
 

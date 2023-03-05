@@ -56,59 +56,28 @@ class Student extends Controller
         $teacher = new Teacher();
         $instructor = new Instructor();
         $student_course = new StudentCourse();
-        $course_week = new CourseWeek();
-        $course_material = new CourseMaterial();
         $data = [];
 
         if($action == 'view')
         {
-            // print_r($id);exit;    
+            // print_r($id);exit;
             $data = [];
-            $data['action'] = $action;
-            $data['id'] = $id;
-            
-            //$data['courses'] = $subject -> CoursePg([],$user_id);
-            $data['courses'] = $subject -> stdCourseDetails([],$id);
-            //show($data['courses']);die;
-            $data['çourseWeeks'] = $course_week->getWeeks($id);
+                $data['action'] = $action;
+                $data['id'] = $id;
 
-            $data['materials'] = $subject -> tchrCrsMat([],$id);
+                //$data['courses'] = $subject -> CoursePg([],$user_id);
+                $data['courses'] = $subject -> stdCourseDetails([],$id);
+                //show($data['courses']);die;
+                $this->view('student/coursepg',$data);
 
-            // $data['files'] = $course_material -> downloadFiles([],$id);
-
-            if(!empty($_GET['file_id'])){
-                $fid = $_GET['file_id'];
-                $result = $course_material -> downloadFiles([],$fid);
-                $filename = basename($_GET['file_id']);
-                $filepath = 'uploads/documents/'.$filename;
-                if(!empty($filename) && file_exists($filepath)){
-                    header("Cache-Control: public");
-                    header("Content-Description: File Transfer");
-                    header("Content-Disposition: attachment; filename = $filename");
-                    header("Content-Type: application/pdf");
-                    header("Content-Transfer-Emcoding: binary");
-                    header("Expires: 0");
-                    header("Content-Length: ".filesize($filepath));
-
-                    readfile($filepath);
-                    // $newCount = $data['materials'->'downloads']
-                    exit;
-                }
-                else{
-                    echo "File does not exist";
-                }
-            }
-            
-            $this->view('student/coursepg',$data);
-                
         }
         $data['rows']= $course->select([],'course_id');
         $data['sums']= $subject -> studentCourse([],$user_id);
         //show($data['sums']);die;
-        
+
 
         //$data['courses'] = $subject->stdCoursePg([],$course_id);
-        
+
         $this->view('student/course',$data);
     }
     public function progress($action=null)
@@ -394,11 +363,12 @@ class Student extends Controller
 
         // $result = mysqli_query($conn, $query);
 
-        $question = new Question();
-
+        // $question = new Question();
+        $question = new ZQuestion();
 
         if($action == "view"){
-            $result = $question->ChoicejoinQuestion();
+            $result = $question->ChoiceInnerjoinQuestion();
+
             $quiz = array();
             foreach ($result as $row) {
                 $question = array(
@@ -408,15 +378,16 @@ class Student extends Controller
                         array('text' => $row->choice2, 'marks' => intval($row->choice2_mark)),
                         array('text' => $row->choice3, 'marks' => intval($row->choice3_mark)),
                         array('text' => $row->choice4, 'marks' => intval($row->choice4_mark))
-                    )
+                    ),
+                    'mark' => $row->question_mark
                 );
                 array_push($quiz, $question);
             }
-        $json_data = json_encode($quiz);
+            $json_data = json_encode($quiz);
+            header('Content-Type: application/json');
+            echo $json_data;
 
-        header('Content-Type: application/json');
-        echo $json_data;
-        exit;
+            exit;
         }
 
 
@@ -458,20 +429,6 @@ class Student extends Controller
             $this->view("student/student-payment");
         }
         $this->view("student/student-payment");
-    }
-    public function calendar()
-    {
-        if (!Auth::is_student()) {
-            redirect('home');
-        }
-        $assignment = new Assignment();
-        $userid = Auth::getUID();;
-        $result= $assignment->getallAssignments(['uid'=>$userid]);
-        
-
-        header('Content-Type: application/json');
-        echo json_encode($result);
-       // $this->view('includes/calendar');
     }
 
 }

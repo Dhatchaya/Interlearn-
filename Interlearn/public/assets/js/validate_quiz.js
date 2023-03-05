@@ -57,39 +57,22 @@ function validateConfirmForm() {
         return false;
     }
 
-    var selectedDate = new Date(document.forms["confirmForm"]["quizz_date"].value);
-    var today = new Date();
-
-    if (selectedDate <= today) {
-        document.getElementById("date-error").innerHTML = "Please select a date today or after today";
-        return false;
-    }
-
     // var enableTimeError = new Time(document.forms["confirmForm"]["quizz_date"].value);
     // if (selectedDate <= today || selectedDate == "") {
     //     document.getElementById("date-error").innerHTML = "Please select a date today or after today";
     //     return false;
     // }
 
+    //check enable disable time
 
-    // Get the values of the "enable time" and "disable time" fields from the user input
-    var enableTimeInput = document.getElementById('enable-time').value;
-    var disableTimeInput = document.getElementById('disable-time').value;
-
-    // Convert the input values into JavaScript Date objects
-    var enableTime = new Date('1970-01-01T' + enableTimeInput + ':00');
-    var disableTime = new Date('1970-01-01T' + disableTimeInput + ':00');
-
-    // Validate that the "enable time" is before the "disable time"
-    if (enableTime.getTime() < disableTime.getTime()) {
-    // "enable time" is before "disable time"
-    console.log('Enable time is before disable time');
-    } else {
-    // "enable time" is after or equal to "disable time"
-    console.log('Enable time must be before disable time');
-    }
-
-
+    // let enableTime = new Date(document.getElementById("enable_time").value);
+    // let disableTime = new Date(document.getElementById("disable_time").value);
+    
+    // if (enableTime < disableTime) {
+    //     // disable form submission or show error message
+    //     document.getElementById("enable-disable-error").innerHTML = "Enable time should be lesser than  to disable time";
+    //     return false;
+    // }
     //check duration
     var duration = document.forms["confirmForm"]["duration"].value;
     if (duration == "") {
@@ -103,3 +86,28 @@ function validateConfirmForm() {
         return false;
     }
 }
+
+const form = document.getElementById("my-form");
+
+  form.addEventListener("submit", function(event) {
+    event.preventDefault(); // prevent form submission
+
+    const enableTime = new Date(form.elements["enable_time"].value);
+    const disableTime = new Date(form.elements["disable_time"].value);
+
+    console.log(enableTime);
+    if (enableTime >= disableTime) {
+        // disable form submission or show error message
+        document.getElementById("enable-disable-error").innerHTML = "Enable time should be lesser than  to disable time";
+        alert("Enable time should be lesser than to disable time");
+        return false;
+    }
+    else {
+        form.submit();
+    }
+});
+
+
+
+
+

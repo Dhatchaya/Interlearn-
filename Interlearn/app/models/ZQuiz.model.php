@@ -7,19 +7,19 @@ class ZQuiz extends Model
     //says what table it has to target
     public $error = [];
     protected $table = "myquiz";
-    protected $allowed_columns = [
+    protected $allowed_columns = [	
 
-        'quiz_id	quiz_name',
+        'quiz_id',
+        'quiz_name',
         'quiz_description',
         'display_question',
         'total_points',
-        'quiz_date',
+        'category',
         'enable_time',
         'disable_time',
         'duration',
         'format_time',
         'course_id'	
-
     ];
     protected $staffs = [
         'Manager',

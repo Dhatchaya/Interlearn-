@@ -43,13 +43,13 @@
                     <p>Please note that tomorrow(24th) class has been cancelled.</p>
                 </div> -->
             </div><br><br>
-            <!-- <div class="std_view_bottom">
+            <div class="std_view_bottom">
                 <a href="<?=ROOT?>/courses"><h3>You may also like:</h3></a>
                 <div class="std_view_like">
                     <a href="<?=ROOT?>/courses/view/1">
-                   <img src="<?=ROOT?>/uploads/images/<?= Auth::getdisplay_picture();?>" alt="" class="recp_crs_img"> 
+                    <!-- <img src="<?=ROOT?>/uploads/images/<?= Auth::getdisplay_picture();?>" alt="" class="recp_crs_img"> -->
                     <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
-                     <p>Grade 11 Mathematics</p>
+                    <!-- <p>Grade 11 Mathematics</p> -->
                     <p>Grade <?=esc($sum->grade)?> - <?=esc($sum->subject)?></p><br>
                     <div class="recp_crs_butn2">
                         <a href="<?=ROOT?>/courses/view/1/?id=<?=esc($sum->subject_id)?>">
@@ -59,7 +59,7 @@
                 
                     </a>
           
-                 <div class="std_view_rectangle">
+                    <!-- <div class="std_view_rectangle">
                         <a href="#">
                         <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_view_img">
                         <p>Mathematics by Mrs. V.J. Kumari</p>
@@ -76,27 +76,11 @@
                         <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_view_img">
                         <p>Sinhala by Mr. A.B. Salgado</p>
                         </a>
-                    </div> 
+                    </div> -->
                 </div>
-                </div> -->
+                </div>
         </div>
     </div>
-    <div class="student_calendar">
-        <?php $this->view("includes/calendar");?>
-        <div id = "assignment_today" class ="assignment_today">
-           <!-- <a href ="http://localhost/Interlearn/public/student/coursepg/submissionstatus/4?id=M.Pavithra63fb0e481edef3.79614533"> <div  class ="assignment_card">
-                <div class ="assignment_card_title"><p>Mathematics assignment 1 is due<p></div>
-                <ul> 
-                    <li> Deadline: 2020-02-04</li>
-                    <li> Subject: Mathematics</li>
-                </ul>
-            </div>
-                    </a> -->
-           
-        </div> 
-    </div>
-    <script defer src="<?=ROOT?>/assets/js/calendar.js?v=<?php echo time(); ?>"></script>
-
 </div>
 
     <?php $this->view("includes/footer");?>

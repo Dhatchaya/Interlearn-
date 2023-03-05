@@ -1,24 +1,26 @@
 <?php
 /**
- *Course class
+ *ZQuizQuestion class
  */
-class CourseMaterial extends Model
+class ZQuizQuestion extends Model
 {
     //says what table it has to target
     public $error = [];
-    public $table = "course_material";
-    protected $allowed_columns = [
-        'course_id',
-        'course_material'
+    protected $table = "myquiz_myquestion";
+    protected $allowed_columns = [	
+
+        'qq_id',
+        'question_number',
+        'quiz_id'	
 
     ];
-    // protected $staffs = [
-    //     'Manager',
-    //     'Teacher',
-    //     'Instructor',
-    //     'Receptionist',
+    protected $staffs = [
+        'Manager',
+        'Teacher',
+        'Instructor',
+        'Receptionist',
 
-    // ];
+    ];
     public function validate($data)
     {   
         $this->error = [];
@@ -45,6 +47,5 @@ class CourseMaterial extends Model
         return false;
     }
 
-    
 
 }

@@ -4,24 +4,24 @@
 //  console.log(quiz);
 
 
-// Select two random objects
-const randomObjects = [];
-const usedIndexes = [];
-let count = 0;
-while (count < 2 && usedIndexes.length < quiz.length) {
-  const randomIndex = Math.floor(Math.random() * quiz.length);
-  if (!usedIndexes.includes(randomIndex)) {
-    usedIndexes.push(randomIndex);
-    randomObjects.push(quiz[randomIndex]);
-    count++;
-  }
-}
+// // Select two random objects
+// const randomObjects = [];
+// const usedIndexes = [];
+// let count = 0;
+// while (count < 2 && usedIndexes.length < quiz.length) {
+//   const randomIndex = Math.floor(Math.random() * quiz.length);
+//   if (!usedIndexes.includes(randomIndex)) {
+//     usedIndexes.push(randomIndex);
+//     randomObjects.push(quiz[randomIndex]);
+//     count++;
+//   }
+// }
 
-// Create a new array with the selected objects
-const newArray = [...randomObjects];
+// // Create a new array with the selected objects
+// const newArray = [...randomObjects];
 
-// Log the new array to the console
-console.log(newArray);
+// // Log the new array to the console
+// console.log(newArray);
 
 // console.log(typeof(quiz));
 
@@ -123,7 +123,7 @@ function getResult(Element) {
     const id = parseInt(Element.id);
     // console.log(currentQuestion.options[id].marks);
 
-    totalMarks = totalMarks + currentQuestion.options[id].marks;
+    totalMarks = totalMarks + currentQuestion.options[id].marks * currentQuestion.mark;
 
     // its clicked as answer
     Element.classList.add('answered');
@@ -243,7 +243,7 @@ function StartQuiz() {
     // Submit answers automatically when time is up
     if (timeRemaining <= 0) {
         clearInterval(timer);
-        // submitQuiz();
+        quizOver();
     }
     }, 1000);
 //-----------------------------------------------------------------//
@@ -253,7 +253,6 @@ function StartQuiz() {
 
     answerIndicator();
 }
-
 
 window.onload = function () {
     homeBox.querySelector(".total-question").innerHTML = quiz.length;

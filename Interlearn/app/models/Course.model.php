@@ -17,7 +17,6 @@ class Course extends Model
         'day',
         'timefrom',
         'timeto',
-        'No_Of_Weeks'
 
     ];
     // protected $staffs = [
@@ -53,74 +52,6 @@ class Course extends Model
         return false;
     }
 
-    // public function UpdateNoOfWeeks($course_id,$no_of_weeks){
-    //     $query = "SELECT max(week_no) AS max_week FROM course_week WHERE course_id = ".$course_id;
-    //     $res = $this -> query($query);
-    //     // show($res);die;
-    //     $max_week = $res[0]->max_week;
-    //     for($i=1; $i<=$no_of_weeks; $i++){
-    //         $week= $max_week+$i;
-    //         $query="INSERT INTO course_week VALUES ($course_id,$week,'Week $week')";
-    //         $res = $this -> query($query);
-    //     }
-    //     if($res){
-    //         return true;
-    //     }else{
-    //         return false;
-    //     }
-    // }
-
-    public function getLastCourse(){
-        $query = "SELECT * FROM course ORDER BY course_id DESC LIMIT 1"; 
-        $res = $this -> query($query);
-
-        if($res){
-            return $res;
-        }else{
-            return false;
-        }
-
-    }
-
-
-    public function getWeekName($Course_id,$week_no){
-        $query = "SELECT week_name FROM course_week WHERE course_id = ".$Course_id." and week_no=".$week_no; 
-        $res = $this -> query($query);
-        // echo $query;die;
-        // show($res);die;
-        if($res){
-            return $res[0];
-        }else{
-            return false;
-        }
-
-    }
-
-    public function getWeekCount($Course_id){
-        $query = "SELECT No_Of_Weeks FROM ".$this->table." WHERE course_id = ".$Course_id; 
-        $res = $this -> query($query);
-        // echo $query;die;
-        // show($res);die;
-        if($res){
-            return $res[0];
-        }else{
-            return false;
-        }
-
-    }
-
-    public function UpdateNoOfWeeks($course_id,$no_of_weeks){
-        $query = "UPDATE ".$this->table." SET No_Of_Weeks= :no_of_weeks WHERE course_id = :courseid";
-        $data['no_of_weeks'] = $no_of_weeks;
-        $data['courseid'] = $course_id;
-        $res = $this -> update_table($query,$data);
-
-        if($res){
-            return true;
-        }else{
-            return false;
-        }
-    }
     
 
 }

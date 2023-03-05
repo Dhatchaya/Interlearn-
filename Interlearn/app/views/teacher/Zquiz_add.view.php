@@ -9,7 +9,7 @@
         <p>Add the time slots and confirmation details</p>
         <br>
         
-        <form name="confirmForm" action="" method="POST" onsubmit="return validateConfirmForm();">
+        <form name="confirmForm" action="" method="POST" onsubmit="return validateConfirmForm();" id="my-form">
 
             <label for="quiz_name">Quiz name <strong> *</strong> : </label>
             <input class="home_cnt_inp" type=text name="quiz_name" value="" placeholder="Eg : sample quiz">
@@ -28,8 +28,8 @@
                     <input class="time_period" type=number name="total_points" value="" placeholder="">
                 </div>
                 <div class="enable">
-                    <label for="time_period">Category <strong> *</strong> : </label>
-                    <select name="category" id="marks">
+                    <label for="category">Category <strong> *</strong> : </label>
+                    <select name="category" id="category">
                         <option value="low"> Low </option>
                         <option value="Medium"> Medium </option>
                         <option value="Hard"> Hard </option>
@@ -39,24 +39,23 @@
             </div>
 
             <div class="enable_disable">
-                <div class="enable">
+                <!-- <div class="enable">
                     <label for="time_period">Quizz Date<strong> *</strong> : </label>
                     <input class="quizz_date" type=date name="quiz_date">
                 </div>
-                <span id="date-error" style="color:red"></span>
+                <span id="date-error" style="color:red"></span> -->
                 <div class="enable">
                     <label for="time_period">Enable time <strong> *</strong> : </label>
-                    <input class="time_period" type=time name="enable_time" id="enable-time" value="" placeholder="">
+                    <input class="time_period" type=datetime-local name="enable_time" id="enable_time" value="" placeholder="">
                 </div>
                 <!-- validate time -->
-                <span id="enable-error" style="color:red"></span>
                 <div class="enable">
                     <label for="time_period">Disable time <strong> *</strong> : </label>
-                    <input class="time_period" type=time name="disable_time" id="disable-time" value="" placeholder="">
+                    <input class="time_period" type=datetime-local name="disable_time" id="disable_time" value="" placeholder="">
                 </div>
-                <span id="disable-error" style="color:red"></span>
+                
             </div>
-            
+            <span id="enable-disable-error" style="color:red"></span>
             <br>
             <label for="time_period">Duration <strong> *</strong> : </label><br>
             <div class="select_duration">
