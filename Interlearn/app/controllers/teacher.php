@@ -149,6 +149,7 @@ class Teacher extends Controller
                 $course->UpdateNoOfWeeks($id,$currentWeeks + $_POST['no_of_weeks']);
                 for ($i=1; $i <= $_POST['no_of_weeks'] ; $i++) { 
                     $course_week->createWeek($id,$currentWeeks+$i);
+                    header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
                 }
             }
 
