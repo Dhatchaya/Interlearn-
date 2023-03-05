@@ -80,21 +80,21 @@ class Receptionist extends Controller
         $this->view('receptionist/receptionist-payments',  ['bankPayments' => $BankPaymentData, 'transactions' => $payment_history]);
     }
 
-    public function getCashPayment()
-    {
-        if (!Auth::is_receptionist()) {
-            redirect('home');
-        }
+    // public function getCashPayment()
+    // {
+    //     if (!Auth::is_receptionist()) {
+    //         redirect('home');
+    //     }
 
-        // show($_POST);
-        if (isset($_POST)) {
-            $payment_model = new Payment();
-            $_POST['method'] = 'cash';
-            $_POST['status'] = '1';
-            $payment_model->insert($_POST);
-            $this->view("receptionist/receptionist-payments");
-        }
-    }
+    //     // show($_POST);
+    //     if (isset($_POST)) {
+    //         $payment_model = new Payment();
+    //         $_POST['method'] = 'cash';
+    //         $_POST['status'] = '1';
+    //         $payment_model->insert($_POST);
+    //         $this->view("receptionist/receptionist-payments");
+    //     }
+    // }
 
     public function nextCashPayment()
     {
@@ -105,12 +105,9 @@ class Receptionist extends Controller
         // show($_POST);
         if (isset($_POST)) {
             $data = json_decode(file_get_contents("php://input"), true);
-            $studentId = $data['StudentID'];
-            $courseId = $data['CourseID'];
-            $amount = $data['Amount'];
-            $month = $data['Month'];
-            $method =   'cash';
-            $status = '1';
+
+            $data['method'] =   'cash';
+            $data['status'] = '1';
 
             $payment_model = new Payment();
             $payment_model->insert($data);

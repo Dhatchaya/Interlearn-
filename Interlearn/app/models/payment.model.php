@@ -17,6 +17,7 @@ class Payment extends Model
     ];
     public function getAll()
     {
+        $query = "SELECT * FROM payment WHERE status = 1";
         $data = $this->query($query);
 
         if ($data == NULL) {
