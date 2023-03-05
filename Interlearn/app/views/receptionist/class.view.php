@@ -21,34 +21,35 @@ $val = explode('/',$url);
         <h4><i>Choose the language medium</i> </h4><br>
         <nav class="recp_cl_navbar">
             <ul class="recp_cl_medium">
+
+            <?php if(!empty($mediums)):?>
+                    <?php foreach($mediums as $medium):?>
+                    <li><a href="<?=ROOT?>/receptionist/course/view/1/?id=<?=$medium->subject_id?>" class="recp_cl_nav active"><?=$medium->language_medium?></a></li>
+               <?php endforeach;?>
+               <?php endif;?>
+
                
-               <?php if( $val[3] == 1) :?> 
-                    <?php echo ' <li><a href="'.ROOT.'/receptionist/course/view/1/?id='.$subjects[0]->subject_id.'" class="recp_cl_nav active">Sinhala</a></li>';?>
-                    <?php if(empty($subjects)):?>
-                        <br><button class="recp_cl_btn" id="button28" onclick="openModal()">+Add medium</button>
-                    <?php endif;?>
+               <!-- <?php if( $val[3] == 1) :?> 
+                    <?php echo ' <li><a href="'.ROOT.'/receptionist/course/view/1/?id='.$sinhalaid[0]->subject_id.'" class="recp_cl_nav active">Sinhala</a></li>';?>
+                  
 
                 <?php else :?>
-                    <?php echo ' <li><a href="'.ROOT.'/receptionist/course/view/1/?id='.$subjects[0]->subject_id.'" class="recp_cl_nav">Sinhala</a></li>';?>
+                    <?php echo ' <li><a href="'.ROOT.'/receptionist/course/view/1/?id='.$sinhalaid[0]->subject_id.'" class="recp_cl_nav">Sinhala</a></li>';?>
                 <?php endif;?>
 
                 <?php if( $val[3] == 2) :?>
-                    <?php echo ' <li><a href="'.ROOT.'/receptionist/course/view/2/?id='.$subjects[0]->subject_id.'" class="recp_cl_nav active">English</a></li>';?>
-                    <?php if(empty($subjects)):?>
-                        <br><button class="recp_cl_btn" id="button28" onclick="openModal()">+Add medium</button>
-                    <?php endif;?>
+                    <?php echo ' <li><a href="'.ROOT.'/receptionist/course/view/2/?id='.$englishid[0]->subject_id.'" class="recp_cl_nav active">English</a></li>';?>
+                 
                 <?php else :?>
-                    <?php echo '<li><a href="'.ROOT.'/receptionist/course/view/2/?id='.$subjects[0]->subject_id.'" class="recp_cl_nav">English</a></li>';?>
+                    <?php echo '<li><a href="'.ROOT.'/receptionist/course/view/2/?id='.$englishid[0]->subject_id.'" class="recp_cl_nav">English</a></li>';?>
                 <?php endif;?>
 
                 <?php if( $val[3] == 3) :?> 
-                    <?php echo ' <li><a href="'.ROOT.'/receptionist/course/view/3/?id='.$subjects[0]->subject_id.'" class="recp_cl_nav active">Tamil</a></li>';?>
-                    <?php if(empty($subjects)):?>
-                        <br><button class="recp_cl_btn" id="button28" onclick="openModal()">+Add medium</button>
-                    <?php endif;?>
+                    <?php echo ' <li><a href="'.ROOT.'/receptionist/course/view/3/?id='.$tamilid[0]->subject_id.'" class="recp_cl_nav active">Tamil</a></li>';?>
+                   
                 <?php else :?>
-                    <?php echo '<li><a href="'.ROOT.'/receptionist/course/view/3/?id='.$subjects[0]->subject_id.'" class="recp_cl_nav">Tamil</a></li>';?>
-                <?php endif;?>
+                    <?php echo '<li><a href="'.ROOT.'/receptionist/course/view/3/?id='.$tamilid[0]->subject_id.'" class="recp_cl_nav">Tamil</a></li>';?>
+                <?php endif;?> -->
             </ul>
         </nav>
         <div id="profileModal" class="popupModal">
@@ -120,7 +121,7 @@ $val = explode('/',$url);
                             <img src="<?=ROOT?>/assets/images/edit.png" class="teacher_crs_img2" id="button28" onclick="openModal()">
                         </a>
                         <a href="<?=ROOT?>/receptionist/course/delete/<?=esc($teacher->course_id)?>">
-                            <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_crs_img2">
+                            <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_crs_img2" id="button35" onclick="openModal4(<?=esc($teacher->course_id)?>)">
                         </a>
                     </td>
                 </tr>
@@ -253,11 +254,29 @@ $val = explode('/',$url);
                             </script>
                 </div>
             </div>
+
+            <div id="profileModal4" class="popupModal">
+                <div class="tchr-popupmodal-content2">
+                    <span class="ann_close" onclick="closeModal4()">&times;</span><br>
+                    <h4>--Delete Week--</h4><br>
+                    <form action="" method="post" class="up-profile">
+                        <div class="teacher-crs-activities2">
+                            <label for="delete-sec" class="teacher-edit">Are you sure you want to delete this course? </label>
+                            <!-- <input type="text" class="teacher-edit-title" name="title"> -->
+                            <input type="hidden" value="" name="delete-course" id="delete-course">
+                            <br><br>
+                            <button type="submit" class="teacher_upl_btn" name="submit-delete-course" id="add-btn">Yes</button>
+                            <button type="reset" class="teacher_upl_btn" id="cancel-btn">Cancel</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <br><br>
-            <br>
+
+            </div>
+            <br><br><br>
+
         </div>
     </div>
 </div>
-<script defer src="<?=ROOT?>/assets/js/announcement.js?v=<?php echo time(); ?>"></script>
+<script defer src="<?=ROOT?>/assets/js/addcourse.js?v=<?php echo time(); ?>"></script>
 <?php $this->view("includes/footer");?>

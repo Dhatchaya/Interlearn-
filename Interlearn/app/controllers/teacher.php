@@ -13,7 +13,6 @@ class Teacher extends Controller
 
         }
         $user_id = Auth::getuid();
-
         $subject = new Subject();
         $course = new Course();
         $teacher = new Teacher();
@@ -90,7 +89,6 @@ class Teacher extends Controller
         // var_dump($user_id);
         // exit;
         $data['sums']= $subject -> teacherCourse([],$user_id);
-        
           //show($data['sums']);die;
 
         $this->view('teacher/home',$data);
@@ -100,7 +98,6 @@ class Teacher extends Controller
     //access that course
     public function course($action=null,$id = null,$option = null,$extra=null)
     {
-       
         if(!Auth::is_teacher()){
             redirect('home');
 
@@ -113,24 +110,179 @@ class Teacher extends Controller
             $data['id'] = $id;
             //print_r($id);exit;
 
-            $user_id = Auth::getuid();
+            $user = Auth::getUsername();
+            $user_id = Auth::getUid();
             $subject = new Subject();
             $course = new Course();
             $teacher = new Teacher();
             $instructor = new Instructor();
             $course_material = new CourseMaterial();
+            $course_week = new CourseWeek();
             $student_course = new StudentCourse();
             // $data = [];
 
             $data['rows']= $course->select([],'course_id');
             //show($data['rows']);die;
             //$data['sums']= $subject -> teacherCourse([],$user_id);
-            $data['courses'] = $subject -> stdCourseDetails([],$id);
+            $data['courses'] = $subject -> teacherCourseDetails([],$id);
+            //show($data['courses']);die;
+            $data['noOfWeeks'] = $course->getWeekCount($id)->No_Of_Weeks;
+            $data['courseWeeks'] = $course_week->getWeeks($id);
+            // show($course_week->getWeeks($id));
+            // show($data['courseWeeks']);die;
             //$data['courses'] = $subject -> CoursePg([],$user_id);
             //show($data['sums']);die;
            // show($data['courses']);die;
+              //show($data['sums']);die;
+              //show($data['courses'][0]->getWeekName(6,1));die;
+            $data['materials'] = $subject -> teacherCourseMaterial([],$id);
+            //show($data['materials']);die;
+            // if(isset($_POST['submit'])){
+            //     $week_name = $_POST['title'];
+            //     $result = $course_week->UpdateWeekName();
+            // }
+
+            if(isset($_POST['submit-weeks'])){
+                $currentWeeks = $course->getWeekCount($id)->No_Of_Weeks;
+                $course->UpdateNoOfWeeks($id,$currentWeeks + $_POST['no_of_weeks']);
+                for ($i=1; $i <= $_POST['no_of_weeks'] ; $i++) {
+                    $course_week->createWeek($id,$currentWeeks+$i);
+                    header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
+                }
+            }
+
+            if(isset($_POST['submit-title'])){
+
+                $result = $course_week->UpdateWeekName($id,$_POST['weeknumber'],$_POST['title']);
+            }
+
+            if(isset($_POST['submit-upload'])){
+                $result = $course_material->UpdateUploadName($id,$_POST['filenumber'],$_POST['upload-title']);
+            }
+
+            if(isset($_POST['submit-delete-week'])){
+                $result = $course_week->deleteWeek($_POST['delete-weeknumber']);
+                $currentWeeks = $course->getWeekCount($id)->No_Of_Weeks;
+                $course->UpdateNoOfWeeks($id,$currentWeeks - 1);
+                header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
+            }
+
+            if(isset($_POST['submit-delete-up'])){
+                $result = $course_material->deleteUpload($_POST['delete-filenumber']);
+                header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
+            }
+
             $this->view('teacher/course',$data);
         }
+
+        if($action == 'upload')
+        {
+            if(isset($_POST['submit']))
+            {
+                $file = $_FILES['file'];
+
+                $fileName = $_FILES['file']['name'];
+                $fileTmpName = $_FILES['file']['tmp_name'];
+                $fileSize = $_FILES['file']['size'];
+                $fileError = $_FILES['file']['error'];
+                $fileType = $_FILES['file']['type'];
+
+                $fileExt = explode('.',$fileName);
+                $fileActualExt = strtolower(end($fileExt));
+
+                $allowed1 = array('jpg','jpeg','png');
+                $allowed2 = array('pdf','zip','txt','sql','docx','xml','doc','ppt');
+                $allowed3 = array('mp3','mp4');
+
+                if(in_array($fileActualExt, $allowed1)){
+                    // print_r($_FILES['file']);exit;
+                    if($fileError === 0){
+                        if($fileSize < 1000000){
+                            $fileNameNew = uniqid('',true).".".$fileActualExt;
+                            $fileDestination = 'uploads/images/'.$fileNameNew;
+                            move_uploaded_file($fileTmpName,$fileDestination);
+                            //echo $fileActualExt;exit;
+                            //var_dump($_POST);exit;
+                            //print_r($fileType);exit;
+                            $_POST['course_material'] = $fileNameNew;
+                            $_POST['type'] = $fileType;
+                            $_POST['size'] = $fileSize;
+                            $_POST['course_id'] = $id;
+                            //show($_POST);die;
+                            $result = $course_material->insert($_POST);
+                            // $result = $course->insert($_POST);
+                            header("location: http://localhost/Interlearn/public/teacher/course?uploadsuccess");
+                        }else{
+                            echo "Image is too large!";
+                        }
+                    }else{
+                        echo "There was an error uploading image!";
+                    }
+                }else{
+                    echo "You cannot upload this file!";
+                }
+
+                if(in_array($fileActualExt, $allowed2)){
+                    // print_r($_FILES['file']);exit;
+                    if($fileError === 0){
+                        if($fileSize < 10000000){
+
+                            $fileNameNew = uniqid('',true).".".$fileActualExt;
+                            $fileDestination = 'uploads/documents/'.$fileNameNew;
+                            move_uploaded_file($fileTmpName,$fileDestination);
+                            $_POST['course_material'] = $fileNameNew;
+                            $_POST['type'] = $fileType;
+                            $_POST['size'] = $fileSize;
+                            $_POST['course_id'] = $id;
+                            //show($_POST);die;
+                            $result = $course_material->insert($_POST);
+                            header("location: http://localhost/Interlearn/public/teacher/course?uploadsuccess");
+                        }else{
+                            echo "File is too large!";
+                        }
+                    }else{
+                        echo "There was an error uploading file!";
+                    }
+                }else{
+                    echo "You cannot upload this file!";
+                }
+
+                if(in_array($fileActualExt, $allowed3)){
+                    // print_r($_FILES['file']);exit;
+                    if($fileError === 0){
+                        if($fileSize < 1000000000){
+
+                            $fileNameNew = uniqid('',true).".".$fileActualExt;
+                            $fileDestination = 'uploads/videos/'.$fileNameNew;
+                            move_uploaded_file($fileTmpName,$fileDestination);
+                            $_POST['course_material'] = $fileNameNew;
+                            $_POST['type'] = $fileType;
+                            $_POST['size'] = $fileSize;
+                            $_POST['course_id'] = $id;
+                            //show($_POST);die;
+                            $result = $course_material->insert($_POST);
+                            header("location: http://localhost/Interlearn/public/teacher/course?uploadsuccess");
+                        }else{
+                            echo "File is too large!";
+                        }
+                    }else{
+                        echo "There was an error uploading file!";
+                    }
+                }else{
+                    echo "You cannot upload this file!";
+                }
+                // $result = $course_material->insert($_POST);
+            }
+            $data['rows']= $course->select([],'course_id');
+            //show($data['rows']);die;
+            $data['sums']= $subject -> teacherCourse([],$user_id);
+            //show($data['sums']);die;
+            $data['courses'] = $subject -> CoursePg([],$user_id);
+            $data['week_no'] = $week_no;
+              //show($data['courses']);die;
+            $this->view('teacher/upload',$data);
+        }
+
         if($action == "assignment")
         {
             $assignment = new Assignment();
@@ -357,7 +509,7 @@ class Teacher extends Controller
                     $files = explode(",",$submission->Files);
                     $submission->Files = $files;
                 }
-        
+
             $data ['assignment']= $submissions[0]->title;
             $data['submissions'] = $submissions;
             }

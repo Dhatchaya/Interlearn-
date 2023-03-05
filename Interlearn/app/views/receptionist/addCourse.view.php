@@ -6,79 +6,82 @@
     <div class="recp_det_content">
         <h2>--Add a new course--</h2><br>
         <form method="post" action="" enctype="multipart/form-data">
-            <!-- <input type="bu" name="sub"  onclick="myFunction1()">Already existing subject
-            <input type="radio" name="sub"  onclick="myFunction2()">Add a new subject -->
-            <!-- <button onclick="myFunction1()">Already existing subject</button>
-            <button onclick="myFunction2()">Add a new subject</button>
-            <br><br> -->
-            <div class="recp_det_box" id="already">
-                
-                <!-- <select name="subject" id="" class="recp_ann_clz">
-                    <option value="subj" selected>--select subject--</option>
+        <!-- <div class="recp_crs_add"> -->
+            
+            <div class="recp_det_box" id="new">
+            <h4>Subject:</h4>
+                <!-- <select name="subject" id="" class="recp_ann_clz"> -->
+                <!-- <input type="hidden" name="name" id="name"> -->
+                <input type="text" class="recp_det_name" name="subject">
+                    <!-- <option value="subject" selected>--Select subject--</option>
                     <?php if(!empty($subjects)):?>
                     <?php foreach($subjects as $subject):?>
-                    <option value="<?=$subject->subject_id?>" <?=set_select('subject_id',$subject->subject_id)?>><?=esc($subject->subject_id)?> - <?=esc($subject->subject)?></option>
+                    <option  value="<?=esc($subject->subject)?>" ><?=esc($subject->subject)?></option>
+                    
                     <?php endforeach;?>
-                    <?php endif;?>
-                </select> -->
-            </div>
-            <h4>Subject:</h4>
-            <div class="recp_det_box" id="new">
-                <input  name="subject" type="text" class="recp_det_name">
-                <?php if(!empty($error['subject'])):?>
-                    <small><?=$error['subject']?></small>
-                <?php endif;?>
+                    <?php endif;?> -->
+                <!-- </select> -->
             </div>
             <br><br>
-            <h4>Subject Description:</h4>
-            <div class="recp_det_box" id="new">
-                <!-- <input  name="description" type="text" class="recp_det_name"> -->
-                <textarea name="description" id="" cols="136" rows="10"></textarea>
-                <?php if(!empty($error['description'])):?>
-                    <small><?=$error['description']?></small>
-                <?php endif;?>
-            </div>
-            <br><br>
+
+            <div class="recp_det_box">
+            <h4>Grade:</h4>
+            <select name="grade" id="" class="recp_ann_clz">
+            <!-- <input type="hidden" name="grade" id="grade"> -->
+                    <option value="grade" selected>--Select grade--</option>
+                   <option value="6">Grade 6</option>
+                   <option value="7">Grade 7</option>
+                   <option value="8">Grade 8</option>
+                   <option value="9">Grade 9</option>
+                   <option value="10">Grade 10</option>
+                   <option value="11">Grade 11</option>
+                   <option value="A/L">Grade A/L</option>
+                </select>
+            </div><br><br>
+
+            <div class="recp_det_box">
+            <h4>Description:</h4>
+            <!-- <select name="description" id="" class="recp_ann_clz"> -->
+            <!-- <input type="hidden" name="grade" id="grade"> -->
+                    <!-- <option value="grade" selected>--Select grade--</option>
+                    <?php if(!empty($grades)):?>
+                    <?php foreach($grades as $grade):?>
+                    <option  value="<?=esc($grade->grade)?>" ><?=esc($grade->grade)?></option>
+                    
+                    <?php endforeach;?>
+                    <?php endif;?> -->
+                    
+                <!-- </select> -->
+                <input type="text" class="recp_det_name" name="description">
+            </div><br><br>
+
+
             <div class="recp_det_box">
                 <h4>Language Medium:</h4>
                 <select name="language_medium" id="" class="recp_ann_clz">
+                <!-- <input type="hidden" name="medium" id="medium"> -->
                     <option value="language_medium" selected>--select language medium--</option>
                     <option value="Sinhala">Sinhala</option>
                     <option value="English">English</option>
                     <option value="Tamil">Tamil</option>
+                    
                 </select>
             </div>
             <br><br>
-            <div class="recp_det_box">
-            <h4>Grade:</h4>
-            <select name="grade" id="" class="recp_ann_clz">
-                    <option value="grade" selected>--select grade--</option>
-                    <option value="1">Grade 1</option>
-                    <option value="2">Grade 2</option>
-                    <option value="3">Grade 3</option>
-                    <option value="4">Grade 4</option>
-                    <option value="5">Grade 5</option>
-                    <option value="6">Grade 6</option>
-                    <option value="7">Grade 7</option>
-                    <option value="8">Grade 8</option>
-                    <option value="9">Grade 9</option>
-                    <option value="10">Grade 10</option>
-                    <option value="11">Grade 11</option>
-                    <option value="A/L">A/L</option>
-                </select>
-            </div><br><br>
+            
+
             <div class="recp_det_box">
             <h4>Teacher ID:</h4>
             <select name="teacher_id" id="" class="recp_ann_clz">
                 <option value="" selected>--Select teacher id--</option>
                 <?php if(!empty($teachers)):?>
                 <?php foreach($teachers as $teacher):?>
-                    <?=esc($teacher->firstname)?>
                 <option  value="<?=$teacher->teacher_id?>" ><?=esc($teacher->teacher_id)?>:<?=esc($teacher->firstname)?></option>
                 <?php endforeach;?>
                 <?php endif;?>
             </select>
             </div><br><br>
+
             <div class="recp_det_box">
             <h4>Day: </h4>
             <select name="day" id="day" class="recp_ann_clz">
@@ -92,6 +95,7 @@
                 <option value="Sunday">Sunday</option>
             </select>
             </div><br><br>
+
             <div class="recp_det_box">
                 <h4>Time:</h4>
                 <div class="recp_det_dura">
@@ -101,18 +105,23 @@
                 </div>
             </div>
             <br><br>
-            <div class="recp_det_box">
+            <!-- <div class="recp_det_box">
                 <h4>Upload image:</h4><br>
                 <div class="recp_det_dura">
                     <input type="file" name="uploadimg" id="uploadimg">
                 </div>
-            </div>
+            </div> -->
             <br><br>
-            <a href="<?=ROOT?>/receptionist/course">
-                <button type="button" class="recp_det_btn">Cancel</button>
-            </a>
+            <div class="recp_add_butn">
+                <a href="<?=ROOT?>/receptionist/course">
+                    <button type="button" class="recp_det_btn">Cancel</button>
+                </a>
                 <button name="courseSubmitBtn" type="submit" class="recp_det_btn" id="courseSubmitBtn">Save</button>
+            </div>
+            
+                
             <?php if(isset($msg)){echo $msg;} ?>
+        <!-- </div> -->
         </form>
     </div>
 </div>
