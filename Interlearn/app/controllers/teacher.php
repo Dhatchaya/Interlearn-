@@ -433,6 +433,7 @@ class Teacher extends Controller
             $question = new ZQuestion();
             $choice = new ZChoices();
             $quiz = new ZQuiz();
+        
             $data = [];
             $data['id'] = $id;
             if(isset($_GET['qnum'])) {
@@ -449,40 +450,52 @@ class Teacher extends Controller
                         $_POST['course_id'] = $id;
         
                         $result = $quiz-> insert($_POST);
-                        
+                        show($_POST);
                         if($result) {
-
+                            $questions = [];
                             $quiz_question = new ZQuizQuestion();
                             $result1 = $question->QuizInnerjoinQuestion(['category'=>$_POST['category']]);
+
+                            foreach( $result1 as $i ){
+                                foreach($i as $question=>$number){
+                                    $questions[$question] = $number;
+                                    $questions['quiz_id'] = $quiz_id;
+                                    $result2= $quiz_question->insert($questions);
+                                   
+                                }
+                                       
+                            }
+                          
                             // $array = json_decode(json_encode($result1), true);
 
-                            $data1 =[];
-                            $data1 = (array) $result1;
-                            show($data1);
+                            // $data1 =[];
+                            // $data1 = (array) $result1;
+                            // show($data1);
 
-                            foreach($result1 as $i ) {
-                                print_r($i);
-                                array_push($i,(object)['quiz_id'=>$quiz_id]);
-                                print_r($i);
-                                $result = $quiz_question-> insert($i);
-                            }
-                            show($result1);
-                            $questions = array();
+                            // foreach($result1 as $i ) {
+                            //     print_r($i);
+                            //     array_push($i,(object)['quiz_id'=>$quiz_id]);
+                            //     print_r($i);
+                            //     $result = $quiz_question-> insert($i);
+                            // }
+                            // show($result1);
+                            // $questions = array();
 
-                            // Loop through each object and extract the question number
-                            foreach ($result1 as $obj) {
-                                $questions[] = $obj->question_number;
-                            }
+                            // // Loop through each object and extract the question number
+                            // foreach ($result1 as $obj) {
+                            //     $questions[] = $obj->question_number;
+                            // }
 
                             // Output the resulting array of question numbers
-                            print_r($questions);
-                            // show($array);
-                            show($_POST);
-                            die;
+                            // print_r($questions);
+                            // // show($array);
+                            // show($_POST);
+                            // die;
                             // $result2 = $quiz_question->insert($result1);
                             // show($result2);
                         }
                     }
+
                     $this->view('teacher/Zquiz_add');
                     exit();
             }
