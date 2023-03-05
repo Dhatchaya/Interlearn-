@@ -18,7 +18,7 @@
                         <p> <?=esc($forum->content)?> </p>
                     </div>
                     <?php if (!empty($forum->attachment)):?>
-                    <a href="<?=ROOT?>/uploads/forum_files/<?=esc($forum->attachment)?>" class= "attachment-link">View Attachment</a>
+                    <a href="<?=ROOT?>/uploads/<?=esc($forum->course_id)?>/forum_files/<?=esc($forum->attachment)?>" class= "attachment-link">View Attachment</a>
                     <?php endif; ?>
                     <!-- <iframe src="<?=ROOT?>/uploads/forum_files/<?=esc($forum->attachment)?>" width="100%" height="500"></iframe> -->
 

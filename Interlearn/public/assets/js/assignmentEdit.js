@@ -10,6 +10,7 @@ const closebtn = document.getElementById("closebtn");
 const input = document.getElementById("teacher_subm_file");
 let formData = new FormData();
 const course = window.location.href.toString().split("/")[8];
+const week = window.location.href.toString().split("/")[9];
 const cancel = document.getElementById("teacher_cancel_btn");
 
 if (queryParams.has("id")) {
@@ -17,7 +18,7 @@ if (queryParams.has("id")) {
 console.log(id);
   $.ajax({ 
     method: "GET", 
-    url:`http://localhost/Interlearn/public/teacher/course/assignment/${course}/edit/?id=${id}`,
+    url:`http://localhost/Interlearn/public/teacher/course/assignment/${course}/${week}/edit/?id=${id}`,
 
     success: function(data) { 
       console.log(data);
@@ -90,7 +91,7 @@ submitbtn.addEventListener('click',function(e){
 
     $.ajax({
       type:'POST',
-      url:`http://localhost/Interlearn/public/teacher/course/assignment/${course}/edit/?id=${id}`,
+      url:`http://localhost/Interlearn/public/teacher/course/assignment/${course}/${week}/edit/?id=${id}`,
       data:formData,
       processData: false, 
       contentType: false,

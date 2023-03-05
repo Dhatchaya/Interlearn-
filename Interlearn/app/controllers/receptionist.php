@@ -234,6 +234,11 @@ class Receptionist extends Controller
 
         }
 
+
+
+
+
+
         $course = new Course();
         $subject = new Subject();
         $teacher = new Teacher();

@@ -16,6 +16,7 @@ class Discuss extends Model
     'content',
     'uid',
     'attachment',
+    'forum_id'
 
     ];
     protected $staffs = [

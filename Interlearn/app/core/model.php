@@ -9,7 +9,7 @@ class Model extends Database {
     public function insert($data){
         //remove unwanted columns
         if(!empty($this->allowed_columns))
- {
+        {
             foreach($data as $key => $value){
                 if(!in_array($key,$this->allowed_columns))
                 {
@@ -206,7 +206,7 @@ class Model extends Database {
 
 	}
     public function joinDiscuss($data=[],$orderby=null,$order='desc'){
-        $query= "SELECT discussion.*, users.username, users.display_picture from $this->table INNER JOIN users on users.uid =discussion.uid";
+        $query= "SELECT discussion.*, forum.course_id, users.username, users.display_picture from $this->table INNER JOIN forum on forum.forum_id=discussion.forum_id INNER JOIN users on users.uid =discussion.uid";
         $query .= " order by $orderby  $order";
         $res = $this ->query($query,$data);
 
@@ -219,7 +219,7 @@ class Model extends Database {
 
         $keys = array_keys($data);
 
-        $query =" select discussion.*, users.username, users.display_picture FROM ".$this->table." INNER JOIN users on users.uid =discussion.uid where ";
+        $query =" select discussion.*,forum.course_id, users.username, users.display_picture FROM ".$this->table." INNER JOIN forum on discussion.forum_id=forum.forum_id INNER JOIN users on users.uid =discussion.uid where ";
         foreach($keys as $key){
             $query .= $key. " =:".$key." && ";
         }
@@ -328,7 +328,7 @@ class Model extends Database {
         $query ="SELECT subject.*,course.*,course_instructor.instructor_id,concat(teachers.firstname,' ',teachers.lastname) AS teacherName, concat(instructor.firstname,' ',instructor.lastname) AS instructorName FROM ".$this->table;
         $query .=" RIGHT JOIN course ON course.subject_id = subject.subject_id LEFT JOIN course_instructor ON course.course_id = course_instructor.course_id RIGHT JOIN teachers ON teachers.teacher_id = course.teacher_id LEFT JOIN instructor ON instructor.instructor_id = course_instructor.instructor_id WHERE";
         $query .= " subject.language_medium = '".$medium."'"." and ";
-        // $query .= " group by teacherName, course.day, course.time";
+        // $query .= " group by language_medium";
 
 
         foreach($keys as $key){
@@ -604,6 +604,24 @@ class Model extends Database {
             return $res;
         }
         return false;
+    }
+    public function getTeacherClasses($data=[]){
+
+        $keys = array_keys($data);
+        $query ="select  course.* from ".$this->table;
+        $query.= " INNER JOIN teachers on teachers.teacher_id= course.teacher_ID";
+        $query.=" WHERE";
+        foreach($keys as $key){
+            $query .= " teachers.".$key. " =:".$key." && ";
+        }
+        $query = trim($query,"&& ");
+        $res = $this -> query($query,$data);
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;
+
     }
 
 

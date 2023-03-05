@@ -56,7 +56,6 @@ class Database{
         if($stmt)
         {
             $check = $stmt -> execute($data);
-            // echo $check;die;
             if($check){
              
                     return true;

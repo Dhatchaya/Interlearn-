@@ -391,7 +391,7 @@ body{
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin-left: 86%;
+    /* margin-left: 86%; */
   }
   
   .home_form_sbt:hover {
@@ -3579,7 +3579,6 @@ width: 45vw;
 
 .recp_det_dura{
     display: flex;
-    padding-left: 2vw;
 }
 .recp_det_dura p{
     margin-left: 3%;
@@ -3799,7 +3798,7 @@ select {
     /* background-color: red; */
     /* width: 80%; */
     width: 36rem;
-    height: 30rem;
+    /* height: 30rem; */
     border: 1px solid gray;
     padding: 2rem;
     display: none;
@@ -3832,7 +3831,7 @@ select {
 .discuss_body{
     display: flex;
     gap:5rem;
-    margin-top: 5%;
+    /* margin-top: 5%; */
 }
 .discuss_card{
     height: 15rem;
@@ -4249,12 +4248,12 @@ tr:nth-child(even) {
 }
 
 .wrapper-popup {
-    /* display: flex; */
+    display: flex;
     position: relative;
     /* top: 50%;
     left: 50%; */
     /* transform: translate(-50%, -50%); */
-    width: 25vw;
+    width: 50vw;
     background-color: white;
     padding: 20px;
     border-radius: 5px;
@@ -5159,70 +5158,8 @@ gap: 8vw;
 .teacher-upload-btn:hover{
     background-color: rgb(104, 44, 198,75%);
 }
-.teacher-course-announcement{
-    width: 12vw;
-    height: 6vh;
-    background-color: rgb(104, 44, 198,85%);
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    /* color: white; */
-    border: 1px solid rgb(0 0 0 / 10%);
-}
-.teacher-course-announcement:hover{
-    background-color: rgb(104, 44, 198,100%);
-}
-.teacher-course-ann-img{
-    width: 1vw;
-    height: 2vh;
-    margin-top: 1px;
-    margin-left: 2px;
-}
 
 
 
-/* class view table */
+/* add course */
 
-.teacher-class-table{
-    border-collapse: collapse;
-    width: 60vw;
-}
-.teacher-class-table th, .teacher-class-table td{
-    border: 1px solid black;
-    padding: 1%;
-    text-align: center;
-}
-.teacher-class-table th{
-    background-color: rgb(104, 44, 198,55%);
-}
-.teacher-class-table tbody tr:nth-child(even){
-    background-color: rgb(104, 44, 198,12%);
-}
-.teacher-class-table tbody tr:hover{
-    background-color: rgb(104, 44, 198,35%);
-}
-
-
-
-.teacher-ann-edit-btn{
-    width: 10vw;
-    height: 6vh;
-    background-color: rgba(62, 32, 109, 70%);
-    cursor: pointer;
-    color: white;
-}
-.teacher-ann-edit-btn:hover{
-    background-color: rgb(62, 32, 109,50%);
-}
-.tchr-popupmodal-content3 {
-    background-color: #efefef;
-    margin: 2% auto; /* 10% from the top and centered */
-    padding: 25px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 50vw;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}

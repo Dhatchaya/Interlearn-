@@ -96,7 +96,9 @@ class Teacher extends Controller
 
     //each course will have a ID when clicked get that ID pass it as a parameter and
     //access that course
-    public function course($action=null,$id = null,$week_no=null,$option = null,$extra=null,$aid=null)
+    // $action=null,$id = null,$week = null, $option = null,$extra=null
+
+    public function course($action=null,$id = null,$week = null,$option = null,$extra=null)
     {
         if(!Auth::is_teacher()){
             redirect('home');
@@ -122,7 +124,7 @@ class Teacher extends Controller
             $data['course_id'] = $id;
             //print_r($id);exit;
 
-            
+
             // $data = [];
 
             $data['rows']= $course->select([],'course_id');
@@ -132,6 +134,7 @@ class Teacher extends Controller
             //show($data['courses']);die;
             $data['noOfWeeks'] = $course->getWeekCount($id)->No_Of_Weeks;
             $data['courseWeeks'] = $course_week->getWeeks($id);
+            
             // show($course_week->getWeeks($id));
             // show($data['courseWeeks']);die;
             //$data['courses'] = $subject -> CoursePg([],$user_id);
@@ -321,7 +324,7 @@ class Teacher extends Controller
                     $_POST['course_id'] = $id;
                     $teacher_id = $course -> getTeacherID($id);
                     $_POST['teacher_id'] = $teacher_id[0]->teacher_id;
-                    
+
                     // show($_POST);die;
                     // show($teacher_id[0]->teacher_id);die;
                     //$announcement = new Announcement();
@@ -333,7 +336,7 @@ class Teacher extends Controller
                 $this->view('teacher/addAnnouncement',$data);
             }
 
-            
+
 
             // echo $id;die;
 
@@ -399,12 +402,19 @@ class Teacher extends Controller
                             }
 
                         }
-                        $editURL = "http://localhost/Interlearn/public/teacher/course/assignment/".$id."/view?id=".$assignmentid;
-                        $viewURL="http://localhost/Interlearn/public/teacher/course/submissions/".$id."?id=".$assignmentid;
+                        $editURL = "http://localhost/Interlearn/public/teacher/course/assignment/".$id."/".$week."/view?id=".$assignmentid;
+                        $viewURL="http://localhost/Interlearn/public/teacher/course/submissions/".$id."/".$week."/?id=".$assignmentid;
+                        $course_material = new CourseMaterial();
                         $_POST['editURL']=$editURL;
                         $_POST['viewURL']=$viewURL;
+                        $_POST['week_no']=$week;
+                        $_POST['course_material']="Home Work";
+                        $_POST['upload_name']="Home Work";
+                        $_POST['type']="submission";
+                        $_POST['course_id'] = $_POST['courseId'];
+                       // show($_POST);die;
                         $result = $assignment->insert($_POST);
-
+                        $material = $course_material->insert($_POST);
                         foreach($filenames as $file){
 
                                 $_POST['assignmentId'] =$assignmentid;
@@ -413,10 +423,17 @@ class Teacher extends Controller
 
                                 $result2 = $assignmentfiles->insert($_POST);
 
+
                         }
+
+
                    // $data['link'] ="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']."?id=".$assignmentid;
 
+
+
                     }
+
+                    header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
             }
 
         }
@@ -543,10 +560,14 @@ class Teacher extends Controller
         }
         if($action == "submissions"){
             $submission = new Submission();
+            $assignment = new Assignment();
+            $data = [];
             if(isset($_GET['id'])){
                 $assignmentID = $_GET['id'];
             }
             else{
+                
+                header("location:http://localhost/Interlearn/public/teacher/course/view/".$id);
                 $this->view('teacher/course',$data);
                 exit;
             }
@@ -556,15 +577,20 @@ class Teacher extends Controller
 
             //Get all submission details
             $submissions = $submission->allsubmissions(['assignmentId'=> $assignmentID]);
-           // show($submissions);die;
+           //show($submissions);die;
+           $assignment_details = $assignment -> where(['assignmentId'=> $assignmentID],'assignmentId');
+          // show($assignment_details);die;
             if( $submissions){
                 foreach ($submissions as $submission){
                     $files = explode(",",$submission->Files);
                     $submission->Files = $files;
                 }
-
+         
             $data ['assignment']= $submissions[0]->title;
             $data['submissions'] = $submissions;
+            }
+            else{
+                $data ['assignment'] =  $assignment_details[0]->title;
             }
             //create a zip file of all the submissions
             $file_path = "/xampp/htdocs/Interlearn/uploads/submissions/allfiles.zip";
@@ -639,7 +665,7 @@ class Teacher extends Controller
     }
 
     // public function upload()
-    // { 
+    // {
     //     if(!Auth::is_teacher()){
     //         redirect('home');
            
@@ -954,5 +980,24 @@ class Teacher extends Controller
     }
 
     //--------------------------------------------------------------///
+
+
+
+
+    public function calendar()
+    {
+        if (!Auth::is_teacher()) {
+            redirect('home');
+        }
+        $course = new Course();
+        $userid = Auth::getUID();;
+        $result= $course->getTeacherClasses(['uid'=>$userid]);
+        
+
+        header('Content-Type: application/json');
+        echo json_encode($result);
+        exit;
+       // $this->view('includes/calendar');
+    }
 
 }

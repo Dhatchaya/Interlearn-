@@ -49,6 +49,4 @@ class AnnouncementCourse extends Model{
         }
         return false;
     }
-
-    
 }

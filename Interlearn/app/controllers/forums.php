@@ -25,6 +25,7 @@ class Forums extends Controller
         $data['role'] = $role;
         if($role !== "Teacher" && $role !== "Instructor"){
             $data['rows'] =$forum->where(['course_id'=>$courseID],"forum_id");
+         
             $this->view('forums',$data);
             exit;
         }
@@ -32,7 +33,7 @@ class Forums extends Controller
         {
          
             $_POST['date']= date("Y-m-d H:i:s");
-            $_POST['course_id']= '1';
+            $_POST['course_id']= $courseID;
             $_POST['creator']= $user;
             $_POST['uid']= $userid;
         
@@ -49,7 +50,8 @@ class Forums extends Controller
                     if(in_array($img_final_ext,$allowed_ext)){
                         $new_image_name = uniqid($_POST['creator'],true).'.'.$img_final_ext;
                      
-                        $directory = "/xampp/htdocs/Interlearn/uploads/".$id."/forum_files";
+                        $directory = "uploads/".$courseID."/forum_files";
+                        //echo($directory);die;
                         if (!is_dir($directory)){
                             mkdir($directory,0644, true);
 
@@ -72,15 +74,16 @@ class Forums extends Controller
         }
         //display all forums of that course
         $data['rows'] =$forum->where(['course_id'=>$courseID],"forum_id");
-  
+        // show($forum);die;
         
         $this->view('forums',$data);
     }
 
     //each discussion 
-    public function discussion($disID=null,$action=null)
+    public function discussion($courseID=null ,$disID=null,$action=null)
 
     { 
+        // echo realpath("uploads/");die;
    
         if(!Auth::logged_in()){
             redirect('home');
@@ -118,7 +121,15 @@ class Forums extends Controller
                     $allowed_ext = array('jpg','png','jpeg','doc','pdf','xls','html','css','js');
                     if(in_array($img_final_ext,$allowed_ext)){
                         $new_image_name = uniqid().'.'.$img_final_ext;
-                        $destination = "uploads/forum_files/". $new_image_name;
+                        $directory = "uploads/".$courseID."/forum_files";
+                      //  echo($directory);die;
+                        if (!is_dir($directory)){
+                           // echo "here";die;
+                            mkdir($directory,0644, true);
+
+                        }
+
+                        $destination =  $directory."/".$new_image_name;
                       // echo $destination;die;
                         move_uploaded_file($attachment_tmp,$destination);
                         $_POST['attachment'] = $new_image_name ;
@@ -134,7 +145,7 @@ class Forums extends Controller
             }
 
             $discuss = new Discuss();
-            
+            $_POST['forum_id']= $disID;
             $result = $discuss->insert($_POST);
 
             if($result){
@@ -151,6 +162,7 @@ class Forums extends Controller
             $discuss = new Discuss();
             //display the whole thread
             $all = $data['discuss']=$discuss->joinDiscuss([],'PostedDate','asc');
+            
             echo json_encode($all);
             exit;
         }

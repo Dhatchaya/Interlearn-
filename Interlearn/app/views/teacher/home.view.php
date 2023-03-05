@@ -38,6 +38,23 @@ var_dump($sums);
         <?php endforeach;?>
         <?php endif;?>
         </div>
+        <div class="student_calendar">
+        <?php $this->view("includes/calendar");?>
+        <div id = "assignment_today" class ="assignment_today">
+           <!-- <a href ="http://localhost/Interlearn/public/student/coursepg/submissionstatus/4?id=M.Pavithra63fb0e481edef3.79614533"> <div  class ="assignment_card">
+                <div class ="assignment_card_title"><p>Mathematics assignment 1 is due<p></div>
+                <ul> 
+                    <li> Deadline: 2020-02-04</li>
+                    <li> Subject: Mathematics</li>
+                </ul>
+            </div>
+                    </a> -->
+           
+        </div> 
+    </div>
+    <script defer src="<?=ROOT?>/assets/js/calendar_teacher.js?v=<?php echo time(); ?>"></script>
+
+
     </div>
 </div> 
     <div  id="overlay"></div>

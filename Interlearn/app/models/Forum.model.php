@@ -71,6 +71,27 @@ class Forum extends Model
         }
         return false;
     }
+    // public function joinforumdiscussion($data=[]){
+
+    //     $keys = array_keys($data);
+
+    //     $query ="SELECT forum.*, discussion.* from ".$this->table." LEFT JOIN discussion on forum.forum_id = discussion.forum_id where ";
+    //     foreach($keys as $key){
+    //         $query .= "forum.".$key. " =:".$key." && ";
+    //     }
+
+
+
+    //     $query = trim($query,"&& ");
+    //    $query .= "  GROUP by forum.forum_id";
+
+    //     $res = $this -> query($query,$data);
+
+    //     if(is_array($res)){
+    //        return $res;
+    //     }
+    //     return false;
+    // }
 
 }
 //trigger used in discussion

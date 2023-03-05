@@ -32,24 +32,24 @@
                     <tr>
                         <th>Topic</th>
                         <th>Created by</th>
-                        <th>Last replied</th>
+                        <!-- <th>Last replied</th> -->
                         <th>Date</th>
                         <th>Action</th>
                     </tr>
         
                     <?php if(!empty($rows)):?>
-                    
+                      
                     <?php foreach($rows as $row):?>
 
                     <tr>
                         <td><?=esc($row->topic)?></td>
                         
                         <td><?=esc($row->creator)?></td>
-                        <td>Dhatchaya</td>
+                        <!-- <td><?php if($row->last_replied == NULL){echo "-";} else{echo $row->last_replied;}?></td> -->
                         <td><?=esc($row->date)?></td>
                         <td>
                             <div class="enq_view">
-                                    <a href="<?=ROOT?>/forums/discussion/<?=esc($row->forum_id)?>">
+                                    <a href="<?=ROOT?>/forums/discussion/<?=esc($row->course_id)?>/<?=esc($row->forum_id)?>">
 
                                         <button class="view_enq_btn">View</button>
   

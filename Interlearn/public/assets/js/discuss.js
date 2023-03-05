@@ -101,7 +101,7 @@ allthreads.addEventListener('click', function(e) {
         var attachmentlink = '';
         
         if(thread.attachment != 'null'){
-          var attachmentlink =  `<a href="../../uploads/forum_files/${thread.attachment}"  class= "attachment-link">View Attachment</a>`;    
+          var attachmentlink =  `<a href="../../../uploads/${thread.course_id}/forum_files/${thread.attachment}"  class= "attachment-link">View Attachment</a>`;    
         }
       
         var threadHTML =  `
@@ -109,7 +109,7 @@ allthreads.addEventListener('click', function(e) {
         <div class="discuss_card" data-thread-id=${thread.discussion_id}>
           <div class="discuss_content" >
             <div class="discuss_creator">
-                <img class="user_img" src="../../uploads/images/${thread.display_picture}" alt="picture"/> 
+                <img class="user_img" src="../../../uploads/images/${thread.display_picture}" alt="picture"/> 
                 <div class = "user_title">
                     <h3>RE:${thread.topic}</h3>
                     <h2> By: ${thread.username} ${replyDate}</h2>
@@ -173,7 +173,7 @@ $.ajax({
       var attachmentlink = '';
         
       if(thread.attachment != 'null'){
-        var attachmentlink =  `<a href="../../uploads/forum_files/${thread.attachment}"  class= "attachment-link">View Attachment</a>`;
+        var attachmentlink =  `<a href="../../../uploads/${thread.course_id}/forum_files/${thread.attachment}"  class= "attachment-link">View Attachment</a>`;
       }
       let date = thread.PostedDate.replace( /[-]/g, '/' );
       date = Date.parse( date );
@@ -191,7 +191,7 @@ $.ajax({
       <div class="discuss_card" data-thread-id=${thread.discussion_id}>
         <div class="discuss_content" >
           <div class="discuss_creator">
-              <img class="user_img" src="../../uploads/images/${thread.display_picture}" alt="picture"/> 
+              <img class="user_img" src="../../../uploads/images/${thread.display_picture}" alt="picture"/> 
               <div class = "user_title">
                 <h3>RE:${thread.topic}</h3>
                 <h2> By: ${thread.username} ${replyDate}</h2>

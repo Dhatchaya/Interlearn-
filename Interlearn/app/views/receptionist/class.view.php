@@ -18,17 +18,15 @@ $val = explode('/',$url);
         
         <?php endif;?>
         <br>
-
-        <!-- language medium bar -->
         <h4><i>Choose the language medium</i> </h4><br>
         <nav class="recp_cl_navbar">
             <ul class="recp_cl_medium">
 
             <?php if(!empty($mediums)):?>
-                <?php foreach($mediums as $medium):?>
+                    <?php foreach($mediums as $medium):?>
                     <li><a href="<?=ROOT?>/receptionist/course/view/1/?id=<?=$medium->subject_id?>" class="recp_cl_nav active"><?=$medium->language_medium?></a></li>
                <?php endforeach;?>
-            <?php endif;?>
+               <?php endif;?>
 
                
                <!-- <?php if( $val[3] == 1) :?> 
@@ -54,6 +52,45 @@ $val = explode('/',$url);
                 <?php endif;?> -->
             </ul>
         </nav>
+        <div id="profileModal" class="popupModal">
+                       <div class="popupmodal-content">
+                           <span class="ann_close" onclick="closeModal()">&times;</span><br>
+                           <form action="" method="post" class="up-profile">
+                           <h4>Teacher ID: </h4>
+                                <select name="teacher_id" id="" class="recp_ann_clz">
+                                    <option value="" selected>--Select teacher id--</option>
+                                    <?php if(!empty($teachers)):?>
+                                    <?php foreach($teachers as $teacher):?>
+                                        <?=esc($teacher->firstname)?>
+                                    <option  value="<?=$teacher->teacher_id?>" ><?=esc($teacher->teacher_id)?>:<?=esc($teacher->firstname)?></option>
+                                    <?php endforeach;?>
+                                    <?php endif;?>
+                                </select>
+                                <div class="recp_det_box">
+                                <h4>Day: </h4>
+                                <select name="day" id="day" class="recp_ann_clz">
+                                <option value="slct" selected>--select day--</option>
+                                    <option value="Monday">Monday</option>
+                                    <option value="Tuesday">Tuesday</option>
+                                    <option value="Wednesday">Wednesday</option>
+                                    <option value="Thursday">Thursday</option>
+                                    <option value="Friday">Friday</option>
+                                    <option value="Saturday">Saturday</option>
+                                    <option value="Sunday">Sunday</option>
+                                </select>
+                                </div><br><br>
+                                <div class="recp_det_box">
+                                    <h4>Time:</h4>
+                                    <div class="recp_det_dura">
+                                        <input type="time" name="timefrom" value="08:00" id="" class="recp_det_time"> 
+                                        <p> to </p>
+                                        <input type="time" name="timeto" value="08:00" id="" class="recp_det_time">
+                                    </div>
+                                </div><br>
+                                <button name="save-btn" type="submit" class="recp_det_btn">Save</button>
+                           </form>
+                        </div>
+        </div>
         <br>
 
         <!-- content table -->
@@ -67,6 +104,7 @@ $val = explode('/',$url);
                 <?php if(!empty($subjects)):?>
                 <?php foreach($subjects as $teacher):?>
                 <tr>
+                    
                     <td><?=esc($teacher->day)?></td>
                     <td><?=esc($teacher->timefrom)?> - <?=esc($teacher->timeto)?></td>
                     <td><?=esc($teacher->teacherName)?>
@@ -131,7 +169,7 @@ $val = explode('/',$url);
                     <br>
                     <h4>Time:</h4>
                     <div class="recp_det_dura">
-                        <input type="time" name="timefrom" value="08:56" id="" class="recp_det_time"> 
+                        <input type="time" name="timefrom" value="08:56" id="" class="recp_det_time">
                         <p> to </p>
                         <input type="time" name="timeto" value="08:56" id="" class="recp_det_time">
                     </div>
@@ -152,9 +190,9 @@ $val = explode('/',$url);
                 
         <br><br>
 
-        
+
         <!-- add instructor popup         -->
-                
+
         <div class="outer-popup2" id="popup1">
             <div class="wrapper-popup">
                 <h2>Add Instructors</h2>
@@ -198,14 +236,14 @@ $val = explode('/',$url);
                     <!-- <div class="recp_det_box"> -->
                 <h4>Time:</h4>
                     <div class="recp_det_dura">
-                        <input type="time" name="timefrom" value="08:56" id="" class="recp_det_time"> 
+                        <input type="time" name="timefrom" value="08:56" id="" class="recp_det_time">
                         <p> to </p>
                         <input type="time" name="timeto" value="08:56" id="" class="recp_det_time">
                     </div>
                     <!-- </div> -->
                 <br><br>
                 <button name="save-btn2" type="submit" class="recp_det_btn">Save</button>
-            
+
                 </form>
             </div>
         </div>
@@ -252,7 +290,7 @@ $val = explode('/',$url);
                     <div class="recp_det_box">
                         <h4>Time:</h4>
                         <div class="recp_det_dura">
-                            <input type="time" name="timefrom" value="08:00" id="" class="recp_det_time"> 
+                            <input type="time" name="timefrom" value="08:00" id="" class="recp_det_time">
                             <p> to </p>
                             <input type="time" name="timeto" value="08:00" id="" class="recp_det_time">
                         </div>
