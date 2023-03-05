@@ -38,6 +38,7 @@ class Receptionist extends Controller
 
 
 
+
     public function payments()
     {
         if (!Auth::is_receptionist()) {
@@ -49,34 +50,33 @@ class Receptionist extends Controller
 
         $callBPdata = new BankPayment();
         $BankPaymentData = $callBPdata->validateBankPayment();
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            //vlidate form data befor submission
+        // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        //     //vlidate form data befor submission
 
-            try {
-                $data = json_decode(file_get_contents("php://input"), true);
-                if (!$data) {
-                    $error = json_last_error_msg();
-                    throw new Exception($error);
-                } else {
-                    echo json_encode($data);
-                    return;
-                    // $result = $enquiry->first(['studentID' => $data], $data);
-                    // if (!$result) {
-                    //     throw new Exception("Update failed");
-                    // }
-                }
-            } catch (Exception $e) {
-                $response = array("status" => "error", "message" => $e->getMessage());
-                header("Content-Type: application/json");
-                echo json_encode($response);
-                return;
-            }
-            $response = array("status" => "success");
-            header("Content-Type: application/json");
-            echo json_encode($response);
-            return;
-        }
-
+        //     try {
+        //         $data = json_decode(file_get_contents("php://input"), true);
+        //         if (!$data) {
+        //             $error = json_last_error_msg();
+        //             throw new Exception($error);
+        //         } else {
+        //             echo json_encode($data);
+        //             return;
+        //             // $result = $enquiry->first(['studentID' => $data], $data);
+        //             // if (!$result) {
+        //             //     throw new Exception("Update failed");
+        //             // }
+        //         }
+        //     } catch (Exception $e) {
+        //         $response = array("status" => "error", "message" => $e->getMessage());
+        //         header("Content-Type: application/json");
+        //         echo json_encode($response);
+        //         return;
+        //     }
+        //     $response = array("status" => "success");
+        //     header("Content-Type: application/json");
+        //     echo json_encode($response);
+        //     return;
+        // }
         $this->view('receptionist/receptionist-payments',  ['bankPayments' => $BankPaymentData, 'transactions' => $payment_history]);
     }
 

@@ -17,7 +17,6 @@ class Payment extends Model
     ];
     public function getAll()
     {
-        $query = "SELECT * FROM payment";
         $data = $this->query($query);
 
         if ($data == NULL) {
