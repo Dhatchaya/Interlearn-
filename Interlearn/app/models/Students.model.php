@@ -65,6 +65,20 @@ class Students extends Model
     //     return false;
     // }
 
+    public function getStudentName($uid){
+        $query = "SELECT concat(student.first_name, ' ', student.last_name) AS fullname FROM ".$this->table;
+        $query .= " WHERE uid =:uID";
+        $data['uID'] = $uid;
+
+        $res = $this -> query($query, $data);
+
+        if($res){
+            return $res;
+        }else{
+            return false;
+        }
+    }
+
 
 
 }

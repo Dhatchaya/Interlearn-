@@ -134,6 +134,22 @@ class Course extends Model
             return false;
         }
     }
+
+    public function instructorCourse($data=[],$id,$orderby = null, $order=null){
+        $query = "SELECT subject.subject_id,subject.subject,grade,language_medium,course.*,course_instructor.* from ".$this->table;
+        $query .= " INNER JOIN subject ON course.subject_id = subject.subject_id INNER JOIN course_instructor ON course.course_id = course_instructor.course_id INNER JOIN instructor ON instructor.instructor_id = course_instructor.instructor_id ";
+        $query .= " WHERE instructor.uid = $id";
+        $query .= " group by subject, grade";
+        // $query .= " order by $orderby  $order";
+        //var_dump($_SESSION);exit;
+        $res = $this -> query($query,$data);
+         //show($query);die;
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;
+    }
     
 
 }

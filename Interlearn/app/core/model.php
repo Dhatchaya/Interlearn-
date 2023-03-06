@@ -472,7 +472,7 @@ class Model extends Database {
         $query ="SELECT concat(teachers.firstname,' ',teachers.lastname) AS fullname, subject.subject, subject.grade,subject.language_medium,course.*,announcement.*,announcement_course.*,student_course.student_id FROM ".$this->table;
         $query .=" INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN announcement_course ON course.course_id = announcement_course.course_id INNER JOIN announcement ON announcement_course.aid = announcement.aid INNER JOIN student_course ON student_course.course_id = announcement_course.course_id INNER JOIN student ON student.studentID = student_course.student_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id ";
         $query .= " WHERE student.uid = $id ";
-        $query .= " order by announcement.date $order";
+        $query .= " order by announcement.date_time $order";
         // announcement.time  $order";
     // echo $query;die;
         $res = $this -> query($query,$data);
@@ -542,9 +542,9 @@ class Model extends Database {
     //SELECT subject.subject_id,subject.subject,subject.grade,subject.language_medium,course_material.*,course.*,teachers.* from course_material INNER JOIN course ON course.course_id = course_material.course_id INNER JOIN subject ON course.subject_id = subject.subject_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id INNER JOIN student_course ON student_course.course_id = course.course_id INNER JOIN student ON student.studentID = student_course.student_id WHERE course.course_id = 6 group by course_material.type, course_material.course_material,course_material.card_id
 
     //student materials
-    public function tchrCrsMat($data=[],$id,$orderby = null, $order=null){
-        $query = "SELECT subject.subject_id,subject.subject,subject.grade,subject.language_medium,course_material.*,course.*,teachers.* from ".$this->table;
-        $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN course_material ON course_material.course_id = course.course_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id INNER JOIN student_course ON student_course.course_id = course.course_id INNER JOIN student ON student.studentID = student_course.student_id";
+    public function studentCourseMaterials($data=[],$id,$orderby = null, $order=null){
+        $query = "SELECT subject.subject_id,subject.subject,subject.grade,subject.language_medium,course_material.*,course.*,teachers.*,course_content.* from ".$this->table;
+        $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN course_material ON course_material.course_id = course.course_id INNER JOIN course_content ON course_material.cid = course_content.cid INNER JOIN teachers ON teachers.teacher_id = course.teacher_id INNER JOIN student_course ON student_course.course_id = course.course_id INNER JOIN student ON student.studentID = student_course.student_id";
         $query .= " WHERE course.course_id = $id ";
         $query .= " group by course_material.course_material";
         // $query .= " order by $orderby  $order";
@@ -558,20 +558,7 @@ class Model extends Database {
         }
         return false;
     }
-
-
-    public function downloadFiles($data = [], $id){
-        $query = "SELECT * FROM course_material WHERE file_id = ".$id;
-        $res = $this -> query($query,$data);
-        // echo $query;die;
-        // show($res);die;
-        if($res){
-            return true;
-        }else{
-            return false;
-        }
-
-    }
+    
 
     public function teacherCourseDetails($data=[],$id,$orderby = null, $order=null){
         $query = "SELECT subject.subject_id,subject.subject,subject.grade,subject.language_medium,course.*,teachers.* from ".$this->table;

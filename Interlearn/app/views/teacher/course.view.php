@@ -35,23 +35,23 @@
                         <?php if(!empty($materials)):  ?>
                         <?php foreach($materials as $material):?>
                             <?php if($material->week_no==$i):?>
-                            <?php if($material->type==="application/pdf"):?>
+                            <?php if($material->file_type==="application/pdf"):?>
                                 <p><a href="#">
                                 <img src="<?=ROOT?>/assets/images/pdf.png" alt="" class="teacher_card_img3">
                                 <?=$material->upload_name?> 
-                                <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5(<?=$material->cid?>)">
+                                <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
                                 <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6(<?=$material->file_id?>)">
                                 </a></p>
-                                <?php elseif($material->type==="text/plain"):?>
+                                <?php elseif($material->file_type==="text/plain"):?>
                                     <p><a href="#">
                                     <img src="<?=ROOT?>/assets/images/pp.png" alt="" class="teacher_card_img3">
                                     <?=$material->upload_name?> 
-                                    <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5(<?=$material->cid?>)">
+                                    <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
                                     <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6(<?=$material->file_id?>)">
                                     </a></p>
                                 <?php else:?>
                                     <p><a href="#"><?=$material->upload_name?> 
-                                    <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5(<?=$material->cid?>)">
+                                    <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
                                     <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6(<?=$material->file_id?>)">
                                     </a></p> 
                                     <?php endif;?>

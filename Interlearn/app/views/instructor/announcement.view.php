@@ -4,7 +4,7 @@
 <div class="recp_ann_container">
 <?php $this->view("includes/sidebar_recep");?>
     <div class="recp_ann_content">
-        <a href="<?=ROOT?>/teacher/course/announcement/<?=$course_id?>/0/add">
+        <a href="<?=ROOT?>/instructor/course/announcement/<?=$course_id?>/0/add">
             <button class="recp_cl_btn">+Add Announcements</button><br><br>
         </a>
         <br>

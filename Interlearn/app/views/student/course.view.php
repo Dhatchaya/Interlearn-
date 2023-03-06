@@ -21,37 +21,6 @@
         </div>
         <?php endforeach;?>
         <?php endif;?>
-        <!-- </div> -->
-        <!-- <div class="std_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_crs_img">
-                <p>Science by Mrs. V.J Ridmi</p>
-            </a>
-        </div>
-        <div class="std_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_crs_img">
-                <p>Maths by Mrs. S.N. Perera</p>
-            </a>
-        </div>
-        <div class="std_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_crs_img">
-                <p>Sinhala by Mrs. S.N. Perera</p>
-            </a>
-        </div>
-        <div class="std_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_crs_img">
-                <p>History by Mrs. S.N. Perera</p>
-            </a>
-        </div>
-        <div class="std_crs_rectangle">
-            <a href="#">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_crs_img">
-                <p>English by Mrs. S.N. Perera</p>
-            </a>
-        </div> -->
     </div>
         
 </div>

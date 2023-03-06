@@ -5225,3 +5225,30 @@ gap: 8vw;
     width: 50vw;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
+
+
+/* student course announcement */
+.std-announcement-container{
+    display: flex;
+    margin-bottom: 2%;
+}
+.std-course-announcement{
+    width: 65vw;
+    margin-top: 5%;
+    margin-left: 4%;
+}
+.std-announcement-box{
+    border: solid;
+    border-color: rgba(62, 32, 109, 20%);
+    padding: 2%;
+    align-items: center;
+    width: 65vw;
+}
+.std-announcement-msg{
+    text-align: left;
+    border-style: solid;
+    border-color: rgba(62, 32, 109, 100%);
+    padding-top: 2%;
+    padding-left: 2%;
+    width: 62vw;
+}

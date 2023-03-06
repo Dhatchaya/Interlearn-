@@ -78,6 +78,21 @@ class CourseMaterial extends Model
         return false;
     }
 
+    public function downloadFiles($file_id){
+        $query = "SELECT * FROM ".$this->table; 
+        $query .= " WHERE file_id =:fileID ";
+        $data['fileID'] = $file_id;
+        $res = $this -> query($query,$data);
+        // echo $query;die;
+        // show($res);die;
+        if($res){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
 //     public function addCard( $card_ID, $class_ID){
 // //write querry here
 //     }
