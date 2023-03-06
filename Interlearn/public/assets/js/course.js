@@ -134,9 +134,9 @@ const span5 = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal
 function openModal5(number) {
-    document.getElementById("filenumber").value = number;
+    document.getElementById("cid").value = number;
     modal5.style.display = "block";
-    console.log(modal3);
+    console.log(modal5);
 }
 
 // When the user clicks on <span> (x), close the modal

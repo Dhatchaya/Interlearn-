@@ -121,6 +121,19 @@ class Course extends Model
             return false;
         }
     }
+
+    public function getTeacherID($course_id){
+        $query = "SELECT teacher_id FROM ".$this->table;
+        $query .= " WHERE course_id =:courseID";
+        $data['courseID'] = $course_id;
+        $res = $this -> query($query, $data);
+
+        if($res){
+            return $res;
+        }else{
+            return false;
+        }
+    }
     
 
 }

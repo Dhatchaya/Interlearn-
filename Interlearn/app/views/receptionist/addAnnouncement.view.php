@@ -5,11 +5,7 @@
 <?php $this->view("includes/sidebar_recep");?>
     <div class="recp_ann_content">
         <h3>Add Announcements</h3><br><br>
-        
-
         <form method="POST" action="">
-        
-
             <label for="">Announcement name: </label><br>
             <input type="text" class="recp_ann_name" name="title"><br><br>
             <label for="">Content: </label><br>
