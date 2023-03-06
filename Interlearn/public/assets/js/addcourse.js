@@ -1,20 +1,33 @@
-// function myFunction1() {
-//     var x = document.getElementById("already");
-//     if (x.style.display === "none") {
-//       x.style.display = "block";
-//     } else {
-//       x.style.display = "none";
-//     }
-// }
+// Get the modal
+const modal = document.getElementById("profileModal");
 
-// function myFunction2() {
-//     var x = document.getElementById("new");
-//     if (x.style.display === "none") {
-//       x.style.display = "block";
-//     } else {
-//       x.style.display = "none";
-//     }
-// }
+// Get the button that opens the modal
+const btn = document.getElementById("button28");
+// const btn2 = document.getElementById("button29");
+
+// Get the <span> element that closes the modal
+const span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+function openModal4() {
+
+    // document.getElementById("delete-course").value = number;
+
+    modal.style.display = "block";
+    console.log(modal);
+}
+
+// When the user clicks on <span> (x), close the modal
+function closeModal() {
+    modal4.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
 
 
 // Get the modal
@@ -33,7 +46,7 @@ function openModal4(number) {
     document.getElementById("delete-course").value = number;
 
     modal4.style.display = "block";
-    console.log(modal3);
+    console.log(modal4);
 }
 
 // When the user clicks on <span> (x), close the modal
