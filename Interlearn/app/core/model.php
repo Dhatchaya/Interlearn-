@@ -420,6 +420,7 @@ class Model extends Database {
         $query .= " group by subject, grade";
         // $query .= " order by $orderby  $order";
         //var_dump($_SESSION);exit;
+
         $res = $this -> query($query,$data);
          //show($query);die;
 
@@ -432,15 +433,19 @@ class Model extends Database {
     // select subject.subject_id,subject.subject,grade,language_medium,course.* from subject INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id WHERE teachers.uid = '27' AND course.course_id = '6' group by subject, grade;
 
     public function CoursePg($data=[],$id,$orderby = null, $order=null){
+        $keys = array_keys($data);
         $query = "SELECT subject.subject_id,subject.subject,grade,language_medium from ".$this->table;
         $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id ";
-        $query .= " WHERE teachers.uid = $id AND course.course_id = '6'";
-        $query .= " group by subject, grade";
+        $query .= " WHERE teachers.uid = $id AND ";
+        foreach($keys as $key){
+            $query .= "course.".$key. " =:".$key." && ";
+        }
+        $query = trim($query,"&& ");
         // $query .= " order by $orderby  $order";
         //var_dump($_SESSION);exit;
         $res = $this -> query($query,$data);
          //show($query);die;
-
+         $query .= " group by subject, grade";
         if(is_array($res)){
             return $res;
         }
@@ -590,11 +595,11 @@ class Model extends Database {
     }
 
     public function teacherCourseMaterial($data=[],$id,$orderby = null, $order=null){
-        $query = "SELECT subject.subject_id,subject.subject,subject.grade,subject.language_medium,course_material.*,course.*,teachers.*,course_content.* from ".$this->table;
-        $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN course_material ON course_material.course_id = course.course_id INNER JOIN course_content ON course_content.cid = course_material.cid INNER JOIN teachers ON teachers.teacher_id = course.teacher_id";
-        $query .= " WHERE course.course_id = $id ";
-        $query .= " group by course_material.course_material";
-        // $query .= " order by $orderby  $order";
+        // $query = "SELECT subject.subject_id,subject.subject,subject.grade,subject.language_medium,course_material.*,course.*,teachers.*,course_content.* from ".$this->table;
+        // $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN course_material ON course_material.course_id = course.course_id INNER JOIN course_content ON course_content.cid = course_material.cid INNER JOIN teachers ON teachers.teacher_id = course.teacher_id";
+        // $query .= " WHERE course.course_id = $id ";
+        // $query .= " group by course_material.course_material";
+         $query = "SELECT course_material.*,course_content.* from course_content LEFT JOIN course_material ON course_content.cid = course_material.cid WHERE course_content.course_id = $id;";
         //var_dump($_SESSION);exit;
         //show($query);die;
         $res = $this -> query($query,$data);
@@ -622,6 +627,27 @@ class Model extends Database {
         }
         return false;
 
+    }
+    public function coursedetails($data=[]){
+
+        $keys = array_keys($data);
+
+        $query =" select subject.* FROM ".$this->table." INNER JOIN course on course.subject_Id =subject.subject_id  where ";
+        foreach($keys as $key){
+            $query .= $key. " =:".$key." && ";
+        }
+    
+
+    
+        $query = trim($query,"&& ");
+        $query .= " limit 1";
+
+        $res = $this -> query($query,$data);
+      
+        if(is_array($res)){
+           return $res[0];
+        }
+        return false;
     }
 
 

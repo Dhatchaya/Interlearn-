@@ -3804,6 +3804,7 @@ select {
     padding: 2rem;
     display: none;
 }
+
 .add_view {
     width: 100%;
 }
@@ -3817,6 +3818,7 @@ select {
     position: relative;
     bottom: 0;
 }
+
 .descrip{
     margin-bottom: 2rem;
 }
@@ -4437,6 +4439,7 @@ tr:nth-child(even) {
 .forum_discussion {
   width: 90%;
 }
+
 .new_discussion {
    background-color: var(--secondary-color);
   /* width: 80%; */
@@ -4447,6 +4450,7 @@ tr:nth-child(even) {
   display: none;
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
 }
+
 .add_view {
   width: 100%;
 }
@@ -4455,10 +4459,12 @@ tr:nth-child(even) {
   width: 15rem;
   margin-bottom: 2rem;
 }
+
 .forum_right{
 
   position: relative;
   bottom: 0;
+
 }
 .descrip{
   margin-bottom: 2rem;
@@ -5224,4 +5230,53 @@ gap: 8vw;
     border-radius: 5px;
     width: 50vw;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+
+/* main forum */
+.mainforum_right{
+
+    position: relative;
+    bottom: 0;
+    float: right;
+}
+.mainforum_desc{
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 2rem 2rem 1rem 1rem;
+}
+.mainforum_sub{
+    margin: 2rem 0 0 0;
+    text-decoration: underline;
+    font-size: x-large;
+    font-weight: 500;
+}
+.mainf_des{
+    width : 75%;
+}
+.mainforum_discussion {
+    width: 90%;
+    margin-left: 5%;
+  }
+.main_discussion input[type="text"]{
+    height: 2.5rem;
+    width: 25rem;
+    margin-bottom: 2rem;
+    margin-top:1rem;
+  }
+.mainforumdes{
+    margin-bottom: 2rem;
+    margin-top:1rem;
+}
+.main_discussion {
+    background-color: var(--secondary-color);
+  /* width: 80%; */
+  width: 55rem;
+  /* height: 30rem; */
+  /* border: 1px solid gray; */
+  padding: 2rem;
+  margin-top: 2%;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
+  position: absolute;
+  
 }

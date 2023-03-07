@@ -5,9 +5,18 @@
  */
 class Forums extends Controller
 {
-    public function index($courseID=null)
+    public function index($courseID=null,$week=null)
     { 
         if($courseID==null){
+            $data['title'] = "404";
+            $this->view('404',$data);
+            exit;
+        }
+        if(isset($_GET['main'])){
+            $mainforum_id=$_GET['main'];
+           
+        }
+        else{
             $data['title'] = "404";
             $this->view('404',$data);
             exit;
@@ -36,7 +45,8 @@ class Forums extends Controller
             $_POST['course_id']= $courseID;
             $_POST['creator']= $user;
             $_POST['uid']= $userid;
-        
+            $_POST['mainforum_id']=$mainforum_id;
+
             if(isset($_FILES['attachment']['name']) AND !empty($_FILES['attachment']['name'])){
                 $attachment_tmp = $_FILES['attachment']["tmp_name"];
                 $attachment_name = $_FILES['attachment']["name"];
@@ -70,17 +80,22 @@ class Forums extends Controller
                     }
                    
             }
+// show($_POST);die;
             $result= $forum->insert($_POST);
         }
         //display all forums of that course
-        $data['rows'] =$forum->where(['course_id'=>$courseID],"forum_id");
-        // show($forum);die;
+        $mainforum = new mainForum();
+        $subject = new subject();
+        $data['rows'] =$forum->where(['course_id'=>$courseID,'mainforum_id'=>$mainforum_id],"forum_id");
+        $data['forummain'] = $mainforum -> first(['course_id'=>$courseID,'mainforum_id'=>$mainforum_id],"mainforum_id");
+        $data['course']  = $subject -> coursedetails(['course_id'=>$courseID]);
+        // show( $data['main']);die;
         
         $this->view('forums',$data);
     }
 
     //each discussion 
-    public function discussion($courseID=null ,$disID=null,$action=null)
+    public function discussion($courseID ,$disID,$action=null)
 
     { 
         // echo realpath("uploads/");die;

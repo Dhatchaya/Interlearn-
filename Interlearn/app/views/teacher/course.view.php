@@ -7,7 +7,9 @@
         <div class="teacher_crs_content">
             <img src="<?=ROOT?>/assets/images/tchrview.png" class="teacher_crs_topimg">
             <div class="teacher_crs_tophead">
+       
                 <?php if(!empty($courses)):?>
+                 
                 <div id="course_id" style="display: none;"><?=$courses[0]->course_id?></div>
                 <h2 class="teacher_crs_subject">Grade <?=esc($courses[0]->grade)?> - <?=esc($courses[0]->subject)?></h2>
                 <?php endif;?>
@@ -39,20 +41,23 @@
                                 <p><a href="#">
                                 <img src="<?=ROOT?>/assets/images/pdf.png" alt="" class="teacher_card_img3">
                                 <?=$material->upload_name?> 
-                                <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5(<?=$material->cid?>)">
-                                <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6(<?=$material->file_id?>)">
+                                <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
+                                <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->file_id?>')">
                                 </a></p>
                                 <?php elseif($material->type==="text/plain"):?>
                                     <p><a href="#">
                                     <img src="<?=ROOT?>/assets/images/pp.png" alt="" class="teacher_card_img3">
                                     <?=$material->upload_name?> 
-                                    <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5(<?=$material->cid?>)">
-                                    <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6(<?=$material->file_id?>)">
+                                    <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
+                                    <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->file_id?>')">
                                     </a></p>
                                 <?php else:?>
-                                    <p><a href="#"><?=$material->upload_name?> 
-                                    <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5(<?=$material->cid?>)">
-                                    <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6(<?=$material->file_id?>)">
+                                    <p><a href="<?=$material->view_URL?>"><?=$material->upload_name?> </a>
+                                    <a href="<?=$material->edit_URL?>">
+                                    <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32">
+                                    </a>
+                                    <a href="#">
+                                    <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" >
                                     </a></p> 
                                     <?php endif;?>
                         <?php endif;?>
@@ -71,8 +76,10 @@
                     <form action="" method="post" class="up-profile">
                         <input type="hidden" name="week_no" id="week_no">
                         <div class="teacher-crs-activities">
+                        <?php if(!empty($courses)): ?>
+                            <?php foreach($courses as $course):?>
                             <div class="teacher-crs-activity">
-                                <a href="#"><img src="<?=ROOT?>/assets/images/forum.png" alt="" class="teacher-crs-img"><br>Add Forum</a>
+                                <a href="<?=ROOT?>/teacher/course/forum/<?=$course->course_id?>" name="upload"><img src="<?=ROOT?>/assets/images/forum.png" alt="" class="teacher-crs-img"><br>Add Forum</a>
                             </div>
                             <div class="teacher-crs-activity">
                                 <a href="#"><img src="<?=ROOT?>/assets/images/quiz.png" alt="" class="teacher-crs-img"><br>Add a quiz</a>
@@ -81,10 +88,9 @@
                                 <a href="#"><img src="<?=ROOT?>/assets/images/quizb.png" alt="" class="teacher-crs-img"><br>Add a quiz bank</a>
                             </div>
                             <div class="teacher-crs-activity">
-                                <a href="#"><img src="<?=ROOT?>/assets/images/submission.png" alt="" class="teacher-crs-img"><br>Add a submission</a>
+                                <a href="<?=ROOT?>/teacher/course/assignment/<?=$course->course_id?>" name="assignment"><img src="<?=ROOT?>/assets/images/submission.png" alt="" class="teacher-crs-img"><br>Add a submission</a>
                             </div>
-                            <?php if(!empty($courses)): ?>
-                            <?php foreach($courses as $course):?>
+                         
                              <div class="teacher-crs-activity">
                                 <a href="<?=ROOT?>/teacher/course/upload/<?=$course->course_id?>" name="upload">
                                    <img src="<?=ROOT?>/assets/images/paper.png" alt="" class="teacher-crs-img"><br>Add lecture materials

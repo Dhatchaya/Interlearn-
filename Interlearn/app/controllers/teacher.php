@@ -116,7 +116,7 @@ class Teacher extends Controller
         $course_content = new CourseContent();
         $data = [];
         $data['course_id'] = $id;
-
+        $data['week_no'] = $week;
         if($action == "view")
         {
             $data = [];
@@ -220,7 +220,7 @@ class Teacher extends Controller
                             $_POST['size'] = $fileSize;
                             $_POST['course_id'] = $id;
                             //show($_POST);die;
-                            $_POST['type'] = "material";
+                            $_POST['type'] = $fileType;
                             $_POST['cid'] = $cid;
                             $result2 = $course_content -> insert($_POST);
                             $result = $course_material->insert($_POST);
@@ -248,7 +248,7 @@ class Teacher extends Controller
                             $_POST['file_type'] = $fileType;
                             $_POST['size'] = $fileSize;
                             $_POST['course_id'] = $id;
-                            $_POST['type'] = "material";
+                            $_POST['type'] = $fileType;
                             $_POST['cid'] = $cid;
                             //show($_POST);die;
                             $result2 = $course_content -> insert($_POST);
@@ -277,7 +277,7 @@ class Teacher extends Controller
                             $_POST['file_type'] = $fileType;
                             $_POST['size'] = $fileSize;
                             $_POST['course_id'] = $id;
-                            $_POST['type'] = "material";
+                            $_POST['type'] = $fileType;
                             $_POST['cid'] = $cid;
                             //show($_POST);die;
                             $result2 = $course_content -> insert($_POST);
@@ -299,8 +299,8 @@ class Teacher extends Controller
             //show($data['rows']);die;
             $data['sums']= $subject -> teacherCourse([],$user_id);
             //show($data['sums']);die;
-            $data['courses'] = $subject -> CoursePg([],$user_id);
-            $data['week_no'] = $week_no;
+            $data['courses'] = $subject -> CoursePg(['course_id' => $id],$user_id);
+            $data['week_no'] = $week;
               //show($data['courses']);die;
             $this->view('teacher/upload',$data);
         }
@@ -375,7 +375,7 @@ class Teacher extends Controller
                                 $allowed_ext = array('jpg','jpeg','doc','png','pdf','xls','html','css','js');
                                 if(in_array($file_final_ext,$allowed_ext)){
                                     $new_file_name = uniqid($user,true).'.'.$file_final_ext;
-                                    $directory = "/xampp/htdocs/Interlearn/uploads/".$id."/assignments/".$assignment_id;
+                                    $directory = "/xampp/htdocs/Interlearn/uploads/".$id."/assignments/".$assignmentid;
                                     if (!is_dir($directory)){
                                         mkdir($directory,0644, true);
 
@@ -404,17 +404,21 @@ class Teacher extends Controller
                         }
                         $editURL = "http://localhost/Interlearn/public/teacher/course/assignment/".$id."/".$week."/view?id=".$assignmentid;
                         $viewURL="http://localhost/Interlearn/public/teacher/course/submissions/".$id."/".$week."/?id=".$assignmentid;
-                        $course_material = new CourseMaterial();
-                        $_POST['editURL']=$editURL;
-                        $_POST['viewURL']=$viewURL;
+                        $cid = uniqid();
+                        $_POST['cid']=$cid;
+                        $_POST['edit_URL']=$editURL;
+                        $_POST['view_URL']=$viewURL;
                         $_POST['week_no']=$week;
-                        $_POST['course_material']="Home Work";
-                        $_POST['upload_name']="Home Work";
-                        $_POST['type']="submission";
-                        $_POST['course_id'] = $_POST['courseId'];
-                       // show($_POST);die;
-                        $result = $assignment->insert($_POST);
-                        $material = $course_material->insert($_POST);
+                        // $_POST['course_material']="Home Work";
+                        $_POST['upload_name']=$_POST['title'];
+                        $_POST['type']="assignment";
+                        $_POST['course_id'] = $id;
+                    
+                      
+                       $material = $course_content->insert($_POST);
+                     
+                       $result = $assignment->insert($_POST);
+                      
                         foreach($filenames as $file){
 
                                 $_POST['assignmentId'] =$assignmentid;
@@ -661,6 +665,38 @@ class Teacher extends Controller
 
             }
             $this->view('teacher/assignment_submission',$data);
+        }
+
+        if($action == "forum")
+        {
+            $mainForum = new mainForum();
+            $data['course']  = $subject -> coursedetails(['course_id'=>$id]);
+            
+            if($_SERVER["REQUEST_METHOD"]=="POST"){
+                $mainforum_id = uniqid('F',true);
+                $_POST['mainforum_id']=$mainforum_id;
+                $_POST['course_id']= $id;
+                $result =  $mainForum -> insert($_POST);
+                $editURL = "#";
+                $viewURL="http://localhost/Interlearn/public/forums/".$id."/".$week."/?main=".$mainforum_id;
+                $cid = uniqid();
+                $_POST['cid']=$cid;
+                $_POST['edit_URL']=$editURL;
+                $_POST['view_URL']=$viewURL;
+                $_POST['week_no']=$week;
+                // $_POST['course_material']="Home Work";
+                $_POST['upload_name']=$_POST['subject'];
+                $_POST['type']="forum";
+                $_POST['course_id'] = $id;
+            
+              
+               $material = $course_content->insert($_POST);
+                if($result){
+                    header('location:http://localhost/Interlearn/public/forums/4/1?main='.$mainforum_id);
+                }
+            }
+
+            $this->view('teacher/mainForum',$data);
         }
     }
 

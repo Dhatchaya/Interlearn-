@@ -11,7 +11,11 @@ const span = document.getElementsByClassName("close")[0];
 // When the user clicks the button, open the modal
 function openModal(id) {
     const upload = document.getElementsByName("upload");
+    const assignment = document.getElementsByName("assignment");
     console.log(upload);
+    for(i=0; i<assignment.length; i++){
+        assignment[i].href = assignment[i].href + "/" + id+"/view";
+    }
     for(i=0; i<upload.length; i++){
         upload[i].href = upload[i].href + "/" + id;
     }

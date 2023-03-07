@@ -22,8 +22,9 @@ class Assignment extends Model
     'deadline',
     'acceptDate',
     'status',
-    'editURL',
-    'viewURL',
+    'edit_URL',
+    'view_URL',
+    'cid',
     ];
 
     public function validatefile($data)

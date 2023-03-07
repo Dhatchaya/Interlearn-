@@ -2,21 +2,17 @@
 /**
  *Forum class
  */
-class Forum extends Model
+class mainForum extends Model
 {
     //says what table it has to target
     public $error = [];
-    protected $table = "forum";
+    protected $table = "mainforum";
     protected $allowed_columns = [
-        'forum_id',
-        'date',
-        'content',
-        'course_id',
-        'topic',
-        'creator',
-        'attachment',
-        'uid',
+        'subject',
+        'description',
         'mainforum_id',
+        'course_id',
+      
 
     ];
     protected $staffs = [
@@ -51,27 +47,7 @@ class Forum extends Model
         }
         return false;
     }
-    public function joinforumfirst($data=[],$orderby=null,$order='desc'){
 
-        $keys = array_keys($data);
-
-        $query =" select forum.*, users.username, users.display_picture FROM ".$this->table." INNER JOIN users on users.uid =forum.uid where ";
-        foreach($keys as $key){
-            $query .= $key. " =:".$key." && ";
-        }
-    
-
-    
-        $query = trim($query,"&& ");
-        $query .= " order by $orderby  $order limit 1";
-
-        $res = $this -> query($query,$data);
-      
-        if(is_array($res)){
-           return $res[0];
-        }
-        return false;
-    }
     // public function joinforumdiscussion($data=[]){
 
     //     $keys = array_keys($data);

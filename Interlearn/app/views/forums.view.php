@@ -6,7 +6,11 @@
     <?php $this -> view('includes/sidebar'); ?>
     <div class="forum_discussion">
     <div class = "forum_heading">
-        <h2 class="add_heading_init">Mathematics grade 11</h2>
+        <h2 class="add_heading_init">Grade <?=esc($course->grade)?> - <?=esc($course->subject)?></h2>
+        <h3 class="mainforum_sub"><?=esc($forummain->subject)?></h3>
+        <div class="mainf_des">
+        <h4 class="mainforum_desc"><?=esc($forummain->description)?></h4>
+        </div>
         <?php  if($role == "Teacher" ||$role == "Instructor"):?>
         <button type="button" data-modal-target= "#modal" class="Add_forum" id="Add_forum" >+ Add new discussion</button>
     </div>
