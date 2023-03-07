@@ -20,6 +20,10 @@
             <!-- </div> -->
         </div>
         <div class="teacher_crs_content2">
+            <a href="<?=ROOT?>/student/course/view/<?=$id?>/announcement" class="teacher-course-announcement">
+                Announcements
+                <img src="<?=ROOT?>/assets/images/next.png" alt="" class="teacher-course-ann-img">
+            </a>
         <?php
                 $i = 1;
                 foreach ($çourseWeeks as $value) {
@@ -37,18 +41,18 @@
                             ?>
                         <?php foreach($materials as $material):?>
                             <?php if($material->week_no==$i):?>
-                            <?php if($material->type==="application/pdf"):?>
+                            <?php if($material->file_type==="application/pdf"):?>
                                 <p><a href="#">
                                 <img src="<?=ROOT?>/assets/images/pdf.png" alt="" class="teacher_card_img3">
                                 <?=$material->upload_name?> 
                                 </a></p>
-                                <?php elseif($material->type==="text/plain"):?>
+                                <?php elseif($material->file_type==="text/plain"):?>
                                     <p><a href="#">
                                     <img src="<?=ROOT?>/assets/images/pp.png" alt="" class="teacher_card_img3">
                                     <?=$material->upload_name?> 
                                     </a></p>
                                 <?php else:?>
-                                    <p><a href="#"><?=$material->upload_name?> 
+                                    <p><a href="/uploads/document?id=<?php echo $material->file_id;?>"><?=$material->upload_name?> 
                                     </a></p> 
                                     <?php endif;?>
                         <?php endif;?>

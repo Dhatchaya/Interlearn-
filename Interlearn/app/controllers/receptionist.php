@@ -38,7 +38,8 @@ class Receptionist extends Controller
             $data = [];
             $data['action'] = $action;
             $data['id'] = $id; 
-
+        
+            $data['errors']=[];
 
             $data['subjects'] = $subject->getSubject();
             $data['grades'] = $subject->getGrade();
@@ -48,42 +49,41 @@ class Receptionist extends Controller
             //show($data['instructors']);die;
         
             if ($_SERVER['REQUEST_METHOD'] == 'POST') 
-             {   
-            //     if(($_POST['subject'] == "") || ($_POST['language_medium'] == "") || ($_POST['grade'] == "") || ($_POST['teacher_id'] == "") || ($_POST['day'] == "") || ($_POST['timefrom'] == "") || ($_POST['timeto'] == ""))
-            //     {
-            //         $msg = '<div class="alert">Fill all the fields!</div>';
-            //     }else{
-            //         $subject_name = $_REQUEST['subject'];
-            //         $language_medium = $_REQUEST['language_medium'] ;
-            //         $grade = $_REQUEST['grade'];
-            //         $teacher_id = $_REQUEST['teacher_id'];
-            //         $day = $_REQUEST['day'];
-            //         $timefrom = $_REQUEST['timefrom'];
-            //         $timeto = $_REQUEST['timeto'];
-            //     }
+            {   
+                if($course -> validate($_POST)){
+                    $subject_id = uniqid();
+                    //uniqueid("S",true)
 
-                
+                    $_POST['subject_id']=$subject_id;
+                    $subject->insert($_POST);
+                    
+                    // $subject_details = $subject->getSubjectId($_POST['subject'],$_POST['grade'],$_POST['language_medium']);
 
-                $subject_id = uniqid();
-                //uniqueid("S",true)
+                    // $_POST['subject_id'] = $subject_details[0]->subject_id;
+                    // print_r ($subject_id);die;
+                    $course->insert($_POST);
 
-                 $_POST['subject_id']=$subject_id;
-                $subject->insert($_POST);
-                
-                // $subject_details = $subject->getSubjectId($_POST['subject'],$_POST['grade'],$_POST['language_medium']);
+                    // // show($subject_id);die;
+                    $id= $course->getLastCourse()[0]->course_id;
+                    // // // print_r($Course);die;
+                    $course_week->createWeek($id, 1);
 
-                // $_POST['subject_id'] = $subject_details[0]->subject_id;
-                // print_r ($subject_id);die;
-                $course->insert($_POST);
-
-                // // show($subject_id);die;
-                $id= $course->getLastCourse()[0]->course_id;
-                // // // print_r($Course);die;
-                $course_week->createWeek($id, 1);
-
+                }
+                else{
+                    $data['error']['invalid'] = "There is an unknown error occured!"; 
+                }
             }
+
             $this->view('receptionist/addCourse',$data);
             exit;   
+        }
+
+        if($action == 'select'){
+            $result = $course -> getSubjectCourse([]);
+            // show($result);
+            header('Content-type: application/json');
+                echo json_encode($result);
+                exit;
         }
 
         if($action == 'view')
@@ -135,36 +135,30 @@ class Receptionist extends Controller
                     $data['tamilid'] = $subject->getSubjectId($subjectName,$grade,"Tamil");
                     // show($data['subjects']);die;
 
+                    $data['teach_instructors'] = [];
+                    $extra = [];
                     for($i=0; $i<count($data['subjects']); $i++){
-                        //show($data['subjects'][$i]->course_id);
-                        $data['instructors'] = $course_instructor -> getInstructors($data['subjects'][$i]->course_id);
+                       
+                        $extra= $course_instructor -> getInstructors($data['subjects'][$i]->course_id);
+                        if(!empty($extra)){
+                            $data['teach_instructors'] = $extra;
+                        }
+                     
+                
                         
                     }
-                    // show($data['instructors']);
+                    // show($data['teach_instructors']);
+                    // //  
                     // die;
-
-                    // if($id==1){
-                    //     $medium = "Sinhala";
-                    //     $data['subjects']=$subject->selectTeachers(['subject'=>$allSubjects[0]->subject, 'grade'=>$allSubjects[0]->grade],$medium,$subject_id);
-                        
-                    //     //show($data['subjects']);die;
-                        
-                    // }
-                    // if($id==2){
-                    //     $medium = "English";
-                    //     $data['subjects']=$subject->selectTeachers(['subject'=>$allSubjects[0]->subject, 'grade'=>$allSubjects[0]->grade],$medium,$subject_id);
-                    // }
-                    // if($id==3){
-                    //     $medium = "Tamil";
-                    //     $data['subjects']=$subject->selectTeachers(['subject'=>$allSubjects[0]->subject, 'grade'=>$allSubjects[0]->grade],$medium,$subject_id);
-                     
-                        
-                    //     //show($data['subjects']);die;
-                    
                     // }
                 }
                 $data['teachers'] = $teacher->select([],'teacher_id','asc');
                 $data['instructors'] = $instructor->select([],'instructor_id','asc');
+
+                if(isset($_POST['submit-delete-course'])){
+                    $result = $course->delete(['course_id'=>$id]);
+                    header("Location:http://localhost/Interlearn/public/receptionist/course");
+                }
 
                 $this->view('receptionist/class',$data);
                 exit;
@@ -172,17 +166,17 @@ class Receptionist extends Controller
 
        
 
-        if($action == 'delete'){
-            if(isset($_POST['submit-delete-course'])){
-                $result = $course->delete(['course_id'=>$id]);
-                header("Location:http://localhost/Interlearn/public/receptionist/course");
-            }
-            // $data = [];
-            // $data['action'] = $action;
-            // $data['id'] = $id;
+        // if($action == 'delete'){
+        //     if(isset($_POST['submit-delete-course'])){
+        //         $result = $course->delete(['course_id'=>$id]);
+        //         header("Location:http://localhost/Interlearn/public/receptionist/course");
+        //     }
+        //     // $data = [];
+        //     // $data['action'] = $action;
+        //     // $data['id'] = $id;
             
-            $this->view('receptionist/class',$data);
-        }
+        //     $this->view('receptionist/class',$data);
+        // }
        
         $data['rows']= $course->select([],'course_id');
         $data['sums']= $subject -> distinctSubject([],'subject');
@@ -233,11 +227,6 @@ class Receptionist extends Controller
             redirect('home');
 
         }
-
-
-
-
-
 
         $course = new Course();
         $subject = new Subject();

@@ -27,32 +27,9 @@ $val = explode('/',$url);
                     <li><a href="<?=ROOT?>/receptionist/course/view/1/?id=<?=$medium->subject_id?>" class="recp_cl_nav active"><?=$medium->language_medium?></a></li>
                <?php endforeach;?>
                <?php endif;?>
-
-               
-               <!-- <?php if( $val[3] == 1) :?> 
-                    <?php echo ' <li><a href="'.ROOT.'/receptionist/course/view/1/?id='.$sinhalaid[0]->subject_id.'" class="recp_cl_nav active">Sinhala</a></li>';?>
-                  
-
-                <?php else :?>
-                    <?php echo ' <li><a href="'.ROOT.'/receptionist/course/view/1/?id='.$sinhalaid[0]->subject_id.'" class="recp_cl_nav">Sinhala</a></li>';?>
-                <?php endif;?>
-
-                <?php if( $val[3] == 2) :?>
-                    <?php echo ' <li><a href="'.ROOT.'/receptionist/course/view/2/?id='.$englishid[0]->subject_id.'" class="recp_cl_nav active">English</a></li>';?>
-                 
-                <?php else :?>
-                    <?php echo '<li><a href="'.ROOT.'/receptionist/course/view/2/?id='.$englishid[0]->subject_id.'" class="recp_cl_nav">English</a></li>';?>
-                <?php endif;?>
-
-                <?php if( $val[3] == 3) :?> 
-                    <?php echo ' <li><a href="'.ROOT.'/receptionist/course/view/3/?id='.$tamilid[0]->subject_id.'" class="recp_cl_nav active">Tamil</a></li>';?>
-                   
-                <?php else :?>
-                    <?php echo '<li><a href="'.ROOT.'/receptionist/course/view/3/?id='.$tamilid[0]->subject_id.'" class="recp_cl_nav">Tamil</a></li>';?>
-                <?php endif;?> -->
             </ul>
         </nav>
-        <div id="profileModal" class="popupModal">
+        <!-- <div id="profileModal" class="popupModal">
                        <div class="popupmodal-content">
                            <span class="ann_close" onclick="closeModal()">&times;</span><br>
                            <form action="" method="post" class="up-profile">
@@ -91,11 +68,13 @@ $val = explode('/',$url);
                            </form>
                         </div>
         </div>
-        <br>
+        <br> -->
 
         <!-- content table -->
         <div class="recp_cl_staff">
             <table class="teacher-class-table">
+           
+
                 <th>Day</th>
                 <th>Time</th>
                 <th>Teacher  <img src="<?=ROOT?>/assets/images/plus.png" alt="" id="button1" class="teacher_crs_img2"></th>
@@ -108,24 +87,32 @@ $val = explode('/',$url);
                     <td><?=esc($teacher->day)?></td>
                     <td><?=esc($teacher->timefrom)?> - <?=esc($teacher->timeto)?></td>
                     <td><?=esc($teacher->teacherName)?>
+
                         <?php if(empty($teacher->teacherName)):?>
                             <?php echo "No teachers assigned!";?>
                         <?php endif?>
                     </td>
-                    <?php foreach($instructors as $instructor):?>
-                    <td><?=esc($instructor->instructorName)?>
-                        <?php if(empty($instructor->instructorName)):?>
-                            <?php echo "No instructors assigned!";?>
-                        <?php endif?>       
-                    </td>
-                    <?php endforeach;?>
                     <td>
-                        <a href="<?=ROOT?>/receptionist/course/edit/<?=esc($teacher->course_id)?>">
+                   
+                    <?php if(!empty($teach_instructors)):?>
+                        <?php foreach($teach_instructors as $teach_instructor):?>
+                            <?=esc($teach_instructor->instructorName)?><br/>
+                        <?php endforeach;?> 
+                    <?php else:?>
+                            <?php echo "No instructors assigned!";?>
+                    <?php endif?>  
+                    </td> 
+                    <td>
+                    <?php if(!empty($mediums)):?>
+                    <?php foreach($mediums as $medium):?>
+                        <a href="<?=ROOT?>/receptionist/course/view/1/?id=<?=$medium->subject_id?>">
                             <img src="<?=ROOT?>/assets/images/edit.png" class="teacher_crs_img2" id="button28" onclick="openModal()">
                         </a>
                         <a href="<?=ROOT?>/receptionist/course/delete/<?=esc($teacher->course_id)?>">
                             <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_crs_img2" id="button35" onclick="openModal4(<?=esc($teacher->course_id)?>)">
                         </a>
+                        <?php endforeach;?>
+                    <?php endif;?>
                     </td>
                 </tr>
                 <?php endforeach;?>
@@ -265,7 +252,7 @@ $val = explode('/',$url);
                 <span class="ann_close" onclick="closeModal()">&times;</span><br>
                 <form action="" method="post" class="up-profile">
                     <h4>Teacher ID: </h4>
-                    <select name="teacher_id" id="" class="recp_ann_clz">
+                    <select name="teacher_id" id="" class="recp_ann_clz" disabled>
                         <option value="" selected>--Select teacher id--</option>
                         <?php if(!empty($teachers)):?>
                         <?php foreach($teachers as $teacher):?>

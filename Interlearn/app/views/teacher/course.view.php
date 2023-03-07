@@ -7,9 +7,7 @@
         <div class="teacher_crs_content">
             <img src="<?=ROOT?>/assets/images/tchrview.png" class="teacher_crs_topimg">
             <div class="teacher_crs_tophead">
-       
                 <?php if(!empty($courses)):?>
-                 
                 <div id="course_id" style="display: none;"><?=$courses[0]->course_id?></div>
                 <h2 class="teacher_crs_subject">Grade <?=esc($courses[0]->grade)?> - <?=esc($courses[0]->subject)?></h2>
                 <?php endif;?>
@@ -37,14 +35,14 @@
                         <?php if(!empty($materials)):  ?>
                         <?php foreach($materials as $material):?>
                             <?php if($material->week_no==$i):?>
-                            <?php if($material->type==="application/pdf"):?>
+                            <?php if($material->file_type==="application/pdf"):?>
                                 <p><a href="#">
                                 <img src="<?=ROOT?>/assets/images/pdf.png" alt="" class="teacher_card_img3">
                                 <?=$material->upload_name?> 
                                 <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
                                 <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->file_id?>')">
                                 </a></p>
-                                <?php elseif($material->type==="text/plain"):?>
+                                <?php elseif($material->file_type==="text/plain"):?>
                                     <p><a href="#">
                                     <img src="<?=ROOT?>/assets/images/pp.png" alt="" class="teacher_card_img3">
                                     <?=$material->upload_name?> 
@@ -90,7 +88,7 @@
                             <div class="teacher-crs-activity">
                                 <a href="<?=ROOT?>/teacher/course/assignment/<?=$course->course_id?>" name="assignment"><img src="<?=ROOT?>/assets/images/submission.png" alt="" class="teacher-crs-img"><br>Add a submission</a>
                             </div>
-                         
+
                              <div class="teacher-crs-activity">
                                 <a href="<?=ROOT?>/teacher/course/upload/<?=$course->course_id?>" name="upload">
                                    <img src="<?=ROOT?>/assets/images/paper.png" alt="" class="teacher-crs-img"><br>Add lecture materials

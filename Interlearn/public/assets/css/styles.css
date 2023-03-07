@@ -3357,7 +3357,7 @@ width: 45vw;
     width: 17vw;
     height: 40vh;
     float: left;
-    margin-right: 8%;
+    margin-right: 4%;
     margin-bottom: 4%;
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
@@ -3804,7 +3804,6 @@ select {
     padding: 2rem;
     display: none;
 }
-
 .add_view {
     width: 100%;
 }
@@ -3818,7 +3817,6 @@ select {
     position: relative;
     bottom: 0;
 }
-
 .descrip{
     margin-bottom: 2rem;
 }
@@ -4439,7 +4437,6 @@ tr:nth-child(even) {
 .forum_discussion {
   width: 90%;
 }
-
 .new_discussion {
    background-color: var(--secondary-color);
   /* width: 80%; */
@@ -4450,7 +4447,6 @@ tr:nth-child(even) {
   display: none;
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
 }
-
 .add_view {
   width: 100%;
 }
@@ -4459,12 +4455,10 @@ tr:nth-child(even) {
   width: 15rem;
   margin-bottom: 2rem;
 }
-
 .forum_right{
 
   position: relative;
   bottom: 0;
-
 }
 .descrip{
   margin-bottom: 2rem;
@@ -5278,5 +5272,55 @@ gap: 8vw;
   margin-top: 2%;
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
   position: absolute;
-  
+
+}
+
+
+
+/* student course announcement */
+.std-announcement-container{
+    display: flex;
+    margin-bottom: 2%;
+}
+.std-course-announcement{
+    width: 65vw;
+    margin-top: 5%;
+    margin-left: 4%;
+}
+.std-announcement-box{
+    border: solid;
+    border-color: rgba(62, 32, 109, 20%);
+    padding: 2%;
+    align-items: center;
+    width: 65vw;
+}
+.std-announcement-msg{
+    text-align: left;
+    border-style: solid;
+    border-color: rgba(62, 32, 109, 100%);
+    padding-top: 2%;
+    padding-left: 2%;
+    width: 62vw;
+}
+
+
+
+
+
+.teacher-announcement-edit{
+    margin-top: 0%;
+    float: left;
+}
+.teacher-ann-edit-file{
+    width: 20vw;
+    height: 5vh;
+
+    /* padding-left: 2%;
+    padding-right: 2%; */
+}
+.announcement-edit-close{
+    cursor: pointer;
+    background-color: rgb(255, 255, 255);
+    color: rgb(104, 44, 198,55%);
+    width: 5vw;
 }

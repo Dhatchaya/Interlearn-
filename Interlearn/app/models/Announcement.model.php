@@ -76,4 +76,66 @@ class Announcement extends Model{
             return false;
         }
     }
+
+    public function showAnnouncementInstructor($course_id){
+        $query = "SELECT concat(instructor.firstname, ' ', instructor.lastname) AS fullname, announcement.* FROM ".$this->table;
+        $query .= " INNER JOIN announcement_course ON announcement_course.aid = announcement.aid INNER JOIN course ON course.course_id = announcement_course.course_id INNER JOIN course_instructor ON course_instructor.course_id = course.course_id INNER JOIN instructor ON course_instructor.instructor_id = instructor.instructor_id";
+        $query .= " WHERE announcement_course.course_id =:courseID";
+        $data['courseID'] = $course_id;
+
+        $res = $this -> query($query, $data);
+        // echo $res;die;
+
+        if($res){
+            return $res;
+        }else{
+            return false;
+        }
+    }
+
+    public function updateAnnouncement($aid){
+        $query = "UPDATE ".$this->table;
+        $query .= " SET title =:title, content =:content, attachment =:attachment";
+        $query .= " WHERE announcement.aid =:aID";
+        $data['aID'] = $aid;
+
+        $res = $this -> update_table($query, $data);
+
+        if($res){
+            return $res;
+        }else{
+            return false;
+        }
+    }
+
+    public function deleteAnnouncement($aid){
+        $query = "DELETE FROM ".$this->table;
+        $query .= " WHERE announcement.aid =:aID";
+        $data['aID'] = $aid;
+
+        $res = $this -> delete_table($query, $data);
+
+        if($res){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function stdAnnouncements($data=[],$id=null,$course_id=null,$orderby=null,$order = 'desc'){
+
+        $query ="SELECT concat(teachers.firstname,' ',teachers.lastname) AS fullname, subject.subject, subject.grade,subject.language_medium,course.*,announcement.*,announcement_course.*,student_course.student_id FROM ".$this->table;
+        $query .=" INNER JOIN announcement_course ON announcement_course.aid = announcement.aid INNER JOIN course ON course.course_id = announcement_course.course_id INNER JOIN subject ON course.subject_id = subject.subject_id INNER JOIN student_course ON student_course.course_id = announcement_course.course_id INNER JOIN student ON student.studentID = student_course.student_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id ";
+        $query .= " WHERE student.uid = $id AND announcement_course.course_id = $course_id";
+        $query .= " order by announcement.date_time $order";
+        // announcement.time  $order";
+    // echo $query;die;
+        $res = $this -> query($query,$data);
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;
+
+    }
 }

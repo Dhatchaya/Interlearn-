@@ -14,6 +14,7 @@ class Student extends Controller
         $course = new Course();
         $subject = new Subject();
         $teacher = new Teacher();
+        $student = new Students();
         $announcement = new Announcement();
         $ann_course = new AnnouncementCourse();
         $student_course = new StudentCourse();
@@ -23,8 +24,13 @@ class Student extends Controller
         //     $student_course->table=>'course_id'
         // ]);
 
+        $data['students'] = $student -> getStudentName($user);
+        // $student_name = $data['students'][0]->fullname;
+        // show($data['students'][0]->fullname);die;
+        // echo $student_name;die;
+
         // $res=$student_course->join(['uid'=>$user]);
-        $data['announcements'] = $subject->stdAnnouncements([],$user);
+        // $data['announcements'] = $subject->stdAnnouncements([],$user);
         //$data['announcement'] = $res;
         //show($data['announcements']);die;
 
@@ -44,7 +50,7 @@ class Student extends Controller
     }
 
 
-    public function course($action = null, $id = null)
+    public function course($action = null, $id = null, $option = null)
     { 
         if(!Auth::is_student()){
             redirect('home');
@@ -72,12 +78,23 @@ class Student extends Controller
             //show($data['courses']);die;
             $data['çourseWeeks'] = $course_week->getWeeks($id);
 
-            $data['materials'] = $subject -> tchrCrsMat([],$id);
+            $data['materials'] = $subject -> studentCourseMaterials([],$id);
 
             // $data['files'] = $course_material -> downloadFiles([],$id);
 
+            if($option == 'announcement'){
+                $announcement = new Announcement();
+                $ann_course = new AnnouncementCourse();
+                $student_course = new StudentCourse();
+
+                $data['announcements'] = $announcement->stdAnnouncements([],$user_id,$id);
+
+                $this->view('student/announcement',$data);
+            }
+
             if(!empty($_GET['file_id'])){
                 $fid = $_GET['file_id'];
+                echo $fid;die;
                 $result = $course_material -> downloadFiles([],$fid);
                 $filename = basename($_GET['file_id']);
                 $filepath = 'uploads/documents/'.$filename;

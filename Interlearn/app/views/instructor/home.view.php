@@ -1,55 +1,31 @@
 <?php $this->view("includes/header");?>
 <?php $this->view("includes/nav");?>
+<!-- <?php 
+var_dump($sums); 
+?> -->
 
 <div class="teacher_view_container">
-    <?php $this->view("includes/sidebar_ins");?>
+    <?php $this->view("includes/sidebar_teach");?>
     <div class="teacher_view_content">
-        <h1 class="teacher_view_greeting">Good Morning Monica!</h1><br>
-            <div class="teacher_view_Rectangle">
-                <a href="<?=ROOT?>/instructor/course">
-                    <img src="<?=ROOT?>/assets/images/2023.jpg" alt="" class="teacher_view_Img">
-                    <p>2023 A/L</p>
-                    <p>Combined Maths</p>
-                    <p>Hall No 04</p>
-                </a>
-            </div>
-            <div class="teacher_view_Rectangle">
-                <a href="#">
-                    <img src="<?=ROOT?>/assets/images/2024.jpg" alt="" class="teacher_view_Img">
-                    <p>2024 A/L</p>
-                    <p>Combined Maths</p>
-                    <p>Hall No 04</p>
-                </a>
-            </div>
-            <div class="teacher_view_Rectangle">
-                <a href="#">
-                    <img src="<?=ROOT?>/assets/images/2025.jpeg" alt="" class="teacher_view_Img">
-                    <p>2025 A/L</p>
-                    <p>Combined Maths</p>
-                    <p>Hall No 05</p>
-                </a>
-            </div>
-            <div class="teacher_view_Rectangle">
-                <a href="#">
-                    <img src="<?=ROOT?>/assets/images/2023.jpg" alt="" class="teacher_view_Img">
-                    <p>2023 A/L</p>
-                    <p>Combined Maths</p>
-                    <p>Paper Class</p>
-                    <p>Hall No 05</p>
-                </a>
-            </div>
-            <div class="teacher_view_Rectangle">
-                <a href="#">
-                    <img src="<?=ROOT?>/assets/images/2023.jpg" alt="" class="teacher_view_Img">
-                    <p>2023 A/L</p>
-                    <p>Combined Maths</p>
-                    <p>Revision Class</p>
-                    <p>Hall No 05</p>
-                </a>
-            </div>
+        <p class="teacher_view_greeting">Welcome <?= ucfirst(Auth::getusername())?>!</p><br><br>
+            <?php if(!empty($sums)):?>
+            <?php foreach($sums as $sum):?>
+        <div class="recp_crs_rectangle">
+        
+            <a href="<?=ROOT?>/instructor/course/view/<?=$sum->course_id?> ">
+                <!-- <img src="<?=ROOT?>/uploads/images/<?= Auth::getdisplay_picture();?>" alt="" class="recp_crs_img"> -->
+                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
+                <br><br>
+                <p>Grade <?=esc($sum->grade)?> - <?=esc($sum->subject)?></p>
+                <p>(<?=esc($sum->language_medium)?>)</p>
+                
+            </a>
+            
+        </div>
+        <?php endforeach;?>
+        <?php endif;?>
         </div>
     </div>
 </div> 
     <div  id="overlay"></div>
-    <script defer src="./enquiry.js"></script>
     <?php $this->view("includes/footer");?>

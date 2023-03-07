@@ -98,7 +98,7 @@ class Teacher extends Controller
     //access that course
     // $action=null,$id = null,$week = null, $option = null,$extra=null
 
-    public function course($action=null,$id = null,$week = null,$option = null,$extra=null)
+    public function course($action=null,$id = null,$week = null,$option = null,$extra=null,$aid=null)
     {
         if(!Auth::is_teacher()){
             redirect('home');
@@ -155,8 +155,8 @@ class Teacher extends Controller
                 $course->UpdateNoOfWeeks($id,$currentWeeks + $_POST['no_of_weeks']);
                 for ($i=1; $i <= $_POST['no_of_weeks'] ; $i++) {
                     $course_week->createWeek($id,$currentWeeks+$i);
-                    header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
                 }
+                header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
             }
 
             if(isset($_POST['submit-title'])){
@@ -166,7 +166,7 @@ class Teacher extends Controller
 
             if(isset($_POST['submit-upload'])){
                 // echo $_POST['upload-title'];die;
-                echo $_POST['cid'];die;
+                // echo $_POST['cid'];die;
                 $result = $course_content->UpdateUploadName($id,$_POST['cid'],$_POST['upload-title']);
             }
 
@@ -201,16 +201,19 @@ class Teacher extends Controller
                 $fileExt = explode('.',$fileName);
                 $fileActualExt = strtolower(end($fileExt));
 
-                $allowed1 = array('jpg','jpeg','png');
-                $allowed2 = array('pdf','zip','txt','sql','docx','xml','doc','ppt');
-                $allowed3 = array('mp3','mp4');
+                $allowed1 = array('jpg','jpeg','png', 'pdf','zip','txt','sql','docx','xml','doc','ppt', 'mp3','mp4');
 
                 if(in_array($fileActualExt, $allowed1)){
                     // print_r($_FILES['file']);exit;
                     if($fileError === 0){
-                        if($fileSize < 1000000){
+                        if($fileSize < 1000000000){
                             $fileNameNew = uniqid('',true).".".$fileActualExt;
-                            $fileDestination = 'uploads/images/'.$fileNameNew;
+                            $fileDestination = "/xampp/htdocs/Interlearn/uploads/".$id."/materials/".$cid;
+                            if (!is_dir($fileDestination)){
+                                mkdir($fileDestination,0644, true);
+
+                            }
+                            $destination =  $fileDestination."/".$fileNameNew;
                             move_uploaded_file($fileTmpName,$fileDestination);
                             //echo $fileActualExt;exit;
                             //var_dump($_POST);exit;
@@ -220,12 +223,12 @@ class Teacher extends Controller
                             $_POST['size'] = $fileSize;
                             $_POST['course_id'] = $id;
                             //show($_POST);die;
-                            $_POST['type'] = $fileType;
+                            $_POST['type'] = "material";
                             $_POST['cid'] = $cid;
                             $result2 = $course_content -> insert($_POST);
                             $result = $course_material->insert($_POST);
                             echo "Material successfully published!";
-                            header("location: http://localhost/Interlearn/public/teacher/course?uploadsuccess");
+                            header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
                         }else{
                             echo "Image is too large!";
                         }
@@ -236,63 +239,7 @@ class Teacher extends Controller
                     echo "You cannot upload this file!";
                 }
 
-                if(in_array($fileActualExt, $allowed2)){
-                    // print_r($_FILES['file']);exit;
-                    if($fileError === 0){
-                        if($fileSize < 10000000){
 
-                            $fileNameNew = uniqid('',true).".".$fileActualExt;
-                            $fileDestination = 'uploads/documents/'.$fileNameNew;
-                            move_uploaded_file($fileTmpName,$fileDestination);
-                            $_POST['course_material'] = $fileNameNew;
-                            $_POST['file_type'] = $fileType;
-                            $_POST['size'] = $fileSize;
-                            $_POST['course_id'] = $id;
-                            $_POST['type'] = $fileType;
-                            $_POST['cid'] = $cid;
-                            //show($_POST);die;
-                            $result2 = $course_content -> insert($_POST);
-                            $result = $course_material->insert($_POST);
-                            echo "Material successfully published!";
-                            header("location: http://localhost/Interlearn/public/teacher/course?uploadsuccess");
-                        }else{
-                            echo "File is too large!";
-                        }
-                    }else{
-                        echo "There was an error uploading file!";
-                    }
-                }else{
-                    echo "You cannot upload this file!";
-                }
-
-                if(in_array($fileActualExt, $allowed3)){
-                    // print_r($_FILES['file']);exit;
-                    if($fileError === 0){
-                        if($fileSize < 1000000000){
-
-                            $fileNameNew = uniqid('',true).".".$fileActualExt;
-                            $fileDestination = 'uploads/videos/'.$fileNameNew;
-                            move_uploaded_file($fileTmpName,$fileDestination);
-                            $_POST['course_material'] = $fileNameNew;
-                            $_POST['file_type'] = $fileType;
-                            $_POST['size'] = $fileSize;
-                            $_POST['course_id'] = $id;
-                            $_POST['type'] = $fileType;
-                            $_POST['cid'] = $cid;
-                            //show($_POST);die;
-                            $result2 = $course_content -> insert($_POST);
-                            $result = $course_material->insert($_POST);
-                            echo "Material successfully published!";
-                            header("location: http://localhost/Interlearn/public/teacher/course?uploadsuccess");
-                        }else{
-                            echo "File is too large!";
-                        }
-                    }else{
-                        echo "There was an error uploading file!";
-                    }
-                }else{
-                    echo "You cannot upload this file!";
-                }
                 // $result = $course_material->insert($_POST);
             }
             $data['rows']= $course->select([],'course_id');
@@ -331,6 +278,7 @@ class Teacher extends Controller
                     $result = $announcement->insert($_POST);
                     $result2 = $ann_course->insert($_POST);
                     echo "Announcement successfully published!";
+                    header("Location:http://localhost/Interlearn/public/teacher/course/announcement/".$id."/0");
                     //show($_POST);die;
                 }
                 $this->view('teacher/addAnnouncement',$data);
@@ -341,6 +289,17 @@ class Teacher extends Controller
             // echo $id;die;
 
             $data['announcements'] = $announcement -> showAnnouncement($id);
+            // show($data['announcements']);die;
+
+            if(isset($_POST['edit-announcement'])){
+                // echo $_POST['upload-title'];die;
+                $result = $announcement->updateAnnouncement($_POST['aid']);
+            }
+
+            if(isset($_POST['delete-announcement'])){
+                $result = $announcement->deleteAnnouncement($_POST['delete-aid']);
+                header("Location:http://localhost/Interlearn/public/teacher/course/announcement/".$id."/0");
+            }
             // show($data['announcements']);die;
 
             $this->view('teacher/announcement',$data);
@@ -413,12 +372,12 @@ class Teacher extends Controller
                         $_POST['upload_name']=$_POST['title'];
                         $_POST['type']="assignment";
                         $_POST['course_id'] = $id;
-                    
-                      
+
+
                        $material = $course_content->insert($_POST);
-                     
+
                        $result = $assignment->insert($_POST);
-                      
+
                         foreach($filenames as $file){
 
                                 $_POST['assignmentId'] =$assignmentid;
@@ -671,7 +630,7 @@ class Teacher extends Controller
         {
             $mainForum = new mainForum();
             $data['course']  = $subject -> coursedetails(['course_id'=>$id]);
-            
+
             if($_SERVER["REQUEST_METHOD"]=="POST"){
                 $mainforum_id = uniqid('F',true);
                 $_POST['mainforum_id']=$mainforum_id;
@@ -688,8 +647,8 @@ class Teacher extends Controller
                 $_POST['upload_name']=$_POST['subject'];
                 $_POST['type']="forum";
                 $_POST['course_id'] = $id;
-            
-              
+
+
                $material = $course_content->insert($_POST);
                 if($result){
                     header('location:http://localhost/Interlearn/public/forums/4/1?main='.$mainforum_id);

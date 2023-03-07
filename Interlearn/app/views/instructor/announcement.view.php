@@ -4,7 +4,7 @@
 <div class="recp_ann_container">
 <?php $this->view("includes/sidebar_recep");?>
     <div class="recp_ann_content">
-        <a href="<?=ROOT?>/teacher/course/announcement/<?=$course_id?>/0/add">
+        <a href="<?=ROOT?>/instructor/course/announcement/<?=$course_id?>/0/add">
             <button class="recp_cl_btn">+Add Announcements</button><br><br>
         </a>
         <br>
@@ -41,11 +41,7 @@
                             <label for="">Content: </label><br>
                             <textarea id="address" name="address" class="edit_ann_cont"><?=$row->content?></textarea><br><br>
                             <label for="">Attach Files: </label><br>
-                            <input type="file" class="edit_ann_name" name="attachment" value="">
-                            <div class="teacher-announcement-edit">
-                                <?=esc($row->attachment)?>
-                                <span class="announcement-edit-close">&times;</span>
-                            </div><br>
+                            <input type="file" class="edit_ann_name" name="attachment" value="<?=esc($row->attachment)?>"><br>
                             <button type="submit" class="teacher_upl_btn" name="edit-announcement" id="add-btn">Save</button>
                             <button type="reset" class="teacher_upl_btn" id="cancel-btn">Cancel</button>
                         </div>
