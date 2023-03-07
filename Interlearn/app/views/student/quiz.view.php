@@ -12,6 +12,7 @@
     <div class="do_quiz_right">
         <div class="home-box custom-box">
             <h3>Instruction : </h3>
+            <span class="description"></span>
             <p>Total number of questions : <span class="total-question"></span></p>
             <button type="button" class="btn" onclick="StartQuiz()">Start Quiz</button>
         </div>

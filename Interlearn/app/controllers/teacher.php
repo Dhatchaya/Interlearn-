@@ -134,7 +134,7 @@ class Teacher extends Controller
             //show($data['courses']);die;
             $data['noOfWeeks'] = $course->getWeekCount($id)->No_Of_Weeks;
             $data['courseWeeks'] = $course_week->getWeeks($id);
-            
+
             // show($course_week->getWeeks($id));
             // show($data['courseWeeks']);die;
             //$data['courses'] = $subject -> CoursePg([],$user_id);
@@ -529,7 +529,7 @@ class Teacher extends Controller
                 $assignmentID = $_GET['id'];
             }
             else{
-                
+
                 header("location:http://localhost/Interlearn/public/teacher/course/view/".$id);
                 $this->view('teacher/course',$data);
                 exit;
@@ -548,7 +548,7 @@ class Teacher extends Controller
                     $files = explode(",",$submission->Files);
                     $submission->Files = $files;
                 }
-         
+
             $data ['assignment']= $submissions[0]->title;
             $data['submissions'] = $submissions;
             }
@@ -625,6 +625,127 @@ class Teacher extends Controller
             }
             $this->view('teacher/assignment_submission',$data);
         }
+        // $action=null,$id = null,$week = null, $option = null,$extra=null
+        // http://localhost/Interlearn/public/teacher/course/quiz/4/79/create
+        if($action == 'quiz') {
+            $question = new ZQuestion();
+            $choice = new ZChoices();
+            $quiz = new ZQuiz();
+
+            $data = [];
+            $data['id'] = $id;
+            if(isset($_GET['qnum'])) {
+                $qnum = $_GET['qnum'];
+            }
+
+
+            if($option == 'create') {
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+                        $quiz_id = uniqid();
+                        $_POST['quiz_id']=$quiz_id;
+
+                        $_POST['course_id'] = $id;
+
+                        $result = $quiz-> insert($_POST);
+                        // show($_POST);
+                        if($result) {
+                            $questions = [];
+                            $quiz_question = new ZQuizQuestion();
+                            $result1 = $question->QuizInnerjoinQuestion(['category'=>$_POST['category']]);
+
+                            foreach( $result1 as $i ){
+                                foreach($i as $question=>$number){
+                                    $questions[$question] = $number;
+                                    $questions['quiz_id'] = $quiz_id;
+                                    $result2= $quiz_question->insert($questions);
+
+                                }
+
+
+                            }
+                            $content = new CourseContent();
+                            $cid = uniqid();
+                            $_POST['cid'] = $cid;
+                            $_POST['type'] = 'quiz';
+                            $_POST['course_id'] = $id;
+                            $_POST['week_no'] = $week;
+                            $_POST['upload_name'] = $_POST['quiz_name'];
+                            $_POST['view_URL'] = 'http://localhost/Interlearn/public/teacher/course/quiz/4/79/view';
+                            $_POST['edit_URL'] =  'http://localhost/Interlearn/public/teacher/course/quiz/4/79/edit';
+                            $_POST['delete_URL'] = 'http://localhost/Interlearn/public/teacher/course/quiz/4/79/edit';
+                            $_POST['student_URL'] = 'http://localhost/Interlearn/public/STUDENT/course/quiz/4/79/'.$quiz_id;
+
+                            $result = $content->insert($_POST);
+
+                            // $array = json_decode(json_encode($result1), true);
+
+                            // $data1 =[];
+                            // $data1 = (array) $result1;
+                            // show($data1);
+
+                            // foreach($result1 as $i ) {
+                            //     print_r($i);
+                            //     array_push($i,(object)['quiz_id'=>$quiz_id]);
+                            //     print_r($i);
+                            //     $result = $quiz_question-> insert($i);
+                            // }
+                            // show($result1);
+                            // $questions = array();
+
+                            // // Loop through each object and extract the question number
+                            // foreach ($result1 as $obj) {
+                            //     $questions[] = $obj->question_number;
+                            // }
+
+                            // Output the resulting array of question numbers
+                            // print_r($questions);
+                            // // show($array);
+                            // show($_POST);
+                            // die;
+                            // $result2 = $quiz_question->insert($result1);
+                            // show($result2);
+                        }
+                    }
+
+                    $this->view('teacher/Zquiz_add');
+                    exit();
+            }
+            if($option == 'new') {
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+                    $question_number = uniqid();
+                    $_POST['question_number']=$question_number;
+
+                    $_POST['course_id'] = $id;
+
+                    // $question = new ZQuestion();
+                    $result = $question-> insert($_POST);
+
+                    // $choice = new ZChoices();
+                    $result = $choice-> insert($_POST);
+                    if($result) {
+                        header("Location:http://localhost/Interlearn/public/teacher/course/quiz/".$id."/".$week);
+                    }
+                }
+
+                $this->view('teacher/Zquiz_new');
+                exit();
+            }
+
+            if($option == 'delete') {
+                // $id = $_GET['id'];
+                $result = $question->delete(['question_number'=>$qnum]);
+                header("Location:http://localhost/Interlearn/public/teacher/course/quiz/".$id."/".$week);
+                exit();
+            }
+
+            $data['rows'] = $question->ChoiceInnerjoinQuestion();
+            // show($data);
+            $this->view('teacher/Zquiz', $data);
+        }
+
+
 
         if($action == "forum")
         {
@@ -663,7 +784,7 @@ class Teacher extends Controller
     // {
     //     if(!Auth::is_teacher()){
     //         redirect('home');
-           
+
     //     }
     //     $user_id = Auth::getuid();
     //     $subject = new Subject();
@@ -799,6 +920,8 @@ class Teacher extends Controller
         
         $this->view('teacher/profile',$data);
     }
+
+    // -----------------------Not used ------------------------------------//
     public function quizz($action=null,$id = null)
     { 
         if(!Auth::is_teacher()){
@@ -915,64 +1038,82 @@ class Teacher extends Controller
         $this->view('teacher/quizz');
     }
 
+    // -------------------------------------------------------------------------//
+
+
     //-------------After the changes --------------------------------//
-    public function quiz($action=null)
-    {
-        if(!Auth::is_teacher()){
-            redirect('home');
-           exit;
-        }
-        $question = new ZQuestion();
-        $choice = new ZChoices();
+    // public function quiz($action=null, $id = null)
+    // {
+    //     if(!Auth::is_teacher()){
+    //         redirect('home');
+    //        exit;
+    //     }
+    //     $question = new ZQuestion();
+    //     $choice = new ZChoices();
+    //     $quiz = new ZQuiz();
+    //     $data = [];
+    //     $data['id'] = $id;
 
-        if($action == 'new'){
+    //     if($action == 'new'){
 
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-                $question_number = uniqid();
-                $_POST['question_number']=$question_number;
+    //             $question_number = uniqid();
+    //             $_POST['question_number']=$question_number;
 
-                $_POST['course_id'] = 6;
+    //             $_POST['course_id'] = 4;
 
-                // $question = new ZQuestion();
-                $result = $question-> insert($_POST);
+    //             // $question = new ZQuestion();
+    //             $result = $question-> insert($_POST);
 
-                // $choice = new ZChoices();
-                $result = $choice-> insert($_POST);
-                if($result) {
-                    header("Location:http://localhost/Interlearn/public/teacher/quiz/");
-                }
-            }
+    //             // $choice = new ZChoices();
+    //             $result = $choice-> insert($_POST);
+    //             if($result) {
+    //                 header("Location:http://localhost/Interlearn/public/teacher/quiz/");
+    //             }
+    //         }
 
-            $this->view('teacher/Zquiz_new');
-            exit();
-        }
+    //         $this->view('teacher/Zquiz_new');
+    //         exit();
+    //     }
 
-        if($action == 'create') {
+    //     if($action == 'create') {
 
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-                $quiz_id = uniqid();
-                $_POST['quiz_id']=$quiz_id;
+    //             $quiz_id = uniqid();
+    //             $_POST['quiz_id']=$quiz_id;
 
-                $_POST['course_id'] = 6;
+    //             $_POST['course_id'] = 4;
 
-                $quiz = new ZQuiz();
-                $result = $quiz-> insert($_POST);
+    //             $result = $quiz-> insert($_POST);
 
-                if($result) {
-                    echo "success";die;
-                }
-            }
-            $this->view('teacher/Zquiz_add');
-            exit();
-        }
+    //             if($result) {
+    //                 echo "success";die;
+    //             }
+    //         }
+    //         $this->view('teacher/Zquiz_add');
+    //         exit();
+    //     }
 
-        $data =[];
-        $data['rows'] = $question->ChoiceInnerjoinQuestion();
-        // show($data);
-        $this->view('teacher/Zquiz', $data);
-    }
+    //     if($action == 'delete') {
+
+    //         // $id = $_GET['id'];
+    //         $result = $question->delete(['question_number'=>$id]);
+    //         header("Location:http://localhost/Interlearn/public/teacher/quiz");
+    //     }
+
+    //     if($action == 'edit') {
+
+    //         // $id = $_GET['id'];
+    //         $result = $question->update(['question_number'=>$id]);
+    //         header("Location:http://localhost/Interlearn/public/teacher/quiz");
+    //     }
+    //     // $data =[];
+    //     $data['rows'] = $question->ChoiceInnerjoinQuestion();
+    //     // show($data);
+    //     $this->view('teacher/Zquiz', $data);
+    // }
 
     //--------------------------------------------------------------///
 
@@ -987,7 +1128,7 @@ class Teacher extends Controller
         $course = new Course();
         $userid = Auth::getUID();;
         $result= $course->getTeacherClasses(['uid'=>$userid]);
-        
+
 
         header('Content-Type: application/json');
         echo json_encode($result);

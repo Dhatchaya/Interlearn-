@@ -1,25 +1,18 @@
 <?php
 /**
- *Quizz class
+ *ZQuizQuestion class
  */
-class ZQuiz extends Model
+class ZQuizQuestion extends Model
 {
     //says what table it has to target
     public $error = [];
-    protected $table = "myquiz";
+    protected $table = "myquiz_myquestion";
     protected $allowed_columns = [	
 
-        'quiz_id',
-        'quiz_name',
-        'quiz_description',
-        'display_question',
-        'total_points',
-        'category',
-        'enable_time',
-        'disable_time',
-        'duration',
-        'format_time',
-        'course_id'	
+        'qq_id',
+        'question_number',
+        'quiz_id'	
+
     ];
     protected $staffs = [
         'Manager',
@@ -54,22 +47,5 @@ class ZQuiz extends Model
         return false;
     }
 
-    public function GetQuiz($data= null){
 
-        $keys = array_keys($data);
-        
-        $query = "SELECT quiz_name, quiz_description, enable_time, disable_time FROM myquiz where ";
-
-        foreach($keys as $key){
-            $query .= $key. " =:".$key." && ";
-        }
-        $query = trim($query,"&& ");
-        $res = $this -> query($query,$data);
-
-        if(is_array($res)){
-            return $res;
-        }
-        return false; 
-           
-    }
 }

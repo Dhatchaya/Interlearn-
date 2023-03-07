@@ -411,11 +411,15 @@ class Student extends Controller
 
         // $result = mysqli_query($conn, $query);
 
-        $question = new Question();
+        // $question = new Question();
+        $question = new ZQuestion();
 
 
         if($action == "view"){
-            $result = $question->ChoicejoinQuestion();
+
+
+            $result = $question->ChoiceInnerjoinQuestion();
+            // show($result);
             $quiz = array();
             foreach ($result as $row) {
                 $question = array(
@@ -425,15 +429,39 @@ class Student extends Controller
                         array('text' => $row->choice2, 'marks' => intval($row->choice2_mark)),
                         array('text' => $row->choice3, 'marks' => intval($row->choice3_mark)),
                         array('text' => $row->choice4, 'marks' => intval($row->choice4_mark))
-                    )
+                    ),
+                    'mark' => $row->question_mark,
+                    'quiz_description' => $row->quiz_description
                 );
                 array_push($quiz, $question);
             }
-        $json_data = json_encode($quiz);
+            $json_data = json_encode($quiz);
 
-        header('Content-Type: application/json');
-        echo $json_data;
-        exit;
+
+
+            // $newquiz = new ZQuiz();
+            // $result1 = $newquiz->GetQuiz(['quiz_id'=>'640584214e2ff']);
+
+            // $myquiz = array();
+            // foreach ($result1 as $row) {
+            //     $newquiz = array(
+            //         'quiz_name' => $row->quiz_name,
+            //         'quiz_descriptions' => $row->quiz_description,
+            //         'enable_time' => $row->enable_time,
+            //         'disable_time' => $row->disable_time,
+            //         'format_time' => $row->format_time
+            //     );
+            //     array_push($myquiz, $newquiz);
+            // }
+
+            // $json_data1 = json_encode($myquiz);
+            header('Content-Type: application/json');
+            // echo $json_data1;
+            echo $json_data;
+
+            // show($result1);
+
+            exit;
         }
 
 

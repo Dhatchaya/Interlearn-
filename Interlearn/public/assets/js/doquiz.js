@@ -4,25 +4,25 @@
 //  console.log(quiz);
 
 
-// Select two random objects
-const randomObjects = [];
-const usedIndexes = [];
-let count = 0;
-while (count < 2 && usedIndexes.length < quiz.length) {
-  const randomIndex = Math.floor(Math.random() * quiz.length);
-  if (!usedIndexes.includes(randomIndex)) {
-    usedIndexes.push(randomIndex);
-    randomObjects.push(quiz[randomIndex]);
-    count++;
-  }
-}
+// // Select two random objects
+// const randomObjects = [];
+// const usedIndexes = [];
+// let count = 0;
+// while (count < 2 && usedIndexes.length < quiz.length) {
+//   const randomIndex = Math.floor(Math.random() * quiz.length);
+//   if (!usedIndexes.includes(randomIndex)) {
+//     usedIndexes.push(randomIndex);
+//     randomObjects.push(quiz[randomIndex]);
+//     count++;
+//   }
+// }
 
-// Create a new array with the selected objects
-const newArray = [...randomObjects];
+// // Create a new array with the selected objects
+// const newArray = [...randomObjects];
 
-// Log the new array to the console
-console.log(newArray);
-
+// // Log the new array to the console
+// const quizObj = JSON.parse(quiz);
+// console.log(newArray);
 // console.log(typeof(quiz));
 
 const questionNumber = document.querySelector(".question-number");
@@ -43,7 +43,6 @@ let correctAnswers = 0;
 let attempt = 0;
 let totalMarks = 0;
 
-
 //set duration -------------------------------------------------------------------------------//
 const duration = 300; // 5 minutes in seconds
 let timeRemaining = duration;
@@ -63,6 +62,7 @@ function setAvailableQuestions() {
     for (let i = 0; i < totalQuestions; i++) {
         availableQuestions.push(quiz[i])
     }
+    console.log(availableQuestions)
 }
 
 //set question number and options
@@ -81,7 +81,7 @@ function getNewQuestion() {
     availableQuestions.splice(index1, 1);
 
     // console.log(questionIndex);
-    // console.log(availableQuestions);
+    console.log(availableQuestions);
 
     //set option
     //get length of options
@@ -123,7 +123,7 @@ function getResult(Element) {
     const id = parseInt(Element.id);
     // console.log(currentQuestion.options[id].marks);
 
-    totalMarks = totalMarks + currentQuestion.options[id].marks;
+    totalMarks = totalMarks + currentQuestion.options[id].marks * currentQuestion.mark;
 
     // its clicked as answer
     Element.classList.add('answered');
@@ -243,7 +243,7 @@ function StartQuiz() {
     // Submit answers automatically when time is up
     if (timeRemaining <= 0) {
         clearInterval(timer);
-        // submitQuiz();
+        quizOver();
     }
     }, 1000);
 //-----------------------------------------------------------------//
@@ -254,7 +254,7 @@ function StartQuiz() {
     answerIndicator();
 }
 
-
 window.onload = function () {
     homeBox.querySelector(".total-question").innerHTML = quiz.length;
+    homeBox.querySelector(".description").innerHTML = quiz.description;
 }

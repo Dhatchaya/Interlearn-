@@ -112,6 +112,7 @@
 }
 .timer.warning {
     background-color: rgb(245, 8, 8);
+    color : black;
 }
 .quiz-box .question-number {
     font-size: 18px;
@@ -163,7 +164,7 @@
     top: 0;
     height: 100%;
     width: 100%;
-    background-color: rgb(116, 116, 235);
+    background-color: #489BAE;
     z-index: -1;
     animation:  slideInLeft 0.5s ease forwards;
 }
@@ -232,7 +233,7 @@
 }
 
 .quiz-box .answer-indicator div.answered {
-    background-color: rgb(116, 116, 235);
+    background-color: #489BAE;
     background-size: 50%;
     background-repeat: no-repeat;
     background-position: center;

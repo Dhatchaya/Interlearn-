@@ -15,7 +15,6 @@ class Subject extends Model
         'description',
         'image'
     ];
-
     public function validate($data)
     {   
         $this->error = [];
@@ -44,73 +43,6 @@ class Subject extends Model
             return true;
         }
         return false;
-    }
-
-    public function getSubject(){
-        $query = "SELECT DISTINCT subject FROM ".$this->table;
-        $res = $this -> query($query);
-
-        if($res){
-            return $res;
-        }else{
-            return false;
-        }
-    }
-
-    public function getGrade(){
-        $query = "SELECT DISTINCT grade FROM ".$this->table;
-        $res = $this -> query($query);
-
-        if($res){
-            return $res;
-        }else{
-            return false;
-        }
-    }
-
-    public function getSubjectId($subject_name, $grade, $medium){
-        $query = "SELECT subject_id FROM ".$this->table;
-        $query .= " WHERE subject = :subject_name AND grade = :grade AND language_medium = :lang_medium";
-
-        $data['subject_name'] = $subject_name;
-        $data['grade'] = $grade;
-        $data['lang_medium'] = $medium;
-        $res = $this -> query($query,$data);
-
-        if($res){
-            return $res;
-        }else{
-            return false;
-        }
-    }
-
-    public function getSubjectGrade($subject_id){
-        $query = "SELECT subject_id,subject,grade FROM ".$this->table;
-        $query .= " WHERE subject_id = :subjectId";
-
-        $data['subjectId'] = $subject_id;
-        $res = $this -> query($query,$data);
-
-        if($res){
-            return $res;
-        }else{
-            return false;
-        }
-    }
-
-    public function getMedium($subject_name, $grade){
-        $query = "SELECT subject_id,language_medium FROM ".$this->table;
-        $query .= " WHERE subject = :subjectName AND grade = :grade";
-
-        $data['subjectName'] = $subject_name;
-        $data['grade'] = $grade;
-        $res = $this -> query($query,$data);
-
-        if($res){
-            return $res;
-        }else{
-            return false;
-        }
     }
 
 

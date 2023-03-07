@@ -49,8 +49,7 @@ xhr.onload = () => {
         const data = JSON.parse(xhr.responseText);
         
         console.log(data);
-        data.forEach(question => {
-          
+        data.forEach(question => {  
             quiz.push(question);
         });
     } else {
@@ -60,4 +59,4 @@ xhr.onload = () => {
 
 xhr.send();
 
-// console.log(quiz);
+console.log(quiz);
