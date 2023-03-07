@@ -174,6 +174,19 @@ class Course extends Model
         }
         return false;
     }
+
+    public function getSubjectCourse($data=[]){
+        $query = "SELECT * FROM ".$this->table;
+        $query .= " INNER JOIN subject ON subject.subject_id = course.subject_id";
+
+        $res = $this -> query($query,$data);
+         //show($query);die;
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;
+    }
     
 
 }

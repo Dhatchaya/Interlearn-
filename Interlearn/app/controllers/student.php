@@ -30,7 +30,7 @@ class Student extends Controller
         // echo $student_name;die;
 
         // $res=$student_course->join(['uid'=>$user]);
-        $data['announcements'] = $subject->stdAnnouncements([],$user);
+        // $data['announcements'] = $subject->stdAnnouncements([],$user);
         //$data['announcement'] = $res;
         //show($data['announcements']);die;
 

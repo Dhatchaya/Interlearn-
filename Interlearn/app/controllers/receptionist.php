@@ -74,12 +74,16 @@ class Receptionist extends Controller
                 }
             }
 
-            if($action == 'select'){
-                
-            }
-
             $this->view('receptionist/addCourse',$data);
             exit;   
+        }
+
+        if($action == 'select'){
+            $result = $course -> getSubjectCourse([]);
+            // show($result);
+            header('Content-type: application/json');
+                echo json_encode($result);
+                exit;
         }
 
         if($action == 'view')
@@ -131,14 +135,20 @@ class Receptionist extends Controller
                     $data['tamilid'] = $subject->getSubjectId($subjectName,$grade,"Tamil");
                     // show($data['subjects']);die;
 
-                    $data['teach_instructors'] = array();
+                    $data['teach_instructors'] = [];
+                    $extra = [];
                     for($i=0; $i<count($data['subjects']); $i++){
-                        //show($data['subjects'][$i]->course_id);
-                        $data['teach_instructors'] = $course_instructor -> getInstructors($data['subjects'][$i]->course_id);
-                        // var_dump($data['instructors']);die;
+                       
+                        $extra= $course_instructor -> getInstructors($data['subjects'][$i]->course_id);
+                        if(!empty($extra)){
+                            $data['teach_instructors'] = $extra;
+                        }
+                     
+                
                         
                     }
-                    // show($data['instructors']);
+                    // show($data['teach_instructors']);
+                    // //  
                     // die;
                     // }
                 }

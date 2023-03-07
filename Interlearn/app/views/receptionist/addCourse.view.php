@@ -44,9 +44,9 @@
                 <select name="language_medium" id="" class="recp_ann_clz">
                 <!-- <input type="hidden" name="medium" id="medium"> -->
                     <option value="language_medium" selected>--select language medium--</option>
-                    <option value="Sinhala">Sinhala</option>
+                    <!-- <option value="Sinhala">Sinhala</option>
                     <option value="English">English</option>
-                    <option value="Tamil">Tamil</option>
+                    <option value="Tamil">Tamil</option> -->
                     
                 </select>
             </div>
@@ -111,7 +111,8 @@
         </form>
     </div>
 </div>
-<script src="<?=ROOT?>/public/assets/js/addcourse.js"></script>
+<script defer src="<?=ROOT?>/assets/js/addCourse.js?v=<?php echo time(); ?>"></script>
+<script defer src="<?=ROOT?>/assets/js/selectCourse.js?v=<?php echo time(); ?>"></script>
 <?php $this->view("includes/footer");?>
 
             

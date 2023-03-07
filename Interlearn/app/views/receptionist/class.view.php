@@ -73,6 +73,8 @@ $val = explode('/',$url);
         <!-- content table -->
         <div class="recp_cl_staff">
             <table class="teacher-class-table">
+           
+
                 <th>Day</th>
                 <th>Time</th>
                 <th>Teacher  <img src="<?=ROOT?>/assets/images/plus.png" alt="" id="button1" class="teacher_crs_img2"></th>
@@ -85,17 +87,21 @@ $val = explode('/',$url);
                     <td><?=esc($teacher->day)?></td>
                     <td><?=esc($teacher->timefrom)?> - <?=esc($teacher->timeto)?></td>
                     <td><?=esc($teacher->teacherName)?>
+
                         <?php if(empty($teacher->teacherName)):?>
                             <?php echo "No teachers assigned!";?>
                         <?php endif?>
                     </td>
-                    <?php foreach($teach_instructors as $teach_instructor):?>
-                    <td><?=esc($teach_instructor->instructorName)?>
-                        <?php if(empty($teach_instructor->instructorName)):?>
+                    <td>
+                   
+                    <?php if(!empty($teach_instructors)):?>
+                        <?php foreach($teach_instructors as $teach_instructor):?>
+                            <?=esc($teach_instructor->instructorName)?><br/>
+                        <?php endforeach;?> 
+                    <?php else:?>
                             <?php echo "No instructors assigned!";?>
-                        <?php endif?>       
-                    </td>
-                    <?php endforeach;?>
+                    <?php endif?>  
+                    </td> 
                     <td>
                     <?php if(!empty($mediums)):?>
                     <?php foreach($mediums as $medium):?>
