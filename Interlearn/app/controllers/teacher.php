@@ -450,7 +450,7 @@ class Teacher extends Controller
                         $_POST['course_id'] = $id;
         
                         $result = $quiz-> insert($_POST);
-                        show($_POST);
+                        // show($_POST);
                         if($result) {
                             $questions = [];
                             $quiz_question = new ZQuizQuestion();
@@ -463,9 +463,23 @@ class Teacher extends Controller
                                     $result2= $quiz_question->insert($questions);
                                    
                                 }
-                                       
+                                
+
                             }
-                          
+                            $content = new CourseContent();
+                            $cid = uniqid();
+                            $_POST['cid'] = $cid;
+                            $_POST['type'] = 'quiz';
+                            $_POST['course_id'] = $id;
+                            $_POST['week_no'] = $week;
+                            $_POST['upload_name'] = $_POST['quiz_name'];
+                            $_POST['view_URL'] = 'http://localhost/Interlearn/public/teacher/course/quiz/4/79/view';
+                            $_POST['edit_URL'] =  'http://localhost/Interlearn/public/teacher/course/quiz/4/79/edit';
+                            $_POST['delete_URL'] = 'http://localhost/Interlearn/public/teacher/course/quiz/4/79/edit';
+                            $_POST['student_URL'] = 'http://localhost/Interlearn/public/STUDENT/course/quiz/4/79/'.$quiz_id;
+
+                            $result = $content->insert($_POST);
+
                             // $array = json_decode(json_encode($result1), true);
 
                             // $data1 =[];

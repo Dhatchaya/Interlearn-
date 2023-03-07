@@ -54,5 +54,22 @@ class ZQuiz extends Model
         return false;
     }
 
+    public function GetQuiz($data= null){
 
+        $keys = array_keys($data);
+        
+        $query = "SELECT quiz_name, quiz_description, enable_time, disable_time FROM myquiz where ";
+
+        foreach($keys as $key){
+            $query .= $key. " =:".$key." && ";
+        }
+        $query = trim($query,"&& ");
+        $res = $this -> query($query,$data);
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false; 
+           
+    }
 }

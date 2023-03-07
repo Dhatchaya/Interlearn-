@@ -21,8 +21,8 @@
 // const newArray = [...randomObjects];
 
 // // Log the new array to the console
+// const quizObj = JSON.parse(quiz);
 // console.log(newArray);
-
 // console.log(typeof(quiz));
 
 const questionNumber = document.querySelector(".question-number");
@@ -43,7 +43,6 @@ let correctAnswers = 0;
 let attempt = 0;
 let totalMarks = 0;
 
-
 //set duration -------------------------------------------------------------------------------//
 const duration = 300; // 5 minutes in seconds
 let timeRemaining = duration;
@@ -63,6 +62,7 @@ function setAvailableQuestions() {
     for (let i = 0; i < totalQuestions; i++) {
         availableQuestions.push(quiz[i])
     }
+    console.log(availableQuestions)
 }
 
 //set question number and options
@@ -81,7 +81,7 @@ function getNewQuestion() {
     availableQuestions.splice(index1, 1);
 
     // console.log(questionIndex);
-    // console.log(availableQuestions);
+    console.log(availableQuestions);
 
     //set option
     //get length of options
@@ -256,4 +256,5 @@ function StartQuiz() {
 
 window.onload = function () {
     homeBox.querySelector(".total-question").innerHTML = quiz.length;
+    homeBox.querySelector(".description").innerHTML = quiz.description;
 }
