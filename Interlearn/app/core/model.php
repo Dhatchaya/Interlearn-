@@ -471,7 +471,7 @@ class Model extends Database {
 
         $query ="SELECT concat(teachers.firstname,' ',teachers.lastname) AS fullname, subject.subject, subject.grade,subject.language_medium,course.*,announcement.*,announcement_course.*,student_course.student_id FROM ".$this->table;
         $query .=" INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN announcement_course ON course.course_id = announcement_course.course_id INNER JOIN announcement ON announcement_course.aid = announcement.aid INNER JOIN student_course ON student_course.course_id = announcement_course.course_id INNER JOIN student ON student.studentID = student_course.student_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id ";
-        $query .= " WHERE student.uid = $id ";
+        $query .= " WHERE student.uid = $id AND announcement_course.course_id = ";
         $query .= " order by announcement.date_time $order";
         // announcement.time  $order";
     // echo $query;die;

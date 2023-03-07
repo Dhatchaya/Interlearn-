@@ -121,4 +121,21 @@ class Announcement extends Model{
             return false;
         }
     }
+
+    public function stdAnnouncements($data=[],$id=null,$course_id=null,$orderby=null,$order = 'desc'){
+
+        $query ="SELECT concat(teachers.firstname,' ',teachers.lastname) AS fullname, subject.subject, subject.grade,subject.language_medium,course.*,announcement.*,announcement_course.*,student_course.student_id FROM ".$this->table;
+        $query .=" INNER JOIN announcement_course ON announcement_course.aid = announcement.aid INNER JOIN course ON course.course_id = announcement_course.course_id INNER JOIN subject ON course.subject_id = subject.subject_id INNER JOIN student_course ON student_course.course_id = announcement_course.course_id INNER JOIN student ON student.studentID = student_course.student_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id ";
+        $query .= " WHERE student.uid = $id AND announcement_course.course_id = $course_id";
+        $query .= " order by announcement.date_time $order";
+        // announcement.time  $order";
+    // echo $query;die;
+        $res = $this -> query($query,$data);
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;
+
+    }
 }

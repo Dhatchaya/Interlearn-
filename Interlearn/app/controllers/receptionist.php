@@ -38,7 +38,8 @@ class Receptionist extends Controller
             $data = [];
             $data['action'] = $action;
             $data['id'] = $id; 
-
+        
+            $data['errors']=[];
 
             $data['subjects'] = $subject->getSubject();
             $data['grades'] = $subject->getGrade();
@@ -48,40 +49,35 @@ class Receptionist extends Controller
             //show($data['instructors']);die;
         
             if ($_SERVER['REQUEST_METHOD'] == 'POST') 
-             {   
-            //     if(($_POST['subject'] == "") || ($_POST['language_medium'] == "") || ($_POST['grade'] == "") || ($_POST['teacher_id'] == "") || ($_POST['day'] == "") || ($_POST['timefrom'] == "") || ($_POST['timeto'] == ""))
-            //     {
-            //         $msg = '<div class="alert">Fill all the fields!</div>';
-            //     }else{
-            //         $subject_name = $_REQUEST['subject'];
-            //         $language_medium = $_REQUEST['language_medium'] ;
-            //         $grade = $_REQUEST['grade'];
-            //         $teacher_id = $_REQUEST['teacher_id'];
-            //         $day = $_REQUEST['day'];
-            //         $timefrom = $_REQUEST['timefrom'];
-            //         $timeto = $_REQUEST['timeto'];
-            //     }
+            {   
+                if($course -> validate($_POST)){
+                    $subject_id = uniqid();
+                    //uniqueid("S",true)
 
-                
+                    $_POST['subject_id']=$subject_id;
+                    $subject->insert($_POST);
+                    
+                    // $subject_details = $subject->getSubjectId($_POST['subject'],$_POST['grade'],$_POST['language_medium']);
 
-                $subject_id = uniqid();
-                //uniqueid("S",true)
+                    // $_POST['subject_id'] = $subject_details[0]->subject_id;
+                    // print_r ($subject_id);die;
+                    $course->insert($_POST);
 
-                 $_POST['subject_id']=$subject_id;
-                $subject->insert($_POST);
-                
-                // $subject_details = $subject->getSubjectId($_POST['subject'],$_POST['grade'],$_POST['language_medium']);
+                    // // show($subject_id);die;
+                    $id= $course->getLastCourse()[0]->course_id;
+                    // // // print_r($Course);die;
+                    $course_week->createWeek($id, 1);
 
-                // $_POST['subject_id'] = $subject_details[0]->subject_id;
-                // print_r ($subject_id);die;
-                $course->insert($_POST);
-
-                // // show($subject_id);die;
-                $id= $course->getLastCourse()[0]->course_id;
-                // // // print_r($Course);die;
-                $course_week->createWeek($id, 1);
-
+                }
+                else{
+                    $data['error']['invalid'] = "There is an unknown error occured!"; 
+                }
             }
+
+            if($action == 'select'){
+                
+            }
+
             $this->view('receptionist/addCourse',$data);
             exit;   
         }
@@ -135,10 +131,10 @@ class Receptionist extends Controller
                     $data['tamilid'] = $subject->getSubjectId($subjectName,$grade,"Tamil");
                     // show($data['subjects']);die;
 
-                    $data['instructors'] = array();
+                    $data['teach_instructors'] = array();
                     for($i=0; $i<count($data['subjects']); $i++){
                         //show($data['subjects'][$i]->course_id);
-                        $data['instructors'] = $course_instructor -> getInstructors($data['subjects'][$i]->course_id);
+                        $data['teach_instructors'] = $course_instructor -> getInstructors($data['subjects'][$i]->course_id);
                         // var_dump($data['instructors']);die;
                         
                     }
@@ -147,7 +143,7 @@ class Receptionist extends Controller
                     // }
                 }
                 $data['teachers'] = $teacher->select([],'teacher_id','asc');
-                // $data['instructors'] = $instructor->select([],'instructor_id','asc');
+                $data['instructors'] = $instructor->select([],'instructor_id','asc');
 
                 if(isset($_POST['submit-delete-course'])){
                     $result = $course->delete(['course_id'=>$id]);

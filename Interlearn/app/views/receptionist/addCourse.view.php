@@ -6,6 +6,7 @@
     <div class="recp_det_content">
         <h2>--Add a new course--</h2><br>
         <form method="post" action="" enctype="multipart/form-data">
+        <?php if(!empty($error)){echo $error;} ?>
         <!-- <div class="recp_crs_add"> -->
             
             <div class="recp_det_box" id="new">
@@ -38,24 +39,6 @@
                    <option value="A/L">Grade A/L</option>
                 </select>
             </div><br><br>
-
-            <div class="recp_det_box">
-            <h4>Description:</h4>
-            <!-- <select name="description" id="" class="recp_ann_clz"> -->
-            <!-- <input type="hidden" name="grade" id="grade"> -->
-                    <!-- <option value="grade" selected>--Select grade--</option>
-                    <?php if(!empty($grades)):?>
-                    <?php foreach($grades as $grade):?>
-                    <option  value="<?=esc($grade->grade)?>" ><?=esc($grade->grade)?></option>
-                    
-                    <?php endforeach;?>
-                    <?php endif;?> -->
-                    
-                <!-- </select> -->
-                <input type="text" class="recp_det_name" name="description">
-            </div><br><br>
-
-
             <div class="recp_det_box">
                 <h4>Language Medium:</h4>
                 <select name="language_medium" id="" class="recp_ann_clz">
@@ -68,6 +51,11 @@
                 </select>
             </div>
             <br><br>
+
+            <div class="recp_det_box">
+            <h4>Description:</h4>
+                <input type="text" class="recp_det_name" name="description">
+            </div><br><br>
             
 
             <div class="recp_det_box">
@@ -119,8 +107,6 @@
                 <button name="courseSubmitBtn" type="submit" class="recp_det_btn" id="courseSubmitBtn">Save</button>
             </div>
             
-                
-            <?php if(isset($msg)){echo $msg;} ?>
         <!-- </div> -->
         </form>
     </div>

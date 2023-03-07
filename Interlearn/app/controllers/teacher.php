@@ -155,8 +155,8 @@ class Teacher extends Controller
                 $course->UpdateNoOfWeeks($id,$currentWeeks + $_POST['no_of_weeks']);
                 for ($i=1; $i <= $_POST['no_of_weeks'] ; $i++) {
                     $course_week->createWeek($id,$currentWeeks+$i);
-                    header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
                 }
+                header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
             }
 
             if(isset($_POST['submit-title'])){
@@ -166,7 +166,7 @@ class Teacher extends Controller
 
             if(isset($_POST['submit-upload'])){
                 // echo $_POST['upload-title'];die;
-                echo $_POST['cid'];die;
+                // echo $_POST['cid'];die;
                 $result = $course_content->UpdateUploadName($id,$_POST['cid'],$_POST['upload-title']);
             }
 

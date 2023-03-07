@@ -29,28 +29,52 @@ class Course extends Model
     // ];
     public function validate($data)
     {   
+       
         $this->error = [];
-        foreach($data as $key => $value)
-        { 
-            if(empty($data[$key]))
+        $size = 0;
+        $today = time();
+
+       
+            if(empty($data['subject']))
             {
-                $this -> error[$key] = ucfirst($key)." is required";
+                $this -> error['subject'] = "Please provide a name for the subject";
             }
-         }
-    
-            // // checks email is valid if so it'll check whther it already exists
-            // if(!filter_var($data['email'],FILTER_VALIDATE_EMAIL))
-            // {
-            //     $this->error['email'] = "Email is not valid";
-            // }else
-            // if($this->where(['email'=>$data['email']])){
-            //         $this->error['email'] = "Email already exists";
+            if(empty($data['grade']))
+            {
+                $this -> error['grade'] = "Please select a grade";
+            }
+            if(empty($data['language_medium']))
+            {
+                $this -> error['language_medium'] = "Please select a language_medium";
+            }
+            if(empty($data['teacher_id']))
+            {
+                $this -> error['teacher_id'] = "Please select a teacher_id";
+            }
+            if(empty($data['timefrom']))
+            {
+                $this -> error['timefrom'] = "Please select a start time";
+            }
+            if(empty($data['timeto']))
+            {
+                $this -> error['timeto'] = "Please select an ending time";
+            }
+            else if(strtotime($data['timeto']) < strtotime($data['timefrom'])){
+               
+                $this -> error['time'] = "Ending must be greater than starting time";
+            }
+            //  if(strtotime($data['deadline'])<$today || strtotime($data['acceptDate'])<$today){
+               
+            //     $this -> error['today'] = "Deadline/Accept date must be greater than the current date";
+            //  }
                 
-            // }
+
         if(empty($this->error)){
             return true;
+        
         }
-        return false;
+        //show($this->error);die;
+        return false; 
     }
 
     // public function UpdateNoOfWeeks($course_id,$no_of_weeks){

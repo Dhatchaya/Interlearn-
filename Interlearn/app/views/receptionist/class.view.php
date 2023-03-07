@@ -89,9 +89,9 @@ $val = explode('/',$url);
                             <?php echo "No teachers assigned!";?>
                         <?php endif?>
                     </td>
-                    <?php foreach($instructors as $instructor):?>
-                    <td><?=esc($instructor->instructorName)?>
-                        <?php if(empty($instructor->instructorName)):?>
+                    <?php foreach($teach_instructors as $teach_instructor):?>
+                    <td><?=esc($teach_instructor->instructorName)?>
+                        <?php if(empty($teach_instructor->instructorName)):?>
                             <?php echo "No instructors assigned!";?>
                         <?php endif?>       
                     </td>
