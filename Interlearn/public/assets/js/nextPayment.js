@@ -74,6 +74,8 @@ submit_payment.addEventListener('click', function() {
         Last_payment.value = data[0]['PaymentID']
     }).catch(error=>console.log(error));
     // console.log(studentId.value);
+    
+    setTimeout(hiddenDiv2.style.display = "none", 500);
 }
 CourseID.value = "";
 studentId.value = "";
@@ -81,7 +83,6 @@ studentName.value = "";
 Month.value = "";
 Amount.value = "";
 
-hiddenDiv2.style.display = "none";
 
 
 }

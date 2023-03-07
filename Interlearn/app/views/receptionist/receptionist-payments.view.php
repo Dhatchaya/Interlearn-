@@ -6,7 +6,6 @@
 
 <head>
   <title>Payments</title>
-  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/navbar-last.css">
   <link rel="stylesheet" href="<?= ROOT ?>/assets/css/payment-validation.css">
   <link rel="stylesheet" href="<?= ROOT ?>/assets/css/footer-style.css">
   <link rel="stylesheet" href="<?= ROOT ?>/assets/css/cash-payment-style.css">
@@ -33,12 +32,11 @@
     <div class="validation-container">
       <div class="pending-list">
         <?php foreach ($bankPayments as $bankPayment) : ?>
-          $div_id = "record_" . $record["id"];
-          <div class="pending-item payment-1" id="<?php echo $div_id; ?>">
-            <h2><?= $bankPayment->CourseID ?></h2>
-            <h2><?= $bankPayment->NameOnSlip ?></h2>
-            <h2><?= $bankPayment->Amount ?></h2>
-            <h2><?= $bankPayment->PaymentDate ?></h2>
+          <div class="pending-item payment-1" >
+            <h4><?= $bankPayment->CourseID ?></h4>
+            <h4><?= $bankPayment->NameOnSlip ?></h4>
+              <h4><?= $bankPayment->Amount ?></h4>
+              <h4><?= $bankPayment->PaymentDate ?></h4>
 
           </div>
         <?php endforeach; ?>
@@ -259,6 +257,8 @@
 <script defer src="<?= ROOT ?>/assets/js/getStudentName.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?= ROOT ?>/assets/js/nextPayment.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?= ROOT ?>/assets/js/preview-bank-payments.js?v=<?php echo time(); ?>"></script>
+<script defer src="<?= ROOT ?>/assets/js/callBankPaymentData.js?v=<?php echo time(); ?>"></script>
+
 
 
 </html>

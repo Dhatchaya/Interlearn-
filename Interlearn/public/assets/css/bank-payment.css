@@ -43,7 +43,7 @@
 #close-button-1 {
   position: absolute;
   top: 30px;
-  right: 24%;
+  right: 28%;
   background-color: transparent;
   border: 0;
   cursor: pointer;
@@ -53,6 +53,7 @@
 .div-adject-4 {
   top: 50px;
 }
+
 
 .submit-button {
   position: relative;

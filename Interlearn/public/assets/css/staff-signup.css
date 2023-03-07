@@ -1,6 +1,6 @@
 /* CSS for pop-up card payment form */
 .payment-form-popup {
-    display: flex;
+    display: none;
     position: fixed;
     z-index: 100;
     top: 0px;
@@ -11,15 +11,10 @@
     align-items: center;
   }
   
-  .blurred {
-    filter: blur(1px);
-  }
+ 
+ 
   
-  .hidden {
-    display: none;
-  }
-  
-  .payment-form-container {
+  /* .payment-form-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 5em;
@@ -29,6 +24,17 @@
     width: 800px;
     height: 90%;
     min-width: 400px;
+    padding: 40px;
+    text-align: center;
+  } */
+
+  .payment-form-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 850px;
+    height: 95%;
+    min-width: 800px;
     padding: 40px;
     text-align: center;
   }

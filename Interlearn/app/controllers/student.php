@@ -25,6 +25,75 @@ class Student extends Controller
         $this->view('student/profile');
     }
 
+
+    public function cardPayment($action = NULL)
+    {
+        if (!Auth::is_student()) {
+            redirect('home');
+        }
+
+
+        include('../public/assets/stripe-php/init.php');
+        require_once('../public/assets/stripe/secrets.php');
+
+        \Stripe\Stripe::setApiKey('sk_test_51Mh80UBblwXUQTWeHjt87i6zjsTmnMncmiXZg86ImCp36ac4GMBcLa834MjwhZEMT2girGsJDIS7aK0EXfDzaBFi004sg2RIrQ');
+        header('Content-Type: application/json');
+
+        $url =  "http://localhost/Interlearn/public/student/";
+        echo $url;
+        $YOUR_DOMAIN = $url;
+
+        $checkout_session = \Stripe\Checkout\Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'lkr',
+                    'unit_amount' => 100000,
+                    'product_data' => [
+                        'name' => "INTERLEARN",
+                        'images' => ["../assets/images/sidebar_icons/logo.png"],
+                    ],
+                ],
+                # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
+                // 'price' => '{{PRICE_ID}}',
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            // if($action){
+            //     this->view('student/sucecc');
+            // }
+            //     }
+            'success_url' => $YOUR_DOMAIN . 'success',
+            'cancel_url' => $YOUR_DOMAIN . 'cancel',
+        ]);
+
+        header("HTTP/1.1 303 See Other");
+        header("Location: " . $checkout_session->url);
+    }
+
+    public function checkout()
+    {
+        if (!Auth::is_student()) {
+            redirect('home');
+        }
+        $this->view('student/checkout');
+    }
+
+    public function success()
+    {
+        if (!Auth::is_student()) {
+            redirect('home');
+        }
+        $this->view('student/success');
+    }
+    public function cancel()
+    {
+        if (!Auth::is_student()) {
+            redirect('home');
+        }
+        $this->view('student/cancel');
+    }
+
     public function payment($id = null)
     {
         if (!Auth::is_student()) {

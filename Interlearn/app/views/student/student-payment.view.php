@@ -206,7 +206,7 @@
     </div>
   </div>
 
-  /*** card payment **?/
+  <!-- /*** card payment **?/
   <div class="payment-form-popup" id="hiddenDiv-2">
     <div class="payment-form-container">
       <div class="payment-form-header">
@@ -250,15 +250,15 @@
           <div class="form-group">
             <!-- <label class="payment-label" for="card-type">Select Card Type</label> -->
 
-            <img src="<?= ROOT ?>/assets/images/mastercard-logo.png" class="card-type-icon" alt="Mastercard logo">
-            <img src="<?= ROOT ?>/assets/images/visa-logo.png" class="card-type-icon" alt="Visa logo">
-            <img src="<?= ROOT ?>/assets/images/amex-logo.jpg" class="card-type-icon" alt="American Express logo">
-          </div>
-          <button class="paynow" id="payment-submission" type="submit">Pay Now</button>
-        </form>
-      </div>
-    </div>
+  <img src="<?= ROOT ?>/assets/images/mastercard-logo.png" class="card-type-icon" alt="Mastercard logo">
+  <img src="<?= ROOT ?>/assets/images/visa-logo.png" class="card-type-icon" alt="Visa logo">
+  <img src="<?= ROOT ?>/assets/images/amex-logo.jpg" class="card-type-icon" alt="American Express logo">
   </div>
+  <button class="paynow" id="payment-submission" type="submit">Pay Now</button>
+  </form>
+  </div>
+  </div>
+  </div> -->
 
   <div class="main-page-container">
     <div class="table-container">
@@ -284,7 +284,17 @@
               <td>01/01/2023</td>
               <td>$100</td>
               <td>Credit Card</td>
-              <td><button id="card-btn" class="card-btn">paynow</button> <button id="bank-btn" class="bank-btn">Bank Payment</button></td>
+              <td><button id="" onclick="checkout()" class="card-btn">paynow</button>
+
+                <script>
+                  function checkout() {
+                    window.location.href = "<?= ROOT ?> /student/checkout";
+                  }
+                </script>
+
+                <button id="bank-btn" class="bank-btn">Bank Payment</button>
+              </td>
+
             </tr>
             <tr>
               <td>ABC123</td>
