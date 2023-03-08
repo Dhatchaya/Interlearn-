@@ -26,6 +26,37 @@ class Payment extends Model
 
         return $data;
     }
+    public function pendingPayments()
+    {
+        $query = "SELECT * FROM bank_payment where status = 0 && studentID = '190'";
+        $data = $this->query($query);
+
+        if ($data == NULL) {
+            $data = array();
+        }
+
+        return $data;
+    }
+/////////////////////
+    public function addNewPendingPayments()
+    {
+        // set the current date
+    $currentDate = date('Y-m-d');
+
+    // check if it is the first of the month
+        if (date('d', strtotime($currentDate)) == 1) {
+        // retrieve the data from the Course table
+        $sql = "SELECT * FROM Course";
+        $result = $this->query($sql);
+    
+        // insert the data into the pending-payment table
+        while ($row = mysqli_fetch_assoc($result)) {
+            $sql2 = "INSERT INTO pending-payment (course_name, course_fee) VALUES ('".$row['course_name']."', '".$row['course_fee']."')";
+            $this->query($sql2);
+             }
+        }
+////////////////////
+    }
 }
 
 class BankPayment extends Model
@@ -51,7 +82,7 @@ class BankPayment extends Model
 
     public function validateBankPayment()
     {
-        $query = "SELECT * FROM bank_payment";
+        $query = "SELECT * FROM bank_payment ";
         $data = $this->query($query);
 
         if ($data == NULL) {

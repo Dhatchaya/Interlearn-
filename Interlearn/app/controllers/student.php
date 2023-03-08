@@ -99,12 +99,63 @@ class Student extends Controller
         if (!Auth::is_student()) {
             redirect('home');
         }
-        $id = $id ?? Auth::getUID();
+        $currentStudentID = $id ?? Auth::getUID();
         $user = new User();
         $data['row'] = $user->first(['uid' => $id], 'uid');
 
-        $this->view('student/student-payment');
+
+        
+        $payment_model = new Payment();
+        $payment_history = $payment_model->getAll();
+        ////////////////////////////////
+
+        $currentDate = date('Y-m-d');
+
+    // check if it is the first of the month
+        if (date('d', strtotime($currentDate)) == 1) {
+        // retrieve the data from the Course table
+        $sql = "SELECT * FROM Course";
+        $result = $this->query($sql);
+    
+        // insert the data into the pending-payment table
+        while ($row = mysqli_fetch_assoc($result)) {
+            $sql2 = "INSERT INTO pending-payment (course_name, course_fee) VALUES ('".$row['course_name']."', '".$row['course_fee']."')";
+            $this->query($sql2);
+             }
+        }
+
+        /////////////////////////////////
+
+        $pending_payment_model = new Payment();
+        $haveToPay = $pending_payment_model->pendingPayments();
+
+        $this->view('student/student-payment',['payment_history'=>$payment_history,'haveToPaySet'=>$haveToPay]);
+
     }
+
+    public function test($id = null)
+    {
+        if (!Auth::is_student()) {
+            redirect('home');
+        }
+        $currentStudentID = $id ?? Auth::getUID();
+        $user = new User();
+        $data['row'] = $user->first(['uid' => $id], 'uid');
+
+
+        
+        $payment_model = new Payment();
+        $payment_history = $payment_model->getAll();
+
+        $pending_payment_model = new Payment();
+        $haveToPay = $pending_payment_model->pendingPayments();
+
+        $this->view('student/test',['payment_history'=>$payment_history,'haveToPaySet'=>$haveToPay]);
+
+        print_r ($haveToPay);
+        var_dump ($payment_history);
+    }
+
 
     public function getBankPayment()
     {

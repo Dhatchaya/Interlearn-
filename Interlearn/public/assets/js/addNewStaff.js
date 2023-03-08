@@ -21,6 +21,7 @@ const submitBtn = document.getElementById('submit-btn');
     const error8 = document.querySelector('#errorSpace8');
     const error9 = document.querySelector('#errorSpace9');
     const error10 = document.querySelector('#errorSpace10');
+    const error11 = document.querySelector('#errorSpace11');
 
     
 submitBtn.addEventListener('click', function(event) {
@@ -43,15 +44,18 @@ submitBtn.addEventListener('click', function(event) {
     if(!NIC.value){
         error5.innerHTML = "NIC is required";
     }
-    if(!contractEndingDate.value){
-        error6.innerHTML = "Contract Ending Date is required";
+    if(!mobileNum.value){
+        error11.innerHTML = "Contact is required";
     }
+    // if(!contractEndingDate.value){
+    //     error6.innerHTML = "Contract Ending Date is required";
+    // }
     if(!jobtype.value){
         error7.innerHTML = "job type is required";
     }
-    if(!epmImage.value){
-        error8.innerHTML = "Staff Image is required";
-    }
+    // if(!epmImage.value){
+    //     error8.innerHTML = "Staff Image is required";
+    // }
     if(!emailAddress.value){
         error9.innerHTML = "E-mail Address is required";
        
@@ -60,28 +64,57 @@ submitBtn.addEventListener('click', function(event) {
 
    
     if(!password.value){
-        error10.innerHTML = "Password is required"; if(password.length < 8){
-            error10.innerHTML = "Password must be at least 8 characters";
-        }
-        if(!/[!@#$%^&*]/.test(password) || !/\d/.test(password)){
-            error10.innerHTML = "E-mail is not valid";
-        }
-    }
-    
+        error10.innerHTML = "Password is required"; 
+        
+    }if(password.length < 8){
+        error10.innerHTML = "Password must be at least 8 characters";
+     }
+    // if(!/[!@#$%^&*]/.test(password) || !/\d/.test(password)){
+    //     error10.innerHTML = "Password is not valid";
+    // }
+
+   
     else{
     fetch('/Interlearn/public/manager/addStaff', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({NIC_no: NIC.value,first_name: firstName.value, last_name: lastName.value, email: emailAddress.value, mobileNum: mobileNum.value, role: jobtype.value, display_picture: epmImage.value, gender: gender.value, address: address.value, password: password.value, contractEndingDate: contractEndingDate.value}),
+        body: JSON.stringify({NIC_no: NIC.value,
+            first_name: firstName.value, 
+            last_name: lastName.value, 
+            email: emailAddress.value, 
+            mobile_no: mobileNum.value, 
+            role: jobtype.value, 
+            // display_picture: epmImage.value, 
+            gender: gender.value, 
+            Addressline1: address.value, 
+            // contractEndingDate: contractEndingDate.value,
+            email: emailAddress.value,
+            password: password.value,
+        }),
     })
     .then(response => response.json())
     .then(response => {
         console.log("All is righr");
     }).catch(error=>console.log(error));
-    // console.log(studentId.value);
+    
+    setTimeout(hiddenDiv2.style.display = "none", 500);
 }
+console.log(studentId.value);
+    firstName.value = "";
+    lastName.value = "";
+    gender.value = "";
+    address.value = "";
+    NIC.value = "";
+    mobileNum.value = "";
+    contractEndingDate.value = "";
+    jobtype.value = "";
+    epmImage.value = "";
+    emailAddress.value = "";
+    password.value = "";
+
+
 
 
 }

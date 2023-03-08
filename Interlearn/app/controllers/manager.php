@@ -43,7 +43,11 @@ class Manager extends Controller
         //for it to go to view we have to put it inside data
         // $data['row'] = $user->first(['id' => $id]);
         // $data['title'] = "Profile";
-        $this->view('manager/view_staff');
+        
+        $getStaffDetails = new Staff();
+        $staffDetailSet = $getStaffDetails->getStaffDetails();
+
+        $this->view('manager/view_staff',['staffMenbers'=> $staffDetailSet,]);
     }
 
     public function addStaff()
@@ -56,11 +60,11 @@ class Manager extends Controller
         if (isset($_POST)) {
             $data = json_decode(file_get_contents("php://input"), true);
 
-            // $password_hash=   $data['password'];
-            // $data['password'] = $password_hash;
+            // $password_raw=   $data['password'];
+            // $data['password'] = password_hash($password_raw, PASSWORD_DEFAULT);
 
-            $addStaff = new Payment();
-            $addStaff->insert($data);
+            $addStaff = new Staff();
+            $addStaff->Addstaff($data);
         }
         echo json_encode($addStaff);
         exit;

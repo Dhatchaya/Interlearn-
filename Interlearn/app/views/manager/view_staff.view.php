@@ -42,7 +42,7 @@
                             <label class="payment-label" for="gender">Gender</label>
                             <div class="errorSpace1" id="errorSpace3"> </div>
                             <select class="selecter" value="<?= set_value('gender') ?>" name="gender" id="gender">
-                                <option value="" disabled>Select</option>
+                                <option value="" selected disabled>Select Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
@@ -60,36 +60,38 @@
                             <div class="errorSpace1" id="errorSpace5"></div>
                             <input value="<?= set_value('PayerNIC') ?>" name="PayerNIC" class="payment-input" type="text" id="NIC" placeholder="990331472v" maxlength="12">
                         </div>
-                        <div class="form-group  ">
-                            <label class="payment-label" for="mobileNum">Contact Number</label>
-                            <div class="errorSpace1" id="errorSpace11"></div>
-                            <input value="<?= set_value('mobileNum') ?>" name="mobileNum" class="payment-input" type="text" id="mobileNum" placeholder="071 234567" maxlength="10">
-                        </div>
+                        
 
                     </div>
                     <div class="sub-container">
                         <div class="form-group">
                             <label class="payment-label" for="PaymentDate">Contract Eding Date</label>
                             <div class="errorSpace1" id="errorSpace6"></div>
-                            <input value="<?= set_value('ContractEnding') ?>" name="ContractEnding" class="payment-input" type="date" id="ContractEnding">
+                            <input value="" name="ContractEnding" class="payment-input" type="date" id="ContractEnding">
                         </div>
                         <div class="form-group">
                             <label class="payment-label" for="jobtype">Designation</label>
-                            <div class="errorSpace7" id="errorSpace7"> </div>
-                            <select class="selecter" value="<?= set_value('jobtype') ?>" name="jobtype" id="jobtype">
-                                <option value="" disabled>Select job type </option>
+                            <div class="errorSpace1" id="errorSpace7"> </div>
+                            <select class="selecter" value="<?= set_value('') ?>" name="jobtype" id="jobtype">
+                                <option value="" selected disabled>Select job type </option>
                                 <option value="Teacher">Teacher</option>
                                 <option value="Instructor">Instructor</option>
-                                <option value="Accountant">Accountant</option>
+                                <option value="Accountant">Receptionist</option>
                                 <option value="Manager">Manager</option>
                             </select>
                         </div>
 
                         <div class="form-group  ">
+                            <label class="payment-label" for="mobileNum">Contact Number</label>
+                            <div class="errorSpace1" id="errorSpace11"></div>
+                            <input value="<?= set_value('mobileNum') ?>" name="mobileNum" class="payment-input" type="text" id="mobileNum" placeholder="071 234567" maxlength="10">
+                        </div>
+
+                        <!-- <div class="form-group  ">
                             <label class="payment-label" for="empImage">Staff Member Image </label>
                             <div class="errorSpace1" id="errorSpace8"></div>
-                            <input name="empImage" class="payment-input" type="file" id="empImage" accept=".pdf">
-                        </div>
+                            <input name="empImage" class="payment-input"  type="file" id="empImage" accept=".jpg">
+                        </div> -->
                         <div class="form-group  ">
                             <label class="payment-label" for="emailAddress">E-mail Address</label>
                             <div class="errorSpace1" id="errorSpace9"></div>
@@ -150,13 +152,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Manoj Pavithra</td>
-                            <td>Teacher</td>
-                            <td>01711606520</td>
-                            <td>02/01/2023</td>
-                            <td><button>Update</button></td>
-                        </tr>
+                    <?php foreach ($staffMenbers as $staffMenber) : ?>
+          <tr>
+            <td><?= $staffMenber->first_name . " " . $staffMenber->last_name ?></td>
+            <td><?= $staffMenber->role ?></td>
+            <td><?= $staffMenber->mobile_no ?></td>
+            <td><?= $staffMenber->enrollment_date ?></td>
+            <td><button>Remove</button></td>
+
+          </tr>
+        <?php endforeach; ?>
                         <tr>
                             <td>Abdul Nisaf</td>
                             <td>Teacher</td>

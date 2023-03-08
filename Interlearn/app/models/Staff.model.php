@@ -33,6 +33,25 @@ class Staff extends Model
         'Receptionist',
 
     ];
+    public function getStaffDetails(){
+        $query = "SELECT * FROM staff";
+        $data = $this->query($query);
+
+        if ($data == NULL) {
+            $data = array();
+        }
+
+        return $data;
+    }
+    public function Addstaff(){
+        $data = json_decode(file_get_contents("php://input"), true);
+        if ($this->validate($data)) {
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+            $this->insert($data);
+            $this->error['success'] = "Staff added successfully";
+        }
+        return $this->error;
+    }
 
 
 
