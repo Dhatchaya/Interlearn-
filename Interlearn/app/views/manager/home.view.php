@@ -2,7 +2,7 @@
 <?php $this->view("includes/nav");?>
 
 <div class="recp_view_container">
-    <?php $this->view("includes/sidebar_recep");?>
+    <?php $this->view("includes/sidebar_man");?>
     <div class="mng_view_content">
         <!-- <h1 class="recp_view_greeting">Good Morning Monica!</h1><br> -->
             <div class="mng_view_rectangle">

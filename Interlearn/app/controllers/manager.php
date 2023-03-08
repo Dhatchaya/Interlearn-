@@ -80,9 +80,9 @@ class Manager extends Controller{
             ],'eid');
             
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                if(isset($_GET['rid'])){
-                    $reParent = $_GET['rid'];
-                }
+                // if(isset($_GET['rid'])){
+                //     $reParent = $_GET['rid'];
+                // }
                 $_POST['eid']=$eid;
                 $_POST['senderId']=$user_id;
                 $_POST['receiverId']= $enq->user_Id;
@@ -95,7 +95,7 @@ class Manager extends Controller{
                     if($enq->status == 'pending'){
                        $updateStatus= $enquiry->update(['eid'=>$eid],['status'=>'In progress']);
                     }
-                   $replied = $reply -> update(['repId'=>$reParent],['status'=>'replied']);
+                  // $replied = $reply -> update(['repId'=>$reParent],['status'=>'replied']);
                 }
                 else{
                     echo"fail";
@@ -110,6 +110,14 @@ class Manager extends Controller{
          
             $this->view('manager/enquiry_view',$data);
             exit;
+           
+        }
+        if(isset($_GET['id'])&&isset($_GET['status'])){
+          
+            $id=$_GET['id'];
+            $value = $_GET['status'];
+           
+            $status = $enquiry -> update(['eid'=>$id],['status'=>$value]);
            
         }
      

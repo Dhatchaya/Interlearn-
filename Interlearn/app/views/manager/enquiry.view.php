@@ -2,7 +2,7 @@
 <?php $this->view("includes/nav");?>
 
     <div class="center-body">
-    <?php $this->view("includes/sidebar");?>
+    <?php $this->view("includes/sidebar_man");?>
         <div class="clm2">
         <h2 class="add_heading_init">Enquiry</h2>
       
@@ -69,7 +69,7 @@
                             <th>User</th>
                             <th>Actions</th>
                         </tr>
- 
+                       
                         <?php if(!empty($rows)):?>
                     
                         <?php foreach($rows as $row):?>
@@ -79,12 +79,14 @@
                             <td><?=esc($row->title)?></td>
                             <td><?=esc($row->type)?></td>
                             <td>    
-                                <select name = "status" class="enq_cat enqStatus">
-                                <option value = "pending" selected>Pending</option>
-                                <option value = "inprogress">In progress</option>
-                                <option value = "resolved">Resolved</option>
-                                <option value = "escalated">Escalated</option>
+                                <select  id ="status" name = "status" data-eid="<?=esc($row->eid)?>"  onchange= "changeStatus(<?=esc($row->eid)?>,this.value,'<?=strtolower(Auth::getRole())?>');"class="enq_cat enqStatus">
+                                <option value = "">Select a status</option>
+                                <option value = "pending"  <?php if($row->status== 'pending'){echo "selected";}?>>Pending</option>
+                                <option value = "inprogress" <?php if($row->status== 'inprogress'){echo "selected";}?>>In progress</option>
+                                <option value = "resolved" <?php if($row->status== 'resolved'){echo "selected";}?>>Resolved</option>
+                                <option value = "escalated" <?php if($row->status== 'escalated'){echo "selected";}?>>Escalated</option>
                                 </select></br>
+                        </td>
                                 
                    
                             <td><?=esc($row->date)?></td>
@@ -92,20 +94,15 @@
                             <td>
                             
                             <div class="enq_actions">
-                            <div class="enq_edit" onclick=editEnquiry(<?=esc($row->eid)?>);>
-                                <!-- <a href="<?=ROOT?>/manager/enquiry/edit/<?=esc($row->eid)?>"> -->
-                                    <!-- <img  src= "<?=ROOT?>/assets/images/edit.png"/> -->
-                                <!-- </a> -->
-                            </div>
                             <div class="enq_delete">
                                 <a href="<?=ROOT?>/manager/enquiry/delete/<?=esc($row->eid)?>">
-                                    <img src= "<?=ROOT?>/assets/images/delete.png"/>
+                                <button class="delete_enq_btn">Delete</button>
                                 </a>
                                 </div>
-                            <div class="enq_view">
-                                <a href="<?=ROOT?>/manager/enquiry/view/<?=esc($row->eid)?>">
-                                    <img src= "<?=ROOT?>/assets/images/view.png"/>
-                                </a>
+                                <div class="enq_view">
+                                    <a href="<?=ROOT?>/manager/enquiry/view/<?=esc($row->eid)?>">
+                                    <button class="view_enq_btn">View</button>
+                                    </a>
                                 </div>
                             </div>
                             </td>

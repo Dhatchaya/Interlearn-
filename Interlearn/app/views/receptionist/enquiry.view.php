@@ -32,7 +32,7 @@
                             <th>User</th>
                             <th class="enq_action_clm2">Actions</th>
                         </tr>
- 
+   
                         <?php if(!empty($rows)):?>
                            
                         <?php foreach($rows as $row):?>

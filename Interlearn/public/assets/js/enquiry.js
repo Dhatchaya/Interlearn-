@@ -23,7 +23,7 @@ function changeStatus(id,value,role){
       }
     };
     
-    xmlhttp.open("GET","http://localhost/Interlearn/public"+role+"enquiry?id="+id+"&&status="+value,true);
+    xmlhttp.open("GET","http://localhost/Interlearn/public/"+role+"/enquiry?id="+id+"&&status="+value,true);
     xmlhttp.send();
   }
 

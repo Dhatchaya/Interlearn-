@@ -400,7 +400,14 @@ class Receptionist extends Controller
             exit;
            
         }
-
+        if(isset($_GET['id'])&&isset($_GET['status'])){
+          
+            $id=$_GET['id'];
+            $value = $_GET['status'];
+           
+            $status = $enquiry -> update(['eid'=>$id],['status'=>$value]);
+           
+        }
 
         $data['rows']  = $enquiry->select(null, $orderby);
             

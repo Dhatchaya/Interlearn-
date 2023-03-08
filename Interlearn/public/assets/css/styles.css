@@ -5324,3 +5324,8 @@ gap: 8vw;
     color: rgb(104, 44, 198,55%);
     width: 5vw;
 }
+.enq_actions > * > * >img,.enq_actions > * > img {
+    display: block;
+    margin: 0 auto;
+   
+  }
