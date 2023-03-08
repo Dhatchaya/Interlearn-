@@ -221,8 +221,7 @@
               <th>Payment month</th>
               <th>Payment date</th>
               <th>Amount</th>
-              <th>Method</th>
-              <th>Payment status</th>
+              <th>Payment Options</th>
             </tr>
           </thead>
           <tbody>
@@ -245,25 +244,26 @@
 
             </tr> -->
             <?php foreach ($haveToPaySet as $pendingPayment) : ?>
-          <tr>
-            <td><?= $pendingPayment->courseID ?></td>
-            <td><?= $pendingPayment->Month ?></td>
-            <td><?= $pendingPayment->dueDate ?></td>
-            <td><?= $pendingPayment->amount ?></td>
-              <td><button id="" onclick="checkout()" class="card-btn">paynow</button>
+              <tr>
+                <td><?= $pendingPayment->courseID ?></td>
+                <td><?= $pendingPayment->month ?></td>
+                <td> 03/15/2023</td>
+                <!-- <td><?= $pendingPayment->dueDate ?></td> -->
+                <td><?= $pendingPayment->amount ?></td>
+                <td><button id="" onclick="checkout()" class="card-btn">paynow</button>
 
-                <script>
-                  function checkout() {
-                    window.location.href = "<?= ROOT ?> /student/checkout";
-                  }
-                </script>
+                  <script>
+                    function checkout() {
+                      window.location.href = "<?= ROOT ?> /student/checkout";
+                    }
+                  </script>
 
-                <button id="bank-btn" class="bank-btn">Bank Payment</button>
-              </td>
+                  <button id="bank-btn" class="bank-btn">Bank Payment</button>
+                </td>
 
-          </tr>
-        <?php endforeach; ?>
-            
+              </tr>
+            <?php endforeach; ?>
+
           </tbody>
         </table>
 
@@ -284,28 +284,27 @@
               <th>Subject code</th>
               <th>Payment month</th>
               <th>Payment date</th>
+              <th>Payment ID</th>
               <th>Amount</th>
               <th>Method</th>
-              <th>Payment status</th>
+              <th>Print Payment Slip</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>ABC123</td>
-              <td>January</td>
-              <td>01/01/2023</td>
-              <td>$100</td>
-              <td>Credit Card</td>
-            </tr>
-            <tr>
-              <td>XYZ456</td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Card Payment</td>
-              <td><button>Print</button></td>
-            </tr>
-            <tr>
+
+            <?php foreach ($payment_history_list as $payments) : ?>
+              <tr>
+                <td><?= $payments->courseID ?></td>
+                <td><?= $payments->month ?></td>
+                <td><?= $payments->payment_date ?></td>
+                <td><?= $payments->PaymentID ?></td>
+                <td><?= $payments->amount ?></td>
+                <td><?= $payments->method ?></td>
+                <td><button>Print</button></td>
+
+              </tr>
+            <?php endforeach; ?>
+            <!-- <tr>
               <td>XYZ456</td>
               <td>February</td>
               <td>02/01/2023</td>
@@ -360,7 +359,7 @@
               <td>$200</td>
               <td>Card Payment</td>
               <td><button>Print</button></td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
 

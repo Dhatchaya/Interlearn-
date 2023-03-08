@@ -68,7 +68,7 @@ class Receptionist extends Controller
             $data = json_decode(file_get_contents("php://input"), true);
 
             $data['method'] =   'cash';
-            $data['status'] = '1';
+            $data['payment_status'] = '1';
 
             $payment_model = new Payment();
             $payment_model->insert($data);

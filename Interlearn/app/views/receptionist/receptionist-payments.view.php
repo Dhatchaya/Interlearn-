@@ -33,7 +33,7 @@
       <div class="pending-list">
         <?php foreach ($bankPayments as $bankPayment) : ?>
           <div class="pending-item payment-1" >
-            <h4><?= $bankPayment->CourseID ?></h4>
+            <h4><?= $bankPayment->courseID ?></h4>
             <h4><?= $bankPayment->NameOnSlip ?></h4>
               <h4><?= $bankPayment->Amount ?></h4>
               <h4><?= $bankPayment->PaymentDate ?></h4>

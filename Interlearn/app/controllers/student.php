@@ -99,37 +99,43 @@ class Student extends Controller
         if (!Auth::is_student()) {
             redirect('home');
         }
-        $currentStudentID = $id ?? Auth::getUID();
-        $user = new User();
-        $data['row'] = $user->first(['uid' => $id], 'uid');
+        // $currentStudentID = $id ?? Auth::getUID();
+        // $user = new User();
+        // $data['row'] = $user->first(['uid' => $id], 'uid');
 
 
         
         $payment_model = new Payment();
-        $payment_history = $payment_model->getAll();
+        $haveToPay = $payment_model->pendingPayments();
+
         ////////////////////////////////
 
-        $currentDate = date('Y-m-d');
+        $payment_history = new Payment();
+        $each_s_p_h = $payment_history->eachStudentPaymentHistory();
+
+        
+
+        // $currentDate = date('Y-m-d');
 
     // check if it is the first of the month
-        if (date('d', strtotime($currentDate)) == 1) {
-        // retrieve the data from the Course table
-        $sql = "SELECT * FROM Course";
-        $result = $this->query($sql);
+        // if (date('d', strtotime($currentDate)) == 1) {
+        // // retrieve the data from the Course table
+        // $sql = "SELECT * FROM Course";
+        // $result = $this->query($sql);
     
-        // insert the data into the pending-payment table
-        while ($row = mysqli_fetch_assoc($result)) {
-            $sql2 = "INSERT INTO pending-payment (course_name, course_fee) VALUES ('".$row['course_name']."', '".$row['course_fee']."')";
-            $this->query($sql2);
-             }
-        }
+        // // insert the data into the pending-payment table
+        // while ($row = mysqli_fetch_assoc($result)) {
+        //     $sql2 = "INSERT INTO pending-payment (course_name, course_fee) VALUES ('".$row['course_name']."', '".$row['course_fee']."')";
+        //     $this->query($sql2);
+        //      }
+        // }
 
         /////////////////////////////////
 
         $pending_payment_model = new Payment();
         $haveToPay = $pending_payment_model->pendingPayments();
 
-        $this->view('student/student-payment',['payment_history'=>$payment_history,'haveToPaySet'=>$haveToPay]);
+        $this->view('student/student-payment',['payment_history_list'=>$each_s_p_h,'haveToPaySet'=>$haveToPay]);
 
     }
 
@@ -165,6 +171,7 @@ class Student extends Controller
 
 
         if (isset($_POST)) {
+            // $_POST['payment_status'] = '1';
             $payment_model = new BankPayment();
             $payment_model->insert($_POST);
             $this->view("student/student-payment");
