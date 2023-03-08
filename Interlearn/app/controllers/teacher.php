@@ -740,7 +740,8 @@ class Teacher extends Controller
                 exit();
             }
 
-            $data['rows'] = $question->ChoiceInnerjoinQuestion();
+            $data['rows'] = $question->ChoiceAndQuestion(['course_id'=>$id]);
+            // $data['rows'] = $question->ChoiceInnerjoinQuestion();
             // show($data);
             $this->view('teacher/Zquiz', $data);
         }
