@@ -64,4 +64,22 @@ class ZResult extends Model
            
     // }
 
+    public function ResultForStudent($data= null){
+        
+        $keys = array_keys($data);
+        $query = "SELECT  id, student_id, marks FROM myresult where ";
+
+
+        foreach($keys as $key){
+            $query .= $key. " =:".$key." && ";
+        }
+        $query = trim($query,"&& ");
+        $res = $this -> query($query,$data);
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;       
+    }
+
 }

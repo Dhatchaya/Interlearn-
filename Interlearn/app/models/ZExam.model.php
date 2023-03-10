@@ -47,7 +47,24 @@ class ZExam extends Model
         }
         return false;
     }
+   
+    public function ExamForCourse($data= null){
+        
+        $keys = array_keys($data);
+        $query = "SELECT  exam_name, exam_id FROM myexam where ";
 
+
+        foreach($keys as $key){
+            $query .= $key. " =:".$key." && ";
+        }
+        $query = trim($query,"&& ");
+        $res = $this -> query($query,$data);
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;       
+    }
 
     // public function Exam($data= null){
 
