@@ -173,7 +173,9 @@ class Instructor extends Controller
         if($action == 'progress') {
 
             $exam = new ZExam();
+            $results = new ZResult();
             $data['course_id'] = $id;
+            
             if($option == 'add') {
 
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -212,6 +214,24 @@ class Instructor extends Controller
                 }
 
                 $this->view('instructor/add_progress',$data);
+                exit();
+            }
+            if($option == 'view') {
+
+                $data['rows'] = $exam->ExamForCourse(['course_id'=>$id]);
+                // $data['rows'] = $question->ChoiceInnerjoinQuestion();
+                // show($data);
+                // $this->view('teacher/Zquiz', $data);
+                $this->view('instructor/view_progress',$data);
+                exit();
+            }
+            if($option == 'overview') {
+
+                $exam_id = $_GET['overall'];
+                // show($exam_id);
+                $data['rows'] = $results->ResultForStudent(['exam_id'=>$exam_id]);
+
+                $this->view('instructor/overview_progress',$data);
                 exit();
             }
             $this->view('instructor/progress',$data);
