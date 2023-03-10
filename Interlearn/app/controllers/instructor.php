@@ -169,6 +169,54 @@ class Instructor extends Controller
 
             $this->view('instructor/announcement',$data);
         }
+
+        if($action == 'progress') {
+
+            $exam = new ZExam();
+            $data['course_id'] = $id;
+            if($option == 'add') {
+
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+                    $filename = $_FILES['myfile']['name'];
+                    $fileTmpName = $_FILES['myfile']['tmp_name'];
+                    $fileExtension = pathinfo($filename, PATHINFO_EXTENSION);
+                    $allowedType = array('csv');
+                    if(!in_array($fileExtension, $allowedType)) {
+                        // display error message
+                        echo "add csv file";die;
+                    }
+                    else {
+                        $exam_id = uniqid();
+                        $_POST['exam_id'] = $exam_id;
+                        $_POST['course_id'] = $id;
+
+                        $result = $exam->insert($_POST);
+                        
+                        
+                        $handle = fopen($fileTmpName, 'r');
+                        while(($myData = fgetcsv($handle, 1000, ',')) !== FALSE) {
+                            $student_id = $myData[0];
+                            $marks = $myData[1];
+                            // insert result data into database
+                            $_POST['student_id'] = $student_id;
+                            $_POST['marks'] = $marks;
+                            $myresult = new ZResult();
+                            $result = $myresult->insert($_POST);
+                        }
+                        
+                        if($result) {
+                            echo "successfully";
+                        }
+                    }
+                }
+
+                $this->view('instructor/add_progress',$data);
+                exit();
+            }
+            $this->view('instructor/progress',$data);
+            exit();
+        }
         
         $this->view('instructor/course',$data);
     }
