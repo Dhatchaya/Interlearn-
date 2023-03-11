@@ -225,13 +225,61 @@ class Instructor extends Controller
                 $this->view('instructor/view_progress',$data);
                 exit();
             }
+            if($option == 'overall') {
+                // $exam_id = $_GET['overall'];
+                // // show($exam_id);
+                // // $array = [];
+                // $data['rows1'] = $results->ResultGraph(['exam_id' => $exam_id]);
+                // show($data);
+                // $newArray = array(
+                //     "A" => 0,
+                //     "B" => 0,
+                //     "C" => 0
+                // );
+
+                // foreach ($data['rows'] as $row) {
+                //     $newArray["A"] += intval($row->A);
+                //     $newArray["B"] += intval($row->B);
+                //     $newArray["C"] += intval($row->C); 
+                // }
+                // show($newArray);
+                
+                // // echo json_encode($newArray);
+                // $json_data = json_encode($newArray);
+                // header('Content-Type: application/json');
+                // // echo $json_data1;
+                // echo $json_data;
+                // exit;
+            }
             if($option == 'overview') {
 
                 $exam_id = $_GET['overall'];
                 // show($exam_id);
-                $data['rows'] = $results->ResultForStudent(['exam_id'=>$exam_id]);
+                $data['rows1'] = $results->ResultGraph(['exam_id' => $exam_id]);
 
-                $this->view('instructor/overview_progress',$data);
+                $newArray = array(
+                    "A" => 0,
+                    "B" => 0,
+                    "C" => 0,
+                    "S" => 0,
+                    "W" => 0
+                );
+
+                foreach ($data['rows1'] as $row) {
+                    $newArray["A"] += intval($row->A);
+                    $newArray["B"] += intval($row->B);
+                    $newArray["C"] += intval($row->C); 
+                    $newArray["S"] += intval($row->S);
+                    $newArray["W"] += intval($row->W);
+                }
+                // echo json_encode($newArray);
+                $json_data = json_encode($newArray);
+                // echo $json_data;
+                // show($newArray);
+
+                $data['rows2'] = $results->ResultForStudent(['exam_id'=>$exam_id]);
+                
+                $this->view('instructor/overview_progress', $newArray);
                 exit();
             }
             $this->view('instructor/progress',$data);
