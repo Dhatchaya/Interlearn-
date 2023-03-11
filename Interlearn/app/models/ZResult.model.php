@@ -82,4 +82,27 @@ class ZResult extends Model
         return false;       
     }
 
+    public function ResultGraph($data= null){
+        
+        $keys = array_keys($data);
+        $query = "SELECT COUNT(CASE WHEN marks >= 75 THEN 1 END) AS A,
+                COUNT(CASE WHEN marks BETWEEN 65 AND 74 THEN 1 END) AS B,
+                COUNT(CASE WHEN marks BETWEEN 50 AND 64 THEN 1 END) AS C,
+                COUNT(CASE WHEN marks BETWEEN 35 AND 49 THEN 1 END) AS S,
+                COUNT(CASE WHEN marks < 34 THEN 1 END) AS W
+                FROM myresult where ";
+
+
+        foreach($keys as $key){
+            $query .= $key. " =:".$key." && ";
+        }
+        $query = trim($query,"&& ");
+        $res = $this -> query($query,$data);
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;       
+    }
+
 }
