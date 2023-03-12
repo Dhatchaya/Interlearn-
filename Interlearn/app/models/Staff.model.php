@@ -9,8 +9,9 @@ class Staff extends Model
     protected $table = "staff";
     protected $allowed_columns = [
 
-    'emp_ID',
+    'emp_id',
     'NIC_no',
+    'uid',
     'username',
     'password',
     'enrollment_date',
@@ -18,9 +19,9 @@ class Staff extends Model
     'last_name',
     'email',
     'mobile_no',
-    'Addressline1',
-    'Addressline2',
-    'role'
+    'Address',
+    'role',
+    'gender'
     ];
     protected $staffs = [
         'Manager',
