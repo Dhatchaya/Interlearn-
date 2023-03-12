@@ -14,14 +14,14 @@
             <?php foreach($sums as $sum):?>
         <div class="recp_crs_rectangle">
         
-            <a href="<?=ROOT?>/courses/view/1?id=<?=esc($sum->subject_id)?>">
+            <a href="<?=ROOT?>/courses/index/view/1/?id=<?=esc($sum->subject_id)?>">
                 <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
                 <!-- <p>Grade 11 Mathematics</p> -->
                 <p>Grade <?=esc($sum->grade)?> - <?=esc($sum->subject)?></p>
                 <div class="recp_crs_butn2">
-                    <a href="<?=ROOT?>/courses/view/1/?id=<?=esc($sum->subject_id)?>">
+                    <!-- <a href="<?=ROOT?>/courses/view/1/?id=<?=esc($sum->subject_id)?>"> -->
                         <button class="recp_crs_btn2">More info</button>
-                    </a>
+                    <!-- </a> -->
                 </div>
             </a>
             

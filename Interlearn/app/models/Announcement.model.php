@@ -10,8 +10,9 @@ class Announcement extends Model{
         'title',
         'content',
         'attachment',
-        'teacher_id',
-        'date'
+        'empID',
+        'role',
+        'date_time'
  
     ];
     // protected $staffs = [
@@ -138,4 +139,21 @@ class Announcement extends Model{
         return false;
 
     }
+
+    public function allRecepAnnouncements($data=[],$id=null,$orderby=null,$order = 'desc'){
+
+        $query ="SELECT announcement.* FROM ".$this->table;
+        $query .= " WHERE announcement.role = 'Receptionist'";
+        $query .= " order by announcement.date_time  $order";
+    // echo $query;die;
+        $res = $this -> query($query,$data);
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;
+
+    }
+
+    // public function 
 }

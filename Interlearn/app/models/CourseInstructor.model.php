@@ -58,8 +58,10 @@ class CourseInstructor extends Model
         // show($res);die;
 
         if($res){
+            // show($res);die;
             return $res;
         }else{
+            // echo "hi";die;
             return false;
         }
     }

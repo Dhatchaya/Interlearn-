@@ -19,12 +19,15 @@ class Model extends Database {
                
             }
         }
-            $keys = array_keys($data);
-            
-            $query = "insert into ".$this->table."(".implode(",",$keys) .") values (:".implode(",:",$keys).")";
-          
-            $this -> query($query,$data);
-            return true;
+        
+        $keys = array_keys($data);
+        
+        $query = "insert into ".$this->table."(".implode(",",$keys) .") values (:".implode(",:",$keys).")";
+        
+        // var_dump($query);die;
+        $this -> query($query,$data);
+        
+        return true;
     }
     //select all the records that matches 
     public function where($data,$orderby=null,$order = 'desc'){
@@ -325,7 +328,7 @@ class Model extends Database {
 
     public function selectTeachers($data=[],$medium='English'){
         $keys = array_keys($data);
-        $query ="SELECT distinct subject.*,course.*,course_instructor.instructor_id,concat(teachers.firstname,' ',teachers.lastname) AS teacherName, concat(instructor.firstname,' ',instructor.lastname) AS instructorName FROM ".$this->table;
+        $query ="SELECT distinct subject.*,course.*,course_instructor.instructor_id,teachers.teacher_id, concat(teachers.firstname,' ',teachers.lastname) AS teacherName, concat(instructor.firstname,' ',instructor.lastname) AS instructorName FROM ".$this->table;
         $query .=" RIGHT JOIN course ON course.subject_id = subject.subject_id LEFT JOIN course_instructor ON course.course_id = course_instructor.course_id RIGHT JOIN teachers ON teachers.teacher_id = course.teacher_id LEFT JOIN instructor ON instructor.instructor_id = course_instructor.instructor_id WHERE";
         $query .= " subject.language_medium = '".$medium."'"." and ";
          
@@ -369,7 +372,7 @@ class Model extends Database {
 
         $query ="SELECT concat(teachers.firstname,' ',teachers.lastname) AS fullname, subject.subject, subject.grade,subject.language_medium,course.*,announcement.*,announcement_course.* FROM ".$this->table;
         $query .=" INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN announcement_course ON course.course_id = announcement_course.course_id INNER JOIN announcement ON announcement_course.aid = announcement.aid INNER JOIN teachers ON teachers.teacher_id = course.teacher_id";
-        $query .= " order by announcement.date $order, announcement.time  $order";
+        $query .= " order by announcement.date_time  $order";
     // echo $query;die;
         $res = $this -> query($query,$data);
 
