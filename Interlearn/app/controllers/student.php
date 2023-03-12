@@ -141,6 +141,59 @@ class Student extends Controller
         
         $this->view('student/progress');
     }
+
+    public function myprogress($action = null, $data = null) 
+    {
+        if(!Auth::is_student()){
+            redirect('home');
+           
+        }
+        $student = new Students();
+        $user_id = Auth::getuid();
+        $courseStudent = new StudentCourse();
+
+        // show($user_id);
+        // $result = $student->getStudentName($user_id);
+        // show($result);
+        $result = $student->getStudentID($user_id);
+        // show($result);
+        $student_value = $result[0];
+        $student_id = $student_value->studentID;
+        // echo $student_id;
+        if($action == 'view') {
+            
+            $id = $_GET['id'];
+            $result = new ZResult();
+            $data['çount'] = $result->ResultStudentGraph(['course_id' => $id,'studentID' => $student_id]);
+            // show($data);
+
+            $newArray = array(
+                "A" => 0,
+                "B" => 0,
+                "C" => 0,
+                "S" => 0,
+                "W" => 0
+            );
+            // show($newArray);
+            foreach ($data['çount'] as $row) {
+                $newArray["A"] += intval($row->A);
+                $newArray["B"] += intval($row->B);
+                $newArray["C"] += intval($row->C); 
+                $newArray["S"] += intval($row->S);
+                $newArray["W"] += intval($row->W);
+            }
+            // show($newArray);
+            $json_data = json_encode($newArray);
+            $exam = new ZExam();
+            $data['rows'] = $exam->ExamResult(['course_id' => $id, 'studentID' => $student_id]);
+            // $this->view('student/view_progress', $newArray);
+            $this->view('student/view_progress', $data);
+            exit();
+        }
+        $data['rows']= $courseStudent->CourseForStudent(['student_id' => $student_id]);
+        // show($data);
+        $this->view('student/myprogress', $data);
+    }
     public function overall()
     { 
         if(!Auth::is_student()){

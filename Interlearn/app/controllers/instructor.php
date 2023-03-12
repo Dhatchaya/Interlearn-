@@ -201,7 +201,7 @@ class Instructor extends Controller
                             $student_id = $myData[0];
                             $marks = $myData[1];
                             // insert result data into database
-                            $_POST['student_id'] = $student_id;
+                            $_POST['studentID'] = $student_id;
                             $_POST['marks'] = $marks;
                             $myresult = new ZResult();
                             $result = $myresult->insert($_POST);
@@ -256,7 +256,7 @@ class Instructor extends Controller
                 $exam_id = $_GET['overall'];
                 // show($exam_id);
                 $data['rows1'] = $results->ResultGraph(['exam_id' => $exam_id]);
-
+                
                 $newArray = array(
                     "A" => 0,
                     "B" => 0,
@@ -272,6 +272,7 @@ class Instructor extends Controller
                     $newArray["S"] += intval($row->S);
                     $newArray["W"] += intval($row->W);
                 }
+                // show($newArray);
                 // echo json_encode($newArray);
                 $json_data = json_encode($newArray);
                 // echo $json_data;

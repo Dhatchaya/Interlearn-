@@ -63,7 +63,7 @@ class ZExam extends Model
         if(is_array($res)){
             return $res;
         }
-        return false;       
+        return false;     
     }
 
     // public function Exam($data= null){
@@ -80,5 +80,24 @@ class ZExam extends Model
     //     return false;
            
     // }
+
+    public function ExamResult($data= null){
+        
+        $keys = array_keys($data);
+        $query = "SELECT e.exam_id, e.exam_name, e.exam_month, m.marks from myexam e 
+        INNER JOIN myresult m ON m.exam_id=e.exam_id where ";
+
+
+        foreach($keys as $key){
+            $query .= $key. " =:".$key." && ";
+        }
+        $query = trim($query,"&& ");
+        $res = $this -> query($query,$data);
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;     
+    }
 
 }

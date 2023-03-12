@@ -79,6 +79,18 @@ class Students extends Model
         }
     }
 
+    public function getStudentID($uid){
+        $query = "SELECT studentID FROM ".$this->table;
+        $query .= " WHERE uid =:uID";
+        $data['uID'] = $uid;
 
+        $res = $this -> query($query, $data);
+
+        if($res){
+            return $res;
+        }else{
+            return false;
+        }
+    }
 
 }
