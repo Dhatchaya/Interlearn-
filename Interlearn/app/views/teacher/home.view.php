@@ -20,7 +20,7 @@ var_dump($sums);
             <?php foreach($sums as $sum):?>
         <div class="recp_crs_rectangle">
 
-            <a href="<?=ROOT?>/teacher/course/<?=$sum->course_id?> ">
+            <a href="<?=ROOT?>/teacher/course/view/<?=$sum->course_id?> ">
                 <!-- <img src="<?=ROOT?>/uploads/images/<?= Auth::getdisplay_picture();?>" alt="" class="recp_crs_img"> -->
                 <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
                 <br><br>

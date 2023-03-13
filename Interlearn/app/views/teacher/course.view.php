@@ -38,14 +38,14 @@
                             <?php if($material->file_type==="application/pdf"):?>
                                 <p><a href="#">
                                 <img src="<?=ROOT?>/assets/images/pdf.png" alt="" class="teacher_card_img3">
-                                <?=$material->upload_name?> 
+                                <?=$material->upload_name?>
                                 <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
                                 <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->file_id?>')">
                                 </a></p>
                                 <?php elseif($material->file_type==="text/plain"):?>
                                     <p><a href="#">
                                     <img src="<?=ROOT?>/assets/images/pp.png" alt="" class="teacher_card_img3">
-                                    <?=$material->upload_name?> 
+                                    <?=$material->upload_name?>
                                     <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
                                     <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->file_id?>')">
                                     </a></p>
@@ -56,7 +56,7 @@
                                     </a>
                                     <a href="#">
                                     <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" >
-                                    </a></p> 
+                                    </a></p>
                                     <?php endif;?>
                         <?php endif;?>
                         <?php endforeach;?>
@@ -67,6 +67,9 @@
             </div>
             <?php $i++;  }?>
             <p class="add-week" id="button29" onclick="openModal2()"> <a href="#">+ Add a week</a></p>
+
+
+            <!-- add activity popup -->
             <div id="profileModal" class="popupModal">
                 <div class="tchr-popupmodal-content">
                     <span class="ann_close" onclick="closeModal()">&times;</span><br>
@@ -80,10 +83,10 @@
                                 <a href="<?=ROOT?>/teacher/course/forum/<?=$course->course_id?>" name="upload"><img src="<?=ROOT?>/assets/images/forum.png" alt="" class="teacher-crs-img"><br>Add Forum</a>
                             </div>
                             <div class="teacher-crs-activity">
-                                <a href="<?=ROOT?>/teacher/course/quiz/<?=$course->course_id?>" name="quiz"><img src="<?=ROOT?>/assets/images/quiz.png" alt="" class="teacher-crs-img"><br>Add a quiz</a>
+                                <a href="#"><img src="<?=ROOT?>/assets/images/quiz.png" alt="" class="teacher-crs-img"><br>Add a quiz</a>
                             </div>
                             <div class="teacher-crs-activity">
-                                <a href="<?=ROOT?>/teacher/course/quiz/<?=$course->course_id?>"><img src="<?=ROOT?>/assets/images/quizb.png" alt="" class="teacher-crs-img"><br>Add a quiz bank</a>
+                                <a href="#"><img src="<?=ROOT?>/assets/images/quizb.png" alt="" class="teacher-crs-img"><br>Add a quiz bank</a>
                             </div>
                             <div class="teacher-crs-activity">
                                 <a href="<?=ROOT?>/teacher/course/assignment/<?=$course->course_id?>" name="assignment"><img src="<?=ROOT?>/assets/images/submission.png" alt="" class="teacher-crs-img"><br>Add a submission</a>
@@ -99,9 +102,6 @@
                              <div class="teacher-crs-activity">
                                 <a href="#"><img src="<?=ROOT?>/assets/images/recording.png" alt="" class="teacher-crs-img"><br>Add recordings</a>
                              </div>
-                             <!-- <div class="teacher-crs-activity">
-                                <a href="#"><img src="<?=ROOT?>/assets/images/progress.png" alt="" class="teacher-crs-img"><br>View Progress</a>
-                             </div> -->
                              <div class="teacher-crs-activity">
                                 <a href="#"><img src="<?=ROOT?>/assets/images/web.png" alt="" class="teacher-crs-img"><br>Add URL</a>
                              </div>
@@ -133,7 +133,9 @@
                     </form>
                 </div>
             </div>
-            
+
+
+
             <!-- adding title to the week -->
             <div id="profileModal3" class="popupModal">
                 <div class="tchr-popupmodal-content2">
@@ -150,6 +152,8 @@
                     </form>
                 </div>
             </div>
+
+
 
             <!-- deleting the week popup -->
             <div id="profileModal4" class="popupModal">
@@ -168,7 +172,9 @@
                     </form>
                 </div>
             </div>
-            
+
+
+
             <!-- editing the upload name -->
             <div id="profileModal5" class="popupModal">
                 <div class="tchr-popupmodal-content2">
@@ -185,7 +191,9 @@
                     </form>
                 </div>
             </div>
-            
+
+
+
             <!-- deleting the upload popup -->
             <div id="profileModal6" class="popupModal">
                 <div class="tchr-popupmodal-content2">
@@ -202,7 +210,7 @@
                     </form>
                 </div>
             </div>
-    </div>    
+    </div>
 </div>
 <script defer src="<?=ROOT?>/assets/js/course.js?v=<?php echo time(); ?>"></script>
 <?php $this->view("includes/footer");?>
