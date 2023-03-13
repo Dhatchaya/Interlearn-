@@ -79,11 +79,13 @@ class Students extends Model
         }
     }
 
+
     public function getStudentID($uid){
         $query = "SELECT studentID FROM ".$this->table;
-        $query .= " WHERE uid =:uID";
-        $data['uID'] = $uid;
+        $query .= " INNER JOIN users ON student.uid = users.uid";
+        $query .= " WHERE student.uid =:UID";
 
+        $data['UID'] = $uid;
         $res = $this -> query($query, $data);
 
         if($res){
@@ -92,5 +94,7 @@ class Students extends Model
             return false;
         }
     }
+
+
 
 }

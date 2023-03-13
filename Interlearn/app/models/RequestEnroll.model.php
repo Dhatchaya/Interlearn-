@@ -2,14 +2,18 @@
 /**
  *Course class
  */
-class StudentCourse extends Model
+class RequestEnroll extends Model
 {
     //says what table it has to target
     public $error = [];
-    public $table = "student_course";
+    public $table = "request_enroll";
     protected $allowed_columns = [
+        'request_id',
+        'emp_id',
         'student_id',
-        'course_id'
+        'course_id',
+        'requested_date',
+        'status'
     ];
     // protected $staffs = [
     //     'Manager',
@@ -44,22 +48,23 @@ class StudentCourse extends Model
         return false;
     }
 
-    public function getCourses($student_id){
-        $query = "SELECT course_id FROM ".$this->table;
-        $query .= " WHERE student_id =:studentID";
-        $data['studentID'] = $student_id;
-        // show($student_id) ;die;
 
-        $res = $this -> query($query,$data);
-        //  show($query);die;
+    public function showRequests(){
+        $query = "SELECT DISTINCT request_enroll.*, course.day, course.timefrom, course.timeto, course.teacher_id, (course.capacity - (SELECT COUNT(student_course.student_id) FROM student_course)) AS available, subject.subject, subject.grade, concat(staff.first_name, ' ', staff.last_name) AS teacherName, concat(student.first_name,' ',last_name) AS studentName FROM ".$this->table;
+        $query .= " INNER JOIN course ON course.course_id = request_enroll.course_id 
+        INNER JOIN student_course ON student_course.course_id = course.course_id 
+        INNER JOIN staff ON staff.emp_id = course.teacher_id 
+        INNER JOIN student ON student.studentID = request_enroll.student_id 
+        INNER JOIN subject ON subject.subject_id = course.subject_id";
+        $query .= " WHERE request_enroll.status = 'pending' AND staff.role = 'Teacher'";
+        $query .= " ORDER BY requested_date DESC";
+
+        $res = $this -> query($query);
 
         if(is_array($res)){
-            // echo $res;die;
             return $res;
         }
-        // echo "hi";die;
         return false;
-
     }
 
 

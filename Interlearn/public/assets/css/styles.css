@@ -2907,7 +2907,7 @@ std_view_bottom{
     border: solid;
     border-color: rgb(0 0 0 / 30%);
     padding: 2%;
-    height: 60vh;
+    height: 70vh;
     border-radius: 5px;
 }
 
@@ -3423,7 +3423,7 @@ width: 45vw;
     background-color: rgb(104, 44, 198,25%);
 }
 .recp_cl_nav.active{
-  background-color: rgb(104, 44, 198,55%);
+  background-color: var(--left-sidebar-color);
 }
 .recp_cl_staff{
     display: flex;
@@ -5148,20 +5148,6 @@ gap: 8vw;
     padding-top: 1px;
     margin-top: 5px;
 }
-.teacher-upload-file{
-    display: none;
-}
-.teacher-upload-btn{
-    font-size: 14px;
-    border-radius: 5px;
-    background-color: rgb(104, 44, 198,100%);
-    color: white;
-    cursor: pointer;
-    padding: 1%;
-}
-.teacher-upload-btn:hover{
-    background-color: rgb(104, 44, 198,75%);
-}
 .teacher-course-announcement{
     width: 12vw;
     height: 6vh;
@@ -5330,5 +5316,105 @@ gap: 8vw;
 .enq_actions > * > * >img,.enq_actions > * > img {
     display: block;
     margin: 0 auto;
-   
+
   }
+
+
+
+
+
+/* student enrollment */
+
+.std-enroll-btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: var(--left-sidebar-color);
+    color: white;
+    cursor: pointer;
+    margin-right: 2%;
+    float: right;
+}
+.std-enroll-content{
+    margin-top: 5%;
+    margin-left: 10%;
+    width: 85vw;
+}
+.std-enroll-table{
+    border-collapse: collapse;
+    width: 85vw;
+}
+.std-enroll-table th, .std-enroll-table td{
+    border: 1px solid black;
+    padding: 1%;
+    text-align: center;
+}
+.std-enroll-table th{
+    background-color: var(--left-sidebar-color);
+    color: white;
+}
+.std-enroll-table tbody tr:nth-child(odd){
+    background-color: rgb(104, 44, 198,12%);
+}
+.recp-enroll-content{
+    margin-left: 2%;
+    margin-top: 5%;
+}
+
+
+
+
+/* teacher upload drag and drop */
+
+.teacher-upload-container {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px dashed #555;
+    color: #444;
+    cursor: pointer;
+    transition: background .2s ease-in-out, border .2s ease-in-out;
+}
+
+.teacher-upload-container:hover {
+    background: #eee;
+    border-color: #111;
+}
+
+.teacher-upload-container:hover .teacher-upload-title {
+    color: #222;
+}
+
+.teacher-upload-title {
+    color: #444;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    transition: color .2s ease-in-out;
+}
+.teacher-upload-file::file-selector-button{
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: rgb(104, 44, 198,100%);
+    color: white;
+    cursor: pointer;
+    padding: 1%;
+}
+.teacher-upload-file::file-selector-button:hover {
+    background: rgb(104, 44, 198,75%);
+}
+
+
+
+
+
+.enroll-display{
+    width: 12vw;
+    float: left;
+    display: grid;
+}

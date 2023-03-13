@@ -4,28 +4,41 @@
 <div class="teacher_upl_container">
 <?php $this->view("includes/sidebar_teach");?>
         <div class="teacher_upl_content">
-        <?php if(!empty($courses)):print_r($courses);exit;?>
+        <?php if(!empty($courses)):?>
             <?php foreach($courses as $course):?>
             <h2>Grade <?=esc($course->grade)?> - <?=esc($course->subject)?></h2>
             <?php endforeach;?>
             <?php endif;?><br>
-            <h3>Upload Materials/Recording</h3>
-            <br>
+            <h3>Upload Materials</h3>
+            <br><br>
             <form action="" method="post" enctype="multipart/form-data">
-                <p>Name of the Upload</p>
-                <input type="text" class="teacher_upl_name"><br><br>
-                <input type="file" name="file" id="">
-                <img src="<?=ROOT?>/assets/images/files.png" class="teacher_upl_img">
-                <img src="<?=ROOT?>/assets/images/folder.png" class="teacher_upl_img">
-                <div class="teacher_upl_box">
-                    <div class="teacher_upl_inner_box"></div>
-                </div>
-                <br><br>
+                <input type="hidden" name="week_no" value="<?=$week_no?>">
+                <p>Name of the Upload:</p>
+                <input type="text" class="teacher_upl_name" name="upload_name"><br><br><br>
+
+                <label class="teacher-upload-container" for="file-input">
+                    <span id="teacher-upload-name" class="teacher-upload-title">Drag and drop your files here</span>
+                    or
+                    <input type="file" name="file" id="file-input" class="teacher-upload-file">
+                </label>
+                
+                <br><br><br>
                 <a href="<?=ROOT?>/teacher/course">
                     <button type="submit" class="teacher_upl_btn" name="submit">Upload</button>
                 </a>    
                 <button type="reset" class="teacher_upl_btn">Cancel</button>
             </form>
+
+            <script>
+                const fileInput = document.querySelector('#file-input');
+                const fileName = document.querySelector('#teacher-upload-name');
+
+                fileInput.addEventListener('change', (event) => {
+                  const selectedFile = event.target.files[0];
+                  fileName.textContent = selectedFile ? selectedFile.name : '';
+                });
+                fileName.textContent = 'No file chosen';
+            </script>
         </div>
     </div>
 

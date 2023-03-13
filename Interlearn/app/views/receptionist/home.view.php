@@ -35,6 +35,12 @@
                     <p>Announcement</p>
                 </a>
             </div>
+            <div class="recp_view_rectangle">
+                <a href="<?=ROOT?>/receptionist/enrollment">
+                    <img src="<?=ROOT?>/assets/images/recp_std.png" alt="" class="recp_view_img">
+                    <p>Student Enrollments</p>
+                </a>
+            </div>
         </div>
     </div>
 </div> 
