@@ -55,7 +55,7 @@ $val = explode('/',$url);
                             break;
                         }
                     }
-                    // show($subjects[$med_ID]);die;   
+                    // show($subjects[$med_ID]);die;
                     ?>
                 <?php foreach($subjects[$med_ID] as $teacher):
                     ?>
@@ -73,7 +73,7 @@ $val = explode('/',$url);
                    
                     <?php if(!empty($teach_instructors)):?>
                         <?php foreach($teach_instructors as $teach_instructor):?>
-                            <?=esc($teach_instructor->instructorName)?> 
+                            <?=esc($teach_instructor->instructorName)?>
                             <input type="hidden" value="<?=esc($teacher->day)?>">
                             <img src="<?=ROOT?>/assets/images/plus.png" alt="" id="button29" class="teacher_crs_img2" onclick="openModal2()">
                             <br/>
@@ -81,13 +81,13 @@ $val = explode('/',$url);
                     <?php else:?>
                             <?php echo "No instructors assigned!";?>
                             <img src="<?=ROOT?>/assets/images/plus.png" alt="" id="button29" class="teacher_crs_img2" onclick="openModal2()">
-                    <?php endif?>  
+                    <?php endif?>
                     </td> 
                     <td>
                     <?php if(!empty($mediums)):?>
                     <?php foreach($mediums as $medium):?>
                             <img src="<?=ROOT?>/assets/images/edit.png" class="teacher_crs_img2" id="button30" onclick="openModal3()">
-                       
+
                             <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_crs_img2" id="button35" onclick="openModal4(<?=esc($teacher->course_id)?>)">
             <!-- delete course -->
             <div id="profileModal4" class="popupModal">
@@ -100,7 +100,7 @@ $val = explode('/',$url);
                             <!-- <input type="text" class="teacher-edit-title" name="title"> -->
                             <input type="hidden" value="" name="delete-course" id="delete-course">
                             <br><br>
-                            <a href="<?=ROOT?>/receptionist/course/delete/<?=esc($teacher->course_id)?>"> 
+                            <a href="<?=ROOT?>/receptionist/course/delete/<?=esc($teacher->course_id)?>">
                             <button type="button" class="teacher_upl_btn" name="submit-delete-course" id="add-btn">Yes</button>
                             </a>
                             <button type="reset" class="teacher_upl_btn" id="cancel-btn">Cancel</button>
@@ -209,7 +209,7 @@ $val = explode('/',$url);
                         <?php foreach($teach_instructors as $teach_instructor):?>
                             <input type="text" value="<?=esc($teach_instructor->instructorName)?>" disabled>
                              <span>&times;</span><br>
-                        <?php endforeach;?> 
+                        <?php endforeach;?>
                     <?php endif;?>
                     </div><br><br>
                     <div class="recp_det_box">
@@ -238,7 +238,7 @@ $val = explode('/',$url);
              </div>
         </div>
 
- 
+
 
     </div>
 </div>

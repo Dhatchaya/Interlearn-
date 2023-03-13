@@ -12,8 +12,8 @@ $val = explode('/',$url);
             <a href="">
                 <button type="submit" class="std-enroll-btn" name="enroll-btn" id="button28" onclick="openModal()">Enroll Me</button>
             </a>
-            
-       
+
+
         <h2>Grade <?=esc($subjects[0]->grade)?> - <?=esc($subjects[0]->subject)?></h2>
         <br><br>
         <h3>About this course</h3>
@@ -57,11 +57,11 @@ $val = explode('/',$url);
                     <?php if(!empty($teach_instructors)):?>
                         <?php foreach($teach_instructors as $teach_instructor):?>
                             <?=esc($teach_instructor->instructorName)?><br/>
-                        <?php endforeach;?> 
+                        <?php endforeach;?>
                     <?php else:?>
                             <?php echo "No instructors assigned!";?>
-                    <?php endif?>  
-                    </td> 
+                    <?php endif?>
+                    </td>
                 </tr>
                 <?php endforeach;?>
                 <?php endif;?>
@@ -84,7 +84,7 @@ $val = explode('/',$url);
                         <?php endforeach;?>
                         <?php endif?>
                     </select><br>
-                        
+
                     <label for="DayTime">Day & Time: </label><br>
                     <select name="day" id="day" class="recp_ann_clz">
                         <option value="day" selected>--Select day and time--</option>

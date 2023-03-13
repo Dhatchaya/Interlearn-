@@ -72,8 +72,8 @@ class Receptionist extends Controller
                 }
                 else{
                     $data['errors'] =  $course->error;
-    
-                    // $data['error']['invalid'] = "There is an unknown error occured!"; 
+
+                    // $data['error']['invalid'] = "There is an unknown error occured!";
                 }
             }
 
@@ -88,7 +88,7 @@ class Receptionist extends Controller
             $result = $subject -> getSubjectGrades($_POST['subject']);
             echo json_encode($result);
             die;
-            
+
             // header('Content-type: application/json');
             // echo json_encode($result2);
             // exit;
@@ -103,14 +103,14 @@ class Receptionist extends Controller
 
         if($action == 'available'){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                
+
                 $result = $course -> getTime($_POST['teacher_id'], $_POST['day']);
                 // show($result);die;
                 echo json_encode($result);
                 die;
             }
             exit;
-            
+
         }
 
         if($action == 'view')
@@ -147,7 +147,7 @@ class Receptionist extends Controller
                         //  echo $subjectName;
                         //  echo $grade;die;
                         $data['mediums'] = $subject -> getMedium($subjectName,$grade);
-                        //   show($data['mediums']);die;
+                          //show($data['mediums']);die;
                          
                         //show($data['subjectgrd']);die;
                                 // show($allSubjects);die;
@@ -162,7 +162,7 @@ class Receptionist extends Controller
                         // $data['subjects'] = $subject -> selectTeachers(['subject_id'=>$data['mediums'][$i]->subject_id],$data['mediums'][$i]->language_medium);
                         array_push($a,$subjectDetails);
                         // show($allTeachers);
-                        
+
                     }
                     $data['subjects'] = $a;
                     // show($data['subjects']);die;
@@ -189,12 +189,12 @@ class Receptionist extends Controller
                         }
                     }
                     // show($extra);die;
-                     
+
                 
                         
                     }
-                    
-              
+
+
                     if(empty($subjectDetails)){
                         $subject -> delete(['subject_id'=>$subject_id ]);
                         header("Location:http://localhost/Interlearn/public/receptionist/course");
@@ -220,7 +220,7 @@ class Receptionist extends Controller
                 }
 
                 if(isset($_POST['edit-teacher'])){
-                    
+
                 }
 
                 if(isset($_POST['submit-delete-course'])){
@@ -235,7 +235,7 @@ class Receptionist extends Controller
 
         if($action == 'checkAvailable'){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                
+
                 $result = $course -> getTime($_POST['teacher_id'], $_POST['day']);
                 // show($result);die;
                 echo json_encode($result);
@@ -244,17 +244,17 @@ class Receptionist extends Controller
             exit;
         }
 
-       
+
 
         if($action == 'delete'){
-       
-           
+
+
 
                 $result = $course->delete(['course_id'=>$id]);
-                
+
                 //header("Location:http://localhost/Interlearn/public/receptionist/course");
-            
-         
+
+
             exit;
         }
         //     // $data = [];
@@ -414,8 +414,8 @@ class Receptionist extends Controller
             $data = ['request_id'=>$_POST['requestID']];
             $result = $enroll_req -> delete($data);
             echo "Request rejected!";
-        } 
-        
+        }
+
 
         // $data['id'] = $aid;
 

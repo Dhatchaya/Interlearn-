@@ -9,7 +9,7 @@
         <!-- <?php if(!empty($errors)){show($errors) ;} ?> -->
         <!-- <div class="recp_crs_add"> -->
             <p id="addCourseerror"></p>
-            
+
             <div class="recp_det_box" id="new">
             <h4>Subject:</h4>
                 <input type="text" class="recp_det_name" name="subject" id="subject">
@@ -95,7 +95,7 @@
             <div class="recp_det_box">
                 <h4>Time:</h4>
                 <div class="recp_det_dura">
-                    <input type="time" name="timefrom" value="08:00" id="timefrom" class="recp_det_time"> 
+                    <input type="time" name="timefrom" value="08:00" id="timefrom" class="recp_det_time">
                     <?php if(!empty($errors)):?>
                     <p class="warning"><?=$errors['timefrom'];?></p>
                     <?php endif;?>
@@ -105,7 +105,7 @@
                     <p class="warning"><?=$errors['timeto'];?></p>
                     <?php endif;?>
                 </div>
-                
+
             </div>
             <br><br>
             <div class="recp_det_box">

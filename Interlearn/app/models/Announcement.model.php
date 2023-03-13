@@ -155,5 +155,5 @@ class Announcement extends Model{
 
     }
 
-    // public function 
+    // public function
 }

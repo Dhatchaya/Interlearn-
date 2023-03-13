@@ -1,9 +1,9 @@
 // console.log("here");
-// $.ajax({ 
-//     method: "GET", 
+// $.ajax({
+//     method: "GET",
 //     url:`http://localhost/Interlearn/public/receptionist/course/select`,
 
-//     success: function(data) { 
+//     success: function(data) {
 //       console.log(data);
 //     }
 // });
@@ -25,7 +25,7 @@ $('#subject').on('input',function(){
 
       let allGrades = ['6', '7', '8', '9', '10', '11', 'A/L'];
 
-      
+
       let gradesNotInJson = [];
 
       if (Array.isArray(response) && response.length > 0) {
@@ -81,10 +81,10 @@ $('#grades').on('change', function() {
 
           let allMediums = ['Sinhala', 'English', 'Tamil'];
 
-        
+
           let mediumsNotInJson = [];
 
-          
+
           if (Array.isArray(response) && response.length > 0) {
             allMediums.forEach(language_medium => {
               if (!response.find(element => element.language_medium === language_medium)) {
@@ -113,7 +113,7 @@ $('#grades').on('change', function() {
         }
     });
   }
-  
+
 });
 
 
@@ -128,7 +128,7 @@ $('#mediums').on('change',function(){
     $('#alert-div1').show();  // show the alert div
     $('#grades').val('');  // clear the selected grade
   }
-  
+
   if(grade == '' || grade == '--Select grade--'){
     console.log('hi');
     $('#alert-div2').html('Please select a grade before selecting a language medium.');  // set the message in the alert div
@@ -203,7 +203,7 @@ $('#day').on('change', function() {
             }
           }
         });
-        
+
         $('#timeto').on('change', function(){
           console.log("here");
           var timeFrom = $('#timefrom').val();
@@ -221,8 +221,8 @@ $('#day').on('change', function() {
             }
           }
         });
-        
-     
+
+
           // Filter out teachers who already have a class scheduled in the selected time range
           // var filteredTeachers = teachers.filter(function(teacher) {
           //     return !teacherHasClassOnTime(teacher, timeFrom, timeTo);
@@ -235,7 +235,7 @@ $('#day').on('change', function() {
           }
         });
       });
-            
+
 function teacherHasClassOnTime(teacher, timeFrom, timeTo) {
   var day = $('#day').val();
   var teacherHasClass = false;
@@ -248,6 +248,4 @@ function teacherHasClassOnTime(teacher, timeFrom, timeTo) {
     success: function(response) {
       teacherHasClass = response.hasClass;
     }
-  });
-  return teacherHasClass;
-}
+});

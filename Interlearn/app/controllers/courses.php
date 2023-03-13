@@ -37,15 +37,15 @@ class Courses extends Controller
                         //  echo $grade;die;
                         $data['mediums'] = $subject -> getMedium($subjectName,$grade);
                           //show($data['mediums']);die;
-                         
+
                         //show($data['subjectgrd']);die;
                                 // show($allSubjects);die;
-                               
+
                     $medium = "Sinhala";
                     
                     //  $data['subjects']=$subject->selectTeachers(['subject'=>$allSubjects[0]->subject, 'grade'=>$allSubjects[0]->grade],$medium,$subject_id);
                     $data['subjects'] = $subject -> selectTeachers(['subject_id'=>$data['mediums'][0]->subject_id],$data['mediums'][0]->language_medium);
-                    
+
                     $data['sinhalaid'] = $subject->getSubjectId($subjectName,$grade,"Sinhala");
                     $data['englishid'] = $subject->getSubjectId($subjectName,$grade,"English");
                     $data['tamilid'] = $subject->getSubjectId($subjectName,$grade,"Tamil");
@@ -54,14 +54,14 @@ class Courses extends Controller
                     $data['teach_instructors'] = [];
                     $extra = [];
                     for($i=0; $i<count($data['subjects']); $i++){
-                       
+
                         $extra= $course_instructor -> getInstructors($data['subjects'][$i]->course_id);
                         if(!empty($extra)){
                             $data['teach_instructors'] = $extra;
                         }
                     }
                     // show($data['teach_instructors']);
-                    // //  
+                    // //
                     // die;
                     // }
                 }
@@ -92,7 +92,7 @@ class Courses extends Controller
                         $student_id = $students -> getStudentID($user);
                         // show($student_id);die;
                         $_POST['student_id'] = $student_id[0]->studentID;
-                        // show($user);die; 
+                        // show($user);die;
                         $course = $course -> getCourseID($subject_id, $teacher_id, $day, $timefrom, $timeto);
                         // show($course[0]->course_id);die;
                         $course_id = $course[0]->course_id;
@@ -122,18 +122,18 @@ class Courses extends Controller
                             // echo $enroll_error;
                         }
                         //   die;
-                        
+
                         // show($result);die;
                     }
                     // if(!Auth::is_student()){
                     //     redirect('home');
 
                     //     $user = Auth::getUID();
-                    //     show($user);die; 
+                    //     show($user);die;
                     //     $course_id = $course -> getCourseID($subject_id, $teacher_id, $day, $timefrom, $timeto);
                     //     $result = $enroll_req -> insert($_POST['emp_id'],$user,$course_id);
                     //     show($result);die;
-            
+
                     // }
                 }
 
@@ -158,7 +158,7 @@ class Courses extends Controller
         //show($data['sums']);die;
         $this->view('courses',$data);
     }
-  
+
 
     // public function edit()
     // {

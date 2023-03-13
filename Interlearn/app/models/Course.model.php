@@ -243,6 +243,6 @@ class Course extends Model
         // echo "hi";die;
         return false;
     }
-    
+
 
 }

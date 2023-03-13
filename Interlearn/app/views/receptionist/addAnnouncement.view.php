@@ -12,7 +12,7 @@
             <!-- <input type="text" class="recp_ann_cont" name="content"> -->
             <textarea name="content" id="" cols="148" rows="10"></textarea><br><br>
             <label for="">Attach Files: </label><br><br>
-            <input type="file" class="recp_ann_name" name="attachment"><br>            
+            <input type="file" class="recp_ann_name" name="attachment"><br>
             <button type="submit" class="recp_det_btn">Save</button>
 
             

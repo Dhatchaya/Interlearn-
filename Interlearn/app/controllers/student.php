@@ -471,7 +471,6 @@ class Student extends Controller
         if($action == "view"){
 
 
-            // $result = $question->ChoiceInnerjoinQuestion();
             $result = $question->ChoiceInnerjoinQuestion();
             // show($result);
             $quiz = array();
