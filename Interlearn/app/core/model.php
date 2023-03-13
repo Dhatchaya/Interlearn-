@@ -421,7 +421,7 @@ class Model extends Database {
 
     public function teacherCourse($data=[],$id,$orderby = null, $order=null){
         $query = "SELECT subject.subject_id,subject.subject,grade,language_medium,course.* from ".$this->table;
-        $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN teachers ON staff.emp_id = course.teacher_id ";
+        $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN staff ON staff.emp_id = course.teacher_id ";
         $query .= " WHERE staff.uid = $id";
         $query .= " group by subject, grade";
         // $query .= " order by $orderby  $order";
