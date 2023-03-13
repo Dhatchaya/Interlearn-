@@ -13,11 +13,12 @@ class Course extends Model
         'subject_id',
         'created_date',
         'teacher_id',
-        'course_material',
         'day',
         'timefrom',
         'timeto',
-        'No_Of_Weeks'
+        'capacity',
+        'No_Of_Weeks',
+        'monthlyFee'
 
     ];
     // protected $staffs = [
@@ -63,10 +64,10 @@ class Course extends Model
                
                 $this -> error['time'] = "Ending must be greater than starting time";
             }
-            //  if(strtotime($data['deadline'])<$today || strtotime($data['acceptDate'])<$today){
-               
-            //     $this -> error['today'] = "Deadline/Accept date must be greater than the current date";
-            //  }
+            if(empty($data['capacity']))
+            {
+                $this -> error['capacity'] = "Please select a capcity for the class";
+            }
                 
 
         if(empty($this->error)){
@@ -161,8 +162,8 @@ class Course extends Model
 
     public function instructorCourse($data=[],$id,$orderby = null, $order=null){
         $query = "SELECT subject.subject_id,subject.subject,grade,language_medium,course.*,course_instructor.* from ".$this->table;
-        $query .= " INNER JOIN subject ON course.subject_id = subject.subject_id INNER JOIN course_instructor ON course.course_id = course_instructor.course_id INNER JOIN instructor ON instructor.instructor_id = course_instructor.instructor_id ";
-        $query .= " WHERE instructor.uid = $id";
+        $query .= " INNER JOIN subject ON course.subject_id = subject.subject_id INNER JOIN course_instructor ON course.course_id = course_instructor.course_id INNER JOIN staff ON staff.emp_id = course_instructor.emp_id ";
+        $query .= " WHERE instructor.uid = $id AND staff.role = 'Instructor'";
         $query .= " group by subject, grade";
         // $query .= " order by $orderby  $order";
         //var_dump($_SESSION);exit;
@@ -187,6 +188,61 @@ class Course extends Model
         }
         return false;
     }
-    
+
+    public function getDays($subject_id, $teacher_id){
+        $query = "SELECT course.day, course.timefrom, course.timeto FROM ".$this->table;
+        $query .= " INNER JOIN subject ON subject.subject_id = course.subject_id";
+        $query .= " WHERE course.subject_id =:subjectID AND course.teacher_id =:teacherID";
+        $data['subjectID'] = $subject_id;
+        $data['teacherID'] = $teacher_id;
+
+        $res = $this -> query($query,$data);
+         //show($query);die;
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;
+    }
+
+    public function getCourseID($subject_id, $teacher_id, $day, $timefrom, $timeto){
+        $query = "SELECT course.course_id FROM ".$this->table;
+        $query .= " INNER JOIN subject ON subject.subject_id = course.subject_id";
+        $query .= " WHERE course.subject_id =:subjectID AND course.teacher_id =:teacherID AND course.day =:Day AND course.timefrom =:timeFrom AND course.timeto =:timeTo";
+        $data['subjectID'] = $subject_id;
+        $data['teacherID'] = $teacher_id;
+        $data['Day'] = $day;
+        $data['timeFrom'] = $timefrom;
+        $data['timeTo'] = $timeto;
+
+        $res = $this -> query($query,$data);
+        //  show($query);die;
+
+        if(is_array($res)){
+            // echo $res;die;
+            return $res;
+        }
+        // echo "hi";die;
+        return false;
+    }
+
+    public function getTime($teacher_id, $day){
+        $query = "SELECT timefrom, timeto FROM ".$this->table;
+        $query .= " WHERE teacher_id =:teahcerID AND day =:Day";
+
+        $data['teahcerID'] = $teacher_id;
+        $data['Day'] = $day;
+
+        $res = $this -> query($query,$data);
+        //  show($query);die;
+
+        if(is_array($res)){
+            // echo $res;die;
+            return $res;
+        }
+        // echo "hi";die;
+        return false;
+    }
+
 
 }

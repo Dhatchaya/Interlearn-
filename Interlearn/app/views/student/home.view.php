@@ -18,11 +18,9 @@
                 <?php if(!empty($announcements)):?>
                     <?php foreach($announcements as $row):?>
                 <div class="std_view_msg">
-                    <h3><?=$row->title?></h3>
-                    <h5>Grade <?=esc($row->grade)?> - <?=esc($row->subject)?> (<?=esc($row->language_medium)?> Medium)</h5><br>
+                    <h3><?=$row->title?></h3><br>
                     Dear Students,<br>
                     <p><?=$row->content?></p><br><br>
-                    <p class="recp_ann_bot"><?=esc($row->fullname)?></p>
                     <p class="recp_ann_bot"><?=$row->date_time?></p><br>
                 </div><br>
                 <?php endforeach;?>

@@ -30,7 +30,7 @@ class Student extends Controller
         // echo $student_name;die;
 
         // $res=$student_course->join(['uid'=>$user]);
-        // $data['announcements'] = $subject->stdAnnouncements([],$user);
+        $data['announcements'] = $announcement->allRecepAnnouncements([]);
         //$data['announcement'] = $res;
         //show($data['announcements']);die;
 
@@ -178,7 +178,7 @@ class Student extends Controller
             $result = $assignment->joinCourseAssignment(['assignmentId'=>$sub_id,'course_id'=>$id],'assignmentId');
             $data['assignment']= $result;
             $getstatus = $submission -> first(['assignmentId'=>$sub_id],'assignmentId');
-       
+         // show($result);die;
             if($getstatus){
                 $data['assignment']->status = $getstatus->status;
                 $data['assignment']->modified = $getstatus->modified;
