@@ -206,59 +206,7 @@
     </div>
   </div>
 
-  /*** card payment **?/
-  <div class="payment-form-popup" id="hiddenDiv-2">
-    <div class="payment-form-container">
-      <div class="payment-form-header">
-        <h3>Card Payment</h3>
-        <button class="close-button" id="close-button-2">&times;</button>
-      </div>
-      <div class="payment-form-body">
 
-        <form action="#">
-
-          <div class="form-group">
-            <label class="payment-label" for="card-number">Card Number</label>
-            <div class="errorSpace1"></div>
-            <input name="CardNumber" name=" " class="payment-input" type="text" id="card-number" placeholder="   0000 0000 0000 0000" maxlength="16">
-          </div>
-
-          <div class="form-group">
-            <label class="payment-label" for="card-holder-name">Card Holder Name</label>
-            <div class="errorSpace2"></div>
-            <input name="CardHolderName" name=" " class="payment-input" type="text" id="card-holder-name" placeholder="   Pavithra H.M.M.">
-          </div>
-
-
-          <div class="form-group div-adjest-1">
-            <label class="payment-label" for="expiry-month">Expiry Month/Year</label>
-            <div class="errorSpace3"></div>
-            <div class="div-adjest-2">
-              <input name="Month" name=" " class="payment-input" type="text" id="expiry-month" placeholder="MM" maxlength="2">
-              <input name="Year" name=" " class="payment-input" type="text" id="expiry-year" placeholder=" YY" maxlength="2">
-            </div>
-          </div>
-
-
-          <div class="form-group div-adjest-1">
-            <label class="payment-label" for="cvv">CVV</label>
-            <div class="errorSpace4"></div>
-            <input name="CCV" name=" " class="payment-input div-adjest-3" type="text" id="cvv" placeholder="***" maxlength="3">
-          </div>
-
-
-          <div class="form-group">
-            <!-- <label class="payment-label" for="card-type">Select Card Type</label> -->
-
-            <img src="<?= ROOT ?>/assets/images/mastercard-logo.png" class="card-type-icon" alt="Mastercard logo">
-            <img src="<?= ROOT ?>/assets/images/visa-logo.png" class="card-type-icon" alt="Visa logo">
-            <img src="<?= ROOT ?>/assets/images/amex-logo.jpg" class="card-type-icon" alt="American Express logo">
-          </div>
-          <button class="paynow" id="payment-submission" type="submit">Pay Now</button>
-        </form>
-      </div>
-    </div>
-  </div>
 
   <div class="main-page-container">
     <div class="table-container">
@@ -273,44 +221,49 @@
               <th>Payment month</th>
               <th>Payment date</th>
               <th>Amount</th>
-              <th>Method</th>
-              <th>Payment status</th>
+              <th>Payment Options</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <!-- <tr>
               <td>ABC123</td>
               <td>January</td>
               <td>01/01/2023</td>
               <td>$100</td>
               <td>Credit Card</td>
-              <td><button id="card-btn" class="card-btn">paynow</button> <button id="bank-btn" class="bank-btn">Bank Payment</button></td>
-            </tr>
-            <tr>
-              <td>ABC123</td>
-              <td>January</td>
-              <td>01/01/2023</td>
-              <td>$100</td>
-              <td>Credit Card</td>
-              <td><button id="card-btn" class="card-btn">paynow</button> <button id="bank-btn" class="bank-btn">Bank Payment</button></td>
-            </tr>
-            <tr>
-              <td>ABC123</td>
-              <td>January</td>
-              <td>01/01/2023</td>
-              <td>$100</td>
-              <td>Credit Card</td>
-              <td><button id="card-btn" class="card-btn">paynow</button> <button id="bank-btn" class="bank-btn">Bank Payment</button></td>
-            </tr>
-            <tr>
-              <td>ABC123</td>
-              <td>January</td>
-              <td>01/01/2023</td>
-              <td>$100</td>
-              <td>Credit Card</td>
-              <td><button id="card-btn" class="card-btn">paynow</button> <button id="bank-btn" class="bank-btn">Bank Payment</button></td>
-            </tr>
+              <td><button id="" onclick="checkout()" class="card-btn">paynow</button>
 
+                <script>
+                  function checkout() {
+                    window.location.href = "<?= ROOT ?> /student/checkout";
+                  }
+                </script>
+
+                <button id="bank-btn" class="bank-btn">Bank Payment</button>
+              </td>
+
+            </tr> -->
+            <?php foreach ($haveToPaySet as $pendingPayment) : ?>
+              <tr>
+                <td><?= $pendingPayment->courseID ?></td>
+                <td><?= $pendingPayment->month ?></td>
+                <td> 03/15/2023</td>
+                <!-- <td><?= $pendingPayment->dueDate ?></td> -->
+                <td><?= $pendingPayment->amount ?></td>
+                <td><button id="" onclick="checkout($pendingPayment)" class="card-btn">paynow</button>
+
+                  <script>
+                    function checkout($paymentData) {
+                      window.location.href = "<?= ROOT ?> /student/checkout";
+                      fetch
+                    }
+                  </script>
+
+                  <button id="bank-btn" class="bank-btn">Bank Payment</button>
+                </td>
+
+              </tr>
+            <?php endforeach; ?>
 
           </tbody>
         </table>
@@ -332,28 +285,27 @@
               <th>Subject code</th>
               <th>Payment month</th>
               <th>Payment date</th>
+              <th>Payment ID</th>
               <th>Amount</th>
               <th>Method</th>
-              <th>Payment status</th>
+              <th>Print Payment Slip</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>ABC123</td>
-              <td>January</td>
-              <td>01/01/2023</td>
-              <td>$100</td>
-              <td>Credit Card</td>
-            </tr>
-            <tr>
-              <td>XYZ456</td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Card Payment</td>
-              <td><button>Print</button></td>
-            </tr>
-            <tr>
+
+            <?php foreach ($payment_history_list as $payments) : ?>
+              <tr>
+                <td><?= $payments->courseID ?></td>
+                <td><?= $payments->month ?></td>
+                <td><?= $payments->payment_date ?></td>
+                <td><?= $payments->PaymentID ?></td>
+                <td><?= $payments->amount ?></td>
+                <td><?= $payments->method ?></td>
+                <td><button>Print</button></td>
+
+              </tr>
+            <?php endforeach; ?>
+            <!-- <tr>
               <td>XYZ456</td>
               <td>February</td>
               <td>02/01/2023</td>
@@ -408,7 +360,7 @@
               <td>$200</td>
               <td>Card Payment</td>
               <td><button>Print</button></td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
 

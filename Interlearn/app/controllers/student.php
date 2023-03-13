@@ -25,17 +25,143 @@ class Student extends Controller
         $this->view('student/profile');
     }
 
+
+    public function cardPayment($action = NULL)
+    {
+        if (!Auth::is_student()) {
+            redirect('home');
+        }
+
+
+        include('../public/assets/stripe-php/init.php');
+        require_once('../public/assets/stripe/secrets.php');
+
+        \Stripe\Stripe::setApiKey('sk_test_51Mh80UBblwXUQTWeHjt87i6zjsTmnMncmiXZg86ImCp36ac4GMBcLa834MjwhZEMT2girGsJDIS7aK0EXfDzaBFi004sg2RIrQ');
+        header('Content-Type: application/json');
+
+        $url =  "http://localhost/Interlearn/public/student/";
+        echo $url;
+        $YOUR_DOMAIN = $url;
+
+        $checkout_session = \Stripe\Checkout\Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'lkr',
+                    'unit_amount' => 100000,
+                    'product_data' => [
+                        'name' => "INTERLEARN",
+                        'images' => ["../assets/images/sidebar_icons/logo.png"],
+                    ],
+                ],
+                # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
+                // 'price' => '{{PRICE_ID}}',
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            // if($action){
+            //     this->view('student/sucecc');
+            // }
+            //     }
+            'success_url' => $YOUR_DOMAIN . 'success',
+            'cancel_url' => $YOUR_DOMAIN . 'cancel',
+        ]);
+
+        header("HTTP/1.1 303 See Other");
+        header("Location: " . $checkout_session->url);
+    }
+
+    public function checkout()
+    {
+        if (!Auth::is_student()) {
+            redirect('home');
+        }
+        $this->view('student/checkout');
+    }
+
+    public function success()
+    {
+        if (!Auth::is_student()) {
+            redirect('home');
+        }
+        $this->view('student/success');
+    }
+    public function cancel()
+    {
+        if (!Auth::is_student()) {
+            redirect('home');
+        }
+        $this->view('student/cancel');
+    }
+
     public function payment($id = null)
     {
         if (!Auth::is_student()) {
             redirect('home');
         }
-        $id = $id ?? Auth::getUID();
+        // $currentStudentID = $id ?? Auth::getUID();
+        // $user = new User();
+        // $data['row'] = $user->first(['uid' => $id], 'uid');
+
+
+        
+        $payment_model = new Payment();
+        $haveToPay = $payment_model->pendingPayments();
+
+        ////////////////////////////////
+
+        $payment_history = new Payment();
+        $each_s_p_h = $payment_history->eachStudentPaymentHistory();
+
+        
+
+        // $currentDate = date('Y-m-d');
+
+    // check if it is the first of the month
+        // if (date('d', strtotime($currentDate)) == 1) {
+        // // retrieve the data from the Course table
+        // $sql = "SELECT * FROM Course";
+        // $result = $this->query($sql);
+    
+        // // insert the data into the pending-payment table
+        // while ($row = mysqli_fetch_assoc($result)) {
+        //     $sql2 = "INSERT INTO pending-payment (course_name, course_fee) VALUES ('".$row['course_name']."', '".$row['course_fee']."')";
+        //     $this->query($sql2);
+        //      }
+        // }
+
+        /////////////////////////////////
+
+        $pending_payment_model = new Payment();
+        $haveToPay = $pending_payment_model->pendingPayments();
+
+        $this->view('student/student-payment',['payment_history_list'=>$each_s_p_h,'haveToPaySet'=>$haveToPay]);
+
+    }
+
+    public function test($id = null)
+    {
+        if (!Auth::is_student()) {
+            redirect('home');
+        }
+        $currentStudentID = $id ?? Auth::getUID();
         $user = new User();
         $data['row'] = $user->first(['uid' => $id], 'uid');
 
-        $this->view('student/student-payment');
+
+        
+        $payment_model = new Payment();
+        $payment_history = $payment_model->getAll();
+
+        $pending_payment_model = new Payment();
+        $haveToPay = $pending_payment_model->pendingPayments();
+
+        $this->view('student/test',['payment_history'=>$payment_history,'haveToPaySet'=>$haveToPay]);
+
+        print_r ($haveToPay);
+        var_dump ($payment_history);
     }
+
 
     public function getBankPayment()
     {
@@ -45,6 +171,7 @@ class Student extends Controller
 
 
         if (isset($_POST)) {
+            // $_POST['payment_status'] = '1';
             $payment_model = new BankPayment();
             $payment_model->insert($_POST);
             $this->view("student/student-payment");

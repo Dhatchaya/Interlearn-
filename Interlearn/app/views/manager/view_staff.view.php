@@ -3,130 +3,139 @@
 
 <head>
     <title>View Staff details</title>
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/navbar-last.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/manager.css">
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/footer-style.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/bank-payment.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/staff-view.css">
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/staff-signup.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
-    <script src="<?= ROOT ?>/assets/js/switching.js?v="></script>
-    <script src="<?= ROOT ?>/assets/js/footer and sidebar event listner.js?v="></script>
 </head>
 
 <body style="background-color: #FFFFFF;">
-    <?php $this->view("includes/navbar_recep"); ?>
+    <?php $this->view("includes/nav"); ?>
 
-    <?php $this->view("includes/Sidebar_rece"); ?>
+    <?php $this->view("includes/sidebar_rece"); ?>
 
 
-    <div class="payment-form-popup " id="hiddenDiv-2">
-        <button class="close-button" id="close-button-2" type="submit" name="hideDiv">&times;</button>
-        <div class="payment-form-container">
-
-            <div class="form-part-1">
-                <form class="signup-form" action="signup-form.php" method="post" novalidate>
-                    <div class="form-group">
-                        <label class="payment-label" for="name">First name</label><br>
-                        <input class="payment-input" value="<?= set_value('first-name') ?>" type="text" id="name" name="first-name" required>
-                        <div class="error"></div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="payment-label" for="name">Last name</label><br>
-                        <input class="payment-input" value="<?= set_value('last-name') ?>" type="text" id="name" name="last-name" required>
-                        <div class="error"></div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="payment-label" for="username">Username</label><br>
-                        <input class="payment-input" value="<?= set_value('username') ?>" type="text" id="name" name="username" required>
-                        <div class="error"></div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="payment-label" for="NIC">NIC No.</label><br>
-                        <input class="payment-input" value="<?= set_value('NIC') ?>" type="text" id="name" name="NIC" required>
-                        <div class="error"></div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="payment-label" for="jobtype">Jobtype</label><br>
-                        <select class="selecter" value="<?= set_value('jobtype') ?>" name="jobtype" id="jobtype">
-                            <option value="Teacher">Teacher</option>
-                            <option value="Instructor">Instructor</option>
-                            <option value="Accountant">Accountant</option>
-                            <option value="Manager">Manager</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="payment-label" for="mobile-no">Mobile No: </label><br>
-                        <input class="payment-input" value="<?= set_value('mobile-no') ?>" type="text" id="mobile-no" name="mobile-no" required>
-                        <div class="error"></div>
-                    </div>
+    <div class="bank-payment-form-popup" id="hiddenDiv-1">
+        <div class="bank-payment-form-container">
+            <div class="payment-form-header">
+                <button id="close-button-1">&times;</button>
             </div>
+            <div class="payment-form-body">
+
+                <form class="payment-form" action="" method="post" novalidate>
+                    <div class="sub-container">
+
+                        <div class="form-group">
+                            <label class="payment-label" for="Name">First Name</label>
+                            <div class="errorSpace1" id="errorSpace1"> </div>
+                            <input value="<?= set_value('firstName') ?>" name="firstaName " class="payment-input" type="text" id="firstName" placeholder="   Manoj">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="payment-label" for="Address">Last Name</label>
+                            <div class="errorSpace2" id="errorSpace2"></div>
+                            <input value="<?= set_value('lastName') ?>" name="lastName" class="payment-input" type="text" id="lastName" placeholder="   Pavithra">
+                        </div>
+                        <div class="form-group">
+                            <label class="payment-label" for="gender">Gender</label>
+                            <div class="errorSpace1" id="errorSpace3"> </div>
+                            <select class="selecter" value="<?= set_value('gender') ?>" name="gender" id="gender">
+                                <option value="" selected disabled>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group  ">
+                            <label class="payment-label" for="address">Address</label>
+                            <div class="errorSpace1" id="errorSpace4"></div>
+                            <input value="<?= set_value('address') ?>" name="address" class="payment-input" type="text" id="address" placeholder=" 248/5 Kirillawa, Weboda">
+                        </div>
 
 
-            <div class="form-part-2">
+
+                        <div class="form-group  ">
+                            <label class="payment-label" for="NIC">NIC Number</label>
+                            <div class="errorSpace1" id="errorSpace5"></div>
+                            <input value="<?= set_value('PayerNIC') ?>" name="PayerNIC" class="payment-input" type="text" id="NIC" placeholder="990331472v" maxlength="12">
+                        </div>
+                        
+
+                    </div>
+                    <div class="sub-container">
+                        <div class="form-group">
+                            <label class="payment-label" for="PaymentDate">Contract Eding Date</label>
+                            <div class="errorSpace1" id="errorSpace6"></div>
+                            <input value="" name="ContractEnding" class="payment-input" type="date" id="ContractEnding">
+                        </div>
+                        <div class="form-group">
+                            <label class="payment-label" for="jobtype">Designation</label>
+                            <div class="errorSpace1" id="errorSpace7"> </div>
+                            <select class="selecter" value="<?= set_value('') ?>" name="jobtype" id="jobtype">
+                                <option value="" selected disabled>Select job type </option>
+                                <option value="Teacher">Teacher</option>
+                                <option value="Instructor">Instructor</option>
+                                <option value="Accountant">Receptionist</option>
+                                <option value="Manager">Manager</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group  ">
+                            <label class="payment-label" for="mobileNum">Contact Number</label>
+                            <div class="errorSpace1" id="errorSpace11"></div>
+                            <input value="<?= set_value('mobileNum') ?>" name="mobileNum" class="payment-input" type="text" id="mobileNum" placeholder="071 234567" maxlength="10">
+                        </div>
+
+                        <!-- <div class="form-group  ">
+                            <label class="payment-label" for="empImage">Staff Member Image </label>
+                            <div class="errorSpace1" id="errorSpace8"></div>
+                            <input name="empImage" class="payment-input"  type="file" id="empImage" accept=".jpg">
+                        </div> -->
+                        <div class="form-group  ">
+                            <label class="payment-label" for="emailAddress">E-mail Address</label>
+                            <div class="errorSpace1" id="errorSpace9"></div>
+                            <input value="<?= set_value('emailAddress') ?>" name="emailAddress" id="emailAddress" class="payment-input" type="text" placeholder=" example@something.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="payment-label" for="password">Password</label> <button type="button" id="show-password-btn">Show Password</button>
+                            <div class="errorSpace1" id="errorSpace10"> </div>
+                            <input class="payment-input" value="<?= set_value('password') ?>" type="password" id="password" name="password" required>
+
+                            <script>
+                                const passwordInput = document.getElementById('password');
+                                const showPasswordBtn = document.getElementById('show-password-btn');
+
+                                showPasswordBtn.addEventListener('click', function() {
+                                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                                    passwordInput.setAttribute('type', type);
+                                    this.textContent = type === 'password' ? 'Show Password' : 'Hide Password';
+                                });
+                            </script>
+
+                        </div>
 
 
-                <div class="form-group">
-                    <label class="payment-label" for="address-line1">Address</label><br>
-                    <input class="payment-input" value="<?= set_value('address') ?>" type="text" id="address" name="address" required>
-                    <div class="error"></div>
-                </div>
+                    </div>
 
-                <div class="form-group">
-                    <label class="payment-label" for="address-line2">Address Line 2</label><br>
-                    <input class="payment-input" value="<?= set_value('address-line2') ?>" type="text" id="address-line2" name="address-line2" required>
-                    <div class="error"></div>
-                </div>
 
-                <div class="form-group">
-                    <label class="payment-label" for="email">E-mail</label><br>
-                    <input class="payment-input" value="<?= set_value('email') ?>" type="text" id="email" name="email" required>
-                    <div class="error"></div>
-                </div>
-
-                <div class="form-group">
-                    <label class="payment-label" for="password">Password</label><br>
-                    <input class="payment-input" value="<?= set_value('password') ?>" type="password" id="password" name="password" required>
-                    <div class="error"></div>
-                </div>
-                <div class="form-group">
-                    <label class="payment-label" for="re-password">Re-entre password</label><br>
-                    <input class="payment-input" value="<?= set_value('re-password') ?>" type="password" id="re-password" name="re-password" required>
-                    <div class="error"></div>
-                </div>
-
-                <div class="form-group">
-                    <button class="submit">Submit</button>
-                </div>
             </div>
+            <button class="submit-button" id="submit-btn" type="" style="top:-20px">Submit</button>
+
             </form>
         </div>
     </div>
 
-    <!-- <?php
-            if (isset($_POST["showDiv"])) {
-                echo "<style>#hiddenDiv-2 { display: block; }</style>";
-            }
 
-            if (isset($_POST["hideDiv"])) {
-                echo "<style>#hiddenDiv-2 { display: none; }</style>";
-            }
-            ?> -->
 
 
 
 
     <div class="main-page-container">
         <div class="adding-new-user">
-            <label class="add-user-lable" for="">
-                <h2>Add new user</h2>
-            </label>
-            <button class="add-user-button" id="new-user" type="submit" name="showDiv"> New user </button>
+            <h1 class="add-user-lable">Staff details</h1>
+            <button class="add-user-btn" id="addStaff-btn">Add New User</button>
+
         </div>
         <div class="table-container">
 
@@ -143,13 +152,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Manoj Pavithra</td>
-                            <td>Teacher</td>
-                            <td>01711606520</td>
-                            <td>02/01/2023</td>
-                            <td><button>Update</button></td>
-                        </tr>
+                    <?php foreach ($staffMenbers as $staffMenber) : ?>
+          <tr>
+            <td><?= $staffMenber->first_name . " " . $staffMenber->last_name ?></td>
+            <td><?= $staffMenber->role ?></td>
+            <td><?= $staffMenber->mobile_no ?></td>
+            <td><?= $staffMenber->enrollment_date ?></td>
+            <td><button>Remove</button></td>
+
+          </tr>
+        <?php endforeach; ?>
                         <tr>
                             <td>Abdul Nisaf</td>
                             <td>Teacher</td>
@@ -206,30 +218,18 @@
             </div>
         </div>
     </div>
-    <div class="footer-support"></div>
 
 
     <?php $this->view("includes/footer"); ?>
 
 
-    <script src="<?= ROOT ?>/assets/js/switching.js"></script>
 
-    <script>
-        const showBtn = document.getElementById("new-user");
-        const hideBtn = document.getElementById("hideBtn");
-        const myDiv = document.getElementById("hiddenDiv-2");
-
-        showBtn.addEventListener("click", function() {
-            myDiv.style.display = "block";
-        });
-
-        hideBtn.addEventListener("click", function() {
-            myDiv.style.display = "none";
-        });
-    </script>
 
 
 
 </body>
+
+<script defer src="<?= ROOT ?>/assets/js/switching2.js?v=<?php echo time(); ?>"></script>
+<script defer src="<?= ROOT ?>/assets/js/addNewStaff.js?v=<?php echo time(); ?>"></script>
 
 </html>

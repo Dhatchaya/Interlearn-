@@ -1,0 +1,183 @@
+.profile-container{
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    grid-gap: 15px;
+    width: 80vw;
+    height: auto;
+    left: 17vw;
+    top: 5vh;
+}
+.sub-div{
+    position: relative;
+    display: grid;
+    grid-template-rows: 3fr 1fr 1fr  1fr ;
+    grid-gap: 15px;
+    border-radius: 10px;
+    width: 100%;
+    height: 800px;
+    padding: 15px;
+    background: transparent;
+    border: 1px solid #3E206D;
+    border-radius: 20px;
+}
+.sub-div2{
+    position: relative;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr ;
+    grid-gap: 15px;
+    border-radius: 10px;
+    width: 100%;
+    height: 800px;
+    padding: 15px;
+    background: transparent;
+    border: 1px solid #3E206D;
+    border-radius: 20px;
+}
+
+
+.profile-data{
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.082);
+    border-radius: 10px;
+}
+.user-data-label{
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    color: rgba(0, 0, 0, 0.521);
+    margin: 10px;
+    font-weight: bold;
+
+}
+.user-detail{
+    margin: 10px;
+    font-size: 22px;
+    width: 100%;
+    border: none;
+    background: transparent;
+
+}
+.user-detail::placeholder {
+    display: flex;
+    color: black;
+    font-size: 22px; 
+    font-weight: bold;
+    z-index: 100;
+    opacity: 1;
+  }
+
+.user-detail:focus{
+    outline: none;
+}
+
+.edit-btn {
+    display: flex;
+    float: right;
+    color: #3E206D;
+    background: transparent;
+    border: none;
+    padding: 0px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .dp-edit{
+    float: none;
+    margin: auto;
+    margin-top: 10px;
+  }
+
+  .edit-btn:active {
+    color: #682CC6;
+  }
+  
+
+
+
+/* .back-btn {position: relative;
+    height: 25px;
+    width: 25px;
+    font-weight: bold;
+    top: 10px;
+    left: 10px;
+    background-color: transparent;
+    border: 1px solid #3E206D;
+    border-radius: 25px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  
+  .back-btn:hover {
+    background-color: #ccc;
+    color: #fff;
+  } */
+
+.circle-container {
+    width: 18vw;
+    height: 18vw;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px;
+  }
+
+.display-picture{
+    position: relative;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.change-pic{
+    display: flex;
+}
+.empImage{
+    display: none;
+    width: auto;
+}
+
+.empImage {
+    background: transparent;
+    border: none;
+  }
+
+  .form-btn{
+    position: relative;
+    padding: auto;
+    height: 50px;
+    width: 100px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  
+  }
+
+  #save-btn{
+    float: right;
+    right: 10px;
+    background-color: #3E206D;
+    color: white;
+  }
+  #close-btn{
+    float: left;
+    left: 10px;
+    background-color: white;
+    color: #3E206D;
+    border: solid #3E206D;
+  }
+
+  /* .edit-btn:focus {
+    outline: none;
+  } */

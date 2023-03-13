@@ -15,6 +15,7 @@ class Manager extends Controller
         $data['title'] = "manager";
         $this->view('manager/home', $data);
     }
+
     public function profile($id = null)
     {
         if (!Auth::is_manager()) {
@@ -42,8 +43,102 @@ class Manager extends Controller
         //for it to go to view we have to put it inside data
         // $data['row'] = $user->first(['id' => $id]);
         // $data['title'] = "Profile";
-        $this->view('manager/view_staff');
+        
+        $getStaffDetails = new Staff();
+        $staffDetailSet = $getStaffDetails->getStaffDetails();
+
+        $this->view('manager/view_staff',['staffMenbers'=> $staffDetailSet,]);
     }
+
+    public function addStaff()
+    {
+        if (!Auth::is_manager()) {
+            redirect('home');
+        }
+
+        // show($_POST);
+        if (isset($_POST)) {
+            $data = json_decode(file_get_contents("php://input"), true);
+
+            // $password_raw=   $data['password'];
+            // $data['password'] = password_hash($password_raw, PASSWORD_DEFAULT);
+
+            $addStaff = new Staff();
+            $addStaff->Addstaff($data);
+        }
+        echo json_encode($addStaff);
+        exit;
+    }
+
+
+    // public function recrewStaff()
+    // {   
+    //     if (!Auth::is_manager()) {
+    //         redirect('home');
+    //     }
+
+
+    //  if (isset($_POST)) {
+
+    //     if (empty($_POST["firstaName"])) {
+    //         die("First name is required");
+    //     }
+
+    //     if (empty($_POST["lastName"])) {
+    //         die("Last name is required");
+    //     }
+    //     if (!((strlen($_POST["NIC"]) == 10) || (strlen($_POST["NIC"]) == 12))) {
+    //         die("NIC number length is not correct");
+    //     }
+
+    //     if (  preg_match("/[a-z]/i", $_POST["mobileNum"])) {
+    //         die("Mobile number must not contain letters");
+    //     }
+
+    //     if (empty($_POST["address"])) {
+    //         die("Address is required");
+    //     }
+    //     if (empty($_POST["gender"])) {
+    //         die("Gender is required");
+    //     }
+    //     $current_timestamp = strtotime(date('Y-m-d '));
+    //     if (empty($_POST["ContractEnding"])) {
+
+    //         die("Gender is required");
+    //         if($current_timestamp<strtotime($_POST["ContractEnding"])){
+    //             die("Contract ending date must be a future date");
+    //         }
+    //     }
+
+    //     if ( ! filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+    //         die("Valid email is required");
+    //     }
+
+    //     if (strlen($_POST["password"]) < 8) {
+    //         die("Password must be at least 8 characters");
+    //     }
+
+    //     if ( ! preg_match("/[a-z]/i", $_POST["password"])) {
+    //         die("Password must contain at least one letter");
+    //     }
+
+    //     if ( ! preg_match("/[0-9]/", $_POST["password"])) {
+    //         die("Password must contain at least one number");
+    //     }
+    //     $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
+    //     $_POST['password'] = $password_hash;
+
+    //         $payment_model = new Staff();
+    //         $payment_model->insert($_POST);
+    //         $this->view("manager/view_staff");
+    //     }
+    //     $this->view("manager/view_staff");
+    // }
+
+
+
+
+
 
 
 

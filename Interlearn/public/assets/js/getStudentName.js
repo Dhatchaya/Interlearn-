@@ -4,10 +4,8 @@ const studentName = document.getElementById('student-name');
 const CourseID = document.getElementById('couese-ID');
 
 
-
-
-
 CourseID.addEventListener('keyup', function() {
+
     fetch('/Interlearn/public/receptionist/getStudentName', {
         method: 'POST',
         headers: {
@@ -23,9 +21,10 @@ CourseID.addEventListener('keyup', function() {
 }
 )
 
-
-
-
 function getStudentNAme(data) {
+    if(studentName.value == 0){
+        studentName.value = ['No Match Found']  ;
+    }
     studentName.value = data[0]['first_name'] + " " + data[0]['last_name'];
 }
+

@@ -40,8 +40,8 @@
                 //***********************footer support hright changer********************************//
 
 
-  var div1 = document.getElementByClassName("student-payment");
-  var div2 = document.getElementByClassName("footer-support");
+  var div1 = document.querySelector(".student-payment");
+  var div2 = document.querySelector(".footer-support");
   div2.style.height = div1.offsetHeight + "px";
 
 

@@ -6,7 +6,6 @@
 
 <head>
   <title>Payments</title>
-  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/navbar-last.css">
   <link rel="stylesheet" href="<?= ROOT ?>/assets/css/payment-validation.css">
   <link rel="stylesheet" href="<?= ROOT ?>/assets/css/footer-style.css">
   <link rel="stylesheet" href="<?= ROOT ?>/assets/css/cash-payment-style.css">
@@ -33,17 +32,19 @@
     <div class="validation-container">
       <div class="pending-list">
         <?php foreach ($bankPayments as $bankPayment) : ?>
-
-          <div class="pending-item payment-1">
-            <h2><?= $bankPayment->CourseID ?></h2>
-            <h2><?= $bankPayment->NameOnSlip ?></h2>
-            <h2><?= $bankPayment->Amount ?></h2>
-            <h2><?= $bankPayment->PaymentDate ?></h2>
+          <div class="pending-item payment-1" id="<?= $bankPayment->BankPaymentID ?>" >
+            <h4><?= $bankPayment->courseID ?></h4>
+            <h4><?= $bankPayment->NameOnSlip ?></h4>
+              <h4><?= $bankPayment->Amount ?></h4>
+              <h4><?= $bankPayment->PaymentDate ?></h4>
 
           </div>
         <?php endforeach; ?>
 
       </div>
+      <script>
+        
+      </script>
 
       <div class="preview-container">
         <h2>Depositor’s Details</h2><br>
@@ -114,20 +115,20 @@
 
           <div class="form-group div-adjest-1">
             <label class="payment-label" for="class-ID">Class ID <span class="required-star">*</span></label>
-            <div class="errorSpace4"></div>
+            <div class="errorSpace2"></div>
             <input value="<?= set_value('courseID') ?>" name="courseID" class="payment-input " type="text" id="couese-ID" placeholder="SCS2202" maxlength="7" required>
           </div>
 
           <div class="form-group">
             <label class="payment-label" for="card-holder-name">Student Name <span class="required-star">*</span></label>
-            <div class="errorSpace2"></div>
+            <div class="errorSpace3"></div>
             <input value="<?= set_value('student-name') ?>" name="student-name" class="payment-input" type="text" id="student-name" placeholder="  Student Name" readonly>
           </div>
 
 
           <div class="form-group div-adjest-1">
             <label class="payment-label" for="payment-month">Payment Month <span class="required-star">*</span></label>
-            <div class="errorSpace3"></div>
+            <div class="errorSpace4"></div>
             <div class="div-adjest-3">
               <select id="month" class="select-month " name="month" required>
                 <option disabled selected value=""> Select Month </option>
@@ -156,7 +157,7 @@
           <button class="paynow" id="payment-submission" type="button">Submit Payment</button>
           <button class="next-payment" id="next-payment" type="button">Next Payment</button>
         </form>
-        <div class="last-cash-payment">last cash payment shows here</div>
+        <div class="last-cash-payment" value="" name="last-Payment-ID">last cash payment shows here</div>
       </div>
     </div>
   </div>
@@ -255,9 +256,12 @@
 
 </body>
 <script defer src="<?= ROOT ?>/assets/js/popup-receptionist-payment.js?v=<?php echo time(); ?>"></script>
-<script defer src="<?= ROOT ?>/assets/js/getStudentName.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?= ROOT ?>/assets/js/getMonthlyFee.js?v=<?php echo time(); ?>"></script>
+<script defer src="<?= ROOT ?>/assets/js/getStudentName.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?= ROOT ?>/assets/js/nextPayment.js?v=<?php echo time(); ?>"></script>
+<script defer src="<?= ROOT ?>/assets/js/preview-bank-payments.js?v=<?php echo time(); ?>"></script>
+<script defer src="<?= ROOT ?>/assets/js/callBankPaymentData.js?v=<?php echo time(); ?>"></script>
+
 
 
 </html>

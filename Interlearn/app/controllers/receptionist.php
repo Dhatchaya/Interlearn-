@@ -35,13 +35,24 @@ class Receptionist extends Controller
     }
 
 
-    public function staffSignUp()
+
+    public function user()
     {
         if (!Auth::is_receptionist()) {
             redirect('home');
         }
 
-        $this->view('receptionist/staff_signup_form');
+
+        $this->view('receptionist/user');
+    }
+
+    public function editUser()
+    {
+        if (!Auth::is_receptionist()) {
+            redirect('home');
+        }
+
+        $this->view('receptionist/student');
     }
 
 
@@ -57,52 +68,12 @@ class Receptionist extends Controller
 
         $callBPdata = new BankPayment();
         $BankPaymentData = $callBPdata->validateBankPayment();
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            //vlidate form data befor submission
 
-            try {
-                $data = json_decode(file_get_contents("php://input"), true);
-                if (!$data) {
-                    $error = json_last_error_msg();
-                    throw new Exception($error);
-                } else {
-                    echo json_encode($data);
-                    return;
-                    // $result = $enquiry->first(['studentID' => $data], $data);
-                    // if (!$result) {
-                    //     throw new Exception("Update failed");
-                    // }
-                }
-            } catch (Exception $e) {
-                $response = array("status" => "error", "message" => $e->getMessage());
-                header("Content-Type: application/json");
-                echo json_encode($response);
-                return;
-            }
-            $response = array("status" => "success");
-            header("Content-Type: application/json");
-            echo json_encode($response);
-            return;
-        }
 
         $this->view('receptionist/receptionist-payments',  ['bankPayments' => $BankPaymentData, 'transactions' => $payment_history]);
     }
 
-    public function getCashPayment()
-    {
-        if (!Auth::is_receptionist()) {
-            redirect('home');
-        }
 
-        // show($_POST);
-        if (isset($_POST)) {
-            $payment_model = new Payment();
-            $_POST['method'] = 'cash';
-            $_POST['status'] = '1';
-            $payment_model->insert($_POST);
-            $this->view("receptionist/receptionist-payments");
-        }
-    }
 
     public function nextCashPayment()
     {
@@ -113,17 +84,14 @@ class Receptionist extends Controller
         // show($_POST);
         if (isset($_POST)) {
             $data = json_decode(file_get_contents("php://input"), true);
-            $studentId = $data['StudentID'];
-            $courseId = $data['CourseID'];
-            $amount = $data['Amount'];
-            $month = $data['Month'];
-            $method =   'cash';
-            $status = '1';
+
+            $data['method'] =   'cash';
+            $data['payment_status'] = '1';
 
             $payment_model = new Payment();
             $payment_model->insert($data);
         }
-        echo json_encode($payment_model);
+        // echo json_encode($payment_model);
         exit;
     }
 
@@ -131,12 +99,20 @@ class Receptionist extends Controller
 
     public function getPaymentData()
     {
-        $sql = "SELECT * FROM payment";
-        show($sql);
         $payment = new Payment();
         $data = $payment->getAll();
         return $data;
     }
+
+    public function callBankPaymentData()
+    {
+
+        $callBPdata = new BankPayment();
+        $BankPaymentData = $callBPdata->validateBankPayment();
+        return $BankPaymentData;
+    }
+
+
 
     public function details()
     {
