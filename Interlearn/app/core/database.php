@@ -77,6 +77,7 @@ class Database{
             if($check){
              
                     return true;
+                    exit;
                 }
             
           

@@ -16,6 +16,7 @@ class Submission extends Model
         'assignmentId',
         'modified',
         'status',
+        'file_size',
 
 
     ];
@@ -51,6 +52,24 @@ class Submission extends Model
       //  echo $query;die;
         $res = $this -> query($query,$data);
       //  show ($res[0]);die;
+        if(is_array($res)){
+            return $res;
+        }
+        return false;
+           
+    }
+    public function whereForSubmission($data,$orderby=null,$order = 'desc'){
+        $keys = array_keys($data);
+        $query ="select submission.*,submission_files.* from ".$this->table." INNER JOIN assignment ON assignment.assignmentId = submission.assignmentId";
+        $query .=" LEFT JOIN submission_files on submission_files.submissionId = submission.submissionId where ";
+        foreach($keys as $key){
+            $query .= "submission.".$key. " =:".$key." && ";
+        }
+        $query = trim($query,"&& ");
+        $query .= " order by submission.$orderby  $order";
+       // echo $query;die;
+        $res = $this -> query($query,$data);
+        
         if(is_array($res)){
             return $res;
         }

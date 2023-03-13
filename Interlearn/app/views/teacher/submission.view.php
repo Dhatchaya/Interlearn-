@@ -4,10 +4,11 @@
 <div class="teacher_subm_container">
     <?php $this->view("includes/sidebar_teach");?>
     <div class="teacher_subm_content">
-        <h2 class= "add_heading_init">Mathematics</h2><br>
+        <h2 class= "add_heading_init"><?=esc($courseTitle)?>-<?=esc($Grade)?></h2><br>
         <div class= "teacher_sub_form">
             <div id="record"></div>
             <form method= "POST" enctype="multipart/form-data" >
+            <div id="errorall" class="display-error"></div>
                 <?php if(!empty($errors)): ?>
                     <?php foreach($errors as $error):?>
                     <div id="error" class="display-error">*<?=esc($error)?></div><br>

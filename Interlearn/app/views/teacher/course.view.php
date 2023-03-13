@@ -67,9 +67,6 @@
             </div>
             <?php $i++;  }?>
             <p class="add-week" id="button29" onclick="openModal2()"> <a href="#">+ Add a week</a></p>
-
-
-            <!-- add activity popup -->
             <div id="profileModal" class="popupModal">
                 <div class="tchr-popupmodal-content">
                     <span class="ann_close" onclick="closeModal()">&times;</span><br>
@@ -102,6 +99,9 @@
                              <div class="teacher-crs-activity">
                                 <a href="#"><img src="<?=ROOT?>/assets/images/recording.png" alt="" class="teacher-crs-img"><br>Add recordings</a>
                              </div>
+                             <!-- <div class="teacher-crs-activity">
+                                <a href="#"><img src="<?=ROOT?>/assets/images/progress.png" alt="" class="teacher-crs-img"><br>View Progress</a>
+                             </div> -->
                              <div class="teacher-crs-activity">
                                 <a href="#"><img src="<?=ROOT?>/assets/images/web.png" alt="" class="teacher-crs-img"><br>Add URL</a>
                              </div>
@@ -134,8 +134,6 @@
                 </div>
             </div>
             
-
-
             <!-- adding title to the week -->
             <div id="profileModal3" class="popupModal">
                 <div class="tchr-popupmodal-content2">
@@ -152,8 +150,6 @@
                     </form>
                 </div>
             </div>
-
-
 
             <!-- deleting the week popup -->
             <div id="profileModal4" class="popupModal">
@@ -173,8 +169,6 @@
                 </div>
             </div>
             
-
-
             <!-- editing the upload name -->
             <div id="profileModal5" class="popupModal">
                 <div class="tchr-popupmodal-content2">
@@ -191,8 +185,6 @@
                     </form>
                 </div>
             </div>
-            
-
             
             <!-- deleting the upload popup -->
             <div id="profileModal6" class="popupModal">

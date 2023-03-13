@@ -2,14 +2,12 @@
 /**
  *SubmissionFiles class
  */
-define('KB', 1024);
-define('MB', 1048576);
-define('GB', 1073741824);
-define('TB', 1099511627776);
+
 class SubmissionFiles extends Model
 {
     //says what table it has to target
     public $error = [];
+    public $size = 0;
     protected $table = "submission_files";
     protected $key = 'fileID';
 
@@ -18,35 +16,55 @@ class SubmissionFiles extends Model
         'fileID',
         'submissionId',
         'filename',
+        'filesize',
 
 
     ];
 
-    public function validate($data)
+    public function validatefile($data,$previoussize=0)
     {   
 
         $this->error = [];
-        $size = 0;
+        $this->size = 0;
  
-            if(empty($_FILES['submission']))
+            if(!empty($_FILES['submission']))
             {
               
-                $this -> error['submission'] = "Please upload your files";
-            }
-            else{
+            //     $this -> error['submission'] = "Please upload your files";
+            // }
+            // else{
                     foreach ($_FILES['submission']['name'] as $i => $name) {
-                        $size = $_FILES['submission']['size'][$i]+$size;
+                        $this ->size = $_FILES['submission']['size'][$i]+$this ->size;
                         
                     }
-                 if($size > 5*MB){
+                    $this ->size = $this ->size+$previoussize;
+                 if($this ->size > 5*MB){
                     $this -> error['submission'] = "File size is too large";
                  }
-                }
+                
+                 }
 
         if(empty($this->error)){
+        
             return true;
         }
+      
         return false;
+    }
+    public function joinSubmissionfiles($data=[]){
+        $keys = array_keys($data);
+        $query = "SELECT submission_files.*,submission.* FROM submission_files RIGHT JOIN submission on submission.submissionId=submission_files.submissionId ";
+        $query .= " Where ";
+        foreach($keys as $key){
+                    $query .= $key. " =:".$key." && ";
+        }
+        $query = trim($query,"&& ");
+        $res = $this -> query($query,$data);
+        if(is_array($res)){
+            return $res[0];
+        }
+        return false;
+
     }
     // public function joinstudentSubmission($data=[],$orderby=null,$order='desc')
     // {

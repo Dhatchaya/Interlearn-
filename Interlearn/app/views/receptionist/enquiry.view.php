@@ -96,7 +96,7 @@
                                 <td><?=esc($row->title)?></td>
                                 <td><?=esc($row->type)?></td>
                                 <td>    
-                                    <select  id ="status" name = "status" data-eid="<?=esc($row->eid)?>"  onchange= "changeStatus(<?=esc($row->eid)?>,this.value);"class="enq_cat enqStatus">
+                                    <select  id ="status" name = "status" data-eid="<?=esc($row->eid)?>"  onchange= "changeStatus(<?=esc($row->eid)?>,this.value,'<?=strtolower(Auth::getRole())?>');"class="enq_cat enqStatus">
                                     <option value = "">Select a status</option>
                                     <option value = "pending"  <?php if($row->status== 'pending'){echo "selected";}?>>Pending</option>
                                     <option value = "inprogress" <?php if($row->status== 'inprogress'){echo "selected";}?>>In progress</option>
@@ -153,7 +153,7 @@
                             <td><?=esc($row->title)?></td>
                             <td><?=esc($row->type)?></td>
                             <td>    
-                                <select  id ="status" name = "status" data-eid="<?=esc($row->eid)?>"  onchange= "changeStatus(<?=esc($row->eid)?>,this.value);"class="enq_cat enqStatus">
+                                <select  id ="status" name = "status" data-eid="<?=esc($row->eid)?>"  onchange= "changeStatus(<?=esc($row->eid)?>,this.value,'<?=strtolower(Auth::getRole())?>');"class="enq_cat enqStatus">
                                 <option value = "">Select a status</option>
                                 <option value = "pending"  <?php if($row->status== 'pending'){echo "selected";}?>>Pending</option>
                                 <option value = "inprogress" <?php if($row->status== 'inprogress'){echo "selected";}?>>In progress</option>

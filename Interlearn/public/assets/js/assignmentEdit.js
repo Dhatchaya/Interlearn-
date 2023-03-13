@@ -50,7 +50,7 @@ console.log(id);
       closebtn.setAttribute("data-file-id", data[i].fileID);
       const icon = document.createElement("img");
       icon.classList.add("assignmentIcon");
-        icon.src = "../../../../assets/images/assignmentIcon.png";
+        icon.src = "/Interlearn/public/assets/images/assignmentIcon.png";
         icon.alt = "close btn";
         closebtn.appendChild(icon);
       item.append(link);
@@ -88,7 +88,7 @@ submitbtn.addEventListener('click',function(e){
     formData.append('deadline',Deadline.value);
     formData.append('acceptDate',Acceptdate.value);
    // formData.append('assignment_file',FileName.value);
-
+console.log(formData);
     $.ajax({
       type:'POST',
       url:`http://localhost/Interlearn/public/teacher/course/assignment/${course}/${week}/edit/?id=${id}`,
@@ -96,10 +96,30 @@ submitbtn.addEventListener('click',function(e){
       processData: false, 
       contentType: false,
       success:function(response){
-        //var status = JSON.parse(response);
+        // var status = JSON.parse(response);
         console.log(response);
+         var errors = document.getElementById("errorall");
+         errors.innerHTML = "";
+        if(response['status'] != 'success'){
+          var errorall = document.createElement("div");
+          for (i in response){
+           
+            var breaktag = document.createElement("br");
+            var error = response[i];
+            errorall.append(error);
+            errorall.append(breaktag);
+           
+          }
+           errors.append(errorall);
+        
+          
+        }
+        else{
+          window.location.href = `http://localhost/Interlearn/public/teacher/course/view/${course}`;
+        }
+   
       
-             window.location.href = "http://localhost/Interlearn/public/teacher/course/view/4/";
+            //  window.location.href = "http://localhost/Interlearn/public/teacher/course/view/4/";
           
         
       },
@@ -116,13 +136,14 @@ submitbtn.addEventListener('click',function(e){
   $(document).on("click",".delete_file_btn", function(){
     const fileid = $(this).data("file-id");
     const confirmation = confirm("Are you sure you want to delete this file?");
-
+console.log(fileid);
     if(confirmation){
       const deleteBtn = $(this); 
       deleteBtn.closest('.file_div').remove();
+      console.log(`http://localhost/Interlearn/public/teacher/course/assignment/${course}/${week}/edit/d?id=${id}`);
       $.ajax({
         method:"POST",
-        url : `http://localhost/Interlearn/public/teacher/course/assignment/${course}/edit/d?id=${id}`,
+        url : `http://localhost/Interlearn/public/teacher/course/assignment/${course}/${week}/edit/d?id=${id}`,
         data:{file_id : fileid},
         success:function(response){
           console.log(response);
@@ -160,7 +181,7 @@ input.addEventListener("change", function() {
     button.classList.add("closebtn");
     const icon = document.createElement("img");
     icon.classList.add("assignmentIcon");
-      icon.src = "../../../../assets/images/assignmentIcon.png";
+      icon.src = "/Interlearn/public/assets/images/assignmentIcon.png";
       icon.alt = "close btn";
       button.appendChild(icon);
    

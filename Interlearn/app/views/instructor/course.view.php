@@ -72,7 +72,7 @@
                         <input type="hidden" name="week_no" id="week_no">
                         <div class="teacher-crs-activities">
                             <div class="teacher-crs-activity">
-                                <a href="#"><img src="<?=ROOT?>/assets/images/marks.png" alt="" class="teacher-crs-img"><br>Upload Marks</a>
+                                <a href="#"><img src="<?=ROOT?>/assets/images/forum.png" alt="" class="teacher-crs-img"><br>Add Forum</a>
                             </div>
                             <!-- <div class="teacher-crs-activity">
                                 <a href="#"><img src="<?=ROOT?>/assets/images/quiz.png" alt="" class="teacher-crs-img"><br>Add a quiz</a>

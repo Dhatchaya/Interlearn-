@@ -10,6 +10,7 @@ class AssignmentFiles extends Model
 {
     //says what table it has to target
     public $error = [];
+    public $size = 0;
     protected $table = "assignment_files";
     protected $key = 'fileID';
 
@@ -18,6 +19,7 @@ class AssignmentFiles extends Model
         'fileID',
         'assignmentId',
         'filename',
+    
 
 
     ];
@@ -26,7 +28,7 @@ class AssignmentFiles extends Model
     {   
        
         $this->error = [];
-        $size = 0;
+      
         $today = time();
 
        
@@ -51,12 +53,12 @@ class AssignmentFiles extends Model
                 $this -> error['today'] = "Deadline/Accept date must be greater than the current date";
              }
                 
-
+            // show($this->error);die;
         if(empty($this->error)){
             return true;
         
         }
-        //show($this->error);die;
+    
         return false; 
     }
     // public function joinstudentSubmission($data=[],$orderby=null,$order='desc')
@@ -81,26 +83,28 @@ class AssignmentFiles extends Model
     //     }
     //     return false;
     // }
-    public function validatefile($data)
+    public function validatefile($data,$previoussize=0)
     {   
 
         $this->error = [];
-        $size = 0;
- 
+    //    $size = 0;
+       $this->size=0;
+        
             // if(empty($data['assignment_file']))
             // {
             //     $this -> error['assignment_file'] = "Please upload your files";
             // }
             // else{
                     foreach ($_FILES['assignment_file']['name'] as $i => $name) {
-                        $size = $_FILES['assignment_file']['size'][$i]+$size;
+                        $this -> size = $_FILES['assignment_file']['size'][$i]+ $this ->size;
                         
                     }
-                 if($size > 5*MB){
+                    $this ->size = $this ->size+$previoussize;
+                 if(( $this ->size) > 5*MB){
                     $this -> error['assignment_file'] = "File size is too large";
                  }
                 // }
-
+                //  show($this->size);die;
         if(empty($this->error)){
             return true;
         }

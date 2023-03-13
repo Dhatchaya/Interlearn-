@@ -32,12 +32,12 @@ class Forums extends Controller
         $userid = Auth::getuid();
         $role = Auth::getrole();
         $data['role'] = $role;
-        if($role !== "Teacher" && $role !== "Instructor"){
-            $data['rows'] =$forum->where(['course_id'=>$courseID],"forum_id");
+        // if($role !== "Teacher" && $role !== "Instructor"){
+        //     $data['rows'] =$forum->where(['course_id'=>$courseID],"forum_id");
          
-            $this->view('forums',$data);
-            exit;
-        }
+        //     $this->view('forums',$data);
+        //     exit;
+        // }
         if($_SERVER['REQUEST_METHOD'] == "POST")
         {
          

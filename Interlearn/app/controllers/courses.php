@@ -10,8 +10,6 @@ class Courses extends Controller
         $course = new Course();
         $teacher = new Teacher();
         $instructor = new Instructor();
-        $course_instructor = new CourseInstructor();
-        $students = new Students();
         $data = [];
         $data['sums']= $subject -> distinctSubject([],'subject');
         //show($data['sums']);die;
@@ -19,146 +17,57 @@ class Courses extends Controller
         if($action == 'view')
         {
             $data = [];
-                $data['action'] = $action;
-                $data['id'] = $id;
-                $subject = new Subject();
-                //show($data['id']);die;
+            $data['action'] = $action;
+            $data['id'] = $id;
+            $subject = new Subject();
+            //show($data['id']);die;
 
-                //if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-                    if(isset($_GET['id'])){
-                        $subject_id = $_GET['id'];
-                        $data['subject_id'] = $subject_id;
-                        // $allSubjects = $subject -> where(['subject_id'=>$subject_id],'subject_id');
-                        $subjectGrade = $subject -> getSubjectGrade($subject_id);
-                        // show($subjectGrade->subject_id);die;
-                        $subjectName = $subjectGrade[0]->subject;
-                        $grade = $subjectGrade[0]->grade;
-                        //  echo $subjectName;
-                        //  echo $grade;die;
-                        $data['mediums'] = $subject -> getMedium($subjectName,$grade);
-                          //show($data['mediums']);die;
-
-                        //show($data['subjectgrd']);die;
-                                // show($allSubjects);die;
-
+            //if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+                if(isset($_GET['id'])){
+                    $subject_id = $_GET['id'];
+                    $data['subject_id'] = $subject_id;
+                    $allSubjects = $subject -> where(['subject_id'=>$subject_id],'subject_id');
+                    $data['subjectgrd'] = $allSubjects;
+                    //show($data['subjectgrd']);die;
+                             //show($allSubjects);die;
+                $medium = "Sinhala";
+                
+                $data['subjects']=$subject->selectTeachers(['subject'=>$allSubjects[0]->subject, 'grade'=>$allSubjects[0]->grade],$medium,$subject_id);
+                if($id==1){
                     $medium = "Sinhala";
+                    $data['subjects']=$subject->selectTeachers(['subject'=>$allSubjects[0]->subject, 'grade'=>$allSubjects[0]->grade],$medium,$subject_id);
                     
-                    //  $data['subjects']=$subject->selectTeachers(['subject'=>$allSubjects[0]->subject, 'grade'=>$allSubjects[0]->grade],$medium,$subject_id);
-                    $data['subjects'] = $subject -> selectTeachers(['subject_id'=>$data['mediums'][0]->subject_id],$data['mediums'][0]->language_medium);
-
-                    $data['sinhalaid'] = $subject->getSubjectId($subjectName,$grade,"Sinhala");
-                    $data['englishid'] = $subject->getSubjectId($subjectName,$grade,"English");
-                    $data['tamilid'] = $subject->getSubjectId($subjectName,$grade,"Tamil");
-                    // show($data['subjects']);die;
-
-                    $data['teach_instructors'] = [];
-                    $extra = [];
-                    for($i=0; $i<count($data['subjects']); $i++){
-
-                        $extra= $course_instructor -> getInstructors($data['subjects'][$i]->course_id);
-                        if(!empty($extra)){
-                            $data['teach_instructors'] = $extra;
-                        }
-                    }
-                    // show($data['teach_instructors']);
-                    // //
-                    // die;
-                    // }
+                    //show($data['subjects']);die;
+                    
                 }
-
-
-                if(isset($_POST['enroll-me'])){
-                    $enroll_req = new RequestEnroll();
-                    $student_course = new StudentCourse();
-                    $_POST['emp_id'] = 4;
-                    $teacher_id = $_POST['teacher'];
-                    // show($_POST);die;
-                    // show($teacher_id);die;
-                    // show($subject_id);die;
-                    $timeslot = explode('-',$_POST['day']);
-                    $day = $timeslot[0];
-                    $timefrom = $timeslot[1];
-                    $timeto = $timeslot[2];
-                    // show($day);
-                    // show($timefrom);
-                    // show($timeto);die;
-                    if(!Auth::logged_in())
-		            {
-		            	message('please login');
-		            	redirect('login/student');
-                        exit;
-		            }else{
-                        $user = Auth::getUID();
-                        $student_id = $students -> getStudentID($user);
-                        // show($student_id);die;
-                        $_POST['student_id'] = $student_id[0]->studentID;
-                        // show($user);die;
-                        $course = $course -> getCourseID($subject_id, $teacher_id, $day, $timefrom, $timeto);
-                        // show($course[0]->course_id);die;
-                        $course_id = $course[0]->course_id;
-                        $_POST['course_id'] = $course_id;
-                        // show($_POST);die;
-                        // show($course_id);die;
-                        $data['courses'] = $student_course -> getCourses($student_id[0]->studentID);
-                        $courses = $data['courses'];
-                        // show($data['courses']);die;
-                        $flag = 0;
-                        foreach($courses as $enroll_course => $val) {
-                            // show($val);
-                            foreach($val as $req_course => $value) {
-                                // show($value);
-                                if($value == $_POST['course_id']){
-                                    $flag = 1;
-                                    break;
-                                }
-                            }
-                        }
-                        if($flag == 0){
-                            $result = $enroll_req -> insert($_POST);
-                        }
-                        else{
-                            // echo "hi";
-                            $data['enroll_error'] = "You are already enrolled in this class!";
-                            // echo $enroll_error;
-                        }
-                        //   die;
-
-                        // show($result);die;
-                    }
-                    // if(!Auth::is_student()){
-                    //     redirect('home');
-
-                    //     $user = Auth::getUID();
-                    //     show($user);die;
-                    //     $course_id = $course -> getCourseID($subject_id, $teacher_id, $day, $timefrom, $timeto);
-                    //     $result = $enroll_req -> insert($_POST['emp_id'],$user,$course_id);
-                    //     show($result);die;
-
-                    // }
+                if($id==2){
+                    $medium = "English";
+                    $data['subjects']=$subject->selectTeachers(['subject'=>$allSubjects[0]->subject, 'grade'=>$allSubjects[0]->grade],$medium,$subject_id);
                 }
-
-                $data['teachers'] = $teacher->select([],'teacher_id','asc');
-                $data['instructors'] = $instructor->select([],'instructor_id','asc');
+                if($id==3){
+                    $medium = "Tamil";
+                    $data['subjects']=$subject->selectTeachers(['subject'=>$allSubjects[0]->subject, 'grade'=>$allSubjects[0]->grade],$medium,$subject_id);
+                 
+                    
+                    //show($data['subjects']);die;
+                
+                }
+            }
+            $data['teachers'] = $teacher->select([],'teacher_id','asc');
+            $data['instructors'] = $instructor->select([],'instructor_id','asc');
 
             $this->view('details',$data);
             exit;
 
         }
 
-        if($action == 'select'){
-            $subject_id = $_POST['subjectId'];
-            $teacher_id = $_POST['teacherId'];
-            $result = $course -> getDays($subject_id, $teacher_id);
-
-            echo json_encode($result); die;
-        }
-
         $data['rows']= $course->select([],'course_id');
         $data['sums']= $subject -> distinctSubject([],'subject');
         //show($data['sums']);die;
-        $this->view('courses',$data);
+       $this->view('courses',$data);
     }
 
+    
 
     // public function edit()
     // {

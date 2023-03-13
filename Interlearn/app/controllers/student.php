@@ -30,7 +30,7 @@ class Student extends Controller
         // echo $student_name;die;
 
         // $res=$student_course->join(['uid'=>$user]);
-        $data['announcements'] = $announcement->allRecepAnnouncements([]);
+        // $data['announcements'] = $subject->stdAnnouncements([],$user);
         //$data['announcement'] = $res;
         //show($data['announcements']);die;
 
@@ -141,59 +141,6 @@ class Student extends Controller
         
         $this->view('student/progress');
     }
-
-    public function myprogress($action = null, $data = null) 
-    {
-        if(!Auth::is_student()){
-            redirect('home');
-           
-        }
-        $student = new Students();
-        $user_id = Auth::getuid();
-        $courseStudent = new StudentCourse();
-
-        // show($user_id);
-        // $result = $student->getStudentName($user_id);
-        // show($result);
-        $result = $student->getStudentID($user_id);
-        // show($result);
-        $student_value = $result[0];
-        $student_id = $student_value->studentID;
-        // echo $student_id;
-        if($action == 'view') {
-            
-            $id = $_GET['id'];
-            $result = new ZResult();
-            $data['çount'] = $result->ResultStudentGraph(['course_id' => $id,'studentID' => $student_id]);
-            // show($data);
-
-            $newArray = array(
-                "A" => 0,
-                "B" => 0,
-                "C" => 0,
-                "S" => 0,
-                "W" => 0
-            );
-            // show($newArray);
-            foreach ($data['çount'] as $row) {
-                $newArray["A"] += intval($row->A);
-                $newArray["B"] += intval($row->B);
-                $newArray["C"] += intval($row->C); 
-                $newArray["S"] += intval($row->S);
-                $newArray["W"] += intval($row->W);
-            }
-            // show($newArray);
-            $json_data = json_encode($newArray);
-            $exam = new ZExam();
-            $data['rows'] = $exam->ExamResult(['course_id' => $id, 'studentID' => $student_id]);
-            // $this->view('student/view_progress', $newArray);
-            $this->view('student/view_progress', $data);
-            exit();
-        }
-        $data['rows']= $courseStudent->CourseForStudent(['student_id' => $student_id]);
-        // show($data);
-        $this->view('student/myprogress', $data);
-    }
     public function overall()
     { 
         if(!Auth::is_student()){
@@ -204,7 +151,7 @@ class Student extends Controller
         $this->view('student/crsoverall');
     }
 
-    public function coursepg($action = null , $id = null)
+    public function coursepg($action = null , $id = null,$option = null,$extra=null)
     { 
         if(!Auth::is_student()){
             redirect('home');
@@ -231,14 +178,15 @@ class Student extends Controller
             $result = $assignment->joinCourseAssignment(['assignmentId'=>$sub_id,'course_id'=>$id],'assignmentId');
             $data['assignment']= $result;
             $getstatus = $submission -> first(['assignmentId'=>$sub_id],'assignmentId');
-         // show($result);die;
+       
             if($getstatus){
                 $data['assignment']->status = $getstatus->status;
                 $data['assignment']->modified = $getstatus->modified;
-
+                 //get the submission ID
+                $data['assignment']->submissionID = $getstatus->submissionId;
             }
             else{
-
+      
                 $data['assignment']->status = "No attempt";
                 $data['assignment']->modified = "-";
             }
@@ -249,25 +197,35 @@ class Student extends Controller
             $remaining = $remainingtime->format('%a days %h hours %i minutes');
             $data['assignment']->remaining = $remaining;
            // show($data);die;
+          // show( $data['assignment']);die;
             $this->view('student/submissionstatus',$data);
+            exit;
         }
 
 
 
         //file upload page
         if($action == "submission"){
-
-            if(isset($_GET['id'])){
-                $assignment_id = $_GET['id'];
-            }
-            else{
-                $data['title'] = "404";
-                $this->view('404',$data);
-                exit;
-            }
             $user = Auth::getUsername();
             $userid = Auth::getUID();
             $student = new Students();
+            $data['errors'] = [];
+            $submissionFiles = new SubmissionFiles();
+            $submission = new Submission();
+   
+            if($option == 'view'){
+                if(isset($_GET['id'])){
+                    $assignment_id = $_GET['id'];
+                }
+                else if(isset($_GET['sub_id'])){
+                 
+                }
+                else{
+                    $data['title'] = "404";
+                    $this->view('404',$data);
+                    exit;
+                }
+             
             $studentdetails = $student -> first(['uid'=>$userid],'studentID');
 
             $student_id = $studentdetails -> studentID;
@@ -278,7 +236,8 @@ class Student extends Controller
 
               if($_SERVER["REQUEST_METHOD"]=="POST"){
                 $_POST['submissionId']=$submissionid=uniqid($user,true);
-                if($submissionFiles -> validate($_FILES)){
+                if($submissionFiles -> validatefile($_FILES)){
+            
                     if(isset($_FILES['submission']['name']) AND !empty($_FILES['submission']['name'])){
 
                         //checks every file inside the $_FILES array of files
@@ -286,7 +245,7 @@ class Student extends Controller
                             $submission_tmp = $_FILES['submission']["tmp_name"][$i];
                             $submission_name = $_FILES['submission']["name"][$i];
                             $error= $_FILES['submission']['error'][$i];
-
+                            $size = $_FILES['submission']['size'][$i];
                             if($error === 0){
                                 $file_ext = pathinfo($submission_name,PATHINFO_EXTENSION);
                                 $file_final_ext = strtolower($file_ext);
@@ -295,7 +254,7 @@ class Student extends Controller
                                 if(in_array($file_final_ext,$allowed_ext)){
                                     $new_file_name = uniqid($user,true).'.'.$file_final_ext;
 
-                                    $directory = "/xampp/htdocs/Interlearn/uploads/".$id."/submissions/".$assignment_id;
+                                    $directory = "/xampp/htdocs/Interlearn/uploads/".$id."/submissions/".$assignment_id."/".$submissionid;
                                     if (!is_dir($directory)){
                                         mkdir($directory,0644, true);
 
@@ -309,7 +268,7 @@ class Student extends Controller
 
 
                                     $new_fileID=uniqid();
-                                    $filenames[]=['filename'=> $new_file_name,'fileID'=> $new_fileID];
+                                    $filenames[]=['filename'=> $new_file_name,'fileID'=> $new_fileID,'file_size'=> $size];
 
 
 
@@ -330,12 +289,14 @@ class Student extends Controller
                     }
                 }
                 else{
+                    
                     $data['errors'] =  $submissionFiles->error;
                 }
                 if(empty($data['errors'])){
                     $_POST['studentID']=$student_id;
                     $_POST['assignmentId']= $assignment_id;
                     $_POST['status'] = "Submitted";
+                    $_POST['file_size'] = $submissionFiles->size;
                     $result2 = $submission->insert($_POST);
 
                     foreach($filenames as $file){
@@ -344,7 +305,7 @@ class Student extends Controller
                         $_POST['filename'] = $file['filename'] ;
                         $_POST['fileID'] = $file['fileID'];
                         $_POST['submissionId']=$submissionid;
-
+                        $_POST['filesize']= $file['file_size'];
                         $result = $submissionFiles->insert($_POST);
 
 
@@ -357,10 +318,156 @@ class Student extends Controller
 
                 exit();
               }
+            }
+              if($option == "edit"){
+
+                header('Content-type: application/json');
+                if(isset($_GET['sub_id'])){
+                    $submissionID = $_GET['sub_id'];
+
+                }
+                if($extra =="d"){
+                    $fileID = $_POST['file_id'];
+                    $submissionFiles = new SubmissionFiles();
+                    $submission = new Submission();
+                    $filedetails = $submissionFiles -> joinSubmissionfiles(['fileID'=> $fileID],'fileID');
+                    $result= $submission->update(['submissionId'=>$filedetails->submissionId],['file_size'=>($filedetails->file_size-$filedetails->filesize)]);
+                    $path = "/xampp/htdocs/Interlearn/uploads/".$id."/submissions/".$filedetails->assignmentId."/". $submissionID."/".$filedetails->filename;
+                    unlink($path);
+                    $result= $submissionFiles -> delete(['fileID'=> $fileID]);
+                    if($result){
+                        echo 'successfully deleted';
+                    }
+                    else{
+                        echo 'error in deletion';
+                    }
+                    exit;
+                }
+
+
+            $submission = new Submission();
+            $assignment = new Assignment();
+            $submissionfiles = new SubmissionFiles();
+            $submission_details = $submission -> first(['submissionId'=>$submissionID],'submissionId');
+            $assignment_id = $submission_details->assignmentId;
+
+                //handle update
+            if($_SERVER["REQUEST_METHOD"]=="POST"){
+
+                // $result = $assignment->update(['assignmentId'=>$assignmentID],$_POST);
+         
+      
+                    if(isset($_FILES['submission']['name']) AND !empty($_FILES['submission']['name'])){
+                        if($submissionfiles -> validatefile($_FILES,$submission_details->file_size)){
+                         
+                        //checks every file inside the $_FILES array of files
+                        for($i=0; $i<count($_FILES['submission']['name']); $i++) {
+                            $submission_tmp = $_FILES['submission']["tmp_name"][$i];
+                            $submission_name = $_FILES['submission']["name"][$i];
+                            $error= $_FILES['submission']['error'][$i];
+                            $size = $_FILES['submission']['size'][$i];
+                            if($error === 0){
+                                $file_ext = pathinfo($submission_name,PATHINFO_EXTENSION);
+                                $file_final_ext = strtolower($file_ext);
+
+                                $allowed_ext = array('jpg','jpeg','doc','png','pdf','xls','html','css','js');
+                                if(in_array($file_final_ext,$allowed_ext)){
+                                    $new_file_name = uniqid($user,true).'.'.$file_final_ext;
+                                    // $destination = "../uploads/assignments/". $new_file_name;
+
+                                    $directory = "/xampp/htdocs/Interlearn/uploads/".$id."/submissions/".$assignment_id."/". $submissionID;
+                                    if (!is_dir($directory)){
+                                        mkdir($directory,0644, true);
+
+                                    }
+                                    $destination =  $directory."/".$new_file_name;
+
+                                    move_uploaded_file($submission_tmp,$destination);
+                                    $_POST['filename'] = $new_file_name ;
+                                    $_POST['submissionId'] = $submissionID;
+                                    $_POST['filesize']=$size;
+                                     $_POST['fileID']=uniqid($user,true);
+                                    $result =  $submissionfiles->insert($_POST);
+                                }
+                                else{
+                                    $data['errors']['submission_files']='Unsupported file type : '.$file_final_ext;
+                                    break;
+                                }
+                            }
+                            else{
+                                $data['errors']['submission_files'] ="Unknown error occured";
+                                break;
+
+                                }
+                        }
+                    }
+                    else{
+                        $data['errors'] =   $submissionfiles->error;
+                    }
+                    }
+                
+               
+                // show($data['errors']);
+                if(empty($data['errors'])){
+                  
+                    try {
+                        date_default_timezone_set('Asia/Colombo');
+                        $_POST['modified'] = date("Y-m-d H:i:s",time());
+                        if(!empty($_POST)){
+                            $_POST['file_size'] = $submissionfiles->size;
+                            $result = $submission->update(['submissionId'=>$submissionID],$_POST);
+                        }
+                        else{
+                            $result = true;
+                        }
+                  
+                    if (!$result) {
+                        throw new Exception("Update failed");
+                        }
+                    }
+                    catch (Exception $e) {
+                        $response = array("status" => "error", "message" => $e->getMessage());
+                        header("Content-Type: application/json");
+                        echo json_encode($response);
+                        exit;
+                        }
+                        $response = array("status" => "success");
+                        header("Content-Type: application/json");
+                        echo json_encode($response);
+                        exit;
+                }
+                else{
+                    echo json_encode($data['errors']);
+                    exit;
+
+                }
+                   // $data['link'] ="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']."?id=".$assignmentid;
+
+                exit;
+            }
+
+
+           // }
+            else{
+                $result = $submission -> whereForSubmission(['submissionId'=>$submissionID],'submissionId');
+
+                header('Content-type: application/json');
+                echo json_encode($result);
+                exit;
+            }
+                exit;
+            }
+
+            $data['errors'] =  $submission->error;
 
             $this->view('student/submission',$data);
             exit;
         }
+
+
+
+
+
 
         if($action == "view"){
             $this->view('student/coursepg');
@@ -444,15 +551,15 @@ class Student extends Controller
     //     $this->view('student/submission',$data);
     // }
 
-    public function submissionstatus()
-    { 
-        if(!Auth::is_student()){
-            redirect('home');
+    // public function submissionstatus()
+    // { 
+    //     if(!Auth::is_student()){
+    //         redirect('home');
            
-        }
+    //     }
         
-        $this->view('student/submissionstatus');
-    }
+    //     $this->view('student/submissionstatus');
+    // }
 
     public function quiz($action ='null')
     {

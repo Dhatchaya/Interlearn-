@@ -2,10 +2,10 @@
 /**
  *Assignment class
  */
-define('KB', 1024);
-define('MB', 1048576);
-define('GB', 1073741824);
-define('TB', 1099511627776);
+// define('KB', 1024);
+// define('MB', 1048576);
+// define('GB', 1073741824);
+// define('TB', 1099511627776);
 class Assignment extends Model
 {
     //says what table it has to target
@@ -18,7 +18,7 @@ class Assignment extends Model
     'title',
     'courseId',
     'description',
-  //  'assignment_file',
+   'file_size',
     'deadline',
     'acceptDate',
     'status',
@@ -32,7 +32,7 @@ class Assignment extends Model
 
         $this->error = [];
         $size = 0;
- 
+
             // if(empty($data['assignment_file']))
             // {
             //     $this -> error['assignment_file'] = "Please upload your files";
@@ -50,15 +50,16 @@ class Assignment extends Model
         if(empty($this->error)){
             return true;
         }
+       
         return false;
     }
     public function validate($data)
     {   
-       
+        // show($data);
         $this->error = [];
         $size = 0;
         $today = time();
-
+        // echo (!empty($data['deadline']));
        
             if(empty($data['title']))
             {
@@ -66,6 +67,7 @@ class Assignment extends Model
             }
             if(empty($data['deadline']))
             {
+              
                 $this -> error['deadline'] = "Please select a deadline";
             }
             if(empty($data['acceptDate']))
@@ -73,20 +75,21 @@ class Assignment extends Model
                 $this -> error['acceptDate'] = "Please select a accept date";
             }
             else if(strtotime($data['deadline']) < strtotime($data['acceptDate'])){
-               
+         
                     $this -> error['date'] = "Deadline must be greater than accept date";
                   }
              if(strtotime($data['deadline'])<$today || strtotime($data['acceptDate'])<$today){
-               
+         
                 $this -> error['today'] = "Deadline/Accept date must be greater than the current date";
              }
                 
-
+        //   die;
         if(empty($this->error)){
             return true;
         
         }
-        //show($this->error);die;
+        
+      
         return false; 
     }
     public function joinCourseAssignment($data=[],$orderby=null,$order='desc')
@@ -128,4 +131,5 @@ class Assignment extends Model
         return false;
            
     }
+
 }

@@ -42,15 +42,16 @@
                     </button>
                   </div> -->
                 </div>
-                    <a href="<?=ROOT?>/student/coursepg">
+                    <!-- <a href="<?=ROOT?>/student/coursepg"> -->
                     <button type="submit" class="std_subm_btn" id="std_subm_btn">Submit</button>
-                    </a>
+                    <!-- </a> -->
                     <button type="reset" class="std_subm_btn" id ="std_subm_cl">Cancel</button>
               
           </form>
       </div>
     </div>
 </div>
+<!-- <script defer src="<?=ROOT?>/assets/js/submissionEdit.js?v=<?php echo time(); ?>"></script> -->
 <script defer src="<?=ROOT?>/assets/js/submission.js?v=<?php echo time(); ?>"></script>
 
     <?php $this->view("includes/footer");?>

@@ -80,21 +80,6 @@ class ZQuestion extends Model
            
     }
 
-    public function ChoiceAndQuestion($data= null){
-
-        $query = "SELECT c.choice1, c.choice2, c.choice3, c.choice4, c.choice1_mark, c.choice2_mark, c.choice3_mark,c.choice4_mark,q.question_title, q.question_mark, q.category, q.question_number
-        FROM mychoice c
-        INNER JOIN myquestion q ON c.question_number = q.question_number where";
-
-        $res = $this -> query($query,$data);
-
-        if(is_array($res)){
-            return $res;
-        }
-        return false;
-           
-    }
-    
     public function QuizInnerjoinQuestion($data= null){
         
         $keys = array_keys($data);

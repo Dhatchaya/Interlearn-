@@ -10,7 +10,7 @@ class CourseInstructor extends Model
     protected $allowed_columns = [
 
         'course_id',
-        'emp_id'
+        'instructor_id'
 
     ];
     // protected $staffs = [
@@ -47,9 +47,9 @@ class CourseInstructor extends Model
     }
 
     public function getInstructors($course_id){
-        $query = "SELECT concat(staff.first_name,' ',staff.last_name) AS instructorName, staff.*, course_instructor.* from ".$this->table;
-        $query .= " INNER JOIN staff ON staff.emp_id = course_instructor.emp_id";
-        $query .= " WHERE course_instructor.course_id = :courseID AND staff.role = 'Instructor'";
+        $query = "SELECT concat(instructor.firstname,' ',instructor.lastname) AS instructorName, instructor.*, course_instructor.* from ".$this->table;
+        $query .= " INNER JOIN instructor ON instructor.instructor_id = course_instructor.instructor_id";
+        $query .= " WHERE course_id = :courseID";
 
         $data['courseID'] = $course_id;
 
@@ -58,10 +58,8 @@ class CourseInstructor extends Model
         // show($res);die;
 
         if($res){
-            // show($res);die;
             return $res;
         }else{
-            // echo "hi";die;
             return false;
         }
     }

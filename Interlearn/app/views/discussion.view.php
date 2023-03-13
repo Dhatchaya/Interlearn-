@@ -24,6 +24,7 @@
 
                     <div class="forum-reply" id="forum-reply">
                         <button class= "forum_reply_btn reply-btn">Reply</button>
+                        <button class= "forum_Edit_btn reply-btn">Edit</button>
                     </div>
                 </div>
 

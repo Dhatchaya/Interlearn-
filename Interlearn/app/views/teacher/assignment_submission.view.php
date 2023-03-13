@@ -23,7 +23,7 @@
                             <th>Date of Submission</th>
                         
                         </tr>
-            
+           
                         <?php if(!empty($submissions)):?>
                         
                         <?php foreach($submissions as $row):?>

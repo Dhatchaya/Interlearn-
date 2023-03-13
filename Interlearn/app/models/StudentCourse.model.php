@@ -44,23 +44,5 @@ class StudentCourse extends Model
         return false;
     }
 
-    public function getCourses($student_id){
-        $query = "SELECT course_id FROM ".$this->table;
-        $query .= " WHERE student_id =:studentID";
-        $data['studentID'] = $student_id;
-        // show($student_id) ;die;
-
-        $res = $this -> query($query,$data);
-        //  show($query);die;
-
-        if(is_array($res)){
-            // echo $res;die;
-            return $res;
-        }
-        // echo "hi";die;
-        return false;
-
-    }
-
 
 }

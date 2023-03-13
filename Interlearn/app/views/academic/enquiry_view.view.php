@@ -55,7 +55,9 @@
                             </span>
                             <p class="view_content"><?=$reply->content;?></p>
                             <span class="view-date">
-                                <?=$reply->date;?>
+                               
+                                <?=$reply->date;?> -
+                                <?=$reply->reply_user;?>
                             </span>
                      
                         </div>

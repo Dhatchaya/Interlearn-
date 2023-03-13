@@ -12,9 +12,13 @@ const span = document.getElementsByClassName("close")[0];
 function openModal(id) {
     const upload = document.getElementsByName("upload");
     const assignment = document.getElementsByName("assignment");
+    const quiz = document.getElementsByName("quiz");
     console.log(upload);
     for(i=0; i<assignment.length; i++){
         assignment[i].href = assignment[i].href + "/" + id+"/view";
+    }
+    for(i=0; i<quiz.length; i++){
+        quiz[i].href = quiz[i].href + "/" + id+"/create";
     }
     for(i=0; i<upload.length; i++){
         upload[i].href = upload[i].href + "/" + id;

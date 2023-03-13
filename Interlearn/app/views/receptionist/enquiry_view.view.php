@@ -33,11 +33,11 @@
                     <span class="view-date">
                         <?=$enq->date;?>
                     </span>
-                <?php if($enq->status == 'pending'):?>
+                <!-- <?php if($enq->status == 'pending'):?>
                     <div class="view-reply" id="enq-reply">
                         <img src = "<?=ROOT?>/assets/images/reply.png" alt="Reply"/>
                     </div>
-                <?php endif;?>
+                <?php endif;?> -->
                 </div>
   
                 <?php if(!empty($reply)):?>

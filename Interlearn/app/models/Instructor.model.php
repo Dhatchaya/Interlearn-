@@ -8,7 +8,7 @@ class Instructor extends Model
     public $error = [];
     public $table = "instructor";
     protected $allowed_columns = [
-        'emp_id',
+        'instructor_id',	
         'firstname',	
         'lastname',	
         'nic',	
