@@ -16,6 +16,7 @@ class Instructor extends Controller
         $course = new Course();
         $teacher = new Teacher();
         $instructor = new Instructor();
+        $staff = new Staff();
         $data = [];
 
         $data['rows']= $course->select([],'course_id');

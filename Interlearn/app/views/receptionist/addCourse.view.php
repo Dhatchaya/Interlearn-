@@ -64,7 +64,7 @@
                 <option value="" selected>--Select teacher id--</option>
                 <?php if(!empty($teachers)):?>
                 <?php foreach($teachers as $teacher):?>
-                <option  value="<?=$teacher->teacher_id?>" ><?=esc($teacher->teacher_id)?>:<?=esc($teacher->firstname)?></option>
+                <option  value="<?=$teacher->emp_id?>" ><?=esc($teacher->emp_id)?>:<?=esc($teacher->teacherName)?></option>
                 <?php endforeach;?>
                 <?php endif;?>
             </select>

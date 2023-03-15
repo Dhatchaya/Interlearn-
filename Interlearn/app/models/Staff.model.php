@@ -56,5 +56,35 @@ class Staff extends Model
         return false;
     }
 
+    public function getTeachers(){
+        $query = "SELECT *, concat(first_name,' ',last_name) AS teacherName FROM ".$this->table;
+        $query .= " WHERE role = 'Teacher'";
+
+        $res = $this -> query($query);
+        //  show($query);die;
+
+        if(is_array($res)){
+            // echo $res;die;
+            return $res;
+        }
+        // echo "hi";die;
+        return false;
+    }
+
+    public function getInstructors(){
+        $query = "SELECT *, concat(first_name,' ',last_name) AS instructorName FROM ".$this->table;
+        $query .= " WHERE role = 'Instructor'";
+
+        $res = $this -> query($query);
+        //  show($query);die;
+
+        if(is_array($res)){
+            // echo $res;die;
+            return $res;
+        }
+        // echo "hi";die;
+        return false;
+    }
+
 
 }

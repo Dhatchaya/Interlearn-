@@ -27,6 +27,7 @@ class Receptionist extends Controller
         $teacher = new Teacher();
         $instructor = new Instructor();
         $course_week = new CourseWeek();
+        $staff = new Staff();
         $course_instructor = new CourseInstructor();
         // $instructor_course = new InstructorCourse();
         $data = [];
@@ -43,10 +44,10 @@ class Receptionist extends Controller
 
             $data['subjects'] = $subject->getSubject();
             $data['grades'] = $subject->getGrade();
-            $data['teachers'] = $teacher->select([],'teacher_id','asc');
-            //show($data['teachers']);die;
-            $data['instructors'] = $instructor->select([],'instructor_id','asc');
-            //show($data['instructors']);die;
+            $data['teachers'] = $staff->getTeachers();
+            // show($data['teachers']);die;
+            $data['instructors'] = $staff->getInstructors();
+            // show($data['instructors']);die;
         
             if ($_SERVER['REQUEST_METHOD'] == 'POST') 
             {   
@@ -204,8 +205,10 @@ class Receptionist extends Controller
                     // die;
                     // }
                 }
-                $data['teachers'] = $teacher->select([],'teacher_id','asc');
-                $data['instructors'] = $instructor->select([],'instructor_id','asc');
+                $data['teachers'] = $staff->getTeachers();
+                // show($data['teachers']);die;
+                $data['instructors'] = $staff->getInstructors();
+                // show($data['instructors']);die;
 
                 if(isset($_POST['add-teacher'])){
                     $inputs=array("subject_id"=>$_GET['id'],"teacher_id"=>$_POST['teacher_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto']);
