@@ -94,7 +94,7 @@ class Student extends Controller
         $this->view('student/cancel');
     }
 
-    
+
 
     public function payment($id = null)
     {
@@ -103,8 +103,6 @@ class Student extends Controller
         }
         $currentStudentID = $id ?? Auth::getUID();
 
-
-        
         // $payment_model = new Payment();
         // $haveToPay = $payment_model->pendingPayments();
 

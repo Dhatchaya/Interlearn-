@@ -56,34 +56,34 @@ addressBtn.addEventListener('click', () => {
     address.removeAttribute  ('readonly');
     address.focus();
 });
-console.log('mobileNoBtn');
-
 
 
 saveBtn.addEventListener('click', () => {
-  fetch('/Interlearn/public/receptionist/editUser', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
+    console.log('save');
+    const data = {
         emp_id: empID.value, 
-        first_Name: fName.value, 
+        first_name: fName.value, 
         last_name: lName.value, 
-        email: email.value, 
+        // email: email.value, 
         Addressline1: address.value, 
         mobile_no: mobileNo.value, 
         role: position.value, 
         enrollment_date: joinedDate.value, 
         emp_status: empState.value
-    }),
-})
-.then(response => response.json())
-.then(response => {
-    console.log("response open is good");
-
-}).catch(error=>console.log(error));
-// console.log(studentId.value);
+    };
+    console.log(JSON.stringify(data));
+    fetch('/Interlearn/public/receptionist/editUser', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(response => {
+        console.log(response);
+    })
+    .catch(error => console.log(error));
     
 });
 cancelBtn.addEventListener('click', () => {

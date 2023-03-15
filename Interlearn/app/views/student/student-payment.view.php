@@ -35,7 +35,7 @@
 
         </li>
         <li class="nav-li"><a href="">Contact</a></li>
-
+      </ul>
     </div>
 
     <div class="notification">
@@ -251,12 +251,18 @@
               <tr>
                 <td><?= $pendingPayment->courseID ?></td>
                 <td><?= $pendingPayment->month ?></td>
-                <td> 03/15/2023</td>
-                <!-- <td><?= $pendingPayment->dueDate ?></td> -->
+                <td><?= $pendingPayment->dueDate ?></td>
                 <td><?= $pendingPayment->amount ?></td>
                 <td>
                   <button id="" onclick="checkout(<?= json_encode($pendingPayment) ?>)" class="card-btn">paynow</button>
                   <button id="bank-btn" class="bank-btn">Bank Payment</button>
+                  <script>
+                    function checkout() {
+                      console.log("print checkout");
+                      // Redirect to the checkout page with the payment data as a URL parameter
+                      window.location.href = "<?= ROOT ?>/student/checkout?payment=" + encodeURIComponent(JSON.stringify($pendingPayment));
+                    }
+                  </script>
                 </td>
               </tr>
             <?php endforeach; ?>
@@ -264,18 +270,13 @@
             <tr>
               <td colspan="3" style="text-align:right;">Total Payment:</td>
               <td><?= $totalPayment ?></td>
-              <td><button id="" onclick="checkout(<?= json_encode($haveToPaySet) ?>)" class="card-btn">paynow</button>
+              <td><button id="" onclick="checkout( json_encode($haveToPaySet))" class="card-btn">paynow</button>
                 <button id="bank-btn" class="bank-btn">Bank Payment</button>
               </td>
             </tr>
 
             <script>
-              function checkout($paymentData) {
-                // Redirect to the checkout page with the payment data as a URL parameter
-                window.location.href = "<?= ROOT ?>/student/checkout?payment=" + encodeURIComponent(JSON.stringify($pendingPayment));
-              }
-
-              function checkout($paymentData) {
+              function fullPayment() {
                 // Redirect to the checkout page with the payment data as a URL parameter
                 window.location.href = "<?= ROOT ?>/student/checkout?payment=" + encodeURIComponent(JSON.stringify($haveToPaySet));
               }
@@ -322,7 +323,7 @@
 
               </tr>
             <?php endforeach; ?>
-           
+
           </tbody>
         </table>
 
@@ -355,7 +356,7 @@
         observer
       ) {
         entries.forEach(entry => {
-          console.log(entry.target)
+          // console.log(entry.target);
           if (entry.isIntersecting) {
             sidebar.classList.add("sidebar-short");
             container.classList.add("segment-out");
@@ -373,9 +374,9 @@
     //***********************footer support hright changer********************************//
 
 
-    var div1 = document.getElementByClassName("student-payment");
-    var div2 = document.getElementByClassName("footer-support");
-    div2.style.height = div1.offsetHeight + "px";
+    // var div1 = document.getElementByClassName("student-payment");
+    // var div2 = document.getElementByClassName("footer-support");
+    // div2.style.height = div1.offsetHeight + "px";
   </script>
 
 

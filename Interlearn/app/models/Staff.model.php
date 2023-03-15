@@ -34,7 +34,17 @@ class Staff extends Model
         'Receptionist',
 
     ];
-    public function getStaffDetails(){
+    public function getUserDetails($uid){
+        $query = "SELECT * FROM staff where uid = '$uid'";
+        $data = $this->query($query);
+        if ($data == NULL) {
+            $data = array();
+        }
+
+        return $data;
+    }
+
+    public function getStaffDetails($emp_id, $data){
         $query = "SELECT * FROM staff";
         $data = $this->query($query);
 
@@ -45,16 +55,56 @@ class Staff extends Model
         return $data;
     }
 
-    public function updateStaffData(){
-        $query = "SELECT * FROM staff";
-        $data = $this->query($query);
-
-        if ($data == NULL) {
-            $data = array();
+    public function updateStaffData($emp_id, $data) {
+        // Check if emp_id is set
+        if (empty($emp_id)) {
+            $this->error[] = 'Emp ID is required.';
+            return false;
         }
-
-        return $data;
+    
+        // Check if data is empty
+        if (empty($data)) {
+            $this->error[] = 'No data to update.';
+            return false;
+        }
+    
+        // Validate data
+        // ...
+    
+        // Build update query
+        $query = "UPDATE staff SET ";
+        $values = array();
+    
+        foreach ($data as $key => $value) {
+            if (in_array($key, $this->allowed_columns)) {
+                $values[] = "$key = ?";
+            }
+        }
+    
+        $query .= implode(", ", $values) . " WHERE emp_ID = ?";
+        $data[] = $emp_id;
+    
+        // Execute query
+        $result = $this->query($query, $data);
+    
+        if (!$result) {
+            $this->error[] = 'Failed to update staff data.';
+            return false;
+        }
+    
+        return true;
     }
+
+    // public function updateStaffData(){
+    //     $query = "SELECT * FROM staff";
+    //     $data = $this->query($query);
+
+    //     if ($data == NULL) {
+    //         $data = array();
+    //     }
+
+    //     return $data;
+    // }
     public function Addstaff(){
         $data = json_decode(file_get_contents("php://input"), true);
         if ($this->validate($data)) {

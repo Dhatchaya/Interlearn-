@@ -34,31 +34,55 @@ class Receptionist extends Controller
         $this->view('receptionist/class');
     }
 
-
-
     public function user()
     {
         if (!Auth::is_receptionist()) {
             redirect('home');
         }
+        $currentUserID = $id ?? Auth::getUID();
+        
+        $staffData = new Staff();
+        $user_data = $staffData->getUserDetails($currentUserID);
 
+        if (!$user_data) {
+            // handle error here
+            redirect('home');
+        }
 
-        $this->view('receptionist/user');
+        $data['userData'] = $user_data;
+
+        $this->view('receptionist/user', $data);
     }
+
+    // public function user()
+    // {
+    //     if (!Auth::is_receptionist()) {
+    //         redirect('home');
+    //     }        
+    //     $currentUsetID = $id ?? Auth::getUID();
+
+    //     $staffData = new Staff();
+    //     $User_data = $staffData->getUserDetails($currentUsetID);
+
+    //     $data['userData']=$User_data;
+
+
+    //     $this->view('receptionist/user',  $data);
+    // }
 
     public function editUser()
     {
         if (!Auth::is_receptionist()) {
             redirect('home');
-        } 
+        }
         // show($_POST);
         if (isset($_POST)) {
+            $currentUserID = $id ?? Auth::getUID();
+
             $data = json_decode(file_get_contents("php://input"), true);
-            $id = $id ?? Auth::getUID();
-            $data['uid'] = $id;
 
             $staffData = new Staff();
-            $staffData->updateStaffData($data);
+            $staffData->updateStaffData($currentUserID, $data);
         }
         // echo json_encode($payment_model);
         exit;
