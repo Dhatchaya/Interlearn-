@@ -10,6 +10,7 @@
                 <?php if(!empty($courses)):?>
                 <div id="course_id" style="display: none;"><?=$courses[0]->course_id?></div>
                 <h2 class="teacher_crs_subject">Grade <?=esc($courses[0]->grade)?> - <?=esc($courses[0]->subject)?></h2>
+                <h4 class="teacher_crs_subject"><i><?=esc($courses[0]->language_medium)?> Medium</i></h4> 
                 <?php endif;?>
             </div>
         </div>

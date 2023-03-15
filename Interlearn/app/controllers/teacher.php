@@ -201,7 +201,7 @@ class Teacher extends Controller
                 $fileExt = explode('.',$fileName);
                 $fileActualExt = strtolower(end($fileExt));
 
-                $allowed1 = array('jpg','jpeg','png', 'pdf','zip','txt','sql','docx','xml','doc','ppt', 'mp3','mp4');
+                $allowed1 = array('jpg','jpeg','png', 'pdf','zip','txt','sql','docx','xml','doc','ppt', 'mp3','mp4','php');
 
                 if(in_array($fileActualExt, $allowed1)){
                     // print_r($_FILES['file']);exit;
@@ -214,7 +214,7 @@ class Teacher extends Controller
 
                             }
                             $destination =  $fileDestination."/".$fileNameNew;
-                            move_uploaded_file($fileTmpName,$fileDestination);
+                            move_uploaded_file($fileTmpName,$destination);
                             //echo $fileActualExt;exit;
                             //var_dump($_POST);exit;
                             //print_r($fileType);exit;

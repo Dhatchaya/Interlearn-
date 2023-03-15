@@ -10,7 +10,6 @@ class CourseMaterial extends Model
     protected $allowed_columns = [
         'file_id',
         'cid',
-        'course_id',
         'course_material',
         'file_type',
         'size',

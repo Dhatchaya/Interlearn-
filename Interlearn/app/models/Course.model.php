@@ -161,10 +161,18 @@ class Course extends Model
     }
 
     public function instructorCourse($data=[],$id,$orderby = null, $order=null){
-        $query = "SELECT subject.subject_id,subject.subject,grade,language_medium,course.*,course_instructor.* from ".$this->table;
-        $query .= " INNER JOIN subject ON course.subject_id = subject.subject_id INNER JOIN course_instructor ON course.course_id = course_instructor.course_id INNER JOIN staff ON staff.emp_id = course_instructor.emp_id ";
+        $query = "SELECT subject.subject_id,subject.subject,grade,language_medium,course.*,course_instructor.*, teacher.teacherName FROM ".$this->table;
+        $query .= " INNER JOIN subject ON course.subject_id = subject.subject_id INNER JOIN course_instructor ON course.course_id = course_instructor.course_id INNER JOIN staff ON staff.emp_id = course_instructor.emp_id INNER JOIN (
+            SELECT 
+                staff.emp_id, 
+                CONCAT(staff.first_name, ' ', staff.last_name) AS teacherName 
+            FROM 
+                staff 
+            WHERE 
+                staff.role = 'Teacher'
+        ) AS teacher ON teacher.emp_id = course.teacher_ID ";
         $query .= " WHERE staff.uid = $id AND staff.role = 'Instructor'";
-        $query .= " group by subject, grade";
+        // $query .= " group by subject, grade";
         // $query .= " order by $orderby  $order";
         //var_dump($_SESSION);exit;
         $res = $this -> query($query,$data);

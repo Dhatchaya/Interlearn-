@@ -9,7 +9,7 @@
             <?php if(!empty($courses)):?>
             <?php foreach($courses as $course):?>
                 <h2>Grade <?=$course->grade?> - <?=$course->subject?></h2>
-                <h3><?=$course->firstname?> <?=$course->lastname?></h3>
+                <h3><?=$course->first_name?> <?=$course->last_name?></h3>
                 <?php endforeach;?>
             <?php endif;?>
             </div>
@@ -42,17 +42,17 @@
                         <?php foreach($materials as $material):?>
                             <?php if($material->week_no==$i):?>
                             <?php if($material->file_type==="application/pdf"):?>
-                                <p><a href="#">
+                                <p><a href="/uploads/<?=$material->course_id?>/materials/<?php echo $material->cid;?>/<?=$material->course_material?>">
                                 <img src="<?=ROOT?>/assets/images/pdf.png" alt="" class="teacher_card_img3">
                                 <?=$material->upload_name?> 
                                 </a></p>
                                 <?php elseif($material->file_type==="text/plain"):?>
-                                    <p><a href="#">
+                                    <p><a href="/uploads/<?=$material->course_id?>/materials/<?php echo $material->cid;?>/<?=$material->course_material?>">
                                     <img src="<?=ROOT?>/assets/images/pp.png" alt="" class="teacher_card_img3">
                                     <?=$material->upload_name?> 
                                     </a></p>
                                 <?php else:?>
-                                    <p><a href="/uploads/document?id=<?php echo $material->file_id;?>"><?=$material->upload_name?> 
+                                    <p><a href="/uploads/<?=$material->course_id?>/materials/<?php echo $material->cid;?>/<?=$material->course_material?>"><?=$material->upload_name?> 
                                     </a></p> 
                                     <?php endif;?>
                         <?php endif;?>
