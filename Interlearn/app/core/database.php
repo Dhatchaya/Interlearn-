@@ -30,7 +30,6 @@ class Database{
                 }
                 else{
                     $type = PDO::FETCH_ASSOC;
-
                 }
                 $result = $stmt -> fetchAll($type);
                 

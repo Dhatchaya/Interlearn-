@@ -45,7 +45,7 @@
                 <div class="profile-data">
                     <label class="user-data-label" for="l-name">SECOND NAME</label>
 
-                    <input id="l-name" class="user-detail" placeholder="Pavithra" readonly>
+                    <input id="lname" class="user-detail" placeholder="Pavithra" readonly>
                     <button id="change-lname" class="edit-btn" type="button">✒️ EDIT</button>
                 </div>
 

@@ -50,9 +50,18 @@ class Receptionist extends Controller
     {
         if (!Auth::is_receptionist()) {
             redirect('home');
-        }
+        } 
+        // show($_POST);
+        if (isset($_POST)) {
+            $data = json_decode(file_get_contents("php://input"), true);
+            $id = $id ?? Auth::getUID();
+            $data['uid'] = $id;
 
-        $this->view('receptionist/student');
+            $staffData = new Staff();
+            $staffData->updateStaffData($data);
+        }
+        // echo json_encode($payment_model);
+        exit;
     }
 
 

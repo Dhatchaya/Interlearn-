@@ -45,15 +45,15 @@ class Student extends Controller
 
         $checkout_session = \Stripe\Checkout\Session::create([
             'payment_method_types' => ['card'],
-            'line_items' => [[
-                'price_data' => [
-                    'currency' => 'lkr',
-                    'unit_amount' => 100000,
-                    'product_data' => [
-                        'name' => "INTERLEARN",
-                        'images' => ["../assets/images/sidebar_icons/logo.png"],
-                    ],
-                ],
+            'line_items' => 
+                            [['price_data' => 
+                                                ['currency' => 'lkr',
+                                                'unit_amount' => $pendingPayment->amount,
+                                                'product_data' => [
+                                                                'name' => "INTERLEARN",
+                                                                'images' => ["../assets/images/sidebar_icons/logo.png"],
+                                                                    ],
+                                                ],
                 # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
                 // 'price' => '{{PRICE_ID}}',
                 'quantity' => 1,
@@ -94,28 +94,38 @@ class Student extends Controller
         $this->view('student/cancel');
     }
 
+    
+
     public function payment($id = null)
     {
         if (!Auth::is_student()) {
             redirect('home');
         }
-        // $currentStudentID = $id ?? Auth::getUID();
-        // $user = new User();
-        // $data['row'] = $user->first(['uid' => $id], 'uid');
+        $currentStudentID = $id ?? Auth::getUID();
 
 
         
-        $payment_model = new Payment();
-        $haveToPay = $payment_model->pendingPayments();
+        // $payment_model = new Payment();
+        // $haveToPay = $payment_model->pendingPayments();
 
         ////////////////////////////////
 
         $payment_history = new Payment();
-        $each_s_p_h = $payment_history->eachStudentPaymentHistory();
+        $each_s_p_h = $payment_history->eachStudentPaymentHistory($currentStudentID);
 
         
 
-        // $currentDate = date('Y-m-d');
+
+        $pending_payment_model = new Payment();
+        $haveToPay = $pending_payment_model->eachStudentPendingPayment($currentStudentID);
+
+        $this->view('student/student-payment',['payment_history_list'=>$each_s_p_h,'haveToPaySet'=>$haveToPay]);
+
+    }
+
+
+
+            // $currentDate = date('Y-m-d');
 
     // check if it is the first of the month
         // if (date('d', strtotime($currentDate)) == 1) {
@@ -132,12 +142,6 @@ class Student extends Controller
 
         /////////////////////////////////
 
-        $pending_payment_model = new Payment();
-        $haveToPay = $pending_payment_model->pendingPayments();
-
-        $this->view('student/student-payment',['payment_history_list'=>$each_s_p_h,'haveToPaySet'=>$haveToPay]);
-
-    }
 
     public function test($id = null)
     {
@@ -145,16 +149,14 @@ class Student extends Controller
             redirect('home');
         }
         $currentStudentID = $id ?? Auth::getUID();
-        $user = new User();
-        $data['row'] = $user->first(['uid' => $id], 'uid');
 
 
         
         $payment_model = new Payment();
-        $payment_history = $payment_model->getAll();
+        $payment_history = $payment_model->eachStudentPaymentHistory($currentStudentID);
 
         $pending_payment_model = new Payment();
-        $haveToPay = $pending_payment_model->pendingPayments();
+        $haveToPay = $pending_payment_model->eachStudentPendingPayment($currentStudentID);
 
         $this->view('student/test',['payment_history'=>$payment_history,'haveToPaySet'=>$haveToPay]);
 

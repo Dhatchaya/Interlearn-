@@ -219,7 +219,7 @@
             <tr>
               <th>Subject code</th>
               <th>Payment month</th>
-              <th>Payment date</th>
+              <th>Payment due date</th>
               <th>Amount</th>
               <th>Payment Options</th>
             </tr>
@@ -243,27 +243,44 @@
               </td>
 
             </tr> -->
-            <?php foreach ($haveToPaySet as $pendingPayment) : ?>
+            <?php
+            $totalPayment = 0; // Initialize the total payment variable
+            foreach ($haveToPaySet as $pendingPayment) :
+              $totalPayment += $pendingPayment->amount; // Add the current payment amount to the total payment
+            ?>
               <tr>
                 <td><?= $pendingPayment->courseID ?></td>
                 <td><?= $pendingPayment->month ?></td>
                 <td> 03/15/2023</td>
                 <!-- <td><?= $pendingPayment->dueDate ?></td> -->
                 <td><?= $pendingPayment->amount ?></td>
-                <td><button id="" onclick="checkout($pendingPayment)" class="card-btn">paynow</button>
-
-                  <script>
-                    function checkout($paymentData) {
-                      window.location.href = "<?= ROOT ?> /student/checkout";
-                      fetch
-                    }
-                  </script>
-
+                <td>
+                  <button id="" onclick="checkout(<?= json_encode($pendingPayment) ?>)" class="card-btn">paynow</button>
                   <button id="bank-btn" class="bank-btn">Bank Payment</button>
                 </td>
-
               </tr>
             <?php endforeach; ?>
+
+            <tr>
+              <td colspan="3" style="text-align:right;">Total Payment:</td>
+              <td><?= $totalPayment ?></td>
+              <td><button id="" onclick="checkout(<?= json_encode($haveToPaySet) ?>)" class="card-btn">paynow</button>
+                <button id="bank-btn" class="bank-btn">Bank Payment</button>
+              </td>
+            </tr>
+
+            <script>
+              function checkout($paymentData) {
+                // Redirect to the checkout page with the payment data as a URL parameter
+                window.location.href = "<?= ROOT ?>/student/checkout?payment=" + encodeURIComponent(JSON.stringify($pendingPayment));
+              }
+
+              function checkout($paymentData) {
+                // Redirect to the checkout page with the payment data as a URL parameter
+                window.location.href = "<?= ROOT ?>/student/checkout?payment=" + encodeURIComponent(JSON.stringify($haveToPaySet));
+              }
+            </script>
+
 
           </tbody>
         </table>
@@ -305,62 +322,7 @@
 
               </tr>
             <?php endforeach; ?>
-            <!-- <tr>
-              <td>XYZ456</td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Card Payment</td>
-              <td><button>Print</button></td>
-            </tr>
-            <tr>
-              <td>XYZ456</td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Card Payment</td>
-              <td><button>Print</button></td>
-            </tr>
-            <tr>
-              <td>XYZ456</td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Card Payment</td>
-              <td><button>Print</button></td>
-            </tr>
-            <tr>
-              <td>XYZ456</td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Cash</td>
-              <td><button>Print</button></td>
-            </tr>
-            <tr>
-              <td>XYZ456</td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Card Payment</td>
-              <td><button>Print</button></td>
-            </tr>
-            <tr>
-              <td>XYZ456</td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Card Payment</td>
-              <td><button>Print</button></td>
-            </tr>
-            <tr>
-              <td>XYZ456</td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Card Payment</td>
-              <td><button>Print</button></td>
-            </tr> -->
+           
           </tbody>
         </table>
 

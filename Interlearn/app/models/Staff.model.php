@@ -24,6 +24,7 @@ class Staff extends Model
         'role',
         'display_picture',
         'gender',
+        'uid',
 
     ];
     protected $staffs = [
@@ -34,6 +35,17 @@ class Staff extends Model
 
     ];
     public function getStaffDetails(){
+        $query = "SELECT * FROM staff";
+        $data = $this->query($query);
+
+        if ($data == NULL) {
+            $data = array();
+        }
+
+        return $data;
+    }
+
+    public function updateStaffData(){
         $query = "SELECT * FROM staff";
         $data = $this->query($query);
 
