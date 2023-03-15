@@ -35,7 +35,7 @@
 
         </li>
         <li class="nav-li"><a href="">Contact</a></li>
-
+      </ul>
     </div>
 
     <div class="notification">
@@ -136,7 +136,7 @@
             <div class="form-group  ">
               <label class="payment-label" for="CourseID">Course ID</label>
               <div class="errorSpace3"></div>
-              <input value="<?= set_value('CourseID') ?>" name="CourseID " class="payment-input" type="text" id="address" placeholder="   ">
+              <input value="<?= set_value('CourseID') ?>" name="CourseID " class="payment-input" type="text" id="address" maxlength="5" placeholder="   ">
             </div>
             <div class="form-group  ">
               <label class="payment-label" for="NIC">NIC Number</label>
@@ -162,7 +162,7 @@
             <div class="form-group">
               <label class="payment-label" for="card-holder-name">Ammount(LKR)</label>
               <div class="errorSpace2"></div>
-              <input value="<?= set_value('Ammount') ?>" name="Ammount" class="payment-input" type="currency" id="ammount" placeholder=" 5000">
+              <input value="<?= set_value('Ammount') ?>" name="Ammount" class="payment-input" type="currency" maxlength="7" id="ammount" placeholder=" 5000">
             </div>
             <div class="form-group  ">
               <label class="payment-label" for="Bank">Bank</label>
@@ -186,7 +186,7 @@
             <div class="form-group div-adject-4 ">
               <label class="payment-label" for="ChequeNo">Cheque No. (only if pay on cheque)</label>
               <div class="errorSpace3"></div>
-              <input value="<?= set_value('ChequeNo') ?>" name="ChequeNo" class="payment-input" type="text" id="Cheque-No" placeholder=" 00000000000000">
+              <input value="<?= set_value('ChequeNo') ?>" name="ChequeNo" class="payment-input" type="text" id="Cheque-No" maxlength="11" placeholder=" 00000000000000">
             </div>
 
 
@@ -195,7 +195,10 @@
 
 
       </div>
-
+      <?php
+      $userid =  Auth::getUID();
+      $_POST['StudentID'] = $userid
+      ?>
 
       <button class="submit-button" id="payment-submission-1" type="submit">Submit</button>
 
@@ -203,152 +206,124 @@
     </div>
   </div>
 
-  /*** card payment **?/
-  <div class="payment-form-popup" id="hiddenDiv-2">
-    <div class="payment-form-container">
-      <div class="payment-form-header">
-        <h3>Card Payment</h3>
-        <button class="close-button" id="close-button-2">&times;</button>
-      </div>
-      <div class="payment-form-body">
 
-        <form action="#">
-
-          <div class="form-group">
-            <label class="payment-label" for="card-number">Card Number</label>
-            <div class="errorSpace1"></div>
-            <input name="CardNumber" name=" " class="payment-input" type="text" id="card-number" placeholder="   0000 0000 0000 0000" maxlength="16">
-          </div>
-
-          <div class="form-group">
-            <label class="payment-label" for="card-holder-name">Card Holder Name</label>
-            <div class="errorSpace2"></div>
-            <input name="CardHolderName" name=" " class="payment-input" type="text" id="card-holder-name" placeholder="   Pavithra H.M.M.">
-          </div>
-
-
-          <div class="form-group div-adjest-1">
-            <label class="payment-label" for="expiry-month">Expiry Month/Year</label>
-            <div class="errorSpace3"></div>
-            <div class="div-adjest-2">
-              <input name="Month" name=" " class="payment-input" type="text" id="expiry-month" placeholder="MM" maxlength="2">
-              <input name="Year" name=" " class="payment-input" type="text" id="expiry-year" placeholder=" YY" maxlength="2">
-            </div>
-          </div>
-
-
-          <div class="form-group div-adjest-1">
-            <label class="payment-label" for="cvv">CVV</label>
-            <div class="errorSpace4"></div>
-            <input name="CCV" name=" " class="payment-input div-adjest-3" type="text" id="cvv" placeholder="***" maxlength="3">
-          </div>
-
-
-          <div class="form-group">
-            <!-- <label class="payment-label" for="card-type">Select Card Type</label> -->
-
-            <img src="<?= ROOT ?>/assets/images/mastercard-logo.png" class="card-type-icon" alt="Mastercard logo">
-            <img src="<?= ROOT ?>/assets/images/visa-logo.png" class="card-type-icon" alt="Visa logo">
-            <img src="<?= ROOT ?>/assets/images/amex-logo.jpg" class="card-type-icon" alt="American Express logo">
-          </div>
-          <button class="paynow" id="payment-submission" type="submit">Pay Now</button>
-        </form>
-      </div>
-    </div>
-  </div>
 
   <div class="main-page-container">
+    <div class="table-container">
+
+      <h2 class="table-title">Pending Payments</h2>
+      <div class="pending-payment">
+
+        <table class="payment-table">
+          <thead>
+            <tr>
+              <th>Subject code</th>
+              <th>Payment month</th>
+              <th>Payment due date</th>
+              <th>Amount</th>
+              <th>Payment Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- <tr>
+              <td>ABC123</td>
+              <td>January</td>
+              <td>01/01/2023</td>
+              <td>$100</td>
+              <td>Credit Card</td>
+              <td><button id="" onclick="checkout()" class="card-btn">paynow</button>
+
+                <script>
+                  function checkout() {
+                    window.location.href = "<?= ROOT ?> /student/checkout";
+                  }
+                </script>
+
+                <button id="bank-btn" class="bank-btn">Bank Payment</button>
+              </td>
+
+            </tr> -->
+            <?php
+            $totalPayment = 0; // Initialize the total payment variable
+            foreach ($haveToPaySet as $pendingPayment) :
+              $totalPayment += $pendingPayment->amount; // Add the current payment amount to the total payment
+            ?>
+              <tr>
+                <td><?= $pendingPayment->courseID ?></td>
+                <td><?= $pendingPayment->month ?></td>
+                <td><?= $pendingPayment->dueDate ?></td>
+                <td><?= $pendingPayment->amount ?></td>
+                <td>
+                  <button id="" onclick="checkout(<?= json_encode($pendingPayment) ?>)" class="card-btn">paynow</button>
+                  <button id="bank-btn" class="bank-btn">Bank Payment</button>
+                  <script>
+                    function checkout() {
+                      console.log("print checkout");
+                      // Redirect to the checkout page with the payment data as a URL parameter
+                      window.location.href = "<?= ROOT ?>/student/checkout?payment=" + encodeURIComponent(JSON.stringify($pendingPayment));
+                    }
+                  </script>
+                </td>
+              </tr>
+            <?php endforeach; ?>
+
+            <tr>
+              <td colspan="3" style="text-align:right;">Total Payment:</td>
+              <td><?= $totalPayment ?></td>
+              <td><button id="" onclick="checkout( json_encode($haveToPaySet))" class="card-btn">paynow</button>
+                <button id="bank-btn" class="bank-btn">Bank Payment</button>
+              </td>
+            </tr>
+
+            <script>
+              function fullPayment() {
+                // Redirect to the checkout page with the payment data as a URL parameter
+                window.location.href = "<?= ROOT ?>/student/checkout?payment=" + encodeURIComponent(JSON.stringify($haveToPaySet));
+              }
+            </script>
+
+
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+
 
     <div class="table-container">
 
       <h2 class="table-title">Payment history</h2>
 
-      <div class="student-payment">
+      <div class="payment-history">
 
         <table class="payment-table">
           <thead>
             <tr>
-              <th>Payment status</th>
+              <th>Subject code</th>
               <th>Payment month</th>
               <th>Payment date</th>
+              <th>Payment ID</th>
               <th>Amount</th>
               <th>Method</th>
-              <th>Subject code</th>
+              <th>Print Payment Slip</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><button id="card-btn">paynow</button> <button id="bank-btn">Bank Payment</button></td>
-              <td>January</td>
-              <td>01/01/2023</td>
-              <td>$100</td>
-              <td>Credit Card</td>
-              <td>ABC123</td>
-            </tr>
-            <tr>
-              <td><button>Print</button></td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Card Payment</td>
-              <td>XYZ456</td>
-            </tr>
-            <tr>
-              <td><button>Print</button></td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Card Payment</td>
-              <td>XYZ456</td>
-            </tr>
-            <tr>
-              <td><button>Print</button></td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Card Payment</td>
-              <td>XYZ456</td>
-            </tr>
-            <tr>
-              <td><button>Print</button></td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Card Payment</td>
-              <td>XYZ456</td>
-            </tr>
-            <tr>
-              <td><button>Print</button></td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Cash</td>
-              <td>XYZ456</td>
-            </tr>
-            <tr>
-              <td><button>Print</button></td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Card Payment</td>
-              <td>XYZ456</td>
-            </tr>
-            <tr>
-              <td><button>Print</button></td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Card Payment</td>
-              <td>XYZ456</td>
-            </tr>
-            <tr>
-              <td><button>Print</button></td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Card Payment</td>
-              <td>XYZ456</td>
-            </tr>
+
+            <?php foreach ($payment_history_list as $payments) : ?>
+              <tr>
+                <td><?= $payments->courseID ?></td>
+                <td><?= $payments->month ?></td>
+                <td><?= $payments->payment_date ?></td>
+                <td><?= $payments->PaymentID ?></td>
+                <td><?= $payments->amount ?></td>
+                <td><?= $payments->method ?></td>
+                <td><button>Print</button></td>
+
+              </tr>
+            <?php endforeach; ?>
+
           </tbody>
         </table>
 
@@ -357,46 +332,8 @@
   </div>
   <div class="footer-support"></div>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="footer-col" id="one">
 
-          <img class="footer-logo" src="<?= ROOT ?>/assets/images/logo_bg_rm.png" alt="">
-          <p class="slogen">We need to bring learning to people instead of
-            people to learning</p>
-          <hr 1.1.4>
-          <p class="txt"><i class="fa fa-copyright" aria-hidden="true"></i> 2021 All Rights Reserved</p>
-        </div>
-        <div class="footer-col" id="two">
-          <h4>follow us</h4>
-          <div class="social-links">
-            <a class="footer-link-icon" href="#https://web.facebook.com/UCSC.LK"><i class="fab fa-facebook-f"></i></a>
-            <a class="footer-link-icon" href="#"><i class="fab fa-twitter"></i></a>
-            <a class="footer-link-icon" href="#"><i class="fab fa-instagram"></i></a>
-            <a class="footer-link-icon" href="#"><i class="fab fa-linkedin-in"></i></a>
-          </div>
-          <h4>Contact us</h4>
-          <ol class="footer-list">
-            <li><a class="footer-link" href="https://goo.gl/maps/YXUhDHjkXJoqjzNx8"><i class="fa fa-map-marker"></i> 7,Nawala Road, Rajagiriya</a> </li>
-            <li><i class="fa fa-envelope" aria-hidden="true"></i> interlearn@gmail.com</li>
-          </ol>
-        </div>
-        <div class="footer-col" id="three">
-          <h4>follow us</h4>
-          <ol class="footer-list">
-            <li><a class="footer-link" href="#">About us</a></li>
-            <li><a class="footer-link" href="#">Teachers</a></li>
-            <li><a class="footer-link" href="#">Classes</a></li>
-            <li><a class="footer-link" href="#">Vacancies</a></li>
-            <li><a class="footer-link" href="#">Customer care</a></li>
-          </ol>
-
-        </div>
-
-      </div>
-    </div>
-  </footer>
+  <?php $this->view("includes/manojge_footer_eka"); ?>
   <!-- <script src="salaryCal.js"></script> -->
   <script src="<?= ROOT ?>/assets/js/card-payment-validation.js"></script>
   <script src="<?= ROOT ?>/assets/js/show-upload-button.js"></script>
@@ -419,7 +356,7 @@
         observer
       ) {
         entries.forEach(entry => {
-          console.log(entry.target)
+          // console.log(entry.target);
           if (entry.isIntersecting) {
             sidebar.classList.add("sidebar-short");
             container.classList.add("segment-out");
@@ -437,9 +374,9 @@
     //***********************footer support hright changer********************************//
 
 
-    var div1 = document.getElementByClassName("student-payment");
-    var div2 = document.getElementByClassName("footer-support");
-    div2.style.height = div1.offsetHeight + "px";
+    // var div1 = document.getElementByClassName("student-payment");
+    // var div2 = document.getElementByClassName("footer-support");
+    // div2.style.height = div1.offsetHeight + "px";
   </script>
 
 

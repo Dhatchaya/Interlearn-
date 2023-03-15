@@ -548,29 +548,134 @@ class Receptionist extends Controller
     }
 
 
-    public function payments()
+//    public function payments()
+//    {
+//        if (!Auth::is_receptionist()) {
+//            redirect('home');
+//        }
+//
+//        $this->view('receptionist/receptionist-payments');
+//    }
+//
+//    public function getPayment()
+//    {
+//        if (!Auth::is_receptionist()) {
+//            redirect('home');
+//        }
+//        // show($_POST);
+//        if (isset($_POST)) {
+//            $payment_model = new Payment();
+//            $_POST['method'] = 'cash';
+//            $_POST['status'] = '1';
+//            $payment_model->insert($_POST);
+//            $this->view("receptionist/receptionist-payments");
+//        }
+//    }
+//
+//
+//    public function getPaymentData()
+//    {
+//        $payment = new Payment();
+//        $data = $payment->getAll();
+//        return $data;
+//    }
+
+
+    //from here
+    public function user()
     {
         if (!Auth::is_receptionist()) {
             redirect('home');
         }
+        $currentUserID = $id ?? Auth::getUID();
 
-        $this->view('receptionist/receptionist-payments');
+        $staffData = new Staff();
+        $user_data = $staffData->getUserDetails($currentUserID);
+
+        if (!$user_data) {
+            // handle error here
+            redirect('home');
+        }
+
+        $data['userData'] = $user_data;
+
+        $this->view('receptionist/user', $data);
     }
 
-    public function getPayment()
+    // public function user()
+    // {
+    //     if (!Auth::is_receptionist()) {
+    //         redirect('home');
+    //     }
+    //     $currentUsetID = $id ?? Auth::getUID();
+
+    //     $staffData = new Staff();
+    //     $User_data = $staffData->getUserDetails($currentUsetID);
+
+    //     $data['userData']=$User_data;
+
+
+    //     $this->view('receptionist/user',  $data);
+    // }
+
+    public function editUser()
     {
         if (!Auth::is_receptionist()) {
             redirect('home');
         }
         // show($_POST);
         if (isset($_POST)) {
-            $payment_model = new Payment();
-            $_POST['method'] = 'cash';
-            $_POST['status'] = '1';
-            $payment_model->insert($_POST);
-            $this->view("receptionist/receptionist-payments");
+            $currentUserID = $id ?? Auth::getUID();
+
+            $data = json_decode(file_get_contents("php://input"), true);
+
+            $staffData = new Staff();
+            $staffData->updateStaffData($currentUserID, $data);
         }
+        // echo json_encode($payment_model);
+        exit;
     }
+
+
+
+    public function payments()
+    {
+        if (!Auth::is_receptionist()) {
+            redirect('home');
+        }
+
+        $payment_model = new Payment();
+        $payment_history = $payment_model->getAll();
+
+        $callBPdata = new BankPayment();
+        $BankPaymentData = $callBPdata->validateBankPayment();
+
+
+        $this->view('receptionist/receptionist-payments',  ['bankPayments' => $BankPaymentData, 'transactions' => $payment_history]);
+    }
+
+
+
+    public function nextCashPayment()
+    {
+        if (!Auth::is_receptionist()) {
+            redirect('home');
+        }
+
+        // show($_POST);
+        if (isset($_POST)) {
+            $data = json_decode(file_get_contents("php://input"), true);
+
+            $data['method'] =   'cash';
+            $data['payment_status'] = '1';
+
+            $payment_model = new Payment();
+            $payment_model->insert($data);
+        }
+        // echo json_encode($payment_model);
+        exit;
+    }
+
 
 
     public function getPaymentData()
@@ -580,4 +685,38 @@ class Receptionist extends Controller
         return $data;
     }
 
+    public function callBankPaymentData()
+    {
+
+        $callBPdata = new BankPayment();
+        $BankPaymentData = $callBPdata->validateBankPayment();
+        return $BankPaymentData;
+    }
+
+    public function getStudentName()
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+        $studentId = $data['StudentID'];
+
+        $sql = "SELECT * FROM student WHERE studentID = '$studentId'";
+        $model = new Model();
+        $res = $model->query($sql);
+
+        echo json_encode($res);
+        exit;
+    }
+    public function getMonthlyFee()
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+        $courseId = $data['CourseID'];
+
+        $sql = "SELECT * FROM course WHERE course_id = '$courseId'";
+        $model = new Model();
+        $res = $model->query($sql);
+
+        echo json_encode($res);
+        exit;
+    }
+
 }
+

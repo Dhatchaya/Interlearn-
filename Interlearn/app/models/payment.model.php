@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Payment extends Model
 {
@@ -14,24 +14,139 @@ class Payment extends Model
         'method',
         'status',
         'date',
+        'payment_status',
+
     ];
     public function getAll()
     {
-        // // Prepare the query
-        // $query = "SELECT * FROM $this->table";
+        $query = "SELECT * FROM payment WHERE payment_status = 1";
+        $data = $this->query($query);
 
-        // // Execute the query
-        // $db = new Database();
-        // $result = $this->db->query($query);
+        if ($data == NULL) {
+            $data = array();
+        }
 
-        // // Return the result
-        // return $result;
+        return $data;
     }
 
+
+    // $uid
+
+
+
+    public function eachStudentPaymentHistory($uid)
+    {   
+        $get_uid = $uid;
+        $query_get_StudentID = "SELECT studentID from student WHERE uid =$get_uid";
+        $student_ID = $this->query($query_get_StudentID);
+
+        if (!isset($student_ID['studentID'])) {
+        }
+
+        $currentSID = $student_ID[0]->studentID;
+        $query = "SELECT * FROM payment where  studentID = '$currentSID'  AND payment_status = '1'";
+        $data = $this->query($query);
+
+        if ($data == NULL) {
+            $data = array();
+        }
+
+        return $data;
+    }
+
+    public function eachStudentPendingPayment($uid)
+    {
+        $get_uid = $uid;
+        $query_get_StudentID = "SELECT studentID from student WHERE uid ='$get_uid'";
+        $student_ID = $this->query($query_get_StudentID);
+
+        
+        if (!isset($student_ID['studentID'])) {
+        }
+
+        $currentSID = $student_ID[0]->studentID;
+
+
+        $query = "SELECT * FROM payment where  studentID = '$currentSID'  AND payment_status = '0'";
+        $data = $this->query($query);
+
+        if ($data == NULL) {
+            $data = array();
+        }
+
+        return $data;
+    }
+
+    public function pendingPayments()
+    {
+        // where  studentID = '185'
+
+        $query = "SELECT * FROM payment WHERE  payment_status = '0'";
+        $data = $this->query($query);
+
+        if ($data == NULL) {
+            $data = array();
+        }
+
+        return $data;
+    }
+    /////////////////////
+    //     public function addNewPendingPayments()
+    //     {
+    //         // set the current date
+    //     $currentDate = date('Y-m-d');
+
+    //     // check if it is the first of the month
+    //         if (date('d', strtotime($currentDate)) == 1) {
+    //         // retrieve the data from the Course table
+    //         $sql = "SELECT * FROM Course";
+    //         $result = $this->query($sql);
+
+    //         // insert the data into the pending-payment table
+    //         while ($row = mysqli_fetch_assoc($result)) {
+    //             $sql2 = "INSERT INTO pending-payment (course_name, course_fee) VALUES ('".$row['course_name']."', '".$row['course_fee']."')";
+    //             $this->query($sql2);
+    //              }
+    //         }
+    // ////////////////////
+    //     }
 }
 
+class BankPayment extends Model
+{
+    //says what table it has to target
+    public $error = [];
 
-class GetStudentName extends Model{
+    protected $table = "bank_payment";
+    protected $allowed_columns = [
+        'NameOnSlip',
+        'Address',
+        'CourseID',
+        'PayerNIC',
+        'SlipImage',
+        'PaymentDate',
+        'Amount',
+        'Bank',
+        'Branch',
+        'ChequeNo',
+        'BankPaymentID',
+        'status',
+    ];
+
+    public function validateBankPayment()
+    {
+        $query = "SELECT * FROM bank_payment ";
+        $data = $this->query($query);
+
+        if ($data == NULL) {
+            $data = array();
+        }
+
+        return $data;
+    }
+}
+class GetStudentName extends Model
+{
     //says what table it has to target
     public $error = [];
     protected $table = "student";
@@ -41,7 +156,3 @@ class GetStudentName extends Model{
         'last_name',
     ];
 }
-
-
-
-  

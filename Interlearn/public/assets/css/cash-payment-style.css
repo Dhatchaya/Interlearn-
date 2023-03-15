@@ -72,6 +72,11 @@
   top:25px;
 } 
 
+.required-star{
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+}
 
 .card-type-icon {
   width: 50px;

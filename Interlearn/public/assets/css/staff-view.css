@@ -48,10 +48,10 @@ table.payment-table {
     text-align: center;
     border: 1px solid #ddd;
   }
-  
+/*   
   table.payment-table th {
     background-color: #ddd;
-  }
+  } */
   
   table.payment-table button {
     background-color: #3E206D;

@@ -30,7 +30,6 @@ class Database{
                 }
                 else{
                     $type = PDO::FETCH_ASSOC;
-
                 }
                 $result = $stmt -> fetchAll($type);
                 
@@ -60,8 +59,6 @@ class Database{
              
                     return true;
                 }
-            
-          
         }
         return false;
         
@@ -79,8 +76,6 @@ class Database{
                     return true;
                     exit;
                 }
-            
-          
         }
         return false;
         

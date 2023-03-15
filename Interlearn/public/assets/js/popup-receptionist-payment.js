@@ -1,26 +1,29 @@
+const btn1 = document.getElementById("val-bank-btn");
+const btn2 = document.getElementById("cash-btn");
 
-const btn3 = document.getElementById("cash-btn");
-const btn4 = document.getElementById("validate-btn-1");
+const hiddenDiv1 = document.getElementById("hiddenDiv-1");
+const hiddenDiv2 = document.getElementById("hiddenDiv-2");
 
-const hiddenDiv3 = document.getElementById("hiddenDiv-3");
-const hiddenDiv4 = document.getElementById("hiddenDiv-4");
+const closeBtn1 = document.getElementById("close-button-1");
+const closeBtn2 = document.getElementById("close-button-2");
 
-
-const closeBtn3 = document.getElementById("close-button-3");
-const closeBtn4 = document.getElementById("close-button-4");
-
-btn3.addEventListener("click", function() {
-    hiddenDiv3.style.display = "flex";
-  });
-  closeBtn3.addEventListener("click", function() {
-    hiddenDiv3.style.display = "none";
-  });
+btn1.addEventListener("click", function() {
+  hiddenDiv1.style.display = "flex";
+});
+closeBtn1.addEventListener("click", function() {
+  hiddenDiv1.style.display = "none";
+});
   
-  
-  btn4.addEventListener("click", function() {
-    hiddenDiv4.style.display = "flex";
-  });
-  closeBtn4.addEventListener("click", function() {
-    hiddenDiv4.style.display = "none";
-  });
-  
+
+
+
+btn2.addEventListener("click", function() {
+  hiddenDiv2.style.display = "flex";
+});
+closeBtn2.addEventListener("click", function() {
+  hiddenDiv2.style.display = "none";
+});
+
+
+
+

@@ -12,7 +12,11 @@
   align-items: center;
 }
 
-
+.required-star{
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+}
 .blurred {
   filter: blur(1px);
 }

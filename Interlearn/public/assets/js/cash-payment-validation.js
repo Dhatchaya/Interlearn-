@@ -1,6 +1,4 @@
-
-
-const form = document.querySelector('form');
+const form = document.getElementById('cash_payment_form');
 const errorSpace1 = document.querySelector('.errorSpace1');
 const errorSpace2 = document.querySelector('.errorSpace2');
 const errorSpace3 = document.querySelector('.errorSpace3');

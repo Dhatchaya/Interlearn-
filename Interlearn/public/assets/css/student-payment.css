@@ -13,29 +13,37 @@
     cursor: pointer;
     border-radius: 5px;
 }
-.payment-history{
-    position: relative;
-    top: 180px;
-    left: 350px;
+
+.main-page-container{
+  position: relative;
+  display: grid;
+  gap: 20PX;
+  left: 250px;
+  top: 100px;
 }
 
-.student-payment{
-    position: relative;
-    width: 80vw;
-    left: 250px;
-    top: 200px;
-    height: 50px;
-    display: grid;
-    grid-template-columns: 2fr 2fr 3fr 2fr 2fr 2fr;
+.table-container{
+  position: relative;
+  width: 80vw;
+}
+
+.pending-payment, .payment-history {
+  position: relative;
+  width: 80vw;
+  margin: 0;
 
 }
 
+
+.table-title{
+  position: relative;
+  font-size: 30px;
+  font-weight: bold;
+}
 
 .payment-table {
   position: relative;
-    top: -100px;
     width: 80vw;
-    border-collapse: collapse;
   }
   
   table.payment-table th,
@@ -48,6 +56,9 @@
   
   table.payment-table th {
     background-color: #ddd;
+  }
+  tr:nth-child(2n) {
+    background: rgba(104, 44, 198, 0.09);
   }
   
   table.payment-table button {
