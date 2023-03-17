@@ -47,6 +47,7 @@
                     </div>
                     <div class="Progress">
                             <a href="<?=ROOT?>/student/progress">
+                            <a href="<?=ROOT?>/student/myprogress">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/progress.svg" alt="progress"></br>
                             <span>Progress</span>
                             </a>
