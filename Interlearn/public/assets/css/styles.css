@@ -2639,6 +2639,9 @@ std_view_bottom{
     cursor: pointer;
     text-align: center;
     border-style: groove;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .std_op_loader{

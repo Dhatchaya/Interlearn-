@@ -62,5 +62,22 @@ class StudentCourse extends Model
 
     }
 
+    public function CourseForStudent($data= null){
+        
+        $keys = array_keys($data);
+        $query = "SELECT s.student_id, s.course_id, c.name FROM student_course s 
+        INNER JOIN course c ON s.course_id = c.course_id where ";
 
+
+        foreach($keys as $key){
+            $query .= $key. " =:".$key." && ";
+        }
+        $query = trim($query,"&& ");
+        $res = $this -> query($query,$data);
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;       
+    }
 }
