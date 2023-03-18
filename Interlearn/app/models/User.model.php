@@ -25,6 +25,17 @@ class User extends Model
         'Receptionist',
 
     ];
+    public function Addstaff(){
+        $data = json_decode(file_get_contents("php://input"), true);
+        if ($this->validate($data)) {
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+            $this->insert($data);
+            $this->error['success'] = "Staff added successfully";
+        }
+        return $this->error;
+    }
+
+
     public function validate($data)
     {   
         $this->error = [];

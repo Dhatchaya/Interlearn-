@@ -75,42 +75,40 @@ submitBtn.addEventListener('click', function(event) {
 
    
     else{
-    fetch('/Interlearn/public/manager/addStaff', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({NIC_no: NIC.value,
-            first_name: firstName.value, 
-            last_name: lastName.value, 
-            email: emailAddress.value, 
-            mobile_no: mobileNum.value, 
-            role: jobtype.value, 
-            // display_picture: epmImage.value, 
-            gender: gender.value, 
-            Addressline1: address.value, 
-            // contractEndingDate: contractEndingDate.value,
-            email: emailAddress.value,
-            password: password.value,
-        }),
-    })
-    .then(response => response.json())
-    .then(response => {
-        console.log("All is righr");
-    }).catch(error=>console.log(error));
+        fetch('/Interlearn/public/manager/addStaff', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                NIC_no: NIC.value,
+                first_name: firstName.value, 
+                last_name: lastName.value, 
+                email: emailAddress.value, 
+                mobile_no: mobileNum.value, 
+                role: jobtype.value, 
+                gender: gender.value, 
+                Addressline1: address.value, 
+                password: password.value,
+            }),
+        })
+        .then(response => response.json())
+        .then(response => {
+            console.log("All is right");
+        }).catch(error => console.log(error));
     
-    setTimeout(hiddenDiv2.style.display = "none", 500);
+    setTimeout(hiddenDiv1.style.display = "none", 500);
 }
-console.log(studentId.value);
+// console.log(studentId.value);
     firstName.value = "";
     lastName.value = "";
     gender.value = "";
     address.value = "";
     NIC.value = "";
     mobileNum.value = "";
-    contractEndingDate.value = "";
+    // contractEndingDate.value = "";
     jobtype.value = "";
-    epmImage.value = "";
+    // epmImage.value = "";
     emailAddress.value = "";
     password.value = "";
 

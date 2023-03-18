@@ -49,27 +49,40 @@ class Manager extends Controller
 
         $this->view('manager/view_staff',['staffMenbers'=> $staffDetailSet,]);
     }
-
     public function addStaff()
     {
         if (!Auth::is_manager()) {
             redirect('home');
         }
-
-        // show($_POST);
+        
         if (isset($_POST)) {
             $data = json_decode(file_get_contents("php://input"), true);
-
-            // $password_raw=   $data['password'];
-            // $data['password'] = password_hash($password_raw, PASSWORD_DEFAULT);
-
+            
+            
+            $data['emp_status'] =   '1';
+    
             $addStaff = new Staff();
             $addStaff->Addstaff($data);
+    
+            $addUser = new User();
+            $addUser->Addstaff($data);
+    
+            // Return a JSON response indicating success
+            echo json_encode(array(
+                'success' => true,
+                'message' => 'Staff member added successfully.'
+            ));
+            exit;
         }
-        echo json_encode($addStaff);
+    
+        // Return an error response if the request is invalid
+        http_response_code(400);
+        echo json_encode(array(
+            'success' => false,
+            'message' => 'Invalid request.'
+        ));
         exit;
     }
-
 
     // public function recrewStaff()
     // {   

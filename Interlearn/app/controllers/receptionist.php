@@ -34,7 +34,7 @@ class Receptionist extends Controller
         $this->view('receptionist/class');
     }
 
-    public function user()
+    public function profile()
     {
         if (!Auth::is_receptionist()) {
             redirect('home');
@@ -68,28 +68,29 @@ class Receptionist extends Controller
 
 
     //     $this->view('receptionist/user',  $data);
-    // }
-
     public function editUser()
     {
         if (!Auth::is_receptionist()) {
             redirect('home');
         }
-        // show($_POST);
-        if (isset($_POST)) {
+    
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $currentUserID = $id ?? Auth::getUID();
-
-            $data = json_decode(file_get_contents("php://input"), true);
-
+    
+            $data = $_POST;
             $staffData = new Staff();
             $staffData->updateStaffData($currentUserID, $data);
+    
+            // Return a JSON response
+            header('Content-Type: application/json');
+            echo json_encode(['status' => 'success']);
+            exit;
         }
-        // echo json_encode($payment_model);
+    
         exit;
     }
-
-
-
+    
+    
     public function payments()
     {
         if (!Auth::is_receptionist()) {

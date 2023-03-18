@@ -58,34 +58,52 @@ addressBtn.addEventListener('click', () => {
 });
 
 
+
 saveBtn.addEventListener('click', () => {
     console.log('save');
     const data = {
-        emp_id: empID.value, 
-        first_name: fName.value, 
-        last_name: lName.value, 
-        // email: email.value, 
-        Addressline1: address.value, 
-        mobile_no: mobileNo.value, 
-        role: position.value, 
-        enrollment_date: joinedDate.value, 
-        emp_status: empState.value
+        emp_id: empID.value.trim() !== '' ? empID.value : null, 
+        first_name: fName.value.trim() !== '' ? fName.value : null,
+        last_name: lName.value.trim() !== '' ? lName.value : null, 
+        email: email.value.trim() !== '' ? email.value : null, 
+        Addressline1: address.value.trim() !== '' ? address.value : null, 
+        mobile_no: mobileNo.value.trim() !== '' ? mobileNo.value : null, 
+        emp_status: empState.value.trim() !== '' ? empState.value : null
     };
     console.log(JSON.stringify(data));
+    const filteredData = Object.keys(data).reduce((acc, key) => {
+        if (data[key] !== null) {
+            acc[key] = data[key];
+        }
+        return acc;
+    }, {});
+    console.log(JSON.stringify(filteredData));
+    if (Object.keys(filteredData).length === 0) {
+        console.log('No data to save');
+        return;
+    }
     fetch('/Interlearn/public/receptionist/editUser', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(data),
     })
     .then(response => response.json())
     .then(response => {
-        console.log(response);
+        if (response.status === 'success') {
+            console.log('Update successful');
+        } else {
+            console.error('Update failed');
+        }
     })
     .catch(error => console.log(error));
     
+    
 });
+
+
+
 cancelBtn.addEventListener('click', () => {
     // location.reload();
     console.log('cancel');
