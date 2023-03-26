@@ -10,23 +10,21 @@ class Staff extends Model
     protected $table = "staff";
     protected $allowed_columns = [
 
-        'emp_ID',
+        'emp_id',
         'NIC_no',
-        'username',
-        'password',
         'enrollment_date',
         'first_name',
         'last_name',
-        'email',
         'mobile_no',
         'Addressline1',
         'Addressline2',
-        'role',
         'display_picture',
         'gender',
+        'emp_status',
         'uid',
-
+        'contractEndingDate',
     ];
+
     protected $staffs = [
         'Manager',
         'Teacher',
@@ -34,7 +32,33 @@ class Staff extends Model
         'Receptionist',
 
     ];
-    public function getUserDetails($uid){
+
+    public function Addstaff($data)
+    {
+        // $this->insert($data);
+        
+        $data = (array) $data;
+
+        $last_inserted_email = $data['email'];
+        $query = "SELECT * FROM users where email = '$last_inserted_email'";
+        $newStaffuid = $this->query($query) ;
+        $data['uid']  = $newStaffuid[0]->uid;
+        $this->insert($data);
+        return true;
+        
+
+        // $this->error = [];
+        // if ($this->where(['NIC_no' => $data['NIC_no']], 'emp_ID')) {
+        //     $this->error['NIC_no_error'] = "NIC_no already exists";
+        // } else {
+        //     $this->insert($data);
+        //     $this->error['success'] = "Staff added to staff table successfully";
+        // }
+    }
+
+
+    public function getUserDetails($uid)
+    {
         $query = "SELECT * FROM staff where uid = '$uid'";
         $data = $this->query($query);
         if ($data == NULL) {
@@ -44,7 +68,8 @@ class Staff extends Model
         return $data;
     }
 
-    public function getStaffDetails(){
+    public function getStaffDetails()
+    {
         // $query = "SELECT * FROM staff";
         $query = "SELECT staff.*, users.role FROM staff  JOIN users  ON staff.uid = users.uid";
         $data = $this->query($query);
@@ -56,7 +81,8 @@ class Staff extends Model
         return $data;
     }
 
-    public function updateStaffData($emp_id, $data) {
+    public function updateStaffData($emp_id, $data)
+    {
 
 
         // Check if emp_id is set
@@ -64,7 +90,7 @@ class Staff extends Model
             $this->error[] = 'Emp ID is required.';
             return false;
         }
-    
+
         // Check if data is empty
         if (empty($data)) {
             $this->error[] = 'No data to update.';
@@ -72,49 +98,34 @@ class Staff extends Model
         }
         $query = "UPDATE staff SET ";
         $data = $this->update_table($query, $data);
-        
+
         // $values = array();
-    
+
         // foreach ($data as $key => $values) {
         //     if (in_array($key, $this->allowed_columns)) {
         //         $values[] = "$key = ?";
         //     }
         // }
-    
+
         // $query .= implode(", ", $values) . " WHERE emp_ID = ?";
         // $data[] = $emp_id;
-    
+
         // // Debugging statements
         // var_dump($query);
         // var_dump(array_values($data));
-    
+
         // // Execute query
         // $result = $this->query($query, array_values($data));
-    
-        $result = $this->query($query,$data);
+
+        $result = $this->query($query, $data);
         if (!$result) {
             $this->error[] = 'Failed to update staff data.';
             return false;
         }
-    
+
         return true;
     }
 
-    public function Addstaff(){
-        $data = json_decode(file_get_contents("php://input"), true);
-        if ($this->validate($data)) {
-            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-
-            show($data);
-            die();
-
-            $this->insert($data);
-            
-
-            $this->error['success'] = "Staff added successfully";
-        }
-        return $this->error;
-    }
 
 
 

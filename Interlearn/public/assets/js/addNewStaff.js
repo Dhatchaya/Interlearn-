@@ -4,7 +4,7 @@ const gender = document.getElementById('gender');
 const address = document.getElementById('address');
 const NIC = document.getElementById('NIC');
 const mobileNum = document.getElementById('mobileNum');
-const contractEndingDate = document.getElementById('ContractEndingDate');
+const contractEndingDate = document.getElementById('ContractEnding');
 const jobtype = document.getElementById('jobtype');
 const epmImage = document.getElementById('epmImage');
 const emailAddress = document.getElementById('emailAddress');
@@ -23,94 +23,171 @@ const submitBtn = document.getElementById('submit-btn');
     const error10 = document.querySelector('#errorSpace10');
     const error11 = document.querySelector('#errorSpace11');
 
+    $isAllFilled = true;
+
+    contractEndingDate.addEventListener("input", () => {
+        const enteredDate = contractEndingDate.value;
+        const currentDate = new Date().toISOString().slice(0, 10); 
+        console.log(currentDate);
+        if (enteredDate < currentDate) {
+          errorSpace6.innerHTML = "Contract Ending Date cannot be in the past.";
+          $isAllFilled = false;
+        } else {
+          errorSpace6.innerHTML = "";
+        }
+        console.log(enteredDate);
+      });
     
-submitBtn.addEventListener('click', function(event) {
+submitBtn.addEventListener('click', async function(event) {
     event.preventDefault();
     console.log("button eka nm wada karanwa kolloooo");
 
 
-    if(!firstName.value){
-        error1.innerHTML = "First Name is required ";
-    }
-    if(!lastName.value ){
-        error2.innerHTML = "Last Name is required";
-    }
-    if(!gender.value){
-        error3.innerHTML = "Select gender please";
-    }
-    if(!address.value){
-        error4.innerHTML = "Address is required";
-    }
-    if(!NIC.value){
-        error5.innerHTML = "NIC is required";
-    }
-    if(!mobileNum.value){
-        error11.innerHTML = "Contact is required";
-    }
-    // if(!contractEndingDate.value){
-    //     error6.innerHTML = "Contract Ending Date is required";
-    // }
-    if(!jobtype.value){
-        error7.innerHTML = "job type is required";
-    }
-    // if(!epmImage.value){
-    //     error8.innerHTML = "Staff Image is required";
-    // }
-    if(!emailAddress.value){
-        error9.innerHTML = "E-mail Address is required";
-       
-        
-    }
 
-   
-    if(!password.value){
-        error10.innerHTML = "Password is required"; 
+    // if(!firstName.value){
+    //     error1.innerHTML = "First Name is required ";
+    //     $isAllFilled = false;
+    // }
+    // firstName.addEventListener('input', function(event) {
+    //     error1.innerHTML = "";
+    // });
+
+    // if(!lastName.value ){
+    //     error2.innerHTML = "Last Name is required";
+    //     $isAllFilled = false;
+    // }
+    // lastName.addEventListener('input', function(event) {
+    //     error2.innerHTML = "";
+    // });
+
+    // if(!gender.value){
+    //     error3.innerHTML = "Select gender please";
+    //     $isAllFilled = false;
+    // }
+    // gender.addEventListener('input', function(event) {
+    //     error3.innerHTML = "";
+    // });
+
+    // if(!address.value){
+    //     error4.innerHTML = "Address is required";
+    //     $isAllFilled = false;
+    // }
+    // address.addEventListener('input', function(event) {
+    //     error4.innerHTML = "";
+    // });
+
+    // const value = NIC.value.substr(0, 9);
+    // if(!isNaN(value)){
+    //     if(NIC.value.length < 12||NIC.value.length < 10){
+    //         error5.innerHTML = "NIC number is not valid";
+    //             if(!NIC.value){
+    //                 error5.innerHTML = "NIC is required";
+    //             }
+    //         $isAllFilled = false;
+    //     }
+    // }
+    
+    // NIC.addEventListener('input', function(event) {
+    //     error5.innerHTML = "";
+    // });
+    // if(mobileNum.value.length < 10){
+    //     error11.innerHTML = "Contact number must be 10 digits";
+    //     if(!mobileNum.value){
+    //         error11.innerHTML = "Contact is required";
+    //     }
+    //     $isAllFilled = false;
+    // }
+    
+    // mobileNum.addEventListener('input', function(event) {
+    //     error11.innerHTML = "";
+    // });
+
+    
+    // if(contractEndingDate.value===""){
+    //     errorSpace6.innerHTML = "Contract Ending Date is required";
+    //     $isAllFilled = false;
+    //     }
+
+    
+
+    // if(!jobtype.value){
+    //     error7.innerHTML = "job type is required";
+    //     $isAllFilled = false;
+    // }
+    // jobtype.addEventListener('input', function(event) {
+    //     error7.innerHTML = "";
+    // });
+    // if(!emailAddress.value){
+    //     error9.innerHTML = "E-mail Address is required";
+    //     $isAllFilled = false;
+    // }
+    // emailAddress.addEventListener('input', function(event) {
+    //     error9.innerHTML = "";
+    // });
+
+    // if(password.value.length < 8){
+    //     error10.innerHTML = "Password must be at least 8 characters";
         
-    }if(password.length < 8){
-        error10.innerHTML = "Password must be at least 8 characters";
-     }
-    // if(!/[!@#$%^&*]/.test(password) || !/\d/.test(password)){
+    //     if(!password.value){
+    //         error10.innerHTML = "Password is required"; 
+    //     }
+    //     $isAllFilled = false;
+    //  }
+    //  password.addEventListener('input', function(event) {
+    //      error10.innerHTML = "";
+    //  });
+    //  if(!/[!@#+_)(""}{[<>,./?|-$%^&*]/.test(password.value) || !/\d/.test(password.value)){ 
     //     error10.innerHTML = "Password is not valid";
-    // }
-
-   
-    else{
-        fetch('/Interlearn/public/manager/addStaff', {
+    //     $isAllFilled = false;
+    //  }
+  
+    // else{
+        // if($isAllFilled){
+        console.log("Data tika nm passata yauw sudda.....!");
+        const result = await fetch('/Interlearn/public/manager/addStaff', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                NIC_no: NIC.value,
                 first_name: firstName.value, 
                 last_name: lastName.value, 
                 email: emailAddress.value, 
                 mobile_no: mobileNum.value, 
+                NIC_no: NIC.value,
+                contractEndingDate: contractEndingDate.value,
                 role: jobtype.value, 
                 gender: gender.value, 
                 Addressline1: address.value, 
                 password: password.value,
             }),
         })
-        .then(response => response.json())
-        .then(response => {
-            console.log("All is right");
-        }).catch(error => console.log(error));
+        .then(response => response.text())
+        .then(data =>{
+            console.log(data);
+            console.log(data.constructor.name);
+        } )
+        .catch(error => console.log(error));
+        
     
-    setTimeout(hiddenDiv1.style.display = "none", 500);
-}
+        // console.log(result);
+        
+    hiddenDiv1.style.display = "none";
+    // }
+// }
 // console.log(studentId.value);
-    firstName.value = "";
-    lastName.value = "";
-    gender.value = "";
-    address.value = "";
-    NIC.value = "";
-    mobileNum.value = "";
-    // contractEndingDate.value = "";
-    jobtype.value = "";
-    // epmImage.value = "";
-    emailAddress.value = "";
-    password.value = "";
+    if($isAllFilled){
+            firstName.value = "";
+            lastName.value = "";
+            gender.value = "";
+            address.value = "";
+            NIC.value = "";
+            mobileNum.value = "";
+            // contractEndingDate.value = "";
+            jobtype.value = "";
+            emailAddress.value = "";
+            password.value = "";
+        }
 
 
 

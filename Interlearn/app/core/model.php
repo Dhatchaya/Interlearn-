@@ -25,6 +25,10 @@ class Model extends Database
 
         $this->query($query, $data);
         return true;
+
+
+
+        
     }
     //select all the records that matches 
     public function where($data, $orderby = null, $order = 'desc')
@@ -80,25 +84,25 @@ class Model extends Database
         }
         return false;
     }
-    public function role($data, $orderby = null)
-    {
-        $keys = array_keys($data);
-        $query = "select role from " . $this->table . " where ";
+    // public function role($data, $orderby = null)
+    // {
+    //     $keys = array_keys($data);
+    //     $query = "select role from " . $this->table . " where ";
 
-        foreach ($keys as $key) {
-            $query .= $key . " =:" . $key . " && ";
-        }
-        $query = trim($query, "&& ");
-        $query .= " order by $orderby desc limit 1";
-        $res = $this->query($query, $data);
+    //     foreach ($keys as $key) {
+    //         $query .= $key . " =:" . $key . " && ";
+    //     }
+    //     $query = trim($query, "&& ");
+    //     $query .= " order by $orderby desc limit 1";
+    //     $res = $this->query($query, $data);
 
-        if (is_array($res)) {
-            if (in_array($res[0]->role, $this->staffs)) {
-                return true;
-            }
-        }
-        return false;
-    }
+    //     if (is_array($res)) {
+    //         if (in_array($res[0]->role, $this->staffs)) {
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
 
 
     public function sendemail($data)

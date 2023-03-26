@@ -43,46 +43,98 @@ class Manager extends Controller
         //for it to go to view we have to put it inside data
         // $data['row'] = $user->first(['id' => $id]);
         // $data['title'] = "Profile";
-        
+
         $getStaffDetails = new Staff();
         $staffDetailSet = $getStaffDetails->getStaffDetails();
+        
+                // show ($staffDetailSet);
 
-        $this->view('manager/view_staff',['staffMenbers'=> $staffDetailSet,]);
+        $this->view('manager/view_staff', ['staffMenbers' => $staffDetailSet,]);
     }
+
+
     public function addStaff()
     {
         if (!Auth::is_manager()) {
             redirect('home');
         }
-        
+
         if (isset($_POST)) {
             $data = json_decode(file_get_contents("php://input"), true);
+
+            $data['emp_status'] = '1';
+
             
-            
-            $data['emp_status'] =   '1';
-    
-            $addStaff = new Staff();
-            $addStaff->Addstaff($data);
-    
+
             $addUser = new User();
-            $addUser->Addstaff($data);
-    
-            // Return a JSON response indicating success
-            echo json_encode(array(
-                'success' => true,
-                'message' => 'Staff member added successfully.'
-            ));
+            $addUser->Adduser($data);
+            
+            
+            $addStaff = new Staff();
+           $addStaff->Addstaff($data);
+            
+
+            
+
+            $json_response = json_encode(
+                $data,
+            );
+            
+            
+            if ($json_response === false) {
+                http_response_code(500);
+                echo json_encode([
+                    'success' => true,
+                    'message' => 'Error generating JSON response.',
+                    'data'=> $data
+                ]);
+                exit;
+            }
+
+            echo $json_response;
             exit;
         }
-    
-        // Return an error response if the request is invalid
+
         http_response_code(400);
-        echo json_encode(array(
+        echo json_encode([
             'success' => false,
             'message' => 'Invalid request.'
-        ));
+        ]);
         exit;
     }
+
+public function testing()
+{
+    if (!Auth::is_manager()) {
+        redirect('home');
+    }
+
+        $data = array(
+        'emp_id' => '1234561',
+        'NIC_no'=> '990331472v',
+        'enrollment_date'=> '2020-12-12'  ,
+        'contractEndingDate'=> '2024-12-12',
+        'first_name'=> 'Kamal',
+        'last_name'=> 'Perera',
+        'mobile_no'=>   '0771789456',
+        'Addressline1'=> 'No 12,',
+        'display_picture'=> '1',
+        'gender'=> '1' ,
+        'emp_status'=> '1',
+        'uid'=>'3',);
+
+        $data['emp_status'] = '1';
+
+
+        $addStaff = new Staff();
+        $addStaff->insert($data);
+
+
+        exit;
+
+}
+
+
 
     // public function recrewStaff()
     // {   
