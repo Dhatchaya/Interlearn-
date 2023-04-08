@@ -36,13 +36,14 @@
                         <?php if(!empty($materials)):  ?>
                         <?php foreach($materials as $material):?>
                             <?php if($material->week_no==$i):?>
-                            <?php if($material->file_type==="application/pdf"):?>
-                                <p><a href="#">
-                                <img src="<?=ROOT?>/assets/images/pdf.png" alt="" class="teacher_card_img3">
-                                <?=$material->upload_name?>
-                                <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
-                                <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->file_id?>')">
-                                </a></p>
+                                <?php if($material->type == "material"):?>
+                                <?php if($material->file_type==="application/pdf"):?>
+                                    <p><a href="#">
+                                    <img src="<?=ROOT?>/assets/images/pdf.png" alt="" class="teacher_card_img3">
+                                    <?=$material->upload_name?>
+                                    <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
+                                    <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->file_id?>')">
+                                    </a></p>
                                 <?php elseif($material->file_type==="text/plain"):?>
                                     <p><a href="#">
                                     <img src="<?=ROOT?>/assets/images/pp.png" alt="" class="teacher_card_img3">
@@ -50,15 +51,46 @@
                                     <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
                                     <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->file_id?>')">
                                     </a></p>
+                                <?php elseif($material->file_type==="application/x-zip-compressed"):?>
+                                    <p><a href="#">
+                                    <img src="<?=ROOT?>/assets/images/zip.png" alt="" class="teacher_card_img3">
+                                    <?=$material->upload_name?>
+                                    <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
+                                    <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->file_id?>')">
+                                    </a></p>
                                 <?php else:?>
-                                    <p><a href="<?=$material->view_URL?>"><?=$material->upload_name?> </a>
+                                    <!-- <p><a href="<?=$material->view_URL?>"><?=$material->upload_name?> </a>
                                     <a href="<?=$material->edit_URL?>">
                                     <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32">
                                     </a>
                                     <a href="#">
                                     <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" >
+                                    </a></p> -->
+                                    <p><a href="#">
+                                    <img src="<?=ROOT?>/assets/images/paper.png" alt="" class="teacher_card_img3">
+                                    <?=$material->upload_name?>
+                                    <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
+                                    <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->file_id?>')">
                                     </a></p>
-                                    <?php endif;?>
+                                <?php endif;?>
+
+                            <?php elseif($material->type == "assignment"):?>
+                                <p><a href="#">
+                                <img src="<?=ROOT?>/assets/images/assignment.png" alt="" class="teacher_card_img3">
+                                <?=$material->upload_name?>
+                                <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
+                                <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->file_id?>')">
+                                </a></p>
+
+                            <?php elseif($material->type == "URL"):?>
+                                <p><a href="#">
+                                <img src="<?=ROOT?>/assets/images/web.png" alt="" class="teacher_card_img3">
+                                <?=$material->upload_name?>
+                                <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
+                                <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->file_id?>')">
+                                </a></p>
+                            <?php endif;?>
+                            
                         <?php endif;?>
                         <?php endforeach;?>
                         <?php endif;?>
@@ -98,14 +130,17 @@
                                    <img src="<?=ROOT?>/assets/images/paper.png" alt="" class="teacher-crs-img"><br>Add lecture materials
                                 </a>
                             </div>
+                            <!-- <div class="teacher-crs-activity">
+                                <a href="#"><img src="<?=ROOT?>/assets/images/recording.png" alt="" class="teacher-crs-img"><br>Add recordings</a>
+                             </div> -->
+                             <div class="teacher-crs-activity">
+                                <a href="<?=ROOT?>/teacher/course/url/<?=$course->course_id?>" name="url">
+                                <img src="<?=ROOT?>/assets/images/web.png" alt="" class="teacher-crs-img"><br>Add URL
+                                </a>
+                             </div>
                             <?php endforeach;?>
                             <?php endif;?>
-                             <div class="teacher-crs-activity">
-                                <a href="#"><img src="<?=ROOT?>/assets/images/recording.png" alt="" class="teacher-crs-img"><br>Add recordings</a>
-                             </div>
-                             <div class="teacher-crs-activity">
-                                <a href="#"><img src="<?=ROOT?>/assets/images/web.png" alt="" class="teacher-crs-img"><br>Add URL</a>
-                             </div>
+                             
                         </div>
                     </form>
                 </div>

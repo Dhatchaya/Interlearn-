@@ -12,12 +12,16 @@ const span = document.getElementsByClassName("close")[0];
 function openModal(id) {
     const upload = document.getElementsByName("upload");
     const assignment = document.getElementsByName("assignment");
+    const url = document.getElementsByName("url");
     console.log(upload);
     for(i=0; i<assignment.length; i++){
         assignment[i].href = assignment[i].href + "/" + id+"/view";
     }
     for(i=0; i<upload.length; i++){
         upload[i].href = upload[i].href + "/" + id;
+    }
+    for(i=0; i<url.length; i++){
+        url[i].href = url[i].href + "/" + id;
     }
     modal.style.display = "block";
     console.log(id);

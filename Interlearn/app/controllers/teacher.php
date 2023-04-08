@@ -114,6 +114,7 @@ class Teacher extends Controller
         $course_week = new CourseWeek();
         $student_course = new StudentCourse();
         $course_content = new CourseContent();
+        $course_url = new CourseUrl();
         $data = [];
         $data['course_id'] = $id;
         $data['week_no'] = $week;
@@ -250,6 +251,31 @@ class Teacher extends Controller
             $data['week_no'] = $week;
               //show($data['courses']);die;
             $this->view('teacher/upload',$data);
+        }
+
+        if($action == "url"){
+            if(isset($_POST['submit']))
+            {
+                $cid = uniqid();
+
+                $_POST['course_id'] = $id;
+                //show($_POST);die;
+                $_POST['type'] = "URL";
+                $_POST['cid'] = $cid;
+                $result2 = $course_content -> insert($_POST);
+                $result = $course_url->insert($_POST);
+                echo "Material successfully published!";
+                header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
+            }
+            $data['rows']= $course->select([],'course_id');
+            //show($data['rows']);die;
+            $data['sums']= $subject -> teacherCourse([],$user_id);
+            //show($data['sums']);die;
+            $data['courses'] = $subject -> CoursePg(['course_id' => $id],$user_id);
+            $data['week_no'] = $week;
+            // show($data['week_no']);die;
+            //   show($data['courses']);die;
+            $this->view('teacher/url',$data);
         }
 
         if($action == "announcement")
