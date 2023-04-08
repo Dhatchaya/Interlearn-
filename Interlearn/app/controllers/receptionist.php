@@ -177,18 +177,18 @@ class Receptionist extends Controller
                     $data['teach_instructors'] = [];
                     $extra = [];
                     if($data['subjects']){
-                    for($i=0; $i<count($data['subjects']); $i++){
-                        for($x=0; $x<$data['subjects'][$i]; $x++){
-                            // show($data['subjects'][$i][$x]->course_id);die;
-                            if(!empty($data['subjects'][$i][$x]->course_id)){
+                        for($i=0; $i<count($data['subjects']); $i++){
+                            for($x=0; $x<$data['subjects'][$i]; $x++){
                                 // show($data['subjects'][$i][$x]->course_id);die;
-                                $extra= $course_instructor -> getInstructors($data['subjects'][$i][$x]->course_id);
-                                if(!empty($extra)){
-                                    $data['teach_instructors'] = $extra;
+                                if(!empty($data['subjects'][$i][$x]->course_id)){
+                                    // show($data['subjects'][$i][$x]->course_id);die;
+                                    $extra= $course_instructor -> getInstructors($data['subjects'][$i][$x]->course_id);
+                                    if(!empty($extra)){
+                                        $data['teach_instructors'] = $extra;
+                                    }
                                 }
                             }
                         }
-                    }
                     // show($extra);die;
 
                 
@@ -196,10 +196,10 @@ class Receptionist extends Controller
                     }
 
 
-                    if(empty($subjectDetails)){
-                        $subject -> delete(['subject_id'=>$subject_id ]);
-                        header("Location:http://localhost/Interlearn/public/receptionist/course");
-                    }
+                    // if(empty($subjectDetails)){
+                    //     $subject -> delete(['subject_id'=>$subject_id ]);
+                    //     header("Location:http://localhost/Interlearn/public/receptionist/course");
+                    // }
                     // show($data['teach_instructors']);
                     // //  
                     // die;
