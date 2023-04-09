@@ -64,6 +64,7 @@ class Student extends Controller
         $student_course = new StudentCourse();
         $course_week = new CourseWeek();
         $course_material = new CourseMaterial();
+        $course_content = new CourseContent();
         $data = [];
 
         if($action == 'view')
@@ -78,7 +79,9 @@ class Student extends Controller
             //show($data['courses']);die;
             $data['çourseWeeks'] = $course_week->getWeeks($id);
 
-            $data['materials'] = $subject -> studentCourseMaterials([],$id);
+            // $data['materials'] = $subject -> studentCourseMaterials([],$id);
+            $data['materials'] = $course_content -> studentCourseContent([],$id);
+            // show($data['materials']);die;
 
             // $data['files'] = $course_material -> downloadFiles([],$id);
 

@@ -9,6 +9,12 @@
             <h2>Grade <?=esc($course->grade)?> - <?=esc($course->subject)?></h2>
             <?php endforeach;?>
             <?php endif;?><br>
+
+            <?php if(!empty($error)):?>
+                <?php show($error);die;?>
+            <p id="error" class="warning"><?=$error?></p>
+            <?php endif;?>
+
             <h3>Upload Materials</h3>
             <br><br>
             <form action="" method="post" enctype="multipart/form-data">
