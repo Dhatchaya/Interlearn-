@@ -169,13 +169,7 @@
                             <td>17/01/2023</td>
                             <td><button>Update</button></td>
                         </tr>
-                        <tr>
-                            <td>Gagana Samarasekara</td>
-                            <td>Manager</td>
-                            <td>0769845627</td>
-                            <td>02/01/2023</td>
-                            <td><button>Update</button></td>
-                        </tr>
+                        
                         <tr>
                             <td>Dachaya Prabhakaran</td>
                             <td>Receptionist</td>

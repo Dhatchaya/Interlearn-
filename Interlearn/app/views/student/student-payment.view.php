@@ -121,30 +121,30 @@
 
             <div class="form-group">
               <h2>Depositor’s Details</h2><br>
-              <label class="payment-label" for="Name">Name on payment slip</label>
+              <label class="payment-label" for="Name">Name on payment slip<span class="required-star">*</span></label>
               <div class="errorSpace1" style="top: 65px"></div>
               <input value="<?= set_value('NameOnSlip') ?>" name="NameOnSlip " class="payment-input" type="text" id="name-on-slip" placeholder="   Pavithra H.M.M">
             </div>
 
             <div class="form-group">
-              <label class="payment-label" for="Address">Address</label>
+              <label class="payment-label" for="Address">Address<span class="required-star">*</span></label>
               <div class="errorSpace2"></div>
               <input value="<?= set_value('Address') ?>" name="Address" class="payment-input" type="text" id="address" placeholder="   ">
             </div>
 
 
             <div class="form-group  ">
-              <label class="payment-label" for="CourseID">Course ID</label>
+              <label class="payment-label" for="CourseID">Course ID<span class="required-star">*</span></label>
               <div class="errorSpace3"></div>
               <input value="<?= set_value('CourseID') ?>" name="CourseID " class="payment-input" type="text" id="address" maxlength="5" placeholder="   ">
             </div>
             <div class="form-group  ">
-              <label class="payment-label" for="NIC">NIC Number</label>
+              <label class="payment-label" for="NIC">NIC Number<span class="required-star">*</span></label>
               <div class="errorSpace4"></div>
               <input value="<?= set_value('PayerNIC') ?>" name="PayerNIC" class="payment-input" type="text" id="NIC" placeholder="990331472v" maxlength="12">
             </div>
             <div class="form-group  ">
-              <label class="payment-label" for="SlipImage">Payment Slip Image (.pdf is only acceptable)</label>
+              <label class="payment-label" for="SlipImage">Payment Slip Image (.pdf is only acceptable)<span class="required-star">*</span></label>
               <div class="errorSpace4"></div>
               <input name="SlipImage" class="payment-input" type="file" id="file-upload" accept=".pdf" onchange="showUploadButton()">
               <button id="upload-button" disabled>Upload</button>
@@ -154,18 +154,18 @@
           <div class="sub-container">
             <div class="form-group">
               <h2>Payment Details</h2><br>
-              <label class="payment-label" for="PaymentDate">Payment Date</label>
+              <label class="payment-label" for="PaymentDate">Payment Date<span class="required-star">*</span></label>
               <div class="errorSpace1" style="top: 65px"></div>
               <input value="<?= set_value('PaymentDate') ?>" name="PaymentDate" class="payment-input" type="date" id="card-number">
             </div>
 
             <div class="form-group">
-              <label class="payment-label" for="card-holder-name">Ammount(LKR)</label>
+              <label class="payment-label" for="card-holder-name">Ammount(LKR)<span class="required-star">*</span></label>
               <div class="errorSpace2"></div>
               <input value="<?= set_value('Ammount') ?>" name="Ammount" class="payment-input" type="currency" maxlength="7" id="ammount" placeholder=" 5000">
             </div>
             <div class="form-group  ">
-              <label class="payment-label" for="Bank">Bank</label>
+              <label class="payment-label" for="Bank">Bank<span class="required-star">*</span></label>
               <div class="errorSpace4"></div>
               <select class="selecter">
                 <option value="" disabled selected>Select a bank</option>
@@ -179,7 +179,7 @@
               </select>
             </div>
             <div class="form-group div-adject-4 ">
-              <label class="payment-label" for="Branch">Branch</label>
+              <label class="payment-label" for="Branch">Branch<span class="required-star">*</span></label>
               <div class="errorSpace3"></div>
               <input value="<?= set_value('Branch') ?>" name="Branch" class="payment-input" type="text" id="Cheque-No" placeholder=" Colombo">
             </div>

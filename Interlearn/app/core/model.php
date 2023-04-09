@@ -83,6 +83,27 @@ class Model extends Database {
         return false;
            
     }
+<<<<<<< HEAD
+    // public function role($data, $orderby = null)
+    // {
+    //     $keys = array_keys($data);
+    //     $query = "select role from " . $this->table . " where ";
+
+    //     foreach ($keys as $key) {
+    //         $query .= $key . " =:" . $key . " && ";
+    //     }
+    //     $query = trim($query, "&& ");
+    //     $query .= " order by $orderby desc limit 1";
+    //     $res = $this->query($query, $data);
+
+    //     if (is_array($res)) {
+    //         if (in_array($res[0]->role, $this->staffs)) {
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
+=======
     public function role($data,$orderby=null){
         $keys = array_keys($data);
         $query ="select role from ".$this->table." where ";
@@ -102,6 +123,7 @@ class Model extends Database {
         }
         return false;
     }
+>>>>>>> main
 
 
     public function sendemail($data){

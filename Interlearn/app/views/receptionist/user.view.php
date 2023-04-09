@@ -48,7 +48,7 @@
                 </div>
                 <div class="profile-data">
                     <label class="user-data-label" for="l-name">SECOND NAME</label>
-                    <input id="lname" class="user-detail" value="<?= $userData[0]->last_name ?? '' ?>" readonly>
+                    <input id="lname" class="user-detail" placeholder="<?= $userData[0]->last_name ?? '' ?>" readonly>
                     <button id="change-lname" class="edit-btn" type="button">✒️ EDIT</button>
                 </div>
 
@@ -157,9 +157,9 @@
         //***********************footer support hright changer********************************//
 
 
-        var div1 = document.querySelector(".student-payment");
-        var div2 = document.querySelector(".footer-support");
-        div2.style.height = div1.offsetHeight + "px";
+        // var div1 = document.querySelector(".student-payment");
+        // var div2 = document.querySelector(".footer-support");
+        // div2.style.height = div1.offsetHeight + "px";
     </script>
 
 

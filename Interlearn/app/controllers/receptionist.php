@@ -547,42 +547,7 @@ class Receptionist extends Controller
         $this->view('receptionist/enquiry',$data);
     }
 
-
-//    public function payments()
-//    {
-//        if (!Auth::is_receptionist()) {
-//            redirect('home');
-//        }
-//
-//        $this->view('receptionist/receptionist-payments');
-//    }
-//
-//    public function getPayment()
-//    {
-//        if (!Auth::is_receptionist()) {
-//            redirect('home');
-//        }
-//        // show($_POST);
-//        if (isset($_POST)) {
-//            $payment_model = new Payment();
-//            $_POST['method'] = 'cash';
-//            $_POST['status'] = '1';
-//            $payment_model->insert($_POST);
-//            $this->view("receptionist/receptionist-payments");
-//        }
-//    }
-//
-//
-//    public function getPaymentData()
-//    {
-//        $payment = new Payment();
-//        $data = $payment->getAll();
-//        return $data;
-//    }
-
-
-    //from here
-    public function user()
+    public function profile()
     {
         if (!Auth::is_receptionist()) {
             redirect('home');
@@ -616,28 +581,29 @@ class Receptionist extends Controller
 
 
     //     $this->view('receptionist/user',  $data);
-    // }
-
     public function editUser()
     {
         if (!Auth::is_receptionist()) {
             redirect('home');
         }
-        // show($_POST);
-        if (isset($_POST)) {
+    
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $currentUserID = $id ?? Auth::getUID();
-
-            $data = json_decode(file_get_contents("php://input"), true);
-
+    
+            $data = $_POST;
             $staffData = new Staff();
             $staffData->updateStaffData($currentUserID, $data);
+    
+            // Return a JSON response
+            header('Content-Type: application/json');
+            echo json_encode(['status' => 'success']);
+            exit;
         }
-        // echo json_encode($payment_model);
+    
         exit;
     }
-
-
-
+    
+    
     public function payments()
     {
         if (!Auth::is_receptionist()) {

@@ -25,6 +25,18 @@ class User extends Model
         'Receptionist',
 
     ];
+    public function Adduser($data){
+
+        if ($this->validate($data)) {
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+            $this->insert($data);
+            $this->error['success'] = "Staff added to user table successfully with uid: ";
+            return true;
+        }
+        return $this->error;
+    }
+
+
     public function validate($data)
     {   
         $this->error = [];
