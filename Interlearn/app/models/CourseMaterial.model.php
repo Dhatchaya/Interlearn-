@@ -26,13 +26,14 @@ class CourseMaterial extends Model
     public function validate($data)
     {   
         $this->error = [];
-        foreach($data as $key => $value)
-        { 
-            if(empty($data[$key]))
-            {
-                $this -> error[$key] = ucfirst($key)." is required";
-            }
-         }
+        if(empty($data['upload_name']))
+        {
+            $this -> error['upload_name'] = "Please provide a name for the upload";
+        }
+        if(empty($data['file']))
+        {
+            $this -> error['file'] = "Please provide a file for the upload";
+        }
     
             // // checks email is valid if so it'll check whther it already exists
             // if(!filter_var($data['email'],FILTER_VALIDATE_EMAIL))

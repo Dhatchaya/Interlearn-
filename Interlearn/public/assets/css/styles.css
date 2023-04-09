@@ -2583,12 +2583,12 @@ std_view_bottom{
 }
 
 .std_crs_main{
-    width: 60vw;
+    width: 75vw;
     margin-bottom: 5%;
 }
 
 .std_crs_pg_content{
-    margin-top: 10%;
+    margin-top: 5%;
     margin-left: 5%;
     display: flex;
 }
@@ -2907,7 +2907,7 @@ std_view_bottom{
     border: solid;
     border-color: rgb(0 0 0 / 30%);
     padding: 2%;
-    height: 70vh;
+    min-height: 40vh;
     border-radius: 5px;
 }
 

@@ -7,10 +7,8 @@
         <div class="std_crs_pg_content">
             <div class="std_crs_pg_name">
             <?php if(!empty($courses)):?>
-            <?php foreach($courses as $course):?>
-                <h2>Grade <?=$course->grade?> - <?=$course->subject?></h2>
-                <h3><?=$course->first_name?> <?=$course->last_name?></h3>
-                <?php endforeach;?>
+                <h2>Grade <?=$courses[0]->grade?> - <?=$courses[0]->subject?></h2>
+                <h3><?=$courses[0]->first_name?> <?=$courses[0]->last_name?></h3>
             <?php endif;?>
             </div>
             <!-- <div class="std_crs_pg_butn"> -->
@@ -41,20 +39,46 @@
                             ?>
                         <?php foreach($materials as $material):?>
                             <?php if($material->week_no==$i):?>
-                            <?php if($material->file_type==="application/pdf"):?>
-                                <p><a href="/uploads/<?=$material->course_id?>/materials/<?php echo $material->cid;?>/<?=$material->course_material?>">
+                                <?php if($material->type == "material"):?>
+                                    <p><a href="<?=$material->view_URL?>">
+                                <img src="<?=ROOT?>/assets/images/pdf.png" alt="" class="teacher_card_img3">
+                                <?=$material->upload_name?> 
+                                </a></p>
+
+                            <!-- <?php if($material->file_type==="application/pdf"):?>
+                                <p><a href="<?=$material->view_URL?>">
                                 <img src="<?=ROOT?>/assets/images/pdf.png" alt="" class="teacher_card_img3">
                                 <?=$material->upload_name?> 
                                 </a></p>
                                 <?php elseif($material->file_type==="text/plain"):?>
-                                    <p><a href="/uploads/<?=$material->course_id?>/materials/<?php echo $material->cid;?>/<?=$material->course_material?>">
+                                    <p><a href="<?=$material->view_URL?>">
                                     <img src="<?=ROOT?>/assets/images/pp.png" alt="" class="teacher_card_img3">
                                     <?=$material->upload_name?> 
                                     </a></p>
                                 <?php else:?>
-                                    <p><a href="/uploads/<?=$material->course_id?>/materials/<?php echo $material->cid;?>/<?=$material->course_material?>"><?=$material->upload_name?> 
+                                    <p><a href="<?=$material->view_URL?>">
+                                    <?=$material->upload_name?> 
                                     </a></p> 
-                                    <?php endif;?>
+                                <?php endif;?> -->
+
+                                <?php elseif($material->type == "assignment"):?>
+                                    <p><a href="/uploads/<?=$material->course_id?>/assignment/<?php echo $material->cid;?>/<?=$material->course_material?>">
+                                <img src="<?=ROOT?>/assets/images/assignment.png" alt="" class="teacher_card_img3">
+                                <?=$material->upload_name?> 
+                                </a></p>
+
+                                <?php elseif($material->type == "URL"):?>
+                                    <p><a href="<?=$material->view_URL?>">
+                                <img src="<?=ROOT?>/assets/images/web.png" alt="" class="teacher_card_img3">
+                                <?=$material->upload_name?> 
+                                </a></p>
+
+                                <?php elseif($material->type == "forum"):?>
+                                    <p><a href="/uploads/<?=$material->course_id?>/assignment/<?php echo $material->cid;?>/<?=$material->course_material?>">
+                                <img src="<?=ROOT?>/assets/images/forum.png" alt="" class="teacher_card_img3">
+                                <?=$material->upload_name?> 
+                                </a></p>
+                                <?php endif;?>
                         <?php endif;?>
                         <?php endforeach;?>
                         <?php endif;?>

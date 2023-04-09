@@ -42,21 +42,21 @@
                                     <img src="<?=ROOT?>/assets/images/pdf.png" alt="" class="teacher_card_img3">
                                     <?=$material->upload_name?>
                                     <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
-                                    <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->file_id?>')">
+                                    <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->cid?>')">
                                     </a></p>
                                 <?php elseif($material->file_type==="text/plain"):?>
                                     <p><a href="#">
                                     <img src="<?=ROOT?>/assets/images/pp.png" alt="" class="teacher_card_img3">
                                     <?=$material->upload_name?>
                                     <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
-                                    <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->file_id?>')">
+                                    <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->cid?>')">
                                     </a></p>
                                 <?php elseif($material->file_type==="application/x-zip-compressed"):?>
                                     <p><a href="#">
                                     <img src="<?=ROOT?>/assets/images/zip.png" alt="" class="teacher_card_img3">
                                     <?=$material->upload_name?>
                                     <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
-                                    <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->file_id?>')">
+                                    <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->cid?>')">
                                     </a></p>
                                 <?php else:?>
                                     <!-- <p><a href="<?=$material->view_URL?>"><?=$material->upload_name?> </a>
@@ -70,7 +70,7 @@
                                     <img src="<?=ROOT?>/assets/images/paper.png" alt="" class="teacher_card_img3">
                                     <?=$material->upload_name?>
                                     <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
-                                    <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->file_id?>')">
+                                    <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->cid?>')">
                                     </a></p>
                                 <?php endif;?>
 
@@ -79,7 +79,7 @@
                                 <img src="<?=ROOT?>/assets/images/assignment.png" alt="" class="teacher_card_img3">
                                 <?=$material->upload_name?>
                                 <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
-                                <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->file_id?>')">
+                                <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->cid?>')">
                                 </a></p>
 
                             <?php elseif($material->type == "URL"):?>
@@ -87,7 +87,7 @@
                                 <img src="<?=ROOT?>/assets/images/web.png" alt="" class="teacher_card_img3">
                                 <?=$material->upload_name?>
                                 <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
-                                <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->file_id?>')">
+                                <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->cid?>')">
                                 </a></p>
                             <?php endif;?>
                             
