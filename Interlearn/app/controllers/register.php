@@ -43,18 +43,15 @@ class Register extends Controller
                     }
                     else{
                         $data['errors']['pic'] ="unknown error occured";
-                        }
-                if($user->insert($_POST)){
-                    $verify = $user -> sendemail([
-                        'email' => $email,
-                        'user_activation_code'=>$user_activation_code,
-                        'user_otp'=>$user_otp
-                    ]);
-  
+                    }
+                    if($user->insert($_POST)){
+                        $verify = $user -> sendemail([
+                            'email' => $email,
+                            'user_activation_code'=>$user_activation_code,
+                            'user_otp'=>$user_otp
+                        ]);
+                    } 
                 }
-              
-               
-            }
             
             
         }

@@ -12,7 +12,7 @@
                 </a>
             </div>
             <div class="recp_view_rectangle">
-                <a href="#">
+                <a href="<?=ROOT?>/receptionist/course">
                     <img src="<?=ROOT?>/assets/images/recp_std.png" alt="" class="recp_view_img">
                     <p>Courses</p>
                 </a>
@@ -27,6 +27,18 @@
                 <a href="#">
                     <img src="<?=ROOT?>/assets/images/tt.png" alt="" class="recp_view_img">
                     <p>Time Table</p>
+                </a>
+            </div>
+            <div class="recp_view_rectangle">
+                <a href="<?=ROOT?>/receptionist/announcement">
+                    <img src="<?=ROOT?>/assets/images/tt.png" alt="" class="recp_view_img">
+                    <p>Announcement</p>
+                </a>
+            </div>
+            <div class="recp_view_rectangle">
+                <a href="<?=ROOT?>/receptionist/enrollment">
+                    <img src="<?=ROOT?>/assets/images/recp_std.png" alt="" class="recp_view_img">
+                    <p>Student Enrollments</p>
                 </a>
             </div>
         </div>

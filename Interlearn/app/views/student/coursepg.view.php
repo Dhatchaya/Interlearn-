@@ -6,57 +6,67 @@
     <div class="std_crs_main">
         <div class="std_crs_pg_content">
             <div class="std_crs_pg_name">
-                <h2>Grade 9 - Science</h2><br>
-                <h3>Mr. V. J. Viraj</h3>
+            <?php if(!empty($courses)):?>
+            <?php foreach($courses as $course):?>
+                <h2>Grade <?=$course->grade?> - <?=$course->subject?></h2>
+                <h3><?=$course->first_name?> <?=$course->last_name?></h3>
+                <?php endforeach;?>
+            <?php endif;?>
             </div>
-            <div class="std_crs_pg_butn">
+            <!-- <div class="std_crs_pg_butn"> -->
             <a href="<?=ROOT?>/student/overall">
                 <button class="std_crs_pg_btn">View Progress</button>
             </a>
-            </div>
+            <!-- </div> -->
         </div>
-        <div class="std_crs_pg_content2">
-            <a href="<?=ROOT?>/forums/1"><img src="<?=ROOT?>/assets/images/forum.png" class="std_crs_pg_img">Forum</a><br><br>
-            <a href="#"><img src="<?=ROOT?>/assets/images/fdb.png" class="std_crs_pg_img">Feedback Form</a><br><br><hr><br>
-            <h4>Day 1</h4><br>
-            <a href="#"><img src="<?=ROOT?>/assets/images/rec.png" class="std_crs_pg_img"></img>Recording</a>
-            <input type="checkbox" name="d1rec" id="d1rec" class="std_crs_pg_check"><br>
-            <a href="#"><img src="<?=ROOT?>/assets/images/pdf.png" class="std_crs_pg_img">Lesson 1</a>
-            <input type="checkbox" name="d1rec" id="d1rec" class="std_crs_pg_check"><br>
-            <a href="#"><img src="<?=ROOT?>/assets/images/pp.png" class="std_crs_pg_img">Past Paper 2020</a>
-            <input type="checkbox" name="d1rec" id="d1rec" class="std_crs_pg_check"><br>
-            <a href="<?=ROOT?>/student/submissionstat"><img src="<?=ROOT?>/assets/images/hw.png" class="std_crs_pg_img">Home work 1</a>
-            <input type="checkbox" name="d1rec" id="d1rec" class="std_crs_pg_check"><br><br><hr><br>
-            <h4>Day 2</h4><br>
-            <a href="#"><img src="<?=ROOT?>/assets/images/rec.png" class="std_crs_pg_img">Recording</a>
-            <input type="checkbox" name="d1rec" id="d1rec" class="std_crs_pg_check"><br>
-            <a href="#"><img src="<?=ROOT?>/assets/images/pdf.png" class="std_crs_pg_img">Lesson 2</a>
-            <input type="checkbox" name="d1rec" id="d1rec" class="std_crs_pg_check"><br>
-            <a href="#"><img src="<?=ROOT?>/assets/images/pp.png" class="std_crs_pg_img">Past Paper 2019</a>
-            <input type="checkbox" name="d1rec" id="d1rec" class="std_crs_pg_check"><br>
-            <a href="#"><img src="<?=ROOT?>/assets/images/hw.png" class="std_crs_pg_img">Home work 2</a>
-            <input type="checkbox" name="d1rec" id="d1rec" class="std_crs_pg_check"><br><br><hr><br>
-            <h4>Day 3</h4><br>
-            <a href="#"><img src="<?=ROOT?>/assets/images/rec.png" class="std_crs_pg_img">Recording</a>
-            <input type="checkbox" name="d1rec" id="d1rec" class="std_crs_pg_check"><br>
-            <a href="#"><img src="<?=ROOT?>/assets/images/pdf.png" class="std_crs_pg_img">Lesson 2-Part B</a>
-            <input type="checkbox" name="d1rec" id="d1rec" class="std_crs_pg_check"><br>
-            <a href="#"><img src="<?=ROOT?>/assets/images/pp.png" class="std_crs_pg_img">Past Paper 2021</a>
-            <input type="checkbox" name="d1rec" id="d1rec" class="std_crs_pg_check"><br>
-            <a href="#"><img src="<?=ROOT?>/assets/images/hw.png" class="std_crs_pg_img">Home work 3</a>
-            <input type="checkbox" name="d1rec" id="d1rec" class="std_crs_pg_check"><br><br><hr><br>
-            <h4>Day 4</h4><br>
-            <a href="#"><img src="<?=ROOT?>/assets/images/rec.png" class="std_crs_pg_img">Recording</a>
-            <input type="checkbox" name="d1rec" id="d1rec" class="std_crs_pg_check"><br>
-            <a href="#"><img src="<?=ROOT?>/assets/images/pdf.png" class="std_crs_pg_img">Lesson 3-Part A</a>
-            <input type="checkbox" name="d1rec" id="d1rec" class="std_crs_pg_check"><br>
-            <a href="#"><img src="<?=ROOT?>/assets/images/pp.png" class="std_crs_pg_img">Past Paper 2018</a>
-            <input type="checkbox" name="d1rec" id="d1rec" class="std_crs_pg_check"><br>
-            <a href="#"><img src="<?=ROOT?>/assets/images/hw.png" class="std_crs_pg_img">Home work 4</a>
-            <input type="checkbox" name="d1rec" id="d1rec" class="std_crs_pg_check"><br><br>
+        <div class="teacher_crs_content2">
+            <a href="<?=ROOT?>/student/course/view/<?=$id?>/announcement" class="teacher-course-announcement">
+                Announcements
+                <img src="<?=ROOT?>/assets/images/next.png" alt="" class="teacher-course-ann-img">
+            </a>
+        <?php
+                $i = 1;
+                foreach ($çourseWeeks as $value) {
+            ?>
+            <div class="teacher-grid-item" id="Week_<?=$i?>">
+                <div class="teacher-card-content">
+                    <div class="teacher-card-title">
+                        <div class="teacher-card-head">
+                            <p class="teacher-card-head-title"><?=$value->week_name?></p>
+                        </div>
+                    </div>
+                    <div class="teacher-card-body">
+                        <?php if(!empty($materials)):
+                            // var_dump($materials);
+                            ?>
+                        <?php foreach($materials as $material):?>
+                            <?php if($material->week_no==$i):?>
+                            <?php if($material->file_type==="application/pdf"):?>
+                                <p><a href="/uploads/<?=$material->course_id?>/materials/<?php echo $material->cid;?>/<?=$material->course_material?>">
+                                <img src="<?=ROOT?>/assets/images/pdf.png" alt="" class="teacher_card_img3">
+                                <?=$material->upload_name?> 
+                                </a></p>
+                                <?php elseif($material->file_type==="text/plain"):?>
+                                    <p><a href="/uploads/<?=$material->course_id?>/materials/<?php echo $material->cid;?>/<?=$material->course_material?>">
+                                    <img src="<?=ROOT?>/assets/images/pp.png" alt="" class="teacher_card_img3">
+                                    <?=$material->upload_name?> 
+                                    </a></p>
+                                <?php else:?>
+                                    <p><a href="/uploads/<?=$material->course_id?>/materials/<?php echo $material->cid;?>/<?=$material->course_material?>"><?=$material->upload_name?> 
+                                    </a></p> 
+                                    <?php endif;?>
+                        <?php endif;?>
+                        <?php endforeach;?>
+                        <?php endif;?>
+                    </div>
+                </div>
+            </div>
+            <?php
+            $i++;
+            }
+            ?>
         </div>
     </div>
 </div>
-
 <?php $this->view("includes/footer");?>
     

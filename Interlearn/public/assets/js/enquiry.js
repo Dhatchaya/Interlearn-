@@ -1,81 +1,43 @@
-// const openModalButtons = document.querySelectorAll('[data-modal-target]')
-// const closeModalButtons = document.querySelectorAll('[data-close-button]')
-// const overlay = document.getElementById('overlay')
-// const currentURL = "http://localhost/Interlearn/public/Student/enquiry";
-// const newURL = "http://localhost/Interlearn/public/Student/enquiry/add";
-
-
-
-// openModalButtons.forEach(button => {
-//   button.addEventListener('click', () => {
-//     const modal = document.querySelector(button.dataset.modalTarget)
-//     openModal(modal)
-//   })
-// })
-
-// overlay.addEventListener('click', () => {
-//   const modals = document.querySelectorAll('.modal.active')
-//   modals.forEach(modal => {
-//     closeModal(modal)
-//   })
-// })
-
-// closeModalButtons.forEach(button => {
-//   button.addEventListener('click', () => {
-//     const modal = button.closest('.modal')
-//     closeModal(modal)
-//   })
-// })
-
-
-// function openModal(modal) {
- 
-//   if (modal == null) return
-//   window.history.pushState({}, "", newURL);
-
-//   modal.classList.add('active')
-//   overlay.classList.add('active')
-  
-// }
-
-// function closeModal(modal) {
-
-//   if (modal == null) return
-//   window.history.pushState({}, "", currentURL);
-  
-//   modal.classList.remove('active')
-//   overlay.classList.remove('active')
-// }
-
 const modal = document.getElementById('modal');
 const overlay = document.getElementById('overlay');
 const modal1 = document.getElementById('modal1');
-const currentURL = "http://localhost/Interlearn/public/Student/enquiry";
-const newURL = "http://localhost/Interlearn/public/Student/enquiry/add";
-const editURL = "http://localhost/Interlearn/public/Student/enquiry/edit/";
-const statuses = document.getElementById("status");
+const currentURL = "http://localhost/Interlearn/public/academic/enquiry";
+const newURL = "http://localhost/Interlearn/public/academic/enquiry/add";
 
-statuses.addEventListener('change',function(e){
-  var statusVal = statuses.value;
-  var eid = statuses.dataset.eid;
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "update_status.php", true);
-  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-      console.log(xhr.responseText);
-    }
-  };
-  xhr.send("eid=" + encodeURIComponent(eid) + "&status=" + encodeURIComponent(status));
+const enqStatus = document.getElementById('status');
 
-});
+
+function changeStatus(id,value,role){
+  console.log(id,value,role);
+  if(value != ""){
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function(){
+      if(this.readyState==4 && this.status == 200){
+        console.log("success");
+        for(let i=0; i<enqStatus.options.length; i++){
+          if (enqStatus.options[i].value == value){
+            enqStatus.options[i].selected = true;
+            break;
+          }
+        }
+      }
+    };
+    
+    xmlhttp.open("GET","http://localhost/Interlearn/public/"+role+"/enquiry?id="+id+"&&status="+value,true);
+    xmlhttp.send();
+  }
+
+}
+
 function addEnquiry(){
+
+  const newURL = "http://localhost/Interlearn/public/academic/enquiry/add";
 
   modal1.classList. add('active');
   overlay.classList.add('active');
  
 
-  fetch('/Interlearn/public/Student/enquiry/add',{
+  fetch('/Interlearn/public/academic/enquiry/add',{
     method: 'GET',
     headers: {
         'Accept': 'application/json',
@@ -91,30 +53,10 @@ function addEnquiry(){
   window.history.pushState({}, "", newURL);
 
 }
-// enq_form= document.getElementById("enq_form");
-// enq_form.addEventListener('submit',function(e){
-//   e.preventDefault();
-//   const data = new URLSearchParams();
-//   for(const p of new FormData(enq_form)){
-//     data.append(p[0],p[1])
-//   }
-
-
-//   fetch('/Interlearn/public/Student/enquiry/add', {
-//     method: 'POST',
-//     body: data
-//   })
-//   .then(response => response.json())
-//   .then(response => {
-//     console.log(response);
-//     if (response.result) {
-//       header("Location:http://localhost/Interlearn/public/Student/enquiry");
-//     }
-//   }).catch(error=>console.log(error));
-
-// });
 
 function closeEnquiry(){
+  const currentURL = "http://localhost/Interlearn/public/academic/enquiry";
+
   modal.classList. remove('active');
   overlay.classList.remove('active');
   modal1.classList. remove('active');
@@ -127,11 +69,11 @@ function closeEnquiry(){
 
 
 function editEnquiry(id){
-  // alert("hai");
+
   modal.classList. add('active');
   overlay.classList.add('active');
-  // window.history.pushState({}, "", editURL+'166');
-  fetch('/Interlearn/public/Student/enquiry/edit/'+id,{
+
+  fetch('/Interlearn/public/academic/enquiry/edit/'+id,{
     method: 'GET',
     headers: {
         'Accept': 'application/json',
@@ -166,7 +108,7 @@ enq_form.addEventListener('submit',function(e){
   }
 
 
-  fetch('/Interlearn/public/Student/enquiry/edit/'+id, {
+  fetch('/Interlearn/public/academic/enquiry/edit/'+id, {
     method: 'POST',
     headers: {
       'Content-type': 'application/json'
@@ -197,3 +139,49 @@ overlay.addEventListener('click', () => {
  
 })
 
+// enquiry tabs
+
+function setTab(tag,div){
+  var children = div.parentNode.children;
+  for(let i = 0; i<children.length;i++){
+    children[i].classList.remove("active_tab");
+   
+  }
+ 
+  //loadItem( div.getAttribute("data-status"),div.id);
+  div.classList.add("active_tab");
+  children= document.querySelector("#"+tag+"_content").parentNode.children; 
+  for(let i = 0; i<children.length;i++){
+    children[i].classList.add("hide");
+  }
+  document.querySelector("#"+tag+"_content").classList.remove("hide");
+}
+function setcontent(tag,div){
+  
+}
+
+// }
+// function loadItem(status,content){
+
+//   var xhr = new XMLHttpRequest();
+//   xhr.onreadystatechange = function(){
+//     if(xhr.readyState === XMLHttpRequest.DONE){
+//       if(xhr.status == 200){
+//         var items = JSON.parse(xhr.responseText);
+//         console.log(items);
+//         var html = '<table>';
+//         html +=  '  <tr> <th>Enquiry No</th> <th>Subject</th> <th>Category</th> <th>Status</th> <th>Enquiry Date</th> <th>User</th> <th>Actions</th> </tr>';
+//         for (var i = 0; i < items.length; i++) {
+//           html += '<tr><td>' + items[i].eid + '</td><td>' + items[i].title + '</td><td>' + items[i].type + '</td><td>' + items[i].date + '</td><td>' + items[i].role + '</td>';
+//           html +='<td> <div class="enq_actions"><div class="enq_delete">    <a href="<?=ROOT?>/receptionist/enquiry/delete/<?=esc($row->eid)?>">        <img src= "<?=ROOT?>/assets/images/delete.png"/>    </a>    </div><div class="enq_view">    <a href="<?=ROOT?>/receptionist/enquiry/view/<?=esc($row->eid)?>">        <img src= "<?=ROOT?>/assets/images/view.png"/>    </a>    </div></div></td></tr>'
+//         }
+//           content.innerHTML = html;
+//           html += '</table>';
+//       }else {
+//         console.error(xhr.statusText);
+//       }
+//     }
+//   };
+//   xhr.open('GET', 'http://localhost/Interlearn/public/receptionist/enquiry/?state=' + status);
+//   xhr.send();
+// }

@@ -7,7 +7,7 @@
 
     <div class="std_view_content">
         <div class="std_view_greeting">
-            <div class="std_view_greet">Welcome Back,<br> John!</div>
+            <div class="std_view_greet">Welcome Back,<br> <?=$students[0]->fullname?>!</div>
             <img src="<?=ROOT?>/assets/images/education.png" alt="">
         </div>
         <br><br>
@@ -15,54 +15,35 @@
         <div class="std_view_announcement">
             <h3 class="std_view_text">Announcements</h3><br>
             <div class="std_view_box">
+                <?php if(!empty($announcements)):?>
+                    <?php foreach($announcements as $row):?>
                 <div class="std_view_msg">
-                    <h5>Mr. Edward</h5>
-                    <h5>Mathematics</h5><br>
-                    <p>Please note that tomorrow(24th) class has been cancelled.</p>
+                    <h3><?=$row->title?></h3><br>
+                    Dear Students,<br>
+                    <p><?=$row->content?></p><br><br>
+                    <p class="recp_ann_bot"><?=$row->date_time?></p><br>
                 </div><br>
-                <div class="std_view_msg">
-                    <h5>Mr. Edward</h5>
-                    <h5>Mathematics</h5><br>
-                    <p>Please note that tomorrow(24th) class has been cancelled.</p>
-                </div><br>
-                <div class="std_view_msg">
-                    <h5>Mr. Edward</h5>
-                    <h5>Mathematics</h5><br>
-                    <p>Please note that tomorrow(24th) class has been cancelled.</p>
-                </div>
+                <?php endforeach;?>
+                <?php endif?>
             </div><br><br>
-            <div class="std_view_bottom">
-                <h3>You may also like:</h3>
-                <div class="std_view_like">
-                    <div class="std_view_rectangle">
-                        <a href="#">
-                        <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_view_img">
-                        <p>Science by Mr. V.J. Viraj</p>
-                        </a>
-            </div>
-          
-                    <div class="std_view_rectangle">
-                        <a href="#">
-                        <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_view_img">
-                        <p>Mathematics by Mrs. V.J. Kumari</p>
-                        </a>
-                    </div>
-                    <div class="std_view_rectangle">
-                        <a href="#">
-                        <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_view_img">
-                        <p>History by Mr. A.L. Perera</p>
-                        </a>
-                    </div>
-                    <div class="std_view_rectangle">
-                        <a href="#">
-                        <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_view_img">
-                        <p>Sinhala by Mr. A.B. Salgado</p>
-                        </a>
-                    </div>
-                </div>
-                </div>
         </div>
     </div>
+    <div class="student_calendar">
+        <?php $this->view("includes/calendar");?>
+        <div id = "assignment_today" class ="assignment_today">
+           <!-- <a href ="http://localhost/Interlearn/public/student/coursepg/submissionstatus/4?id=M.Pavithra63fb0e481edef3.79614533"> <div  class ="assignment_card">
+                <div class ="assignment_card_title"><p>Mathematics assignment 1 is due<p></div>
+                <ul> 
+                    <li> Deadline: 2020-02-04</li>
+                    <li> Subject: Mathematics</li>
+                </ul>
+            </div>
+                    </a> -->
+           
+        </div> 
+    </div>
+    <script defer src="<?=ROOT?>/assets/js/calendar.js?v=<?php echo time(); ?>"></script>
+
 </div>
 
     <?php $this->view("includes/footer");?>

@@ -1,5 +1,4 @@
 <?php
-
 /**
  *staff class
  */
@@ -17,8 +16,6 @@ class Staff extends Model
         'last_name',
         'mobile_no',
         'Addressline1',
-        'Addressline2',
-        'display_picture',
         'gender',
         'emp_status',
         'uid',
@@ -96,6 +93,7 @@ class Staff extends Model
             $this->error[] = 'No data to update.';
             return false;
         }
+<<<<<<< HEAD
         $query = "UPDATE staff SET ";
         $data = $this->update_table($query, $data);
 
@@ -118,6 +116,28 @@ class Staff extends Model
         // $result = $this->query($query, array_values($data));
 
         $result = $this->query($query, $data);
+=======
+
+        // Validate data
+        // ...
+
+        // Build update query
+        $query = "UPDATE staff SET ";
+        $values = array();
+
+        foreach ($data as $key => $value) {
+            if (in_array($key, $this->allowed_columns)) {
+                $values[] = "$key = ?";
+            }
+        }
+
+        $query .= implode(", ", $values) . " WHERE emp_ID = ?";
+        $data[] = $emp_id;
+
+        // Execute query
+        $result = $this->query($query, $data);
+
+>>>>>>> main
         if (!$result) {
             $this->error[] = 'Failed to update staff data.';
             return false;
@@ -130,24 +150,60 @@ class Staff extends Model
 
 
     public function validate($data)
-    {
+    {   
         $this->error = [];
-        foreach ($data as $key => $value) {
-            if (empty($data[$key])) {
-                $this->error[$key] = ucfirst($key) . " is required";
+        foreach($data as $key => $value)
+        { 
+            if(empty($data[$key]))
+            {
+                $this -> error[$key] = ucfirst($key)." is required";
             }
-        }
-
-        // checks email is valid if so it'll check whther it already exists
-        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-            $this->error['email'] = "Email is not valid";
-        } else
-            if ($this->where(['email' => $data['email']], 'emp_ID')) {
-            $this->error['email'] = "Email already exists";
-        }
-        if (empty($this->error)) {
+         }
+    
+            // checks email is valid if so it'll check whther it already exists
+            if(!filter_var($data['email'],FILTER_VALIDATE_EMAIL))
+            {
+                $this->error['email'] = "Email is not valid";
+            }else
+            if($this->where(['email'=>$data['email']],'emp_ID')){
+                    $this->error['email'] = "Email already exists";
+                
+            }
+        if(empty($this->error)){
             return true;
         }
         return false;
     }
+
+    public function getTeachers(){
+        $query = "SELECT *, concat(first_name,' ',last_name) AS teacherName FROM ".$this->table;
+        $query .= " WHERE role = 'Teacher'";
+
+        $res = $this -> query($query);
+        //  show($query);die;
+
+        if(is_array($res)){
+            // echo $res;die;
+            return $res;
+        }
+        // echo "hi";die;
+        return false;
+    }
+
+    public function getInstructors(){
+        $query = "SELECT *, concat(first_name,' ',last_name) AS instructorName FROM ".$this->table;
+        $query .= " WHERE role = 'Instructor'";
+
+        $res = $this -> query($query);
+        //  show($query);die;
+
+        if(is_array($res)){
+            // echo $res;die;
+            return $res;
+        }
+        // echo "hi";die;
+        return false;
+    }
+
+
 }

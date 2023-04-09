@@ -30,8 +30,6 @@
                 <textarea class="whiteInput" id="sub" name="content" rows="8" cols="50" placeholder="Type your concern"></textarea></br>  
                 <input type = "submit" id ="sub_btn" class ="sub_btn" name="submit" value="Submit" />
 
-        
-
             </form>
         </div>
         <!-- edit form -->
@@ -60,7 +58,7 @@
                 </form>
             </div>
  
-                    <table border= 1 class='enq_tbl'>
+                    <table border = 1 class='enq_tbl'>
                         <tr>
                             <th class="eno">Enquiry No</th>
                             <th>Subject</th>

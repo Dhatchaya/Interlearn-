@@ -9,14 +9,15 @@ class Confirm extends Model
     protected $table = "quizz_confirm";
     protected $allowed_columns = [
 
-        'display_question',
-        'quizz_date',
-        'enable_time',
-        'disable_time',
-        'duration',
-        'format_time',
-        'total_points',
-
+        
+    'display_question',
+     'quizz_date',
+     'enable_time',
+     'disable_time',
+     'duration',
+     'format_time',
+     'total_points',
+     'quizz_id'
     ];
     protected $staffs = [
         'Manager',
