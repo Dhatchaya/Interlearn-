@@ -178,19 +178,20 @@ class Receptionist extends Controller
                     $extra = [];
                     if($data['subjects']){
                         for($i=0; $i<count($data['subjects']); $i++){
-                            for($x=0; $x<$data['subjects'][$i]; $x++){
+                            for($x=0; $x<count($data['subjects'][$i]); $x++){
                                 // show($data['subjects'][$i][$x]->course_id);die;
                                 if(!empty($data['subjects'][$i][$x]->course_id)){
                                     // show($data['subjects'][$i][$x]->course_id);die;
                                     $extra= $course_instructor -> getInstructors($data['subjects'][$i][$x]->course_id);
                                     if(!empty($extra)){
-                                        $data['teach_instructors'] = $extra;
+                                        // show($extra);die;
+                                        $data['teach_instructors'][$data['subjects'][$i][$x]->course_id] = $extra;
                                     }
                                 }
                             }
                         }
-                    // show($extra);die;
-
+                    // show($data['teach_instructors']);die;
+                    // show($data['subjects']);die;
                 
                         
                     }
@@ -211,15 +212,16 @@ class Receptionist extends Controller
                 // show($data['instructors']);die;
 
                 if(isset($_POST['add-teacher'])){
-                    $inputs=array("subject_id"=>$_GET['id'],"teacher_id"=>$_POST['teacher_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto']);
+                    $inputs=array("subject_id"=>$_GET['id'],"teacher_id"=>$_POST['teacher_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto'],"capacity"=>$_POST['capacity']);
                     //show($inputs);die;
                     $course->insert($inputs);
                     //show($_POST);die;
                 }
 
                 if(isset($_POST['add-instructor'])){
-                    $inputs=array("course_id"=>$_GET['id'],"instructor_id"=>$_POST['instructor_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto']);
-                    $course_instructor->insert($inputs);
+                    $inputs1=array("course_id"=>$_POST['course_id'],"emp_id"=>$_POST['emp_id']);
+                    // show($inputs1);die;
+                    $course_instructor->insert($inputs1);
                 }
 
                 if(isset($_POST['edit-teacher'])){
@@ -229,7 +231,7 @@ class Receptionist extends Controller
                 if(isset($_POST['submit-delete-course'])){
                     // show("hi");die;
                     $result = $course->delete(['course_id'=>$id]);
-                    // header("Location:http://localhost/Interlearn/public/receptionist/course");
+                    // header("Location:http://localhost/Interlearn/public/receptionist/course/view/1/".$id);
                 }
 
                 $this->view('receptionist/class',$data);
@@ -392,7 +394,6 @@ class Receptionist extends Controller
 
         $course = new Course();
         $subject = new Subject();
-        $teacher = new Teacher();
         $student = new Students();
         $student_course = new StudentCourse();
         $enroll_req = new RequestEnroll();
@@ -402,6 +403,16 @@ class Receptionist extends Controller
         // show($data['requests']);die;
         // show($data['Allrequests'][0]);die;
         // print_r($_POST);die;
+        $req = [];
+        for($i=0;$i<count($data['requests']);$i++){
+            // show($data['requests'][$i]->request_id);
+            $requestDetails = $enroll_req -> showRequestsDetails($data['requests'][$i]->request_id);
+            array_push($req,$requestDetails[0]);
+        }
+        // die;
+        $data['requestDetails'] = $req;
+        // show($data['requestDetails']);die;
+
         if(isset($_POST['accept-student']))
         {
             // show($_POST['studentId']);

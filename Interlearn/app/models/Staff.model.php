@@ -93,7 +93,6 @@ class Staff extends Model
             $this->error[] = 'No data to update.';
             return false;
         }
-<<<<<<< HEAD
         $query = "UPDATE staff SET ";
         $data = $this->update_table($query, $data);
 
@@ -116,28 +115,6 @@ class Staff extends Model
         // $result = $this->query($query, array_values($data));
 
         $result = $this->query($query, $data);
-=======
-
-        // Validate data
-        // ...
-
-        // Build update query
-        $query = "UPDATE staff SET ";
-        $values = array();
-
-        foreach ($data as $key => $value) {
-            if (in_array($key, $this->allowed_columns)) {
-                $values[] = "$key = ?";
-            }
-        }
-
-        $query .= implode(", ", $values) . " WHERE emp_ID = ?";
-        $data[] = $emp_id;
-
-        // Execute query
-        $result = $this->query($query, $data);
-
->>>>>>> main
         if (!$result) {
             $this->error[] = 'Failed to update staff data.';
             return false;

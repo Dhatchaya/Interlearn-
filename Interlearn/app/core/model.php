@@ -337,7 +337,7 @@ class Model extends Database {
         instructor.instructorName FROM ".$this->table;
         $query .=" INNER JOIN 
         course ON course.subject_id = subject.subject_id 
-        INNER JOIN 
+        LEFT JOIN 
         course_instructor ON course.course_id = course_instructor.course_id
         INNER JOIN (
             SELECT 
@@ -348,7 +348,7 @@ class Model extends Database {
             WHERE 
                 staff.role = 'Teacher'
         ) AS teacher ON teacher.emp_id = course.teacher_ID 
-        INNER JOIN (
+        LEFT JOIN (
             SELECT 
                 staff.emp_id, 
                 CONCAT(staff.first_name, ' ', staff.last_name) AS instructorName 
@@ -367,7 +367,7 @@ class Model extends Database {
         $query .= " group by course_id";
         //echo $query;die;
 
-      //echo $query;die;
+    //   echo $query;die;
         $res = $this -> query($query,$data);
 
         if(is_array($res)){

@@ -3318,7 +3318,7 @@ width: 45vw;
     margin-left: 5%;
     /* display: flex;
     flex-wrap: wrap; */
-    max-width: 80vw;
+    width: 75vw;
 }
 .recp_crs_butn{
     padding-left: 60%;
@@ -5409,7 +5409,7 @@ gap: 8vw;
 
 
 .enroll-display{
-    width: 12vw;
+    width: 30vw;
     float: left;
     display: grid;
 }

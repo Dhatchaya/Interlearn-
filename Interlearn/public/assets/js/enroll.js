@@ -19,9 +19,9 @@ const btn = document.getElementById("button28");
 const span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal
-function openModal() {
+function openModal(requestID) {
 
-    // document.getElementById("delete-course").value = number;
+    document.getElementById("request_modal").value = requestID;
 
     modal.style.display = "block";
     console.log(modal);

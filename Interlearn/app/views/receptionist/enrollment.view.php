@@ -21,27 +21,30 @@ $val = explode('/',$url);
                 <tr>
                 <?php if(!empty($requests)):?>
                 <?php foreach($requests as $request):?>
-                <td><?=esc($request->request_id)?></td>  
-                <td><?=esc($request->student_id)?></td>
+                    <td><?=esc($request->request_id)?></td>  
+                    <td><?=esc($request->student_id)?></td>
                     <td><?=esc($request->requested_date)?></td>
                     <td><?=esc($request->subject)?></td>
                     <td><?=esc($request->teacherName)?></td>
                     
                     <td>
-                    <button class="view_enq_btn" name="submit" id="button28" onclick="openModal()">View</button>
+                    <button class="view_enq_btn" name="submit" id="button28" onclick="openModal(<?=$request->request_id?>)">View</button>
+
                     <form action="" method="post">
                         <input type="hidden" id="requestID" name="requestID" value="<?=$request->request_id?>">
                         <input type="hidden" id="studentId" name="studentId" value="<?=$request->student_id?>">
                         <input type="hidden" id="courseId" name="courseId" value="<?=$request->course_id?>">
                         <button type="submit" class="view_enq_btn" name="accept-student" id="add-btn">Accept</button>
                     </form>
+
                     <button class="view_enq_btn" id="button29" onclick="openModal2(<?=$request->request_id?>)">Reject</button>
                     </td>
-                    <?php endforeach;?>
-                    <?php else:?>
-                       <?php echo "No requests yet!"; ?>
-                <?php endif;?>
+                    
                 </tr>
+                <?php endforeach;?>
+                <?php else:?>
+                   <?php echo "No requests yet!"; ?>
+                <?php endif;?>
             </table>
 
             <!-- view popup -->
@@ -50,8 +53,15 @@ $val = explode('/',$url);
                 <span class="ann_close" onclick="closeModal()">&times;</span><br>
                 <h3>--Student Enrollment Request Details--</h3><br>
                 <form action="" method="post" class="up-profile">
+                    <input type="hidden" id="request_modal" name="request_id">
+                    <?php show($request->request_id);die;?>
+                    <?php if(!empty($requestDetails)):?>
+                    <?php foreach($requestDetails as $request):?>
                     <label for="student_id" class="enroll-display">Student ID: </label>
                     <input type="text" value="<?=esc($request->student_id)?>" disabled>
+
+                    <label for="course_id" class="enroll-display">Requested Course ID: </label>
+                    <input type="text" value="<?=esc($request->course_id)?>" disabled>
 
                     <label for="studentName" class="enroll-display">Student Name: </label>
                     <input type="text" value="<?=esc($request->studentName)?>" disabled>
@@ -76,6 +86,9 @@ $val = explode('/',$url);
 
                     <label for="available" class="enroll-display">Availability: </label>
                     <input type="text" value="<?=esc($request->available)?>" disabled>
+
+                    <?php endforeach;?>
+                    <?php endif;?>
 
                 </form>
             </div>

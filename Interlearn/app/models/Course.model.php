@@ -48,9 +48,9 @@ class Course extends Model
             {
                 $this -> error['language_medium'] = "Please select a language_medium";
             }
-            if(empty($data['teacher_id']))
+            if(empty($data['teacher_ID']))
             {
-                $this -> error['teacher_id'] = "Please select a teacher_id";
+                $this -> error['teacher_ID'] = "Please select a teacher_id";
             }
             if(empty($data['timefrom']))
             {
@@ -148,7 +148,7 @@ class Course extends Model
     }
 
     public function getTeacherID($course_id){
-        $query = "SELECT teacher_id FROM ".$this->table;
+        $query = "SELECT teacher_ID FROM ".$this->table;
         $query .= " WHERE course_id =:courseID";
         $data['courseID'] = $course_id;
         $res = $this -> query($query, $data);
@@ -236,7 +236,7 @@ class Course extends Model
 
     public function getTime($teacher_id, $day){
         $query = "SELECT timefrom, timeto FROM ".$this->table;
-        $query .= " WHERE teacher_id =:teahcerID AND day =:Day";
+        $query .= " WHERE teacher_ID =:teahcerID AND day =:Day";
 
         $data['teahcerID'] = $teacher_id;
         $data['Day'] = $day;
@@ -252,5 +252,18 @@ class Course extends Model
         return false;
     }
 
+    public function getDistinctTeachers($subject_id){
+        $query = "SELECT DISTINCT CONCAT(staff.first_name, ' ', staff.last_name) AS teacherName, course.teacher_ID FROM staff,".$this->table;
+        $query .= " WHERE course.subject_id =:subjectID AND staff.role = 'Teacher' AND staff.emp_id = course.teacher_ID";
+        $data['subjectID'] = $subject_id;
+        $res = $this -> query($query, $data);
+        // show($query);die;
+
+        if($res){
+            return $res;
+        }else{
+            return false;
+        }
+    }
 
 }
