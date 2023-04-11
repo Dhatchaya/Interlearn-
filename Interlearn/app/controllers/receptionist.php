@@ -422,12 +422,15 @@ class Receptionist extends Controller
             $data2 = ['request_id'=>$_POST['requestID']];
             $result2 = $enroll_req -> delete($data2);
             echo "Student added successfully!";
+            header("Location:http://localhost/Interlearn/public/receptionist/enrollment");
         }
+        
         if(isset($_POST['submit-reject-request']))
         {
             $data = ['request_id'=>$_POST['requestID']];
             $result = $enroll_req -> delete($data);
             echo "Request rejected!";
+            header("Location:http://localhost/Interlearn/public/receptionist/enrollment");
         }
 
 

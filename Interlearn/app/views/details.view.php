@@ -62,11 +62,12 @@ $val = explode('/',$url);
                     }
                     // show($subjects[$med_ID]);die;
                     ?>
-                <?php foreach($subjects[$med_ID] as $teacher): ?>
-                <tr>
-                <?php if (!empty($enroll_error)) : ?>
+                    <?php if (!empty($enroll_error)) : ?>
                     <p class="warning"><?php echo $enroll_error; ?></p>
                 <?php endif; ?>
+                <?php foreach($subjects[$med_ID] as $teacher): ?>
+                <tr>
+                
                     <td><?=esc($teacher->day)?></td>
 
                     <td><?=esc($teacher->timefrom)?> - <?=esc($teacher->timeto)?></td>

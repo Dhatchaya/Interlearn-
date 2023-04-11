@@ -224,7 +224,7 @@ class Teacher extends Controller
                                     //echo $fileActualExt;exit;
                                     //var_dump($_POST);exit;
                                     //print_r($fileType);exit;
-                                    $viewURL="http://localhost/Interlearn/public/teacher/course/materials/".$id."/".$week."/?id=".$fileid;
+                                    $viewURL="http://localhost/Interlearn/uploads/".$id."/materials/".$cid."/".$fileNameNew;
                                     $_POST['course_material'] = $fileNameNew;
                                     $_POST['file_type'] = $fileType;
                                     $_POST['size'] = $fileSize;

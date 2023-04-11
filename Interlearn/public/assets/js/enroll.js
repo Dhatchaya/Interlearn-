@@ -6,7 +6,7 @@
 //     document.getElementById("popup").style.display = "none";
 //   }
 
-
+console.log("hi");
 
 // Get the modal
 const modal = document.getElementById("profileModal");
