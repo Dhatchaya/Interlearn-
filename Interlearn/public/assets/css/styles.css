@@ -3394,7 +3394,7 @@ width: 45vw;
     margin-top: 5%;
     margin-left: 5%;
     /* flex-wrap: wrap; */
-    width: 60vw;
+    width: 75vw;
 }
 .recp_cl_medium{
     /* list-style-type: none;
@@ -3417,7 +3417,7 @@ width: 45vw;
   color: black;
   text-align: center;
   text-decoration: none;
-  width: 20vw;
+  width: 25vw;
 }
 .recp_cl_nav:hover{
     background-color: rgb(104, 44, 198,25%);
@@ -5176,7 +5176,7 @@ gap: 8vw;
 
 .teacher-class-table{
     border-collapse: collapse;
-    width: 60vw;
+    width: 75vw;
 }
 .teacher-class-table th, .teacher-class-table td{
     border: 1px solid black;
@@ -5412,4 +5412,12 @@ gap: 8vw;
     width: 30vw;
     float: left;
     display: grid;
+}
+
+
+
+
+/* close button of removing instructors */
+.instructor-remove{
+    cursor: pointer;
 }

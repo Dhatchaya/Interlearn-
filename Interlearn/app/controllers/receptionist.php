@@ -234,6 +234,13 @@ class Receptionist extends Controller
                     // header("Location:http://localhost/Interlearn/public/receptionist/course/view/1/".$id);
                 }
 
+                if(isset($_POST['submit-remove-instructor'])){
+                    // show($_POST);die;
+                    // show(["emp_id"=>$_POST['instructorID']]);die;
+                    // show(['course_id'=>$_POST['courseID']]);die;
+                    $result2 = $course_instructor->delete(['course_id'=>$_POST['courseID']],["emp_id"=>$_POST['instructorID']]);
+                }
+
                 $this->view('receptionist/class',$data);
                 exit;
         }
