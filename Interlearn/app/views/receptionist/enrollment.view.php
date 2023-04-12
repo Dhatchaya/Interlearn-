@@ -54,7 +54,7 @@ $val = explode('/',$url);
                 <h3>--Student Enrollment Request Details--</h3><br>
                 <form action="" method="post" class="up-profile">
                     <input type="hidden" id="request_modal" name="request_id">
-                    <?php show($request->request_id);die;?>
+                
                     <?php if(!empty($requestDetails)):?>
                     <?php foreach($requestDetails as $request):?>
                     <label for="student_id" class="enroll-display">Student ID: </label>
