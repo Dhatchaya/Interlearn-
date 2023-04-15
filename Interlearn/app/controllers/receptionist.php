@@ -694,6 +694,55 @@ class Receptionist extends Controller
         echo json_encode($res);
         exit;
     }
+    public function registration($action = null,$id = null)
+    {
+     $data = [];
+     $tempStudent = new Tempstudent();
+     $data['rows'] = $tempStudent -> select(null,'date');
+     if($action == "view"){
+        $data['student'] = $tempStudent -> jointempstudents(['studentID'=>$id],'date');
+        
+        $this->view('receptionist/Registrations_view',$data);
+        exit;
+        
+     }
+     if($action == "delete"){
+        $result = $tempStudent -> delete(['studentID'=>$id]);
+     }
+     $this->view('receptionist/Registrations',$data);
+    }
+    public function updatestatus($id)
+    {
+        $tempStudent = new Tempstudent();
+        $tempStudentcourse = new TempStudentCourse();
+        $student= new Students();
+        $studentcourse= new StudentCourse();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+        {   
+            $tempStudent->update(["studentID"=>$id],["status"=>$_POST['status']]);
 
+            if($_POST['status'] == "accept"){
+                $details =  $tempStudent->first(["studentID"=>$id],'studentID');
+                $student_details = json_decode(json_encode($details), true);
+                $result = $student->insert($student_details);
+            
+                if($result){
+                    echo "success";
+                    $courses=  $tempStudentcourse->where(["studentID"=>$id],'studentID');
+              
+                    foreach($courses as $row){
+                        $post['student_id'] = $row->studentID;
+                        $post['course_id'] = $row->course_id;
+                        $result2 =   $studentcourse->insert($post);
+                    }
+                  
+                }
+                
+                $deleteresult= $tempStudent -> delete(['studentID'=>$id]);
+            }
+            
+        }
+    }
+    
 }
 

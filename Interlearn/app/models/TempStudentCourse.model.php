@@ -2,30 +2,19 @@
 /**
  *Student class
  */
-class Students extends Model
+class TempStudentCourse extends Model
 {
     
     //says what table it has to target
     public $error = [];
-    protected $table = "student";
+    protected $table = "temp_student_course";
     protected $key = 'studentID';
 
     public $allowed_columns = [
 
         'studentID',	
-        'NIC',	
-        'first_name',	
-        'last_name',	
-        'birthday',	
-        'gender',	
-        'mobile_number',	
-        'address',	
-        'school',	
-        'grade',	
-        'uid',	
-        'parent_name',	
-        'parent_email',	
-        'parent_mobile'
+        'course_id',
+     
 
     ];
     protected $staffs = [

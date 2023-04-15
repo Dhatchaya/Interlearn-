@@ -217,7 +217,7 @@ class Teacher extends Controller
                                     $fileDestination = "/xampp/htdocs/Interlearn/uploads/".$id."/materials/".$cid;
                                     if (!is_dir($fileDestination)){
                                         mkdir($fileDestination,0644, true);
-                                    
+
                                     }
                                     $destination =  $fileDestination."/".$fileNameNew;
                                     move_uploaded_file($fileTmpName,$destination);
@@ -250,12 +250,12 @@ class Teacher extends Controller
                     }
                     else{
                         $data['errors']['file'] =  "Unknown error occured!";
-                    
+
                     }
                 }
                 else{
                     $data['errors'] =  $course_material->error;
-                
+
                 }
 
                 // $result = $course_material->insert($_POST);
@@ -290,7 +290,7 @@ class Teacher extends Controller
                 }
                 else{
                     $data['errors'] =  $course_content->error;
-                
+
                 }
             }
             $data['rows']= $course->select([],'course_id');
@@ -882,7 +882,7 @@ class Teacher extends Controller
 
                $material = $course_content->insert($_POST);
                 if($result){
-                    header('location:http://localhost/Interlearn/public/forums/4/1?main='.$mainforum_id);
+                    header('location:http://localhost/Interlearn/public/forums/'.$id.'/'.$week.'/?main='.$mainforum_id);
                 }
             }
 

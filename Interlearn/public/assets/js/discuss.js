@@ -3,6 +3,9 @@ let allthreads = document.getElementById("all_discussions");
 const cancel = document.getElementsByName("reply_cancel");
 const parentDiscuss = document.getElementsByClassName("discuss_content");
 const replies = document.getElementsByClassName("forum-reply");
+const course_id = window.location.href.toString().split("/")[7];
+let user_id= document.getElementById("session_alt").value;
+
 
 if ( window.history.replaceState ) {
 
@@ -62,10 +65,10 @@ allthreads.addEventListener('click', function(e) {
       if(attachmentInput){
         formData.append('attachment',attachmentInput);
       }
-      else{
-        formData.append('attachment',null);
+      // else{
+      //   formData.append('attachment',null);
 
-      }
+      // }
      
       
   // if (attachmentInput && attachmentInput.files && attachmentInput.files[0]) {
@@ -81,7 +84,7 @@ allthreads.addEventListener('click', function(e) {
       processData: false, 
       contentType: false,
       success: function(response){
-        console.log(response);
+
         var replyContainer = $(allthreads);
         var thread = JSON.parse(response);
         console.log(thread.PostedDate);
@@ -99,11 +102,16 @@ allthreads.addEventListener('click', function(e) {
          // timeZoneName: 'short'
         });
         var attachmentlink = '';
-        
-        if(thread.attachment != 'null'){
-          var attachmentlink =  `<a href="../../../uploads/${thread.course_id}/forum_files/${thread.attachment}"  class= "attachment-link">View Attachment</a>`;    
+        var EditButton = '';
+        if(thread.attachment){
+          var attachmentlink =  `<a href="../../../uploads/${thread.course_id}/forum_files/${thread.attachment}"  class= "attachment-link">View Attachment</a>`;  
+            
         }
-      
+        if(thread.uid === user_id){
+         
+           EditButton =  `<button class= "forum_Edit_btn reply-btn" onclick="editDiscussion('${thread.discussion_id}','discuss')">Edit</button>`;  
+            
+        }
         var threadHTML =  `
         <div class="each_thread each_thread_reply">
         <div class="discuss_card" data-thread-id=${thread.discussion_id}>
@@ -115,12 +123,15 @@ allthreads.addEventListener('click', function(e) {
                     <h2> By: ${thread.username} ${replyDate}</h2>
                 </div>
             </div>
-            <div class="forum_para">
-              <p> ${thread.content} </p>
-            </div>
-           ${attachmentlink}
+            <div class="forum_body_all" id = "forum_body_all">
+              <div class="forum_para">
+                <p> ${thread.content} </p>
+              </div>
+            ${attachmentlink}
             <div class="forum-reply">
-                <button class= "forum_reply_btn reply-btn send_reply">Reply</button>
+                  ${EditButton}
+                  <button class= "forum_reply_btn reply-btn send_reply">Reply</button>
+            </div>
             </div>
           </div>
           <form method="POST" class="forum_reply_form" id="forum_reply_box" enctype="multipart/form-data">
@@ -147,6 +158,65 @@ allthreads.addEventListener('click', function(e) {
   }
   replyForm.addEventListener("submit", submitHandler);
   }
+
+  if (e.target && e.target.matches('.save_update')) {
+ 
+    let updatedfile = e.target.previousElementSibling;
+ 
+    let content = updatedfile.querySelector('.reply-textarea');
+    let attachment = updatedfile.querySelector('.file_attachment');
+    console.log(content);
+    let discussID = content.dataset.id;
+    let table = content.dataset.table;
+    let formData = new FormData();
+    formData.append('content',content.value);
+    if(attachment.files.length>0){
+      formData.append('attachment',attachment.files[0]);
+      console.log(attachment.files[0]);
+    }
+
+    for (var key of formData.entries()) {
+      console.log(key[0] + ', ' + key[1]);
+  }
+    $.ajax({
+          url:window.location.href+"/update?id="+discussID +"&table="+table,
+          type:'POST',
+          data:formData,
+          contentType: false,
+          processData: false,
+          success: function(response){
+            location.reload();
+           
+          },
+          error:function(xhr){
+            alert('Error loading threads: ' + xhr.responseText);
+          }
+        });
+
+  }
+  if (e.target && e.target.matches('.delete_file_btn')) {
+    
+    console.log(e.target);
+    let fileid = e.target.dataset.fileid;
+    let discussID = e.target.dataset.id;
+    let table= e.target.dataset.table;
+    console.log(discussID ,fileid);
+    e.target.closest('.file_div').remove();
+console.log(window.location.href+"/deleteFile?id="+discussID +"&table="+table);
+    $.ajax({
+      method:"POST",
+      url : window.location.href+"/deleteFile?id="+discussID +"&table="+table,
+      data:{attachment: fileid},
+      success:function(response){
+        console.log(response);
+       
+      },
+      error:function(xhr,status,error){
+        console.log("Error: " + error);
+      }
+    });
+
+  }
 });
 
 replyBox.addEventListener('focus',function(e){
@@ -163,6 +233,7 @@ var content = document.getElementById("content");
 $.ajax({
   url:window.location.href+"/all",
   success: function(response){
+
     var replyContainer = $(allthreads);
     var threads = JSON.parse(response);
     for(var i=0;i<threads.length;i++){
@@ -171,9 +242,15 @@ $.ajax({
       //console.log(thread);
       //replace the datetime from sql with only date in js
       var attachmentlink = '';
-        
-      if(thread.attachment != 'null'){
+      var EditButton = '';
+      if(thread.attachment){
         var attachmentlink =  `<a href="../../../uploads/${thread.course_id}/forum_files/${thread.attachment}"  class= "attachment-link">View Attachment</a>`;
+      }
+ 
+      if(thread.uid === user_id){
+       
+         EditButton =  `<button class= "forum_Edit_btn reply-btn" onclick="editDiscussion('${thread.discussion_id}','discuss')">Edit</button> `;  
+          
       }
       let date = thread.PostedDate.replace( /[-]/g, '/' );
       date = Date.parse( date );
@@ -197,12 +274,16 @@ $.ajax({
                 <h2> By: ${thread.username} ${replyDate}</h2>
               </div>
           </div>
-          <div class="forum_para">
-            <p> ${thread.content} </p>
-          </div>
-          ${attachmentlink}
-          <div class="forum-reply">
-              <button class= "forum_reply_btn reply-btn send_reply">Reply</button>
+          <div class="forum_body_all" id = "forum_body_all">
+            <div class="forum_para">
+              <p> ${thread.content} </p>
+            </div>
+            ${attachmentlink}
+            
+            <div class="forum-reply">
+                ${EditButton}
+                <button class= "forum_reply_btn reply-btn send_reply">Reply</button>
+            </div>
           </div>
         </div>
         <form method="POST" class="forum_reply_form" id="forum_reply_box" enctype="multipart/form-data">
@@ -225,4 +306,121 @@ $.ajax({
   error:function(xhr){
     alert('Error loading threads: ' + xhr.responseText);
   }
-})
+});
+
+function editDiscussion(discussID,table){
+  let maintarget = allthreads.querySelector(`[data-thread-id='${discussID}'] .forum_para`).parentElement;
+console.log('main',maintarget);
+  console.log(window.location.href + "/edit?d_id=" + discussID + "&table=" + table);
+  $.ajax({
+    url:window.location.href + "/edit?d_id=" + discussID + "&table=" + table,
+   
+    success: function(response){
+      console.log(response);
+      
+      let details = JSON.parse(response);
+      console.log(details.attachment);
+      var divHtml = `  
+      <div class="forum_para onlyEdit">
+      <textarea name = "content" id="reply" type="text" placeholder="write your reply" data-id = '${discussID}'data-table = '${table}' class="reply-textarea">${details.content}</textarea>
+    
+      <input type ="file"  class = "file_attachment" name="attachment" /></br>
+
+      </div>
+       <input class="reply-btn save_update" type="submit" value="Save" name = "reply_submit"  />
+      <input class="reply-btn cancel_update" type="button" value="Cancel" name = "reply_cancel"  />
+      `;
+
+      let targetDiv = allthreads.querySelector(`[data-thread-id='${discussID}'] .forum_para`).parentElement;
+      console.log('targe',targetDiv);
+      targetDiv.innerHTML = divHtml;
+      // let fileinput = targetDiv.nextElementSibling;
+      // fileinput.nextElementSibling.innerHTML=submit;
+   
+      //let replybtns = targetDiv.parentElement.querySelector('.forum-reply');
+      // console.log('tarnegey',filew);
+      //let fileinput = targetDiv.nextElementSibling;
+      // fileinput.nextElementSibling.innerHTML=submit;
+  
+      // replybtns.innerHTML=submit;
+
+      //create file div
+if(details.attachment){
+      const item = document.createElement("div");
+      item.classList.add("file_div");
+
+      const link = document.createElement("a");
+      link.classList.add("attachment-link");
+      link.setAttribute("href", "../../uploads/"+course_id+"/forum_files" + details.attachment);
+      link.textContent = details.attachment;
+      
+      const closediv = document.createElement("div");
+      closediv.classList.add("closebtn");
+      const closebtn = document.createElement("button");
+      closebtn.classList.add("delete_file_btn");
+      closebtn.classList.add("closebtn");
+      closebtn.setAttribute("data-fileid", details.attachment);
+      closebtn.setAttribute("data-id", discussID);
+      closebtn.setAttribute("data-table", table);
+      const icon = document.createElement("img");
+      icon.classList.add("assignmentIcon");
+        icon.src = "/Interlearn/public/assets/images/assignmentIcon.png";
+        icon.alt = "close btn";
+        closebtn.appendChild(icon);
+      item.append(link);
+      closediv.append(closebtn)
+      item.append(closediv);
+      if(targetDiv.querySelector['.file_div']){
+        targetDiv.querySelector['.file_div'].replaceWith(item);
+      }
+      else{
+        targetDiv.append(item);
+      }
+    }
+     
+
+
+    },
+    error:function(xhr){
+      alert('Error loading threads: ' + xhr.responseText);
+    }
+  });
+  const cancelEdit = function(eve) {
+
+    if(eve.target && eve.target.matches('.cancel_update')){
+      location.reload();
+      maintarget.removeEventListener('click', cancelEdit);
+    }
+  
+  }
+  maintarget.addEventListener('click', cancelEdit);
+
+}
+
+
+// function updateDiscussion(discussID){
+//   $.ajax({
+//     url:window.location.href+"/edit?d_id="+discussID,
+//     type:'POST',
+//     data:
+//     success: function(response){
+//       console.log(response);
+//       let details = JSON.parse(response);
+//       var divHtml = `  
+//       <div class="forum_para">
+//       <input name = "parent_id" id="parent_id"type="hidden"  value='${discussID}'/></br>
+//       <textarea name = "content" id="reply" type="text" placeholder="write your reply"  class="reply-textarea">${details.content}</textarea>
+//       <input class="reply-btn" type="submit" value="Save" name = "reply_submit"  />
+     
+//       </div>`
+//       let targetDiv = allthreads.querySelector(`[data-thread-id='${discussID}'] .forum_para`);
+//       targetDiv.innerHTML = divHtml;
+//       console.log(targetDiv);
+//     },
+//     error:function(xhr){
+//       alert('Error loading threads: ' + xhr.responseText);
+//     }
+//   });
+
+// }
+

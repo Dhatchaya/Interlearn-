@@ -56,9 +56,12 @@
                                     <a href="<?=ROOT?>/forums/discussion/<?=esc($row->course_id)?>/<?=esc($row->forum_id)?>">
 
                                         <button class="view_enq_btn">View</button>
-  
-                                </div>
-                                    </a>
+                                        </a>
+                                        <?php  if($role == "Teacher" ||$role == "Instructor"):?>
+                                        <button onclick = "deleteForum(<?=esc($row->forum_id)?>)" class="view_enq_btn">Delete</button>
+                                         <?php endif?>
+                                    </div>
+                                   
                             </div>
                         </td>
                     </tr>

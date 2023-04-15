@@ -2,12 +2,12 @@
 /**
  *Student class
  */
-class Students extends Model
+class Tempstudent extends Model
 {
     
     //says what table it has to target
     public $error = [];
-    protected $table = "student";
+    protected $table = "temp_student";
     protected $key = 'studentID';
 
     public $allowed_columns = [
@@ -25,7 +25,10 @@ class Students extends Model
         'uid',	
         'parent_name',	
         'parent_email',	
-        'parent_mobile'
+        'parent_mobile',
+        'status',
+        'date',
+        'email',
 
     ];
     protected $staffs = [

@@ -12,3 +12,19 @@ discussion.addEventListener('click',function(e){
 cancel.addEventListener('click',function(){
   compdis.style.display = "none";
 });
+
+function deleteForum(id){
+  $.ajax({
+    method:"POST",
+    url : `http://localhost/Interlearn/public/forums/delete/${id}`,
+    data:{id: id},
+    success:function(response){
+      console.log(response);
+     
+    },
+    error:function(xhr,status,error){
+      console.log("Error: " + error);
+    }
+  });
+
+}
