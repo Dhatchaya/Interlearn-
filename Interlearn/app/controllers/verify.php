@@ -29,7 +29,7 @@ class Verify extends Controller
                     ]
                     );
                     if($status){
-                        header("Location:../public/home");
+                        header("Location:../public/student");
                     }
                 }
             

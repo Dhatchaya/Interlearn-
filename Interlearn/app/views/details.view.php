@@ -62,11 +62,12 @@ $val = explode('/',$url);
                     }
                     // show($subjects[$med_ID]);die;
                     ?>
-                <?php foreach($subjects[$med_ID] as $teacher): ?>
-                <tr>
-                <?php if (!empty($enroll_error)) : ?>
+                    <?php if (!empty($enroll_error)) : ?>
                     <p class="warning"><?php echo $enroll_error; ?></p>
                 <?php endif; ?>
+                <?php foreach($subjects[$med_ID] as $teacher): ?>
+                <tr>
+                
                     <td><?=esc($teacher->day)?></td>
 
                     <td><?=esc($teacher->timefrom)?> - <?=esc($teacher->timeto)?></td>
@@ -76,15 +77,15 @@ $val = explode('/',$url);
                             <?php echo "No teachers assigned!";?>
                         <?php endif?>
                     </td>
-
+                    
                     <td>
                     <?php if(!empty($teach_instructors[$teacher->course_id])):?>
                         <?php foreach($teach_instructors[$teacher->course_id] as $teach_instructor):?>
                             <?=esc($teach_instructor->instructorName)?>
                             <input type="hidden" value="<?=esc($teacher->day)?>">
-
+                            
                             <br/>
-                        <?php endforeach;?>
+                        <?php endforeach;?> 
 
                     <?php else:?>
                             <?php echo "No instructors assigned!";?>
@@ -93,7 +94,7 @@ $val = explode('/',$url);
                 </tr>
 
 
-
+                
                 <?php endforeach;?>
                 <?php endif;?>
             </table>
@@ -106,12 +107,13 @@ $val = explode('/',$url);
                 <span class="ann_close" onclick="closeModal()">&times;</span><br>
                 <h3>Enroll Me</h3><br>
                 <form action="" method="post" class="up-profile">
+                <input type="hidden" value="" id="modal_subject_id" name="subject_id">
                     <label for="teacherID">Teacher ID: </label><br>
                     <select name="teacher" id="teacher" class="recp_ann_clz" onchange="getDateTime('<?php echo $subject_id?>')">
                         <option value="teacher" selected>--Select teacher name--</option>
-                        <?php if(!empty($subjects)):?>
-                        <?php foreach($subjects as $teacher):?>
-                        <option value="<?=esc($teacher->teacher_id)?>"><?=esc($teacher->teacherName)?></option>
+                        <?php if(!empty($distinctTeachers)):?>
+                        <?php foreach($distinctTeachers as $teacher):?>
+                        <option value="<?=esc($teacher->teacher_ID)?>"><?=esc($teacher->teacherName)?></option>
                         <?php endforeach;?>
                         <?php endif?>
                     </select><br>

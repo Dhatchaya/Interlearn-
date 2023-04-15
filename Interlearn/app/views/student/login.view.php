@@ -47,41 +47,27 @@
                 <?=message('',true)?>
             </div>
             <?php endif;?>
-            <?php if(!empty($errors)):?>
-                <?php foreach($errors as $error):?>
-                    <div class="display-error">
-                        <?=$error?>
-                    </div>
-                <?php endforeach;?>
+            <?php if(!empty($errors['email'])):?>
+            <div class="display-error">
+                <?=$errors['email']?>
+            </div>
             <?php endif;?>
-            <!-- <?php if(!empty($errors['password'])):?>
+            <?php if(!empty($errors['password'])):?>
             <div class="display-error">
                 <?=$errors['password']?>
             </div>
-            <?php endif;?> -->
+            <?php endif;?>
 
             <!-- display warning -->
             <form  class = "st_lgn_frm"  method="POST">
             <div class="login-row"><label class = "lgn_form" for="username">Email</label>
-             
             <input value ="<?= set_value('email')?>" class= "login-inp"type="email" id="username" name="email" placeholder="Enter Email address"></div>
-            <?php if(!empty($empty['email'])):?>
-            <div class="fieldError">
-            <?=$empty['email']?>
-            </div>
-            <?php endif;?>
             <div class="login-row">
             <label class = "lgn_form" for="password">Password </label>
-            
             <input value ="<?= set_value('password')?>" class= "login-inp"  type="password" id="password" name="password" placeholder="Enter Password">
-            <?php if(!empty($empty['password'])):?>
-            <div class="fieldError">
-            <?=$empty['password']?>
             </div>
-            <?php endif;?>    
-        </div>
             <br>
-          <button type="submit"  class="st_lgn_btn">Login</button>
+          <button type="submit" name="submit" class="st_lgn_btn">Login</button>
             
         </form>
         </div>

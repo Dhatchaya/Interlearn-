@@ -55,8 +55,12 @@ class Receptionist extends Controller
                     $subject_id = uniqid();
                     //uniqueid("S",true)
 
+                    // show($_POST);die;
+
                     $_POST['subject_id']=$subject_id;
                     $subject->insert($_POST);
+
+                    // show($_POST);die;
                     
                     // $subject_details = $subject->getSubjectId($_POST['subject'],$_POST['grade'],$_POST['language_medium']);
 
@@ -64,7 +68,7 @@ class Receptionist extends Controller
                     // print_r ($subject_id);die;
                     $course->insert($_POST);
 
-                    // // show($subject_id);die;
+                    show($subject_id);die;
                     $id= $course->getLastCourse()[0]->course_id;
                     // // // print_r($Course);die;
                     $course_week->createWeek($id, 1);
@@ -211,6 +215,10 @@ class Receptionist extends Controller
                 $data['instructors'] = $staff->getInstructors();
                 // show($data['instructors']);die;
 
+                // show($_POST['course_id']);die;
+                // $data['availinstructors'] = $staff -> getAvailableInstructors($_POST['course_id']);
+                // show($data['availinstructors']);die;
+
                 if(isset($_POST['add-teacher'])){
                     $inputs=array("subject_id"=>$_GET['id'],"teacher_id"=>$_POST['teacher_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto'],"capacity"=>$_POST['capacity']);
                     //show($inputs);die;
@@ -234,6 +242,18 @@ class Receptionist extends Controller
                     // header("Location:http://localhost/Interlearn/public/receptionist/course/view/1/".$id);
                 }
 
+                if(isset($_POST['submit-remove-instructor'])){
+                    // show($_POST);die;
+                    // show($_POST['instructorID']);die;
+                    // show(['course_id'=>$_POST['courseID']]);die;
+                    // show($_POST['courseID']);die;
+                    $instructor_id = $_POST['instructorID'];
+                    $course_id = $_POST['courseID'];
+                    $input1 = array('course_id'=>$course_id,'emp_id'=>$instructor_id);
+                    // show($input1);die;
+                    $result2 = $course_instructor->deleteInstructors($course_id,$instructor_id);
+                }
+
                 $this->view('receptionist/class',$data);
                 exit;
         }
@@ -248,6 +268,18 @@ class Receptionist extends Controller
             }
             exit;
         }
+
+        if($action == 'checkAvailableInstructors'){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+                $result = $staff -> getAvailableInstructors($_POST['course_id']);
+                // show($result);die;
+                echo json_encode($result);
+                die;
+            }
+            exit;
+        }
+        
 
 
 
@@ -321,30 +353,85 @@ class Receptionist extends Controller
 
         $course = new Course();
         $subject = new Subject();
-        $teacher = new Teacher();
         $announcement = new Announcement();
         $ann_course = new AnnouncementCourse();
         $orderby='course_id';
         $data['id'] = $aid;
         $result1 = $subject->selectCourse([]);
         $data['courses']=$result1;
+        $data['errors']=[];
 
         //show($data['courses']);die;
 
         if($action == 'add'){
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $announcement_id = uniqid();
-                $_POST['aid'] = $announcement_id;
-                $_POST['empID'] = 4;
-                $_POST['role'] = "Receptionist";
+                if($announcement -> validate($_POST)){
+                    $announcement_id = uniqid();
+                    $_POST['aid'] = $announcement_id;
+                    $_POST['empID'] = 4;
+                    $_POST['role'] = "Receptionist";
 
-                $result = $announcement->insert($_POST);
-                echo "Announcement successfully published!";
-                //show($_POST);die;
+
+                    $file = $_FILES['attachment'];
+
+                    $fileName = $_FILES['attachment']['name'];
+                    $fileTmpName = $_FILES['attachment']['tmp_name'];
+                    $fileSize = $_FILES['attachment']['size'];
+                    $fileError = $_FILES['attachment']['error'];
+                    $fileType = $_FILES['attachment']['type'];
+                    $fileExt = explode('.',$fileName);
+                    $fileActualExt = strtolower(end($fileExt));
+                    $allowed1 = array('jpg','jpeg','png', 'pdf','zip','txt','sql','docx','xml','doc','ppt', 'mp3','mp4','php','html','css','js');
+                    if(in_array($fileActualExt, $allowed1))
+                    {
+                        // print_r($_FILES['file']);exit;
+                        if($fileError === 0)
+                        {
+                            if($fileSize < 1000000000)
+                            {
+                                $fileNameNew = uniqid('',true).".".$fileActualExt;
+                                $fileDestination = "/xampp/htdocs/Interlearn/uploads/receptionist/announcements/".$announcement_id;
+                                if (!is_dir($fileDestination)){
+                                    // print_r("test1");
+                                    mkdir($fileDestination,0644, true);
+                                    // print_r("test2");die;
+                                
+                                }
+                                $destination =  $fileDestination."/".$fileNameNew;
+                                move_uploaded_file($fileTmpName,$destination);
+                                //echo $fileActualExt;exit;
+                                //var_dump($_POST);exit;
+                                //print_r($fileType);exit;
+                                $viewURL="http://localhost/Interlearn/uploads/receptionist/announcements/".$announcement_id."/".$fileNameNew;
+                                $_POST['file_name'] = $fileNameNew;
+                                $_POST['attachment'] = $viewURL;
+                                $result1 = $announcement->insert($_POST);
+                            }else{
+                                echo "Image is too large!";
+                            }
+                        }else{
+                            echo "There was an error uploading image!";
+                        }
+                    }else{
+                        echo "You cannot upload this file!";
+                    }
+
+
+                    $result = $announcement->insert($_POST);
+                    echo "Announcement successfully published!";
+                    //show($_POST);die;
+                    header("Location:http://localhost/Interlearn/public/receptionist/announcement");
+                }
+                else{
+                    $data['errors'] = $announcement -> error;
+                }
+
 
             }
+            
             $this->view('receptionist/addAnnouncement',$data);
         }
+
 
         if($action == 'update'){
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -372,8 +459,21 @@ class Receptionist extends Controller
 
 
         $data['announcements'] = $announcement->allRecepAnnouncements([]);
-          $isEditable = $announcement->isAnnEditable('time');
-          $data['editable'] = $isEditable;
+        $time = [];
+        for($i=0; $i<count($data['announcements']); $i++){
+            // show($data['announcements'][$i]->date_time);
+            $isEditable = $announcement->isAnnEditable($data['announcements'][$i]->date_time);
+            // show($isEditable);
+            array_push($time,$isEditable);
+        }
+        // die;
+        $data['editable'] = $time;
+        // show($data['editable']);die;
+
+
+        if(isset($_POST['submit-delete-announcement'])){
+            $result = $announcement -> delete(['aid'=>$aid]);
+        }
 
         $this->view('receptionist/announcement',$data);
         // private function isCourseEditable($createdAt) {
@@ -384,7 +484,7 @@ class Receptionist extends Controller
 
     }
 
-    public function enrollment(){
+    public function enrollment($action=null){
         if(!Auth::is_receptionist()){
             redirect('home');
 
@@ -403,15 +503,22 @@ class Receptionist extends Controller
         // show($data['requests']);die;
         // show($data['Allrequests'][0]);die;
         // print_r($_POST);die;
-        $req = [];
-        for($i=0;$i<count($data['requests']);$i++){
-            // show($data['requests'][$i]->request_id);
-            $requestDetails = $enroll_req -> showRequestsDetails($data['requests'][$i]->request_id);
-            array_push($req,$requestDetails[0]);
-        }
+        // $req = [];
+        // for($i=0;$i<count($data['requests']);$i++){
+        //     // show($data['requests'][$i]->request_id);
+        //     $requestDetails = $enroll_req -> showRequestsDetails($data['requests'][$i]->request_id);
+        //     array_push($req,$requestDetails[0]);
+        // }
         // die;
-        $data['requestDetails'] = $req;
+        // $data['requestDetails'] = $req;
         // show($data['requestDetails']);die;
+
+        if($action == 'getRequestDetails'){
+            // echo $_POST['request_id'];die;
+            $result = $enroll_req -> showRequestsDetails($_POST['request_id']);
+            echo json_encode($result);
+            die;
+        }
 
         if(isset($_POST['accept-student']))
         {
@@ -422,12 +529,15 @@ class Receptionist extends Controller
             $data2 = ['request_id'=>$_POST['requestID']];
             $result2 = $enroll_req -> delete($data2);
             echo "Student added successfully!";
+            header("Location:http://localhost/Interlearn/public/receptionist/enrollment");
         }
+        
         if(isset($_POST['submit-reject-request']))
         {
             $data = ['request_id'=>$_POST['requestID']];
             $result = $enroll_req -> delete($data);
             echo "Request rejected!";
+            header("Location:http://localhost/Interlearn/public/receptionist/enrollment");
         }
 
 
@@ -694,55 +804,6 @@ class Receptionist extends Controller
         echo json_encode($res);
         exit;
     }
-    public function registration($action = null,$id = null)
-    {
-     $data = [];
-     $tempStudent = new Tempstudent();
-     $data['rows'] = $tempStudent -> select(null,'date');
-     if($action == "view"){
-        $data['student'] = $tempStudent -> jointempstudents(['studentID'=>$id],'date');
-        
-        $this->view('receptionist/Registrations_view',$data);
-        exit;
-        
-     }
-     if($action == "delete"){
-        $result = $tempStudent -> delete(['studentID'=>$id]);
-     }
-     $this->view('receptionist/Registrations',$data);
-    }
-    public function updatestatus($id)
-    {
-        $tempStudent = new Tempstudent();
-        $tempStudentcourse = new TempStudentCourse();
-        $student= new Students();
-        $studentcourse= new StudentCourse();
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') 
-        {   
-            $tempStudent->update(["studentID"=>$id],["status"=>$_POST['status']]);
 
-            if($_POST['status'] == "accept"){
-                $details =  $tempStudent->first(["studentID"=>$id],'studentID');
-                $student_details = json_decode(json_encode($details), true);
-                $result = $student->insert($student_details);
-            
-                if($result){
-                    echo "success";
-                    $courses=  $tempStudentcourse->where(["studentID"=>$id],'studentID');
-              
-                    foreach($courses as $row){
-                        $post['student_id'] = $row->studentID;
-                        $post['course_id'] = $row->course_id;
-                        $result2 =   $studentcourse->insert($post);
-                    }
-                  
-                }
-                
-                $deleteresult= $tempStudent -> delete(['studentID'=>$id]);
-            }
-            
-        }
-    }
-    
 }
 

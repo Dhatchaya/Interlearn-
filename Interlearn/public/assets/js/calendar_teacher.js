@@ -62,7 +62,7 @@ const renderCalendar = () => {
                 return;
               }
              let dateofClass =Weeks[new Date(currYear, currMonth, viewClass[i].dataset.today).getDay()];  
-
+            
             for (let j in allClasses){
              
                 if (dateofClass === allClasses[j].day) {
@@ -70,7 +70,7 @@ const renderCalendar = () => {
                    
                     <a href ="http://localhost/Interlearn/public/teacher/course/view/${allClasses[j].course_id}"> 
                         <div  class ="assignment_card">
-                        <div class ="assignment_card_title"><p>${allClasses[j].subject}<p></div>
+                        <div class ="assignment_card_title"><p>${allClasses[j].name}<p></div>
                         <ul>
                              <li> Day: ${allClasses[j].day}</li>
                             <li> Time: ${allClasses[j].timefrom}-${allClasses[j].timeto}</li>

@@ -8,7 +8,6 @@ class User extends Model
     public $error = [];
     protected $table = "users";
     protected $allowed_columns = [
-        'uid',
         'username',
         'email',
         'password',
@@ -19,7 +18,7 @@ class User extends Model
         'user_otp',
        "display_picture",
     ];
-    public $staffs = [
+    protected $staffs = [
         'Manager',
         'Teacher',
         'Instructor',
@@ -40,20 +39,14 @@ class User extends Model
 
     public function validate($data)
     {   
-
         $this->error = [];
         foreach($data as $key => $value)
         { 
-
-            if(($key!= "NIC") && empty($data[$key])||($data[$key]=="undefined") )
+            if(empty($data[$key]))
             {
                 $this -> error[$key] = ucfirst($key)." is required";
             }
          }
-         if(isset($data['pic']['name']) AND ($data['pic']=="undefined")){
-            
-                $this->error['pic'] = "Please upload your picture";
-            }
     
             // checks email is valid if so it'll check whther it already exists
             if(!filter_var($data['email'],FILTER_VALIDATE_EMAIL))
@@ -64,40 +57,11 @@ class User extends Model
                     $this->error['email'] = "Email already exists";
                 
             }
-            if(empty($data['NIC'])){
-                if(!empty($data['birthday'])){
-                    $today = date('Y-m-d');
-                    $diff=date_diff(date_create($data['birthday']),date_create($today));
-                    $age= $diff->format("%y");
-                    if($age >16){
-                        $this->error['NIC'] = "Enter your NIC number";
-                    }
-                    
-                }
-              
-            }
-           
         if(empty($this->error)){
             return true;
         }
         return false;
     }
-    public function validateLogin($data)
-    {
-        $this->error = [];
-        foreach($data as $key => $value)
-        { 
-            if(empty($data[$key]))
-            {
-                $this -> error[$key] = ucfirst($key)." is required";
-            }
-         }
-        // show($this->error);die;
-         if(empty($this->error)){
-            return true;
-        }
-        return false;
 
-    }
 
 }

@@ -17,53 +17,31 @@ class Login extends Controller
         $data['errors'] = [];
         $data['title'] = "login";
         $user = new User();
-        $student = new Students();
+
         if($_SERVER['REQUEST_METHOD'] == "POST")
         {
-            if($user -> validateLogin($_POST)){
             $row = $user -> first([
                 'email' => $_POST['email'],
                 'User_email_status' => 'verified'
             ],'uid');
-            
             if($row)
             {
-             
-                $studentDetails = $student->first([
-                    'uid'=>$row->uid
-                ],'studentID');
-            
-                    if($row -> role === "Student"){
-                        if($studentDetails)
-                        {
-                            if(password_verify($_POST['password'],$row -> password ))
-                            {
+                if($row -> role === "Student"){
+                
+                    if(password_verify($_POST['password'],$row -> password ))
+                    {
 
-                            Auth::authenticate($row);
-                            header('Location: ../'.$row -> role.'/home');
-                            }
-                            $data['errors']['email']= "wrong email or password";
-                        }
-                        else{
-                            $data['errors']['status']= "No Account"; 
-                        }
+                    Auth::authenticate($row);
+                    header('Location: ../'.$row -> role.'/home');
                     }
-                    else{
-                        message("Please login as staff");
-                    }
-                  
-                
-                
+                    $data['errors']['email']= "wrong email or password";
+                }
+                message("Please login as staff");
             }
             else{
-              
-              
-                    $data['errors']['email']= "wrong email or password";
-                
-               
+                $data['errors']['email']= "wrong email or password";
             }
-        }
-        $data['empty']=$user->error;
+           
         }
         $this->view('student/login',$data);
     }
@@ -88,7 +66,7 @@ class Login extends Controller
             if($row)
             {
                
-                if (in_array($role,$user->staffs)) {
+                if ($role) {
                     if(password_verify($_POST['password'],$row -> password ))
                     {
                     Auth::authenticate($row);
@@ -97,10 +75,7 @@ class Login extends Controller
                     }
                     $data['errors']['email']= "wrong email or password";
                 }
-                else if($role == "Student"){
-                    message("Please login as ".$role);
-                }
-                
+                message("Please login as ".$row->role);
          
                 }
                 else{

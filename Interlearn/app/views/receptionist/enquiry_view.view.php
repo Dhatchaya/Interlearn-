@@ -89,7 +89,5 @@
 </div> 
    
 </div>
-</div>
-</div>
 <script defer src="<?=ROOT?>/assets/js/enqView.js?v=<?php echo time(); ?>"></script>
 <?php $this->view("includes/footer");?>

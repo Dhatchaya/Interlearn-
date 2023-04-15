@@ -5,7 +5,7 @@
  */
 class Forums extends Controller
 {
-    public function index($courseID=null,$week=null,$action = null)
+    public function index($courseID=null,$week=null)
     { 
         if($courseID==null){
             $data['title'] = "404";
@@ -25,8 +25,6 @@ class Forums extends Controller
             redirect('home');
            
         }
-      
-   
 
         $data=[];
         $forum= new Forum();
@@ -40,14 +38,6 @@ class Forums extends Controller
         //     $this->view('forums',$data);
         //     exit;
         // }
-        if($role=="Student"){
-            $studentCourse = new StudentCourse();
-            $checkCourse = $studentCourse -> where(['course_id'=>$courseID],'course_id');
-            if(!$checkCourse){
-                redirect('home');
-                exit;
-            }
-        }
         if($_SERVER['REQUEST_METHOD'] == "POST")
         {
          
@@ -115,155 +105,8 @@ class Forums extends Controller
            
         }
       
-        if($action == 'deleteFile'){
-            $discuss = new Discuss();
-            $forum = new Forum();
-            if(isset($_GET['id'])){
-                $id = $_GET['id'];
-            if(isset($_GET['table'])){
-                $table  = $_GET['table'];
-            //display the whole thread
-            if($_SERVER['REQUEST_METHOD']=="POST"){
-                if($table == 'discuss'){
-                    $_POST['discussion_id']=$id;
-                    $deleted =$discuss->update(['discussion_id'=>$id],['attachment'=>""]);
-                // $deleted = $discuss->delete($_POST);
-                }
-               else if($table == 'forum'){
-                $_POST['forum_id']=$id;
-                $deleted =$forum->update(['forum_id'=>$id],['attachment'=>""]);
-                    // $deleted = $forum->delete($_POST);
-                 
-                }
-                if($deleted){
-                    echo "successfully deleted";
-                }
-                else{
-                    echo "deletion failed";
-                }
-               
-                
-            }
-        }
-        else{
-            echo "table not set";
-        }
-        }else{
-            echo "Id not set";
-        }
-            
-            exit;
-        }
-        if($action == 'update'){
-            $discuss = new Discuss();
-            //display the whole thread
-            if(isset($_GET['id'])){
-                $id = $_GET['id'];
-                if(isset($_GET['table'])){
-                    $table  = $_GET['table'];
-                $discuss = new Discuss();
-                $forum = new Forum();
-                $role = Auth::getrole();
-                if($_SERVER['REQUEST_METHOD']=="POST"){
-                    if($table == 'discuss'){
-                  
-                        if(isset($_FILES['attachment']['name']) AND !empty($_FILES['attachment']['name'])){
-                            $attachment_tmp = $_FILES['attachment']["tmp_name"];
-                            $attachment_name = $_FILES['attachment']["name"];
-                            $error= $_FILES['attachment']['error'];
-                       
-                            if($error === 0){
-                                $img_ext = pathinfo($attachment_name,PATHINFO_EXTENSION);
-                                $img_final_ext = strtolower($img_ext);
-                        
-                                $allowed_ext = array('jpg','png','jpeg','doc','pdf','xls','html','css','js');
-                                if(in_array($img_final_ext,$allowed_ext)){
-                                    $new_image_name = uniqid().'.'.$img_final_ext;
-                                    $directory = "uploads/".$courseID."/forum_files";
-                                  //  echo($directory);die;
-                                    if (!is_dir($directory)){
-                                       // echo "here";die;
-                                        mkdir($directory,0644, true);
-            
-                                    }
-            
-                                    $destination =  $directory."/".$new_image_name;
-                                  // echo $destination;die;
-                                    move_uploaded_file($attachment_tmp,$destination);
-                                    $_POST['attachment'] = $new_image_name ;
-                                }
-                                else{
-                                    $data['errors']['attachment']='you cannot upload this type of file';
-                                }
-                            }
-                            else{
-                                $data['errors']['attachment'] ="unknown error occured";
-                                }
-                                
-                        }
-                        $result =$discuss->update(['discussion_id'=>$id],$_POST);
-                    }
-                    else if($table == 'forum'){
-                           
-                            if(isset($_FILES['attachment']['name']) AND !empty($_FILES['attachment']['name'])){
-                                $attachment_tmp = $_FILES['attachment']["tmp_name"];
-                                $attachment_name = $_FILES['attachment']["name"];
-                                $error= $_FILES['attachment']['error'];
-                           
-                                if($error === 0){
-                                    $img_ext = pathinfo($attachment_name,PATHINFO_EXTENSION);
-                                    $img_final_ext = strtolower($img_ext);
-                            
-                                    $allowed_ext = array('jpg','png','jpeg','doc','pdf','xls','html','css','js');
-                                    if(in_array($img_final_ext,$allowed_ext)){
-                                        $new_image_name = uniqid().'.'.$img_final_ext;
-                                        $directory = "uploads/".$courseID."/forum_files";
-                                      //  echo($directory);die;
-                                        if (!is_dir($directory)){
-                                           // echo "here";die;
-                                            mkdir($directory,0644, true);
-                
-                                        }
-                
-                                        $destination =  $directory."/".$new_image_name;
-                                      // echo $destination;die;
-                                        move_uploaded_file($attachment_tmp,$destination);
-                                        $_POST['attachment'] = $new_image_name ;
-                                    }
-                                    else{
-                                        $data['errors']['attachment']='you cannot upload this type of file';
-                                    }
-                                }
-                                else{
-                                    $data['errors']['attachment'] ="unknown error occured";
-                                    }
-                                    
-                            }
-                            $result =$forum->update(['forum_id'=>$id],$_POST);
-                           
-                        }
-                        if($result){
-                            echo "update success";
-                        }
-                        else{
-                            echo "Update failed";
-                        }
-    
-                        exit;
-                    }
-                  
-                }
-                else{
-                    echo "table not set";
-                }
-            }
-            else{
-                echo "ID not set";
-            }
-          
-             
-            exit;
-        }
+
+      
         $data=[];
         $forum= new Forum();
         $discuss = new Discuss();
@@ -271,15 +114,7 @@ class Forums extends Controller
         $data['forum']=$discuss = $forum->joinforumfirst([
             'forum_id'=>$disID
         ],'forum_id');
-        $role = Auth::getrole();
-        if($role=="Student"){
-            $studentCourse = new StudentCourse();
-            $checkCourse = $studentCourse -> where(['course_id'=>$courseID],'course_id');
-            if(!$checkCourse){
-                redirect('home');
-                exit;
-            }
-        }
+      
         //when a reply is posted
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             $discussid = uniqid();
@@ -346,79 +181,12 @@ class Forums extends Controller
             echo json_encode($all);
             exit;
         }
-     
-
-        if($action == 'edit')
-        { 
-            if(isset($_GET['d_id'])){
-                $id = $_GET['d_id'];
-                if(isset($_GET['table'])){
-                     $table  = $_GET['table'];
-                
-                $discuss = new Discuss();
-                $forum = new Forum();
-                $role = Auth::getrole();
-                if($table == 'discuss'){
-                    $result = $discuss->first(['discussion_id'=>$id],'discussion_id');
-                    if($result){
-                        echo json_encode($result);
-                        exit;
-                    }
-                    else{
-                        echo "Failed";
-                    }
-                    exit;
-                }
-                else if($table == 'forum'){
-                    $result2 = $forum->first(['forum_id'=>$id],'forum_id');
-                    if($result2){
-                        echo json_encode($result2);
-                        exit;
-                    }
-                    else{
-                        echo "Failed";
-                    }
-                    exit;
-                }
-                    
-                    
-                
-                   exit;
-                }
-                else{
-                    echo "table not defined ";
-                    exit;
-                }
-            }
-            else{
-                echo "id not set";
-                exit;
-            }
-          
-            
-          
-        }
         
         $this->view('discussion',$data);
     }
 
 
 
-    public function delete($id = null)
-    { 
-        $forum = new Forum();
-        $role = Auth::getrole();
-        if($role != "Student"){
-            $result = $forum->delete(['forum_id'=>$id]);
-            if($result){
-                echo "Success";
-            }
-            else{
-                echo "failed";
-            }
-        }
-      
-    }
 
 
     public function profile($id = null)
@@ -434,28 +202,4 @@ class Forums extends Controller
         
         $this->view('instructor/profile');
     }
-
-    public function update()
-    { 
-       
-            $discuss = new Discuss();
-            //display the whole thread
-            if(isset($_GET['id'])){
-                $id = $_GET['id'];
-                $discuss = new Discuss();
-                $forum = new Forum();
-                $role = Auth::getrole();
-                if($_SERVER['REQUEST_METHOD']=="POST"){
-                    $result = $data['discuss']=$discuss->update(['discussion_id'=>$id],$_POST);
-                
-                    echo json_encode($result);
-                    exit;
-                }
-             }
-            exit;
-        
-        
-      
-    }
-
 }
