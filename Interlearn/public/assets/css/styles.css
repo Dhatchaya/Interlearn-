@@ -2455,7 +2455,6 @@ li.lo-nav {
 
 .std_view_content{
     margin-top: 5%;
-    margin-left: 2%;
 }
 
 .std_view_greeting{
@@ -3397,7 +3396,7 @@ width: 45vw;
     margin-top: 5%;
     margin-left: 5%;
     /* flex-wrap: wrap; */
-    width: 60vw;
+    width: 75vw;
 }
 .recp_cl_medium{
     /* list-style-type: none;
@@ -3420,7 +3419,8 @@ width: 45vw;
   color: black;
   text-align: center;
   text-decoration: none;
-  width: 20vw;
+  width: 25vw;
+  cursor: pointer;
 }
 .recp_cl_nav:hover{
     background-color: rgb(104, 44, 198,25%);
@@ -5183,7 +5183,7 @@ gap: 8vw;
 
 .teacher-class-table{
     border-collapse: collapse;
-    width: 60vw;
+    width: 75vw;
 }
 .teacher-class-table th, .teacher-class-table td{
     border: 1px solid black;
@@ -5191,11 +5191,13 @@ gap: 8vw;
     text-align: center;
 }
 .teacher-class-table th{
-    background-color: rgb(104, 44, 198,55%);
+    /* background-color: rgb(104, 44, 198,55%); */
+    background-color: var(--primary-color);
+    color: white;
 }
-.teacher-class-table tbody tr:nth-child(even){
+/* .teacher-class-table tbody tr:nth-child(even){
     background-color: rgb(104, 44, 198,12%);
-}
+} */
 .teacher-class-table tbody tr:hover{
     background-color: rgb(104, 44, 198,35%);
 }
@@ -5524,4 +5526,8 @@ gap: 8vw;
 }
 .onlyEdit{
     margin-top: 2rem;
+}
+/* close button of removing instructors */
+.instructor-remove{
+    cursor: pointer;
 }
