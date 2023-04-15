@@ -489,7 +489,7 @@ class Model extends Database {
     public function studentCourse($data=[],$id,$orderby = null, $order=null){
         $query = "SELECT concat(staff.first_name,' ',staff.last_name) AS fullname, subject.subject_id,subject.subject,subject.grade,subject.language_medium,course.* from ".$this->table;
         $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN student_course ON student_course.course_id = course.course_id INNER JOIN staff ON course.teacher_id = staff.emp_id INNER JOIN student ON student.studentID = student_course.student_id ";
-        $query .= " WHERE student.uid = $id AND staff.role = 'Teacher'";
+        $query .= " WHERE student.uid = '$id' AND staff.role = 'Teacher'";
         // $query .= " group by subject, grade";
         // $query .= " order by $orderby  $order";
         //var_dump($_SESSION);exit;

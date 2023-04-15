@@ -51,7 +51,7 @@ function getRequests($id) {
                     document.getElementById("studentName").value = response[i].studentName;
                     document.getElementById("requested_date").value = response[i].requested_date;
                     document.getElementById("subject").value = response[i].subject;
-                    document.getElementById("grade").value = response[i].grade;
+                    document.getElementById("grades").value = response[i].grade;
                     document.getElementById("teacherName").value = response[i].teacherName;
                     document.getElementById("day").value = response[i].day;
                     document.getElementById("time").value = response[i].timefrom + " - " + response[i].timeto;

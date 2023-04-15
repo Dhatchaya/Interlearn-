@@ -68,40 +68,38 @@ $val = explode('/',$url);
                     <input type="hidden" id="request_modal" name="request_id">
 
 
-                    <!-- <?php if(!empty($requestDetails)):?>
-                    <?php foreach($requestDetails as $request):?> -->
+                   
                     <label for="student_id" class="enroll-display">Student ID: </label>
-                    <input type="text" id="student_id" value="<?=esc($request->student_id)?>" disabled>
+                    <input type="text" id="student_id" value="" disabled>
 
                     <label for="course_id" class="enroll-display">Requested Course ID: </label>
-                    <input type="text" id="course_id" value="<?=esc($request->course_id)?>" disabled>
+                    <input type="text" id="course_id" value="" disabled>
 
                     <label for="studentName" class="enroll-display">Student Name: </label>
-                    <input type="text" id="studentName" value="<?=esc($request->studentName)?>" disabled>
+                    <input type="text" id="studentName" value="" disabled>
 
                     <label for="requested_date" class="enroll-display">Requested Date: </label>
-                    <input type="text" id="requested_date" value="<?=esc($request->requested_date)?>" disabled>
+                    <input type="text" id="requested_date" value="" disabled>
 
                     <label for="subject" class="enroll-display">Subject: </label>
-                    <input type="text" id="subject" value="<?=esc($request->subject)?>" disabled>
+                    <input type="text" id="subject" value="" disabled>
 
                     <label for="grade" class="enroll-display">Grade: </label>
-                    <input type="text" id="grade" value="<?=esc($request->grade)?>" disabled>
+                    <input type="text" id="grades" value="" disabled>
 
                     <label for="teacherName" class="enroll-display">Teacher Name: </label>
-                    <input type="text" id="teacherName" value="<?=esc($request->teacherName)?>" disabled>
+                    <input type="text" id="teacherName" value="" disabled>
 
                     <label for="day" class="enroll-display">Class Day: </label>
-                    <input type="text" id="day" value="<?=esc($request->day)?>" disabled>
+                    <input type="text" id="day" value="" disabled>
 
                     <label for="time" class="enroll-display">Time Slot: </label>
-                    <input type="text" id="time" value="<?=esc($request->timefrom)?> - <?=esc($request->timeto)?>" disabled>
+                    <input type="text" id="time" value="" disabled>
 
                     <label for="available" class="enroll-display">Availability: </label>
-                    <input type="text" id="available" value="<?=esc($request->available)?>" disabled>
+                    <input type="text" id="available" value="" disabled>
 
-                    <!-- <?php endforeach;?>
-                    <?php endif;?> -->
+             
 
                 </form>
             </div>
