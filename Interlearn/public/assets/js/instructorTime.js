@@ -6,20 +6,12 @@ function getInstructorAvail($id) {
         type: 'POST',
         data: {'course_id':course_id},
         success: function(response) {
-            var instruct = document.getElementById("instructor_filter");
+           // var instruct = document.getElementById("instructor_filter");
             var dropdown = document.getElementById("instructor_dd");
-            // console.log(response);
+             console.log('response',response);
             response = JSON.parse(response);
             // console.log(response);
-            for(var i=0;i<response.length;i++){
-                console.log(response[i]);
-                var options = `<option value="${response[i].emp_id}">${response[i].instructorName}</option>`;
-                instruct.append(options);
-                console.log(options);
-                console.log(instruct);
-            }
-            dropdown.append(instruct);
-            console.log(dropdown);
+   
             var error = $('#addCourseerror');
 
             // Get the modal
@@ -38,8 +30,33 @@ function getInstructorAvail($id) {
                 // document.getElementById("modal2_course_id").value = courseID;
             
                 modal2.style.display = "block";
-                console.log(modal2);
+                var instruct = document.createElement("select");
+                instruct.setAttribute("name","emp_id");
+                instruct.classList.add("recp_ann_clz");
+                instruct.classList.add("instruct");
+                instruct.id = "instructor_filter";
 
+                console.log('me',modal2.querySelector('#instructor_dd'));
+                var option = document.createElement("option");
+                option.value = "slct";
+                option.textContent = "--Select instructor id--";
+                instruct.appendChild(option);
+                for(var i=0;i<response.length;i++){
+                    console.log(response[i]);
+                    option = document.createElement("option");
+                    option.value = response[i].emp_id;
+                    option.textContent = response[i].instructorName;
+                    instruct.appendChild(option);
+                  
+                    
+                }
+                if (dropdown.querySelector('.instruct')) {
+                    dropdown.replaceChild(instruct, dropdown.querySelector('.instruct'));
+                  } else {
+                    dropdown.appendChild(instruct);
+                  }
+               
+                console.log(dropdown);
 
             
 

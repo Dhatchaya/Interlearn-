@@ -259,15 +259,15 @@ $val = explode('/',$url);
                 <form action="" method="post" class="up-profile">
                 <h4>Instructor ID: </h4><br>
                 <div id="instructor_dd">
-                <select name="emp_id" id="instructor_filter" class="recp_ann_clz">
+                <!-- <select name="emp_id" id="instructor_filter" class="recp_ann_clz">
 
                     <option value="slct" selected>--Select instructor id--</option>
-                    <!-- <?php if(!empty($availinstructors)):?>
+                  <?php if(!empty($availinstructors)):?>
                     <?php foreach($availinstructors as $instructor):?>
                         <option  value="<?=$instructor->emp_id?>" ><?=esc($instructor->emp_id)?>:<?=esc($instructor->instructorName)?></option>
                     <?php endforeach;?>
-                    <?php endif;?> -->
-                    </select>
+                    <?php endif;?> 
+                    </select> -->
                 </div>
                     <br><br>
                 <button name="add-instructor" type="submit" class="recp_det_btn">Save</button>
