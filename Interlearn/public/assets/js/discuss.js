@@ -5,7 +5,8 @@ const parentDiscuss = document.getElementsByClassName("discuss_content");
 const replies = document.getElementsByClassName("forum-reply");
 const course_id = window.location.href.toString().split("/")[7];
 let user_id= document.getElementById("session_alt").value;
-
+const regex = /^.{0,25}$/;
+const regex2 = /^.{0,1000}$/;
 
 if ( window.history.replaceState ) {
 
@@ -136,9 +137,11 @@ allthreads.addEventListener('click', function(e) {
           </div>
           <form method="POST" class="forum_reply_form" id="forum_reply_box" enctype="multipart/form-data">
             <input name = "parent_id" id="parent_id"type="hidden"  value='${thread.discussion_id}'/></br>
+            <p></p>
             <textarea name = "content" id="reply" type="text" placeholder="write your reply" class="reply-textarea"></textarea>
             <label class="forum_subject" for="fsubject"> Attachments: </label></br>
-            <input type ="file"  class = "file_attachment" name="attachment" /></br></br>
+     
+            <input type ="file"  class = "file_attachment" name="attachment" /></br></br>       <p></p>
             <input class="reply-btn" type="submit" value="Reply" name = "reply_submit"  />
             <input class="forum_cancel_btn reply-btn" type="reset" value="Cancel" id = "forum_cancel_btn" name = "reply_cancel"/>
           </form>
@@ -219,6 +222,43 @@ console.log(window.location.href+"/deleteFile?id="+discussID +"&table="+table);
   }
 });
 
+
+allthreads.addEventListener('change', function(e) {
+ 
+  if (e.target && e.target.matches('.reply-textarea')) {
+    const error =document.createElement("p");
+    error.classList.add("warning");
+    if (!regex2.test(e.target.value)) {
+
+      error.innerHTML="Maximum number of allowed characters is 1000"
+    } 
+    else if(e.target.value.trim() === ""){
+      error.innerHTML="Topic is required";
+    }
+    else{
+      error.innerHTML="";
+    }
+    e.target.previousElementSibling.replaceWith(error);
+  }
+  if (e.target && e.target.matches('.file_attachment')) {
+    console.log(e.target);
+    const error =document.createElement("p");
+    error.classList.add("warning");
+   
+    const file = e.target.files[0];
+    const fileSize = file.size; 
+  
+    if (fileSize > 1048576) {
+      error.innerHTML='File size exceeds the limit of 5MB.';
+      // reset the file input
+      this.value = '';
+    }else{
+      error.innerHTML="";
+    }
+    e.target.nextElementSibling.replaceWith(error);
+  };
+});
+
 replyBox.addEventListener('focus',function(e){
 
   this.setAttribute('placeholder',' ');
@@ -288,9 +328,12 @@ $.ajax({
         </div>
         <form method="POST" class="forum_reply_form" id="forum_reply_box" enctype="multipart/form-data">
           <input name = "parent_id" id="parent_id"type="hidden"  value='${thread.discussion_id}'/></br>
+          <p></p>
           <textarea name = "content" id="reply" type="text" placeholder="write your reply"  class="reply-textarea"></textarea>
           <label class="forum_subject" for="fsubject"> Attachments: </label></br>
+    
           <input type ="file" class = "file_attachment" name="attachment" /></br></br>
+          <p></p>
           <input class="reply-btn" type="submit" value="Reply" name = "reply_submit"  />
           <input class="forum_cancel_btn reply-btn" type="reset" value="Cancel" id = "forum_cancel_btn" name = "reply_cancel"/>
         </form>
@@ -322,10 +365,11 @@ console.log('main',maintarget);
       console.log(details.attachment);
       var divHtml = `  
       <div class="forum_para onlyEdit">
+      <p></p>
       <textarea name = "content" id="reply" type="text" placeholder="write your reply" data-id = '${discussID}'data-table = '${table}' class="reply-textarea">${details.content}</textarea>
     
       <input type ="file"  class = "file_attachment" name="attachment" /></br>
-
+      <p></p>
       </div>
        <input class="reply-btn save_update" type="submit" value="Save" name = "reply_submit"  />
       <input class="reply-btn cancel_update" type="button" value="Cancel" name = "reply_cancel"  />

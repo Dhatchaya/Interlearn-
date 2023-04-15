@@ -48,9 +48,12 @@ class Forums extends Controller
                 exit;
             }
         }
+        if($action == "view"){
+
+        
         if($_SERVER['REQUEST_METHOD'] == "POST")
         {
-         
+            if($forum -> validate($_POST)){
             $_POST['date']= date("Y-m-d H:i:s");
             $_POST['course_id']= $courseID;
             $_POST['creator']= $user;
@@ -58,6 +61,7 @@ class Forums extends Controller
             $_POST['mainforum_id']=$mainforum_id;
 
             if(isset($_FILES['attachment']['name']) AND !empty($_FILES['attachment']['name'])){
+                if($forum -> validatefile($_FILES)){
                 $attachment_tmp = $_FILES['attachment']["tmp_name"];
                 $attachment_name = $_FILES['attachment']["name"];
                 $error= $_FILES['attachment']['error'];
@@ -88,11 +92,36 @@ class Forums extends Controller
                 else{
                     $data['errors']['attachment'] ="unknown error occured";
                     }
-                   
+                }
+                else{
+                    $data['errors'] =  $forum->error;
+                    echo json_encode( $data['errors']);
+                    exit;
+                }
             }
-// show($_POST);die;
-            $result= $forum->insert($_POST);
+        // show($_POST);die;
+        
+            }
+            else{
+                $data['errors'] =  $forum->error;
+                echo json_encode( $data['errors']);
+                exit;
+            }
+            if(empty($data['errors'])){
+          
+                $result= $forum->insert($_POST);
+                echo json_encode(["status"=>"success"]);
+                exit;
+            }
+            else{
+                $data['errors'] =  $forum->error;
+                echo json_encode( $data['errors']);
+                exit;
+            }
+            
         }
+        exit;
+    }
         //display all forums of that course
         $mainforum = new mainForum();
         $subject = new subject();
@@ -100,8 +129,11 @@ class Forums extends Controller
         $data['forummain'] = $mainforum -> first(['course_id'=>$courseID,'mainforum_id'=>$mainforum_id],"mainforum_id");
         $data['course']  = $subject -> coursedetails(['course_id'=>$courseID]);
         // show( $data['main']);die;
+        $data['errors'] =  $forum->error;
+
+            $this->view('forums',$data);
         
-        $this->view('forums',$data);
+     
     }
 
     //each discussion 

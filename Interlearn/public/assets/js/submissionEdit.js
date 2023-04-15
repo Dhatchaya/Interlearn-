@@ -25,8 +25,10 @@ console.log(id);
       // console.log(data);
       if(data[0] && data[0].filename){
         console.log(data[0].filename);
-      
+       console.log(data);
         for(i in data){
+          
+         
           const item = document.createElement("div");
           item.classList.add("sub-file-item");
     

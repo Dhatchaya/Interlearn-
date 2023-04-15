@@ -75,7 +75,7 @@ let assignmentID = "";
       url:`http://localhost/Interlearn/public/student/coursepg/submission/${course}/edit/?sub_id=${id}`,
   
       success: function(data) { 
-        // console.log(data);
+         console.log(data);
         assignmentID = data[0].assignmentId;
         if(data[0] && data[0].filename){
           console.log(data[0].filename);
@@ -99,7 +99,7 @@ let assignmentID = "";
             item.appendChild(button);
             fileList.appendChild(item);
       
-       
+            console.log(fileList);
            }
         }
 
