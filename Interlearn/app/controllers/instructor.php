@@ -132,20 +132,67 @@ class Instructor extends Controller
             if($option == 'add'){
                 // echo "hi";die;
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                    $announcement_id = uniqid();
-                    $_POST['aid'] = $announcement_id;
-                    $_POST['course_id'] = $id;
-                    $teacher_id = $course -> getTeacherID($id);
-                    $_POST['teacher_id'] = $teacher_id[0]->teacher_id;
+                    if($announcement -> validate($_POST)){
+                        $announcement_id = uniqid();
+                        $_POST['aid'] = $announcement_id;
+                        $_POST['course_id'] = $id;
+                        $teacher_id = $course -> getTeacherID($id);
+                        $_POST['teacher_id'] = $teacher_id[0]->teacher_ID;
 
-                    // show($_POST);die;
-                    // show($teacher_id[0]->teacher_id);die;
-                    //$announcement = new Announcement();
-                    $result = $announcement->insert($_POST);
-                    $result2 = $ann_course->insert($_POST);
-                    echo "Announcement successfully published!";
-                    header("Location:http://localhost/Interlearn/public/instructor/course/announcement/".$id."/0");
-                    //show($_POST);die;
+                        // show($_POST);die;
+                        // show($teacher_id[0]->teacher_ID);die;
+                        //$announcement = new Announcement();
+
+                        $file = $_FILES['attachment'];
+                        $fileName = $_FILES['attachment']['name'];
+                        $fileTmpName = $_FILES['attachment']['tmp_name'];
+                        $fileSize = $_FILES['attachment']['size'];
+                        $fileError = $_FILES['attachment']['error'];
+                        $fileType = $_FILES['attachment']['type'];
+                        $fileExt = explode('.',$fileName);
+                        $fileActualExt = strtolower(end($fileExt));
+                        $allowed1 = array('jpg','jpeg','png', 'pdf','zip','txt','sql','docx','xml','doc','ppt', 'mp3','mp4','php','html','css','js');
+                        if(in_array($fileActualExt, $allowed1))
+                        {
+                            // print_r($_FILES['file']);exit;
+                            if($fileError === 0)
+                            {
+                                if($fileSize < 1000000000)
+                                {
+                                    $fileNameNew = uniqid('',true).".".$fileActualExt;
+                                    $fileDestination = "/xampp/htdocs/Interlearn/uploads/".$id."/announcements/".$aid;
+                                    if (!is_dir($fileDestination)){
+                                        mkdir($fileDestination,0644, true);
+                                    }
+                                    $destination =  $fileDestination."/".$fileNameNew;
+                                    move_uploaded_file($fileTmpName,$destination);
+                                    //echo $fileActualExt;exit;
+                                    //var_dump($_POST);exit;
+                                    //print_r($fileType);exit;
+                                    $viewURL="http://localhost/Interlearn/uploads/".$id."/announcements/".$aid."/".$fileNameNew;
+                                    $_POST['file_name'] = $fileNameNew;
+                                    $_POST['attachment'] = $viewURL;
+                                    $result1 = $announcement->insert($_POST);
+                                }else{
+                                    echo "Image is too large!";
+                                }
+                            }else{
+                                echo "There was an error uploading image!";
+                            }
+                        }else{
+                            echo "You cannot upload this file!";
+                        }
+
+
+                        $result = $announcement->insert($_POST);
+                        $result2 = $ann_course->insert($_POST);
+                        echo "Announcement successfully published!";
+                        header("Location:http://localhost/Interlearn/public/teacher/course/announcement/".$id."/0");
+                        //show($_POST);die;
+                    }
+                    else{
+                        $data['errors'] = $announcement -> error;
+                    }
                 }
                 $this->view('instructor/addAnnouncement',$data);
             }
