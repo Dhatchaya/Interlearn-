@@ -24,52 +24,22 @@ $val = explode('/',$url);
             <ul class="recp_cl_medium">
 
             <?php if(!empty($mediums)):?>
-                    <?php foreach($mediums as $medium):?>
-                    <li><a href="<?=ROOT?>/receptionist/course/view/1/?id=<?=$medium->subject_id?>" class="recp_cl_nav active"><?=$medium->language_medium?></a></li>
+                <?php foreach($mediums as $medium):?>
+
+                    <?php if($medium->language_medium == 'Sinhala'):?>
+                        <li><a href="<?=ROOT?>/receptionist/course/view/1/?id=<?=$medium->subject_id?>" id="sinhala" class="recp_cl_nav active" onclick=setTab(this.id,this);><?=$medium->language_medium?></a></li>
+                    <?php elseif($medium->language_medium == 'English'):?>
+                        <li><a href="<?=ROOT?>/receptionist/course/view/1/?id=<?=$medium->subject_id?>" id="english" class="recp_cl_nav" onclick=setTab(this.id,this);><?=$medium->language_medium?></a></li>
+                    <?php else:?>
+                        <li><a href="<?=ROOT?>/receptionist/course/view/1/?id=<?=$medium->subject_id?>" id="tamil" class="recp_cl_nav" onclick=setTab(this.id,this);><?=$medium->language_medium?></a></li>
+                    <?php endif;?>
+
                <?php endforeach;?>
-               <?php endif;?>
+            <?php endif;?>
+
             </ul>
+
         </nav>
-        <!-- <div id="profileModal" class="popupModal">
-                       <div class="popupmodal-content">
-                           <span class="ann_close" onclick="closeModal()">&times;</span><br>
-                           <form action="" method="post" class="up-profile">
-                           <h4>Teacher ID: </h4>
-                                <select name="teacher_id" id="" class="recp_ann_clz">
-                                    <option value="" selected>--Select teacher id--</option>
-                                    <?php if(!empty($teachers)):?>
-                                    <?php foreach($teachers as $teacher):?>
-                                        <?=esc($teacher->firstname)?>
-                                    <option  value="<?=$teacher->teacher_id?>" ><?=esc($teacher->teacher_id)?>:<?=esc($teacher->firstname)?></option>
-                                    <?php endforeach;?>
-                                    <?php endif;?>
-                                </select>
-                                <div class="recp_det_box">
-                                <h4>Day: </h4>
-                                <select name="day" id="day" class="recp_ann_clz">
-                                <option value="slct" selected>--select day--</option>
-                                    <option value="Monday">Monday</option>
-                                    <option value="Tuesday">Tuesday</option>
-                                    <option value="Wednesday">Wednesday</option>
-                                    <option value="Thursday">Thursday</option>
-                                    <option value="Friday">Friday</option>
-                                    <option value="Saturday">Saturday</option>
-                                    <option value="Sunday">Sunday</option>
-                                </select>
-                                </div><br><br>
-                                <div class="recp_det_box">
-                                    <h4>Time:</h4>
-                                    <div class="recp_det_dura">
-                                        <input type="time" name="timefrom" value="08:00" id="" class="recp_det_time"> 
-                                        <p> to </p>
-                                        <input type="time" name="timeto" value="08:00" id="" class="recp_det_time">
-                                    </div>
-                                </div><br>
-                                <button name="save-btn" type="submit" class="recp_det_btn">Save</button>
-                           </form>
-                        </div>
-        </div>
-        <br> -->
 
         <!-- content table -->
         <div class="recp_cl_staff">
@@ -80,7 +50,7 @@ $val = explode('/',$url);
                 <th>Time</th>
                 <th>Teacher  </th>
                 <th>Instructor  </th>
-                <th></th>
+                <th>Action</th>
                 <?php if(!empty($subjects)):
                     $med_ID=0;
                     $subject_id=0;
@@ -118,10 +88,10 @@ $val = explode('/',$url);
                             
                             <br/>
                         <?php endforeach;?> 
-                        <img src="<?=ROOT?>/assets/images/plus.png" alt="" id="button29" class="teacher_crs_img2" onclick="openModal2(<?=esc($teacher->course_id)?>)">
+                        <img src="<?=ROOT?>/assets/images/plus.png" alt="" id="button29" class="teacher_crs_img2" onclick="getInstructorAvail(<?=esc($teacher->course_id)?>)">
                     <?php else:?>
                             <?php echo "No instructors assigned!";?>
-                            <img src="<?=ROOT?>/assets/images/plus.png" alt="" id="button29" class="teacher_crs_img2" onclick="openModal2(<?=esc($teacher->course_id)?>)">
+                            <img src="<?=ROOT?>/assets/images/plus.png" alt="" id="button29" class="teacher_crs_img2" onclick="getInstructorAvail(<?=esc($teacher->course_id)?>)">
                     <?php endif?>
                     </td> 
                     <td>
@@ -141,22 +111,33 @@ $val = explode('/',$url);
             <div class="popupmodal-content">
                 <span class="ann_close" onclick="closeModal3(<?=esc($teacher->course_id)?>)">&times;</span><br>
                 <form action="" method="post" class="up-profile">
+
                 <div class="recp_det_box">
                     <h4>Teacher ID: </h4>
                     <!-- <?php show($teacher);?> -->
                     <input type="hidden" name="teacher_id" id="teacher_id" value="<?=$teacher->teacher_ID?>">
                     <input type="text" name="teacher_id" id="teacher_id" value="<?=esc($teacher->teacher_ID)?>:<?=esc($teacher->teacherName)?>" class="recp_ann_clz" disabled>
-                    </div><br><br>
-                    <div class="recp_det_box">
+                </div>
+
+                <div class="recp_det_box">
                     <h4>Instructor ID: </h4>
+
                     <?php if(!empty($teach_instructors[$teacher->course_id])):?>
+
                         <?php foreach($teach_instructors[$teacher->course_id] as $teach_instructor):?>
                             <input type="text" value="<?=esc($teach_instructor->instructorName)?>" disabled>
-                             <span>&times;</span><br>
+                            <!-- <input type="hidden" name="teacher_id" id="teacher_id" value="<?=$teacher->teacher_ID?>"> -->
+                            <input type="hidden" value="<?=$teach_instructor->emp_id?>" id="instructorID" name="instructorID">
+                            <input type="hidden" value="<?=$teach_instructor->course_id?>" id="courseID" name="courseID">
+                            <button type="submit" name="submit-remove-instructor"><span class="instructor-remove" >&times;</span></button> <br>
                         <?php endforeach;?>
+
+                    <?php else:?>
+                        <p style="font-size: small;"><?=esc("No instrcutors to show!")?></p>
                     <?php endif;?>
-                    </div><br><br>
-                    <div class="recp_det_box">
+                </div>
+
+                <div class="recp_det_box">
                     <h4>Day: </h4>
                     <select name="day" id="day" class="recp_ann_clz">
                     <option value="slct" selected>--select day--</option>
@@ -168,16 +149,19 @@ $val = explode('/',$url);
                         <option value="Saturday">Saturday</option>
                         <option value="Sunday">Sunday</option>
                     </select>
-                    </div><br><br>
-                    <div class="recp_det_box">
-                        <h4>Time:</h4>
-                        <div class="recp_det_dura">
-                            <input type="time" name="timefrom" value="08:00" id="timefrom" class="recp_det_time">
-                            <p> to </p>
-                            <input type="time" name="timeto" value="08:00" id="timeto" class="recp_det_time">
-                        </div>
-                    </div><br>
-                    <button name="edit-teacher" type="submit" class="recp_det_btn">Save</button>
+                </div><br>
+
+                <div class="recp_det_box">
+                    <h4>Time:</h4>
+                    <div class="recp_det_dura">
+                        <input type="time" name="timefrom" value="08:00" id="timefrom" class="recp_det_time">
+                        <p> to </p>
+                        <input type="time" name="timeto" value="08:00" id="timeto" class="recp_det_time">
+                    </div>
+                </div>
+                <br><br>
+
+                <button name="edit-teacher" type="submit" class="recp_det_btn">Save</button>
                 </form>
              </div>
         </div>
@@ -225,7 +209,6 @@ $val = explode('/',$url);
                             <option value="" selected>--Select teacher id--</option>
                             <?php if(!empty($teachers)):?>
                             <?php foreach($teachers as $teacher):?>
-                                <?=esc($teacher->firstname)?>
                             <option  value="<?=$teacher->emp_id?>" ><?=esc($teacher->emp_id)?>:<?=esc($teacher->teacherName)?></option>
                             <?php endforeach;?>
                             <?php endif;?>
@@ -274,17 +257,19 @@ $val = explode('/',$url);
                 <span class="ann_close" onclick="closeModal2()">&times;</span><br>
                 <h3>Add Instructors</h3><br><br>
                 <form action="" method="post" class="up-profile">
-                    <input type="hidden" value="" id="modal2_course_id" name="course_id">
                 <h4>Instructor ID: </h4><br>
-                    <select name="emp_id" id="" class="recp_ann_clz">
+                <div id="instructor_dd">
+                <select name="emp_id" id="instructor_filter" class="recp_ann_clz">
 
-                        <option value="slct" selected>--Select instructor id--</option>
-                        <?php if(!empty($instructors)):?>
-                        <?php foreach($instructors as $instructor):?>
-                            <option  value="<?=$instructor->emp_id?>" ><?=esc($instructor->emp_id)?>:<?=esc($instructor->instructorName)?></option>
-                        <?php endforeach;?>
-                        <?php endif;?>
-                    </select><br><br>
+                    <option value="slct" selected>--Select instructor id--</option>
+                    <!-- <?php if(!empty($availinstructors)):?>
+                    <?php foreach($availinstructors as $instructor):?>
+                        <option  value="<?=$instructor->emp_id?>" ><?=esc($instructor->emp_id)?>:<?=esc($instructor->instructorName)?></option>
+                    <?php endforeach;?>
+                    <?php endif;?> -->
+                    </select>
+                </div>
+                    <br><br>
                 <button name="add-instructor" type="submit" class="recp_det_btn">Save</button>
 
                 </form>
@@ -298,6 +283,8 @@ $val = explode('/',$url);
 
     </div>
 </div>
+<script defer src="<?=ROOT?>/assets/js/mediumBar.js?v=<?php echo time(); ?>"></script>
+<script defer src="<?=ROOT?>/assets/js/instructorTime.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?=ROOT?>/assets/js/addcourse.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?=ROOT?>/assets/js/courseTime.js?v=<?php echo time(); ?>"></script>
 <?php $this->view("includes/footer");?>

@@ -20,28 +20,36 @@ $val = explode('/',$url);
                 
                 <tr>
                 <?php if(!empty($requests)):?>
-                <?php foreach($requests as $request):?>
-                    <td><?=esc($request->request_id)?></td>  
-                    <td><?=esc($request->student_id)?></td>
-                    <td><?=esc($request->requested_date)?></td>
-                    <td><?=esc($request->subject)?></td>
-                    <td><?=esc($request->teacherName)?></td>
-                    
-                    <td>
-                    <button class="view_enq_btn" name="submit" id="button28" onclick="openModal(<?=$request->request_id?>)">View</button>
 
-                    <form action="" method="post">
-                        <input type="hidden" id="requestID" name="requestID" value="<?=$request->request_id?>">
-                        <input type="hidden" id="studentId" name="studentId" value="<?=$request->student_id?>">
-                        <input type="hidden" id="courseId" name="courseId" value="<?=$request->course_id?>">
-                        <button type="submit" class="view_enq_btn" name="accept-student" id="add-btn">Accept</button>
-                    </form>
+                    <?php foreach($requests as $request):?>
+                        <td><?=esc($request->request_id)?></td>  
 
-                    <button class="view_enq_btn" id="button29" onclick="openModal2(<?=$request->request_id?>)">Reject</button>
-                    </td>
-                    
-                </tr>
-                <?php endforeach;?>
+                        <td><?=esc($request->student_id)?></td>
+
+                        <td><?=esc($request->requested_date)?></td>
+
+                        <td><?=esc($request->subject)?></td>
+
+                        <td><?=esc($request->teacherName)?></td>
+
+                        <td>
+                        <button class="view_enq_btn" name="submit" id="button28" onclick="openModal(<?=$request->request_id?>)">View</button>
+
+                        <form action="" method="post">
+
+                            <input type="hidden" id="requestID" name="requestID" value="<?=$request->request_id?>">
+                            <input type="hidden" id="studentId" name="studentId" value="<?=$request->student_id?>">
+                            <input type="hidden" id="courseId" name="courseId" value="<?=$request->course_id?>">
+
+                            <button type="submit" class="view_enq_btn" name="accept-student" id="add-btn">Accept</button>
+                        </form>
+
+                        <button class="view_enq_btn" id="button29" onclick="openModal2(<?=$request->request_id?>)">Reject</button>
+                        </td>
+
+                    </tr>
+                    <?php endforeach;?>
+
                 <?php else:?>
                    <?php echo "No requests yet!"; ?>
                 <?php endif;?>
@@ -50,11 +58,22 @@ $val = explode('/',$url);
             <!-- view popup -->
         <div id="profileModal" class="popupModal">
             <div class="popupmodal-content">
+
                 <span class="ann_close" onclick="closeModal()">&times;</span><br>
+
                 <h3>--Student Enrollment Request Details--</h3><br>
+
                 <form action="" method="post" class="up-profile">
-                    <input type="hidden" id="request_modal" name="request_id">
-                
+
+                    <input type="text" id="request_modal" name="request_id">
+                    <script>
+                        console.log("check");
+                    const buttonB = document.querySelector('#request_modal');
+                    
+                    console.log(buttonB);
+                    </script>
+
+
                     <?php if(!empty($requestDetails)):?>
                     <?php foreach($requestDetails as $request):?>
                     <label for="student_id" class="enroll-display">Student ID: </label>
@@ -108,7 +127,13 @@ $val = explode('/',$url);
                 </form>
             </div>
         </div>
+
+
     </div>
 </div>
-<script defer src="<?=ROOT?>/assets/js/enroll.js?v=<?php echo time(); ?>"></script>
+
+
+<script defer src="<?=ROOT?>/assets/js/enroll.js?v=<?php echo time(); ?>">
+
+</script>
 <?php $this->view("includes/footer");?>

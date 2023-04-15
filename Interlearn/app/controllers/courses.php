@@ -126,6 +126,11 @@ class Courses extends Controller
                         $data['courses'] = $student_course -> getCourses($student_id[0]->studentID);
                         $courses = $data['courses'];
                         // show($data['courses']);die;
+
+                        $data['requestedCourses'] = $enroll_req -> getRequestedCourses($_POST['student_id']);
+                        // show($data['requestedCourses']);die;
+                        $reqCourses = $data['requestedCourses'];
+
                         $flag = 0;
                         foreach($courses as $enroll_course => $val) {
                             // show($val);
@@ -137,8 +142,23 @@ class Courses extends Controller
                                 }
                             }
                         }
+
+                        foreach($reqCourses as $requested_course => $val) {
+                            // show($val);
+                            foreach($val as $req_course => $value) {
+                                // show($value);
+                                if($value == $_POST['course_id']){
+                                    $flag = 2;
+                                    break;
+                                }
+                            }
+                        }
+
                         if($flag == 0){
                             $result = $enroll_req -> insert($_POST);
+                        }
+                        elseif($flag == 2){
+                            $data['enroll_error'] = "You have already requested for this class!\nWait for the response of the request!";
                         }
                         else{
                             // echo "hi";
