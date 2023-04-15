@@ -6,7 +6,7 @@
 //     document.getElementById("popup").style.display = "none";
 //   }
 
-
+// console.log("hi");
 
 // Get the modal
 const modal = document.getElementById("profileModal");
@@ -66,3 +66,19 @@ window.onclick = function(event) {
         modal2.style.display = "none";
     }
 }
+
+
+
+
+// $('#request_modal').on('input', function() {
+//     var request = $('#request_modal').val();
+
+//     $.ajax({
+//         url: 'http://localhost/Interlearn/public/receptionist/enrollment/getRequestDetails',
+//         type: 'GET',
+//         data: {'request_id': request},
+//         success: function(response) {
+          
+//         }
+//     });
+// });

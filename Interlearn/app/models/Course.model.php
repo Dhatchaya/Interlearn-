@@ -152,8 +152,10 @@ class Course extends Model
         $query .= " WHERE course_id =:courseID";
         $data['courseID'] = $course_id;
         $res = $this -> query($query, $data);
+        // show($query);die;
 
         if($res){
+            // show($res);die;
             return $res;
         }else{
             return false;
