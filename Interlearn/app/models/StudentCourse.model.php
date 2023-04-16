@@ -66,9 +66,8 @@ class StudentCourse extends Model
         
         $keys = array_keys($data);
         //c.name
-        $query = "SELECT s.student_id, s.course_id, subject FROM student_course s 
-        INNER JOIN course c ON s.course_id = c.course_id
-        INNER JOIN subject d ON d.subject_id = c.subject_Id where ";
+        $query = "SELECT s.student_id, s.course_id FROM student_course s 
+        INNER JOIN course c ON s.course_id = c.course_id where ";
 
 
         foreach($keys as $key){
@@ -82,6 +81,4 @@ class StudentCourse extends Model
         }
         return false;       
     }
-
-    
 }
