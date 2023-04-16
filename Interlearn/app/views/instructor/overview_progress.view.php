@@ -1,8 +1,27 @@
 <?php $this -> view('includes/header'); ?>
 <?php $this -> view('includes/nav'); ?>
 <head>
-    <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles2.css">
+    <!-- <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles2.css"> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <style>
+        .edit_delete {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .edit, .delete {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        td button {
+            border: none;
+            padding: 7px 8px;
+            border-radius: 20px;
+            background-color: black;
+            color: #e6e7e8;
+        }
+    </style>
 </head>
 <div class="mid-container">
     <div class="quizz_left">
@@ -57,11 +76,11 @@
         <div class="header_fixed">
             <table >
                 <thread>
-                    <tr>
-                        <th >ID</th>
-                        <th>Student Number</th>
-                        <th>Marks</th>
-                        <th class="action_clm">Actions</th>
+                    <tr class="std_crs_ov_tablep">
+                        <th class="std_crs_ov_heading">ID</th>
+                        <th class="std_crs_ov_heading">Student Number</th>
+                        <th class="std_crs_ov_heading">Marks</th>
+                        <th class="std_crs_ov_heading">Actions</th>
                     </tr>
                 </thread>
                 <tbody>
@@ -69,17 +88,17 @@
                 
                     <?php foreach($rows2 as $row):?>
                         
-                    <tr>
-                        <td><?=esc($row->id)?></td>
-                        <td><?=esc($row->studentID)?></td>
-                        <td><?=esc($row->marks)?></td>
-                        <td>
+                    <tr class="std_crs_ov_trow">
+                        <td class="std_crs_ov_col1"><?=esc($row->id)?></td>
+                        <td class="std_crs_ov_col1"><?=esc($row->studentID)?></td>
+                        <td class="std_crs_ov_col1"><?=esc($row->marks)?></td>
+                        <td class="std_crs_ov_col1">
                             <div class="edit_delete">
                                 <div class="edit" onclick=editQuestion(<?=esc($row->id)?>)>
                                     <button>edit</button>
                                 </div>
                                 <div class="delete">
-                                    <a href="<?=ROOT?>/instructor/course/progress/1/1/delete?qnum=<?=esc($row->id)?>"><button>delete</button></a>
+                                    <a href="<?=ROOT?>/instructor/course/progress/<?=esc($course_id)?>/1/delete?qnum=<?=esc($row->id)?>"><button>delete</button></a>
                                 </div>
                             </div>
                             
