@@ -41,13 +41,70 @@ class Manager extends Controller{
         // $data['row'] = $user->first(['id' => $id]);
         // $data['title'] = "Profile";
 
-        $getStaffDetails = new Staff();
-        $staffDetailSet = $getStaffDetails->getStaffDetails();
-        
-                // show ($staffDetailSet);
+        $currentStaffDetails = new Staff();
+        $staffDetailSet = $currentStaffDetails->crrEmpData();
 
-        $this->view('manager/view_staff', ['staffMenbers' => $staffDetailSet,]);
+        $formerEmployeeData = new Staff();
+        $formerStaffDataSet = $formerEmployeeData->formerEmpData();
+        
+
+        $this->view('manager/view_staff', ['staffMembers' => $staffDetailSet,"dumpedStaffSet"=>$formerStaffDataSet]);
     }
+
+    public function removeStaff()
+    {
+        if (!Auth::is_manager()) {
+            redirect('home');
+        }
+
+        if (isset($_POST)) {
+            $empRemoveData = json_decode(file_get_contents("php://input"), true);
+            $emp_uid = $empRemoveData['staffId'];
+
+            $current_date = date("Y-m-d");
+
+            $removeStaff = new Staff();
+            $removeStaff->updateStaffData($emp_uid, $current_date);
+
+            exit;
+        }
+        http_response_code(400);
+        echo json_encode([
+            'success' => false,
+            'message' => 'Invalid request.'
+        ]);
+        exit;
+
+        
+    }
+
+    public function rejoin()
+    {
+        if (!Auth::is_manager()) {
+            redirect('home');
+        }
+
+        if (isset($_POST)) {
+            $empRemoveData = json_decode(file_get_contents("php://input"), true);
+            $emp_uid = $empRemoveData['staffId'];
+
+            $current_date = date("Y-m-d");
+
+            $removeStaff = new Staff();
+            $removeStaff->rejoinStaff($emp_uid, $current_date);
+
+            exit;
+        }
+        http_response_code(400);
+        echo json_encode([
+            'success' => false,
+            'message' => 'Invalid request.'
+        ]);
+        exit;
+
+        
+    }
+
 
 
     public function addStaff()
@@ -59,22 +116,37 @@ class Manager extends Controller{
         if (isset($_POST)) {
             $data = json_decode(file_get_contents("php://input"), true);
 
-            $data['emp_status'] = '1';
 
+            if($data['role'] == 'Manager'){
+                $prefix = 'M';
+            }
+            elseif($data['role'] == 'Teacher'){
+                $prefix = 'T';
+            }
+            elseif($data['role'] == 'Instructor'){
+                $prefix = 'I';
+            }
+            elseif($data['role'] == 'Receptionist'){
+                $prefix = 'R';
+            }
+            $data['username'] = $data['first_name'].$prefix;
+            $data['emp_status'] = '1';
+            $data['uid'] = $prefix.uniqid();
             
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
             $addUser = new User();
             $addUser->Adduser($data);
             
             
             $addStaff = new Staff();
-           $addStaff->Addstaff($data);
+            $addStaff->Addstaff($data);
             
 
             
 
             $json_response = json_encode(
-                $data,
+                $data
             );
             
             

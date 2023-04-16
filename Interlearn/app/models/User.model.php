@@ -17,6 +17,7 @@ class User extends Model
         'User_email_status',
         'user_otp',
        "display_picture",
+       "uid"
     ];
     protected $staffs = [
         'Manager',
@@ -28,7 +29,6 @@ class User extends Model
     public function Adduser($data){
 
         if ($this->validate($data)) {
-            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
             $this->insert($data);
             $this->error['success'] = "Staff added to user table successfully with uid: ";
             return true;

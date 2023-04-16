@@ -1,4 +1,5 @@
 <?php
+
 /**
  *staff class
  */
@@ -20,6 +21,7 @@ class Staff extends Model
         'emp_status',
         'uid',
         'contractEndingDate',
+        'ResignedDate',
     ];
 
     protected $staffs = [
@@ -33,16 +35,16 @@ class Staff extends Model
     public function Addstaff($data)
     {
         // $this->insert($data);
-        
+
         $data = (array) $data;
 
-        $last_inserted_email = $data['email'];
-        $query = "SELECT * FROM users where email = '$last_inserted_email'";
-        $newStaffuid = $this->query($query) ;
-        $data['uid']  = $newStaffuid[0]->uid;
+        // $last_inserted_email = $data['email'];
+        // $query = "SELECT * FROM users where email = '$last_inserted_email'";
+        // $newStaffuid = $this->query($query);
+        // $data['uid']  = $newStaffuid[0]->uid;
         $this->insert($data);
         return true;
-        
+
 
         // $this->error = [];
         // if ($this->where(['NIC_no' => $data['NIC_no']], 'emp_ID')) {
@@ -65,10 +67,10 @@ class Staff extends Model
         return $data;
     }
 
-    public function getStaffDetails()
+    public function crrEmpData()
     {
         // $query = "SELECT * FROM staff";
-        $query = "SELECT staff.*, users.role FROM staff  JOIN users  ON staff.uid = users.uid";
+        $query = "SELECT staff.*, users.role FROM staff  JOIN users  ON staff.uid = users.uid WHERE emp_status= '1' ";
         $data = $this->query($query);
 
         if ($data == NULL) {
@@ -78,111 +80,146 @@ class Staff extends Model
         return $data;
     }
 
-    public function updateStaffData($emp_id, $data)
+
+    public function formerEmpData()
     {
+        // $query = "SELECT * FROM staff";
+        $query = "SELECT staff.*, users.role FROM staff  JOIN users  ON staff.uid = users.uid WHERE emp_status!= '1' ";
+        $data = $this->query($query);
 
-
-        // Check if emp_id is set
-        if (empty($emp_id)) {
-            $this->error[] = 'Emp ID is required.';
-            return false;
+        if ($data == NULL) {
+            $data = array();
         }
 
-        // Check if data is empty
-        if (empty($data)) {
-            $this->error[] = 'No data to update.';
-            return false;
-        }
-<<<<<<< HEAD
-        $query = "UPDATE staff SET ";
-        $data = $this->update_table($query, $data);
-
-        // $values = array();
-
-        // foreach ($data as $key => $values) {
-        //     if (in_array($key, $this->allowed_columns)) {
-        //         $values[] = "$key = ?";
-        //     }
-        // }
-
-        // $query .= implode(", ", $values) . " WHERE emp_ID = ?";
-        // $data[] = $emp_id;
-
-        // // Debugging statements
-        // var_dump($query);
-        // var_dump(array_values($data));
-
-        // // Execute query
-        // $result = $this->query($query, array_values($data));
-
-        $result = $this->query($query, $data);
-=======
-
-        // Validate data
-        // ...
-
-        // Build update query
-        $query = "UPDATE staff SET ";
-        $values = array();
-
-        foreach ($data as $key => $value) {
-            if (in_array($key, $this->allowed_columns)) {
-                $values[] = "$key = ?";
-            }
-        }
-
-        $query .= implode(", ", $values) . " WHERE emp_ID = ?";
-        $data[] = $emp_id;
-
-        // Execute query
-        $result = $this->query($query, $data);
-
->>>>>>> main
-        if (!$result) {
-            $this->error[] = 'Failed to update staff data.';
-            return false;
-        }
-
-        return true;
+        return $data;
     }
+
+    public function updateStaffData($emp_uid, $current_date)
+    {
+        $emp_id = $emp_uid;
+        $resignedDate = $current_date;
+        $query = "UPDATE staff SET emp_status = '2', ResignedDate = '$resignedDate' WHERE uid = '$emp_id' ";
+        $data = $this->query($query);
+        if ($data == NULL) {
+            $data = array();
+        }
+
+        return $data;
+    }
+
+    public function rejoinStaff($emp_uid, $current_date)
+    {
+        $emp_id = $emp_uid;
+        $rejoinedDate = $current_date;
+        $query = "UPDATE staff SET emp_status = '2', enrollment_date  = '$rejoinedDate' WHERE uid = '$emp_id' ";
+        $data = $this->query($query);
+        if ($data == NULL) {
+            $data = array();
+        }
+
+        return $data;
+    }
+
+    // public function updateStaffData($emp_id, $data)
+    // {
+
+
+    //     // Check if emp_id is set
+    //     if (empty($emp_id)) {
+    //         $this->error[] = 'Emp ID is required.';
+    //         return false;
+    //     }
+
+    //     // Check if data is empty
+    //     if (empty($data)) {
+    //         $this->error[] = 'No data to update.';
+    //         return false;
+    //     }
+    //     $query = "UPDATE staff SET ";
+    //     $data = $this->update_table($query, $data);
+
+    //     // $values = array();
+
+    //     // foreach ($data as $key => $values) {
+    //     //     if (in_array($key, $this->allowed_columns)) {
+    //     //         $values[] = "$key = ?";
+    //     //     }
+    //     // }
+
+    //     // $query .= implode(", ", $values) . " WHERE emp_ID = ?";
+    //     // $data[] = $emp_id;
+
+    //     // // Debugging statements
+    //     // var_dump($query);
+    //     // var_dump(array_values($data));
+
+    //     // // Execute query
+    //     // $result = $this->query($query, array_values($data));
+
+    //     $result = $this->query($query, $data);
+
+
+    //     // Validate data
+    //     // ...
+
+    //     // Build update query
+    //     $query = "UPDATE staff SET ";
+    //     $values = array();
+
+    //     foreach ($data as $key => $value) {
+    //         if (in_array($key, $this->allowed_columns)) {
+    //             $values[] = "$key = ?";
+    //         }
+    //     }
+
+    //     $query .= implode(", ", $values) . " WHERE emp_ID = ?";
+    //     $data[] = $emp_id;
+
+    //     // Execute query
+    //     $result = $this->query($query, $data);
+
+    //     if (!$result) {
+    //         $this->error[] = 'Failed to update staff data.';
+    //         return false;
+    //     }
+
+    //     return true;
+    // }
 
 
 
 
     public function validate($data)
-    {   
+    {
         $this->error = [];
-        foreach($data as $key => $value)
-        { 
-            if(empty($data[$key]))
-            {
-                $this -> error[$key] = ucfirst($key)." is required";
+        foreach ($data as $key => $value) {
+            if (empty($data[$key])) {
+                $this->error[$key] = ucfirst($key) . " is required";
             }
-         }
-    
-            // checks email is valid if so it'll check whther it already exists
-            if(!filter_var($data['email'],FILTER_VALIDATE_EMAIL))
-            {
-                $this->error['email'] = "Email is not valid";
-            }else
-            if($this->where(['email'=>$data['email']],'emp_ID')){
-                    $this->error['email'] = "Email already exists";
-                
-            }
-        if(empty($this->error)){
+        }
+
+        // checks email is valid if so it'll check whther it already exists
+        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            $this->error['email'] = "Email is not valid";
+        } else
+            if ($this->where(['email' => $data['email']], 'emp_ID')) {
+            $this->error['email'] = "Email already exists";
+        }
+        if (empty($this->error)) {
             return true;
         }
         return false;
     }
 
-    public function getTeachers(){
-        $query = "SELECT *, concat(first_name,' ',last_name) AS teacherName FROM ".$this->table;
+    public function getTeachers()
+    {
+        $query = "SELECT *, concat(first_name,' ',last_name) AS teacherName FROM " . $this->table;
         $query .= " WHERE role = 'Teacher'";
 
-        $res = $this -> query($query);
+        $res = $this->query($query);
         //  show($query);die;
 
-        if(is_array($res)){
+        if (is_array($res)) {
             // echo $res;die;
             return $res;
         }
@@ -190,20 +227,19 @@ class Staff extends Model
         return false;
     }
 
-    public function getInstructors(){
-        $query = "SELECT *, concat(first_name,' ',last_name) AS instructorName FROM ".$this->table;
+    public function getInstructors()
+    {
+        $query = "SELECT *, concat(first_name,' ',last_name) AS instructorName FROM " . $this->table;
         $query .= " WHERE role = 'Instructor'";
 
-        $res = $this -> query($query);
+        $res = $this->query($query);
         //  show($query);die;
 
-        if(is_array($res)){
+        if (is_array($res)) {
             // echo $res;die;
             return $res;
         }
         // echo "hi";die;
         return false;
     }
-
-
 }
