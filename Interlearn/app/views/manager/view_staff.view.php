@@ -11,7 +11,7 @@
 
 </head>
 
-<body style="background-color: #FFFFFF;">
+<body id="body" style="background-color: #FFFFFF;">
     <?php $this->view("includes/nav"); ?>
 
     <?php $this->view("includes/sidebar_rece"); ?>
@@ -58,9 +58,9 @@
                         <div class="form-group  ">
                             <label class="payment-label" for="NIC">NIC Number</label>
                             <div class="errorSpace1" id="errorSpace5"></div>
-                            <input value="<?= set_value('PayerNIC') ?>" name="PayerNIC" class="payment-input" type="text" id="NIC" placeholder="990331472v" maxlength="12">
+                            <input value="<?= set_value('NIC') ?>" name="NIC" class="payment-input" type="text" id="NIC" placeholder="990331472v" maxlength="12">
                         </div>
-                        
+
 
                     </div>
                     <div class="sub-container">
@@ -76,7 +76,7 @@
                                 <option value="" selected disabled>Select job type </option>
                                 <option value="Teacher">Teacher</option>
                                 <option value="Instructor">Instructor</option>
-                                <option value="Accountant">Receptionist</option>
+                                <option value="Receptionist">Receptionist</option>
                                 <option value="Manager">Manager</option>
                             </select>
                         </div>
@@ -98,7 +98,7 @@
                             <input value="<?= set_value('emailAddress') ?>" name="emailAddress" id="emailAddress" class="payment-input" type="text" placeholder=" example@something.com">
                         </div>
                         <div class="form-group">
-                            <label class="payment-label" for="password">Password</label> <button type="button" id="show-password-btn">Show Password</button>
+                            <label class="payment-label" for="password">Password</label> <button class="show-pw" type="button" id="show-password-btn">Show Password</button>
                             <div class="errorSpace1" id="errorSpace10"> </div>
                             <input class="payment-input" value="<?= set_value('password') ?>" type="password" id="password" name="password" required>
 
@@ -126,14 +126,42 @@
         </div>
     </div>
 
-
-
-
+    <div class="bank-payment-form-popup remove-staff-popup">
+        <div class="remove-employee-dialog-box">
+            <label class="ask" for="">Are you sure to remove this employee....?</label>
+            <div class="btn-container">
+                <button class="yes">Yes</button>
+                <button class="no">No</button>
+            </div>
+        </div>
+        <div class="success-message">
+            <label class="ask" for="refresh">Successfully removed the employee</label>
+            <br>
+            <div class="btn-container ">
+                <button onclick="refreshPage()" class="refresh"> click to refresh</button>
+            </div>
+        </div>
+    </div>
+    <div class="bank-payment-form-popup re-recrument-popup">
+        <div class="rejoin-db">
+            <label class="ask" for="">Are you sure to Re-recrument this employee....?</label>
+            <button class="yes" id="yes2">Yes</button>
+            <button class="no" id="no2">No</button>
+        </div>
+    </div>
+    <div class="rejoin-success-message">
+        <label class="ask" for="refresh">Successfully Re-joined the employee</label>
+        <br>
+        <div class="btn-container ">
+            <button onclick="refreshPage()" class="refresh"> click to refresh</button>
+        </div>
+    </div>
+    </div>
 
 
     <div class="main-page-container">
         <div class="adding-new-user">
-            <h1 class="add-user-lable">Staff details</h1>
+            <h1 class="add-user-lable">Employee details</h1>
             <button class="add-user-btn" id="addStaff-btn">Add New User</button>
 
         </div>
@@ -152,59 +180,54 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($staffMenbers as $staffMenber) : ?>
-          <tr>
-            <td><?= $staffMenber->first_name . " " . $staffMenber->last_name ?></td>
-            <td><?= $staffMenber->role ?></td>
-            <td><?= $staffMenber->mobile_no ?></td>
-            <td><?= $staffMenber->enrollment_date ?></td>
-            <td><button>Remove</button></td>
+                        <?php foreach ($staffMembers as $staffMember) : ?>
+                            <tr>
+                                <td><?= $staffMember->first_name . " " . $staffMember->last_name ?></td>
+                                <td><?= $staffMember->role ?></td>
+                                <td>0<?= $staffMember->mobile_no ?></td>
+                                <td><?= $staffMember->enrollment_date ?></td>
+                                <td><button class="remove-btn" data-staff-id="<?= $staffMember->uid ?>">Remove</button></td>
 
-          </tr>
-        <?php endforeach; ?>
+                            </tr>
+                        <?php endforeach; ?>
+
+
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <h1 class="table-title">Former Employees</h1>
+
+        <div class="table-container">
+
+            <div class="student-payment">
+
+                <table class="payment-table">
+                    <thead>
                         <tr>
-                            <td>Abdul Nisaf</td>
-                            <td>Teacher</td>
-                            <td>0741605689</td>
-                            <td>17/01/2023</td>
-                            <td><button>Update</button></td>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Contact No.</th>
+                            <th>Resigned date</th>
+                            <th>Update</th>
                         </tr>
-                        
-                        <tr>
-                            <td>Dachaya Prabhakaran</td>
-                            <td>Receptionist</td>
-                            <td>01711606520</td>
-                            <td>02/01/2023</td>
-                            <td><button>Update</button></td>
-                        </tr>
-                        <tr>
-                            <td>Gihan Sampath</td>
-                            <td>instructor</td>
-                            <td>0751306520</td>
-                            <td>21/06/2020</td>
-                            <td><button>Update</button></td>
-                        </tr>
-                        <tr>
-                            <td>Kavishka Anjuna</td>
-                            <td>Instructor</td>
-                            <td>0726531456</td>
-                            <td>02/03/2022</td>
-                            <td><button>Update</button></td>
-                        </tr>
-                        <tr>
-                            <td>Ayusha Shasthraka</td>
-                            <td>Teacher</td>
-                            <td>0774764865</td>
-                            <td>14/10/2021</td>
-                            <td><button>Update</button></td>
-                        </tr>
-                        <tr>
-                            <td>Sineth Thamuditha</td>
-                            <td>Instructor</td>
-                            <td>0710456079</td>
-                            <td>02/01/2023</td>
-                            <td><button>Update</button></td>
-                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($dumpedStaffSet as $dumpedGuy) : ?>
+                            <tr>
+                                <td><?= $dumpedGuy->first_name . " " . $dumpedGuy->last_name ?></td>
+                                <td><?= $dumpedGuy->role ?></td>
+                                <td>0<?= $dumpedGuy->mobile_no ?></td>
+                                <td><?= $dumpedGuy->ResignedDate ?></td>
+                                <td><button class="recrew-btn" data-staff-id="<?= $staffMember->uid ?>">Re-recruitment</button></td>
+
+                            </tr>
+                        <?php endforeach; ?>
+
+
 
                     </tbody>
                 </table>
@@ -225,5 +248,8 @@
 
 <script defer src="<?= ROOT ?>/assets/js/switching2.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?= ROOT ?>/assets/js/addNewStaff.js?v=<?php echo time(); ?>"></script>
+<script defer src="<?= ROOT ?>/assets/js/removeStaff.js?v=<?php echo time(); ?>"></script>
+<script defer src="<?= ROOT ?>/assets/js/reJoinStaff.js?v=<?php echo time(); ?>"></script>
+
 
 </html>
