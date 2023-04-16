@@ -204,8 +204,16 @@ class Instructor extends Controller
                             // insert result data into database
                             $_POST['studentID'] = $student_id;
                             $_POST['marks'] = $marks;
-                            $myresult = new ZResult();
-                            $result = $myresult->insert($_POST);
+
+                            $student_course = new StudentCourse();
+                            $result1 = $student_course->where(['student_id' => $student_id, 'course_id' => $id], 'student_id');
+                            // show($result1);
+
+                            if ($result1) {
+                                $myresult = new ZResult();
+                                $result = $myresult->insert($_POST);
+                            }
+                            
                         }
                         
                         if($result) {
@@ -220,6 +228,7 @@ class Instructor extends Controller
             if($option == 'view') {
 
                 $data['rows'] = $exam->ExamForCourse(['course_id'=>$id]);
+
                 // $data['rows'] = $question->ChoiceInnerjoinQuestion();
                 // show($data);
                 // $this->view('teacher/Zquiz', $data);
