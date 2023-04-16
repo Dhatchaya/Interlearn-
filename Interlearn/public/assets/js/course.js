@@ -13,7 +13,6 @@ function openModal(id) {
     const upload = document.getElementsByName("upload");
     const assignment = document.getElementsByName("assignment");
     const url = document.getElementsByName("url");
-    const progress = document.getElementsByName("progress");
     console.log(upload);
     for(i=0; i<assignment.length; i++){
         assignment[i].href = assignment[i].href + "/" + id+"/view";
@@ -23,9 +22,6 @@ function openModal(id) {
     }
     for(i=0; i<url.length; i++){
         url[i].href = url[i].href + "/" + id;
-    }
-    for(i=0; i<progress.length; i++){
-        url[i].href = progress[i].href + "/" + id;
     }
     modal.style.display = "block";
     console.log(id);

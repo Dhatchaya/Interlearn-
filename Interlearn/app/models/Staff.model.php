@@ -20,6 +20,7 @@ class Staff extends Model
         'emp_status',
         'uid',
         'contractEndingDate',
+        'ResignedDate',
     ];
 
     protected $staffs = [

@@ -186,7 +186,7 @@ $val = explode('/',$url);
                         <input type="hidden" value="" name="delete-course" id="delete-course">
                         <br><br>
                         <a href="<?=ROOT?>/receptionist/course/view/1/?id=<?=esc($teacher->subject_id)?>">
-                        <button type="submit" class="teacher_upl_btn" name="submit-delete-course" id="submit-delete-course">Yes</button>
+                        <button type="button" class="teacher_upl_btn" name="submit-delete-course" id="add-btn">Yes</button>
                         </a>
                         <button type="reset" class="teacher_upl_btn" id="cancel-btn" onclick="closeModal4()">Cancel</button>
                     </div>
