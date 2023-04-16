@@ -16,14 +16,26 @@
     </div>
     <div class = "add_view">
         <div class="new_discussion" id="new_discussion">
-            <form method= "POST" enctype="multipart/form-data" >
-                <label class="forum_subject" for="fsubject"> Subject: </label></br>
+            <form method= "POST" enctype="multipart/form-data" id="formo" >
+                <label class="forum_subject" for="fsubject"> <label for="Subject" style="color:red;"> *</label> Subject: </label>
+           
+                <p  class="warning" id="err_topic"></p>
+            
+            </br>
                 <input type ="text" name="topic"/></br>
-                <label class="forum_subject" for="fsubject"> Description: </label></br>
+                <label class="forum_subject" for="fsubject"> <label for="Description" style="color:red;"> *</label>Description: </label>
+                
+                <p  class="warning" id="err_content"></p>
+            
+                </br>
                 <textarea id="descrip" name="content" rows="15" cols="70"></textarea></br></br>
-                <label class="forum_subject" for="fsubject"> Attachments: </label></br></br>
+                <label class="forum_subject" for="fsubject"> Attachments: </label>
+        
+             
+                <p  class="warning" id="err_attachment"></p>
+        
                 <input type ="file" class = "file_attachment" name="attachment" /></br></br>
-                <input type ="submit" name = "submit" class = "home_form_sbt forum_right" value="Submit"/>
+                <input type ="submit" id = "submits" name = "submits" class = "home_form_sbt forum_right" value="Submit"/>
                 <input type ="button" class = "home_form_sbt forum_right" value="Cancel" id="forum_cancel"name ="cancel"/>
             </form>
         </div>
@@ -56,9 +68,12 @@
                                     <a href="<?=ROOT?>/forums/discussion/<?=esc($row->course_id)?>/<?=esc($row->forum_id)?>">
 
                                         <button class="view_enq_btn">View</button>
-  
-                                </div>
-                                    </a>
+                                        </a>
+                                        <?php  if($role == "Teacher" ||$role == "Instructor"):?>
+                                        <button onclick = "deleteForum(<?=esc($row->forum_id)?>)" class="view_enq_btn">Delete</button>
+                                         <?php endif?>
+                                    </div>
+                                   
                             </div>
                         </td>
                     </tr>

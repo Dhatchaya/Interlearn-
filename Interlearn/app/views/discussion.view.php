@@ -6,6 +6,7 @@
     <div class="all_discussions" id = "all_discussions">
         <div class="each_thread">
             <div class="discuss_card"  data-thread-id='<?=esc($forum->forum_id)?>'>
+            <input name = "session_alt" id="session_alt" type="hidden"  value='<?=esc(Auth::getuid())?>'/></br>
                <div class="discuss_content">
                     <div class="discuss_creator">
                             <img class="user_img" src="<?=ROOT?>/uploads/images/<?=esc($forum->display_picture)?>" alt="picture"/>
@@ -14,6 +15,7 @@
                                 <h2> By: <?=esc($forum->username)?> <?=date("D M d Y  h:i A", strtotime($forum->date));?></h2>
                             </div>
                     </div>
+                    <div class="forum_body_all" id="forum_body_all">
                     <div class="forum_para">
                         <p> <?=esc($forum->content)?> </p>
                     </div>
@@ -23,8 +25,14 @@
                     <!-- <iframe src="<?=ROOT?>/uploads/forum_files/<?=esc($forum->attachment)?>" width="100%" height="500"></iframe> -->
 
                     <div class="forum-reply" id="forum-reply">
+                    <?php if ($forum->uid === Auth::getuid()):?>
+
+                        <button class= "forum_Edit_btn reply-btn"  onclick="editDiscussion(<?=esc($forum->forum_id)?>,'forum')">Edit</button>
+                        <?php endif; ?>
                         <button class= "forum_reply_btn reply-btn">Reply</button>
-                        <button class= "forum_Edit_btn reply-btn">Edit</button>
+                  
+                        
+                    </div>
                     </div>
                 </div>
 

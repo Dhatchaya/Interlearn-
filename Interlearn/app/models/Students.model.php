@@ -12,24 +12,20 @@ class Students extends Model
 
     public $allowed_columns = [
 
-
-    'studentID',	
-    'NIC',	
-    'first_name',	
-    'last_name',	
-    'birthday',
-    'gender',
-    'email',
-    'mobile_number',
-    'address_line1',
-    'address_line2',
-    'address_line3',
-    'school',
-    'grade',
-    'language_medium',
-    'Picture',
-    'course_id',
-    'uid',
+        'studentID',	
+        'NIC',	
+        'first_name',	
+        'last_name',	
+        'birthday',	
+        'gender',	
+        'mobile_number',	
+        'address',	
+        'school',	
+        'grade',	
+        'uid',	
+        'parent_name',	
+        'parent_email',	
+        'parent_mobile'
 
     ];
     protected $staffs = [

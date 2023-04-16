@@ -3,7 +3,7 @@ $('#day').on('change', function() {
     var day = $('#day').val();
     var timeFrom = $('#timefrom').val();
     var timeTo = $('#timeto').val();
-    // console.log('hi');
+    console.log('hi');
     $.ajax({
         url: 'http://localhost/Interlearn/public/receptionist/course/checkAvailable',
         type: 'POST',

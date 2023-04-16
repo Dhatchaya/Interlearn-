@@ -8,7 +8,7 @@
         <form method="post" action="" enctype="multipart/form-data">
         <!-- <?php if(!empty($errors)){show($errors) ;} ?> -->
         <!-- <div class="recp_crs_add"> -->
-            <p id="addCourseerror"></p>
+            <p id="addCourseerror" class="warning"></p>
 
             <div class="recp_det_box" id="new">
             <h4>Subject:</h4>
@@ -96,24 +96,24 @@
                 <h4>Time:</h4>
                 <div class="recp_det_dura">
                     <input type="time" name="timefrom" value="08:00" id="timefrom" class="recp_det_time">
-                    <?php if(!empty($errors)):?>
+                    <!-- <?php if(!empty($errors)):?>
                     <p class="warning"><?=$errors['timefrom'];?></p>
-                    <?php endif;?>
+                    <?php endif;?> -->
                     <p> to </p>
                     <input type="time" name="timeto" value="08:00" id="timeto" class="recp_det_time">
-                    <?php if(!empty($errors)):?>
+                    <!-- <?php if(!empty($errors)):?>
                     <p class="warning"><?=$errors['timeto'];?></p>
-                    <?php endif;?>
+                    <?php endif;?> -->
                 </div>
 
             </div>
             <br><br>
             <div class="recp_det_box">
                 <h4>Capacity:</h4>
-                <input type="text" class="recp_det_name" name="capacity">
-                <?php if(!empty($errors)):?>
+                <input type="text" class="recp_det_name" name="capacity" id="capacity">
+                <!-- <?php if(!empty($errors)):?>
                 <p class="warning"><?=$errors['capacity'];?></p>
-                <?php endif;?>
+                <?php endif;?> -->
             </div>
             <br><br>
             <br><br>
@@ -128,7 +128,7 @@
         </form>
     </div>
 </div>
-<!-- <script defer src="<?=ROOT?>/assets/js/addCourse.js?v=<?php echo time(); ?>"></script> -->
+<script defer src="<?=ROOT?>/assets/js/addCourse.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?=ROOT?>/assets/js/selectCourse.js?v=<?php echo time(); ?>"></script>
 <?php $this->view("includes/footer");?>
 
