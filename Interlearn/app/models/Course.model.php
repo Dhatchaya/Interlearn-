@@ -11,8 +11,6 @@ class Course extends Model
 
         'course_id',
         'created_date',
-        'description',
-        'subject_id',
         'teacher_id',
         'day',
         'timefrom',
