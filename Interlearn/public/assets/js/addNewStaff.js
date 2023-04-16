@@ -27,7 +27,7 @@ const showpw = document.querySelector('.show-pw');
 
 
     $isAllFilled = true;
-console.log("js kalle awulak nhaaaaaa");
+
     contractEndingDate.addEventListener("input", () => {
 
         const enteredDate = contractEndingDate.value;
@@ -46,7 +46,7 @@ submitBtn.addEventListener('click', async function(event) {
     event.preventDefault();
     console.log("button eka nm wada karanwa kolloooo");
 
-    
+
 
     if(!firstName.value){
         error1.innerHTML = "First Name is required ";
@@ -84,33 +84,31 @@ submitBtn.addEventListener('click', async function(event) {
     if(isNaN(numValue)){
         error5.innerHTML = "NIC number is not valid";
         $isAllFilled = false;
-        
     }
 
-    if(NIC.value.length < 10){
+    else if(!NIC.value.length == 10 || !NIC.value.length == 12){
         error5.innerHTML = "NIC number is not valid";
         $isAllFilled = false;
     }
-
     else if(!NIC.value){
         error5.innerHTML = "NIC is required";
         $isAllFilled = false;
     }
-    
+
     NIC.addEventListener('input', function(event) {
         error5.innerHTML = "";
     });
     if(isNaN(mobileNum.value)){
         error11.innerHTML = "Not a valid contact number";
         $isAllFilled = false;
-    } 
+    }
     else if(mobileNum.value.length < 10){
         error11.innerHTML = "Contact number must be 10 digits";
         if(!mobileNum.value){
             error11.innerHTML = "Contact is required";
         }
         $isAllFilled = false;
-    }   
+    }
 
     mobileNum.addEventListener('input', function(event) {
         error11.innerHTML = "";
@@ -122,7 +120,7 @@ submitBtn.addEventListener('click', async function(event) {
         $isAllFilled = false;
         }
 
-    
+
 
     if(!jobtype.value){
         error7.innerHTML = "job type is required";
@@ -146,14 +144,14 @@ submitBtn.addEventListener('click', async function(event) {
 
     if(password.value.length < 8){
         error10.innerHTML = "Password must be at least 8 characters";
-        
+
         if(!password.value){
-            error10.innerHTML = "Password is required"; 
+            error10.innerHTML = "Password is required";
         }
         $isAllFilled = false;
      }
 
-     
+
     //  if(!/[!@#+_)(""}{[<>,./?|-$%^&*]/.test(password.value) || !/\d/.test(password.value)){ 
     //     error10.innerHTML = "Password is not valid";
     //     $isAllFilled = false;

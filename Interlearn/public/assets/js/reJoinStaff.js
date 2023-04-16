@@ -1,30 +1,31 @@
 const reJoinbtn = document.querySelectorAll(".recrew-btn");
 const reJoinPopup = document.querySelector(".re-recrument-popup");
-const dialogBox = document.querySelector(".rejoin-db");
-const successMessage = document.querySelector(".rejoin-success-message");
-const yesButton = reJoinPopup.querySelector("#yes2");
-const noButton = reJoinPopup.querySelector(".no");
-const refreshBtn = reJoinPopup.querySelector(".refresh");
+const rejoinDB = document.querySelector(".rejoin-db");
+const rejoinSusMsg = document.querySelector(".rejoin-success-message");
+const yesBtn = reJoinPopup.querySelector("#yes2");
+const noBtn = reJoinPopup.querySelector(".no");
 
 
 
-const otherButtons = document.querySelectorAll('button:not(.recrew-btn, #yes2, .no, .refresh)');
+const otherButtons2 = document.querySelectorAll('button:not( #yes2, .no, .refresh)');
 
 
 reJoinbtn.forEach((button) => {
     button.addEventListener("click", () => {
 
-      otherButtons.forEach(button => {
+      console
+
+      otherButtons2.forEach(button => {
         button.disabled = true;
       });
       
-const staffId = button.getAttribute("data-staff-id");
+      const staffId = button.getAttribute("data-staff-id");
 
-console.log(staffId);
+      console.log(staffId);
 
       reJoinPopup.style.display = "block";
 
-      yesButton.addEventListener("click", async function (event) {
+      yesBtn.addEventListener("click", async function (event) {
 
         
 
@@ -50,8 +51,8 @@ console.log(staffId);
           
           .catch((error) => console.log(error));
           
-      dialogBox.style.display = "none";
-      successMessage.style.display = "block";
+      rejoinDB.style.display = "none";
+      rejoinSusMsg.style.display = "block";
       
 
       });
@@ -61,11 +62,11 @@ console.log(staffId);
 
 
 
-noButton.addEventListener("click", () => {
+noBtn.addEventListener("click", () => {
     reJoinPopup.style.display = "none";
+
+    otherButtons2.forEach(button => {
+      button.disabled = false;
+    });
 });
 
-
-function refreshPage() {
-  location.reload();
-}

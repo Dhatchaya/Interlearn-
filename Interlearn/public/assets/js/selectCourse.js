@@ -124,12 +124,14 @@ $('#mediums').on('change',function(){
   console.log("1");
   if (subject == '') {  // check if the subject field is empty
     console.log("2");
+    // $('#alert-div1').show();
     $('#alert-div1').html('Please enter a subject before selecting a grade.');  // set the message in the alert div
     $('#alert-div1').show();  // show the alert div
     $('#grades').val('');  // clear the selected grade
   }
+  console.log(grade == null);
 
-  if(grade == '' || grade == '--Select grade--'){
+  if(grade == null || grade == 'grade'){
     console.log('hi');
     $('#alert-div2').html('Please select a grade before selecting a language medium.');  // set the message in the alert div
     $('#alert-div2').show();  // show the alert div
@@ -153,7 +155,7 @@ $('#description').on('input',function(){
     $('#alert-div1').show();  // show the alert div
     $('#grades').val('');  // clear the selected grade
   }
-  if(grade == '' || grade == '--Select grade--'){
+  if(grade == null || grade == 'grade'){
     console.log('hi');
     $('#alert-div2').html('Please select a grade before selecting a language medium.');  // set the message in the alert div
     $('#alert-div2').show();  // show the alert div
@@ -161,7 +163,7 @@ $('#description').on('input',function(){
   }
   if(medium == '' || medium == '--Select language medium--'){
     console.log('hi');
-    $('#alert-div3').html('Please select a language medium adding a description.');  // set the message in the alert div
+    $('#alert-div3').html('Please select a language medium before adding a description.');  // set the message in the alert div
     $('#alert-div3').show();  // show the alert div
     $('#description').val('');  // clear the selected grade
   }
@@ -185,7 +187,7 @@ $('#day').on('change', function() {
   $.ajax({
       url: 'http://localhost/Interlearn/public/receptionist/course/available',
       type: 'POST',
-      data: {'teacher_id':teacher_id, 'day': day, 'timeFrom': timeFrom, 'timeTo': timeTo},
+      data: {'teacher_id':teacher_id, 'day': day, 'timefrom': timeFrom, 'timeto': timeTo},
       success: function(response) {
          response = JSON.parse(response);
         console.log(response);
@@ -194,11 +196,19 @@ $('#day').on('change', function() {
           // console.log("here");
           var timeFrom = $('#timefrom').val();
           var timeTo = $('#timeto').val();
+
+
           for(i in response){
             console.log(response[i]);
-            console.log(timeFrom>response[i].timefrom);
-            if(timeFrom<response[i].timeto ||timeFrom>response[i].timefrom){
-              document.getElementById('#addCourseerror').innerHTML = "Teacher already has a class";
+            var newDay = new Date(timeFrom);
+            console.log(newDay);
+            console.log(timeFrom.getMinutes() - 1);
+
+            console.log(timeFrom>=response[i].timefrom);
+            console.log(timeFrom<=response[i].timeto);
+            if(timeFrom<=response[i].timeto && timeFrom>=response[i].timefrom){
+              console.log("in" + response[i].timefrom);
+              document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
               break;
             }
           }
@@ -208,15 +218,17 @@ $('#day').on('change', function() {
           console.log("here");
           var timeFrom = $('#timefrom').val();
           var timeTo = $('#timeto').val();
+
           for(i in response){
             console.log(response[i]);
-            console.log(timeTo>response[i].timefrom);
+            console.log(timeTo);
+            console.log(timeTo>=response[i].timefrom);
             if(timeFrom > timeTo){
-              document.getElementById('#addCourseerror').innerHTML = "Ending time should be greater than start time";
+              document.getElementById('addCourseerror').innerHTML = "Ending time should be greater than start time";
               break;
             }
-            if(timeTo<response[i].timeto ||timeTo>response[i].timefrom){
-              document.getElementById('#addCourseerror').innerHTML = "Teacher already has a class";
+            if(timeTo<=response[i].timeto && timeTo>=response[i].timefrom){
+              document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
               break;
             }
           }
@@ -243,7 +255,7 @@ function teacherHasClassOnTime(teacher, timeFrom, timeTo) {
   $.ajax({
     url: '/check-teacher-schedule',
     type: 'POST',
-    data: {teacher_id: teacher.id, day: day, timeFrom: timeFrom, timeTo: timeTo},
+    data: {'teacher_id': teacher.id, 'day': day, 'timefrom': timeFrom, 'timeto': timeTo},
     async: false,
     success: function(response) {
       teacherHasClass = response.hasClass;

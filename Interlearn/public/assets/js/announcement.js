@@ -9,9 +9,9 @@ const btn3 = document.getElementById("button30");
 const span3 = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal
-function openModal3(number) {
+function openModal3(aid) {
 
-    document.getElementById("aid").value = number;
+    document.getElementById("aid").value = aid;
 
     modal3.style.display = "block";
     console.log(modal3);
@@ -43,7 +43,7 @@ const span6 = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal
 function openModal6(number) {
-    document.getElementById("delete-aid").value = number;
+    document.getElementById("delete-aid").value = 'number';
     modal6.style.display = "block";
     console.log(modal3);
 }

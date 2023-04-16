@@ -46,7 +46,7 @@ class Manager extends Controller{
 
         $formerEmployeeData = new Staff();
         $formerStaffDataSet = $formerEmployeeData->formerEmpData();
-        
+
 
         $this->view('manager/view_staff', ['staffMembers' => $staffDetailSet,"dumpedStaffSet"=>$formerStaffDataSet]);
     }
@@ -102,7 +102,7 @@ class Manager extends Controller{
         ]);
         exit;
 
-        
+
     }
 
 

@@ -142,20 +142,19 @@
             </div>
         </div>
     </div>
-    <div class="bank-payment-form-popup re-recrument-popup">
+    <div class="bank-payment-form-popup re-recrument-popup ">
         <div class="rejoin-db">
             <label class="ask" for="">Are you sure to Re-recrument this employee....?</label>
             <button class="yes" id="yes2">Yes</button>
             <button class="no" id="no2">No</button>
         </div>
-    </div>
-    <div class="rejoin-success-message">
-        <label class="ask" for="refresh">Successfully Re-joined the employee</label>
-        <br>
-        <div class="btn-container ">
-            <button onclick="refreshPage()" class="refresh"> click to refresh</button>
+        <div class="rejoin-success-message ">
+            <label class="ask" for="refresh">Successfully Re-joined the employee</label>
+            <br>
+            <div class="btn-container ">
+                <button onclick="refreshPage()" class="refresh"> click to refresh</button>
+            </div>
         </div>
-    </div>
     </div>
 
 
@@ -222,7 +221,7 @@
                                 <td><?= $dumpedGuy->role ?></td>
                                 <td>0<?= $dumpedGuy->mobile_no ?></td>
                                 <td><?= $dumpedGuy->ResignedDate ?></td>
-                                <td><button class="recrew-btn" data-staff-id="<?= $staffMember->uid ?>">Re-recruitment</button></td>
+                                <td><button class="recrew-btn" data-staff-id="<?= $dumpedGuy->uid ?>">Re-recruitment</button></td>
 
                             </tr>
                         <?php endforeach; ?>

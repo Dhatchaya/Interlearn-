@@ -54,8 +54,26 @@ class CourseInstructor extends Model
         $data['courseID'] = $course_id;
 
         $res = $this -> query($query,$data);
-        // echo $query;
-        // show($res);die;
+        // echo $query;die;
+        // show($res);
+
+        if($res){
+            return $res;
+        }else{
+            return false;
+        }
+    }
+
+    public function deleteInstructors($course_id,$instructor_id){
+        $query = "DELETE FROM ".$this->table;
+        $query .= " WHERE course_id = :courseID AND emp_id =:empID";
+
+        $data['courseID'] = $course_id;
+        $data['empID'] = $instructor_id;
+
+        $res = $this -> query($query,$data);
+        // echo $query;die;
+        // show($res);
 
         if($res){
             return $res;

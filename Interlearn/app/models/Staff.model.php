@@ -1,5 +1,4 @@
 <?php
-
 /**
  *staff class
  */
@@ -111,7 +110,7 @@ class Staff extends Model
     {
         $emp_id = $emp_uid;
         $rejoinedDate = $current_date;
-        $query = "UPDATE staff SET emp_status = '2', enrollment_date  = '$rejoinedDate' WHERE uid = '$emp_id' ";
+        $query = "UPDATE staff SET emp_status = '1', enrollment_date  = '$rejoinedDate' WHERE uid = '$emp_id' ";
         $data = $this->query($query);
         if ($data == NULL) {
             $data = array();
@@ -187,39 +186,54 @@ class Staff extends Model
     // }
 
 
+    public function getStaffDetails()
+    {
+        // $query = "SELECT * FROM staff";
+        $query = "SELECT staff.*, users.role FROM staff  JOIN users  ON staff.uid = users.uid";
+        $data = $this->query($query);
+
+        if ($data == NULL) {
+            $data = array();
+        }
+
+        return $data;
+    }
 
 
     public function validate($data)
     {
         $this->error = [];
-        foreach ($data as $key => $value) {
-            if (empty($data[$key])) {
-                $this->error[$key] = ucfirst($key) . " is required";
+        foreach($data as $key => $value)
+        { 
+            if(empty($data[$key]))
+            {
+                $this -> error[$key] = ucfirst($key)." is required";
             }
-        }
-
-        // checks email is valid if so it'll check whther it already exists
-        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-            $this->error['email'] = "Email is not valid";
-        } else
-            if ($this->where(['email' => $data['email']], 'emp_ID')) {
-            $this->error['email'] = "Email already exists";
-        }
-        if (empty($this->error)) {
+         }
+    
+            // checks email is valid if so it'll check whther it already exists
+            if(!filter_var($data['email'],FILTER_VALIDATE_EMAIL))
+            {
+                $this->error['email'] = "Email is not valid";
+            }else
+            if($this->where(['email'=>$data['email']],'emp_ID')){
+                    $this->error['email'] = "Email already exists";
+                
+            }
+        if(empty($this->error)){
             return true;
         }
         return false;
     }
 
-    public function getTeachers()
-    {
-        $query = "SELECT *, concat(first_name,' ',last_name) AS teacherName FROM " . $this->table;
+    public function getTeachers(){
+        $query = "SELECT *, concat(first_name,' ',last_name) AS teacherName FROM ".$this->table;
         $query .= " WHERE role = 'Teacher'";
 
-        $res = $this->query($query);
+        $res = $this -> query($query);
         //  show($query);die;
 
-        if (is_array($res)) {
+        if(is_array($res)){
             // echo $res;die;
             return $res;
         }
@@ -227,19 +241,37 @@ class Staff extends Model
         return false;
     }
 
-    public function getInstructors()
-    {
-        $query = "SELECT *, concat(first_name,' ',last_name) AS instructorName FROM " . $this->table;
+    public function getInstructors(){
+        $query = "SELECT *, concat(first_name,' ',last_name) AS instructorName FROM ".$this->table;
         $query .= " WHERE role = 'Instructor'";
 
-        $res = $this->query($query);
+        $res = $this -> query($query);
         //  show($query);die;
 
-        if (is_array($res)) {
+        if(is_array($res)){
             // echo $res;die;
             return $res;
         }
         // echo "hi";die;
         return false;
     }
+
+    public function getAvailableInstructors($course_id){
+        $query = "SELECT staff.emp_id, concat(staff.first_name,' ',staff.last_name) AS instructorName FROM ".$this->table;
+        $query .= " WHERE role = 'Instructor' AND staff.emp_id NOT IN (SELECT course_instructor.emp_id FROM course_instructor WHERE course_id IN (SELECT course_id FROM course WHERE (course.day, course.timefrom, course.timeto) = (SELECT day, timefrom, timeto FROM course WHERE course_id =:courseID)) )";
+
+        $data['courseID'] = $course_id;
+
+        $res = $this -> query($query,$data);
+        //  show($query);die;
+
+        if(is_array($res)){
+            // echo $res;die;
+            return $res;
+        }
+        // echo "hi";die;
+        return false;
+    }
+
+
 }

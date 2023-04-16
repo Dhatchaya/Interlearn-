@@ -8,7 +8,7 @@ const refreshBtn = removePopup.querySelector(".refresh");
 
 
 
-const otherButtons = document.querySelectorAll('button:not(.remove-btn, .yes, .no, .refresh)');
+const otherButtons = document.querySelectorAll('button:not( .yes, .no, .refresh)');
 
 
 removeButtons.forEach((button) => {

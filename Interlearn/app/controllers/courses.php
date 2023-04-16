@@ -8,8 +8,7 @@ class Courses extends Controller
     {   
         $subject = new Subject();
         $course = new Course();
-        $teacher = new Teacher();
-        $instructor = new Instructor();
+        $staff = new Staff();
         $course_instructor = new CourseInstructor();
         $students = new Students();
         $data = [];
@@ -41,25 +40,50 @@ class Courses extends Controller
                         //show($data['subjectgrd']);die;
                                 // show($allSubjects);die;
 
-                    $medium = "Sinhala";
+                                $medium = "Sinhala";
                     
-                    //  $data['subjects']=$subject->selectTeachers(['subject'=>$allSubjects[0]->subject, 'grade'=>$allSubjects[0]->grade],$medium,$subject_id);
-                    $data['subjects'] = $subject -> selectTeachers(['subject_id'=>$data['mediums'][0]->subject_id],$data['mediums'][0]->language_medium);
+                                //  $data['subjects']=$subject->selectTeachers(['subject'=>$allSubjects[0]->subject, 'grade'=>$allSubjects[0]->grade],$medium,$subject_id);
+                                $data['subjects'] = [];
+                                $a = [];
+                                for($i=0; $i<count($data['mediums']);$i++){
+                                    $subjectDetails = $subject -> selectTeachers(['subject_id'=>$data['mediums'][$i]->subject_id],$data['mediums'][$i]->language_medium);
+                                    // $data['subjects'] = $subject -> selectTeachers(['subject_id'=>$data['mediums'][$i]->subject_id],$data['mediums'][$i]->language_medium);
+                                    array_push($a,$subjectDetails);
+                                    // show($allTeachers);
+            
+                                }
+                                $data['subjects'] = $a;
+                                // show($data['subjects']);die;
+                                // $data['subjects'] = $subjectDetails=$subject -> selectTeachers(['subject_id'=>$data['mediums']->subject_id],$data['mediums']->language_medium);
+                                
+                                $data['sinhalaid'] = $subject->getSubjectId($subjectName,$grade,"Sinhala");
+                                $data['englishid'] = $subject->getSubjectId($subjectName,$grade,"English");
+                                $data['tamilid'] = $subject->getSubjectId($subjectName,$grade,"Tamil");
+                                // show($data['subjects']);die;
 
-                    $data['sinhalaid'] = $subject->getSubjectId($subjectName,$grade,"Sinhala");
-                    $data['englishid'] = $subject->getSubjectId($subjectName,$grade,"English");
-                    $data['tamilid'] = $subject->getSubjectId($subjectName,$grade,"Tamil");
-                    // show($data['subjects']);die;
-
-                    $data['teach_instructors'] = [];
-                    $extra = [];
-                    for($i=0; $i<count($data['subjects']); $i++){
-
-                        $extra= $course_instructor -> getInstructors($data['subjects'][$i]->course_id);
-                        if(!empty($extra)){
-                            $data['teach_instructors'] = $extra;
-                        }
-                    }
+                                // show($_GET['id']);die;
+                                $data['distinctTeachers'] = $course->getDistinctTeachers($_GET['id']);
+                                // show($data['distinctTeachers']);die;
+            
+                                $data['teach_instructors'] = [];
+                                $extra = [];
+                                if($data['subjects']){
+                                    for($i=0; $i<count($data['subjects']); $i++){
+                                        for($x=0; $x<count($data['subjects'][$i]); $x++){
+                                            // show($data['subjects'][$i][$x]->course_id);die;
+                                            if(!empty($data['subjects'][$i][$x]->course_id)){
+                                                // show($data['subjects'][$i][$x]->course_id);die;
+                                                $extra= $course_instructor -> getInstructors($data['subjects'][$i][$x]->course_id);
+                                                if(!empty($extra)){
+                                                    // show($extra);die;
+                                                    $data['teach_instructors'][$data['subjects'][$i][$x]->course_id] = $extra;
+                                                }
+                                            }
+                                        }
+                                    }
+                                // show($data['teach_instructors']);die;
+                                // show($data['subjects']);die;
+                                }
                     // show($data['teach_instructors']);
                     // //
                     // die;
@@ -102,6 +126,11 @@ class Courses extends Controller
                         $data['courses'] = $student_course -> getCourses($student_id[0]->studentID);
                         $courses = $data['courses'];
                         // show($data['courses']);die;
+
+                        $data['requestedCourses'] = $enroll_req -> getRequestedCourses($_POST['student_id']);
+                        // show($data['requestedCourses']);die;
+                        $reqCourses = $data['requestedCourses'];
+
                         $flag = 0;
                         foreach($courses as $enroll_course => $val) {
                             // show($val);
@@ -113,8 +142,23 @@ class Courses extends Controller
                                 }
                             }
                         }
+
+                        foreach($reqCourses as $val) {
+                            // show($requested_course);
+                            foreach($val as $req_course => $value) {
+                                // show($value);
+                                if($value == $_POST['course_id']){
+                                    $flag = 2;
+                                    break;
+                                }
+                            }
+                        }
+
                         if($flag == 0){
                             $result = $enroll_req -> insert($_POST);
+                        }
+                        elseif($flag == 2){
+                            $data['enroll_error'] = "You have already requested for this class!\nWait for the response of the request!";
                         }
                         else{
                             // echo "hi";
@@ -137,8 +181,8 @@ class Courses extends Controller
                     // }
                 }
 
-                $data['teachers'] = $teacher->select([],'teacher_id','asc');
-                $data['instructors'] = $instructor->select([],'instructor_id','asc');
+                $data['teachers'] = $staff->select([],'emp_id','asc');
+                $data['instructors'] = $staff->select([],'emp_id','asc');
 
             $this->view('details',$data);
             exit;
