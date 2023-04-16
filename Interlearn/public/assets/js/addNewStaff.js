@@ -84,12 +84,14 @@ submitBtn.addEventListener('click', async function(event) {
     if(isNaN(numValue)){
         error5.innerHTML = "NIC number is not valid";
         $isAllFilled = false;
+        
     }
-    
-    else if(!NIC.value.length == 10 || !NIC.value.length == 12){
+
+    if(NIC.value.length < 10){
         error5.innerHTML = "NIC number is not valid";
         $isAllFilled = false;
     }
+
     else if(!NIC.value){
         error5.innerHTML = "NIC is required";
         $isAllFilled = false;

@@ -62,6 +62,9 @@ console.log(staffId);
 
 noButton.addEventListener("click", () => {
     removePopup.style.display = "none";
+    otherButtons.forEach(button => {
+      button.disabled = false;
+    });
 });
 
 
