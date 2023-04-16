@@ -1,8 +1,12 @@
 //navbar of mediums
+<<<<<< delete-gagi
 if ( window.history.replaceState ) {
 
   window.history.replaceState( null, null, window.location.href );
 }
+=======
+
+
 function setTab(tag,div){
   var children = div.parentNode.children;
   for(let i = 0; i<children.length;i++){
