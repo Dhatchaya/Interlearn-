@@ -11,7 +11,7 @@
 
 </head>
 
-<body style="background-color: #FFFFFF;">
+<body id="body" style="background-color: #FFFFFF;">
     <?php $this->view("includes/nav"); ?>
 
     <?php $this->view("includes/sidebar_rece"); ?>

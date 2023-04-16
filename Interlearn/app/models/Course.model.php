@@ -10,9 +10,8 @@ class Course extends Model
     protected $allowed_columns = [
 
         'course_id',
-        'created_date',
-        'description',
         'subject_id',
+        'created_date',
         'teacher_id',
         'day',
         'timefrom',
