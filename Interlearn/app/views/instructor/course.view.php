@@ -72,6 +72,8 @@
                         <input type="hidden" name="week_no" id="week_no">
                         <div class="teacher-crs-activities">
                             <div class="teacher-crs-activity">
+                                    <?php if(!empty($courses)): ?>
+                            <?php foreach($courses as $course):?>
                                 <a href="<?=ROOT?>/instructor/course/progress/<?=$course->course_id?>"><img src="<?=ROOT?>/assets/images/marks.png" alt="" class="teacher-crs-img"><br>Upload Marks</a>
                             </div>
                             <!-- <div class="teacher-crs-activity">
@@ -83,8 +85,7 @@
                             <div class="teacher-crs-activity">
                                 <a href="#"><img src="<?=ROOT?>/assets/images/submission.png" alt="" class="teacher-crs-img"><br>Add a submission</a>
                             </div>
-                            <?php if(!empty($courses)): ?>
-                            <?php foreach($courses as $course):?>
+                        
                              <div class="teacher-crs-activity">
                                 <a href="<?=ROOT?>/teacher/course/upload/<?=$course->course_id?>" name="upload">
                                    <img src="<?=ROOT?>/assets/images/paper.png" alt="" class="teacher-crs-img"><br>Add lecture materials
