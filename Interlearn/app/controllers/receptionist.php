@@ -48,9 +48,13 @@ class Receptionist extends Controller
             // show($data['teachers']);die;
             $data['instructors'] = $staff->getInstructors();
             // show($data['instructors']);die;
+
+            // echo "check 1";die;
         
             if ($_SERVER['REQUEST_METHOD'] == 'POST') 
             {   
+                // echo "check 1";die;
+                // show($_POST);die;
                 if($course -> validate($_POST)){
                     $subject_id = uniqid();
                     //uniqueid("S",true)
@@ -68,7 +72,7 @@ class Receptionist extends Controller
                     // print_r ($subject_id);die;
                     $course->insert($_POST);
 
-                    show($subject_id);die;
+                    // show($subject_id);die;
                     $id= $course->getLastCourse()[0]->course_id;
                     // // // print_r($Course);die;
                     $course_week->createWeek($id, 1);
@@ -233,7 +237,15 @@ class Receptionist extends Controller
                 }
 
                 if(isset($_POST['edit-teacher'])){
-
+                    $course_id = $_POST['course_id'];
+                    $day = $_POST['day'];
+                    $timefrom = $_POST['timefrom'];
+                    $timeto = $_POST['timeto'];
+                    // show($course_id);
+                    // show($day);
+                    // show($timefrom);
+                    // show($timeto);die;
+                    $course -> updateCourse($course_id, $day, $timefrom, $timeto);
                 }
 
                 if(isset($_POST['submit-delete-course'])){
@@ -262,7 +274,7 @@ class Receptionist extends Controller
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
                 $result = $course -> getTime($_POST['teacher_id'], $_POST['day']);
-                // show($result);die;
+                show($result);die;
                 echo json_encode($result);
                 die;
             }
@@ -356,6 +368,7 @@ class Receptionist extends Controller
         $teacher = new Teacher();
         $announcement = new Announcement();
         $ann_course = new AnnouncementCourse();
+        $staff = new Staff();
         $orderby='course_id';
         $data['id'] = $aid;
         $result1 = $subject->selectCourse([]);
@@ -367,9 +380,13 @@ class Receptionist extends Controller
         if($action == 'add'){
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if($announcement -> validate($_POST)){
+                    $user_id = Auth::getuid();
+                    $details = $staff -> getUserDetails($user_id);
+                    // show($details[0]->emp_id);die;
+                    $emp_id = $details[0]->emp_id;
                     $announcement_id = uniqid();
                     $_POST['aid'] = $announcement_id;
-                    $_POST['empID'] = 4;
+                    $_POST['empID'] = $emp_id;
                     $_POST['role'] = "Receptionist";
 
 
@@ -460,12 +477,15 @@ class Receptionist extends Controller
 
 
         $data['announcements'] = $announcement->allRecepAnnouncements([]);
+        // show($data['announcements']);die;
         $time = [];
-        for($i=0; $i<count($data['announcements']); $i++){
-            // show($data['announcements'][$i]->date_time);
-            $isEditable = $announcement->isAnnEditable($data['announcements'][$i]->date_time);
-            // show($isEditable);
-            array_push($time,$isEditable);
+        if(!empty($data['announcements'])){
+            for($i=0; $i<count($data['announcements']); $i++){
+                // show($data['announcements'][$i]->date_time);
+                $isEditable = $announcement->isAnnEditable($data['announcements'][$i]->date_time);
+                // show($isEditable);
+                array_push($time,$isEditable);
+            }
         }
         // die;
         $data['editable'] = $time;

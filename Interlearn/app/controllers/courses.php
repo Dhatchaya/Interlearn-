@@ -143,8 +143,8 @@ class Courses extends Controller
                             }
                         }
 
-                        foreach($reqCourses as $requested_course => $val) {
-                            // show($val);
+                        foreach($reqCourses as $val) {
+                            // show($requested_course);
                             foreach($val as $req_course => $value) {
                                 // show($value);
                                 if($value == $_POST['course_id']){

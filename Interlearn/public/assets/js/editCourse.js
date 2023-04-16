@@ -57,16 +57,6 @@ $('#days').on('change', function() {
           }
         });
 
-
-          // Filter out teachers who already have a class scheduled in the selected time range
-          // var filteredTeachers = teachers.filter(function(teacher) {
-          //     return !teacherHasClassOnTime(teacher, timeFrom, timeTo);
-          // });
-          // Update the teacher dropdown
-          // $('#teacher_id').empty();
-          // $.each(filteredTeachers, function(index, teacher) {
-          //   $('#teacher_id').append('<option value="' + teacher.id + '">' + teacher.firstname + '</option>');
-          // });
-          }
+        }
     });
 });

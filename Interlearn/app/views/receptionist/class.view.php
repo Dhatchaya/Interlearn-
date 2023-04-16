@@ -111,6 +111,7 @@ $val = explode('/',$url);
             <div class="popupmodal-content">
                 <span class="ann_close" onclick="closeModal3(<?=esc($teacher->course_id)?>)">&times;</span><br>
                 <form action="" method="post" class="up-profile">
+                    <input type="hidden" name="course_id" value="<?=esc($teacher->course_id)?>">
 
                 <div class="recp_det_box">
                     <h4>Teacher ID: </h4>
@@ -139,8 +140,8 @@ $val = explode('/',$url);
 
                 <div class="recp_det_box">
                     <h4>Day: </h4>
-                    <select name="day" id="day" class="recp_ann_clz">
-                    <option value="slct" selected>--select day--</option>
+                    <select name="day" id="days" class="recp_ann_clz">
+                    <option value="<?=esc($teacher->day)?>" selected><?=esc($teacher->day)?></option>
                         <option value="Monday">Monday</option>
                         <option value="Tuesday">Tuesday</option>
                         <option value="Wednesday">Wednesday</option>
@@ -154,9 +155,9 @@ $val = explode('/',$url);
                 <div class="recp_det_box">
                     <h4>Time:</h4>
                     <div class="recp_det_dura">
-                        <input type="time" name="timefrom" value="08:00" id="timefrom" class="recp_det_time">
+                        <input type="time" name="timefrom" value="<?=esc($teacher->timefrom)?>" id="timefrom" class="recp_det_time">
                         <p> to </p>
-                        <input type="time" name="timeto" value="08:00" id="timeto" class="recp_det_time">
+                        <input type="time" name="timeto" value="<?=esc($teacher->timeto)?>" id="timeto" class="recp_det_time">
                     </div>
                 </div>
                 <br><br>
@@ -187,7 +188,7 @@ $val = explode('/',$url);
                         <a href="<?=ROOT?>/receptionist/course/view/1/?id=<?=esc($teacher->subject_id)?>">
                         <button type="button" class="teacher_upl_btn" name="submit-delete-course" id="add-btn">Yes</button>
                         </a>
-                        <button type="reset" class="teacher_upl_btn" id="cancel-btn">Cancel</button>
+                        <button type="reset" class="teacher_upl_btn" id="cancel-btn" onclick="closeModal4()">Cancel</button>
                     </div>
                 </form>
             </div>
@@ -217,7 +218,7 @@ $val = explode('/',$url);
                     <br><br>
                     <div class="recp_det_box">
                     <h4>Day: </h4>
-                    <select name="day" id="day" class="recp_ann_clz">
+                    <select name="day" id="days" class="recp_ann_clz">
                     <option value="slct" selected>--select day--</option>
                         <option value="Monday">Monday</option>
                         <option value="Tuesday">Tuesday</option>
@@ -231,9 +232,9 @@ $val = explode('/',$url);
                     <div class="recp_det_box">
                         <h4>Time:</h4>
                         <div class="recp_det_dura">
-                            <input type="time" name="timefrom" value="08:00" id="timefrom" class="recp_det_time">
+                            <input type="time" name="timefrom" value="00:00" id="timefrom" class="recp_det_time">
                             <p> to </p>
-                            <input type="time" name="timeto" value="08:00" id="timeto" class="recp_det_time">
+                            <input type="time" name="timeto" value="00:00" id="timeto" class="recp_det_time">
                         </div>
                     </div><br>
                     <div class="recp_det_box">
@@ -288,4 +289,5 @@ $val = explode('/',$url);
 <script defer src="<?=ROOT?>/assets/js/instructorTime.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?=ROOT?>/assets/js/addcourse.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?=ROOT?>/assets/js/courseTime.js?v=<?php echo time(); ?>"></script>
+<script defer src="<?=ROOT?>/assets/js/editCourse.js?v=<?php echo time(); ?>"></script>
 <?php $this->view("includes/footer");?>
