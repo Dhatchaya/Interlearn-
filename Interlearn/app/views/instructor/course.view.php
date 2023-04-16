@@ -74,7 +74,7 @@
                             <div class="teacher-crs-activity">
                                     <?php if(!empty($courses)): ?>
                             <?php foreach($courses as $course):?>
-                                <a href="<?=ROOT?>/instructor/course/progress/<?=$course->course_id?>"><img src="<?=ROOT?>/assets/images/marks.png" alt="" class="teacher-crs-img"><br>Upload Marks</a>
+                                <a href="<?=ROOT?>/instructor/course/progress/<?=$course->course_id?>"><img src="<?=ROOT?>/assets/images/marks.png" alt="" class="teacher-crs-img" name="progress"><br>Upload Marks</a>
                             </div>
                             <!-- <div class="teacher-crs-activity">
                                 <a href="#"><img src="<?=ROOT?>/assets/images/quiz.png" alt="" class="teacher-crs-img"><br>Add a quiz</a>
