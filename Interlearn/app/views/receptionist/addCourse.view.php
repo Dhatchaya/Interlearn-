@@ -6,9 +6,9 @@
     <div class="recp_det_content">
         <h2>--Add a new course--</h2><br>
         <form method="post" action="" enctype="multipart/form-data">
-        <!-- <?php if(!empty($errors)){show($errors) ;} ?> -->
+        <?php if(!empty($errors)){show($errors) ;} ?>
         <!-- <div class="recp_crs_add"> -->
-            <p id="addCourseerror" class="warning"></p>
+            
 
             <div class="recp_det_box" id="new">
             <h4>Subject:</h4>
@@ -42,9 +42,9 @@
 
                 </select>
                 <div id="alert-div3" style="display:none;" class="warning"></div>
-                <!-- <?php if(!empty($errors)):?>
+                <?php if(!empty($errors)):?>
                 <p class="warning"><?=$errors['language_medium'];?></p>
-                <?php endif;?> -->
+                <?php endif;?>
             </div>
             <br><br>
 
@@ -52,9 +52,9 @@
                 <h4>Description:</h4>
                 <input type="text" class="recp_det_name" name="description" id="description">
                 <div id="alert-div4" style="display:none;" class="warning"></div>
-                <!-- <?php if(!empty($errors)):?>
+                <?php if(!empty($errors)):?>
                 <p class="warning"><?=$errors['description'];?></p>
-                <?php endif;?> -->
+                <?php endif;?>
             </div><br><br>
             
 
@@ -69,9 +69,11 @@
                 <?php endif;?>
             </select>
             <div id="alert-div5" style="display:none;" class="warning"></div>
-            <!-- <?php if(!empty($errors)):?>
+
+            <p id="addCourseerror" class="warning"></p>
+            <?php if(!empty($errors)):?>
                 <p class="warning"><?=$errors['teacher_id'];?></p>
-                <?php endif;?> -->
+                <?php endif;?>
             </div><br><br>
 
             <div class="recp_det_box">
@@ -87,23 +89,23 @@
                 <option value="Sunday">Sunday</option>
             </select>
             <div id="alert-div6" style="display:none;" class="warning"></div>
-            <!-- <?php if(!empty($errors)):?>
+            <?php if(!empty($errors)):?>
                 <p class="warning"><?=$errors['day'];?></p>
-                <?php endif;?> -->
+                <?php endif;?>
             </div><br><br>
 
             <div class="recp_det_box">
                 <h4>Time:</h4>
                 <div class="recp_det_dura">
-                    <input type="time" name="timefrom" value="08:00" id="timefrom" class="recp_det_time">
-                    <!-- <?php if(!empty($errors)):?>
+                    <input type="time" name="timefrom" value="00:00" id="timefrom" class="recp_det_time">
+                    <?php if(!empty($errors)):?>
                     <p class="warning"><?=$errors['timefrom'];?></p>
-                    <?php endif;?> -->
+                    <?php endif;?>
                     <p> to </p>
-                    <input type="time" name="timeto" value="08:00" id="timeto" class="recp_det_time">
-                    <!-- <?php if(!empty($errors)):?>
+                    <input type="time" name="timeto" value="00:00" id="timeto" class="recp_det_time">
+                    <?php if(!empty($errors)):?>
                     <p class="warning"><?=$errors['timeto'];?></p>
-                    <?php endif;?> -->
+                    <?php endif;?>
                 </div>
 
             </div>
@@ -111,9 +113,9 @@
             <div class="recp_det_box">
                 <h4>Capacity:</h4>
                 <input type="text" class="recp_det_name" name="capacity" id="capacity">
-                <!-- <?php if(!empty($errors)):?>
+                <?php if(!empty($errors)):?>
                 <p class="warning"><?=$errors['capacity'];?></p>
-                <?php endif;?> -->
+                <?php endif;?>
             </div>
             <br><br>
             <br><br>
@@ -128,7 +130,7 @@
         </form>
     </div>
 </div>
-<script defer src="<?=ROOT?>/assets/js/addCourse.js?v=<?php echo time(); ?>"></script>
+<!-- <script defer src="<?=ROOT?>/assets/js/addCourse.js?v=<?php echo time(); ?>"></script> -->
 <script defer src="<?=ROOT?>/assets/js/selectCourse.js?v=<?php echo time(); ?>"></script>
 <?php $this->view("includes/footer");?>
 

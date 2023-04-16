@@ -48,9 +48,9 @@ class Course extends Model
             {
                 $this -> error['language_medium'] = "Please select a language_medium";
             }
-            if(empty($data['teacher_ID']))
+            if(empty($data['teacher_id']))
             {
-                $this -> error['teacher_ID'] = "Please select a teacher_id";
+                $this -> error['teacher_id'] = "Please select a teacher_id";
             }
             if(empty($data['timefrom']))
             {
@@ -257,6 +257,24 @@ class Course extends Model
         $query .= " WHERE course.subject_id =:subjectID AND staff.role = 'Teacher' AND staff.emp_id = course.teacher_ID";
         $data['subjectID'] = $subject_id;
         $res = $this -> query($query, $data);
+        // show($query);die;
+
+        if($res){
+            return $res;
+        }else{
+            return false;
+        }
+    }
+
+    public function updateCourse($course_id,$day,$timefrom,$timeto){
+        $query = "UPDATE ".$this->table;
+        $query .= " SET day =:Day, timefrom =:Timefrom, timeto =:Timeto";
+        $query .= " WHERE course_id =:courseID";
+        $data['courseID'] = $course_id;
+        $data['Day'] = $day;
+        $data['Timefrom'] = $timefrom;
+        $data['Timeto'] = $timeto;
+        $res = $this -> update_table($query, $data);
         // show($query);die;
 
         if($res){
