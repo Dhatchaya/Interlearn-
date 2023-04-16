@@ -4,11 +4,11 @@
 class Manager extends Controller{
 
     public function index()
-    {   
-        //if not logged in as manager redirect to home 
+    {
+        //if not logged in as manager redirect to home
         if(!Auth::is_manager()){
             redirect('home');
-           
+
         }
         $data['title'] = "manager";
         $this->view('manager/home',$data);
@@ -16,9 +16,9 @@ class Manager extends Controller{
     public function profile($id = null)
     {    if(!Auth::is_manager()){
             redirect('home');
-           
+
         }
-        //check whether ID exists if not 
+        //check whether ID exists if not
         //it'll get the Id of the logged in user
         $id = $id?? Auth::getId();
         $user = new User();
@@ -41,13 +41,70 @@ class Manager extends Controller{
         // $data['row'] = $user->first(['id' => $id]);
         // $data['title'] = "Profile";
 
-        $getStaffDetails = new Staff();
-        $staffDetailSet = $getStaffDetails->getStaffDetails();
-        
-                // show ($staffDetailSet);
+        $currentStaffDetails = new Staff();
+        $staffDetailSet = $currentStaffDetails->crrEmpData();
 
-        $this->view('manager/view_staff', ['staffMenbers' => $staffDetailSet,]);
+        $formerEmployeeData = new Staff();
+        $formerStaffDataSet = $formerEmployeeData->formerEmpData();
+
+
+        $this->view('manager/view_staff', ['staffMembers' => $staffDetailSet,"dumpedStaffSet"=>$formerStaffDataSet]);
     }
+
+    public function removeStaff()
+    {
+        if (!Auth::is_manager()) {
+            redirect('home');
+        }
+
+        if (isset($_POST)) {
+            $empRemoveData = json_decode(file_get_contents("php://input"), true);
+            $emp_uid = $empRemoveData['staffId'];
+
+            $current_date = date("Y-m-d");
+
+            $removeStaff = new Staff();
+            $removeStaff->updateStaffData($emp_uid, $current_date);
+
+            exit;
+        }
+        http_response_code(400);
+        echo json_encode([
+            'success' => false,
+            'message' => 'Invalid request.'
+        ]);
+        exit;
+
+
+    }
+
+    public function rejoin()
+    {
+        if (!Auth::is_manager()) {
+            redirect('home');
+        }
+
+        if (isset($_POST)) {
+            $empRemoveData = json_decode(file_get_contents("php://input"), true);
+            $emp_uid = $empRemoveData['staffId'];
+
+            $current_date = date("Y-m-d");
+
+            $removeStaff = new Staff();
+            $removeStaff->rejoinStaff($emp_uid, $current_date);
+
+            exit;
+        }
+        http_response_code(400);
+        echo json_encode([
+            'success' => false,
+            'message' => 'Invalid request.'
+        ]);
+        exit;
+
+
+    }
+
 
 
     public function addStaff()
@@ -59,25 +116,40 @@ class Manager extends Controller{
         if (isset($_POST)) {
             $data = json_decode(file_get_contents("php://input"), true);
 
-            $data['emp_status'] = '1';
 
-            
+            if($data['role'] == 'Manager'){
+                $prefix = 'M';
+            }
+            elseif($data['role'] == 'Teacher'){
+                $prefix = 'T';
+            }
+            elseif($data['role'] == 'Instructor'){
+                $prefix = 'I';
+            }
+            elseif($data['role'] == 'Receptionist'){
+                $prefix = 'R';
+            }
+            $data['username'] = $data['first_name'].$prefix;
+            $data['emp_status'] = '1';
+            $data['uid'] = $prefix.uniqid();
+
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
             $addUser = new User();
             $addUser->Adduser($data);
-            
-            
-            $addStaff = new Staff();
-           $addStaff->Addstaff($data);
-            
 
-            
+
+            $addStaff = new Staff();
+            $addStaff->Addstaff($data);
+
+
+
 
             $json_response = json_encode(
-                $data,
+                $data
             );
-            
-            
+
+
             if ($json_response === false) {
                 http_response_code(500);
                 echo json_encode([
@@ -211,11 +283,11 @@ public function testing()
             message('please login');
             redirect('login/manager');
 		}
-  
+
 
         if(!Auth::is_manager()){
             redirect('home');
-           
+
         }
         $user_id = Auth::getUid();
         $role = Auth::getrole();
@@ -237,7 +309,7 @@ public function testing()
             $enq = $enquiry->first([
                 'eid'=>$eid
             ],'eid');
-            
+
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // if(isset($_GET['rid'])){
                 //     $reParent = $_GET['rid'];
@@ -266,23 +338,23 @@ public function testing()
                 'eid'=>$eid
             ],'eid');
             $data['enq']=$enq;
-         
+
             $this->view('manager/enquiry_view',$data);
             exit;
-           
+
         }
         if(isset($_GET['id'])&&isset($_GET['status'])){
-          
+
             $id=$_GET['id'];
             $value = $_GET['status'];
-           
+
             $status = $enquiry -> update(['eid'=>$id],['status'=>$value]);
-           
+
         }
-     
+
         $data['rows']  = $enquiry->where(['status'=>"Escalated"], $orderby);
-            
+
         $this->view('manager/enquiry',$data);
     }
-    
+
 }
