@@ -15,7 +15,7 @@
                     <?php foreach($rows as $row):?>
                         <div class="std_op_subject">
                             <!-- <br> -->
-                            <h3><?=esc($row->subject)?></h3>
+                            <h3><?=esc($row->name)?></h3>
                             <!-- <div class="std_op_loader">
                                 <p class="std_op_perc">50%</p>
                             </div> -->
