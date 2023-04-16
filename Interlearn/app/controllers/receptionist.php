@@ -250,9 +250,7 @@ class Receptionist extends Controller
 
                 if(isset($_POST['submit-delete-course'])){
                     // show("hi");die;
-                    $course_id = $_POST['delete-course'];
-                    // show($course_id);die;
-                    $result = $course->delete(['course_id'=>$course_id]);
+                    $result = $course->delete(['course_id'=>$id]);
                     // header("Location:http://localhost/Interlearn/public/receptionist/course/view/1/".$id);
                 }
 

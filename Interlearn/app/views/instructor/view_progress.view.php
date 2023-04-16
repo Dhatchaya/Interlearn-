@@ -13,7 +13,7 @@
         <?php foreach($rows as $row):?>
             <div class="progress">
                 <h2><?=esc($row->exam_name)?></h2>
-                <a href="<?=ROOT?>/instructor/course/progress/1/1/overview?overall=<?=esc($row->exam_id)?>"><button>view</button></a>
+                <a href="<?=ROOT?>/instructor/course/progress/<?=esc($course_id)?>/1/overview?overall=<?=esc($row->exam_id)?>"><button>view</button></a>
             </div>
 
         <?php endforeach;?>

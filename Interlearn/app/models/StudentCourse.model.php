@@ -65,6 +65,7 @@ class StudentCourse extends Model
     public function CourseForStudent($data= null){
         
         $keys = array_keys($data);
+        //c.name
         $query = "SELECT s.student_id, s.course_id, subject FROM student_course s 
         INNER JOIN course c ON s.course_id = c.course_id
         INNER JOIN subject d ON d.subject_id = c.subject_Id where ";
