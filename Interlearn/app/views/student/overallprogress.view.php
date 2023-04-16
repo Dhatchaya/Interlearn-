@@ -1,4 +1,4 @@
-<?php $this->view("includes/header");?>
+<!-- <?php $this->view("includes/header");?>
 <?php $this->view("includes/nav");?>
 
 <div class="std_op_container">
@@ -43,4 +43,4 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
