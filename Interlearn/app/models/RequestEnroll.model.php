@@ -93,21 +93,5 @@ class RequestEnroll extends Model
         return false;
     }
 
-    public function getRequestedCourses($student_id){
-        $query = "SELECT course_id FROM ".$this->table;
-        $query .= " WHERE student_id =:studentID";
-
-        $data['studentID'] = $student_id;
-
-        // echo $query;die;
-        $res = $this -> query($query,$data);
-
-
-        if(is_array($res)){
-            return $res;
-        }
-        return false;
-    }
-
 
 }

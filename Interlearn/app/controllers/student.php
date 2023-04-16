@@ -348,11 +348,6 @@ class Student extends Controller
                         }
 
                     }
-                    else{
-                        $data['errors']['submission'] ="Please upload your files to submit";
-                    
-
-                        }
                 }
                 else{
                     
@@ -471,11 +466,7 @@ class Student extends Controller
                         $data['errors'] =   $submissionfiles->error;
                     }
                     }
-                    else{
-                        $data['errors']['submission'] ="Please upload your files to submit";
-               
-
-                        }
+                
                
                 // show($data['errors']);
                 if(empty($data['errors'])){

@@ -39,7 +39,6 @@ class Model extends Database {
         }
         $query = trim($query,"&& ");
         $query .= " order by $orderby  $order";
-        
         $res = $this -> query($query,$data);
 
         if(is_array($res)){
@@ -117,7 +116,7 @@ class Model extends Database {
                 $mail->Port = 465;
                 $mail -> SMTPAuth = true;
                 $mail -> Username ='add interlearn email';
-                $mail -> Password = 'add your password';
+                $mail -> Password = 'add your password'; 
                 $mail->SMTPSecure ='ssl';
                 $mail->SMTPOptions = array(
                     'ssl' => array(
@@ -138,11 +137,9 @@ class Model extends Database {
                 if ($mail -> Send()){
                     $query_string = '?code=' . $data['user_activation_code'];
                     $current_url = 'http://localhost/Interlearn/public/verify'.$query_string;
-                    // echo $current_url;die;
-                    //  echo json_encode(['url' => $current_url]);
-                    //header('Location: ' . $current_url);
+                    header('Location: ' . $current_url);
 
-                    return $current_url;
+                    return 1;
                     
                 }
                 else{
@@ -244,17 +241,7 @@ class Model extends Database {
     }
 
     public function delete($data){
-        // if(!empty($this->allowed_columns))
-        // {
-        //     foreach($data as $key => $value){
-        //         if(!in_array($key,$this->allowed_columns))
-        //         {
-               
-        //             unset($data[$key]);
-        //         }
-               
-        //     }
-        // }
+    
         $keys = array_keys($data);
 
         $query ="delete from ".$this->table." where ";
@@ -262,7 +249,7 @@ class Model extends Database {
             $query .= $key." =:".$key." , ";
         }
         $query = trim($query," , ");
-
+  
        $res = $this ->delete_table($query,$data);
   
         if($res){
@@ -461,11 +448,11 @@ class Model extends Database {
     public function teacherCourse($data=[],$id,$orderby = null, $order=null){
         $query = "SELECT subject.subject_id,subject.subject,grade,language_medium,course.* from ".$this->table;
         $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN staff ON staff.emp_id = course.teacher_id ";
-        $query .= " WHERE staff.uid = '$id'";
+        $query .= " WHERE staff.uid = $id";
         // $query .= " group by subject, grade";
         // $query .= " order by $orderby  $order";
         //var_dump($_SESSION);exit;
-// show($query);die;
+
         $res = $this -> query($query,$data);
          //show($query);die;
 
@@ -502,7 +489,7 @@ class Model extends Database {
     public function studentCourse($data=[],$id,$orderby = null, $order=null){
         $query = "SELECT concat(staff.first_name,' ',staff.last_name) AS fullname, subject.subject_id,subject.subject,subject.grade,subject.language_medium,course.* from ".$this->table;
         $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN student_course ON student_course.course_id = course.course_id INNER JOIN staff ON course.teacher_id = staff.emp_id INNER JOIN student ON student.studentID = student_course.student_id ";
-        $query .= " WHERE student.uid = '$id' AND staff.role = 'Teacher'";
+        $query .= " WHERE student.uid = $id AND staff.role = 'Teacher'";
         // $query .= " group by subject, grade";
         // $query .= " order by $orderby  $order";
         //var_dump($_SESSION);exit;
@@ -680,27 +667,6 @@ class Model extends Database {
            return $res[0];
         }
         return false;
-    }
-    public function jointempstudents($data,$orderby=null,$order = 'desc'){
-        $keys = array_keys($data);
-        $id = $this->table[0]."id";
-        $query ="select temp_student.*, temp_student_course.course_id from ".$this->table." inner join temp_student_course on temp_student.studentID = temp_student_course.studentID where ";
-   
-        foreach($keys as $key){
-            $query .= "temp_student.".$key. " =:".$key." && ";
-        }
-     
-    
-        $query = trim($query,"&& ");
-        $query .= " order by $orderby  $order ";
-
-        $res = $this -> query($query,$data);
-      
-        if(is_array($res)){
-           return $res;
-        }
-        return false;
-           
     }
 
 

@@ -1,6 +1,3 @@
-// console.log("hi");
-
-
 // Get the modal
 const modal = document.getElementById("profileModal");
 
@@ -45,8 +42,6 @@ const span2 = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal
 function openModal2(courseID) {
-    console.log("hello");
-    console.log(courseID);
 
     document.getElementById("modal2_course_id").value = courseID;
 

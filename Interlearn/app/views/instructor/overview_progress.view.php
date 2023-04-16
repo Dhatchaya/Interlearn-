@@ -25,9 +25,9 @@
                     // var q = 'W';
                     // var xValues = [x, y, z, p, q];
                     // console.log($newArray);
-                    var xValues = <?php echo json_encode(array_keys($data)); ?>;
+                    var xValues = <?php echo json_encode(array_keys($newArray)); ?>;
                     console.log(xValues);
-                    var yValues = <?php echo json_encode(array_values($data)); ?>;
+                    var yValues = <?php echo json_encode(array_values($newArray)); ?>;
                     var barColors = [
                     "#0D3C4F",
                     "#2D7A8A",
@@ -71,7 +71,7 @@
                         
                     <tr>
                         <td><?=esc($row->id)?></td>
-                        <td><?=esc($row->student_id)?></td>
+                        <td><?=esc($row->studentID)?></td>
                         <td><?=esc($row->marks)?></td>
                         <td>
                             <div class="edit_delete">

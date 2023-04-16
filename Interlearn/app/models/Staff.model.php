@@ -182,22 +182,5 @@ class Staff extends Model
         return false;
     }
 
-    public function getAvailableInstructors($course_id){
-        $query = "SELECT staff.emp_id, concat(staff.first_name,' ',staff.last_name) AS instructorName FROM ".$this->table;
-        $query .= " WHERE role = 'Instructor' AND staff.emp_id NOT IN (SELECT course_instructor.emp_id FROM course_instructor WHERE course_id IN (SELECT course_id FROM course WHERE (course.day, course.timefrom, course.timeto) = (SELECT day, timefrom, timeto FROM course WHERE course_id =:courseID)) )";
-
-        $data['courseID'] = $course_id;
-
-        $res = $this -> query($query,$data);
-        //  show($query);die;
-
-        if(is_array($res)){
-            // echo $res;die;
-            return $res;
-        }
-        // echo "hi";die;
-        return false;
-    }
-
 
 }
