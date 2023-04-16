@@ -20,36 +20,28 @@ $val = explode('/',$url);
                 
                 <tr>
                 <?php if(!empty($requests)):?>
+                <?php foreach($requests as $request):?>
+                    <td><?=esc($request->request_id)?></td>  
+                    <td><?=esc($request->student_id)?></td>
+                    <td><?=esc($request->requested_date)?></td>
+                    <td><?=esc($request->subject)?></td>
+                    <td><?=esc($request->teacherName)?></td>
+                    
+                    <td>
+                    <button class="view_enq_btn" name="submit" id="button28" onclick="openModal(<?=$request->request_id?>)">View</button>
 
-                    <?php foreach($requests as $request):?>
-                        <td><?=esc($request->request_id)?></td>
+                    <form action="" method="post">
+                        <input type="hidden" id="requestID" name="requestID" value="<?=$request->request_id?>">
+                        <input type="hidden" id="studentId" name="studentId" value="<?=$request->student_id?>">
+                        <input type="hidden" id="courseId" name="courseId" value="<?=$request->course_id?>">
+                        <button type="submit" class="view_enq_btn" name="accept-student" id="add-btn">Accept</button>
+                    </form>
 
-                        <td><?=esc($request->student_id)?></td>
-
-                        <td><?=esc($request->requested_date)?></td>
-
-                        <td><?=esc($request->subject)?></td>
-
-                        <td><?=esc($request->teacherName)?></td>
-
-                        <td>
-                        <button class="view_enq_btn" name="submit" id="button28" onclick="getRequests(<?=esc($request->request_id)?>)">View</button>
-
-                        <form action="" method="post">
-
-                            <input type="hidden" id="requestID" name="requestID" value="<?=$request->request_id?>">
-                            <input type="hidden" id="studentId" name="studentId" value="<?=$request->student_id?>">
-                            <input type="hidden" id="courseId" name="courseId" value="<?=$request->course_id?>">
-
-                            <button type="submit" class="view_enq_btn" name="accept-student" id="add-btn">Accept</button>
-                        </form>
-
-                        <button class="view_enq_btn" id="button29" onclick="openModal2(<?=$request->request_id?>)">Reject</button>
-                        </td>
-
-                    </tr>
-                    <?php endforeach;?>
-
+                    <button class="view_enq_btn" id="button29" onclick="openModal2(<?=$request->request_id?>)">Reject</button>
+                    </td>
+                    
+                </tr>
+                <?php endforeach;?>
                 <?php else:?>
                    <?php echo "No requests yet!"; ?>
                 <?php endif;?>
@@ -58,48 +50,45 @@ $val = explode('/',$url);
             <!-- view popup -->
         <div id="profileModal" class="popupModal">
             <div class="popupmodal-content">
-
                 <span class="ann_close" onclick="closeModal()">&times;</span><br>
-
                 <h3>--Student Enrollment Request Details--</h3><br>
-
                 <form action="" method="post" class="up-profile">
-
                     <input type="hidden" id="request_modal" name="request_id">
-
-
-
+                
+                    <?php if(!empty($requestDetails)):?>
+                    <?php foreach($requestDetails as $request):?>
                     <label for="student_id" class="enroll-display">Student ID: </label>
-                    <input type="text" id="student_id" value="" disabled>
+                    <input type="text" value="<?=esc($request->student_id)?>" disabled>
 
                     <label for="course_id" class="enroll-display">Requested Course ID: </label>
-                    <input type="text" id="course_id" value="" disabled>
+                    <input type="text" value="<?=esc($request->course_id)?>" disabled>
 
                     <label for="studentName" class="enroll-display">Student Name: </label>
-                    <input type="text" id="studentName" value="" disabled>
+                    <input type="text" value="<?=esc($request->studentName)?>" disabled>
 
                     <label for="requested_date" class="enroll-display">Requested Date: </label>
-                    <input type="text" id="requested_date" value="" disabled>
+                    <input type="text" value="<?=esc($request->requested_date)?>" disabled>
 
                     <label for="subject" class="enroll-display">Subject: </label>
-                    <input type="text" id="subject" value="" disabled>
+                    <input type="text" value="<?=esc($request->subject)?>" disabled>
 
                     <label for="grade" class="enroll-display">Grade: </label>
-                    <input type="text" id="grades" value="" disabled>
+                    <input type="text" value="<?=esc($request->grade)?>" disabled>
 
                     <label for="teacherName" class="enroll-display">Teacher Name: </label>
-                    <input type="text" id="teacherName" value="" disabled>
+                    <input type="text" value="<?=esc($request->teacherName)?>" disabled>
 
                     <label for="day" class="enroll-display">Class Day: </label>
-                    <input type="text" id="day" value="" disabled>
+                    <input type="text" value="<?=esc($request->day)?>" disabled>
 
                     <label for="time" class="enroll-display">Time Slot: </label>
-                    <input type="text" id="time" value="" disabled>
+                    <input type="text" value="<?=esc($request->timefrom)?> - <?=esc($request->timeto)?>" disabled>
 
                     <label for="available" class="enroll-display">Availability: </label>
-                    <input type="text" id="available" value="" disabled>
+                    <input type="text" value="<?=esc($request->available)?>" disabled>
 
-
+                    <?php endforeach;?>
+                    <?php endif;?>
 
                 </form>
             </div>
@@ -115,18 +104,11 @@ $val = explode('/',$url);
                     <p>Are you sure you want to reject this request?</p><br>
                     <input type="hidden" id="requestID" name="requestID" value="<?=$request->request_id?>">
                     <button type="submit" class="teacher_upl_btn" name="submit-reject-request" id="reject-btn">Yes</button>
-                    <button type="reset" class="teacher_upl_btn" id="cancel-btn" onclick="closeModal2()">Cancel</button>
+                    <button type="reset" class="teacher_upl_btn" id="cancel-btn">Cancel</button>
                 </form>
             </div>
         </div>
-
-
     </div>
 </div>
-
-
 <script defer src="<?=ROOT?>/assets/js/enroll.js?v=<?php echo time(); ?>"></script>
-<script defer src="<?=ROOT?>/assets/js/enroll_view.js?v=<?php echo time(); ?>"></script>
-
-
 <?php $this->view("includes/footer");?>

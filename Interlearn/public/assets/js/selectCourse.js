@@ -161,7 +161,7 @@ $('#description').on('input',function(){
   }
   if(medium == '' || medium == '--Select language medium--'){
     console.log('hi');
-    $('#alert-div3').html('Please select a language medium before adding a description.');  // set the message in the alert div
+    $('#alert-div3').html('Please select a language medium adding a description.');  // set the message in the alert div
     $('#alert-div3').show();  // show the alert div
     $('#description').val('');  // clear the selected grade
   }
@@ -185,7 +185,7 @@ $('#day').on('change', function() {
   $.ajax({
       url: 'http://localhost/Interlearn/public/receptionist/course/available',
       type: 'POST',
-      data: {'teacher_id':teacher_id, 'day': day, 'timefrom': timeFrom, 'timeto': timeTo},
+      data: {'teacher_id':teacher_id, 'day': day, 'timeFrom': timeFrom, 'timeTo': timeTo},
       success: function(response) {
          response = JSON.parse(response);
         console.log(response);
@@ -198,7 +198,7 @@ $('#day').on('change', function() {
             console.log(response[i]);
             console.log(timeFrom>response[i].timefrom);
             if(timeFrom<response[i].timeto ||timeFrom>response[i].timefrom){
-              document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
+              document.getElementById('#addCourseerror').innerHTML = "Teacher already has a class";
               break;
             }
           }
@@ -212,11 +212,11 @@ $('#day').on('change', function() {
             console.log(response[i]);
             console.log(timeTo>response[i].timefrom);
             if(timeFrom > timeTo){
-              document.getElementById('addCourseerror').innerHTML = "Ending time should be greater than start time";
+              document.getElementById('#addCourseerror').innerHTML = "Ending time should be greater than start time";
               break;
             }
             if(timeTo<response[i].timeto ||timeTo>response[i].timefrom){
-              document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
+              document.getElementById('#addCourseerror').innerHTML = "Teacher already has a class";
               break;
             }
           }
@@ -243,7 +243,7 @@ function teacherHasClassOnTime(teacher, timeFrom, timeTo) {
   $.ajax({
     url: '/check-teacher-schedule',
     type: 'POST',
-    data: {'teacher_id': teacher.id, 'day': day, 'timefrom': timeFrom, 'timeto': timeTo},
+    data: {teacher_id: teacher.id, day: day, timeFrom: timeFrom, timeTo: timeTo},
     async: false,
     success: function(response) {
       teacherHasClass = response.hasClass;

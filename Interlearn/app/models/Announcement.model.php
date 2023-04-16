@@ -10,7 +10,6 @@ class Announcement extends Model{
         'title',
         'content',
         'attachment',
-        'file_name',
         'empID',
         'role',
         'date_time'
@@ -27,8 +26,6 @@ class Announcement extends Model{
     public function isAnnEditable($createdAt) {
         $expiryTime = strtotime($createdAt) + 60*60; // expiry time is 1 hour after creation
         $currentTime = time();
-        // show($expiryTime);die;
-        // show($currentTime);die;
         return ($currentTime < $expiryTime);
     }
 
@@ -41,25 +38,23 @@ class Announcement extends Model{
     public function validate($data)
     {   
         $this->error = [];
-        if(empty($data['title']))
-        {
-            $this -> error['title'] = "Please provide a title for the announcement!";
-        }
-        if(empty($data['content']))
-        {
-            $this -> error['content'] = "Please provide a content body for the announcement!";
-        }
-        if(!empty($data['attachment']))
-        {
-            if(empty($data['file_name']))
+        foreach($data as $key => $value)
+        { 
+            if(empty($data[$key]))
             {
-                $this -> error['file_name'] = "Please provide a name for the attachment!";
+                $this -> error[$key] = ucfirst($key)." is required";
             }
-        }
-        // else{
-        //     $this -> error['attachement'] = "Please provide a name for the attachement!";
-        // }
-
+         }
+    
+            // // checks email is valid if so it'll check whther it already exists
+            // if(!filter_var($data['email'],FILTER_VALIDATE_EMAIL))
+            // {
+            //     $this->error['email'] = "Email is not valid";
+            // }else
+            // if($this->where(['email'=>$data['email']])){
+            //         $this->error['email'] = "Email already exists";
+                
+            // }
         if(empty($this->error)){
             return true;
         }

@@ -24,7 +24,7 @@
                 <ul class="login-nav">
                     <li class="nav-li"> <a href="<?=ROOT?>/home">Home</a></li>
                     <li class="nav-li"> <a href="#">About</a></li>
-                    <li class="nav-li"> <a href="<?=ROOT?>/courses">Classes</a></li>
+                    <li class="nav-li"> <a href="#">Classes</a></li>
                     <li class="nav-li"> <a href="#">Contact</a></li>
                 </ul>
                 <?php if(!Auth::logged_in()):?>

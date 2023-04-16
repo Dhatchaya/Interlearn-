@@ -29,7 +29,6 @@ class Forum extends Model
     public function validate($data)
     {   
         $this->error = [];
-        //show($data);die;
         foreach($data as $key => $value)
         { 
             if(empty($data[$key]))
@@ -37,14 +36,7 @@ class Forum extends Model
                 $this -> error[$key] = ucfirst($key)." is required";
             }
          }
-         if (!(preg_match('/^.{1,25}$/', $data['topic']))) {
-
-            $this->error['topic'] = "Maximum number of allowed characters is 25";
-         }
-         if (!(preg_match('/^.{1,1000}$/', $data['content']))) {
-
-            $this->error['content'] = " Maximum number of allowed characters is 1000";
-         }
+    
             // // checks email is valid if so it'll check whther it already exists
             // if(!filter_var($data['email'],FILTER_VALIDATE_EMAIL))
             // {
@@ -54,40 +46,9 @@ class Forum extends Model
             //         $this->error['email'] = "Email already exists";
                 
             // }
-
         if(empty($this->error)){
             return true;
         }
-        return false;
-    }
-    public function validatefile($data,$previoussize=0)
-    {   
-
-        $this->error = [];
-        $this->size = 0;
- 
-            if(!empty($_FILES['attachment']))
-            {
-              
-            //     $this -> error['submission'] = "Please upload your files";
-            // }
-            // else{
-                 
-                        $this ->size = $_FILES['attachment']['size'];
-                        
-                    
-                   
-                 if($this ->size > 5*MB){
-                    $this -> error['attachment'] = "File size is too large";
-                 }
-                
-                 }
-
-        if(empty($this->error)){
-        
-            return true;
-        }
-      
         return false;
     }
     public function joinforumfirst($data=[],$orderby=null,$order='desc'){

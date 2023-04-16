@@ -62,12 +62,11 @@ $val = explode('/',$url);
                     }
                     // show($subjects[$med_ID]);die;
                     ?>
-                    <?php if (!empty($enroll_error)) : ?>
-                    <p class="warning"><?php echo $enroll_error; ?></p>
-                <?php endif; ?>
                 <?php foreach($subjects[$med_ID] as $teacher): ?>
                 <tr>
-
+                <?php if (!empty($enroll_error)) : ?>
+                    <p class="warning"><?php echo $enroll_error; ?></p>
+                <?php endif; ?>
                     <td><?=esc($teacher->day)?></td>
 
                     <td><?=esc($teacher->timefrom)?> - <?=esc($teacher->timeto)?></td>
@@ -77,15 +76,15 @@ $val = explode('/',$url);
                             <?php echo "No teachers assigned!";?>
                         <?php endif?>
                     </td>
-
+                    
                     <td>
                     <?php if(!empty($teach_instructors[$teacher->course_id])):?>
                         <?php foreach($teach_instructors[$teacher->course_id] as $teach_instructor):?>
                             <?=esc($teach_instructor->instructorName)?>
                             <input type="hidden" value="<?=esc($teacher->day)?>">
-
+                            
                             <br/>
-                        <?php endforeach;?>
+                        <?php endforeach;?> 
 
                     <?php else:?>
                             <?php echo "No instructors assigned!";?>
@@ -94,7 +93,7 @@ $val = explode('/',$url);
                 </tr>
 
 
-
+                
                 <?php endforeach;?>
                 <?php endif;?>
             </table>
