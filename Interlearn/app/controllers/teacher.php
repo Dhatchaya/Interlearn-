@@ -931,7 +931,7 @@ class Teacher extends Controller
 
                $material = $course_content->insert($_POST);
                 if($result){
-                    header('location:http://localhost/Interlearn/public/forums/4/1?main='.$mainforum_id);
+                    header('location:http://localhost/Interlearn/public/forums/'.$id.'/'.$week.'/?main='.$mainforum_id);
                 }
             }
 

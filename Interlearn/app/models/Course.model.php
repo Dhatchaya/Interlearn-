@@ -106,7 +106,18 @@ class Course extends Model
         }
 
     }
+    public function getinstituteClass(){
+        $query = "SELECT subjectcoursestaff.*,course.* FROM subjectcoursestaff inner join course on subjectcoursestaff.course_id = course.course_id"; 
+        $res = $this -> query($query);
 
+        if($res){
+            return $res;
+        }else{
+            return false;
+        }
+
+    }
+    
 
     public function getWeekName($Course_id,$week_no){
         $query = "SELECT week_name FROM course_week WHERE course_id = ".$Course_id." and week_no=".$week_no; 

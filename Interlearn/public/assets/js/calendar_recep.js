@@ -1,7 +1,8 @@
 const allDays = document.querySelector(".days"),
 Today = document.querySelector(".current-date"),
 prevNextIcon = document.querySelectorAll(".calendar_icons span");
-const viewClass = document.getElementsByClassName("active");
+const viewClass = document.getElementsByClassName("activeclass");
+const todayClass = document.getElementsByClassName("active");
 const assignmentContainer = document.getElementById("assignment_today");
 
 
@@ -31,15 +32,23 @@ const renderCalendar = () => {
     for (let i = 1; i <= lastDateofMonth; i++) { // creating li of all days of current month
 
         let isToday ="";
+        let isday = "";
         for (j in classDates){
            
-            isToday = Weeks[new Date(currYear, currMonth, i).getDay()] === classDates[j]? "active" : "";
-            if(isToday === "active"){
+            isToday = Weeks[new Date(currYear, currMonth, i).getDay()] === classDates[j]? "activeclass" : "";
+            if(isToday === "activeclass"){
                     break;
             }
+       
       
         }
-
+        isToday = i === date.getDate() && currMonth === new Date().getMonth() 
+        && currYear === new Date().getFullYear() ? "active" : isToday;
+    
+        // if(isToday === "active"){
+        //     break;
+        //     }
+        //liTag += `<li class="${isday}">${i}</li>`;
          
         liTag += `<li class="${isToday} clickdate" data-today = ${i}>${i}</li>`;
        
@@ -72,6 +81,46 @@ const renderCalendar = () => {
                         <div  class ="assignment_card">
                         <div class ="assignment_card_title"><p>${allClasses[j].subject}<p></div>
                         <ul>
+                        <li> Teacher: ${allClasses[j].fullname}</li>
+                             <li> Day: ${allClasses[j].day}</li>
+                            <li> Time: ${allClasses[j].timefrom}-${allClasses[j].timeto}</li>
+                            
+                    
+                        </ul>
+                        </div>
+                    
+                    </a>`;
+                    //console.log(allAssignments[j].title);
+                    assignmentContainer.innerHTML+=classcard;
+                  }
+                
+            }
+       
+        
+        
+        });
+      }
+       //triggered when you click a date
+     for (let i = 0; i < todayClass.length; i++) {
+
+        todayClass[i].addEventListener("click", () => {
+           assignmentContainer.innerHTML='';
+           //console.log(allAssignments);
+            if (!todayClass[i]) {
+                return;
+              }
+             let dateofClass =Weeks[new Date(currYear, currMonth, todayClass[i].dataset.today).getDay()];  
+
+            for (let j in allClasses){
+             
+                if (dateofClass === allClasses[j].day) {
+                    let classcard = ` 
+                   
+                    <a href ="http://localhost/Interlearn/public/teacher/course/view/${allClasses[j].course_id}"> 
+                        <div  class ="assignment_card">
+                        <div class ="assignment_card_title"><p>${allClasses[j].subject}<p></div>
+                        <ul>
+                             <li> Teacher: ${allClasses[j].fullname}</li>
                              <li> Day: ${allClasses[j].day}</li>
                             <li> Time: ${allClasses[j].timefrom}-${allClasses[j].timeto}</li>
                             
@@ -113,7 +162,7 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
 //const getdates = () =>{
     $.ajax({ 
         method: "GET", 
-        url:`http://localhost/Interlearn/public/teacher/calendar`,
+        url:`http://localhost/Interlearn/public/receptionist/calendar`,
     
         success: function(data) { 
             console.log(data);

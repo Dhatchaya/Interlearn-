@@ -75,15 +75,28 @@
                                 <?php endif;?>
 
                             <?php elseif($material->type == "assignment"):?>
-                                <p><a href="#">
+                                <p><a href=<?=$material->view_URL?>>
                                 <img src="<?=ROOT?>/assets/images/assignment.png" alt="" class="teacher_card_img3">
+                              
                                 <?=$material->upload_name?>
+                                </a>
+                                <a href=<?=$material->edit_URL?>>
                                 <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
+                                </a>
+                                <a href=<?=$material->delete_URL?>>
                                 <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->cid?>')">
                                 </a></p>
-
+                            <?php elseif($material->type == "forum"):?>
+                                <p><a href=<?=$material->view_URL?>>
+                                <img src="<?=ROOT?>/assets/images/assignment.png" alt="" class="teacher_card_img3">
+                                <?=$material->upload_name?>
+                                </a>
+                                <a href=<?=$material->delete_URL?>>
+                                <!-- <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')"> -->
+                                <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->cid?>')">
+                                </a></p>
                             <?php elseif($material->type == "URL"):?>
-                                <p><a href="#">
+                                <p><a href=<?=$material->view_URL?>>
                                 <img src="<?=ROOT?>/assets/images/web.png" alt="" class="teacher_card_img3">
                                 <?=$material->upload_name?>
                                 <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">

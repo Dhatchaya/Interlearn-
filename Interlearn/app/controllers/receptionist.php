@@ -684,7 +684,8 @@ class Receptionist extends Controller
            
         }
 
-        $data['rows']  = $enquiry->select(null, $orderby);
+        $data['rows']  = $enquiry->selectUserCourse(null, $orderby);
+    
             
         $this->view('receptionist/enquiry',$data);
     }
@@ -873,6 +874,22 @@ class Receptionist extends Controller
             }
             
         }
+    }
+
+    public function calendar()
+    {
+        if (!Auth::is_receptionist()) {
+            redirect('home');
+        }
+        $course = new Course();
+        $userid = Auth::getUID();;
+        $result= $course->getinstituteClass(['uid'=>$userid]);
+
+
+        header('Content-Type: application/json');
+        echo json_encode($result);
+        exit;
+       // $this->view('includes/calendar');
     }
     
 }
