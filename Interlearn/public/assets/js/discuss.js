@@ -85,9 +85,13 @@ allthreads.addEventListener('click', function(e) {
       processData: false, 
       contentType: false,
       success: function(response){
-
-        var replyContainer = $(allthreads);
         var thread = JSON.parse(response);
+        if(thread.errors){
+          console.log(response);
+        }
+       else{
+        var replyContainer = $(allthreads);
+      
         console.log(thread.PostedDate);
         //replace the datetime from sql with only date in js
         let date = thread.PostedDate.replace( /[-]/g, '/' );
@@ -150,7 +154,7 @@ allthreads.addEventListener('click', function(e) {
         `;
     
         replyContainer.find(`[data-thread-id='${parent}']`).after(threadHTML);
-      
+      }
       },
       error:function(xhr){
         alert('Error loading threads: ' + xhr.responseText);

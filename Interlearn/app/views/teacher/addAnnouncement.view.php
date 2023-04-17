@@ -12,7 +12,7 @@
             <?php endforeach;?>
         <?php endif;?>
 
-        <form method="POST" action="">
+        <form method="POST" action="" enctype="multipart/form-data">
 
             <label for="">Announcement name: </label><br>
             <input type="text" class="recp_ann_name" name="title"><br><br>

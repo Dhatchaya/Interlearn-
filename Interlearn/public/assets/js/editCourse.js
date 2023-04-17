@@ -1,10 +1,10 @@
 console.log("ct");
 
-$('#days').on('change', function() {
+$('#daysEdit').on('change', function() {
     var teacher_id = $('#teacher_id').val();
-    var day = $('#days').val();
-    var timeFrom = $('#timefrom').val();
-    var timeTo = $('#timeto').val();
+    var day = $('#daysEdit').val();
+    var timeFrom = $('#timefromEdit').val();
+    var timeTo = $('#timetoEdit').val();
     console.log('hi');
     $.ajax({
         url: 'http://localhost/Interlearn/public/receptionist/course/checkAvailable',
@@ -15,17 +15,28 @@ $('#days').on('change', function() {
          response = JSON.parse(response);
         console.log(response);
         var error = $('#addCourseerror');
-        $('#timefrom').on('change', function(){
-          // console.log("here");
-          var timeFrom = $('#timefrom').val();
-          var timeTo = $('#timeto').val();
+        $('#timefromEdit').on('change', function(){
+          console.log("here");
+          var timeFrom = $('#timefromEdit').val();
+          var timeTo = $('#timetoEdit').val();
 
 
           for(i in response){
             console.log(response[i]);
-            var newDay = new Date(timeFrom);
+            let getMinute = timeFrom.split(':')[1];
+            getMinute = parseInt(getMinute) + 1;
+            let getHours = timeFrom.split(':')[0];
+            getHours = parseInt(getHours);
+            
+
+            if(getMinute < 0 ){
+              getMinute = 59;
+              getHours = getHours - 1;
+            }
+            
+            let newDay = getHours + ':' + getMinute;
             console.log(newDay);
-            console.log(timeFrom.getMinutes() - 1);
+            console.log(timeFrom);
 
             console.log(timeFrom>=response[i].timefrom);
             console.log(timeFrom<=response[i].timeto);
@@ -37,7 +48,7 @@ $('#days').on('change', function() {
           }
         });
 
-        $('#timeto').on('change', function(){
+        $('#timetoEdit').on('change', function(){
           console.log("here");
           var timeFrom = $('#timefrom').val();
           var timeTo = $('#timeto').val();

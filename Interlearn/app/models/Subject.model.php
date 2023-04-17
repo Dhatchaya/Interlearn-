@@ -143,5 +143,24 @@ class Subject extends Model
 
     }
 
+    public function CoursePage($course_id,$uid){
+        // $keys = array_keys($data);
+        $query = "SELECT subject.subject_id,subject.subject,grade,language_medium from ".$this->table;
+        $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN staff ON staff.emp_id = course.teacher_id ";
+        $query .= " WHERE staff.uid =:userID AND course.course_id =:courseID";
+
+        $data['courseID'] = $course_id;
+        $data['userID'] = $uid;
+        // $query .= " order by $orderby  $order";
+        //var_dump($_SESSION);exit;
+        $res = $this -> query($query,$data);
+         //show($query);die;
+        //  $query .= " group by subject, grade";
+        if(is_array($res)){
+            return $res;
+        }
+        return false;
+    }
+
 
 }

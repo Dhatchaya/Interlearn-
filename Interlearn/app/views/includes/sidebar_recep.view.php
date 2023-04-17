@@ -24,7 +24,7 @@
                     
                    
                         <div class="dashboard">
-                            <a href="<?=ROOT?>/receptionist/course">
+                            <a href="<?=ROOT?>/receptionist">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/dashboard.png" alt="Dashboard"></br>
                             <span>Dashboard</span>
                             </a>
