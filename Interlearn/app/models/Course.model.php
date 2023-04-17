@@ -11,7 +11,6 @@ class Course extends Model
 
         'course_id',
         'created_date',
-        'description',
         'subject_id',
         'teacher_id',
         'day',
@@ -49,6 +48,10 @@ class Course extends Model
             {
                 $this -> error['language_medium'] = "Please select a language_medium";
             }
+            if(empty($data['day']))
+            {
+                $this -> error['day'] = "Please select a day";
+            }
             if(empty($data['teacher_id']))
             {
                 $this -> error['teacher_id'] = "Please select a teacher_id";
@@ -70,6 +73,42 @@ class Course extends Model
                 $this -> error['capacity'] = "Please select a capcity for the class";
             }
                 
+
+        if(empty($this->error)){
+            return true;
+        
+        }
+        //show($this->error);die;
+        return false; 
+    }
+
+    public function validateAdd($data){
+        $this->error = [];
+
+        if(empty($data['teacher_id']))
+        {
+            $this -> error['teacher_id'] = "Please select a teacher_id";
+        }
+        if(empty($data['day']))
+        {
+            $this -> error['day'] = "Please select a day";
+        }
+        if(empty($data['timefrom']))
+        {
+            $this -> error['timefrom'] = "Please select a start time";
+        }
+        if(empty($data['timeto']))
+        {
+            $this -> error['timeto'] = "Please select an ending time";
+        }
+        else if(strtotime($data['timeto']) < strtotime($data['timefrom'])){
+           
+            $this -> error['time'] = "Ending must be greater than starting time";
+        }
+        if(empty($data['capacity']))
+        {
+            $this -> error['capacity'] = "Please select a capcity for the class";
+        }
 
         if(empty($this->error)){
             return true;

@@ -4295,7 +4295,7 @@ tr:nth-child(even) {
 /* Style the modal content */
 .popupmodal-content {
     background-color: #fff;
-    margin: 10% auto; /* 10% from the top and centered */
+    margin: 5% auto; /* 10% from the top and centered */
     padding: 25px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -4377,6 +4377,13 @@ tr:nth-child(even) {
     padding-right: 2%;
 }
 
+.edit_ann_content{
+    width: 65vw;
+    height: 20vh;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
 .edit_ann_cont{
     height: 30vh;
 }
@@ -4389,6 +4396,10 @@ tr:nth-child(even) {
 .edit_ann_attachment a{
     text-decoration: none;
     cursor: pointer;
+}
+
+.file_announcement{
+    text-decoration: none;
 }
 
 
