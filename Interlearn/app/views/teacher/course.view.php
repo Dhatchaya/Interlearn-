@@ -138,7 +138,7 @@
                                 <a href="<?=ROOT?>/teacher/course/assignment/<?=$course->course_id?>" name="assignment"><img src="<?=ROOT?>/assets/images/submission.png" alt="" class="teacher-crs-img"><br>Add a submission</a>
                             </div>
 
-                             <div class="teacher-crs-activity">
+                            <div class="teacher-crs-activity">
                                 <a href="<?=ROOT?>/teacher/course/upload/<?=$course->course_id?>" name="upload">
                                    <img src="<?=ROOT?>/assets/images/paper.png" alt="" class="teacher-crs-img"><br>Add lecture materials
                                 </a>
