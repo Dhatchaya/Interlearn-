@@ -381,7 +381,7 @@ class Receptionist extends Controller
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if($announcement -> validate($_POST)){
                     $user_id = Auth::getuid();
-                    $details = $staff -> getUserDetails($user_id);
+                    $details = $staff -> ProfileDetails($user_id);
                     // show($details[0]->emp_id);die;
                     $emp_id = $details[0]->emp_id;
                     $announcement_id = uniqid();
@@ -697,16 +697,19 @@ class Receptionist extends Controller
         $currentUserID = $id ?? Auth::getUID();
 
         $staffData = new Staff();
-        $user_data = $staffData->getUserDetails($currentUserID);
+        $staff_data = $staffData->ProfileDetails($currentUserID);
 
-        if (!$user_data) {
+        
+
+        if (!$staff_data) {
             // handle error here
             redirect('home');
         }
 
-        $data['userData'] = $user_data;
+        $ProfileData['userData'] = $staff_data;
+        // $data['userData2'] = $user_data2;
 
-        $this->view('receptionist/user', $data);
+        $this->view('receptionist/user', $ProfileData);
     }
 
     // public function user()
@@ -729,19 +732,31 @@ class Receptionist extends Controller
             redirect('home');
         }
     
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $currentUserID = $id ?? Auth::getUID();
+        // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        //     $currentUserID = $id ?? Auth::getUID();
     
-            $data = $_POST;
-            $staffData = new Staff();
-            $staffData->updateStaffData($currentUserID, $data);
+        //     $data = $_POST;
+
+        //     $staffData = new Staff();
+        //     $staffData->updateStaffData($currentUserID, $data);
     
-            // Return a JSON response
-            header('Content-Type: application/json');
-            echo json_encode(['status' => 'success']);
+        //     // Return a JSON response
+        //     header('Content-Type: application/json');
+        //     echo json_encode(['status' => 'success']);
+        //     exit;
+        // }
+
+        {
+            $data = json_decode(file_get_contents("php://input"), true);
+            
+            $data['uid'] = $id ?? Auth::getUID();
+
+            $changeProfile = new Staff();
+            $res = $changeProfile->editProfile($data);
+    
+            echo json_encode($res);
             exit;
         }
-    
         exit;
     }
     
@@ -825,6 +840,7 @@ class Receptionist extends Controller
         echo json_encode($res);
         exit;
     }
+
     public function registration($action = null,$id = null)
     {
      $data = [];
@@ -842,6 +858,7 @@ class Receptionist extends Controller
      }
      $this->view('receptionist/Registrations',$data);
     }
+
     public function updatestatus($id)
     {
         $tempStudent = new Tempstudent();

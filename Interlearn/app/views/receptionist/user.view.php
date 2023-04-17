@@ -21,7 +21,7 @@
     <?php $this->view("includes/sidebar_rece"); ?>
     <form action="#" method="post">
 
-    
+
 
         <div class="profile-container">
             <div id="bio-data" class="sub-div">
@@ -30,9 +30,9 @@
 
                     <label class="user-data-label" for="display-picture">PROFILE PICTURE</label>
                     <div class="circle-container">
-                        
-                        <img id="dp" class="display-picture" src="<?= ROOT ?>/assets/images/expert-teacher.png"alt="display picture">
-                        
+
+                        <img id="dp" class="display-picture" src="<?= $userData[0]->display_picture ?>" alt="display picture">
+                        <!-- <?= ROOT ?>/assets/images/expert-teacher.png -->
                     </div>
 
                     <div class="change-pic">
@@ -55,7 +55,7 @@
                 <div class="profile-data">
                     <label class="user-data-label" for="email">EMAIL ADRESS</label>
 
-                    <input id="email" class="user-detail" placeholder="gaganasamarasekara@gmail.com" readonly>
+                    <input id="email" class="user-detail" placeholder="<?= $userData[0]->email ?? '' ?>" readonly>
                     <button id="change-email" class="edit-btn" type="button">✒️ EDIT</button>
                 </div>
 
@@ -66,7 +66,7 @@
                 <div class="profile-data">
                     <label class="user-data-label" for="phone-no">PHONE NO</label>
 
-                    <input id="mobile-no" class="user-detail" placeholder="<?= $userData[0]->mobile_no ?? '' ?>" readonly maxlength="10">
+                    <input id="mobile-no" class="user-detail" placeholder="0<?= $userData[0]->mobile_no ?? '' ?>" readonly maxlength="10">
                     <button id="change-monile-no" class="edit-btn" type="button">✒️ EDIT</button>
                 </div>
                 <div class="profile-data">
@@ -77,26 +77,25 @@
                 </div>
                 <div class="profile-data">
                     <label class="user-data-label" for="display-picture">POSITION</label>
-
-                    <input id="role" class="user-detail" placeholder="Manager" readonly>
+                    <input id="role" class="user-detail" placeholder="<?= $userData[0]->role ?>" readonly>
                 </div>
 
                 <div class="profile-data">
                     <label class="user-data-label" for="display-picture">EMPLOYEE NO</label>
 
-                    <input id="emp-no" class="user-detail" placeholder="7650272" readonly>
+                    <input id="emp-no" class="user-detail" placeholder="<?= $userData[0]->uid ?? '' ?>" readonly>
                 </div>
 
                 <div class="profile-data">
                     <label class="user-data-label" for="display-picture">JOINED DATE</label>
 
-                    <input id="joined-date" class="user-detail" placeholder="2023/02/02" readonly>
+                    <input id="joined-date" class="user-detail" placeholder="<?= $userData[0]->enrollment_date  ?? '' ?>" readonly>
                 </div>
 
                 <div class="profile-data">
                     <label class="user-data-label" for="display-picture">EMPLOYEMENT STATUS</label>
 
-                    <input id="emp-status" class="user-detail" placeholder="Full-time" readonly>
+                    <input id="emp-status" class="user-detail" placeholder="<?= $userData[0]->emp_status   ?? '' ?>" readonly>
                 </div>
 
 
@@ -108,7 +107,7 @@
                 <button id="cancel-btn" class="form-btn" type="button">CANCEL</button>
             </div>
         </div>
-        
+
     </form>
 
 
@@ -165,7 +164,7 @@
 
 
 
-    <script defer src="<?= ROOT ?>/assets/js/edit-button.js?v=<?php echo time(); ?>"></script>
+    <script defer src="<?= ROOT ?>/assets/js/ProfileEdit.js?v=<?php echo time(); ?>"></script>
 
 
 </body>

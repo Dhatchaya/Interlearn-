@@ -37,6 +37,28 @@ class User extends Model
         return $this->error;
     }
 
+    
+    public function getUserDetails($uid)
+    {
+        $query = "SELECT * FROM user where uid = '$uid'";
+        $data = $this->query($query);
+        if ($data == NULL) {
+            $data = array();
+        }
+
+        return $data;
+    }
+
+    public function updateProfile($data)
+    {
+         
+            $this->update($data, ['uid' => $data['uid']]);
+            $this->error['success'] = "User data updated successfully";
+            return true;
+        
+        return $this->error;
+    }
+
 
     public function validate($data)
     {   
