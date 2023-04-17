@@ -251,8 +251,16 @@ class Instructor extends Controller
                             // insert result data into database
                             $_POST['studentID'] = $student_id;
                             $_POST['marks'] = $marks;
-                            $myresult = new ZResult();
-                            $result = $myresult->insert($_POST);
+
+                            $student_course = new StudentCourse();
+                            $result1 = $student_course->where(['student_id' => $student_id, 'course_id' => $id], 'student_id');
+                            // show($result1);
+
+                            if ($result1) {
+                                $myresult = new ZResult();
+                                $result = $myresult->insert($_POST);
+                            }
+
                         }
                         
                         if($result) {
@@ -334,6 +342,16 @@ class Instructor extends Controller
                 $this->view('instructor/overview_progress', $data);
                 exit();
             }
+
+            if($option == 'delete') {
+                $id = $_GET['qnum'];
+                // show($id);
+                // show($GLOBALS['exam_id']);
+                $result = $results->delete(['id'=>$id]);
+                // header("Location:http://localhost/Interlearn/public/instructor/course/progress/".$id."/".$week."overview?overall=".$overall);
+                exit();
+            }
+
             $this->view('instructor/progress',$data);
             exit();
         }

@@ -1,22 +1,33 @@
 <?php
 /**
- *Enquiry class
+ *Student class
  */
-class Enquiry extends Model
+class Student extends Model
 {
     //says what table it has to target
     public $error = [];
-    protected $table = "enquiry";
+    public $table = "student";
+    public $key = 'studentID';
+
     protected $allowed_columns = [
-        'enquiry_no',
-        'title',
-        'content',
-        'type',
-        'status',
-        'date',
-        'user_Id',	
-        'role',
-        'reply',
+
+
+    'studentID',	
+    'NIC',	
+    'first_name',	
+    'last_name',	
+    'birthday',
+      'gender',
+    'email',
+    'mobile_number',
+    'address_line1',
+    'address_line2',
+    'address_line3',
+    'school',
+    'grade',
+    'language_medium',
+    'Picture',
+    'course_id',
 
     ];
     protected $staffs = [
@@ -51,22 +62,6 @@ class Enquiry extends Model
         }
         return false;
     }
-    public function selectUserCourse($data=null,$orderby=null,$order = 'desc')
-    {  
-  
-        
-        $query ="select enquiry.*,users.username from ".$this->table;
-  
-        $query .= " INNER JOIN users on enquiry.user_Id = users.uid order by $orderby  $order";
-        $res = $this -> query($query,$data);
 
-        if(is_array($res)){
-            return $res;
-        }
-        return false;
-           
-    
-    }
 
-    
 }

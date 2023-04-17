@@ -267,9 +267,7 @@ class Receptionist extends Controller
 
                 if(isset($_POST['submit-delete-course'])){
                     // show("hi");die;
-                    $course_id = $_POST['delete-course'];
-                    // show($course_id);die;
-                    $result = $course->delete(['course_id'=>$course_id]);
+                    $result = $course->delete(['course_id'=>$id]);
                     // header("Location:http://localhost/Interlearn/public/receptionist/course/view/1/".$id);
                 }
 
@@ -746,7 +744,8 @@ class Receptionist extends Controller
            
         }
 
-        $data['rows']  = $enquiry->select(null, $orderby);
+        $data['rows']  = $enquiry->selectUserCourse(null, $orderby);
+    
             
         $this->view('receptionist/enquiry',$data);
     }
@@ -935,6 +934,22 @@ class Receptionist extends Controller
             }
             
         }
+    }
+
+    public function calendar()
+    {
+        if (!Auth::is_receptionist()) {
+            redirect('home');
+        }
+        $course = new Course();
+        $userid = Auth::getUID();;
+        $result= $course->getinstituteClass(['uid'=>$userid]);
+
+
+        header('Content-Type: application/json');
+        echo json_encode($result);
+        exit;
+       // $this->view('includes/calendar');
     }
     
 }

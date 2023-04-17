@@ -34,7 +34,7 @@ class Verify extends Controller
                 }
             
             else{
-                echo "unknown error has occured";die;
+                echo "unknown error has occured";
             }
           
         }

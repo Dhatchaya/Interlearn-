@@ -54,6 +54,7 @@ class Forums extends Controller
         if($_SERVER['REQUEST_METHOD'] == "POST")
         {
             if($forum -> validate($_POST)){
+               
             $_POST['date']= date("Y-m-d H:i:s");
             $_POST['course_id']= $courseID;
             $_POST['creator']= $user;
@@ -348,6 +349,7 @@ class Forums extends Controller
                     }
                     else{
                         $data['errors']['attachment']='you cannot upload this type of file';
+                        
                     }
                 }
                 else{
@@ -358,14 +360,22 @@ class Forums extends Controller
 
             $discuss = new Discuss();
             $_POST['forum_id']= $disID;
-            $result = $discuss->insert($_POST);
-
-            if($result){
-                //join username and image with discuss table content and send it to json
-                $thread = $data['discuss']=$discuss->joinDiscussfirst(['discussion_id'=>$discussid],'discussion_id');
-                
-                echo json_encode($thread);
+            if(empty($data['errors'])){
+                $result = $discuss->insert($_POST);
+                if($result){
+                    //join username and image with discuss table content and send it to json
+                    $thread = $data['discuss']=$discuss->joinDiscussfirst(['discussion_id'=>$discussid],'discussion_id');
+                    
+                    echo json_encode($thread);
+                    exit;
+                }
             }
+           else{
+               echo json_encode (['errors'=>$data['errors']]);
+               exit;
+           }
+
+      
             
             exit;
         }
