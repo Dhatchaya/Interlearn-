@@ -39,11 +39,11 @@
                             <label for="">Announcement name: </label><br>
                             <input type="text" class="edit_ann_name" name="title" value="<?=$row->title?>"><br><br>
                             <label for="">Content: </label><br>
-                            <textarea id="address" name="address" class="edit_ann_cont"><?=$row->content?></textarea><br><br>
+                            <input id="content" name="content" class="edit_ann_cont" value="<?=$row->content?>"><br><br>
                             <label for="">Attach Files: </label><br>
-                            <input type="file" class="edit_ann_name" name="attachment" value="">
+                            <input type="file" class="edit_ann_name" name="attachment" value="<?=$row->attachment?>">
                             <div class="teacher-announcement-edit">
-                                <?=esc($row->attachment)?>
+                                <?=esc($row->file_name)?>
                                 <span class="announcement-edit-close">&times;</span>
                             </div><br>
                             <button type="submit" class="teacher_upl_btn" name="edit-announcement" id="add-btn">Save</button>
@@ -77,8 +77,8 @@
                     <p><?=$row->content?></p><br>
                     
                     <div class="recp_ann_attachment">
-                        <a href="">
-                        <?=esc($row->attachment)?>
+                        <a href="<?=esc($row->attachment)?>">
+                        <?=esc($row->file_name)?>
                         </a>
                     </div><br>
                     <p class="recp_ann_bot"><?=esc($row->fullname)?></p>
