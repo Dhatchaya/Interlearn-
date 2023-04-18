@@ -30,9 +30,7 @@
                 </label>
 
                 <br><br><br>
-                <a href="<?=ROOT?>/teacher/course">
-                    <button type="submit" class="teacher_upl_btn" name="submit">Upload</button>
-                </a>    
+                <button type="submit" class="teacher_upl_btn" name="submit">Upload</button>
                 <button type="reset" class="teacher_upl_btn">Cancel</button>
             </form>
 
