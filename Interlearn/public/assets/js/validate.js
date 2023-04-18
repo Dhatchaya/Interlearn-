@@ -24,7 +24,7 @@ const gradeValidate = document.getElementsByName("grade")[0];
 const mediumValidate = document.getElementsByName("medium")[0];
 const usernameValidate = document.getElementsByName("username")[0];
 const passwordValidate = document.getElementsByName("password")[0];
-// var regEmail=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g;  
+var regEmail=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g;  
 var regPhone=/^\d{10}$/;   
 var regNic=/^\d{12}$/;                                       
 var regName = /\d+$/g;   
@@ -187,10 +187,10 @@ emailValidate.addEventListener('change',function(event){
       if (event.target.previousElementSibling.classList.contains("err_show")) {
         event.target.previousElementSibling.innerHTML = " ";      
     }
-    //  if(!(regEmail.test(emailValidate.value))){
-    //     document.getElementById('s_email').innerHTML="Email is not valid";    
-    //      flag = 1;  
-    // }
+     if(!(regEmail.test(emailValidate.value))){
+        document.getElementById('s_email').innerHTML="Email is not valid";    
+         flag = 1;  
+    }
     else{
         document.getElementById('s_email').innerHTML="";    
     }
@@ -199,10 +199,10 @@ parent_emailValidate.addEventListener('change',function(event){
       if (event.target.previousElementSibling.classList.contains("err_show")) {
         event.target.previousElementSibling.innerHTML = " ";      
     }
-    //  if(!(regEmail.test(parent_emailValidate.value))){
-    //     document.getElementById('p_email').innerHTML="Email is not valid";    
-    //      flag = 1;  
-    // }
+     if(!(regEmail.test(parent_emailValidate.value))){
+        document.getElementById('p_email').innerHTML="Email is not valid";    
+         flag = 1;  
+    }
     else{
         document.getElementById('p_email').innerHTML="";    
     }

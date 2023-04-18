@@ -116,7 +116,6 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
         url:`http://localhost/Interlearn/public/teacher/calendar`,
     
         success: function(data) { 
-            console.log(data);
         allClasses = data;
           for(i in data){
            

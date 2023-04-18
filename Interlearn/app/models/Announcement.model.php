@@ -132,7 +132,7 @@ class Announcement extends Model{
 
         $query ="SELECT concat(staff.first_name,' ',staff.last_name) AS fullname, subject.subject, subject.grade,subject.language_medium,course.*,announcement.*,announcement_course.*,student_course.student_id FROM ".$this->table;
         $query .=" INNER JOIN announcement_course ON announcement_course.aid = announcement.aid INNER JOIN course ON course.course_id = announcement_course.course_id INNER JOIN subject ON course.subject_id = subject.subject_id INNER JOIN student_course ON student_course.course_id = announcement_course.course_id INNER JOIN student ON student.studentID = student_course.student_id INNER JOIN staff ON staff.emp_id = course.teacher_ID ";
-        $query .= " WHERE student.uid = '$id' AND announcement_course.course_id = $course_id";
+        $query .= " WHERE student.uid = $id AND announcement_course.course_id = $course_id";
         $query .= " order by announcement.date_time $order";
         // announcement.time  $order";
     // echo $query;die;
@@ -150,23 +150,6 @@ class Announcement extends Model{
         $query ="SELECT announcement.* FROM ".$this->table;
         $query .= " WHERE announcement.role = 'Receptionist'";
         $query .= " order by announcement.date_time  $order";
-    // echo $query;die;
-        $res = $this -> query($query,$data);
-
-        if(is_array($res)){
-            return $res;
-        }
-        return false;
-
-    }
-
-    public function editAnnouncements($aid,$order = 'desc'){
-
-        $query ="SELECT announcement.* FROM ".$this->table;
-        $query .= " WHERE aid =:aID AND announcement.role = 'Receptionist'";
-        $query .= " order by announcement.date_time  $order";
-
-        $data['aID'] = $aid;
     // echo $query;die;
         $res = $this -> query($query,$data);
 

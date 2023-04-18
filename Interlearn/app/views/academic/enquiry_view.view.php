@@ -32,7 +32,6 @@
                     <p class="view_content"><?=$enq->content;?></p>
                     <span class="view-date">
                         <?=$enq->date;?>
-                        <?=$enq->role;?>
                     </span>
                 </div>
 

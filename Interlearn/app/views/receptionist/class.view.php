@@ -140,7 +140,7 @@ $val = explode('/',$url);
 
                 <div class="recp_det_box">
                     <h4>Day: </h4>
-                    <select name="day" id="daysEdit" class="recp_ann_clz">
+                    <select name="day" id="days" class="recp_ann_clz">
                     <option value="<?=esc($teacher->day)?>" selected><?=esc($teacher->day)?></option>
                         <option value="Monday">Monday</option>
                         <option value="Tuesday">Tuesday</option>
@@ -155,9 +155,9 @@ $val = explode('/',$url);
                 <div class="recp_det_box">
                     <h4>Time:</h4>
                     <div class="recp_det_dura">
-                        <input type="time" name="timefrom" value="<?=esc($teacher->timefrom)?>" id="timefromEdit" class="recp_det_time">
+                        <input type="time" name="timefrom" value="<?=esc($teacher->timefrom)?>" id="timefrom" class="recp_det_time">
                         <p> to </p>
-                        <input type="time" name="timeto" value="<?=esc($teacher->timeto)?>" id="timetoEdit" class="recp_det_time">
+                        <input type="time" name="timeto" value="<?=esc($teacher->timeto)?>" id="timeto" class="recp_det_time">
                     </div>
                 </div>
                 <br><br>
@@ -214,14 +214,11 @@ $val = explode('/',$url);
                             <?php endforeach;?>
                             <?php endif;?>
                         </select>
-                        <?php if(!empty($errors)):?>
-                        <p class="warning"><?=$errors['teacher_id'];?></p>
-                        <?php endif;?>
                     </div>
                     <br><br>
                     <div class="recp_det_box">
                     <h4>Day: </h4>
-                    <select name="day" id="dayAdd" class="recp_ann_clz">
+                    <select name="day" id="days" class="recp_ann_clz">
                     <option value="slct" selected>--select day--</option>
                         <option value="Monday">Monday</option>
                         <option value="Tuesday">Tuesday</option>
@@ -231,22 +228,13 @@ $val = explode('/',$url);
                         <option value="Saturday">Saturday</option>
                         <option value="Sunday">Sunday</option>
                     </select>
-                    <?php if(!empty($errors)):?>
-                <p class="warning"><?=$errors['day'];?></p>
-                <?php endif;?>
                     </div><br><br>
                     <div class="recp_det_box">
                         <h4>Time:</h4>
                         <div class="recp_det_dura">
                             <input type="time" name="timefrom" value="00:00" id="timefrom" class="recp_det_time">
-                            <?php if(!empty($errors)):?>
-                    <p class="warning"><?=$errors['timefrom'];?></p>
-                    <?php endif;?>
                             <p> to </p>
                             <input type="time" name="timeto" value="00:00" id="timeto" class="recp_det_time">
-                            <?php if(!empty($errors)):?>
-                    <p class="warning"><?=$errors['timeto'];?></p>
-                    <?php endif;?>
                         </div>
                     </div><br>
                     <div class="recp_det_box">

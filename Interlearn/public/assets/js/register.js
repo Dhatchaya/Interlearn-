@@ -402,10 +402,9 @@ submitbtn.addEventListener("click",function(e){
         contentType: false,
         processData: false,
         success:function(response){
+            response= JSON.parse(response);
           console.log(response);
 
-            response= JSON.parse(response);
-         
            if(response.errors){
                 for(i in response.errors){
                    let errorTag= document.getElementsByName(i)[0];

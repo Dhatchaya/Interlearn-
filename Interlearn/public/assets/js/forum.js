@@ -97,7 +97,7 @@ for (var key of formData.entries()) {
 // document.getElementById("formo").submit();
 $.ajax({
   method:"POST",
-  url:url+"/view/?main="+main,
+  url:url+"view/?main="+main,
   data:formData,
   contentType: false,
   processData: false,

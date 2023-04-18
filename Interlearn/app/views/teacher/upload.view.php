@@ -23,7 +23,7 @@
                 <p>Name of the Upload:</p>
                 <input type="text" class="teacher_upl_name" name="upload_name"><br><br><br>
 
-                <label class="teacher-upload-container" for="file-input" name="file-input">
+                <label class="teacher-upload-container" for="file-input">
                     <span id="teacher-upload-name" class="teacher-upload-title">Drag and drop your files here</span>
                     or
                     <input type="file" name="file" id="file-input" class="teacher-upload-file">
@@ -44,7 +44,7 @@
                   const selectedFile = event.target.files[0];
                   fileName.textContent = selectedFile ? selectedFile.name : '';
                 });
-                fileName.textContent = 'Drag and drop your files here';
+                fileName.textContent = 'No file chosen';
             </script>
         </div>
     </div>

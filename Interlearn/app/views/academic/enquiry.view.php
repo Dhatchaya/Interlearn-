@@ -69,7 +69,7 @@
                         </tr>
  
                         <?php if(!empty($rows)):?>
-                         
+                    
                         <?php foreach($rows as $row):?>
                             
                         <tr>

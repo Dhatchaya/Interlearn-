@@ -41,31 +41,9 @@
                     <p>Student Enrollments</p>
                 </a>
             </div>
-            <div class="recp_view_rectangle">
-                <a href="<?=ROOT?>/receptionist/registration">
-                    <img src="<?=ROOT?>/assets/images/tt.png" alt="" class="recp_view_img">
-                    <p>Registration</p>
-                </a>
-            </div>
         </div>
-        <div class="student_calendar">
-        <?php $this->view("includes/calendar");?>
-        <div id = "assignment_today" class ="assignment_today">
-           <!-- <a href ="http://localhost/Interlearn/public/student/coursepg/submissionstatus/4?id=M.Pavithra63fb0e481edef3.79614533"> <div  class ="assignment_card">
-                <div class ="assignment_card_title"><p>Mathematics assignment 1 is due<p></div>
-                <ul> 
-                    <li> Deadline: 2020-02-04</li>
-                    <li> Subject: Mathematics</li>
-                </ul>
-            </div>
-                    </a> -->
-           
-        </div> 
-    </div>
     </div>
 </div> 
     <div  id="overlay"></div>
-    <script defer src="<?=ROOT?>/assets/js/calendar_recep.js?v=<?php echo time(); ?>"></script>
-
-    <!-- <script defer src="./enquiry.js"></script> -->
+    <script defer src="./enquiry.js"></script>
     <?php $this->view("includes/footer");?>

@@ -200,33 +200,13 @@ $('#day').on('change', function() {
 
           for(i in response){
             console.log(response[i]);
-            let getMinute = timeFrom.split(':')[1];
-            getMinute = parseInt(getMinute) + 1;
-            let getHours = timeFrom.split(':')[0];
-            getHours = parseInt(getHours);
-            
-
-            if(getMinute < 0 ){
-              getMinute = 59;
-              getHours = getHours - 1;
-            }
-            
-            let newDay = getHours + ':' + getMinute;
+            var newDay = new Date(timeFrom);
             console.log(newDay);
-            console.log(timeFrom);
-
-            // var tmpnewDay = new Date(timeFrom);
-            // var newDay = new Date(tmpnewDay.getTime());
-            // console.log(tmpnewDay);
-            // console.log(timeFrom);
-            // // console.log(newDay.getMinutes() - 1);
-
-            // newDay.setMinutes(newDay.getMinutes() - 1);
-            // console.log(newDay);
+            console.log(timeFrom.getMinutes() - 1);
 
             console.log(timeFrom>=response[i].timefrom);
             console.log(timeFrom<=response[i].timeto);
-            if(timeFrom<response[i].timeto && timeFrom>=response[i].timefrom){
+            if(timeFrom<=response[i].timeto && timeFrom>=response[i].timefrom){
               console.log("in" + response[i].timefrom);
               document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
               break;

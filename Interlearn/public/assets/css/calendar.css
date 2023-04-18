@@ -107,15 +107,8 @@
   background: #f2f2f2;
 }
 .days li.activeclass{
-  color: black;
+  color: #fff;
 }
 .days li.activeclass::before{
-  background: #edeaea;
-
-}
-
-.assignment_today {
-  overflow-y: scroll;
-  max-height: 25rem;
-  margin-top: 1rem;
+  background: #e9c2f0;
 }

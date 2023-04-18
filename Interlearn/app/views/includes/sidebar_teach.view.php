@@ -23,13 +23,13 @@
                         </div>
                     
                    
-                         <div class="dashboard">
-                            <a href="<?=ROOT?>/teacher">
+                        <!-- <div class="dashboard">
+                            <a href="<?=ROOT?>/teacher/home">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/dashboard.png" alt="Dashboard"></br>
                             <span>Dashboard</span>
                             </a>
                         </div>
-                    
+                    -->
                     
                     
                     

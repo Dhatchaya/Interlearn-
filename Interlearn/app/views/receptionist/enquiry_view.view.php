@@ -17,7 +17,6 @@
                             var repId = <?php echo json_encode($enq->eid); ?>;
                         </script>
                         <?php if($enq->role != Auth::getrole()):?>
-                            
                         <div class="init_enq">
                         <?php else:?>
                             <div class="init_enq  sender">
@@ -33,7 +32,6 @@
                     <p class="view_content"><?=$enq->content;?></p>
                     <span class="view-date">
                         <?=$enq->date;?>
-                        <?=$enq->role;?>
                     </span>
                 <!-- <?php if($enq->status == 'pending'):?>
                     <div class="view-reply" id="enq-reply">

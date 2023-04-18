@@ -43,20 +43,18 @@
                 <div id="profileModal3" class="popupModal">
                     <div class="popupmodal-content">
                         <span class="ann_close" onclick="closeModal3()">&times;</span>
-                        <form action="" method="post" class="up-profile" enctype="multipart/form-data">
-                        
-                        <input type="hidden" value="" name="edit-announcement" id="edit-announcement">
+                        <form action="" method="post" class="up-profile">
                              <label for="">Announcement name: </label><br>
-                             <input type="text" class="edit_ann_name" value="<?=$row->title?>" name="title" id="title"><br><br>
+                             <input type="text" class="edit_ann_name" value="<?=esc($row->title)?>" name="title"><br><br>
                              <label for="">Content: </label><br>
-                             <input type="text" id="content" name="content" value="<?=$row->content?>" class="edit_ann_cont"><br><br>
-                             <div class="recp_det_box">
-                             <label for="">Attach Files: </label>
-                             <!-- <input type="text" name="file_name" id="file_name" value="<?=$row->file_name?>" disabled>
-                             <span  >&times;</span><br><br> -->
-                             <input type="file"  name="attach_recp_file" id="attach_recp_file" value="<?=$row->file_name?>" multiple>
-                             </div><br><br>
-                            <button type="submit" class="teacher_upl_btn" name="submit-edit-announcement">Update</button>
+                             <textarea id="address" name="address" value="<?=esc($row->content)?>" class="edit_ann_cont"></textarea><br><br>
+                             <label for="">Attach Files: </label><br><br>
+                             <input type="file" class="edit_ann_name" name="attachment">
+                             <span class="instructor-remove" >&times;</span><br>
+                            <div class="errors">
+                                <span class="form-error"></span>
+                            </div>
+                            <input type="submit" value="Save Changes" class="recp_cl_btn">
                         </form>
                     </div>
                 </div>
@@ -75,10 +73,10 @@
                         <!-- <input type="text" class="teacher-edit-title" name="title"> -->
                         <input type="hidden" value="" name="delete-announcement" id="delete-announcement">
                         <br><br>
-                        <!-- <a href="<?=ROOT?>/receptionist/course/view/1/?id=<?=esc($teacher->subject_id)?>"> -->
-                        <button type="submit" class="teacher_upl_btn" name="submit-delete-announcement" id="add-btn">Yes</button>
-                        <!-- </a> -->
-                        <button type="reset" class="teacher_upl_btn" id="cancel-btn" onclick="closeModal6()">Cancel</button>
+                        <a href="<?=ROOT?>/receptionist/course/view/1/?id=<?=esc($teacher->subject_id)?>">
+                        <button type="button" class="teacher_upl_btn" name="submit-delete-announcement" id="add-btn">Yes</button>
+                        </a>
+                        <button type="reset" class="teacher_upl_btn" id="cancel-btn">Cancel</button>
                     </div>
                 </form>
             </div>

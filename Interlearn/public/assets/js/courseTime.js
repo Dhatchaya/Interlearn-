@@ -1,8 +1,8 @@
-// console.log("ct");
-// console.log($('#days'));
-$('#dayAdd').on('change', function() {
+console.log("ct");
+
+$('#days').on('change', function() {
     var teacher_id = $('#teacher_id').val();
-    var day = $('#dayAdd').val();
+    var day = $('#days').val();
     var timeFrom = $('#timefrom').val();
     var timeTo = $('#timeto').val();
     console.log('hi');
@@ -23,20 +23,9 @@ $('#dayAdd').on('change', function() {
 
           for(i in response){
             console.log(response[i]);
-            let getMinute = timeFrom.split(':')[1];
-            getMinute = parseInt(getMinute) + 1;
-            let getHours = timeFrom.split(':')[0];
-            getHours = parseInt(getHours);
-            
-
-            if(getMinute < 0 ){
-              getMinute = 59;
-              getHours = getHours - 1;
-            }
-            
-            let newDay = getHours + ':' + getMinute;
+            var newDay = new Date(timeFrom);
             console.log(newDay);
-            console.log(timeFrom);
+            console.log(timeFrom.getMinutes() - 1);
 
             console.log(timeFrom>=response[i].timefrom);
             console.log(timeFrom<=response[i].timeto);
@@ -68,6 +57,16 @@ $('#dayAdd').on('change', function() {
           }
         });
 
+
+          // Filter out teachers who already have a class scheduled in the selected time range
+          // var filteredTeachers = teachers.filter(function(teacher) {
+          //     return !teacherHasClassOnTime(teacher, timeFrom, timeTo);
+          // });
+          // Update the teacher dropdown
+          // $('#teacher_id').empty();
+          // $.each(filteredTeachers, function(index, teacher) {
+          //   $('#teacher_id').append('<option value="' + teacher.id + '">' + teacher.firstname + '</option>');
+          // });
           }
     });
 });

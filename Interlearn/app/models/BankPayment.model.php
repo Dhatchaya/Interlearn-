@@ -23,7 +23,7 @@ class BankPayment extends Model
 
     public function validateBankPayment()
     {
-        $query = "SELECT * FROM bank_payment";
+        $query = "SELECT * FROM bank_payment where status = '1'";
         $data = $this->query($query);
 
         if ($data == NULL) {
