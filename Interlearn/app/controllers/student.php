@@ -722,11 +722,11 @@ class Student extends Controller
 
         // echo $quiz_json;
         // show($quiz_json);
-        $this->view('student/quiz');
+    //     $this->view('student/quiz');
 
 
-        // die();
-    }
+    //     // die();
+    // }
     public function cardPayment($action = NULL)
     {
         if (!Auth::is_student()) {

@@ -80,4 +80,4 @@
     </div>
 </div>
 <script defer src="<?=ROOT?>/assets/js/zquiz.js?v=<?php echo time(); ?>"></script>
-<?php $this -> view('includes/footer'); ?>
+<!-- <?php $this -> view('includes/footer'); ?> -->
