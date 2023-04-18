@@ -132,10 +132,10 @@
                                 <a href="<?=ROOT?>/teacher/course/forum/<?=$course->course_id?>" name="upload"><img src="<?=ROOT?>/assets/images/forum.png" alt="" class="teacher-crs-img"><br>Add Forum</a>
                             </div>
                             <div class="teacher-crs-activity">
-                                <a href="#"><img src="<?=ROOT?>/assets/images/quiz.png" alt="" class="teacher-crs-img"><br>Add a quiz</a>
+                                <a href="<?=ROOT?>/teacher/course/quiz/8/1/create"><img src="<?=ROOT?>/assets/images/quiz.png" alt="" class="teacher-crs-img"><br>Add a quiz</a>
                             </div>
                             <div class="teacher-crs-activity">
-                                <a href="#"><img src="<?=ROOT?>/assets/images/quizb.png" alt="" class="teacher-crs-img"><br>Add a quiz bank</a>
+                                <a href="<?=ROOT?>/teacher/course/quiz/<?=$course->course_id?>"><img src="<?=ROOT?>/assets/images/quizb.png" alt="" class="teacher-crs-img"><br>Add a quiz bank</a>
                             </div>
                             <div class="teacher-crs-activity">
                                 <a href="<?=ROOT?>/teacher/course/assignment/<?=$course->course_id?>" name="assignment"><img src="<?=ROOT?>/assets/images/submission.png" alt="" class="teacher-crs-img"><br>Add a submission</a>
