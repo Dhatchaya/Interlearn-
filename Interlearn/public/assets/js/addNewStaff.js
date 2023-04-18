@@ -47,7 +47,7 @@ submitBtn.addEventListener('click', async function(event) {
     console.log("button eka nm wada karanwa kolloooo");
 
 
-
+    console.log($isAllFilled);
     if(!firstName.value){
         error1.innerHTML = "First Name is required ";
         $isAllFilled = false;
@@ -151,15 +151,25 @@ submitBtn.addEventListener('click', async function(event) {
         $isAllFilled = false;
      }
 
-
+     console.log($isAllFilled);
     //  if(!/[!@#+_)(""}{[<>,./?|-$%^&*]/.test(password.value) || !/\d/.test(password.value)){ 
     //     error10.innerHTML = "Password is not valid";
     //     $isAllFilled = false;
     //  }
   
-    else{
-        if($isAllFilled){
+    // else{
+if($isAllFilled){
         console.log("Data tika nm passata yauw sudda.....!");
+        firstName.value = "";
+        lastName.value = "";
+        gender.value = "";
+        address.value = "";
+        NIC.value = "";
+        mobileNum.value = "";
+        // contractEndingDate.value = "";
+        jobtype.value = "";
+        emailAddress.value = "";
+        password.value = "";
         const result = await fetch('/Interlearn/public/manager/addStaff', {
             method: 'POST',
             headers: {
@@ -190,19 +200,20 @@ submitBtn.addEventListener('click', async function(event) {
         
     hiddenDiv1.style.display = "none";
     }
-}
-    if($isAllFilled){
-            firstName.value = "";
-            lastName.value = "";
-            gender.value = "";
-            address.value = "";
-            NIC.value = "";
-            mobileNum.value = "";
-            // contractEndingDate.value = "";
-            jobtype.value = "";
-            emailAddress.value = "";
-            password.value = "";
-        }
+// }
+    // if($isAllFilled){
+    //         firstName.value = "";
+    //         lastName.value = "";
+    //         gender.value = "";
+    //         address.value = "";
+    //         NIC.value = "";
+    //         mobileNum.value = "";
+    //         // contractEndingDate.value = "";
+    //         jobtype.value = "";
+    //         emailAddress.value = "";
+    //         password.value = "";
+    //     }
+        console.log($isAllFilled);
 
 
 

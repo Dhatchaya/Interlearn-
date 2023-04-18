@@ -89,11 +89,8 @@ class Student extends Controller
                 $announcement = new Announcement();
                 $ann_course = new AnnouncementCourse();
                 $student_course = new StudentCourse();
-                // show($user_id);die;
-                // show($id);die;
 
                 $data['announcements'] = $announcement->stdAnnouncements([],$user_id,$id);
-                // show($data['announcements']);die;
 
                 $this->view('student/announcement',$data);
             }
@@ -646,7 +643,7 @@ class Student extends Controller
 
         // $question = new Question();
         $question = new ZQuestion();
-        $totalQues = new ZQuizQuestion();
+
 
         if($action == "view"){
 
@@ -696,22 +693,6 @@ class Student extends Controller
 
             exit;
         }
-
-
-        // convert the PHP array to a JSON object
-        // $quiz_json = json_encode($quiz);
-
-        // // return the JSON object
-        // header('Content-Type: application/json');
-
-        // echo $quiz_json;
-        // show($quiz_json);
-        // $data['rows'] = $totalQues->totalQuestion();
-        $this->view('student/quiz');
-
-
-        // die();
-    }
 
 
         // convert the PHP array to a JSON object

@@ -12,7 +12,7 @@ class ZQuestion extends Model
         'question_title' ,
         'question_mark' ,
         'question_number' ,
-        'quiz_bank' ,
+        'category' ,
         'course_id'
 
     ];
@@ -52,7 +52,7 @@ class ZQuestion extends Model
 
     public function ChoiceInnerjoinQuestion($data= null){
 
-        // $query = "SELECT c.choice1, c.choice2, c.choice3, c.choice4, c.choice1_mark, c.choice2_mark, c.choice3_mark,c.choice4_mark,q.question_title, q.question_mark, q.quiz_bank, q.question_number
+        // $query = "SELECT c.choice1, c.choice2, c.choice3, c.choice4, c.choice1_mark, c.choice2_mark, c.choice3_mark,c.choice4_mark,q.question_title, q.question_mark, q.category, q.question_number
         // FROM mychoice c
         // INNER JOIN myquestion q ON c.question_number = q.question_number";
 
@@ -69,7 +69,7 @@ class ZQuestion extends Model
         INNER JOIN myquiz_myquestion ON myquiz.quiz_id = myquiz_myquestion.quiz_id 
         INNER JOIN myquestion ON myquestion.question_number = myquiz_myquestion.question_number
         INNER JOIN mychoice ON myquestion.question_number = mychoice.question_number
-        where myquiz.quiz_id = '643e15c9958df' and myquiz.course_id = 8";
+        where myquiz.quiz_id = '640584214e2ff' and myquiz.course_id = 4";
 
         $res = $this -> query($query,$data);
 
@@ -83,25 +83,8 @@ class ZQuestion extends Model
     public function QuizInnerjoinQuestion($data= null){
         
         $keys = array_keys($data);
-        $query = "SELECT  question_number FROM myquestion where ";
-
-
-        foreach($keys as $key){
-            $query .= $key. " =:".$key." && ";
-        }
-        $query = trim($query,"&& ");
-        $res = $this -> query($query,$data);
-
-        if(is_array($res)){
-            return $res;
-        }
-        return false;       
-    }
-
-    public function QuestionDropdown($data= null){
-        
-        $keys = array_keys($data);
-        $query = "SELECT DISTINCT quiz_bank from myquestion WHERE ";
+        $query = "SELECT  question_number
+        FROM myquestion where ";
 
 
         foreach($keys as $key){

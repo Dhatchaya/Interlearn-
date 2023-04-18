@@ -30,10 +30,10 @@ class CourseMaterial extends Model
         {
             $this -> error['upload_name'] = "Please provide a name for the upload";
         }
-        // if(empty($data['file_input']))
-        // {
-        //     $this -> error['file_input'] = "Please provide a file for the upload";
-        // }
+        if(empty($data['file']))
+        {
+            $this -> error['file'] = "Please provide a file for the upload";
+        }
     
             // // checks email is valid if so it'll check whther it already exists
             // if(!filter_var($data['email'],FILTER_VALIDATE_EMAIL))

@@ -28,13 +28,11 @@
                     <input class="time_period" type=number name="total_points" value="" placeholder="">
                 </div>
                 <div class="enable">
-                    <label for="quiz_bank">Quiz Bank No. <strong> *</strong> : </label>
-                    <select name="quiz_bank" id="quiz_bank">
-                        <?php if(!empty($rows)):?>
-                        <?php foreach($rows as $row):?>
-                        <option value="<?=esc($row->quiz_bank)?>"> <?=esc($row->quiz_bank)?> </option>
-                        <?php endforeach;?>
-                        <?php endif;?>
+                    <label for="category">Category <strong> *</strong> : </label>
+                    <select name="category" id="category">
+                        <option value="low"> Low </option>
+                        <option value="Medium"> Medium </option>
+                        <option value="Hard"> Hard </option>
                     </select>
                 </div>
                 <span id="points-error" style="color:red"></span>

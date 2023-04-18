@@ -88,10 +88,14 @@ class Forums extends Controller
                     }
                     else{
                         $data['errors']['attachment']='you cannot upload this type of file';
+                        echo json_encode( $data['errors']);
+                        exit;
                     }
                 }
                 else{
                     $data['errors']['attachment'] ="unknown error occured";
+                    echo json_encode( $data['errors']);
+                    exit;
                     }
                 }
                 else{
@@ -116,6 +120,7 @@ class Forums extends Controller
             }
             else{
                 $data['errors'] =  $forum->error;
+                // echo "here";
                 echo json_encode( $data['errors']);
                 exit;
             }

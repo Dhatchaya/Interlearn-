@@ -1,5 +1,4 @@
 <?php
-
 /**
  *staff class
  */
@@ -56,10 +55,9 @@ class Staff extends Model
     }
 
 
-    public function ProfileDetails($uid)
+    public function getUserDetails($uid)
     {
-        $current_uid = $uid;
-        $query = "SELECT staff.*, users.* FROM staff  JOIN users  ON staff.uid = users.uid where staff.uid = '$current_uid'";
+        $query = "SELECT * FROM staff where uid = '$uid'";
         $data = $this->query($query);
         if ($data == NULL) {
             $data = array();
@@ -121,85 +119,6 @@ class Staff extends Model
 
         return $data;
     }
-
-    public function editProfile($data)
-    {
-        $emp_id = $data['uid'];
-        $dp = isset($data['display_picture']) ? "'" . $data['display_picture'] . "'" : "display_picture";
-        $first_name = isset($data['first_name']) ? "'" . $data['first_name'] . "'" : "first_name";
-        $last_name = isset($data['last_name']) ? "'" . $data['last_name'] . "'" : "last_name";
-        $Addressline1 = isset($data['Addressline1']) ? "'" . $data['Addressline1'] . "'" : "Addressline1";
-        $mobile_no = isset($data['mobile_no']) ? "'" . $data['mobile_no'] . "'" : "mobile_no";
-        $email = isset($data['email']) ? "'" . $data['email'] . "'" : "email";
-        
-        $query = "UPDATE staff SET 
-                    first_name = $first_name, 
-                    last_name = $last_name, 
-                    Addressline1 = $Addressline1, 
-                    mobile_no = $mobile_no
-                    WHERE uid = '$emp_id'";
-        $this->query($query);
-    
-        $query = "UPDATE users SET 
-                    email = $email,
-                    display_picture = $dp  
-                    WHERE uid = '$emp_id'";
-        $this->query($query);
-    
-        return array('status' => 'success');
-    }
-    
-    
-
-
-    // public function editProfile($data)
-    // {
-
-    //     if (isset($data['first_name'])) {
-    //         $first_name = $data['first_name'];
-    //     } else {
-    //         $first_name = '';
-    //     }
-
-    //     if (isset($data['last_name'])) {
-    //         $last_name = $data['last_name'];
-    //     } else {
-    //         $last_name = '';
-    //     }
-
-    //     if (isset($data['email'])) {
-    //         $email = $data['email'];
-    //     } else {
-    //         $email = '';
-    //     }
-    //     if(isset($data['Addressline1'])){
-    //         $Addressline1 = $data['Addressline1'];
-    //     }else{
-    //         $Addressline1 = '';
-    //     }
-
-    //     if(isset($data['mobile_no'])){
-    //         $mobile_no = $data['mobile_no'];
-    //     }else{
-    //         $mobile_no = '';
-    //     }
-
-
-    //     $emp_id = $data['uid'];
-    //     $query1 = "UPDATE staff SET 
-    //                 first_name = $first_name, 
-    //                 last_name =$last_name, 
-    //                 Addressline1 = $Addressline1, 
-    //                 mobile_no = $mobile_no
-    //                 WHERE uid = $emp_id";
-    //             $data = $this->query($query1);
-    
-    //     $query2 = "UPDATE users SET  email = $email, WHERE uid = $emp_id";
-    //     $data = $this->query($query1);
-    //     return array('status' => 'success');
-    // }
-    
-    
 
     // public function updateStaffData($emp_id, $data)
     // {
@@ -285,34 +204,37 @@ class Staff extends Model
     public function validate($data)
     {
         $this->error = [];
-        foreach ($data as $key => $value) {
-            if (empty($data[$key])) {
-                $this->error[$key] = ucfirst($key) . " is required";
+        foreach($data as $key => $value)
+        { 
+            if(empty($data[$key]))
+            {
+                $this -> error[$key] = ucfirst($key)." is required";
             }
-        }
-
-        // checks email is valid if so it'll check whther it already exists
-        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-            $this->error['email'] = "Email is not valid";
-        } else
-            if ($this->where(['email' => $data['email']], 'emp_ID')) {
-            $this->error['email'] = "Email already exists";
-        }
-        if (empty($this->error)) {
+         }
+    
+            // checks email is valid if so it'll check whther it already exists
+            if(!filter_var($data['email'],FILTER_VALIDATE_EMAIL))
+            {
+                $this->error['email'] = "Email is not valid";
+            }else
+            if($this->where(['email'=>$data['email']],'emp_ID')){
+                    $this->error['email'] = "Email already exists";
+                
+            }
+        if(empty($this->error)){
             return true;
         }
         return false;
     }
 
-    public function getTeachers()
-    {
-        $query = "SELECT *, concat(first_name,' ',last_name) AS teacherName FROM " . $this->table;
+    public function getTeachers(){
+        $query = "SELECT *, concat(first_name,' ',last_name) AS teacherName FROM ".$this->table;
         $query .= " WHERE role = 'Teacher'";
 
-        $res = $this->query($query);
+        $res = $this -> query($query);
         //  show($query);die;
 
-        if (is_array($res)) {
+        if(is_array($res)){
             // echo $res;die;
             return $res;
         }
@@ -320,15 +242,14 @@ class Staff extends Model
         return false;
     }
 
-    public function getInstructors()
-    {
-        $query = "SELECT *, concat(first_name,' ',last_name) AS instructorName FROM " . $this->table;
+    public function getInstructors(){
+        $query = "SELECT *, concat(first_name,' ',last_name) AS instructorName FROM ".$this->table;
         $query .= " WHERE role = 'Instructor'";
 
-        $res = $this->query($query);
+        $res = $this -> query($query);
         //  show($query);die;
 
-        if (is_array($res)) {
+        if(is_array($res)){
             // echo $res;die;
             return $res;
         }
@@ -336,21 +257,22 @@ class Staff extends Model
         return false;
     }
 
-    public function getAvailableInstructors($course_id)
-    {
-        $query = "SELECT staff.emp_id, concat(staff.first_name,' ',staff.last_name) AS instructorName FROM " . $this->table;
+    public function getAvailableInstructors($course_id){
+        $query = "SELECT staff.emp_id, concat(staff.first_name,' ',staff.last_name) AS instructorName FROM ".$this->table;
         $query .= " WHERE role = 'Instructor' AND staff.emp_id NOT IN (SELECT course_instructor.emp_id FROM course_instructor WHERE course_id IN (SELECT course_id FROM course WHERE (course.day, course.timefrom, course.timeto) = (SELECT day, timefrom, timeto FROM course WHERE course_id =:courseID)) )";
 
         $data['courseID'] = $course_id;
 
-        $res = $this->query($query, $data);
+        $res = $this -> query($query,$data);
         //  show($query);die;
 
-        if (is_array($res)) {
+        if(is_array($res)){
             // echo $res;die;
             return $res;
         }
         // echo "hi";die;
         return false;
     }
+
+
 }

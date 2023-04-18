@@ -161,7 +161,6 @@ class Teacher extends Controller
             }
 
             if(isset($_POST['submit-title'])){
-                // show($_POST);die;
 
                 $result = $course_week->UpdateWeekName($id,$_POST['weeknumber'],$_POST['title']);
             }
@@ -188,10 +187,13 @@ class Teacher extends Controller
             $this->view('teacher/course',$data);
         }
 
-        if($action == 'upload') {
-            if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+        if($action == 'upload')
+        {
+            if(isset($_POST['submit']))
+            {
                 if($course_material -> validate($_POST)){
-                    if(isset($_FILES['file'])) {
+                    echo "IM here";die;
+                    if(isset($_FILES['file']['name']) AND !empty($_FILES['file']['name'])){
                         $cid = uniqid();
                         $_POST['file_id'] =$fileid= uniqid();
                         $file = $_FILES['file'];
@@ -207,7 +209,8 @@ class Teacher extends Controller
 
                         $allowed1 = array('jpg','jpeg','png', 'pdf','zip','txt','sql','docx','xml','doc','ppt', 'mp3','mp4','php','html','css','js');
 
-                        if(in_array($fileActualExt, $allowed1)) {
+                        if(in_array($fileActualExt, $allowed1)){
+                            // print_r($_FILES['file']);exit;
                             if($fileError === 0){
                                 if($fileSize < 1000000000){
                                     $fileNameNew = uniqid('',true).".".$fileActualExt;
@@ -218,44 +221,52 @@ class Teacher extends Controller
                                     }
                                     $destination =  $fileDestination."/".$fileNameNew;
                                     move_uploaded_file($fileTmpName,$destination);
+                                    //echo $fileActualExt;exit;
+                                    //var_dump($_POST);exit;
+                                    //print_r($fileType);exit;
                                     $viewURL="http://localhost/Interlearn/uploads/".$id."/materials/".$cid."/".$fileNameNew;
                                     $_POST['course_material'] = $fileNameNew;
                                     $_POST['file_type'] = $fileType;
                                     $_POST['size'] = $fileSize;
                                     $_POST['course_id'] = $id;
+                                    //show($_POST);die;
                                     $_POST['type'] = "material";
                                     $_POST['cid'] = $cid;
                                     $_POST['view_URL'] = $viewURL;
-                                    $result2 = $course_content->insert($_POST);
+                                    $result2 = $course_content -> insert($_POST);
                                     $result = $course_material->insert($_POST);
                                     echo "Material successfully published!";
                                     header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
-                                } else {
+                                }else{
                                     echo "Image is too large!";
                                 }
-                            } else {
+                            }else{
                                 echo "There was an error uploading image!";
                             }
-                        } else {
+                        }else{
                             echo "You cannot upload this file!";
                         }
 
                     }
-                    else {
+                    else{
                         $data['errors']['file'] =  "Unknown error occured!";
+
                     }
                 }
-                else {
+                else{
                     $data['errors'] =  $course_material->error;
+
                 }
+
+                // $result = $course_material->insert($_POST);
             }
-
             $data['rows']= $course->select([],'course_id');
-            // show($data['rows']);die;
+            //show($data['rows']);die;
             $data['sums']= $subject -> teacherCourse([],$user_id);
-            $data['courses'] = $subject -> CoursePage(['course_id' => $id],$user_id);
+            //show($data['sums']);die;
+            $data['courses'] = $subject -> CoursePg(['course_id' => $id],$user_id);
             $data['week_no'] = $week;
-
+              //show($data['courses']);die;
             $this->view('teacher/upload',$data);
         }
 
@@ -286,14 +297,15 @@ class Teacher extends Controller
             //show($data['rows']);die;
             $data['sums']= $subject -> teacherCourse([],$user_id);
             //show($data['sums']);die;
-            $data['courses'] = $subject -> CoursePage(['course_id' => $id],$user_id);
+            $data['courses'] = $subject -> CoursePg(['course_id' => $id],$user_id);
             $data['week_no'] = $week;
             // show($data['week_no']);die;
             //   show($data['courses']);die;
             $this->view('teacher/url',$data);
         }
 
-        if($action == "announcement") {
+        if($action == "announcement")
+        {
             $announcement = new Announcement();
             $ann_course = new AnnouncementCourse();
 
@@ -304,6 +316,7 @@ class Teacher extends Controller
             // show($data['course_id']);die;
 
             if($option == 'add'){
+                // echo "hi";die;
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if($announcement -> validate($_POST)){
                         $announcement_id = uniqid();
@@ -311,10 +324,14 @@ class Teacher extends Controller
                         $_POST['course_id'] = $id;
                         $teacher_id = $course -> getTeacherID($id);
 
-                        $_POST['empID'] = $teacher_id[0]->teacher_ID;
-                        $_POST['role'] = 'Teacher';
+                        $_POST['teacher_id'] = $teacher_id[0]->teacher_ID;
+
+                        // show($_POST);die;
+                        // show($teacher_id[0]->teacher_ID);die;
+                        //$announcement = new Announcement();
 
                         $file = $_FILES['attachment'];
+                        show($file);die;
                         $fileName = $_FILES['attachment']['name'];
                         $fileTmpName = $_FILES['attachment']['tmp_name'];
                         $fileSize = $_FILES['attachment']['size'];
@@ -322,54 +339,69 @@ class Teacher extends Controller
                         $fileType = $_FILES['attachment']['type'];
                         $fileExt = explode('.',$fileName);
                         $fileActualExt = strtolower(end($fileExt));
-
                         $allowed1 = array('jpg','jpeg','png', 'pdf','zip','txt','sql','docx','xml','doc','ppt', 'mp3','mp4','php','html','css','js');
-
-                        if(in_array($fileActualExt, $allowed1)) {
-                            if($fileError === 0) {
-                                if($fileSize < 1000000000) {
+                        if(in_array($fileActualExt, $allowed1))
+                        {
+                            // print_r($_FILES['file']);exit;
+                            if($fileError === 0)
+                            {
+                                if($fileSize < 1000000000)
+                                {
                                     $fileNameNew = uniqid('',true).".".$fileActualExt;
-                                    $fileDestination = "/xampp/htdocs/Interlearn/uploads/".$id."/announcements/".$announcement_id;
+                                    $fileDestination = "/xampp/htdocs/Interlearn/uploads/".$id."/announcements/".$aid;
                                     if (!is_dir($fileDestination)){
                                         mkdir($fileDestination,0644, true);
                                     }
                                     $destination =  $fileDestination."/".$fileNameNew;
                                     move_uploaded_file($fileTmpName,$destination);
-                                    $viewURL="http://localhost/Interlearn/uploads/".$id."/announcements/".$announcement_id."/".$fileNameNew;
-                                    $_POST['file_name_new'] = $fileNameNew;
+                                    //echo $fileActualExt;exit;
+                                    //var_dump($_POST);exit;
+                                    //print_r($fileType);exit;
+                                    $viewURL="http://localhost/Interlearn/uploads/".$id."/announcements/".$aid."/".$fileNameNew;
+                                    $_POST['file_name'] = $fileNameNew;
                                     $_POST['attachment'] = $viewURL;
-                                    // $_POST['file_name'] = 
-                                    $result = $announcement->insert($_POST);
-                                    $result2 = $ann_course->insert($_POST);
-                                    echo "Announcement successfully published!";
-                                    header("Location:http://localhost/Interlearn/public/teacher/course/announcement/".$id."/0");
-                                } else {
+                                    $result1 = $announcement->insert($_POST);
+                                }else{
                                     echo "Image is too large!";
                                 }
-                            } else {
+                            }else{
                                 echo "There was an error uploading image!";
                             }
-                        } else {
+                        }else{
                             echo "You cannot upload this file!";
                         }
-                    } else {
+
+
+                        $result = $announcement->insert($_POST);
+                        $result2 = $ann_course->insert($_POST);
+                        echo "Announcement successfully published!";
+                        header("Location:http://localhost/Interlearn/public/teacher/course/announcement/".$id."/0");
+                        //show($_POST);die;
+                    }
+                    else{
                         $data['errors'] = $announcement -> error;
                     }
                 }
                 $this->view('teacher/addAnnouncement',$data);
             }
 
+
+
+            // echo $id;die;
+
             $data['announcements'] = $announcement -> showAnnouncement($id);
+            // show($data['announcements']);die;
 
             if(isset($_POST['edit-announcement'])){
-                show($_POST['attachment']);die;
-                $result = $announcement->updateAnnouncement($_POST['aid'],$_POST['title'],$_POST['content'],$_POST['attachment']);
+                // echo $_POST['upload-title'];die;
+                $result = $announcement->updateAnnouncement($_POST['aid']);
             }
 
             if(isset($_POST['delete-announcement'])){
                 $result = $announcement->deleteAnnouncement($_POST['delete-aid']);
                 header("Location:http://localhost/Interlearn/public/teacher/course/announcement/".$id."/0");
             }
+            // show($data['announcements']);die;
 
             $this->view('teacher/announcement',$data);
         }
@@ -448,10 +480,10 @@ class Teacher extends Controller
                         $_POST['type']="assignment";
                         $_POST['course_id'] = $id;
                         $_POST['file_size'] = $assignmentfiles->size;
-                        // show($assignmentfiles->size);die;
-                        $material = $course_content->insert($_POST);
-                        if(empty($data['errors'])){
-                        $result = $assignment->insert($_POST);
+// show($assignmentfiles->size);die;
+                       $material = $course_content->insert($_POST);
+                       if(empty($data['errors'])){
+                       $result = $assignment->insert($_POST);
 
                         foreach($filenames as $file){
 
@@ -488,137 +520,137 @@ class Teacher extends Controller
                     // header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
             }
 
-            }
-                if($option == "edit"){
-                    header('Content-type: application/json');
-                    if(isset($_GET['id'])){
-                        $assignmentID = $_GET['id'];
+        }
+        if($option == "edit"){
+                header('Content-type: application/json');
+                if(isset($_GET['id'])){
+                    $assignmentID = $_GET['id'];
 
-                    }
-                    if($extra =="d"){
-                        $fileID = $_POST['file_id'];
-                        $assignmentfiles = new AssignmentFiles();
-                        $filedetails = $assignmentfiles -> first(['fileID'=> $fileID],'fileID');
-                        $path = "/xampp/htdocs/Interlearn/uploads/".$id."/assignments/".$assignmentID."/".$filedetails->filename;
-                        unlink($path);
-                        $result= $assignmentfiles -> delete(['fileID'=> $fileID]);
-                        if($result){
-                            echo 'successfully deleted';
-                            exit;
-                        }
-                        else{
-                            echo 'error in deletion';
-                            exit;
-                        }
+                }
+                if($extra =="d"){
+                    $fileID = $_POST['file_id'];
+                    $assignmentfiles = new AssignmentFiles();
+                    $filedetails = $assignmentfiles -> first(['fileID'=> $fileID],'fileID');
+                    $path = "/xampp/htdocs/Interlearn/uploads/".$id."/assignments/".$assignmentID."/".$filedetails->filename;
+                    unlink($path);
+                    $result= $assignmentfiles -> delete(['fileID'=> $fileID]);
+                    if($result){
+                        echo 'successfully deleted';
                         exit;
                     }
+                    else{
+                        echo 'error in deletion';
+                        exit;
+                    }
+                    exit;
+                }
 
 
 
-                    $assignment = new Assignment();
-                    $assignmentfiles = new AssignmentFiles();
+                $assignment = new Assignment();
+                $assignmentfiles = new AssignmentFiles();
 
-                    $allfiles = $assignmentfiles -> where(['assignmentId'=>$assignmentID],'fileID');
-                    $allassignment = $assignment -> where(['assignmentId'=>$assignmentID],'assignmentId');
-                    // show($allassignment[0]->file_size);die;
+                $allfiles = $assignmentfiles -> where(['assignmentId'=>$assignmentID],'fileID');
+                $allassignment = $assignment -> where(['assignmentId'=>$assignmentID],'assignmentId');
+                // show($allassignment[0]->file_size);die;
 
-                    //handle update
-                if($_SERVER["REQUEST_METHOD"]=="POST"){
-        
-                    // $result = $assignment->update(['assignmentId'=>$assignmentID],$_POST);
-                    // echo('success');
-                    // show($_POST);die;
-                    if($assignment -> validate($_POST)){
-                    
-                        if(isset($_FILES['assignment_file']['name']) AND !empty($_FILES['assignment_file']['name'])){
-                            if($assignmentfiles -> validatefile($_FILES,$allassignment[0]->file_size)){
-                            //checks every file inside the $_FILES array of files
-                            for($i=0; $i<count($_FILES['assignment_file']['name']); $i++) {
-                                $assignment_tmp = $_FILES['assignment_file']["tmp_name"][$i];
-                                $assignment_name = $_FILES['assignment_file']["name"][$i];
-                                $error= $_FILES['assignment_file']['error'][$i];
-                                if($error === 0){
-                                    $file_ext = pathinfo($assignment_name,PATHINFO_EXTENSION);
-                                    $file_final_ext = strtolower($file_ext);
+                //handle update
+            if($_SERVER["REQUEST_METHOD"]=="POST"){
+       
+                // $result = $assignment->update(['assignmentId'=>$assignmentID],$_POST);
+                // echo('success');
+                // show($_POST);die;
+                if($assignment -> validate($_POST)){
+                 
+                    if(isset($_FILES['assignment_file']['name']) AND !empty($_FILES['assignment_file']['name'])){
+                        if($assignmentfiles -> validatefile($_FILES,$allassignment[0]->file_size)){
+                        //checks every file inside the $_FILES array of files
+                        for($i=0; $i<count($_FILES['assignment_file']['name']); $i++) {
+                            $assignment_tmp = $_FILES['assignment_file']["tmp_name"][$i];
+                            $assignment_name = $_FILES['assignment_file']["name"][$i];
+                            $error= $_FILES['assignment_file']['error'][$i];
+                            if($error === 0){
+                                $file_ext = pathinfo($assignment_name,PATHINFO_EXTENSION);
+                                $file_final_ext = strtolower($file_ext);
 
-                                    $allowed_ext = array('jpg','jpeg','doc','png','pdf','xls','html','css','js');
-                                    if(in_array($file_final_ext,$allowed_ext)){
-                                        $new_file_name = uniqid($user,true).'.'.$file_final_ext;
-                                        // $destination = "../uploads/assignments/". $new_file_name;
+                                $allowed_ext = array('jpg','jpeg','doc','png','pdf','xls','html','css','js');
+                                if(in_array($file_final_ext,$allowed_ext)){
+                                    $new_file_name = uniqid($user,true).'.'.$file_final_ext;
+                                    // $destination = "../uploads/assignments/". $new_file_name;
 
-                                        $directory = "/xampp/htdocs/Interlearn/uploads/".$id."/assignments/".$assignmentID;
-                                        if (!is_dir($directory)){
-                                            mkdir($directory,0644, true);
+                                    $directory = "/xampp/htdocs/Interlearn/uploads/".$id."/assignments/".$assignmentID;
+                                    if (!is_dir($directory)){
+                                        mkdir($directory,0644, true);
 
-                                        }
-                                        $destination =  $directory."/".$new_file_name;
-
-                                        move_uploaded_file($assignment_tmp,$destination);
-                                        $_POST['filename'] = $new_file_name ;
-                                        $_POST['assignmentId'] = $assignmentID;
-                                        $_POST['fileID']=uniqid($user,true);
-                                        $result = $assignmentfiles->insert($_POST);
                                     }
-                                    else{
-                                        $data['errors']['assignment_files']='Unsupported file type : '.$file_final_ext;
-                                        break;
-                                    }
+                                    $destination =  $directory."/".$new_file_name;
+
+                                    move_uploaded_file($assignment_tmp,$destination);
+                                    $_POST['filename'] = $new_file_name ;
+                                    $_POST['assignmentId'] = $assignmentID;
+                                     $_POST['fileID']=uniqid($user,true);
+                                    $result = $assignmentfiles->insert($_POST);
                                 }
                                 else{
-                                    $data['errors']['assignment_files'] ="Unknown error occured";
+                                    $data['errors']['assignment_files']='Unsupported file type : '.$file_final_ext;
                                     break;
-
-                                    }
+                                }
                             }
-                        }
-                        else{
-                            $data['errors'] =  $assignmentfiles->error;
-                        }
+                            else{
+                                $data['errors']['assignment_files'] ="Unknown error occured";
+                                break;
+
+                                }
                         }
                     }
                     else{
-                        $data['errors'] =  $assignment->error;
+                        $data['errors'] =  $assignmentfiles->error;
                     }
-                    if(empty($data['errors'])){
-                        try {
-                        $_POST['file_size'] = $assignmentfiles->size;
-        
-                        $result = $assignment->update(['assignmentId'=>$assignmentID],$_POST);
-                        if (!$result) {
-                            throw new Exception("Update failed");
-                            }
-                        }
-                        catch (Exception $e) {
-                            $response = array("status" => "error", "message" => $e->getMessage());
-                            header("Content-Type: application/json");
-                            echo json_encode($response);
-                            exit;
-                            }
-                            $response = array("status" => "success");
-                            header("Content-Type: application/json");
-                            echo json_encode($response);
-                            exit;
                     }
-                    else{
-                        echo json_encode($data['errors']);
-                        exit;
-
-                    }
-                    // $data['link'] ="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']."?id=".$assignmentid;
-
-                    exit;
                 }
-
-
-            // }
                 else{
-                    $result = $assignment -> whereForAssignment(['assignmentId'=>$assignmentID],'assignmentId');
-
-                    header('Content-type: application/json');
-                    echo json_encode($result);
-                    exit;
+                    $data['errors'] =  $assignment->error;
                 }
+                if(empty($data['errors'])){
+                    try {
+                    $_POST['file_size'] = $assignmentfiles->size;
+    
+                    $result = $assignment->update(['assignmentId'=>$assignmentID],$_POST);
+                    if (!$result) {
+                        throw new Exception("Update failed");
+                        }
+                    }
+                    catch (Exception $e) {
+                        $response = array("status" => "error", "message" => $e->getMessage());
+                        header("Content-Type: application/json");
+                        echo json_encode($response);
+                        exit;
+                        }
+                        $response = array("status" => "success");
+                        header("Content-Type: application/json");
+                        echo json_encode($response);
+                        exit;
+                }
+                else{
+                    echo json_encode($data['errors']);
                     exit;
+
+                }
+                   // $data['link'] ="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']."?id=".$assignmentid;
+
+                exit;
+            }
+
+
+           // }
+            else{
+                $result = $assignment -> whereForAssignment(['assignmentId'=>$assignmentID],'assignmentId');
+
+                header('Content-type: application/json');
+                echo json_encode($result);
+                exit;
+            }
+                exit;
             }
 
             if($option == "delete"){
@@ -779,40 +811,18 @@ class Teacher extends Controller
                         if($result) {
                             $questions = [];
                             $quiz_question = new ZQuizQuestion();
-                            // show($_POST['quiz_bank']);
-                            $result1 = $question->QuizInnerjoinQuestion(['quiz_bank'=>$_POST['quiz_bank']]);
-                            // var_dump($result1);
-                            // show($result1);
-                            shuffle($result1);
-                            $count = 0;
-                            $total_question = $_POST['display_question'];
-                            // show($total_question);
-                            foreach($result1 as $i ){
-                                if($count < $total_question) {
-                                    foreach($i as $question=>$number){
-                                        $questions[$question] = $number;
-                                        $questions['quiz_id'] = $quiz_id;
-                                        $result2= $quiz_question->insert($questions);
+                            $result1 = $question->QuizInnerjoinQuestion(['category'=>$_POST['category']]);
 
-                                    }
-                                    $count = $count + 1; 
+                            foreach( $result1 as $i ){
+                                foreach($i as $question=>$number){
+                                    $questions[$question] = $number;
+                                    $questions['quiz_id'] = $quiz_id;
+                                    $result2= $quiz_question->insert($questions);
+
                                 }
-                                else {
-                                    break;
-                                }
-                                
+
+
                             }
-
-                            $exam = new ZExam();
-                            $_POST['exam_id'] = $quiz_id;
-                            $quiz_name = $_POST['quiz_name'];
-                            $_POST['exam_name'] = $quiz_name;
-                            $_POST['course_id'] = $id;
-                            $month_name = date('F');
-                            $_POST['exam_month'] = $month_name;
-                            $result3 = $exam->insert($_POST);
-                            // show(date('F'));
-
                             $content = new CourseContent();
                             $cid = uniqid();
                             $_POST['cid'] = $cid;
@@ -855,11 +865,10 @@ class Teacher extends Controller
                             // $result2 = $quiz_question->insert($result1);
                             // show($result2);
                         }
-                }
-                $question = new ZQuestion();
-                $data['rows'] = $question->QuestionDropdown(['course_id'=>$id]);
-                $this->view('teacher/Zquiz_add', $data);
-                exit();
+                    }
+
+                    $this->view('teacher/Zquiz_add');
+                    exit();
             }
             if($option == 'new') {
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -868,7 +877,7 @@ class Teacher extends Controller
                     $_POST['question_number']=$question_number;
 
                     $_POST['course_id'] = $id;
-                    // show($id);die;
+
                     // $question = new ZQuestion();
                     $result = $question-> insert($_POST);
 
@@ -894,6 +903,7 @@ class Teacher extends Controller
         // show($data['rows']);die;
             $this->view('teacher/Zquiz', $data);
         }
+
 
 
         if($action == "forum")
