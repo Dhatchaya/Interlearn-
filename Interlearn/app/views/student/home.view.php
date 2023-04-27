@@ -18,7 +18,7 @@
                 <?php if(!empty($announcements)):?>
                     <?php foreach($announcements as $row):?>
                 <div class="std_view_msg">
-                    <h3><?=$row->title?></h3><br>
+                    <h3><u><?=$row->title?></u></h3><br>
                     Dear Students,<br>
                     <p><?=$row->content?></p>
                     <p><a href="<?=$row->attachment?>" class="file_announcement"><?=$row->file_name?></a></p><br><br>
