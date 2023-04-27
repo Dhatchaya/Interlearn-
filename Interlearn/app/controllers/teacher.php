@@ -907,7 +907,7 @@ class Teacher extends Controller
                 $mainforum_id = uniqid('F',true);
                 $_POST['mainforum_id']=$mainforum_id;
                 $_POST['course_id']= $id;
-                $result =  $mainForum -> insert($_POST);
+                
                 $editURL = "#";
                 $viewURL="http://localhost/Interlearn/public/forums/".$id."/".$week."/?main=".$mainforum_id;
                 $deleteURL="http://localhost/Interlearn/public/forums/deleteMain?id=".$mainforum_id;
@@ -920,10 +920,10 @@ class Teacher extends Controller
                 // $_POST['course_material']="Home Work";
                 $_POST['upload_name']=$_POST['subject'];
                 $_POST['type']="forum";
-                $_POST['course_id'] = $id;
-
-
-               $material = $course_content->insert($_POST);
+              //  $_POST['course_id'] = $id;
+                $material = $course_content->insert($_POST);
+                $result =  $mainForum -> insert($_POST);
+             
                 if($result){
                     header('location:http://localhost/Interlearn/public/forums/'.$id.'/'.$week.'/?main='.$mainforum_id);
                 }

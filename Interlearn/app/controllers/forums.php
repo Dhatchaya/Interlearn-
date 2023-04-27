@@ -466,22 +466,22 @@ class Forums extends Controller
         }
       
     }
-    public function deleteMain()
-    { 
-        $mainforum = new mainForum();
-        $role = Auth::getrole();
-        if(isset($_GET['id'])){
-            $id = $_GET['id'];
-        if($role != "Student"){
-            $result = $mainforum->delete(['mainforum_id'=>$id]);
-            if($result){
-                echo "Success";
-            }
+    // public function deleteMain()
+    // { 
+    //     $mainforum = new mainForum();
+    //     $role = Auth::getrole();
+    //     if(isset($_GET['id'])){
+    //         $id = $_GET['id'];
+    //     if($role != "Student"){
+    //         $result = $mainforum->delete(['mainforum_id'=>$id]);
+    //         if($result){
+    //             echo "Success";
+    //         }
            
-        }
-    }
+    //     }
+    // }
       
-    }
+    // }
 
 
     public function profile($id = null)
