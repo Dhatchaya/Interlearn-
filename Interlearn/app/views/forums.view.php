@@ -7,10 +7,10 @@
     <div class="forum_discussion">
     <div class = "forum_heading">
         <h2 class="add_heading_init">Grade <?=esc($course->grade)?> - <?=esc($course->subject)?></h2>
-        <h3 class="mainforum_sub"><?=esc($course->subject)?></h3>
+        <h3 class="mainforum_sub"><?=esc($forummain->subject)?></h3>
         <div class="mainf_des">
             <!-- changeit to forummain if needed -->
-        <h4 class="mainforum_desc"><?=esc($course->description)?></h4>
+        <h4 class="mainforum_desc"><?=esc($forummain->description)?></h4>
         </div>
         <?php  if($role == "Teacher" ||$role == "Instructor"):?>
         <button type="button" data-modal-target= "#modal" class="Add_forum" id="Add_forum" >+ Add new discussion</button>

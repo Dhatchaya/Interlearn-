@@ -7,48 +7,43 @@
         <!-- <h1 class="recp_view_greeting">Good Morning Monica!</h1><br> -->
             <div class="recp_view_rectangle">
                 <a href="#">
-                    <div class="recp_home_rect">
-                    <img src="<?=ROOT?>/assets/images/students.jpg" alt="" class="recp_view_img_new">
-                    </div>
-                    <div>
-
-                        <p class="recp_text">Students</p>
-                    </div>
+                    <img src="<?=ROOT?>/assets/images/recp_std.png" alt="" class="recp_view_img">
+                    <p>Students</p>
                 </a>
             </div>
             <div class="recp_view_rectangle">
                 <a href="<?=ROOT?>/receptionist/course">
-                    <img src="<?=ROOT?>/assets/images/courses.png" alt="" class="recp_view_img_new">
+                    <img src="<?=ROOT?>/assets/images/recp_std.png" alt="" class="recp_view_img">
                     <p>Courses</p>
                 </a>
             </div><br>
             <div class="recp_view_rectangle">
-                <a href="#">
-                    <img src="<?=ROOT?>/assets/images/staff.avif" alt="" class="recp_view_img_new">
+                <a href="<?=ROOT?>/receptionist/">
+                    <img src="<?=ROOT?>/assets/images/recp_std.png" alt="" class="recp_view_img">
                     <p>Staffs</p>
                 </a>
             </div>
-            <!-- <div class="recp_view_rectangle">
+            <div class="recp_view_rectangle">
                 <a href="#">
-                    <img src="<?=ROOT?>/assets/images/tt.png" alt="" class="recp_view_img_new">
+                    <img src="<?=ROOT?>/assets/images/tt.png" alt="" class="recp_view_img">
                     <p>Time Table</p>
                 </a>
-            </div> -->
+            </div>
             <div class="recp_view_rectangle">
                 <a href="<?=ROOT?>/receptionist/announcement">
-                    <img src="<?=ROOT?>/assets/images/announcement.jpeg" alt="" class="recp_view_img_new">
+                    <img src="<?=ROOT?>/assets/images/tt.png" alt="" class="recp_view_img">
                     <p>Announcement</p>
                 </a>
             </div>
             <div class="recp_view_rectangle">
                 <a href="<?=ROOT?>/receptionist/enrollment">
-                    <img src="<?=ROOT?>/assets/images/std_enrollment.png" alt="" class="recp_view_img_new">
+                    <img src="<?=ROOT?>/assets/images/recp_std.png" alt="" class="recp_view_img">
                     <p>Student Enrollments</p>
                 </a>
             </div>
             <div class="recp_view_rectangle">
                 <a href="<?=ROOT?>/receptionist/registration">
-                    <img src="<?=ROOT?>/assets/images/std_registration.jpg" alt="" class="recp_view_img_new">
+                    <img src="<?=ROOT?>/assets/images/tt.png" alt="" class="recp_view_img">
                     <p>Registration</p>
                 </a>
             </div>

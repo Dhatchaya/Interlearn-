@@ -1,9 +1,9 @@
 <?php $this -> view('includes/header'); ?>
 <?php $this -> view('includes/nav'); ?>
 
-<dvi class="container-fluid p-4 text-center">
+<div >
 <h1> <?= $title ?> page not found </h1>
 
-</dvi>
+</div>
 <?php $this -> view('includes/footer'); ?>
 

@@ -131,13 +131,14 @@ class Model extends Database {
                 $mail -> AddAddress($data['email']);
                 $mail ->IsHTML(true);
                 $mail -> Subject = 'Verification code';
-                $message_body ='<p> To verify your email address enter this <b>'.$data['user_otp'].'</b>.</p>
+                $message_body ='<p> To verify your email address click on the below link <a href=http://localhost/Interlearn/public/verify?code='.$data['user_activation_code'].'&otp='.$data['user_otp'].'> click here </a>.</p>
                             <p> Sincerely, </p>
                             <p> Interlearn </p>';
                 $mail->Body = $message_body;
+               
                 if ($mail -> Send()){
-                    $query_string = '?code=' . $data['user_activation_code'];
-                    $current_url = 'http://localhost/Interlearn/public/verify'.$query_string;
+                    // $query_string = '?code=' . $data['user_activation_code'];
+                    $current_url = 'http://localhost/Interlearn/public/verify/success/register';
                     // echo $current_url;die;
                     //  echo json_encode(['url' => $current_url]);
                     //header('Location: ' . $current_url);

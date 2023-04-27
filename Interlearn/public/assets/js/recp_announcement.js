@@ -38,7 +38,7 @@ function openModal3(aid) {
                     // console.log(response[i].grade);
                     document.getElementById("title").value = response[i].title;
                     document.getElementById("content").value = response[i].content;
-                    document.getElementById("file_recp_announcement").value = response[i].file_name; //assignement_edit
+                    // document.getElementById("attachment").value = response[i].attachment; //assignement_edit
 
                     
                 }

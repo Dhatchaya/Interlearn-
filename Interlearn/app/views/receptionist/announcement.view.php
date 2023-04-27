@@ -24,7 +24,7 @@
                     <!-- <button class="recp_cl_btn" id="button1">+Add new teacher</button> -->
 
 
-                    <h3><u><?=$row->title?></u></h3><br>
+                    <h3><?=$row->title?></h3><br>
                     Dear Students,<br>
                     <p><?=$row->content?></p><br>
 
@@ -54,7 +54,6 @@
                              <label for="">Attach Files: </label>
                              <!-- <input type="text" name="file_name" id="file_name" value="<?=$row->file_name?>" disabled>
                              <span  >&times;</span><br><br> -->
-                             <p id="file_recp_announcement"><?=$row->file_name?> <span class="edit_file_announcement" >&times;</span></p>
                              <input type="file"  name="attach_recp_file" id="attach_recp_file" value="<?=$row->file_name?>" multiple>
                              </div><br><br>
                             <button type="submit" class="teacher_upl_btn" name="submit-edit-announcement">Update</button>

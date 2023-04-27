@@ -62,7 +62,7 @@
                                 <?php endif;?> -->
 
                                 <?php elseif($material->type == "assignment"):?>
-                                    <p><a href="/uploads/<?=$material->course_id?>/assignment/<?php echo $material->cid;?>/<?=$material->course_material?>">
+                                    <p><a href="<?=$material->studentView_URL?>">
                                 <img src="<?=ROOT?>/assets/images/assignment.png" alt="" class="teacher_card_img3">
                                 <?=$material->upload_name?> 
                                 </a></p>
@@ -74,7 +74,7 @@
                                 </a></p>
 
                                 <?php elseif($material->type == "forum"):?>
-                                    <p><a href="/uploads/<?=$material->course_id?>/assignment/<?php echo $material->cid;?>/<?=$material->course_material?>">
+                                    <p><a href="<?=$material->view_URL?>">
                                 <img src="<?=ROOT?>/assets/images/forum.png" alt="" class="teacher_card_img3">
                                 <?=$material->upload_name?> 
                                 </a></p>

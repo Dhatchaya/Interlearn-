@@ -11,6 +11,8 @@ const span = document.getElementsByClassName("close")[0];
 // When the user clicks the button, open the modal
 function openModal(id) {
     const upload = document.getElementsByName("upload");
+    const quiz = document.getElementsByName("quiz");
+    const bank = document.getElementsByName("bank");
     const assignment = document.getElementsByName("assignment");
     const url = document.getElementsByName("url");
     console.log(upload);
@@ -19,6 +21,12 @@ function openModal(id) {
     }
     for(i=0; i<upload.length; i++){
         upload[i].href = upload[i].href + "/" + id;
+    }
+    for(i=0; i<quiz.length; i++){
+        quiz[i].href = quiz[i].href + "/" + id+"/create";
+    }
+    for(i=0; i<bank.length; i++){
+        bank[i].href = bank[i].href + "/" + id+"/new";
     }
     for(i=0; i<url.length; i++){
         url[i].href = url[i].href + "/" + id;
