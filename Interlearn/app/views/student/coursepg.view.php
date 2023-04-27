@@ -62,7 +62,7 @@
                                 <?php endif;?> -->
 
                                 <?php elseif($material->type == "assignment"):?>
-                                    <p><a href="<?=$material->view_URL?>">
+                                    <p><a href="<?=$material->studentView_URL?>">
                                 <img src="<?=ROOT?>/assets/images/assignment.png" alt="" class="teacher_card_img3">
                                 <?=$material->upload_name?> 
                                 </a></p>

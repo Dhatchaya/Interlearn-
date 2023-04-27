@@ -437,10 +437,12 @@ class Teacher extends Controller
                         $editURL = "http://localhost/Interlearn/public/teacher/course/assignment/".$id."/".$week."/view?id=".$assignmentid;
                         $deleteURL = "http://localhost/Interlearn/public/teacher/course/assignment/".$id."/".$week."/delete?id=".$assignmentid;
                         $viewURL="http://localhost/Interlearn/public/teacher/course/submissions/".$id."/".$week."/?id=".$assignmentid;
+                        $studentView ="http://localhost/Interlearn/public/student/coursepg/submissionstatus/".$id."/?id=".$assignmentid;;
                         $cid = uniqid();
                         $_POST['cid']=$cid;
                         $_POST['edit_URL']=$editURL;
                         $_POST['view_URL']=$viewURL;
+                        $_POST['studentView_URL']=$studentView;
                         $_POST['delete_URL']=$deleteURL;
                         $_POST['week_no']=$week;
                         // $_POST['course_material']="Home Work";
@@ -908,10 +910,12 @@ class Teacher extends Controller
                 $result =  $mainForum -> insert($_POST);
                 $editURL = "#";
                 $viewURL="http://localhost/Interlearn/public/forums/".$id."/".$week."/?main=".$mainforum_id;
+                $deleteURL="http://localhost/Interlearn/public/forums/deleteMain?id=".$mainforum_id;
                 $cid = uniqid();
                 $_POST['cid']=$cid;
                 $_POST['edit_URL']=$editURL;
                 $_POST['view_URL']=$viewURL;
+                $_POST['delete_URL']=$deleteURL;
                 $_POST['week_no']=$week;
                 // $_POST['course_material']="Home Work";
                 $_POST['upload_name']=$_POST['subject'];
