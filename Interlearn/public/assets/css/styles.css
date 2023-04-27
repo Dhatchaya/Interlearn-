@@ -17,34 +17,7 @@
 
 
 }
-.otp-text{
-    margin-top: 1rem;
-    font-weight: 100;
-}
-.otp-verify-button{
-    border: 1px;
-    display: inline-block;
-    padding: 10px 30px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 2rem;
-    background-color: #43A047;
-    color: #ffffff;
 
-}
-.otpcontent{
-    min-height: 34.5vh;
-    background: white;
-    width: 50rem;
-    margin: 2rem auto 2rem auto;
-    text-align: center;
-    padding: 1rem;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-.otp-success-tick{
-    height: 5rem;
-
-}
 .whiteInput:hover{
     box-shadow: 0 0 5pt 0.5pt #D3D3D3;
   }
@@ -62,7 +35,6 @@ input,select,textarea{
 
 } */
 body{
-    min-height: 100vh;
     background-color: var(--page-color);
 }
 .login_body{
@@ -1657,7 +1629,7 @@ transform: scale(0.97,0.97);
 /* staff login */
 .staff_login{
     height: 100%;
-    /* background-color: aliceblue; */
+    background-color: aliceblue;
 }
 
 .staff_login_nav {
@@ -1713,14 +1685,14 @@ transform: scale(0.97,0.97);
     position: absolute;
     top: 25%;
     left: 20%;
-    background: var(--secondary-color);
+    background: aliceblue;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     padding: 10px;
     align-items: center;
     text-align: center;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 1px 2px 4px 5px #888888;
     border-radius: 10px;
     
 }
@@ -2241,6 +2213,7 @@ transform: scale(0.97,0.97);
     margin-right: 50%;
     font-size: xx-large;
     padding-bottom: 1%;
+    color: #3E206D;
 }
 
 .teacher_view_Rectangle{
@@ -2498,7 +2471,7 @@ transform: scale(0.97,0.97);
     display: flex;
     border-style: solid;
     border-color: rgba(62, 32, 109, 100%);
-    border-radius: 2%;
+    /* border-radius: 2%; */
 }
 
 .std_view_greet{
@@ -2524,6 +2497,7 @@ transform: scale(0.97,0.97);
     border-color: rgba(62, 32, 109, 20%);
     padding: 2%;
     align-items: center;
+    /* box-shadow: #757575 10px 10px; */
 }
 
 .std_view_msg{
@@ -2533,6 +2507,7 @@ transform: scale(0.97,0.97);
     padding-top: 2%;
     padding-left: 2%;
     width: 47vw;
+    box-shadow: rgba(34, 20, 55, 0.8) 5px 5px;
     /* height: 20vh; */
 }
 .std_crs_pg_content2{
@@ -3313,8 +3288,9 @@ width: 45vw;
 }
 .recp_view_rectangle{
     background-color: white;
-    border: solid rgba(62, 32, 109, 100%);
-    border-radius: 10%;
+    /* border: solid rgba(62, 32, 109, 100%); */
+    box-shadow: rgba(153, 134, 157, 0.85) 5px 5px;
+    /* border-radius: 10%; */
     width: 20vw;
     height: 30vh;
     float: left;
@@ -3328,6 +3304,18 @@ width: 45vw;
 }
 .recp_view_rectangle a{
     text-decoration: none;
+}
+.recp_home_rect{
+    width: 20vw;
+    height: 20vh;
+    /* border-radius: 10%; */
+    transition: width 1s, height 1s;
+}
+.recp_view_img_new{
+    width: 20vw;
+    height: 20vh;
+    /* border-radius: 10%; */
+    transition: width 1s, height 1s;
 }
 .recp_view_img{
     width: 18vw;
@@ -3353,10 +3341,10 @@ width: 45vw;
     margin-left: 5%;
     /* display: flex;
     flex-wrap: wrap; */
-    width: 75vw;
+    width: 80vw;
 }
 .recp_crs_butn{
-    padding-left: 60%;
+    padding-left: 94%;
     padding-top: 0%;
     margin-bottom: 5%;
     width: 60vw;
@@ -3395,7 +3383,7 @@ width: 45vw;
     width: 17vw;
     height: 40vh;
     float: left;
-    margin-right: 4%;
+    margin-right: 3%;
     margin-bottom: 4%;
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
@@ -3409,7 +3397,12 @@ width: 45vw;
 }
 .recp_crs_img{
     width: 16.7vw;
-    height: 15vh;
+    height: 20vh;
+    transition: width 1s, height 1s;
+}
+.std_crs_img_new{
+    width: 16.7vw;
+    height: 16vh;
     transition: width 1s, height 1s;
 }
 .recp_crs_rectangle p{
@@ -4244,7 +4237,7 @@ tr:nth-child(even) {
 .recp_ann_content{
     margin-top: 5%;
     margin-left: 5%;
-    width: 65vw;
+    width: 70vw;
     margin-bottom: 5%;
 }
 
@@ -4421,6 +4414,10 @@ tr:nth-child(even) {
     height: 30vh;
 }
 
+.edit_file_announcement{
+    cursor: pointer;
+}
+
 .recp_ann_clz{
     width: 20vw;
     cursor: pointer;
@@ -4459,6 +4456,7 @@ tr:nth-child(even) {
     padding-top: 2%;
     padding-left: 2%;
     width: 67vw;
+    box-shadow: #24262b 5px 5px;
     /* height: 20vh; */
 }
 
@@ -5576,4 +5574,14 @@ gap: 8vw;
 /* close button of removing instructors */
 .instructor-remove{
     cursor: pointer;
+}
+
+
+
+/* receptionist home text  */
+
+.recp_text{
+    font-size: large;
+    color: #3E206D;
+    font-weight: 500;
 }

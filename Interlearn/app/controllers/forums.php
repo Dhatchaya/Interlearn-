@@ -88,14 +88,10 @@ class Forums extends Controller
                     }
                     else{
                         $data['errors']['attachment']='you cannot upload this type of file';
-                        echo json_encode( $data['errors']);
-                        exit;
                     }
                 }
                 else{
                     $data['errors']['attachment'] ="unknown error occured";
-                    echo json_encode( $data['errors']);
-                    exit;
                     }
                 }
                 else{
@@ -120,7 +116,6 @@ class Forums extends Controller
             }
             else{
                 $data['errors'] =  $forum->error;
-                // echo "here";
                 echo json_encode( $data['errors']);
                 exit;
             }
@@ -464,22 +459,6 @@ class Forums extends Controller
                 echo "failed";
             }
         }
-      
-    }
-    public function deleteMain()
-    { 
-        $mainforum = new mainForum();
-        $role = Auth::getrole();
-        if(isset($_GET['id'])){
-            $id = $_GET['id'];
-        if($role != "Student"){
-            $result = $mainforum->delete(['mainforum_id'=>$id]);
-            if($result){
-                echo "Success";
-            }
-           
-        }
-    }
       
     }
 

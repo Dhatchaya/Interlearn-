@@ -11,9 +11,9 @@
     
     <div class="clm2">
         <h2 class="add_heading_init">Quizz Bank</h2>
-        <a href="<?=ROOT?>/teacher/course/quiz/8/1/new"><button type="button" data-modal-target= "#modal" class="Add_enq" >+ Add New Question</button></a>
+        <a href="<?=ROOT?>/teacher/course/quiz/4/79/new"><button type="button" data-modal-target= "#modal" class="Add_enq" >+ Add New Question</button></a>
 
-        <a href="<?=ROOT?>/teacher/course/quiz/8/1/create"><button type="button" data-modal-target= "#modal" class="Add_enq" >+ Add a Quiz</button></a>
+        <a href="<?=ROOT?>/teacher/course/quiz/4/79/create"><button type="button" data-modal-target= "#modal" class="Add_enq" >+ Add a Quiz</button></a>
                 <!-- add form -->
         <div class="modal1" id="modal1" >
         
@@ -34,7 +34,7 @@
                         <th>Choice#3 Mark</th>
                         <th>Choice#4</th>
                         <th>Choice#4 Mark</th>
-                        <th>Quiz Bank No.</th>
+                        <th>Category</th>
                         <th>Question Mark</th>
                         <th class="action_clm">Actions</th>
                     </tr>
@@ -55,7 +55,7 @@
                         <td><?=esc($row->choice3_mark)?></td>
                         <td><?=esc($row->choice4)?></td>
                         <td><?=esc($row->choice4_mark)?></td>
-                        <td><?=esc($row->quiz_bank)?></td>
+                        <td><?=esc($row->category)?></td>
                         <td><?=esc($row->question_mark)?></td>
                         <td>
                             <div class="edit_delete">
@@ -63,7 +63,7 @@
                                     <button>edit</button>
                                 </div>
                                 <div class="delete">
-                                    <a href="<?=ROOT?>/teacher/course/quiz/8/1/delete?qnum=<?=esc($row->question_number)?>"><button>delete</button></a>
+                                    <a href="<?=ROOT?>/teacher/course/quiz/4/79/delete?qnum=<?=esc($row->question_number)?>"><button>delete</button></a>
                                 </div>
                             </div>
                             
@@ -80,4 +80,4 @@
     </div>
 </div>
 <script defer src="<?=ROOT?>/assets/js/zquiz.js?v=<?php echo time(); ?>"></script>
-<!-- <?php $this -> view('includes/footer'); ?> -->
+<?php $this -> view('includes/footer'); ?>

@@ -204,7 +204,7 @@ let assignmentID = "";
                   error.innerHTML= status.submission;
               }
               else{
-                window.location.href = `http://localhost/Interlearn/public/student/coursepg/submissionstatus/${course}/?id=${subjectID}`;
+                // window.location.href = `http://localhost/Interlearn/public/student/coursepg/submissionstatus/${course}/?id=${subjectID}`;
               }
             
           },

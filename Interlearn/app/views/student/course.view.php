@@ -29,11 +29,11 @@
         <div class="recp_crs_rectangle">
 
             <a href="<?=ROOT?>/student/course/view/<?=$sum->course_id?>">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
+                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="std_crs_img_new">
                 <br><br>
-                <p>Grade <?=esc($sum->grade)?> - <?=esc($sum->subject)?></p>
-                <p>(<?=esc($sum->language_medium)?>)</p>
-                <p><?=esc($sum->fullname)?></p>
+                <p>Grade <?=esc($sum->grade)?> - <?=esc($sum->subject)?><br><br>
+                (<?=esc($sum->language_medium)?>) <br><br>
+                <?=esc($sum->fullname)?></p>
                 <!-- <div class="recp_crs_butn2">
                     <a href="<?=ROOT?>/course/view/1/?id=<?=esc($sum->subject_id)?>">
                         <button class="recp_crs_btn2">More info</button>

@@ -8,6 +8,8 @@ $val = explode('/',$url);
 <div class="recp_cl_container">
 <?php $this->view("includes/sidebar_recep");?>
     <div class="recp-enroll-content">
+        <h3>Student Enrollment Requests</h3><br>
+
     <!-- <div class="recp_cl_staff"> -->
             <table class="std-enroll-table">
             
