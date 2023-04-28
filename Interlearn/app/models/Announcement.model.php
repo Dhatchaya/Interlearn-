@@ -67,10 +67,10 @@ class Announcement extends Model{
     }
 
     // SELECT concat(teachers.firstname, ' ', teachers.lastname), announcement.* FROM announcement INNER JOIN announcement_course ON announcement_course.aid = announcement.aid INNER JOIN course ON course.course_id = announcement_course.course_id INNER JOIN teachers ON teachers.teacher_id = course.teacher_id WHERE announcement_course.course_id =79
-    public function showAnnouncement($course_id, $order = 'desc'){
+    public function showAnnouncement($course_id){
         $query = "SELECT concat(staff.first_name, ' ', staff.last_name) AS fullname, announcement.* FROM ".$this->table;
         $query .= " INNER JOIN announcement_course ON announcement_course.aid = announcement.aid INNER JOIN course ON course.course_id = announcement_course.course_id INNER JOIN staff ON staff.emp_id = course.teacher_ID";
-        $query .= " WHERE announcement_course.course_id =:courseID AND staff.role = 'Teacher' ORDER BY announcement.date_time $order";
+        $query .= " WHERE announcement_course.course_id =:courseID AND staff.role = 'Teacher'";
         $data['courseID'] = $course_id;
 
         $res = $this -> query($query, $data);
@@ -99,14 +99,11 @@ class Announcement extends Model{
         }
     }
 
-    public function updateAnnouncement($aid, $title, $content, $attachment){
+    public function updateAnnouncement($aid){
         $query = "UPDATE ".$this->table;
         $query .= " SET title =:title, content =:content, attachment =:attachment";
         $query .= " WHERE announcement.aid =:aID";
         $data['aID'] = $aid;
-        $data['title'] = $title;
-        $data['content'] = $content;
-        $data['attachment'] = $attachment;
 
         $res = $this -> update_table($query, $data);
 

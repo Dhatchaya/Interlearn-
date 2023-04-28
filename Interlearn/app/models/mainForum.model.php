@@ -12,7 +12,6 @@ class mainForum extends Model
         'description',
         'mainforum_id',
         'course_id',
-        'cid',
       
 
     ];

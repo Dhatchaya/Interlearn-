@@ -9,10 +9,6 @@
         <h2 class="add_heading_init">Grade <?=esc($course->grade)?> - <?=esc($course->subject)?></h2>
         <h3 class="mainforum_sub"><?=esc($forummain->subject)?></h3>
         <div class="mainf_des">
-<<<<<<< HEAD
-=======
-            <!-- changeit to forummain if needed -->
->>>>>>> a093486f9eae3a971e087dbdcf91afe977c5f10b
         <h4 class="mainforum_desc"><?=esc($forummain->description)?></h4>
         </div>
         <?php  if($role == "Teacher" ||$role == "Instructor"):?>

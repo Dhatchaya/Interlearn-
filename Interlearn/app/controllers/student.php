@@ -643,7 +643,7 @@ class Student extends Controller
 
         // $question = new Question();
         $question = new ZQuestion();
-        $totalQues = new ZQuizQuestion();
+
 
         if($action == "view"){
 
@@ -703,27 +703,11 @@ class Student extends Controller
 
         // echo $quiz_json;
         // show($quiz_json);
-        // $data['rows'] = $totalQues->totalQuestion();
         $this->view('student/quiz');
 
 
         // die();
     }
-
-
-        // convert the PHP array to a JSON object
-        // $quiz_json = json_encode($quiz);
-
-        // // return the JSON object
-        // header('Content-Type: application/json');
-
-        // echo $quiz_json;
-        // show($quiz_json);
-    //     $this->view('student/quiz');
-
-
-    //     // die();
-    // }
     public function cardPayment($action = NULL)
     {
         if (!Auth::is_student()) {

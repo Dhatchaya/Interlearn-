@@ -10,17 +10,10 @@ const span3 = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal
 function openModal3(aid) {
-<<<<<<< HEAD
 
     document.getElementById("aid").value = aid;
 
-=======
->>>>>>> a093486f9eae3a971e087dbdcf91afe977c5f10b
     modal3.style.display = "block";
-
-    document.getElementById("aid").value = aid;
-
-    
     console.log(modal3);
 }
 
@@ -50,12 +43,8 @@ const span6 = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal
 function openModal6(number) {
-<<<<<<< HEAD
     document.getElementById("delete-aid").value = 'number';
-=======
->>>>>>> a093486f9eae3a971e087dbdcf91afe977c5f10b
     modal6.style.display = "block";
-    document.getElementById("delete-aid").value = number;
     console.log(modal3);
 }
 

@@ -110,8 +110,6 @@ $val = explode('/',$url);
         <div id="profileModal3_<?php echo $teacher->course_id?>" class="popupModal">
             <div class="popupmodal-content">
                 <span class="ann_close" onclick="closeModal3(<?=esc($teacher->course_id)?>)">&times;</span><br>
-                <h3>Edit Class</h3><br>
-                <p id="addCourseerror" class="warning"></p>
                 <form action="" method="post" class="up-profile">
                     <input type="hidden" name="course_id" value="<?=esc($teacher->course_id)?>">
 
@@ -205,7 +203,6 @@ $val = explode('/',$url);
             <div class="popupmodal-content">
                 <span class="ann_close" onclick="closeModal()">&times;</span><br>
                 <h3>Add Teachers</h3><br>
-                <p id="addCourseerror" class="warning"></p>
                 <form action="" method="post" class="up-profile">
                     <div class="recp_det_box">
                         <h4>Teacher ID: </h4>
