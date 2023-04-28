@@ -32,11 +32,11 @@
     <div class="validation-container">
       <div class="pending-list">
         <?php foreach ($bankPayments as $bankPayment) : ?>
-          <div class="pending-item payment-1" id="<?= $bankPayment->BankPaymentID ?>" >
-            <h4><?= $bankPayment->courseID ?></h4>
-            <h4><?= $bankPayment->NameOnSlip ?></h4>
-              <h4><?= $bankPayment->Amount ?></h4>
-              <h4><?= $bankPayment->PaymentDate ?></h4>
+          <div class="pending-item each-payment" id="<?= $bankPayment->BankPaymentID ?>" >
+            <h4><?= $bankPayment->CourseID  ?></h4>
+            <h4><?= $bankPayment->NameOnSlip  ?></h4>
+              <h4><?= $bankPayment->monthlyFee ?></h4>
+              <h4><?= $bankPayment->PaymentDate  ?></h4>
 
           </div>
         <?php endforeach; ?>
@@ -57,7 +57,7 @@
           <span class="preview-value" id="preview-address"></span>
         </div>
         <div class="preview-group">
-          <label class="preview-label">Course Name:</label>
+          <label class="preview-label">Course ID:</label>
           <span class="preview-value" id="preview-course-name"></span>
         </div>
         <div class="preview-group">
@@ -90,7 +90,7 @@
 
 
         <button class="paynow " id="payment-submission-1" type="submit">Approve</button>
-        <button class="next-payment " id="payment-submission-1" type="submit">Next Payment</button>
+        <button class="next-payment " id="decline-payment" type="submit">Decline</button>
       </div>
 
     </div>

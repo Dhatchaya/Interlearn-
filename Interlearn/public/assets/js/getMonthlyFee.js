@@ -16,9 +16,9 @@ Month.addEventListener('change', function() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({CourseID: courseID.value, StudentID: studentId2.value}),
+            body: JSON.stringify({CourseID: courseID.value, StudentID: studentId2.value, Month: Month.value}),
         })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(response => {
             console.log("response open is good");
             getAmount(response);
@@ -32,15 +32,22 @@ Month.addEventListener('change', function() {
 
 function getAmount(data) {
     console.log(data);
-    if(data[0]['monthlyFee'] == null){
-        Amount.value = 'This student is not registered for this course'  ;
+    if(data[0]['course_id'] == "noCourse"){
+        Amount.value = "Student is not registered for this course"   ;
         sbmtBtn.disabled = true;
         nxtBtn.disabled = true;
 
         }
-    Amount.value = data[0]['monthlyFee'] ;
-    sbmtBtn.disabled = false;
-    nxtBtn.disabled = false;
+    else if(data[0]['course_id'] == "AlreadyPaid"){
+        Amount.value = "Already Paid for this month"   ;
+        sbmtBtn.disabled = true;
+        nxtBtn.disabled = true;
+    }
+    else{
+        Amount.value = data[0].monthlyFee;
+        sbmtBtn.disabled = false;
+        nxtBtn.disabled = false;
+    }
 }
 
 

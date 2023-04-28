@@ -95,31 +95,8 @@ class Course extends Model
     //     }
     // }
 
-    public function checkStudent($courseId, $studentId) {
-        $studentID = $studentId;
-    
-        $query = "SELECT * FROM student_course WHERE student_id = " . $studentID . " AND course_id = " . $courseId;
-        $res = $this->query($query);
-        
-        
-        if ($res == NULL) {
-            $res = array();
-        }
-        return $res;
-    }
-    
 
-    public function getMonthlyFee($courseId){
-        $courseID = $courseId; 
-        $query = "SELECT monthlyFee FROM course where course_id = " . $courseID ;
-        $res = $this -> query($query);
 
-        if ($res == NULL) {
-            $res = array();
-        }
-        
-        return $res;
-    }
 
     public function getLastCourse(){
         $query = "SELECT * FROM course ORDER BY course_id DESC LIMIT 1"; 

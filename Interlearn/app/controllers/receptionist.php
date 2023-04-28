@@ -709,7 +709,7 @@ class Receptionist extends Controller
         $ProfileData['userData'] = $staff_data;
         // $data['userData2'] = $user_data2;
 
-        $this->view('receptionist/user', $ProfileData);
+        $this->view('staff/user', $ProfileData);
     }
 
     // public function user()
@@ -807,15 +807,19 @@ class Receptionist extends Controller
         $data = $payment->getAll();
         return $data;
     }
-
-    public function callBankPaymentData()
+    public function callEachBPdata()
     {
-
-        $callBPdata = new BankPayment();
-        $BankPaymentData = $callBPdata->validateBankPayment();
-        return $BankPaymentData;
+        $data = json_decode(file_get_contents("php://input"), true);
+    
+        $getEachBPdata = new BankPayment();
+        $BankPaymentData = $getEachBPdata->getEachBPdata($data['bankPaymentID']);
+    
+        header('Content-Type: application/json'); // set the content type to JSON
+        echo json_encode($BankPaymentData);
     }
-
+    
+    
+    
     public function getStudentName()
     {
         $data = json_decode(file_get_contents("php://input"), true);
@@ -828,30 +832,40 @@ class Receptionist extends Controller
         echo json_encode($res);
         exit;
     }
-
     public function getMonthlyFee()
     {
         $data = json_decode(file_get_contents("php://input"), true);
         $courseId = $data['CourseID'];
         $studentID = $data['StudentID'];
-
-        $studentFtCourse = new Course();
+        $paymonth = $data['Month'];
+    
+        $studentFtCourse = new Payment();
         $respond = $studentFtCourse->checkStudent($courseId, $studentID);
-
+    
         if($respond[0]->course_id == $courseId){
-
-            $monthlyFee = new Course();
-            $respond = $monthlyFee->getMonthlyFee($courseId);
-            echo json_encode($respond);
-            exit;
+    
+            $isHEpaid= new Payment();
+            $respond1 = $isHEpaid->checkPaidORnot($studentID, $courseId, $paymonth);
+    
+            if($respond1) {
+                    $monthlyFee = new Payment();
+                    $respond2 = $monthlyFee->getMonthlyFee($courseId);
+                    echo json_encode($respond2);
+                    exit; 
+            } 
+            else {
+                echo json_encode($respond1);
+                exit;
+            }
         }
         else{
-            $respond[0]->student_id = null;
             echo json_encode($respond);
             exit;
-        }
-        
+        }    
     }
+    
+    
+
 
     public function registration($action = null,$id = null)
     {

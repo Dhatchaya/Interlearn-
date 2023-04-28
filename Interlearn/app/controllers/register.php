@@ -55,36 +55,7 @@ class Register extends Controller
                            
                         }
                 
-                        // if($user->insert($_POST)){
-                        //     echo "success user";
-                        //     if($student->insert($_POST)){
-                        //         echo "success";
-                        //         // if($extra == "course"){
-                        //         //     // show($_POST);die;
-                        //         //     if($_SERVER['REQUEST_METHOD'] == "POST"){
-                        //         //         foreach ($_POST['course_id'] as $courseId) {
-                        //         //             $_POST['studentID']=187;
-                        //         //             $_POST['course_id'] = $courseId;
-                        //         //             // show($_POST);die;
-                        //         //             $result = $tempStudentcourse->insert($_POST);
-                        //         //         }
-                        //         //         if($result){
-                        //         //             echo "sucess";
-                        //         //         }
-                        //         //         else{
-                        //         //             echo "failed";
-                        //         //         }
-                        //         //     }
-                        //         //     exit;
-                        //         // }
-                        //     }
-                        //     $verify = $user -> sendemail([
-                        //         'email' => $email,
-                        //         'user_activation_code'=>$user_activation_code,
-                        //         'user_otp'=>$user_otp
-                        //     ]);
-                        // } 
-                   
+                        
                    
                     }
                     if(empty($data['errors'])){
