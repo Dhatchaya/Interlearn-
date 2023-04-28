@@ -14,6 +14,7 @@ function openModal(id) {
     const assignment = document.getElementsByName("assignment");
     const quiz = document.getElementsByName("quiz");
     const quizbank = document.getElementsByName("quizbank");
+    const question = document.getElementsByName("question");
     const url = document.getElementsByName("url");
     console.log(upload);
     for(i=0; i<assignment.length; i++){
@@ -23,7 +24,12 @@ function openModal(id) {
         quiz[i].href = quiz[i].href + "/" + id+"/create";
     }
     for(i=0; i<quizbank.length; i++){
-        quizbank[i].href = quizbank[i].href + "/" + id+"/new";
+        quizbank[i].href = quizbank[i].href + "/" + id;
+        // quizbank[i].href = quizbank[i].href + "/" + id+"/new";
+    }
+    for(i=0; i<question.length; i++){
+        // question[i].href = question[i].href + "/" + id;
+        question[i].href = question[i].href + "/" + id+"/new";
     }
     for(i=0; i<upload.length; i++){
         upload[i].href = upload[i].href + "/" + id;

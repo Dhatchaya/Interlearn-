@@ -811,18 +811,40 @@ class Teacher extends Controller
                         if($result) {
                             $questions = [];
                             $quiz_question = new ZQuizQuestion();
-                            $result1 = $question->QuizInnerjoinQuestion(['category'=>$_POST['category']]);
+                            // show($_POST['quiz_bank']);
+                            $result1 = $question->QuizInnerjoinQuestion(['quiz_bank'=>$_POST['quiz_bank']]);
+                            // var_dump($result1);
+                            // show($result1);
+                            shuffle($result1);
+                            $count = 0;
+                            $total_question = $_POST['display_question'];
+                            // show($total_question);
+                            foreach($result1 as $i ){
+                                if($count < $total_question) {
+                                    foreach($i as $question=>$number){
+                                        $questions[$question] = $number;
+                                        $questions['quiz_id'] = $quiz_id;
+                                        $result2= $quiz_question->insert($questions);
 
-                            foreach( $result1 as $i ){
-                                foreach($i as $question=>$number){
-                                    $questions[$question] = $number;
-                                    $questions['quiz_id'] = $quiz_id;
-                                    $result2= $quiz_question->insert($questions);
-
+                                    }
+                                    $count = $count + 1; 
                                 }
-
-
+                                else {
+                                    break;
+                                }
+                                
                             }
+
+                            $exam = new ZExam();
+                            $_POST['exam_id'] = $quiz_id;
+                            $quiz_name = $_POST['quiz_name'];
+                            $_POST['exam_name'] = $quiz_name;
+                            $_POST['course_id'] = $id;
+                            $month_name = date('F');
+                            $_POST['exam_month'] = $month_name;
+                            $result3 = $exam->insert($_POST);
+                            // show(date('F'));
+
                             $content = new CourseContent();
                             $cid = uniqid();
                             $_POST['cid'] = $cid;
@@ -865,10 +887,11 @@ class Teacher extends Controller
                             // $result2 = $quiz_question->insert($result1);
                             // show($result2);
                         }
-                    }
-
-                    $this->view('teacher/Zquiz_add');
-                    exit();
+                }
+                $question = new ZQuestion();
+                $data['rows'] = $question->QuestionDropdown(['course_id'=>$id]);
+                $this->view('teacher/Zquiz_add', $data);
+                exit();
             }
             if($option == 'new') {
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -877,7 +900,7 @@ class Teacher extends Controller
                     $_POST['question_number']=$question_number;
 
                     $_POST['course_id'] = $id;
-
+                    // show($id);die;
                     // $question = new ZQuestion();
                     $result = $question-> insert($_POST);
 
