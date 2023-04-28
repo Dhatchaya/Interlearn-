@@ -274,9 +274,7 @@ class Receptionist extends Controller
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
                 $result = $course -> getTime($_POST['teacher_id'], $_POST['day']);
-                show($result);die;
                 echo json_encode($result);
-                die;
             }
             exit;
         }

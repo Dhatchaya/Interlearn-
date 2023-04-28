@@ -18,7 +18,7 @@
                 </a>
             </div><br>
             <div class="recp_view_rectangle">
-                <a href="#">
+                <a href="<?=ROOT?>/receptionist/">
                     <img src="<?=ROOT?>/assets/images/recp_std.png" alt="" class="recp_view_img">
                     <p>Staffs</p>
                 </a>

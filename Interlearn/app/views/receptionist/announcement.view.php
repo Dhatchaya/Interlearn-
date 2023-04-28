@@ -87,5 +87,5 @@
         </div>
     </div>
 </div>
-<script defer src="<?=ROOT?>/assets/js/announcement.js?v=<?php echo time(); ?>"></script>
+<script defer src="<?=ROOT?>/assets/js/recp_announcement.js?v=<?php echo time(); ?>"></script>
 <?php $this->view("includes/footer");?>

@@ -5,7 +5,6 @@ $('#days').on('change', function() {
     var day = $('#days').val();
     var timeFrom = $('#timefrom').val();
     var timeTo = $('#timeto').val();
-    console.log('hi');
     $.ajax({
         url: 'http://localhost/Interlearn/public/receptionist/course/checkAvailable',
         type: 'POST',
@@ -27,9 +26,10 @@ $('#days').on('change', function() {
             console.log(newDay);
             console.log(timeFrom.getMinutes() - 1);
 
-            console.log(timeFrom>=response[i].timefrom);
-            console.log(timeFrom<=response[i].timeto);
-            if(timeFrom<=response[i].timeto && timeFrom>=response[i].timefrom){
+            console.log(newDay<=response[i].timeto);
+            console.log(newDay>=response[i].timefrom);
+            
+            if(newDay<=response[i].timeto && newDay>=response[i].timefrom){
               console.log("in" + response[i].timefrom);
               document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
               break;
