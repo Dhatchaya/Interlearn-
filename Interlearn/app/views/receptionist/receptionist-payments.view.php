@@ -32,11 +32,11 @@
     <div class="validation-container">
       <div class="pending-list">
         <?php foreach ($bankPayments as $bankPayment) : ?>
-          <div class="pending-item payment-1" id="<?= $bankPayment->BankPaymentID ?>" >
-            <h4><?= $bankPayment->courseID ?></h4>
-            <h4><?= $bankPayment->NameOnSlip ?></h4>
-              <h4><?= $bankPayment->Amount ?></h4>
-              <h4><?= $bankPayment->PaymentDate ?></h4>
+          <div class="pending-item each-payment" id="<?= $bankPayment->BankPaymentID ?>" >
+            <h4><?= $bankPayment->CourseID  ?></h4>
+            <h4><?= $bankPayment->NameOnSlip  ?></h4>
+              <h4><?= $bankPayment->monthlyFee ?></h4>
+              <h4><?= $bankPayment->PaymentDate  ?></h4>
 
           </div>
         <?php endforeach; ?>

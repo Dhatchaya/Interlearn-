@@ -32,4 +32,17 @@ class BankPayment extends Model
 
         return $data;
     }
+
+    public function getEachBPdata($BP_ID)
+{
+    $query = "SELECT * FROM bank_payment where  BankPaymentID  = '$BP_ID'";
+    $data = $this->query($query);
+
+    if ($data == NULL) {
+        $data = array();
+    }
+
+    return $data;
+}
+
 }

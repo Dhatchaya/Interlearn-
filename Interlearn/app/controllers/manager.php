@@ -13,20 +13,44 @@ class Manager extends Controller{
         $data['title'] = "manager";
         $this->view('manager/home',$data);
     }
-    public function profile($id = null)
-    {    if(!Auth::is_manager()){
+
+    public function profile()
+    {
+        if (!Auth::is_manager()) {
             redirect('home');
-           
         }
-        //check whether ID exists if not 
-        //it'll get the Id of the logged in user
-        $id = $id?? Auth::getId();
-        $user = new User();
-        //for it to go to view we have to put it inside data
-        $data['row'] = $user -> first(['id' => $id]);
-        $data['title'] = "Profile";
-        $this->view('manager/profile',$data);
+        $currentUserID = $id ?? Auth::getUID();
+
+        $staffData = new Staff();
+        $staff_data = $staffData->ProfileDetails($currentUserID);
+
+
+
+        if (!$staff_data) {
+            // handle error here
+            redirect('home');
+        }
+
+        $ProfileData['userData'] = $staff_data;
+        // $data['userData2'] = $user_data2;
+
+        $this->view('staff/user', $ProfileData);
     }
+
+    // public function profile($id = null)
+    // {    if(!Auth::is_manager()){
+    //         redirect('home');
+
+    //     }
+    //     $id = $id?? Auth::getId();
+    //     $user = new User();
+
+    //     $data['row'] = $user -> first(['id' => $id]);
+    //     $data['title'] = "Profile";
+    //     $this->view('manager/profile',$data);
+    // }
+
+
 
     public function staff($id = null)
     {
