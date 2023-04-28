@@ -12,10 +12,18 @@ const span = document.getElementsByClassName("close")[0];
 function openModal(id) {
     const upload = document.getElementsByName("upload");
     const assignment = document.getElementsByName("assignment");
+    const quiz = document.getElementsByName("quiz");
+    const quizbank = document.getElementsByName("quizbank");
     const url = document.getElementsByName("url");
     console.log(upload);
     for(i=0; i<assignment.length; i++){
         assignment[i].href = assignment[i].href + "/" + id+"/view";
+    }
+    for(i=0; i<quiz.length; i++){
+        quiz[i].href = quiz[i].href + "/" + id+"/create";
+    }
+    for(i=0; i<quizbank.length; i++){
+        quizbank[i].href = quizbank[i].href + "/" + id+"/new";
     }
     for(i=0; i<upload.length; i++){
         upload[i].href = upload[i].href + "/" + id;
