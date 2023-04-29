@@ -31,11 +31,12 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/DELL/Desktop/Interlearn/Interlearn-",
+    "last_opened_file_path": "E:/UCSC/Yr 2/Project/Interlearn/Interlearn-/Interlearn",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -48,6 +49,7 @@
       <option name="presentableId" value="Default" />
       <updated>1676623099775</updated>
       <workItem from="1676623101616" duration="363000" />
+      <workItem from="1682776543291" duration="88000" />
     </task>
     <servers />
   </component>

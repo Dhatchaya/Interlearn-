@@ -7,7 +7,7 @@ var_dump($sums);
 <div class="teacher_view_container">
     <?php $this->view("includes/sidebar_teach");?>
     <div class="teacher_view_content">
-        <p class="teacher_view_greeting">Welcome <?= ucfirst(Auth::getusername())?>!</p><br><br>
+        <p class="teacher_view_greeting">Welcome <?= ucfirst(Auth::getusername())?>!</p><br><br><br>
             <!-- <div class="teacher_view_Rectangle">
                 <a href="<?=ROOT?>/teacher/course">
                     <img src="<?=ROOT?>/assets/images/2023.jpg" alt="" class="teacher_view_Img">

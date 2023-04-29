@@ -29,41 +29,18 @@ class Instructor extends Controller
     { 
         if(!Auth::is_instructor()){
             redirect('home');
-        }
-        $currentUserID = $id ?? Auth::getUID();
 
-        $staffData = new Staff();
-        $staff_data = $staffData->ProfileDetails($currentUserID);
-
-
-
-        if (!$staff_data) {
-            redirect('home');
         }
 
-        $ProfileData['userData'] = $staff_data;
+        $id = $id ?? Auth::getemp_id();
+        $user = new Staff();
+        $data['row'] = $user->first(['emp_id'=>$id],'emp_id');
 
-        $this->view('staff/user', $ProfileData);
+        $this->view('instructor/profile');
     }
-
-    // public function profile($id = null)
-    // {
-    //     if(!Auth::is_instructor()){
-    //         redirect('home');
-
-    //     }
-
-    //     $id = $id ?? Auth::getemp_id();
-    //     $user = new Staff();
-    //     $data['row'] = $user->first(['emp_id'=>$id],'emp_id');
-
-    //     $this->view('instructor/profile');
-    // }
-
-
-    public function course($action = null, $id = null, $week = null, $option = null, $extra = null, $aid = null)
+    public function course($action=null,$id = null,$week = null,$option = null,$extra=null,$aid=null)
     {
-        if (!Auth::is_instructor()) {
+        if(!Auth::is_instructor()){
             redirect('home');
            
         }
@@ -81,7 +58,8 @@ class Instructor extends Controller
         $data = [];
         $data['course_id'] = $id;
 
-        if ($action == "view") {
+        if($action == "view")
+        {
             $data = [];
             $data['action'] = $action;
             $data['course_id'] = $id;
@@ -90,7 +68,7 @@ class Instructor extends Controller
 
             // $data = [];
 
-            $data['rows'] = $course->select([], 'course_id');
+            $data['rows']= $course->select([],'course_id');
             //show($data['rows']);die;
             //$data['sums']= $subject -> teacherCourse([],$user_id);
             $data['courses'] = $subject -> teacherCourseDetails([],$id);

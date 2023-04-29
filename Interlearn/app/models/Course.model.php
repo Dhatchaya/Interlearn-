@@ -48,6 +48,10 @@ class Course extends Model
             {
                 $this -> error['language_medium'] = "Please select a language_medium";
             }
+            if(empty($data['day']))
+            {
+                $this -> error['day'] = "Please select a day";
+            }
             if(empty($data['teacher_id']))
             {
                 $this -> error['teacher_id'] = "Please select a teacher_id";
@@ -76,6 +80,42 @@ class Course extends Model
         }
         //show($this->error);die;
         return false; 
+    }
+
+    public function validateAdd($data){
+        $this->error = [];
+
+        if(empty($data['teacher_id']))
+        {
+            $this -> error['teacher_id'] = "Please select a teacher_id";
+        }
+        if(empty($data['day']))
+        {
+            $this -> error['day'] = "Please select a day";
+        }
+        if(empty($data['timefrom']))
+        {
+            $this -> error['timefrom'] = "Please select a start time";
+        }
+        if(empty($data['timeto']))
+        {
+            $this -> error['timeto'] = "Please select an ending time";
+        }
+        else if(strtotime($data['timeto']) < strtotime($data['timefrom'])){
+
+            $this -> error['time'] = "Ending must be greater than starting time";
+        }
+        if(empty($data['capacity']))
+        {
+            $this -> error['capacity'] = "Please select a capcity for the class";
+        }
+
+        if(empty($this->error)){
+            return true;
+
+        }
+        //show($this->error);die;
+        return false;
     }
 
     // public function UpdateNoOfWeeks($course_id,$no_of_weeks){
@@ -123,6 +163,17 @@ class Course extends Model
 
     public function getLastCourse(){
         $query = "SELECT * FROM course ORDER BY course_id DESC LIMIT 1"; 
+        $res = $this -> query($query);
+
+        if($res){
+            return $res;
+        }else{
+            return false;
+        }
+
+    }
+    public function getinstituteClass(){
+        $query = "SELECT subjectcoursestaff.*,course.* FROM subjectcoursestaff inner join course on subjectcoursestaff.course_id = course.course_id";
         $res = $this -> query($query);
 
         if($res){
