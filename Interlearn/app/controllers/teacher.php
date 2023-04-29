@@ -886,6 +886,8 @@ class Teacher extends Controller
                             // die;
                             // $result2 = $quiz_question->insert($result1);
                             // show($result2);
+
+                            header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
                         }
                 }
                 $question = new ZQuestion();
