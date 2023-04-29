@@ -12,7 +12,7 @@
     <div class="clm2">
         <h2 class="add_heading_init">Quizz Bank</h2>
         <!-- <a href="<?=ROOT?>/teacher/course/quiz/<?=$course->course_id?>" name="question"><button type="button" data-modal-target= "#modal" class="Add_enq" >+ Add New Question</button></a> -->
-        <a href="<?=ROOT?>/teacher/course/quiz/95/1/new"><button type="button" data-modal-target= "#modal" class="Add_enq" >+ Add New Question</button></a>
+        <a href="<?=ROOT?>/teacher/course/quiz/<?php echo($id)?>/1/new"><button type="button" data-modal-target= "#modal" class="Add_enq" >+ Add New Question</button></a>
 
         <!-- <a href="<?=ROOT?>/teacher/course/quiz/4/79/create"><button type="button" data-modal-target= "#modal" class="Add_enq" >+ Add a Quiz</button></a> -->
                 <!-- add form -->
