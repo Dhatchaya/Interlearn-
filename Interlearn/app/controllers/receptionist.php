@@ -283,6 +283,12 @@ class Receptionist extends Controller
                     $result2 = $course_instructor->deleteInstructors($course_id,$instructor_id);
                 }
 
+                // show($_GET['id']);die;
+
+                // $data['mediums'] = $subject -> getSubjectMedium($_GET['id']);
+                // // show($data['mediums'][0]->language_medium);die;
+                // $now_medium = $data['mediums'][0]->language_medium;
+
                 $this->view('receptionist/class',$data);
                 exit;
         }
