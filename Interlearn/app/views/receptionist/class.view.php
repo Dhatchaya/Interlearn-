@@ -46,10 +46,10 @@ $sub_id = $_GET['id'];
 
             <!-- selecting the selected medium -->
             <?php $currentMedium = []; ?>
-            <?php
-            foreach ($mediums as $medium)
+            <?php 
+            foreach ($mediums as $medium) 
             {
-                if ($medium->subject_id == $sub_id)
+                if ($medium->subject_id == $sub_id) 
                 {
                     $currentMedium = $medium->language_medium;
                 }
@@ -161,7 +161,7 @@ $sub_id = $_GET['id'];
                                                 <!-- <input type="hidden" name="teacher_id" id="teacher_id" value="<?= $teacher->teacher_ID ?>"> -->
                                                 <input type="hidden" value="<?= $teach_instructor->emp_id ?>" id="instructorID" name="instructorID">
                                                 <input type="hidden" value="<?= $teach_instructor->course_id ?>" id="courseID" name="courseID">
-                                                <button type="submit" name="submit-remove-instructor"><span class="instructor-remove">&times;</span></button> <br>
+                                                <button type="submit" name="submit-remove-instructor" class="remove_instructor"><span class="instructor-remove">&times;</span></button> <br>
                                             <?php endforeach; ?>
 
                                         <?php else : ?>
@@ -246,9 +246,9 @@ $sub_id = $_GET['id'];
                                 <?php endforeach; ?>
                             <?php endif; ?>
                         </select>
-                        <?php if (!empty($errors)) : ?>
+                        <!-- <?php if (!empty($errors)) : ?>
                             <p class="warning"><?= $errors['teacher_id']; ?></p>
-                        <?php endif; ?>
+                        <?php endif; ?> -->
                     </div>
                     <br><br>
                     <div class="recp_det_box">
@@ -263,22 +263,22 @@ $sub_id = $_GET['id'];
                             <option value="Saturday">Saturday</option>
                             <option value="Sunday">Sunday</option>
                         </select>
-                        <?php if (!empty($errors)) : ?>
+                        <!-- <?php if (!empty($errors)) : ?>
                             <p class="warning"><?= $errors['day']; ?></p>
-                        <?php endif; ?>
+                        <?php endif; ?> -->
                     </div><br><br>
                     <div class="recp_det_box">
                         <h4>Time:</h4>
                         <div class="recp_det_dura">
                             <input type="time" name="timefrom" value="00:00" id="timefrom" class="recp_det_time">
-                            <?php if (!empty($errors)) : ?>
+                            <!-- <?php if (!empty($errors)) : ?>
                                 <p class="warning"><?= $errors['timefrom']; ?></p>
-                            <?php endif; ?>
+                            <?php endif; ?> -->
                             <p> to </p>
                             <input type="time" name="timeto" value="00:00" id="timeto" class="recp_det_time">
-                            <?php if (!empty($errors)) : ?>
+                            <!-- <?php if (!empty($errors)) : ?>
                                 <p class="warning"><?= $errors['timeto']; ?></p>
-                            <?php endif; ?>
+                            <?php endif; ?> -->
                         </div>
                     </div><br>
                     <div class="recp_det_box">

@@ -1,5 +1,28 @@
 console.log("ct");
 
+$(document).on("click",".remove_instructor", function(){
+  const instructorid = $(this).data("instructorID");
+  const confirmation = confirm("Are you sure you want to delete this file?");
+console.log(instructorid);
+  if(confirmation){
+    const deleteBtn = $(this); 
+    deleteBtn.closest('.file_div').remove();
+    // console.log(`http://localhost/Interlearn/public/teacher/course/assignment/${course}/${week}/edit/d?id=${id}`);
+    $.ajax({
+      method:"POST",
+      url : `http://localhost/Interlearn/public/teacher/course/assignment/${course}/${week}/edit/d?id=${id}`,
+      data:{file_id : fileid},
+      success:function(response){
+        console.log(response);
+       
+      },
+      error:function(xhr,status,error){
+        console.log("Error: " + error);
+      }
+    });
+  }
+});
+
 $('#daysEdit').on('change', function() {
     var teacher_id = $('#teacher_id').val();
     var day = $('#daysEdit').val();

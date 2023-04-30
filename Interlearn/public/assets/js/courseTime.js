@@ -41,11 +41,27 @@ $('#dayAdd').on('change', function() {
             console.log(newDay<=response[i].timeto);
             console.log(newDay>=response[i].timefrom);
 
-            if(newDay<=response[i].timeto && newDay>=response[i].timefrom){
-              console.log("in" + response[i].timefrom);
+            if(timeFrom=response[i].timefrom)
+            {
+              console.log("equal");
               document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
               break;
+            }else if(timeFrom>response[i].timefrom){
+              if(timeFrom<=response[i].timeto){
+                console.log("in" + response[i].timefrom);
+                document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
+                break;
+              }
             }
+              
+              
+            
+
+            // if(timeFrom<=response[i].timeto && timeFrom>=response[i].timefrom){
+            //   console.log("in" + response[i].timefrom);
+            //   document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
+            //   break;
+            // }
           }
         });
 
