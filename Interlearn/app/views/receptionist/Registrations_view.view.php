@@ -1,8 +1,12 @@
 <?php $this->view("includes/header");?>
-<?php $this->view("includes/nav");?>
 
-    <div class="center-body" >
+
+<div class="main-body-div">
     <?php $this->view("includes/sidebar_recep");?>
+    <div class="top-to-bottom-content">
+
+        <?php $this->view("includes/nav");?>
+
     <div class="clm2 marginlow">
 
       
@@ -64,7 +68,7 @@
         
     </div>  
     </div>  
-    
+    </div>
     <script defer src="<?=ROOT?>/assets/js/Registrations.js?v=<?php echo time(); ?>">
 
 </script>

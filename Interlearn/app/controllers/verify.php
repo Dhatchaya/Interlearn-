@@ -9,10 +9,10 @@ class Verify extends Controller
         $data['errors'] = [];
         $this->view('student/otp',$data);
         $user = new User();
-        if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_GET['code'])){
+        if(isset($_GET['otp']) && isset($_GET['code'])){
             $row = $user -> first([
                 'User_activation_code' => $_GET['code'],
-                'User_otp'=>$_POST['otp']
+                'User_otp'=>$_GET['otp']
             ],'uid');
 
             if($row){
@@ -24,21 +24,35 @@ class Verify extends Controller
                     ],
                     [
                     "User_email_status" => $User_email_status,
-                    "User_activation_code" => $User_activation_code
+                    // "User_activation_code" => $User_activation_code
                    
                     ]
                     );
                     if($status){
-                        header("Location:../public/home");
+                        header("Location:../public/verify/success/staff");
                     }
                 }
             
             else{
-                echo "unknown error has occured";die;
+                echo "unknown error has occured";
             }
           
         }
         
+    }
+    public function success($action=null)
+    {
+        $data=[];
+
+        if($action=="staff"){
+            $data['content']="Sucessfully verified!";
+            $data['verify'] ="";
+        }
+        if($action=="register"){
+            $data['content']="Sucessfully Registered!";
+            $data['verify']="Please check your email to complete the verification";
+        }
+        $this->view('otp',$data);
     }
 
 }

@@ -1,57 +1,84 @@
 <?php $this->view("includes/header");?>
-<?php $this->view("includes/nav");?>
-
-<div class="recp_view_container">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<div class="main-body-div">
     <?php $this->view("includes/sidebar_recep");?>
-    <div class="recp_view_content">
-        <!-- <h1 class="recp_view_greeting">Good Morning Monica!</h1><br> -->
-            <div class="recp_view_rectangle">
-                <a href="#">
-                    <div class="recp_home_rect">
-                    <img src="<?=ROOT?>/assets/images/students.jpg" alt="" class="recp_view_img_new">
-                    </div>
-                    <div>
 
-                        <p class="recp_text">Students</p>
-                    </div>
+
+
+
+<div class="recp_view_container top-to-bottom-content">
+    <?php $this->view("includes/nav");?>
+    <div class="all-middle-content">
+    <div class="maindash0">
+        <!-- <h1 class="recp_view_greeting">Good Morning Monica!</h1><br> -->
+
+        <div class="recep_view_greeting">
+                    <div class="teach_view_greet">Welcome Back,<br> <?= ucfirst(Auth::getusername())?>!</div>
+                    <img src="<?=ROOT?>/assets/images/homepage/staffs.png" alt="" class="homepageHand">
+                </div>
+        <div class="maindash2">
+            <div class="statNow" id="statNow">
+            <div class="tablet1">
+                <p id="thisYear"></p> This Year Enrollments
+            </div>
+            <div class="tablet2">
+                <p id="thisMonth"></p> This Month Enrollments
+            </div>
+
+            </div>
+            <div class="enrollChart" id="enrollchart">
+                    Enrollments per Year
+            <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+            </div>
+        </div>
+        <div class="maindash1">
+
+        <div class="maincard">
+            <div class="recp_view_rectangle">
+                <a href="http://localhost/Interlearn/public/staffs/profileView">
+                    <img src="<?=ROOT?>/assets/images/homepage/student.png" alt="" class="recp_view_img">
+                    <p>Students</p>
                 </a>
             </div>
             <div class="recp_view_rectangle">
                 <a href="<?=ROOT?>/receptionist/course">
-                    <img src="<?=ROOT?>/assets/images/courses.png" alt="" class="recp_view_img_new">
+                    <img src="<?=ROOT?>/assets/images/homepage/course.png" alt="" class="recp_view_img">
                     <p>Courses</p>
                 </a>
-            </div><br>
+            </div>
             <div class="recp_view_rectangle">
-                <a href="#">
-                    <img src="<?=ROOT?>/assets/images/staff.avif" alt="" class="recp_view_img_new">
+            <a href="http://localhost/Interlearn/public/staffs/profilestaffView">
+                    <img src="<?=ROOT?>/assets/images/homepage/staf.png" alt="" class="recp_view_img">
                     <p>Staffs</p>
                 </a>
             </div>
             <!-- <div class="recp_view_rectangle">
                 <a href="#">
-                    <img src="<?=ROOT?>/assets/images/tt.png" alt="" class="recp_view_img_new">
+                    <img src="<?=ROOT?>/assets/images/tt.png" alt="" class="recp_view_img">
                     <p>Time Table</p>
                 </a>
             </div> -->
             <div class="recp_view_rectangle">
                 <a href="<?=ROOT?>/receptionist/announcement">
-                    <img src="<?=ROOT?>/assets/images/announcement.jpeg" alt="" class="recp_view_img_new">
+                    <img src="<?=ROOT?>/assets/images/homepage/announcement.png" alt="" class="recp_view_img">
                     <p>Announcement</p>
                 </a>
             </div>
             <div class="recp_view_rectangle">
                 <a href="<?=ROOT?>/receptionist/enrollment">
-                    <img src="<?=ROOT?>/assets/images/std_enrollment.png" alt="" class="recp_view_img_new">
+                    <img src="<?=ROOT?>/assets/images/homepage/enroll.png" alt="" class="recp_view_img">
                     <p>Student Enrollments</p>
                 </a>
             </div>
             <div class="recp_view_rectangle">
                 <a href="<?=ROOT?>/receptionist/registration">
-                    <img src="<?=ROOT?>/assets/images/std_registration.jpg" alt="" class="recp_view_img_new">
+                    <img src="<?=ROOT?>/assets/images/homepage/register1.png" alt="" class="recp_view_img">
                     <p>Registration</p>
                 </a>
             </div>
+        </div>
+        </div>
+
         </div>
         <div class="student_calendar">
         <?php $this->view("includes/calendar");?>
@@ -67,10 +94,11 @@
 
         </div>
     </div>
+</div>
     </div>
 </div> 
-    <div  id="overlay"></div>
+    <!-- <div  id="overlay"></div> -->
     <script defer src="<?=ROOT?>/assets/js/calendar_recep.js?v=<?php echo time(); ?>"></script>
-
+    <script defer src="<?=ROOT?>/assets/js/enrollmentchart.js?v=<?php echo time(); ?>"></script>
     <!-- <script defer src="./enquiry.js"></script> -->
     <?php $this->view("includes/footer");?>

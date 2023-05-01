@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  /* font-family: 'Poppins', sans-serif; */
 }
 /* body{
   display: flex;
@@ -107,8 +107,15 @@
   background: #f2f2f2;
 }
 .days li.activeclass{
-  color: #fff;
+  color: black;
 }
 .days li.activeclass::before{
-  background: #e9c2f0;
+  background: #edeaea;
+
+}
+
+.assignment_today {
+  overflow-y: scroll;
+  max-height: 25rem;
+  margin-top: 1rem;
 }

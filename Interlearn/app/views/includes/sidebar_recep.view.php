@@ -1,17 +1,7 @@
 <?php $this -> view('includes/header'); ?>
 <div class="side-bar">
                 <div class="top">    
-                    <div class="aboutme">
-                        <img src="<?=ROOT?>/uploads/images/<?= Auth::getdisplay_picture();?>" alt="picture"/> 
-                        <span class="user-name">
-                        
-                        <?= ucfirst(Auth::getusername())?>
-                        </span>
-                        <div>
-                        
-                        </div>
-                    </div>
-                    <hr>
+                <img src="http://localhost/Interlearn/public/assets/images/logo_bg_rm.png" alt="logo" class="sidebar-logo">
                 </div>
                 <div class="middle">
                     
@@ -24,7 +14,7 @@
                     
                    
                         <div class="dashboard">
-                            <a href="<?=ROOT?>/receptionist/course">
+                            <a href="<?=ROOT?>/receptionist">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/dashboard.png" alt="Dashboard"></br>
                             <span>Dashboard</span>
                             </a>

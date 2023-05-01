@@ -1,8 +1,11 @@
 <?php $this->view("includes/header");?>
-<?php $this->view("includes/nav");?>
 
-<div class="teacher_assignment_container">
+<div class="main-body-div">
     <?php $this->view("includes/sidebar_teach");?>
+
+
+<div class="teacher_assignment_container  top-to-bottom-content">
+    <?php $this -> view('includes/nav'); ?>
     <div class="subm_details">
         <h1> <span> <?=$assignment ?> </span> </h1>
         <div class = "assign_body"> 
@@ -55,6 +58,7 @@
                         <?php endif;?>
                 </table>
             </form>
+        </div>
         </div>
     </div>
 </div>

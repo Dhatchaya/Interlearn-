@@ -1,8 +1,12 @@
 <?php $this->view("includes/header");?>
+
+
+<div class="main-body-div">
+<?php $this->view("includes/sidebar");?>
+
+<div class="std_subm_container top-to-bottom-content">
 <?php $this->view("includes/nav");?>
 
-<div class="std_subm_container">
-<?php $this->view("includes/sidebar");?>
         <div class="std_subm_content">
             <h2>Mathematics</h2><br>
             <h3>Homework 1 - Submission</h3>
@@ -51,7 +55,8 @@
       </div>
     </div>
 </div>
+</div>
 <!-- <script defer src="<?=ROOT?>/assets/js/submissionEdit.js?v=<?php echo time(); ?>"></script> -->
 <script defer src="<?=ROOT?>/assets/js/submission.js?v=<?php echo time(); ?>"></script>
 
-    <?php $this->view("includes/footer");?>
+    <!-- <?php $this->view("includes/footer");?> -->

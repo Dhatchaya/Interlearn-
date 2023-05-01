@@ -15,7 +15,8 @@ class CourseContent extends Model
         'upload_name',
         'view_URL',
         'edit_URL',
-        'delete_URL'
+        'delete_URL',
+        'studentView_URL',
 
     ];
 

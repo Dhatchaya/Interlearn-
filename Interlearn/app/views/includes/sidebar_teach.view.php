@@ -1,18 +1,9 @@
 <?php $this -> view('includes/header'); ?>
 <div class="side-bar">
                 <div class="top">    
-                    <div class="aboutme">
-                        <img src="<?=ROOT?>/uploads/images/<?= Auth::getdisplay_picture();?>" alt="picture"/> 
-                        <span class="user-name">
-                        
-                        <?= ucfirst(Auth::getusername())?>
-                        </span>
-                        <div>
-                        
-                        </div>
-                    </div>
-                    <hr>
+                <img src="http://localhost/Interlearn/public/assets/images/logo_bg_rm.png" alt="logo" class="sidebar-logo">
                 </div>
+
                 <div class="middle">
                     
                         <div class="profile">
@@ -23,29 +14,30 @@
                         </div>
                     
                    
-                        <!-- <div class="dashboard">
+                         <div class="dashboard">
                             <a href="<?=ROOT?>/teacher/home">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/dashboard.png" alt="Dashboard"></br>
                             <span>Dashboard</span>
                             </a>
                         </div>
-                    -->
+
                     
                     
                     
                     <div class="enquiry">
-                    <a href="<?=ROOT?>/teacher/enquiry">       
+                    <a href="<?=ROOT?>/academic/enquiry">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/enquiry.png" alt="enquiry"></br>
                             <span>Enquiry</span>
                        
                     </a>
                     </div>
-                    <div class="Courses">
-                            <a href="<?=ROOT?>/teacher/home">
-                            <img src="<?=ROOT?>/assets/images/sidebar_icons/book.png" alt="Courses"></br>
-                            <span>Courses</span>
+                    <div class="Progress">
+                            <a href="#">
+
+                            <img src="<?=ROOT?>/assets/images/sidebar_icons/progress.svg" alt="progress"></br>
+                            <span>Progress</span>
                             </a>
-                        </div>
+                    </div>
                     
                  
                 

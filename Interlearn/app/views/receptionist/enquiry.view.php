@@ -1,8 +1,12 @@
 <?php $this->view("includes/header");?>
-<?php $this->view("includes/nav");?>
 
-    <div class="center-body" >
-    <?php $this->view("includes/sidebar_recep");?>
+<div class="main-body-div">
+
+            <?php $this->view("includes/sidebar_recep");?>
+
+
+    <div class="top-to-bottom-content">
+    <?php $this->view("includes/nav");?>
         <div class="clm2">
         <h2 class="add_heading_init">Enquiry</h2>
           
@@ -29,12 +33,13 @@
                             <th>Category</th>
                             <th>Status</th>
                             <th>Enquiry Date</th>
-                            <th>User</th>
+                            <th>UserName</th>
+                            <th>Role</th>
                             <th class="enq_action_clm2">Actions</th>
                         </tr>
    
                         <?php if(!empty($rows)):?>
-                           
+                            <!-- <?php show($rows);?> -->
                         <?php foreach($rows as $row):?>
                         <tr>
                             <td><?=esc($row->eid)?></td>
@@ -51,6 +56,8 @@
                         </td>
                             
                             <td><?=esc($row->date)?></td>
+                            <td><?=esc($row->username)?></td>
+
                             <td><?=esc($row->role)?></td>
                             <td>
                         

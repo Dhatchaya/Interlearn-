@@ -4,13 +4,14 @@
  */
 class Receptionist extends Controller
 {
-    public function index()
+    public function index($action = null)
     { 
         if(!Auth::is_receptionist()){
             redirect('home');
            
         }
-        
+
+
         $this->view('receptionist/home');
     }
 
@@ -282,12 +283,6 @@ class Receptionist extends Controller
                     // show($input1);die;
                     $result2 = $course_instructor->deleteInstructors($course_id,$instructor_id);
                 }
-
-                // show($_GET['id']);die;
-
-                // $data['mediums'] = $subject -> getSubjectMedium($_GET['id']);
-                // // show($data['mediums'][0]->language_medium);die;
-                // $now_medium = $data['mediums'][0]->language_medium;
 
                 $this->view('receptionist/class',$data);
                 exit;
@@ -748,7 +743,8 @@ class Receptionist extends Controller
            
         }
 
-        $data['rows']  = $enquiry->select(null, $orderby);
+        $data['rows']  = $enquiry->selectUserCourse(null, $orderby);
+
             
         $this->view('receptionist/enquiry',$data);
     }
@@ -967,6 +963,22 @@ class Receptionist extends Controller
             
         }
     }
-    
+
+    public function calendar()
+    {
+        if (!Auth::is_receptionist()) {
+            redirect('home');
+        }
+        $course = new Course();
+        $userid = Auth::getUID();;
+        $result= $course->getinstituteClass();
+
+
+        header('Content-Type: application/json');
+        echo json_encode($result);
+        exit;
+       // $this->view('includes/calendar');
+    }
+
 }
 

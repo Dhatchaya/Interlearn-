@@ -1,8 +1,14 @@
 <?php $this->view("includes/header");?>
-<?php $this->view("includes/nav");?>
 
-    <div class="center-body">
-    <?php $this->view("includes/sidebar_man");?>
+
+
+<div class="main-body-div">
+
+            <?php $this->view("includes/sidebar_man");?>
+
+
+    <div class="top-to-bottom-content">
+    <?php $this->view("includes/nav");?>
         <div class="clm2">
         <h2 class="add_heading_init">Enquiry</h2>
       
@@ -114,6 +120,7 @@
                     </table>
         </div>
     </div>  
+    </div>
     <div  id="overlay"></div>
     <script defer src="<?=ROOT?>/assets/js/enquiry.js?v=<?php echo time(); ?>"></script>
 <?php $this->view("includes/footer");?>
