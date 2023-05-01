@@ -7,14 +7,14 @@ $('#dayAdd').on('change', function() {
     var timeTo = $('#timeto').val();
     console.log('hi');
     $.ajax({
-        url: 'http://localhost/Interlearn/public/receptionist/course/checkAvailable',
+        url: 'http://localhost/Interlearn/public/receptionist/course/checkAvailable1',
         type: 'POST',
         data: {'teacher_id':teacher_id, 'day': day, 'timefrom': timeFrom, 'timeto': timeTo},
       success: function(response) {
         console.log(response);
          response = JSON.parse(response);
         console.log(response);
-        var error = $('#addCourseerror');
+        var error = $('#addCourseerror1');
         $('#timefrom').on('change', function(){
           // console.log("here");
           var timeFrom = $('#timefrom').val();
@@ -44,12 +44,12 @@ $('#dayAdd').on('change', function() {
             if(timeFrom=response[i].timefrom)
             {
               console.log("equal");
-              document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
+              document.getElementById('addCourseerror1').innerHTML = "Teacher already has a class";
               break;
             }else if(timeFrom>response[i].timefrom){
               if(timeFrom<=response[i].timeto){
                 console.log("in" + response[i].timefrom);
-                document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
+                document.getElementById('addCourseerror1').innerHTML = "Teacher already has a class";
                 break;
               }
             }
@@ -75,11 +75,11 @@ $('#dayAdd').on('change', function() {
             console.log(timeTo);
             console.log(timeTo>=response[i].timefrom);
             if(timeFrom > timeTo){
-              document.getElementById('addCourseerror').innerHTML = "Ending time should be greater than start time";
+              document.getElementById('addCourseerror1').innerHTML = "Ending time should be greater than start time";
               break;
             }
             if(timeTo<=response[i].timeto && timeTo>=response[i].timefrom){
-              document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
+              document.getElementById('addCourseerror1').innerHTML = "Teacher already has a class";
               break;
             }
           }

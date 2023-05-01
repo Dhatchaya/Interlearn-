@@ -293,7 +293,52 @@ class Receptionist extends Controller
                 exit;
         }
 
+        if($action == 'getCourseDetails'){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                // show($_POST['courseID']);die;
+
+                $result = $course -> getCourseDetails($_POST['courseID']);
+                echo json_encode($result);
+            }
+            exit;
+        }
+
+        if($action == 'editCourse'){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+                $course_id = $_POST['course_id'];
+                $day = $_POST['day'];
+                $timefrom = $_POST['timefrom'];
+                $timeto = $_POST['timeto'];
+                // show($course_id);
+                // show($day);
+                // show($timefrom);
+                // show($timeto);die;
+                $result = $course -> updateCourse($course_id, $day, $timefrom, $timeto);
+                echo json_encode($result);
+            }
+            exit;
+        }
+
+        if($action == 'removeInstructor'){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+                $result = $course_instructor -> deleteInstructors($_POST['courseID'], $_POST['instructorID']);
+                echo json_encode($result);
+            }
+            exit;
+        }
+
         if($action == 'checkAvailable'){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+                $result = $course -> getTime($_POST['teacher_id'], $_POST['day']);
+                echo json_encode($result);
+            }
+            exit;
+        }
+
+        if($action == 'checkAvailable1'){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
                 $result = $course -> getTime($_POST['teacher_id'], $_POST['day']);
@@ -412,27 +457,34 @@ class Receptionist extends Controller
                     $_POST['role'] = "Receptionist";
 
                     if(isset($_FILES['attachment']['name']) AND !empty($_FILES['attachment']['name'])){
+                        // show($_POST);
+                        // show($_FILES);die;
 
                         $_POST['aid'] = $announcement_id;
-                        for($i=0; $i<count($_FILES['attachment']['name']); $i++) {
+                        // for($i=0; $i<count($_FILES['attachment']['name']); $i++) {
                             $file = $_FILES['attachment'];
+                            // show($file);
 
-                            $fileName = $_FILES['attachment']['name'][$i];
-                            $fileTmpName = $_FILES['attachment']['tmp_name'][$i];
-                            $fileSize = $_FILES['attachment']['size'][$i];
-                            $fileError = $_FILES['attachment']['error'][$i];
-                            $fileType = $_FILES['attachment']['type'][$i];
+                            $fileName = $_FILES['attachment']['name'][0];
+                            $fileTmpName = $_FILES['attachment']['tmp_name'][0];
+                            $fileSize = $_FILES['attachment']['size'][0];
+                            $fileError = $_FILES['attachment']['error'][0];
+                            $fileType = $_FILES['attachment']['type'][0];
+                            // show($fileName[0]);die;
                             $fileExt = explode('.',$fileName);
                             $fileActualExt = strtolower(end($fileExt));
+                            // show($fileActualExt);die;
                             $allowed1 = array('jpg','jpeg','png', 'pdf','zip','txt','sql','docx','xml','doc','ppt', 'mp3','mp4','php','html','css','js');
                             if(in_array($fileActualExt, $allowed1))
                             {
-                                // print_r($_FILES['file']);exit;
+                                // print_r($file);exit;
                                 if($fileError === 0)
                                 {
                                     if($fileSize < 1000000000)
                                     {
+                                        // echo "helloo";die;
                                         $fileNameNew = uniqid('',true).".".$fileActualExt;
+                                        // show($fileNameNew);die;
                                         $fileDestination = "/xampp/htdocs/Interlearn/uploads/receptionist/announcements/".$announcement_id;
                                         if (!is_dir($fileDestination)){
                                             // print_r("test1");
@@ -458,7 +510,7 @@ class Receptionist extends Controller
                             }else{
                                 echo "You cannot upload this file!";
                             }
-                        }
+                        // }
 
                         // $viewURL="http://localhost/Interlearn/uploads/receptionist/announcements/".$announcement_id."/".$fileNameNew;
                         $viewURL="http://localhost/Interlearn/uploads/receptionist/announcements/".$announcement_id."/".$fileNameNew;
@@ -466,25 +518,30 @@ class Receptionist extends Controller
                         $_POST['attachment'] = $viewURL;
                         $result1 = $announcement->insert($_POST);
 
-                        if(empty($data['errors'])){
-                            // $result = $assignment->insert($_POST);
+                        echo "Announcement successfully published!";
+                        //show($_POST);die;
+                        header("Location:http://localhost/Interlearn/public/receptionist/announcement");
 
-                             foreach($filenames as $file){
+                        // if(empty($data['errors'])){
+                        //     // $result = $assignment->insert($_POST);
 
-                                     $_POST['aid'] =$announcement_id;
-                                     $_POST['file_name'] = $file['file_name'] ;
-                                     $_POST['file_id'] = $file['file_id'];
+                        //     //  foreach($filenames as $file){
 
-                                     $result2 = $announcement_file->insert($_POST);
+                        //     //         $_POST['aid'] =$announcement_id;
+                        //     //         $_POST['file_name'] = $file['file_name'] ;
+                        //     //         $_POST['file_id'] = $file['file_id'];
+                        //     //         show($_POST);die;
+                                    
+                        //     //         $result2 = $announcement_file->insert($_POST);
 
 
-                            }
-                            if($result2){
-                                echo "Announcement successfully published!";
-                                //show($_POST);die;
-                                header("Location:http://localhost/Interlearn/public/receptionist/announcement");
-                            }
-                        }
+                        //     // }
+                        //     if($result2){
+                        //         echo "Announcement successfully published!";
+                        //         //show($_POST);die;
+                        //         header("Location:http://localhost/Interlearn/public/receptionist/announcement");
+                        //     }
+                        // }
 
 
                     // $result = $announcement->insert($_POST);
@@ -544,13 +601,25 @@ class Receptionist extends Controller
 
         if($action == 'editAnnouncement'){
             // echo $_POST['aid'];die;
+            
             $result = $announcement -> editAnnouncements($_GET['aid']);
             echo json_encode($result);
             die;
         }
 
-        if(isset($_POST['submit-edit-announcement'])){
+        if($action == 'editAnnouncementFile'){
 
+            $file_pointer = "gfg.txt";
+
+            if (!unlink($file_pointer)) {
+                echo ("$file_pointer cannot be deleted due to an error");
+            }
+            else {
+                $result = $announcement -> deleteAnnFile($_GET['aid']);
+                echo json_encode($result);
+            }
+            
+            die;
         }
 
 

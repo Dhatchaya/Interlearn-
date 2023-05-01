@@ -29,7 +29,7 @@
                     <p><?=$row->content?></p><br>
 
                     <div class="recp_ann_attachment">
-                        <a href="">
+                        <a href="<?=esc($row->attachment)?>">
                         <?=esc($row->file_name)?>
                         </a>
                     </div><br>
