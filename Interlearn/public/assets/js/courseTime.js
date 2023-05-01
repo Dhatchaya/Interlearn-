@@ -5,7 +5,6 @@ $('#dayAdd').on('change', function() {
     var day = $('#dayAdd').val();
     var timeFrom = $('#timefrom').val();
     var timeTo = $('#timeto').val();
-    console.log('hi');
     $.ajax({
         url: 'http://localhost/Interlearn/public/receptionist/course/checkAvailable',
         type: 'POST',
@@ -27,20 +26,20 @@ $('#dayAdd').on('change', function() {
             getMinute = parseInt(getMinute) + 1;
             let getHours = timeFrom.split(':')[0];
             getHours = parseInt(getHours);
-
+            
 
             if(getMinute < 0 ){
               getMinute = 59;
               getHours = getHours - 1;
             }
-
+            
             let newDay = getHours + ':' + getMinute;
             console.log(newDay);
             console.log(timeFrom);
 
             console.log(newDay<=response[i].timeto);
             console.log(newDay>=response[i].timefrom);
-
+            
             if(newDay<=response[i].timeto && newDay>=response[i].timefrom){
               console.log("in" + response[i].timefrom);
               document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
@@ -69,16 +68,6 @@ $('#dayAdd').on('change', function() {
           }
         });
 
-
-          // Filter out teachers who already have a class scheduled in the selected time range
-          // var filteredTeachers = teachers.filter(function(teacher) {
-          //     return !teacherHasClassOnTime(teacher, timeFrom, timeTo);
-          // });
-          // Update the teacher dropdown
-          // $('#teacher_id').empty();
-          // $.each(filteredTeachers, function(index, teacher) {
-          //   $('#teacher_id').append('<option value="' + teacher.id + '">' + teacher.firstname + '</option>');
-          // });
           }
     });
 });

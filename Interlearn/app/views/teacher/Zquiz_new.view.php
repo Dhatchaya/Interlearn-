@@ -18,7 +18,7 @@
             <input class="home_cnt_inp" type=text name="question_title" value="" placeholder="Eg : When UCSC is established ?">
             <span id="question-error" style="color:red"></span>
 
-            <label for="category">Category : </label><br>
+            <label for="category">Quiz Bank No : </label><br>
             <input class="home_cnt_inp" type=number name="quiz_bank" value="" placeholder="Eg : 1">
             <!-- <select name="category" id="marks">
                 <option value="low"> Low </option>

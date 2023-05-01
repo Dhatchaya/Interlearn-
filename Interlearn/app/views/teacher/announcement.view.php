@@ -77,8 +77,8 @@
                     <p><?=$row->content?></p><br>
                     
                     <div class="recp_ann_attachment">
-                        <a href="">
-                        <?=esc($row->attachment)?>
+                        <a href="<?=esc($row->attachment)?>">
+                        <?=esc($row->file_name)?>
                         </a>
                     </div><br>
                     <p class="recp_ann_bot"><?=esc($row->fullname)?></p>

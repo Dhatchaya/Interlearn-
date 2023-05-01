@@ -49,8 +49,7 @@ class ZQuestion extends Model
         return false;
     }
 
-
-    public function ChoiceInnerjoinQuestion($data= null){
+    public function ChoicejoinQuestion($data= null){
 
         $query = "SELECT c.choice1, c.choice2, c.choice3, c.choice4, c.choice1_mark, c.choice2_mark, c.choice3_mark,c.choice4_mark,q.question_title, q.question_mark, q.quiz_bank, q.question_number
         FROM mychoice c
@@ -70,6 +69,35 @@ class ZQuestion extends Model
         // INNER JOIN myquestion ON myquestion.question_number = myquiz_myquestion.question_number
         // INNER JOIN mychoice ON myquestion.question_number = mychoice.question_number
         // where myquiz.quiz_id = '643e15c9958df' and myquiz.course_id = 8";
+
+        $res = $this -> query($query,$data);
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;
+           
+    }
+    public function ChoiceInnerjoinQuestion($data= null){
+
+        // $query = "SELECT c.choice1, c.choice2, c.choice3, c.choice4, c.choice1_mark, c.choice2_mark, c.choice3_mark,c.choice4_mark,q.question_title, q.question_mark, q.quiz_bank, q.question_number
+        // FROM mychoice c
+        // INNER JOIN myquestion q ON c.question_number = q.question_number";
+
+
+        // $query = "SELECT q.question_number, q.question_title, c.choice1, c.choice1_mark, c.choice2, c.choice2_mark,c.choice3, c.choice3_mark,c.choice4, c.choice4_mark,quiz.quiz_name, quiz.quiz_description, quiz.total_points, quiz.enable_time, quiz.disable_time, quiz.duration, quiz.format_time 
+        // FROM myquiz_myquestion qq 
+        // JOIN myquiz quiz ON qq.quiz_id = quiz.quiz_id 
+        // JOIN myquestion q ON qq.question_number = q.question_number 
+        // JOIN mychoice c ON q.question_number = c.question_number 
+        // WHERE qq.quiz_id = '640584214e2ff' AND quiz.quiz_id = '640584214e2ff'";
+
+
+        $query = "SELECT myquiz.* , myquestion.question_title, myquestion.question_mark, mychoice.* FROM myquiz 
+        INNER JOIN myquiz_myquestion ON myquiz.quiz_id = myquiz_myquestion.quiz_id 
+        INNER JOIN myquestion ON myquestion.question_number = myquiz_myquestion.question_number
+        INNER JOIN mychoice ON myquestion.question_number = mychoice.question_number
+        where myquiz.quiz_id = '643e15c9958df' and myquiz.course_id = 8";
 
         $res = $this -> query($query,$data);
 

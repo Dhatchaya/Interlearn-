@@ -29,17 +29,17 @@ class Instructor extends Controller
     { 
         if(!Auth::is_instructor()){
             redirect('home');
-
+           
         }
 
         $id = $id ?? Auth::getemp_id();
         $user = new Staff();
         $data['row'] = $user->first(['emp_id'=>$id],'emp_id');
-
+        
         $this->view('instructor/profile');
     }
     public function course($action=null,$id = null,$week = null,$option = null,$extra=null,$aid=null)
-    {
+    { 
         if(!Auth::is_instructor()){
             redirect('home');
            

@@ -162,19 +162,5 @@ class Subject extends Model
         return false;
     }
 
-    public function getSubjectMedium($subject_id){
-        $query = "SELECT language_medium FROM ".$this->table;
-        $query .= " WHERE subject_id =:subjectID";
-        $data['subjectID'] = $subject_id;
-
-        $res = $this -> query($query,$data);
-
-        if($res){
-            return $res;
-        }else{
-            return false;
-        }
-    }
-
 
 }

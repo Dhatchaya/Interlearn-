@@ -204,13 +204,13 @@ $('#day').on('change', function() {
             getMinute = parseInt(getMinute) + 1;
             let getHours = timeFrom.split(':')[0];
             getHours = parseInt(getHours);
-
+            
 
             if(getMinute < 0 ){
               getMinute = 59;
               getHours = getHours - 1;
             }
-
+            
             let newDay = getHours + ':' + getMinute;
             console.log(newDay);
             console.log(timeFrom);

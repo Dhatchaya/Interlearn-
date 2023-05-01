@@ -47,5 +47,23 @@ class ZQuizQuestion extends Model
         return false;
     }
 
+    public function totalQuestion($data= null){
+        
+        $keys = array_keys($data);
+        $query = "SELECT COUNT(*) AS num_questions FROM myquiz_myquestion WHERE quiz_id = '643e15c9958df'";
+
+
+        foreach($keys as $key){
+            $query .= $key. " =:".$key." && ";
+        }
+        $query = trim($query,"&& ");
+        $res = $this -> query($query,$data);
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;       
+    }
+
 
 }

@@ -10,47 +10,24 @@ class Manager extends Controller{
             redirect('home');
            
         }
+
         $data['title'] = "manager";
         $this->view('manager/home',$data);
     }
-
-    public function profile()
-    {
-        if (!Auth::is_manager()) {
+    public function profile($id = null)
+    {    if(!Auth::is_manager()){
             redirect('home');
+           
         }
-        $currentUserID = $id ?? Auth::getUID();
-
-        $staffData = new Staff();
-        $staff_data = $staffData->ProfileDetails($currentUserID);
-
-
-
-        if (!$staff_data) {
-            // handle error here
-            redirect('home');
-        }
-
-        $ProfileData['userData'] = $staff_data;
-        // $data['userData2'] = $user_data2;
-
-        $this->view('staff/user', $ProfileData);
+        //check whether ID exists if not 
+        //it'll get the Id of the logged in user
+        $id = $id?? Auth::getId();
+        $user = new User();
+        //for it to go to view we have to put it inside data
+        $data['row'] = $user -> first(['id' => $id]);
+        $data['title'] = "Profile";
+        $this->view('manager/profile',$data);
     }
-
-    // public function profile($id = null)
-    // {    if(!Auth::is_manager()){
-    //         redirect('home');
-
-    //     }
-    //     $id = $id?? Auth::getId();
-    //     $user = new User();
-
-    //     $data['row'] = $user -> first(['id' => $id]);
-    //     $data['title'] = "Profile";
-    //     $this->view('manager/profile',$data);
-    // }
-
-
 
     public function staff($id = null)
     {
@@ -160,12 +137,24 @@ class Manager extends Controller{
             $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
             $addUser = new User();
-            $addUser->Adduser($data);
+       
             
             
             $addStaff = new Staff();
-            $addStaff->Addstaff($data);
-            
+            $user_otp= rand(100000,999999);
+            $user_activation_code= md5(rand());
+            $email= $data['email'];
+            $data['User_activation_code'] = $user_activation_code;
+            $data['user_otp'] = $user_otp ;
+            $addUser->Adduser($data);
+            $result= $addStaff->Addstaff($data);
+            if($result){
+                $verify = $addUser -> sendemail([
+                    'email' => $email,
+                    'user_activation_code'=>$user_activation_code,
+                    'user_otp'=>$user_otp
+                ]);
+            }
 
             
 
@@ -298,6 +287,21 @@ public function testing()
 
 
 
+    public function calendar()
+    {
+        if (!Auth::is_manager()) {
+            redirect('home');
+        }
+        $course = new Course();
+        $userid = Auth::getUID();;
+        $result= $course->getinstituteClass();
+
+
+        header('Content-Type: application/json');
+        echo json_encode($result);
+        exit;
+       // $this->view('includes/calendar');
+    }
 
 
     public function enquiry($action = null, $eid = null)

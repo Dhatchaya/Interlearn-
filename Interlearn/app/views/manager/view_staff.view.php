@@ -3,19 +3,22 @@
 
 <head>
     <title>View Staff details</title>
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/manager.css">
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/bank-payment.css">
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/staff-view.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/manager.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/bank-payment.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/staff-view.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/cash-payment-style.css?v=<?php echo time(); ?>">
+
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
 </head>
 
 <body id="body" style="background-color: #FFFFFF;">
-    <?php $this->view("includes/nav"); ?>
-
-    <?php $this->view("includes/sidebar_rece"); ?>
-
+<div class="main-body-div">
+    <?php $this->view("includes/sidebar_man");?>
+    <div class="top-to-bottom-content">     
+    <?php $this->view("includes/nav");?>
+  
 
     <div class="bank-payment-form-popup" id="hiddenDiv-1">
         <div class="bank-payment-form-container">
@@ -157,10 +160,10 @@
         </div>
     </div>
 
-
+    <div class="all-middle-content">
     <div class="main-page-container">
-        <div class="adding-new-user">
-            <h1 class="add-user-lable">Employee details</h1>
+        <div class="adds-new-user">
+            <h1>Employee details</h1>
             <button class="add-user-btn" id="addStaff-btn">Add New User</button>
 
         </div>
@@ -234,8 +237,9 @@
             </div>
         </div>
     </div>
-
-
+    </div>
+    </div>
+    </div>
     <?php $this->view("includes/footer"); ?>
 
 

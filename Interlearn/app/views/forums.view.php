@@ -1,14 +1,16 @@
 <?php $this -> view('includes/header'); ?>
-<?php $this -> view('includes/nav'); ?>
 
-  
-    <div class="forum_body">
-    <?php $this -> view('includes/sidebar'); ?>
+
+<div class="main-body-div">
+<?php $this -> view('includes/sidebar'); ?>
+    <div class="forum_body top-to-bottom-content">
+    <?php $this -> view('includes/nav'); ?>
     <div class="forum_discussion">
     <div class = "forum_heading">
         <h2 class="add_heading_init">Grade <?=esc($course->grade)?> - <?=esc($course->subject)?></h2>
         <h3 class="mainforum_sub"><?=esc($forummain->subject)?></h3>
         <div class="mainf_des">
+            <!-- changeit to forummain if needed -->
         <h4 class="mainforum_desc"><?=esc($forummain->description)?></h4>
         </div>
         <?php  if($role == "Teacher" ||$role == "Instructor"):?>
@@ -83,6 +85,7 @@
                     <?php endif;?>
             </table>
         </div>
+    </div>
     </div>
 
 

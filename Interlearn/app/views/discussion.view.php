@@ -1,8 +1,10 @@
 <?php $this->view("includes/header");?>
-<?php $this->view("includes/nav");?>
 
-<div class="discuss_body">
-    <?php $this->view("includes/sidebar");?>
+<div class="main-body-div">
+<?php $this -> view('includes/sidebar'); ?>
+    
+<div class="discuss_body  top-to-bottom-content">
+<?php $this -> view('includes/nav'); ?>
     <div class="all_discussions" id = "all_discussions">
         <div class="each_thread">
             <div class="discuss_card"  data-thread-id='<?=esc($forum->forum_id)?>'>

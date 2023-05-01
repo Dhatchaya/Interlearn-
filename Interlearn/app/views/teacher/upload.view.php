@@ -42,7 +42,7 @@
                   const selectedFile = event.target.files[0];
                   fileName.textContent = selectedFile ? selectedFile.name : '';
                 });
-                fileName.textContent = 'No file chosen';
+                fileName.textContent = 'Drag and drop your files here';
             </script>
         </div>
     </div>

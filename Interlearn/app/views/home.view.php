@@ -6,7 +6,7 @@
 
 <header class="home_header">
         <div class="nav-left">
-                <img src="<?=ROOT?>/assets/images/logo_bg_rm.png" alt="logo">
+                <img src="<?=ROOT?>/assets/images/logo_bg_rm.png" class="home-logo-again" alt="logo">
             </div>
             <!-- nav center displays inline -->
            
@@ -57,7 +57,77 @@
         </div>
     </div>
 <section id="learn-more">
-        <div class="facility">
+<div class="facility">
+                
+                
+                <div class="studentimgfaci">
+                <div class="purple"></div>
+                    <img src="http://localhost/Interlearn/public/assets/images/homepage/study.jpg" alt="student">
+                </div>
+                <h3 class="aboutUstitlefaci">   Our Facilities</h3>
+                <div class="aboutusfaci">
+    
+                      
+                        <div class="services learning">
+                        <div class="imageonline">
+                            <img src="<?=ROOT?>/assets/images/sidebar_icons/online.png" class="imageonline" alt="online">
+                          
+                        </div>    
+                        <div class="subparahead">
+                            Online Learning
+                            <p class="subpara"> Flexible and convenient education from anywhere, anytime.</p>
+                            </div>
+                        
+                        
+                        </div>
+                        <div class="services teach">
+                        <div class="imageonline">
+                            <img src="<?=ROOT?>/assets/images/expert-teacher.png" class="imageonline" alt="online">
+                        </div>   
+                        <div class="subparahead">Expert Teachers
+                    <p class="subpara"> Flexible and convenient education from anywhere, anytime.</p>
+                    </div>
+                    </div>
+                        <div class="services security">
+                        <div class="imageonline">
+                            <img src="<?=ROOT?>/assets/images/sidebar_icons/security.png" class="imageonline" alt="online">
+                        </div>       
+                        <div class="subparahead">Security
+                        <p class="subpara"> Flexible and convenient education from anywhere, anytime.</p>
+                        </div>
+                    </div>
+                        <div class="services classs">
+                        <div class="imageonline">
+                            <img src="<?=ROOT?>/assets/images/spacious-classroom.png" class="imageonline" alt="online">
+                        </div> <div class="subparahead">    
+                        Spacious Classroom
+                        <p class="subpara"> Flexible and convenient education from anywhere, anytime.</p>
+                    </div></div>
+    
+                </div>   
+                
+            
+            </div>
+        <div class="about">
+                
+                
+            <div class="aboutuspara">
+
+                    <h3 class="aboutUstitle">About Us</h3>
+                    <p>Welcome to Interlearn! We are a top educational institute catering to 
+                        students from grade 6 to AL. Our focus is on providing high-quality teaching services for the school 
+                        syllabus, allowing students to excel in their academic pursuits. At Interlearn, we are committed to helping students achieve their academic goals. We provide classes that are tailored to the school syllabus, ensuring that our students receive the knowledge and skills necessary to succeed in their studies.
+                        Our experienced teachers are passionate about education and are dedicated to helping
+                        each student reach their full potential. </p>
+
+            </div>   
+            <div class="studentimg">
+                <img src="<?=ROOT?>/assets/images/homepage/studentimage.png" alt="student" >
+            </div>
+        
+        </div>
+   
+        <!-- <div class="facility">
             <h2>Our Facilities</h2>
             
             <div class="aboutus">
@@ -100,7 +170,7 @@
 
             </div>    
      
-    </div>
+    </div> -->
     <div class="intro">
         
             <div  class="classes">
@@ -153,11 +223,11 @@
                 </form>
             </div>
         </div> 
-   
+        </section>
     <div class="forth">
         <?php $this -> view('includes/footer'); ?>
     </div>
-    </section>
+  
 </div>
 
 <script src="<?=ROOT?>/assets/js/navbar.js"></script>

@@ -37,11 +37,11 @@ class Forum extends Model
                 $this -> error[$key] = ucfirst($key)." is required";
             }
          }
-         if (!(preg_match('/^.{1,25}$/', $data['topic']))) {
+         if (!(preg_match('/^.{0,25}$/', $data['topic']))) {
 
             $this->error['topic'] = "Maximum number of allowed characters is 25";
          }
-         if (!(preg_match('/^.{1,1000}$/', $data['content']))) {
+         if (!(preg_match('/^.{0,1000}$/', $data['content']))) {
 
             $this->error['content'] = " Maximum number of allowed characters is 1000";
          }
@@ -54,7 +54,7 @@ class Forum extends Model
             //         $this->error['email'] = "Email already exists";
                 
             // }
-
+        
         if(empty($this->error)){
             return true;
         }

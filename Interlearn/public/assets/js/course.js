@@ -11,28 +11,22 @@ const span = document.getElementsByClassName("close")[0];
 // When the user clicks the button, open the modal
 function openModal(id) {
     const upload = document.getElementsByName("upload");
-    const assignment = document.getElementsByName("assignment");
     const quiz = document.getElementsByName("quiz");
-    const quizbank = document.getElementsByName("quizbank");
-    const question = document.getElementsByName("question");
+    const bank = document.getElementsByName("bank");
+    const assignment = document.getElementsByName("assignment");
     const url = document.getElementsByName("url");
     console.log(upload);
     for(i=0; i<assignment.length; i++){
         assignment[i].href = assignment[i].href + "/" + id+"/view";
     }
+    for(i=0; i<upload.length; i++){
+        upload[i].href = upload[i].href + "/" + id;
+    }
     for(i=0; i<quiz.length; i++){
         quiz[i].href = quiz[i].href + "/" + id+"/create";
     }
-    for(i=0; i<quizbank.length; i++){
-        quizbank[i].href = quizbank[i].href + "/" + id;
-        // quizbank[i].href = quizbank[i].href + "/" + id+"/new";
-    }
-    for(i=0; i<question.length; i++){
-        // question[i].href = question[i].href + "/" + id;
-        question[i].href = question[i].href + "/" + id+"/new";
-    }
-    for(i=0; i<upload.length; i++){
-        upload[i].href = upload[i].href + "/" + id;
+    for(i=0; i<bank.length; i++){
+        bank[i].href = bank[i].href + "/" + id+"/new";
     }
     for(i=0; i<url.length; i++){
         url[i].href = url[i].href + "/" + id;

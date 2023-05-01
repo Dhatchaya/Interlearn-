@@ -51,6 +51,22 @@ class Enquiry extends Model
         }
         return false;
     }
+    public function selectUserCourse($data=null,$orderby=null,$order = 'desc')
+    {  
+  
+        
+        $query ="select enquiry.*,users.username from ".$this->table;
+  
+        $query .= " INNER JOIN users on enquiry.user_Id = users.uid order by $orderby  $order";
+        $res = $this -> query($query,$data);
 
+        if(is_array($res)){
+            return $res;
+        }
+        return false;
+           
+    
+    }
 
+    
 }

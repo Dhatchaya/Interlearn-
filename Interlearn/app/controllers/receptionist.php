@@ -4,12 +4,13 @@
  */
 class Receptionist extends Controller
 {
-    public function index()
+    public function index($action = null)
     { 
         if(!Auth::is_receptionist()){
             redirect('home');
            
         }
+
         
         $this->view('receptionist/home');
     }
@@ -200,7 +201,7 @@ class Receptionist extends Controller
                                 }
                             }
                         }
-
+                        
                     // show($data['teach_instructors']);die;
                     // show($data['subjects']);die;
                 
@@ -242,8 +243,8 @@ class Receptionist extends Controller
                     else{
                         $data['errors'] =  $course->error;
                     }
-
-
+                    
+                    
                     //show($_POST);die;
                 }
 
@@ -282,12 +283,6 @@ class Receptionist extends Controller
                     // show($input1);die;
                     $result2 = $course_instructor->deleteInstructors($course_id,$instructor_id);
                 }
-
-                // show($_GET['id']);die;
-
-                // $data['mediums'] = $subject -> getSubjectMedium($_GET['id']);
-                // // show($data['mediums'][0]->language_medium);die;
-                // $now_medium = $data['mediums'][0]->language_medium;
 
                 $this->view('receptionist/class',$data);
                 exit;
@@ -438,7 +433,7 @@ class Receptionist extends Controller
                                             // print_r("test1");
                                             mkdir($fileDestination,0644, true);
                                             // print_r("test2");die;
-
+                                        
                                         }
                                         $destination =  $fileDestination."/".$fileNameNew;
                                         move_uploaded_file($fileTmpName,$destination);
@@ -448,7 +443,7 @@ class Receptionist extends Controller
                                         //echo $fileActualExt;exit;
                                         //var_dump($_POST);exit;
                                         //print_r($fileType);exit;
-
+                                        
                                     }else{
                                         echo "Image is too large!";
                                     }
@@ -468,16 +463,16 @@ class Receptionist extends Controller
 
                         if(empty($data['errors'])){
                             // $result = $assignment->insert($_POST);
-
+     
                              foreach($filenames as $file){
-
+     
                                      $_POST['aid'] =$announcement_id;
                                      $_POST['file_name'] = $file['file_name'] ;
                                      $_POST['file_id'] = $file['file_id'];
-
+     
                                      $result2 = $announcement_file->insert($_POST);
-
-
+     
+     
                             }
                             if($result2){
                                 echo "Announcement successfully published!";
@@ -489,7 +484,7 @@ class Receptionist extends Controller
 
                     // $result = $announcement->insert($_POST);
                     }
-
+                    
                 }
                 else{
                     $data['errors'] = $announcement -> error;
@@ -748,7 +743,8 @@ class Receptionist extends Controller
            
         }
 
-        $data['rows']  = $enquiry->select(null, $orderby);
+        $data['rows']  = $enquiry->selectUserCourse(null, $orderby);
+    
             
         $this->view('receptionist/enquiry',$data);
     }
@@ -892,29 +888,17 @@ class Receptionist extends Controller
         echo json_encode($res);
         exit;
     }
-
     public function getMonthlyFee()
     {
         $data = json_decode(file_get_contents("php://input"), true);
         $courseId = $data['CourseID'];
-        $studentID = $data['StudentID'];
 
-        $studentFtCourse = new Course();
-        $respond = $studentFtCourse->checkStudent($courseId, $studentID);
+        $sql = "SELECT * FROM course WHERE course_id = '$courseId'";
+        $model = new Model();
+        $res = $model->query($sql);
 
-        if($respond[0]->course_id == $courseId){
-
-            $monthlyFee = new Course();
-            $respond = $monthlyFee->getMonthlyFee($courseId);
-            echo json_encode($respond);
-            exit;
-        }
-        else{
-            $respond[0]->student_id = null;
-            echo json_encode($respond);
-            exit;
-        }
-        
+        echo json_encode($res);
+        exit;
     }
 
     public function registration($action = null,$id = null)
@@ -966,6 +950,22 @@ class Receptionist extends Controller
             }
             
         }
+    }
+
+    public function calendar()
+    {
+        if (!Auth::is_receptionist()) {
+            redirect('home');
+        }
+        $course = new Course();
+        $userid = Auth::getUID();;
+        $result= $course->getinstituteClass();
+
+
+        header('Content-Type: application/json');
+        echo json_encode($result);
+        exit;
+       // $this->view('includes/calendar');
     }
     
 }
