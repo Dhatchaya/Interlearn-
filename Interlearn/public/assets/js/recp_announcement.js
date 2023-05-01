@@ -48,8 +48,8 @@ function openModal3(aid) {
                       close[i].onclick = function() {
                         console.log("inside");
                         var div = this.parentElement;
-                        // console.log(div);
-                        // div.style.display = "none";
+                         console.log(div);
+                         div.style.display = "none";
                         $.ajax({
                             method:"POST",
                             url : 'http://localhost/Interlearn/public/receptionist/announcement/editAnnouncementFile?aid='+aid,
@@ -104,7 +104,7 @@ function openModal3(aid) {
 
 
     $(document).on("click",".delete_file_btn", function(){
-        const fileid = $(this).data("aid");
+        // const fileid = $(this).data("aid");
         const confirmation = confirm("Are you sure you want to delete this file?");
     console.log(fileid);
         if(confirmation){

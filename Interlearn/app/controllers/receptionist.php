@@ -449,7 +449,7 @@ class Receptionist extends Controller
                 if($announcement -> validate($_POST)){
                     $user_id = Auth::getuid();
                     $details = $staff -> ProfileDetails($user_id);
-                    // show($details[0]->emp_id);die;
+                    //  show($details);die;
                     $emp_id = $details[0]->emp_id;
                     $announcement_id = uniqid();
                     $_POST['aid'] = $announcement_id;
@@ -609,15 +609,15 @@ class Receptionist extends Controller
 
         if($action == 'editAnnouncementFile'){
 
-            $file_pointer = "gfg.txt";
+            // $file_pointer = "gfg.txt";
 
-            if (!unlink($file_pointer)) {
-                echo ("$file_pointer cannot be deleted due to an error");
-            }
-            else {
+            // if (!unlink($file_pointer)) {
+            //     echo ("$file_pointer cannot be deleted due to an error");
+            // }
+            // else {
                 $result = $announcement -> deleteAnnFile($_GET['aid']);
                 echo json_encode($result);
-            }
+            // }
             
             die;
         }
