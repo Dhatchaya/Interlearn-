@@ -47,4 +47,4 @@
 </div>
 </div>
 <script defer src="<?=ROOT?>/assets/js/calendar.js?v=<?php echo time(); ?>"></script>
-    <!-- <?php $this->view("includes/footer");?> -->
+    <?php $this->view("includes/footer");?>

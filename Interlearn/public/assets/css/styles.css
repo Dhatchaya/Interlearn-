@@ -5981,7 +5981,7 @@ background: white;
 .aboutUstitle {
     font-size: 2rem;
     font-weight: 900;
-    color: var(--primary-color);
+    color: var(--secondary-color);
     margin-bottom: 2rem;
 }
 .about,.facility{
@@ -5990,19 +5990,22 @@ background: white;
     width: 90%;
     margin-bottom: 2rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     background: white;
     box-shadow: 0 15px 40px rgb(0 0 0 / 12%);
+}
+.about{
+    background-color: var(--primary-color);
 }
 .studentimg {
     width: 40%;
 }
 .studentimg img{
-    height: 30rem;
-    border-bottom: 25px solid #7923ff;
+    height: 18rem;
+    /* border-bottom: 25px solid white; */
     border-radius: 10px;
     position: relative;
-
+    top: 4rem;
 }
 .aboutuspara ,.aboutusfaci{
     width: 50%;
@@ -6018,9 +6021,11 @@ background: white;
 }
 .aboutuspara p {
     line-height: 2rem;
+    color: #b5b0b0;
+    text-align: justify;
 }
 .purple {
-    background: #7923ff;
+    background: var(--primary-color);
     height: 10rem;
     width: 10rem;
     z-index: 0;
@@ -6043,9 +6048,10 @@ margin-top: 3rem;
 }
 .services{
     width: 25rem;
-    background: #7923ff;
+    /* background: #7923ff; */
+    background-color: var(--primary-color);
     color: white;
-    height: 5rem;
+    height: 5.5rem;
    
     display: flex;
     /* justify-content: center; */
@@ -6065,7 +6071,7 @@ margin-top: 3rem;
     left: 2rem;
 }
 .services:nth-child(even) .subpara{
-    color: grey;
+    color:gray;
 }
 .imageonline{
     width: 2rem;
@@ -6082,7 +6088,7 @@ margin-top: 3rem;
 }
 .subpara{
     font-size: 0.8rem;
-    color: #dbd4d4;
+    color: #b5b0b0;
     margin-top: 0.5rem;
     
 }
@@ -6093,8 +6099,8 @@ margin-top: 3rem;
 .aboutUstitlefaci {
 font-size: 4rem;
 width: 5rem;
-/* font-weight: 600; */
-color: var(--primary-color);
+font-weight: 100;
+color: var(--left-sidebar-color);
 /* margin-bottom: 2rem; */
 writing-mode: vertical-rl;
 text-orientation: mixed;
@@ -6106,17 +6112,83 @@ left: 5rem;
 }
 
 
+.classesimagebg{
+    background: var(--secondary-color);
+    height: 18rem;
+    width: 22rem;
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+}
+.stuimgclass img{
+    height: 18rem;
+    width: 22rem;
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    position: relative;
+    top: -19rem;
+    left: -2rem;
+}
+.aboutclass{
+    min-height: 30rem;
+    max-height: 31rem;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.stuimgclass{
+    height: 20rem;
+}
+.aboutuspara h4{
+    font-size: 1.5rem;
+    font-weight: 100;
+    color: var(--secondary-color);
+}
 
+.lessmargin{
+    margin-top: 1.5rem;
+}
+.aboutuspara{
+    width: 40%;
+}
 
-
-
-
-
-
-
-
-
-
+.joinus{
+    text-align: center;
+    padding: 2rem;
+    width: 70%;
+    height: 20rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border-radius: 50px;
+    box-shadow: 0 15px 40px rgb(0 0 0 / 12%);
+}
+.joinuspara{
+    width: 60%;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--left-sidebar-color);
+    font-style: italic;
+}
+.newbtn{
+    border: 1px solid;
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    background-color: white;
+    color: #3E206D;
+    box-shadow: 0 15px 40px rgb(0 0 0 / 12%);
+    transition: all 350ms ease-out 0.2s;
+}
+.newbtn:hover{
+    
+    color: white;
+    background-color: #3E206D;
+}
 
 
 
