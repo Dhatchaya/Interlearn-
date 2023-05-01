@@ -2208,7 +2208,6 @@ li.lo-nav {
     margin-right: 50%;
     font-size: xx-large;
     padding-bottom: 1%;
-    color: #3E206D;
 }
 
 .teacher_view_Rectangle{
@@ -2466,7 +2465,7 @@ li.lo-nav {
     display: flex;
     border-style: solid;
     border-color: rgba(62, 32, 109, 100%);
-    /* border-radius: 2%; */
+    border-radius: 2%;
 }
 
 .std_view_greet{
@@ -2492,7 +2491,6 @@ li.lo-nav {
     border-color: rgba(62, 32, 109, 20%);
     padding: 2%;
     align-items: center;
-    /* box-shadow: #757575 10px 10px; */
 }
 
 .std_view_msg{
@@ -2502,7 +2500,6 @@ li.lo-nav {
     padding-top: 2%;
     padding-left: 2%;
     width: 47vw;
-    box-shadow: rgba(34, 20, 55, 0.8) 5px 5px;
     /* height: 20vh; */
 }
 .std_crs_pg_content2{
@@ -3283,9 +3280,8 @@ width: 45vw;
 }
 .recp_view_rectangle{
     background-color: white;
-    /* border: solid rgba(62, 32, 109, 100%); */
-    box-shadow: rgba(153, 134, 157, 0.85) 5px 5px;
-    /* border-radius: 10%; */
+    border: solid rgba(62, 32, 109, 100%);
+    border-radius: 10%;
     width: 20vw;
     height: 30vh;
     float: left;
@@ -3299,18 +3295,6 @@ width: 45vw;
 }
 .recp_view_rectangle a{
     text-decoration: none;
-}
-.recp_home_rect{
-    width: 20vw;
-    height: 20vh;
-    /* border-radius: 10%; */
-    transition: width 1s, height 1s;
-}
-.recp_view_img_new{
-    width: 20vw;
-    height: 20vh;
-    /* border-radius: 10%; */
-    transition: width 1s, height 1s;
 }
 .recp_view_img{
     width: 18vw;
@@ -3336,10 +3320,10 @@ width: 45vw;
     margin-left: 5%;
     /* display: flex;
     flex-wrap: wrap; */
-    width: 80vw;
+    width: 75vw;
 }
 .recp_crs_butn{
-    padding-left: 94%;
+    padding-left: 60%;
     padding-top: 0%;
     margin-bottom: 5%;
     width: 60vw;
@@ -3378,7 +3362,7 @@ width: 45vw;
     width: 17vw;
     height: 40vh;
     float: left;
-    margin-right: 3%;
+    margin-right: 4%;
     margin-bottom: 4%;
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
@@ -3392,12 +3376,7 @@ width: 45vw;
 }
 .recp_crs_img{
     width: 16.7vw;
-    height: 20vh;
-    transition: width 1s, height 1s;
-}
-.std_crs_img_new{
-    width: 16.7vw;
-    height: 16vh;
+    height: 15vh;
     transition: width 1s, height 1s;
 }
 .recp_crs_rectangle p{
@@ -4232,7 +4211,7 @@ tr:nth-child(even) {
 .recp_ann_content{
     margin-top: 5%;
     margin-left: 5%;
-    width: 70vw;
+    width: 65vw;
     margin-bottom: 5%;
 }
 
@@ -4316,7 +4295,7 @@ tr:nth-child(even) {
 /* Style the modal content */
 .popupmodal-content {
     background-color: #fff;
-    margin: 5% auto; /* 10% from the top and centered */
+    margin: 10% auto; /* 10% from the top and centered */
     padding: 25px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -4398,19 +4377,8 @@ tr:nth-child(even) {
     padding-right: 2%;
 }
 
-.edit_ann_content{
-    width: 65vw;
-    height: 20vh;
-    padding-left: 2%;
-    padding-right: 2%;
-}
-
 .edit_ann_cont{
     height: 30vh;
-}
-
-.edit_file_announcement{
-    cursor: pointer;
 }
 
 .recp_ann_clz{
@@ -4421,10 +4389,6 @@ tr:nth-child(even) {
 .edit_ann_attachment a{
     text-decoration: none;
     cursor: pointer;
-}
-
-.file_announcement{
-    text-decoration: none;
 }
 
 
@@ -4451,7 +4415,6 @@ tr:nth-child(even) {
     padding-top: 2%;
     padding-left: 2%;
     width: 67vw;
-    box-shadow: #24262b 5px 5px;
     /* height: 20vh; */
 }
 
@@ -4953,7 +4916,7 @@ gap: 8vw;
     background-color: white;
     box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
     width: 100%;
-    /* height: 8rem; */
+    height: 8rem;
     margin: 1rem 0 1rem 0;
         border-radius: 5px;
         cursor: pointer;
@@ -5567,14 +5530,4 @@ gap: 8vw;
 /* close button of removing instructors */
 .instructor-remove{
     cursor: pointer;
-}
-
-
-
-/* receptionist home text  */
-
-.recp_text{
-    font-size: large;
-    color: #3E206D;
-    font-weight: 500;
 }

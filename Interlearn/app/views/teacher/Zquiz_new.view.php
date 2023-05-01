@@ -19,12 +19,11 @@
             <span id="question-error" style="color:red"></span>
 
             <label for="category">Category : </label><br>
-            <input class="home_cnt_inp" type=number name="quiz_bank" value="" placeholder="Eg : 1">
-            <!-- <select name="category" id="marks">
+            <select name="category" id="marks">
                 <option value="low"> Low </option>
                 <option value="Medium"> Medium </option>
                 <option value="Hard"> Hard </option>
-            </select> -->
+            </select>
             <div class="choices">
                 
                 <h3>Choices</h3><br>

@@ -645,8 +645,8 @@ class Model extends Database {
     public function getTeacherClasses($data=[]){
 
         $keys = array_keys($data);
-        $query ="select  course.*, subject.* from ".$this->table;
-        $query.= " INNER JOIN subject on course.subject_id = subject.subject_Id INNER JOIN staff on staff.emp_id= course.teacher_ID";
+        $query ="select  course.* from ".$this->table;
+        $query.= " INNER JOIN staff on staff.emp_id= course.teacher_ID";
         $query.=" WHERE staff.role = 'Teacher' AND ";
         foreach($keys as $key){
             $query .= " staff.".$key. " =:".$key." && ";
@@ -663,7 +663,7 @@ class Model extends Database {
     public function coursedetails($data=[]){
 
         $keys = array_keys($data);
-// show($data);die;
+
         $query =" select subject.* FROM ".$this->table." INNER JOIN course on course.subject_Id =subject.subject_id  where ";
         foreach($keys as $key){
             $query .= $key. " =:".$key." && ";

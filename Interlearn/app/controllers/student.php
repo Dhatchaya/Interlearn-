@@ -89,11 +89,8 @@ class Student extends Controller
                 $announcement = new Announcement();
                 $ann_course = new AnnouncementCourse();
                 $student_course = new StudentCourse();
-                // show($user_id);die;
-                // show($id);die;
 
                 $data['announcements'] = $announcement->stdAnnouncements([],$user_id,$id);
-                // show($data['announcements']);die;
 
                 $this->view('student/announcement',$data);
             }

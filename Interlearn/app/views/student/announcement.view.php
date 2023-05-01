@@ -15,7 +15,7 @@
                             <h5>Grade <?=esc($row->grade)?> - <?=esc($row->subject)?> (<?=esc($row->language_medium)?> Medium)</h5><br>
                             Dear Students,<br>
                             <p><?=$row->content?></p><br>
-                            <a href="<?=$row->attachment?>"><?=$row->file_name?></a>
+                            <a href=""><?=$row->attachment?></a>
                             <!-- <p><?=$row->attachment?></p> -->
                             <br><br>
                             <p class="recp_ann_bot"><?=esc($row->fullname)?></p>
