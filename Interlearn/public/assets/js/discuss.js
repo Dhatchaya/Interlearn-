@@ -48,15 +48,60 @@ allthreads.addEventListener('click', function(e) {
 // send forum reply to php using ajax
   const submitHandler = function(event) {
       event.preventDefault();
-     
+      flag = 0;
+      var replycontentdiv = event.target.querySelector("#reply");
+      var attachmentInputdiv = event.target.querySelector(".file_attachment");
+      var replycontent = event.target.querySelector("#reply").value;
+      var attachmentInput = event.target.querySelector(".file_attachment").files[0];
+
+          const error =document.createElement("p");
+          error.classList.add("warning");
+          if (!regex2.test(replycontent)) {
+
+            error.innerHTML="Maximum number of allowed characters is 1000";
+            flag = 1;
+          }
+          else if(replycontent.length===0){
+            error.innerHTML="Please type the content";
+            flag = 1;
+          }
+          else{
+            error.innerHTML="";
+            flag =0;
+          }
+          console.log(error);
+
+          replycontentdiv.previousElementSibling.replaceWith(error);
+      if(attachmentInput){
+        console.log(e.target);
+        const error2 =document.createElement("p");
+        error2.classList.add("warning");
+
+        const file =attachmentInput;
+        const fileSize = file.size;
+
+        if (fileSize > 5242880) {
+          error2.innerHTML='File size exceeds the limit of 5MB.';
+          flag = 1;
+          // reset the file input
+          attachmentInputdiv.value = '';
+        }else{
+          error2.innerHTML="";
+          flag=0;
+        }
+        attachmentInputdiv.nextElementSibling.replaceWith(error2);
+      }
+
+       console.log('flag',flag);
+
+     if(flag==0){
       replyForm.style.display = 'none';
   
       replyForm.removeEventListener('submit', submitHandler);//removes the event listener 
 
       //get input values
       var parent = event.target.querySelector("#parent_id").value;
-      var replycontent = event.target.querySelector("#reply").value;
-      var attachmentInput = event.target.querySelector(".file_attachment").files[0];
+
       console.log(attachmentInput instanceof Blob );
        var data = {content:replycontent, parent_id:parent,attachment:attachmentInput};
      
@@ -85,9 +130,16 @@ allthreads.addEventListener('click', function(e) {
       processData: false, 
       contentType: false,
       success: function(response){
-
-        var replyContainer = $(allthreads);
         var thread = JSON.parse(response);
+        if(thread.errors){
+          console.log(response);
+          for (i in thread.errors){
+            console.log(i);
+          }
+        }
+       else{
+        var replyContainer = $(allthreads);
+
         console.log(thread.PostedDate);
         //replace the datetime from sql with only date in js
         let date = thread.PostedDate.replace( /[-]/g, '/' );
@@ -150,7 +202,7 @@ allthreads.addEventListener('click', function(e) {
         `;
     
         replyContainer.find(`[data-thread-id='${parent}']`).after(threadHTML);
-      
+      }
       },
       error:function(xhr){
         alert('Error loading threads: ' + xhr.responseText);
@@ -159,7 +211,9 @@ allthreads.addEventListener('click', function(e) {
     });
     replyForm.reset();
   }
+}
   replyForm.addEventListener("submit", submitHandler);
+
   }
 
   if (e.target && e.target.matches('.save_update')) {

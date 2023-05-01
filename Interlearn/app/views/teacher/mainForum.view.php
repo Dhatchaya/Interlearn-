@@ -1,9 +1,10 @@
 <?php $this -> view('includes/header'); ?>
-<?php $this -> view('includes/nav'); ?>
 
-  
-    <div class="forum_body">
-    <?php $this -> view('includes/sidebar'); ?>
+
+<div class="main-body-div">
+<?php $this -> view('includes/sidebar'); ?>
+    <div class="forum_body top-to-bottom-content">
+    <?php $this -> view('includes/nav'); ?>
     <div class="mainforum_discussion">
     <div class = "mainforum_heading">
         <h2 class="add_heading_init">Grade <?=esc($course->grade)?> - <?=esc($course->subject)?></h2>
@@ -30,6 +31,7 @@
     </div>
 
 
+</div>
 </div>
 
 <?php $this -> view('includes/footer'); ?>

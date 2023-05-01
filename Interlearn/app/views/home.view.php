@@ -6,7 +6,7 @@
 
 <header class="home_header">
         <div class="nav-left">
-                <img src="<?=ROOT?>/assets/images/logo_bg_rm.png" alt="logo">
+                <img src="<?=ROOT?>/assets/images/logo_bg_rm.png" class="home-logo-again" alt="logo">
             </div>
             <!-- nav center displays inline -->
            
@@ -57,107 +57,114 @@
         </div>
     </div>
 <section id="learn-more">
-        <div class="facility">
-            <h2>Our Facilities</h2>
-            
-            <div class="aboutus">
+<div class="about">
 
-                <div class="service">
-                    <div class="image">
-                        <img src="<?=ROOT?>/assets/images/online-learning.png" alt="online">
-                    </div>
-                    <div>
-                        <a href="#">Online Learning</a>
-                    </div>
+
+                <div class="aboutuspara">
+
+                        <h3 class="aboutUstitle">About Us</h3>
+                        <p>Welcome to Interlearn! We are a top educational institute catering to
+                            students from grade 6 to AL. Our focus is on providing high-quality teaching services for the school
+                            syllabus, allowing students to excel in their academic pursuits. At Interlearn, we are committed to helping students achieve their academic goals. We provide classes that are tailored to the school syllabus, ensuring that our students receive the knowledge and skills necessary to succeed in their studies.
+                            Our experienced teachers are passionate about education and are dedicated to helping
+                            each student reach their full potential. </p>
+
+                </div>
+                <div class="studentimg">
+                    <img src="<?=ROOT?>/assets/images/homepage/studying.jpg" alt="student" >
                 </div>
 
-                <div class="service">
-                    <div class="image">
-                        <img src="<?=ROOT?>/assets/images/expert-teacher.png" alt="Expert Teachers">
-                    </div>
-                    <div>
-                        <a href="#">Expert Teachers</a>
-                    </div>
-                </div>
-
-                <div class="service">
-                    <div class="image">
-                        <img src="<?=ROOT?>/assets/images/security.png" alt="security">
-                    </div>
-                    <div>
-                        <a href="#">Security</a>
-                    </div>
-                </div>
-
-                <div class="service">
-                    <div class="image">
-                        <img src="<?=ROOT?>/assets/images/spacious-classroom.png" alt="spacious-classroom">
-                    </div>
-                    <div>
-                        <a href="#">Spacious Classroom</a>
-                    </div>
-                </div>
-
-            </div>    
-     
-    </div>
-    <div class="intro">
-        
-            <div  class="classes">
-                <img src="<?=ROOT?>/assets/images/claasses.jpg" alt="classes">
-                <div  class="class"><a href="<?=ROOT?>/courses">Classes</a></div>
             </div>
-       
-            <div class="teachers">
-                <img src="<?=ROOT?>/assets/images/teachers.jpg" alt="teachers">
-                <div class="teacher" ><a href="#">Teachers</a></div>
+<div class="facility">
+
+
+                <div class="studentimgfaci">
+                <div class="purple"></div>
+                    <img src="http://localhost/Interlearn/public/assets/images/homepage/study.jpg" alt="student">
+                </div>
+
+                <div class="aboutusfaci">
+
+
+                        <div class="services learning">
+                        <div class="imageonline">
+                            <img src="<?=ROOT?>/assets/images/sidebar_icons/online.png" class="imageonline" alt="online">
+
+                        </div>
+                        <div class="subparahead">
+                            Online Learning
+                            <p class="subpara"> Flexible and convenient education from anywhere, anytime.</p>
+                            </div>
+
+
+                        </div>
+                        <div class="services teach">
+                        <div class="imageonline">
+                            <img src="<?=ROOT?>/assets/images/expert-teacher.png" class="imageonline" alt="online">
+                        </div>
+                        <div class="subparahead">Expert Teachers
+                    <p class="subpara"> Knowledgeable and experienced educators committed to student success.</p>
+                    </div>
+                    </div>
+                        <div class="services security">
+                        <div class="imageonline">
+                            <img src="<?=ROOT?>/assets/images/sidebar_icons/security.png" class="imageonline" alt="online">
+                        </div>
+                        <div class="subparahead">Security
+                        <p class="subpara"> Secure environment for learning and personal information protection at Interlearn.</p>
+                        </div>
+                    </div>
+                        <div class="services classs">
+                        <div class="imageonline">
+                            <img src="<?=ROOT?>/assets/images/spacious-classroom.png" class="imageonline" alt="online">
+                        </div> <div class="subparahead">
+                        Spacious Classroom
+                        <p class="subpara"> Comfortable and conducive environment for focused learning.</p>
+                    </div></div>
+
+                </div>
+
+
             </div>
-            <div class="vacancies">
-                <img src="<?=ROOT?>/assets/images/vacancyy.jpg" alt="vacancies">
-                <div class="vacancy">Vacancies</div>
-            </div>
-        </div>
+            <div class="aboutclass about">
+
+            <div class="stuimgclass">
+                    <div class="classesimagebg"></div>
+                    <img src="<?=ROOT?>/assets/images/homepage/working.jpg" alt="student" >
+                </div>
+                <div class="aboutuspara lessspace">
     
+                        <h3 class="aboutUstitle">Discover Our Range of Comprehensive Classes</h3>
+                        <p>Interlearn's expert teachers provide classes from grade 6 to advanced levels designed to prepare you for success.
+                            Our comprehensive curriculumhelps you achieve your academic and career goals. Join our vibrant
+                            learning community and unlock your full potential. </p>
+                            <h4 ><i>Check out our Classes!</i></h4>
+                            <a href="<?=ROOT?>/courses"><button class="adbtn lessmargin" type="button" >Click here</button></a>
+                </div>
 
- 
-        <div class="third-first">
-            <div class="description">
-                <p>M.Perry, one of the famous Maths, English and Science tutor who has a bachelor’s degree in mathematics  and a great passion for teaching.</p>
-                <h3> Interested in learning from 
-                    the best? </h3>
-                <button class="adbtn" >Register</button>
+
             </div>
-            <div class="post">
-                <img src="<?=ROOT?>/assets/images/New_vacancy.png" alt="vacancy-post">
-            </div>
-        </div> 
-        <div class="third-second">
-            <div class="touch">
-                <h3>Get In touch...</h3>
-            </div>
-            <div class="respond">
-                <form action="">
-                    <label class = "home_form" for="fname">First Name</label>
-                    <input  class="home_cnt_inp" type="text" name="fname" id="fname">
 
-                    <label class = "home_form" for="lname">Last Name</label>
-                    <input  class="home_cnt_inp" type="text" name="lname" id="lname">
+            <div class="joinus">
+           <div class="joinuspara">
+           Discover a supportive learning community at Interlearn,
+           offering expert-led classes from grade 6 to advanced levels to help you
+            achieve your academic and career goals. Join us today.
+                </div>
 
-                    <label class = "home_form" for="contact">Contact No.</label>
-                    <input class="home_cnt_inp" type="number" name="contact" id="contact">
+            <a href="<?=ROOT?>/register"><button class="newbtn" type="button" >Register </button></a>
 
-                    <label class = "home_form" for="message">Message</label>
-                    <textarea class="home_cnt_inp" id="message" name="message" placeholder="your opinion.." style="height:50px"></textarea>
+           </div>
 
-                    <input  class = "home_form_sbt" type="submit" value="Submit">
-                </form>
-            </div>
-        </div> 
-   
+
+
+
+
+        </section>
     <div class="forth">
         <?php $this -> view('includes/footer'); ?>
     </div>
-    </section>
+
 </div>
 
 <script src="<?=ROOT?>/assets/js/navbar.js"></script>

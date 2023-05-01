@@ -115,7 +115,7 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
 //const getdates = () =>{
     $.ajax({ 
         method: "GET", 
-        url:`http://localhost/Interlearn/public/student/calendar`,
+        url:`http://localhost/Interlearn/public/calendar/student`,
     
         success: function(data) { 
         //   console.log(data);
