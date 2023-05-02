@@ -1,7 +1,7 @@
-*.txt
-*.pdf
-*.sql
-*.png
-*.jpg
-*.jpeg
-!Interlearn/public/assets
+ *.txt
+ *.pdf
+ *.sql
+# *.png
+# *.jpg
+# *.jpeg
+Interlearn/uploads
