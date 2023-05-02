@@ -119,18 +119,58 @@ function openModal3(courseID) {
                     // var timeFrom = $('#timefromEdit').val();
                     // var timeTo = $('#timetoEdit').val();
 
-                    // $.ajax({
-                    //     method:"POST",
-                    //     url : 'http://localhost/Interlearn/public/receptionist/course/editCourse',
-                    //     data:{'course_id':courseID, 'day': day, 'timefrom': timeFrom, 'timeto': timeTo},
-                    //     success:function(response){
-                    //         console.log("submit here");
-                    //       console.log(response);
-                    //     },
-                    //     error:function(xhr,status,error){
-                    //       console.log("Error: " + error);
-                    //     }
-                    // });
+                    $.ajax({
+                        method:"GET",
+                        url : 'http://localhost/Interlearn/public/receptionist/course/getInstructors?course_id='+courseID,
+                        // data:{'course_id':courseID, 'day': day, 'timefrom': timeFrom, 'timeto': timeTo},
+                        success:function(response){
+                            console.log("submit here");
+                          console.log(response == 'false');
+                          if(response == 'false'){
+                            console.log("hello");
+                            document.getElementById("instructorName").style.display = 'none';
+                            document.getElementById("submit-remove-instructor").style.display = 'none';
+                            document.getElementById("noInstructors").innerHTML = "No instructors to show!";
+                          }
+                          response = JSON.parse(response);
+
+                          for(var i=0; i<response.length; i++){
+                            console.log(response[i].instructorName);
+                                document.getElementById("instructorName").value = response[i].instructorName;
+                                console.log(response[i].instructorName);
+                                document.getElementById("instructorID").value = response[i].emp_id;
+                            document.getElementById("courseID").value = courseID;
+                            var instructor_id = response[i].emp_id;
+                            console.log(instructor_id);
+
+                            function removeInstructor(instructor_id, courseID){
+                                event.preventDefault();
+                                console.log("inside remove");
+                                console.log(instructor_id);
+                                var div = this.parentElement;
+                                console.log(div);
+                                div.style.display = "none";
+                                $.ajax({
+                                    method:"GET",
+                                    url : 'http://localhost/Interlearn/public/receptionist/course/removeInstructors?instructor_id='+instructor_id+'&course_id='+courseID,
+                                    success:function(response){
+                                      console.log(response);
+                                    },
+                                    error:function(xhr,status,error){
+                                      console.log("Error: " + error);
+                                    }
+                                });
+                            }
+                            
+                            }
+                          
+                        },
+                        error:function(xhr,status,error){
+                          console.log("Error: " + error);
+                        }
+                    });
+
+                    
 
                     // Click on a close button to hide the current list item
                     var close = document.getElementsByClassName("instructor-remove");
@@ -139,19 +179,19 @@ function openModal3(courseID) {
                       close[i].onclick = function() {
                         console.log("inside");
                         var div = this.parentElement;
-                        // console.log(div);
-                        // div.style.display = "none";
-                        // $.ajax({
-                        //     method:"POST",
-                        //     url : 'http://localhost/Interlearn/public/receptionist/course/editCourse',
-                        //     data:{'course_id':courseID, 'day': day, 'timefrom': timeFrom, 'timeto': timeTo},
-                        //     success:function(response){
-                        //       console.log(response);
-                        //     },
-                        //     error:function(xhr,status,error){
-                        //       console.log("Error: " + error);
-                        //     }
-                        // });
+                        console.log(div);
+                        div.style.display = "none";
+                        $.ajax({
+                            method:"POST",
+                            url : 'http://localhost/Interlearn/public/receptionist/course/editCourse',
+                            data:{'course_id':courseID, 'day': day, 'timefrom': timeFrom, 'timeto': timeTo},
+                            success:function(response){
+                              console.log(response);
+                            },
+                            error:function(xhr,status,error){
+                              console.log("Error: " + error);
+                            }
+                        });
                       }
                     }
                 }

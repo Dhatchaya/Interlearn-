@@ -133,7 +133,6 @@ $sub_id = $_GET['id'];
                             </td>
                         </tr>
 
-
                     <?php endforeach; ?>
                 <?php endif; ?>
             </table>
@@ -157,17 +156,17 @@ $sub_id = $_GET['id'];
                     </div>
                     <div class="recp_det_box">
                         <h4>Instructor ID: </h4>
-                        <?php if (!empty($teach_instructors[$teacher->course_id])) :?>
-                            <?php foreach ($teach_instructors[$teacher->course_id] as $teach_instructor) : ?>
-                                <input type="text" value="<?= esc($teach_instructor->instructorName) ?>" disabled>
-                                <!-- <input type="hidden" name="teacher_id" id="teacher_id" value="<?= $teacher->teacher_ID ?>"> -->
-                                <input type="hidden" value="<?= $teach_instructor->emp_id ?>" id="instructorID" name="instructorID">
-                                <input type="hidden" value="<?= $teach_instructor->course_id ?>" id="courseID" name="courseID">
-                                <button type="submit" name="submit-remove-instructor" class="remove_instructor"><span class="instructor-remove">&times;</span></button> <br>
-                            <?php endforeach;?>
-                        <?php else : ?>
-                            <p style="font-size: small;"><?= esc("No instrcutors to show!") ?></p>
-                        <?php endif; ?>
+                        
+                        <p style="font-size: small;" id="noInstructors"></p>
+                        <input type="text" value="" id="instructorName" disabled>
+                        
+                        <input type="hidden" value="<?= $teach_instructor->emp_id ?>" id="instructorID" name="instructorID">
+                        <input type="hidden" value="<?= $teach_instructor->course_id ?>" id="courseID" name="courseID">
+                        <button type="submit" id="submit-remove-instructor" class="remove_instructor" onsubmit="removeInstructor(instrcutorId, courseId)">
+                            <span class="instructor-remove">&times;</span>
+                        </button> <br>
+                          
+
                     </div>
                     <div class="recp_det_box">
                         <h4>Day: </h4>
