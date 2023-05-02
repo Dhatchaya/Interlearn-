@@ -55,7 +55,7 @@ class CourseInstructor extends Model
 
         $res = $this -> query($query,$data);
         // echo $query;die;
-        // show($res);
+        // show($res);die;
 
         if($res){
             return $res;

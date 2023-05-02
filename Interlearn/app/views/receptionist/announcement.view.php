@@ -52,12 +52,14 @@
                              <input type="text" id="content" name="content" value="" class="edit_ann_cont"><br><br>
                              <div class="recp_file_box">
                              <label for="">Attach Files: </label>
-                             <p id="file_recp_announcement"><?=$row->file_name?> <span class="edit_file_announcement" >&times;</span></p>
+                             <input type="hidden" id="attachment_file">
+                             <div><input type="text" id="file_recp_announcement" disabled><span class="edit_file_announcement" >&times;</span></div>
+                             <br>
                              <input type="file"  name="attach_recp_file" id="attach_recp_file" value="">
                              </div><br>
                              <label for="">File name: </label><br>
                              <input type="text" class="edit_file_ann_name" value="" name="title" id="file_name_recp"><br><br><br>
-                            <button type="submit" class="teacher_upl_btn" id="submit-edit-ann" name="submit-edit-announcement">Update</button>
+                            <button type="submit" class="teacher_upl_btn" id="submit-edit-ann" name="submit-edit-announcement" onclick="closeModal3()">Update</button>
                         </form>
                     </div>
                 </div>
@@ -69,7 +71,7 @@
         <div id="profileModal6" class="popupModal">
             <div class="tchr-popupmodal-content2">
                 <span class="ann_close" onclick="closeModal6()">&times;</span><br>
-                <h4>--Delete Course--</h4><br>
+                <h4>--Delete Announcement--</h4><br>
                 <form action="" method="post" class="up-profile">
                     <div class="teacher-crs-activities2">
                         <label for="delete-sec" class="teacher-edit">Are you sure you want to delete this announcement? </label>

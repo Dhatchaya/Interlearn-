@@ -39,7 +39,14 @@ function openModal3(aid) {
                     // console.log(response[i].grade);
                     document.getElementById("title").value = response[i].title;
                     document.getElementById("content").value = response[i].content;
-                    document.getElementById("file_recp_announcement").value = response[i].file_name; //assignement_edit
+                    if(response[i].attachment != "undefined"){
+                        document.getElementById("file_recp_announcement").value = response[i].file_name;
+                    }
+                    else{
+                        document.getElementById("file_recp_announcement").parentElement.innerHTML = "";
+                    }
+                     //assignement_edit
+                    document.getElementById("attachment_file").value = response[i].attachment;
                     document.getElementById("file_name_recp").value = response[i].file_name;
 
                     // Click on a close button to hide the current list item
@@ -49,11 +56,12 @@ function openModal3(aid) {
                       close[i].onclick = function() {
                         console.log("inside");
                         var div = this.parentElement;
+
                          console.log(div);
                          div.style.display = "none";
                         $.ajax({
                             method:"POST",
-                            url : 'http://localhost/Interlearn/public/receptionist/announcement/getAnnouncementFile?aid='+aid,
+                            url : 'http://localhost/Interlearn/public/receptionist/announcement/editAnnouncementFile?aid='+aid,
                             data:{'aid' : aid},
                             success:function(response){
                               console.log(response);
@@ -65,25 +73,69 @@ function openModal3(aid) {
                       }
                     }
 
-                    var submit_announcement = document.getElementById('submit-edit-ann');
-                    submit_announcement.addEventListener("click",function(){
-                        console.log("submit");
-                        var title = document.getElementById("title").val();
-                        var content = document.getElementById("content").val();
-                        var fileName = document.getElementById("file_name_recp").val();
-                        var attachment = document.getElementById("attach_recp_file").val();
+                    var submitAnnouncement = document.getElementById('submit-edit-ann');
 
-                        $.ajax({
-                          url: 'http://localhost/Interlearn/public/receptionist/announcement/submitEditAnnouncement',
-                          type: 'POST',
-                          data: {'aid' : aid, 'title':title, 'content': content, 'file_name': fileName, 'attachment': attachment},
-                          success: function(response) {
-                            console.log(response);
-                             response = JSON.parse(response);
-                            console.log(response);
-                          }
-                        });
-                      });
+                    submitAnnouncement.addEventListener("click", function(event) {
+                      event.preventDefault();
+
+                      console.log("submit");
+                      let formData = new FormData();
+
+                      var title = document.getElementById("title").value;
+                      var content = document.getElementById("content").value;
+                      var fileName = document.getElementById("file_name_recp").value;
+                      var attachment = document.getElementById("attachment_file").value;
+                      var newAttachment = document.getElementById("attach_recp_file").files;
+                      console.log(newAttachment);
+
+                      formData.append('aid', aid);
+                      formData.append('title', title);
+                      formData.append('content', content);
+                      formData.append('file_name', fileName);
+                      formData.append('attachment', newAttachment[0]);
+
+                      console.log(attachment);
+
+                      $.ajax({
+                        method:"POST",
+                        url : 'http://localhost/Interlearn/public/receptionist/announcement/submitEditAnnouncement',
+                        data:formData,
+                        processData: false,
+                        contentType: false,
+                        success:function(response){
+                          console.log(response);
+                        },
+                        error:function(xhr,status,error){
+                          console.log("Error: " + error);
+                        }
+                    });
+
+                    //   var xhr = new XMLHttpRequest();
+
+                    //   xhr.onreadystatechange = function() {
+                    //     if (this.readyState === XMLHttpRequest.DONE) {
+                    //       if (this.status === 200) {
+                    //         console.log(this.responseText);
+                    //         var response = JSON.parse(this.responseText);
+                    //         console.log(response);
+                    //       } else {
+                    //         console.error("Error:", this.statusText);
+                    //       }
+                    //     }
+                    //   };
+
+                    //   xhr.onerror = function() {
+                    //     console.error("Request failed:", xhr.statusText);
+                    //   };
+
+                    //   xhr.open("POST", "http://localhost/Interlearn/public/receptionist/announcement/submitEditAnnouncement");
+                    //     xhr.setRequestHeader("Content-Type", "multipart/form-data");
+                    //     xhr.send(formData);
+
+                    });
+
+
+
 
 
                 }

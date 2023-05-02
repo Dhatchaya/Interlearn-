@@ -184,7 +184,7 @@ class Announcement extends Model{
     public function deleteAnnFile($aid){
 
         $query = "UPDATE ".$this->table;
-        $query .= " SET file_name = ''";
+        $query .= " SET file_name = ' ' AND attachment = ' '";
         $query .= " WHERE announcement.aid =:aID AND announcement.role = 'Receptionist'";
         $data['aID'] = $aid;
 
