@@ -22,7 +22,7 @@ $sub_id = $_GET['id'];
 
         <?php endif; ?>
         <br>
-        <h4><i>Choose the language medium</i> </h4><br>
+        <h4>Choose the language medium</h4><br>
         <nav class="recp_cl_navbar">
             <ul class="recp_cl_medium">
 
@@ -278,7 +278,7 @@ $sub_id = $_GET['id'];
                         <?php if (!empty($errors)) : ?>
                             <p class="warning"><?= $errors['capacity']; ?></p>
                         <?php endif; ?>
-                    </div>
+                    </div><br>
                     <button name="add-teacher" type="submit" class="recp_det_btn">Save</button>
                 </form>
             </div>

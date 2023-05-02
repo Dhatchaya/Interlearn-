@@ -2542,6 +2542,25 @@ transform: scale(0.97,0.97);
     border-color: rgba(62, 32, 109, 20%);
     padding: 2%;
     align-items: center;
+    overflow-y: auto;
+    overflow-x: auto;
+    max-height: 100vh;
+    box-shadow: #c3c3c3;
+}
+
+.std_view_box::-webkit-scrollbar{
+    width: 10px;               /* width of the entire scrollbar */
+    height: 10px;
+}
+
+.std_view_box::-webkit-scrollbar-track {
+    background: rgb(216, 216, 216);        /* color of the tracking area */
+}
+
+.std_view_box::-webkit-scrollbar-thumb {
+  background-color: rgb(127, 64, 196);    /* color of the scroll thumb */
+  border-radius: 15px;       /* roundness of the scroll thumb */
+  border: 3px solid rgb(115, 35, 131);  /* creates padding around scroll thumb */
 }
 
 .std_view_msg{
@@ -3314,7 +3333,7 @@ width: 45vw;
     height: 2vh;
     float: right;
     margin-top: 1%;
-    margin-right: 1%;
+    margin-right: 3%;
     cursor: pointer;
 }
 /* receptionist view page */
@@ -3451,13 +3470,14 @@ transition: width 1s, height 1s;
     margin-left: 5%;
     /* display: flex;
     flex-wrap: wrap; */
-    width: 75vw;
+    width: 80vw;
 }
 .recp_crs_butn{
     padding-left: 60%;
+    margin-left: 12%;
     padding-top: 0%;
     margin-bottom: 5%;
-    width: 60vw;
+    width: 65vw;
 }
 .recp_crs_butn2{
     padding-top: 0%;
@@ -3466,8 +3486,8 @@ transition: width 1s, height 1s;
     justify-content: center;
 }
 .recp_crs_btn{
-    width: 10vw;
-    height: 5vh;
+    width: 12vw;
+    height: 6vh;
     background-color: rgb(62, 32, 109);
     color: white;
     cursor: pointer;
@@ -3485,18 +3505,21 @@ transition: width 1s, height 1s;
     /* margin-bottom: 5%; */
 }
 .recp_crs_btn:hover, .recp_crs_btn2:hover{
-    background-color: rgb(62, 32, 109,75%);
+    /* background-color: rgb(62, 32, 109,75%); */
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transform: scale(1.02);
 }
 .recp_crs_rectangle{
     background-color: white;
-    border: solid rgba(62, 32, 109, 100%);
+    /* border: solid rgba(62, 32, 109, 100%); */
     width: 17vw;
     height: 40vh;
     float: left;
-    margin-right: 4%;
+    margin-right: 3%;
     margin-bottom: 4%;
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 .recp_crs_rectangle:hover{
     transform: scale(1.02);
@@ -3506,15 +3529,26 @@ transition: width 1s, height 1s;
     text-decoration: none;
 }
 .recp_crs_img{
-    width: 16.7vw;
-    height: 15vh;
+    width: 17vw;
+    height: 22vh;
     transition: width 1s, height 1s;
 }
-.recp_crs_rectangle p{
-    font-weight: 500;
+.grade-text{
+    font-weight: bold;
+    font-size: large;
+    color: #000000;
+    margin-bottom: 1%;
+    margin-top: 2%;
+    padding: 3%;
+    text-align: center;
+}
+
+.subject-name{
+    font-weight: bolder;
     font-size: large;
     color: #000000;
     margin-bottom: 5%;
+    margin-top: 0%;
     padding: 3%;
     text-align: center;
 }
@@ -3542,6 +3576,11 @@ transition: width 1s, height 1s;
 }
 .recp_cl_navbar{
     background-color: rgb(104, 44, 198,9%);
+    transition: 0.3s;
+    margin-bottom: 1%;
+}
+.recp_cl_navbar:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 .recp_cl_nav{
     display: block;
@@ -3555,6 +3594,7 @@ transition: width 1s, height 1s;
 }
 .recp_cl_nav:hover{
     background-color: rgb(104, 44, 198,25%);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 .recp_cl_nav.active{
   background-color: var(--left-sidebar-color);
@@ -3601,8 +3641,8 @@ transition: width 1s, height 1s;
     margin: 0 auto;
 }
 .recp_cl_btn{
-    width: 10vw;
-    height: 5vh;
+    width: 11vw;
+    height: 7vh;
     background-color: rgb(62, 32, 109);
     color: white;
     cursor: pointer;
@@ -3685,13 +3725,15 @@ transition: width 1s, height 1s;
     display: flex;
 }
 .recp_det_content{
-    margin-top: 5%;
-    margin-left: 2%;
+    margin-top: 2%;
+    margin-left: 4%;
     flex-wrap: wrap;
-    width: 70vw;
+    width: 75vw;
     margin-bottom: 5%;
     padding: 2%;
-    background-color: rgb(0 0 0 / 6%);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+    /* background-color: rgb(0 0 0 / 6%); */
 }
 .recp_crs_add{
     display: flex;
@@ -3700,46 +3742,55 @@ transition: width 1s, height 1s;
 }
 .recp_det_box{
     /* background-color: rgb(104, 44, 198,9%); */
-    width: 20vw;
+    width: 65vw;
     height: 10vh;
-    /* margin: 5%; */
 }
-/* .recp_det_box:hover{
-    box-shadow: 10px 10px 5px rgb(104, 44, 198,25%);
+.recp_det_name:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.recp_dropdown_clz{
+    width: 65vw;
+    height: 7vh;
+    /* box-shadow: 10px 10px 5px rgb(104, 44, 198,25%); */
     cursor: pointer;
-} */
+}
 .recp_det_name{
-    width: 60vw;
+    width: 65vw;
     height: 5vh;
     padding: 3%;
+    border: none;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    /* border: solid; */
 }
 
 .recp_det_dura{
     display: flex;
-    padding-left: 2vw;
+    /* padding-left: 2vw; */
 }
 .recp_det_dura p{
     margin-left: 3%;
     margin-right: 3%;
 }
 .recp_det_time{
-    width: 8vw;
-    height: 4vh;
+    width: 10vw;
+    height: 5vh;
 }
 .recp_add_butn{
     width: 25vw;
+    margin: 2%;
 }
 .recp_det_btn{
-    width: 10vw;
-    height: 5vh;
+    width: 11vw;
+    height: 6vh;
     background-color: rgb(62, 32, 109);
     color: white;
     cursor: pointer;
     float: right;
-    margin-right: 3%;
+    margin: 2%;
 }
 .recp_det_btn:hover{
-    background-color: rgb(62, 32, 109,75%);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transform: scale(1.02);
 }
 .teacher_crs_content2{
     margin-top: 2%;
@@ -4347,6 +4398,7 @@ tr:nth-child(even) {
     height: 10vh;
     padding-left: 2%;
     padding-right: 2%;
+    /* border: none; */
 }
 
 .recp_ann_cont{
@@ -4354,8 +4406,11 @@ tr:nth-child(even) {
 }
 
 .recp_ann_clz{
-    width: 20vw;
+    width: 35vw;
+    height: 6vh;
     cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
 }
 
 .recp_ann_attachment a{
@@ -4535,15 +4590,15 @@ tr:nth-child(even) {
 
 
 .recp_cl_btn{
-    width: 10vw;
-    height: 5vh;
+    width: 11vw;
+    height: 6vh;
     background-color: rgb(62, 32, 109);
     color: white;
     cursor: pointer;
 }
 
 .recp_cl_btn:hover{
-    background-color: rgb(104, 44, 198,65%);
+    background-color: rgba(73, 33, 137, 0.65);
 }
 
 .recp_view_announcement{
@@ -4552,14 +4607,22 @@ tr:nth-child(even) {
 
 .ann_view_msg{
     text-align: left;
-    border-style: solid;
+    /* border-style: solid; */
     border-color: rgba(62, 32, 109, 100%);
     padding-top: 2%;
     padding-left: 2%;
     width: 67vw;
-    box-shadow: #24262b 5px 5px;
+    box-shadow: #c1c1c1 5px 5px;
     /* height: 20vh; */
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
 }
+
+.ann_view_msg:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
 
 
 
@@ -5323,12 +5386,17 @@ flex-direction: row;
 
 .teacher-class-table{
     border-collapse: collapse;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     width: 75vw;
+    border: none;
 }
 .teacher-class-table th, .teacher-class-table td{
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    border:none;
     padding: 1%;
     text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 .teacher-class-table th{
     /* background-color: rgb(104, 44, 198,55%); */
@@ -5339,7 +5407,8 @@ flex-direction: row;
     background-color: rgb(104, 44, 198,12%);
 } */
 .teacher-class-table tbody tr:hover{
-    background-color: rgb(104, 44, 198,35%);
+    /* background-color: rgb(104, 44, 198,35%); */
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 
@@ -6196,4 +6265,36 @@ left: 5rem;
 }
 
 
+.add-announcement-label{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 14px 16px;
+}
 
+.add-announcement-label:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.add_recp_ann_name{
+    width: 67vw;
+    height: 8vh;
+    padding-left: 2%;
+    padding-right: 2%;
+    border: solid;
+}
+.add_recp_ann_name_file{
+    width: 67vw;
+    height: 8vh;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 1.5%;
+    border: solid;
+}
+
+.add_ann_content{
+    width: 67vw;
+    height: 20vh;
+    padding-left: 2%;
+    padding-right: 2%;
+    border: solid;
+}
