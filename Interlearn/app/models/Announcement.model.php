@@ -180,5 +180,34 @@ class Announcement extends Model{
 
     }
 
+    public function deleteAnnFile($aid){
+
+        $query = "UPDATE ".$this->table;
+        $query .= " SET file_name = ''";
+        $query .= " WHERE announcement.aid =:aID AND announcement.role = 'Receptionist'";
+        $data['aID'] = $aid;
+
+        $res = $this -> update_table($query, $data);
+
+        if($res){
+            return $res;
+        }else{
+            return false;
+        }
+
+        // $query ="DELETE attachment, file_name FROM ".$this->table;
+        // $query .= " WHERE aid =:aID AND announcement.role = 'Receptionist'";
+
+        // $data['aID'] = $aid;
+    // echo $query;die;
+        // $res = $this -> query($query,$data);
+
+        // if(is_array($res)){
+        //     return $res;
+        // }
+        // return false;
+
+    }
+
     // public function
 }
