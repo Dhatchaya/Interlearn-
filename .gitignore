@@ -4,4 +4,4 @@
 *.png
 *.jpg
 *.jpeg
-!/public/assets
+!Interlearn/public/assets
