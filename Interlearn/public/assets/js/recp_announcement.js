@@ -22,9 +22,10 @@ function openModal3(aid) {
 
     
     console.log(modal3);
+    console.log(aid);
 
     $.ajax({
-        url: 'http://localhost/Interlearn/public/receptionist/announcement/editAnnouncement?aid='+aid,
+        url: 'http://localhost/Interlearn/public/receptionist/announcement/getAnnouncement?aid='+aid,
         type: 'GET',
         success: function(response) {
             console.log(response);
@@ -34,13 +35,57 @@ function openModal3(aid) {
                 console.log("hi");
                 // console.log(response[i].grade);
                 if(response[i].aid == aid){
-                    // console.log("hi");
+                    console.log("hi");
                     // console.log(response[i].grade);
                     document.getElementById("title").value = response[i].title;
                     document.getElementById("content").value = response[i].content;
-                    // document.getElementById("attachment").value = response[i].attachment; //assignement_edit
+                    document.getElementById("file_recp_announcement").value = response[i].file_name; //assignement_edit
+                    document.getElementById("file_name_recp").value = response[i].file_name;
 
-                    
+                    // Click on a close button to hide the current list item
+                    var close = document.getElementsByClassName("edit_file_announcement");
+                    var i;
+                    for (i = 0; i < close.length; i++) {
+                      close[i].onclick = function() {
+                        console.log("inside");
+                        var div = this.parentElement;
+                         console.log(div);
+                         div.style.display = "none";
+                        $.ajax({
+                            method:"POST",
+                            url : 'http://localhost/Interlearn/public/receptionist/announcement/getAnnouncementFile?aid='+aid,
+                            data:{'aid' : aid},
+                            success:function(response){
+                              console.log(response);
+                            },
+                            error:function(xhr,status,error){
+                              console.log("Error: " + error);
+                            }
+                        });
+                      }
+                    }
+
+                    var submit_announcement = document.getElementById('submit-edit-ann');
+                    submit_announcement.addEventListener("click",function(){
+                        console.log("submit");
+                        var title = document.getElementById("title").val();
+                        var content = document.getElementById("content").val();
+                        var fileName = document.getElementById("file_name_recp").val();
+                        var attachment = document.getElementById("attach_recp_file").val();
+                        
+                        $.ajax({
+                          url: 'http://localhost/Interlearn/public/receptionist/announcement/submitEditAnnouncement',
+                          type: 'POST',
+                          data: {'aid' : aid, 'title':title, 'content': content, 'file_name': fileName, 'attachment': attachment},
+                          success: function(response) {
+                            console.log(response);
+                             response = JSON.parse(response);
+                            console.log(response);
+                          }
+                        });
+                      });
+              
+
                 }
                 else{
                     continue;
@@ -48,39 +93,35 @@ function openModal3(aid) {
                 console.log(response);
             }
 
-            if(response[0] && response[0].filename){
-                console.log(response[0].filename);
-                for(i in response){
-                    const item = document.createElement("div");
-                    item.classList.add("file_div");
-
-                    const link = document.createElement("a");
-                    link.classList.add("attachment-link");
-                    link.setAttribute("href", "../../uploads/receptionist/attachments/" + response[i].filename);
-                    link.textContent = response[i].filename;
-
-                    const closediv = document.createElement("div");
-                    closediv.classList.add("closebtn");
-                    const closebtn = document.createElement("button");
-                    closebtn.classList.add("delete_file_btn");
-                    closebtn.classList.add("closebtn");
-                    closebtn.setAttribute("response-file-id", response[i].fileID);
-                    const icon = document.createElement("img");
-                    icon.classList.add("assignmentIcon");
-                    icon.src = "/Interlearn/public/assets/images/assignmentIcon.png";
-                    icon.alt = "close btn";
-                    closebtn.appendChild(icon);
-                    item.append(link);
-                    closediv.append(closebtn)
-                    item.append(closediv);
-
-                    FileName.append(item);
-                }
-            }
         }
     });
+console.log("out");
 
-    // document.getElementById("title").value = 
+    // $(document).on("click",".delete_file_btn", function(){
+    //     // const fileid = $(this).data("aid");
+    //     const confirmation = confirm("Are you sure you want to delete this file?");
+    // console.log(fileid);
+    //     if(confirmation){
+    //       const deleteBtn = $(this); 
+    //       deleteBtn.closest('.file_div').remove();
+    //     //   console.log(`http://localhost/Interlearn/public/teacher/course/assignment/${course}/${week}/edit/d?id=${id}`);
+    //       $.ajax({
+    //         method:"POST",
+    //         url : `http://localhost/Interlearn/public/teacher/course/assignment/${course}/${week}/edit/d?id=${id}`,
+    //         data:{file_id : fileid},
+    //         success:function(response){
+    //           console.log(response);
+             
+    //         },
+    //         error:function(xhr,status,error){
+    //           console.log("Error: " + error);
+    //         }
+    //       });
+    //     }
+    //   });
+
+
+      
 }
 
 // When the user clicks on <span> (x), close the modal

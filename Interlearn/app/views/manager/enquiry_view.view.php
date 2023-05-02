@@ -1,13 +1,9 @@
 <?php $this->view("includes/header");?>
-<div class="main-body-div">
-
-            <?php $this->view("includes/sidebar_man");?>
+<?php $this->view("includes/nav");?>
 
 
-
-<div class="view top-to-bottom-content">
-
-    <?php $this->view("includes/nav");?>
+<div class="center-body view">
+    <?php $this->view("includes/sidebar_recep");?>
     <div class="enq_right_body">
         <div class= "enq_full_body">
         <h2 class="add_heading">Enquiry <?=$enq->eid;?></h2>
@@ -83,13 +79,10 @@
                 </form>
                 </div>
         <?php endif;?>
-        </div>
+    </div>
 
 </div> 
    
-</div>
-</div>
-</div>
 </div>
 <script defer src="<?=ROOT?>/assets/js/enqView.js?v=<?php echo time(); ?>"></script>
 <?php $this->view("includes/footer");?>

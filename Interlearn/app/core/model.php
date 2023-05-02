@@ -131,14 +131,13 @@ class Model extends Database {
                 $mail -> AddAddress($data['email']);
                 $mail ->IsHTML(true);
                 $mail -> Subject = 'Verification code';
-                $message_body ='<p> To verify your email address click on the below link <a href=http://localhost/Interlearn/public/verify?code='.$data['user_activation_code'].'&otp='.$data['user_otp'].'> click here </a>.</p>
+                $message_body ='<p> To verify your email address enter this <b>'.$data['user_otp'].'</b>.</p>
                             <p> Sincerely, </p>
                             <p> Interlearn </p>';
                 $mail->Body = $message_body;
-
                 if ($mail -> Send()){
-                    // $query_string = '?code=' . $data['user_activation_code'];
-                    $current_url = 'http://localhost/Interlearn/public/verify/success/register';
+                    $query_string = '?code=' . $data['user_activation_code'];
+                    $current_url = 'http://localhost/Interlearn/public/verify'.$query_string;
                     // echo $current_url;die;
                     //  echo json_encode(['url' => $current_url]);
                     //header('Location: ' . $current_url);
@@ -703,65 +702,6 @@ class Model extends Database {
         return false;
            
     }
-    public function joinstudentUser($data=null,$orderby=null,$order = 'desc'){
 
-        $query ="select ".$this->table.".*, users.display_picture,users.email from ".$this->table." inner join users on ".$this->table.".uid = users.uid";
-
-
-        $query .= " order by $orderby  $order ";
-
-        $res = $this -> query($query,$data);
-
-        if(is_array($res)){
-           return $res;
-        }
-        return false;
-
-    }
-    public function getYearandMonth(){
-
-        $query ="SELECT EXTRACT(year FROM user_datetime) as Year,EXTRACT(month FROM user_datetime) AS month,";
-        $query .="count(EXTRACT(year FROM user_datetime)) as Count FROM `users` GROUP BY EXTRACT(month FROM user_datetime),";
-        $query .="EXTRACT(year FROM user_datetime);";
-
-
-
-        $res = $this -> query($query);
-
-        if(is_array($res)){
-           return $res;
-        }
-
-        return false;
-
-    }
-    public function getStaffCount(){
-
-        $query ="SELECT COUNT(emp_id) as count ,role FROM `staff` GROUP BY role;";
-
-
-
-        $res = $this -> query($query);
-
-        if(is_array($res)){
-           return $res;
-        }
-
-        return false;
-
-    }
-    public function getSubjectCount(){
-
-        $query ="SELECT COUNT(subject_id) as count ,grade FROM `subject` GROUP BY grade;";
-
-        $res = $this -> query($query);
-
-        if(is_array($res)){
-           return $res;
-        }
-
-        return false;
-
-    }
 
 }

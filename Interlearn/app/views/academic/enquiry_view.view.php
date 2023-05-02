@@ -1,24 +1,8 @@
 <?php $this->view("includes/header");?>
+<?php $this->view("includes/nav");?>
 
-
-
-<div class="main-body-div">
-<?php if(Auth::getrole() == "Student"):?>
-        <?php $this->view("includes/sidebar");?>
-    <?php else:?>
-        <?php  if(Auth::getrole() == "Teacher"):?>
-            <?php $this->view("includes/sidebar_teach");?>
-    <?php else:?>
-        <?php if(Auth::getrole() == "Instructor"):?>
-            <?php $this->view("includes/sidebar_ins");?>
-    <?php endif;?>
-    <?php endif;?>
-    <?php endif;?>
-
-
-<div class="view top-to-bottom-content">
-
-    <?php $this->view("includes/nav");?>
+<div class="center-body view">
+    <?php $this->view("includes/sidebar_recep");?>
     <div class="enq_right_body">
         <div class= "enq_full_body">
         <h2 class="add_heading">Enquiry <?=$enq->eid;?></h2>
@@ -48,7 +32,6 @@
                     <p class="view_content"><?=$enq->content;?></p>
                     <span class="view-date">
                         <?=$enq->date;?>
-                        <?=$enq->role;?>
                     </span>
                 </div>
 
@@ -93,9 +76,7 @@
         <?php endif?>
     </div>
     </div> 
-    </div>
-    </div>
-    </div>
+    
     </div>
 
 <script defer src="<?=ROOT?>/assets/js/enqView.js?v=<?php echo time(); ?>"></script>

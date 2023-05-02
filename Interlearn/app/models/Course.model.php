@@ -361,4 +361,18 @@ class Course extends Model
         }
     }
 
+    public function getCourseDetails($course_id){
+        $query = "SELECT * FROM ".$this->table;
+        $query .= " WHERE course_id =:courseID";
+        $data['courseID'] = $course_id;
+        $res = $this -> query($query, $data);
+        // show($query);die;
+
+        if($res){
+            return $res;
+        }else{
+            return false;
+        }
+    }
+
 }
