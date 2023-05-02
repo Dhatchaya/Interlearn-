@@ -1,17 +1,9 @@
 <?php $this->view("includes/header");?>
+<?php $this->view("includes/nav");?>
 
 
-
-<div class="main-body-div">
-
-            <?php $this->view("includes/sidebar_recep");?>
-
-
-
-<div class="view top-to-bottom-content">
-
-    <?php $this->view("includes/nav");?>
-
+<div class="center-body view">
+    <?php $this->view("includes/sidebar_recep");?>
     <div class="enq_right_body">
         <div class= "enq_full_body">
         <h2 class="add_heading">Enquiry <?=$enq->eid;?></h2>
@@ -25,7 +17,6 @@
                             var repId = <?php echo json_encode($enq->eid); ?>;
                         </script>
                         <?php if($enq->role != Auth::getrole()):?>
-
                         <div class="init_enq">
                         <?php else:?>
                             <div class="init_enq  sender">
@@ -41,7 +32,6 @@
                     <p class="view_content"><?=$enq->content;?></p>
                     <span class="view-date">
                         <?=$enq->date;?>
-                        <?=$enq->role;?>
                     </span>
                 <!-- <?php if($enq->status == 'pending'):?>
                     <div class="view-reply" id="enq-reply">
@@ -98,7 +88,6 @@
 
 </div> 
    
-</div>
 </div>
 </div>
 </div>

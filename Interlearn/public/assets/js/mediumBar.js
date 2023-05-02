@@ -10,7 +10,7 @@ if ( window.history.replaceState ) {
  
   //loadItem( div.getAttribute("data-status"),div.id);
   // a.classList.add("active");
-  // children= document.querySelector("#"+tag+"_content").parentNode.children;
+  // children= document.querySelector("#"+tag+"_content").parentNode.children; 
   // for(let i = 0; i<children.length;i++){
   //   children[i].classList.add("hide");
   // }

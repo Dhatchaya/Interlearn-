@@ -46,10 +46,10 @@ $sub_id = $_GET['id'];
 
             <!-- selecting the selected medium -->
             <?php $currentMedium = []; ?>
-            <?php
-            foreach ($mediums as $medium)
+            <?php 
+            foreach ($mediums as $medium) 
             {
-                if ($medium->subject_id == $sub_id)
+                if ($medium->subject_id == $sub_id) 
                 {
                     $currentMedium = $medium->language_medium;
                 }
@@ -134,75 +134,67 @@ $sub_id = $_GET['id'];
                         </tr>
 
 
-
-                        <!-- edit teachers class -->
-                        <div id="profileModal3_<?php echo $teacher->course_id ?>" class="popupModal">
-                            <div class="popupmodal-content">
-                                <span class="ann_close" onclick="closeModal3(<?= esc($teacher->course_id) ?>)">&times;</span><br>
-                                <h3>Edit Class</h3><br>
-                                <p id="addCourseerror" class="warning"></p>
-                                <form action="" method="post" class="up-profile">
-                                    <input type="hidden" name="course_id" value="<?= esc($teacher->course_id) ?>">
-
-                                    <div class="recp_det_box">
-                                        <h4>Teacher ID: </h4>
-                                        <!-- <?php show($teacher); ?> -->
-                                        <input type="hidden" name="teacher_id" id="teacher_id" value="<?= $teacher->teacher_ID ?>">
-                                        <input type="text" name="teacher_id" id="teacher_id" value="<?= esc($teacher->teacher_ID) ?>:<?= esc($teacher->teacherName) ?>" class="recp_ann_clz" disabled>
-                                    </div>
-
-                                    <div class="recp_det_box">
-                                        <h4>Instructor ID: </h4>
-
-                                        <?php if (!empty($teach_instructors[$teacher->course_id])) : ?>
-
-                                            <?php foreach ($teach_instructors[$teacher->course_id] as $teach_instructor) : ?>
-                                                <input type="text" value="<?= esc($teach_instructor->instructorName) ?>" disabled>
-                                                <!-- <input type="hidden" name="teacher_id" id="teacher_id" value="<?= $teacher->teacher_ID ?>"> -->
-                                                <input type="hidden" value="<?= $teach_instructor->emp_id ?>" id="instructorID" name="instructorID">
-                                                <input type="hidden" value="<?= $teach_instructor->course_id ?>" id="courseID" name="courseID">
-                                                <button type="submit" name="submit-remove-instructor"><span class="instructor-remove">&times;</span></button> <br>
-                                            <?php endforeach; ?>
-
-                                        <?php else : ?>
-                                            <p style="font-size: small;"><?= esc("No instrcutors to show!") ?></p>
-                                        <?php endif; ?>
-                                    </div>
-
-                                    <div class="recp_det_box">
-                                        <h4>Day: </h4>
-                                        <select name="day" id="daysEdit" class="recp_ann_clz">
-                                            <option value="<?= esc($teacher->day) ?>" selected><?= esc($teacher->day) ?></option>
-                                            <option value="Monday">Monday</option>
-                                            <option value="Tuesday">Tuesday</option>
-                                            <option value="Wednesday">Wednesday</option>
-                                            <option value="Thursday">Thursday</option>
-                                            <option value="Friday">Friday</option>
-                                            <option value="Saturday">Saturday</option>
-                                            <option value="Sunday">Sunday</option>
-                                        </select>
-                                    </div><br>
-
-                                    <div class="recp_det_box">
-                                        <h4>Time:</h4>
-                                        <div class="recp_det_dura">
-                                            <input type="time" name="timefrom" value="<?= esc($teacher->timefrom) ?>" id="timefromEdit" class="recp_det_time">
-                                            <p> to </p>
-                                            <input type="time" name="timeto" value="<?= esc($teacher->timeto) ?>" id="timetoEdit" class="recp_det_time">
-                                        </div>
-                                    </div>
-                                    <br><br>
-
-                                    <button name="edit-teacher" type="submit" class="recp_det_btn">Save</button>
-                                </form>
-                            </div>
-                        </div>
-
                     <?php endforeach; ?>
                 <?php endif; ?>
             </table>
         </div>
         <br><br>
+
+
+        <!-- edit teachers class -->
+        <div id="profileModal3" class="popupModal">
+            <div class="popupmodal-content">
+                <span class="ann_close" onclick="closeModal3 ()">&times;</span><br>
+                <h3>Edit Class</h3><br>
+                <p id="addCourseerror" class="warning"></p>
+                <form action="" method="post" class="up-profile">
+                    <input type="hidden" name="course_id" id="course_id" value="">
+                    <div class="recp_det_box">
+                        <h4>Teacher ID: </h4>
+                        <!-- <?php show($teacher); ?> -->
+                        <input type="hidden" name="teacher_id" id="teacher_id" value="">
+                        <input type="text" name="teacher_id" id="teacher_id_edit" value="" class="recp_ann_clz" disabled>
+                    </div>
+                    <div class="recp_det_box">
+                        <h4>Instructor ID: </h4>
+                        <?php if (!empty($teach_instructors[$teacher->course_id])) :?>
+                            <?php foreach ($teach_instructors[$teacher->course_id] as $teach_instructor) : ?>
+                                <input type="text" value="<?= esc($teach_instructor->instructorName) ?>" disabled>
+                                <!-- <input type="hidden" name="teacher_id" id="teacher_id" value="<?= $teacher->teacher_ID ?>"> -->
+                                <input type="hidden" value="<?= $teach_instructor->emp_id ?>" id="instructorID" name="instructorID">
+                                <input type="hidden" value="<?= $teach_instructor->course_id ?>" id="courseID" name="courseID">
+                                <button type="submit" name="submit-remove-instructor" class="remove_instructor"><span class="instructor-remove">&times;</span></button> <br>
+                            <?php endforeach;?>
+                        <?php else : ?>
+                            <p style="font-size: small;"><?= esc("No instrcutors to show!") ?></p>
+                        <?php endif; ?>
+                    </div>
+                    <div class="recp_det_box">
+                        <h4>Day: </h4>
+                        <select name="day" id="daysEdit" class="recp_ann_clz">
+                            <option value="" selected></option>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                    </div><br>
+                    <div class="recp_det_box">
+                        <h4>Time:</h4>
+                        <div class="recp_det_dura">
+                            <input type="time" name="timefrom" value="" id="timefromEdit" class="recp_det_time">
+                            <p> to </p>
+                            <input type="time" name="timeto" value="" id="timetoEdit" class="recp_det_time">
+                        </div>
+                    </div>
+                    <br><br>
+                    <button name="edit-teacher" type="submit" id="edit_class_submit" class="recp_det_btn">Save</button>
+                </form>
+            </div>
+        </div>
 
 
         <!-- delete course -->
@@ -234,7 +226,7 @@ $sub_id = $_GET['id'];
             <div class="popupmodal-content">
                 <span class="ann_close" onclick="closeModal()">&times;</span><br>
                 <h3>Add Teachers</h3><br>
-                <p id="addCourseerror" class="warning"></p>
+                <p id="addCourseerror1" class="warning"></p>
                 <form action="" method="post" class="up-profile">
                     <div class="recp_det_box">
                         <h4>Teacher ID: </h4>
@@ -246,9 +238,9 @@ $sub_id = $_GET['id'];
                                 <?php endforeach; ?>
                             <?php endif; ?>
                         </select>
-                        <?php if (!empty($errors)) : ?>
+                        <!-- <?php if (!empty($errors)) : ?>
                             <p class="warning"><?= $errors['teacher_id']; ?></p>
-                        <?php endif; ?>
+                        <?php endif; ?> -->
                     </div>
                     <br><br>
                     <div class="recp_det_box">
@@ -263,22 +255,22 @@ $sub_id = $_GET['id'];
                             <option value="Saturday">Saturday</option>
                             <option value="Sunday">Sunday</option>
                         </select>
-                        <?php if (!empty($errors)) : ?>
+                        <!-- <?php if (!empty($errors)) : ?>
                             <p class="warning"><?= $errors['day']; ?></p>
-                        <?php endif; ?>
+                        <?php endif; ?> -->
                     </div><br><br>
                     <div class="recp_det_box">
                         <h4>Time:</h4>
                         <div class="recp_det_dura">
                             <input type="time" name="timefrom" value="00:00" id="timefrom" class="recp_det_time">
-                            <?php if (!empty($errors)) : ?>
+                            <!-- <?php if (!empty($errors)) : ?>
                                 <p class="warning"><?= $errors['timefrom']; ?></p>
-                            <?php endif; ?>
+                            <?php endif; ?> -->
                             <p> to </p>
                             <input type="time" name="timeto" value="00:00" id="timeto" class="recp_det_time">
-                            <?php if (!empty($errors)) : ?>
+                            <!-- <?php if (!empty($errors)) : ?>
                                 <p class="warning"><?= $errors['timeto']; ?></p>
-                            <?php endif; ?>
+                            <?php endif; ?> -->
                         </div>
                     </div><br>
                     <div class="recp_det_box">

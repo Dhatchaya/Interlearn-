@@ -255,6 +255,8 @@ class Teacher extends Controller
                 }
             }
 
+                // $result = $course_material->insert($_POST);
+            }
             $data['rows']= $course->select([],'course_id');
             // show($data['rows']);die;
             $data['sums']= $subject -> teacherCourse([],$user_id);
@@ -449,12 +451,10 @@ class Teacher extends Controller
                         $editURL = "http://localhost/Interlearn/public/teacher/course/assignment/".$id."/".$week."/view?id=".$assignmentid;
                         $deleteURL = "http://localhost/Interlearn/public/teacher/course/assignment/".$id."/".$week."/delete?id=".$assignmentid;
                         $viewURL="http://localhost/Interlearn/public/teacher/course/submissions/".$id."/".$week."/?id=".$assignmentid;
-                        $studentView ="http://localhost/Interlearn/public/student/coursepg/submissionstatus/".$id."/?id=".$assignmentid;;
                         $cid = uniqid();
                         $_POST['cid']=$cid;
                         $_POST['edit_URL']=$editURL;
                         $_POST['view_URL']=$viewURL;
-                        $_POST['studentView_URL']=$studentView;
                         $_POST['delete_URL']=$deleteURL;
                         $_POST['week_no']=$week;
                         // $_POST['course_material']="Home Work";
@@ -617,22 +617,22 @@ class Teacher extends Controller
                     echo json_encode($data['errors']);
                     exit;
 
-                    }
-                    // $data['link'] ="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']."?id=".$assignmentid;
-
-                    exit;
                 }
+                   // $data['link'] ="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']."?id=".$assignmentid;
+
+                exit;
+            }
 
 
-            // }
-                else{
-                    $result = $assignment -> whereForAssignment(['assignmentId'=>$assignmentID],'assignmentId');
+           // }
+            else{
+                $result = $assignment -> whereForAssignment(['assignmentId'=>$assignmentID],'assignmentId');
 
-                    header('Content-type: application/json');
-                    echo json_encode($result);
-                    exit;
-                }
-                    exit;
+                header('Content-type: application/json');
+                echo json_encode($result);
+                exit;
+            }
+                exit;
             }
 
             if($option == "delete"){
@@ -922,25 +922,23 @@ class Teacher extends Controller
                 $mainforum_id = uniqid('F',true);
                 $_POST['mainforum_id']=$mainforum_id;
                 $_POST['course_id']= $id;
-
+                $result =  $mainForum -> insert($_POST);
                 $editURL = "#";
                 $viewURL="http://localhost/Interlearn/public/forums/".$id."/".$week."/?main=".$mainforum_id;
-                $deleteURL="http://localhost/Interlearn/public/forums/deleteMain?id=".$mainforum_id;
                 $cid = uniqid();
                 $_POST['cid']=$cid;
                 $_POST['edit_URL']=$editURL;
                 $_POST['view_URL']=$viewURL;
-                $_POST['delete_URL']=$deleteURL;
                 $_POST['week_no']=$week;
                 // $_POST['course_material']="Home Work";
                 $_POST['upload_name']=$_POST['subject'];
                 $_POST['type']="forum";
-              //  $_POST['course_id'] = $id;
-                $material = $course_content->insert($_POST);
-                $result =  $mainForum -> insert($_POST);
+                $_POST['course_id'] = $id;
 
+
+               $material = $course_content->insert($_POST);
                 if($result){
-                    header('location:http://localhost/Interlearn/public/forums/'.$id.'/'.$week.'/?main='.$mainforum_id);
+                    header('location:http://localhost/Interlearn/public/forums/4/1?main='.$mainforum_id);
                 }
             }
 
@@ -1288,6 +1286,20 @@ class Teacher extends Controller
 
 
 
+    public function calendar()
+    {
+        if (!Auth::is_teacher()) {
+            redirect('home');
+        }
+        $course = new Course();
+        $userid = Auth::getUID();;
+        $result= $course->getTeacherClasses(['uid'=>$userid]);
 
+
+        header('Content-Type: application/json');
+        echo json_encode($result);
+        exit;
+       // $this->view('includes/calendar');
+    }
 
 }

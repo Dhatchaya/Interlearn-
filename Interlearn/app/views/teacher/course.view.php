@@ -1,13 +1,9 @@
 <?php $this->view("includes/header");?>
+<?php $this->view("includes/nav");?>
 
-
-<div class="teacher_crs_container main-body-div">
+<div class="teacher_crs_container">
 <?php $this->view("includes/sidebar_teach");?>
-<div class="top-to-bottom-content">
-    <?php $this->view("includes/nav");?>
     <div class="teacher_crs_main">
-
-
         <div class="teacher_crs_content">
             <img src="<?=ROOT?>/assets/images/tchrview.png" class="teacher_crs_topimg">
             <div class="teacher_crs_tophead">
@@ -85,22 +81,22 @@
                                 <?=$material->upload_name?>
                                 </a>
                                 <a href=<?=$material->edit_URL?>>
-                                <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" >
+                                <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
                                 </a>
-                                <!-- <a href=<?=$material->delete_URL?>> -->
+                                <a href=<?=$material->delete_URL?>>
                                 <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->cid?>')">
-                                <!-- </a></p> -->
-                                </p>
+                                </a></p>
+
                             <?php elseif($material->type == "forum"):?>
                                 <p><a href=<?=$material->view_URL?>>
                                 <img src="<?=ROOT?>/assets/images/assignment.png" alt="" class="teacher_card_img3">
                                 <?=$material->upload_name?>
                                 </a>
-                                <!-- <a href=<?=$material->delete_URL?>> -->
+                                <a href=<?=$material->delete_URL?>>
                                 <!-- <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')"> -->
                                 <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->cid?>')">
-                                <!-- </a></p> -->
-                                </p>
+                                </a></p>
+
                             <?php elseif($material->type == "URL"):?>
                                 <p><a href=<?=$material->view_URL?>>
                                 <img src="<?=ROOT?>/assets/images/web.png" alt="" class="teacher_card_img3">
@@ -136,10 +132,10 @@
                                 <a href="<?=ROOT?>/teacher/course/forum/<?=$course->course_id?>" name="upload"><img src="<?=ROOT?>/assets/images/forum.png" alt="" class="teacher-crs-img"><br>Add Forum</a>
                             </div>
                             <div class="teacher-crs-activity">
-                                <a href="<?=ROOT?>/teacher/course/quiz/<?=$course->course_id?>" name="quiz"><img src="<?=ROOT?>/assets/images/quiz.png" alt="" class="teacher-crs-img"><br>Add a quiz</a>
+                                <a href="#"><img src="<?=ROOT?>/assets/images/quiz.png" alt="" class="teacher-crs-img"><br>Add a quiz</a>
                             </div>
                             <div class="teacher-crs-activity">
-                                <a href="<?=ROOT?>/teacher/course/quiz/<?=$course->course_id?>"  ><img src="<?=ROOT?>/assets/images/quizb.png" alt="" class="teacher-crs-img"><br>Add a quiz bank</a>
+                                <a href="#"><img src="<?=ROOT?>/assets/images/quizb.png" alt="" class="teacher-crs-img"><br>Add a quiz bank</a>
                             </div>
                             <div class="teacher-crs-activity">
                                 <a href="<?=ROOT?>/teacher/course/assignment/<?=$course->course_id?>" name="assignment"><img src="<?=ROOT?>/assets/images/submission.png" alt="" class="teacher-crs-img"><br>Add a submission</a>
@@ -265,7 +261,6 @@
                         </div>
                     </form>
                 </div>
-            </div>
             </div>
     </div>
 </div>
