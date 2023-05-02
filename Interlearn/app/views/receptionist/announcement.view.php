@@ -47,17 +47,17 @@
 
                         <input type="hidden" value="" name="edit-announcement" id="edit-announcement">
                              <label for="">Announcement name: </label><br>
-                             <input type="text" class="edit_ann_name" value="<?=$row->title?>" name="title" id="title"><br><br>
+                             <input type="text" class="edit_file_ann_name" value="" name="title" id="title"><br><br>
                              <label for="">Content: </label><br>
-                             <input type="text" id="content" name="content" value="<?=$row->content?>" class="edit_ann_cont"><br><br>
-                             <div class="recp_det_box">
+                             <input type="text" id="content" name="content" value="" class="edit_ann_cont"><br><br>
+                             <div class="recp_file_box">
                              <label for="">Attach Files: </label>
-                             <!-- <input type="text" name="file_name" id="file_name" value="<?=$row->file_name?>" disabled>
-                             <span  >&times;</span><br><br> -->
                              <p id="file_recp_announcement"><?=$row->file_name?> <span class="edit_file_announcement" >&times;</span></p>
-                             <input type="file"  name="attach_recp_file" id="attach_recp_file" value="<?=$row->file_name?>" multiple>
-                             </div><br><br>
-                            <button type="submit" class="teacher_upl_btn" name="submit-edit-announcement">Update</button>
+                             <input type="file"  name="attach_recp_file" id="attach_recp_file" value="">
+                             </div><br>
+                             <label for="">File name: </label><br>
+                             <input type="text" class="edit_file_ann_name" value="" name="title" id="file_name_recp"><br><br><br>
+                            <button type="submit" class="teacher_upl_btn" id="submit-edit-ann" name="submit-edit-announcement">Update</button>
                         </form>
                     </div>
                 </div>

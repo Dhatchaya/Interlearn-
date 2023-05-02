@@ -99,14 +99,15 @@ class Announcement extends Model{
         }
     }
 
-    public function updateAnnouncement($aid, $title, $content, $attachment){
+    public function updateAnnouncement($aid, $title, $content, $attachment, $filename){
         $query = "UPDATE ".$this->table;
-        $query .= " SET title =:title, content =:content, attachment =:attachment";
+        $query .= " SET title =:title, content =:content, attachment =:attachment, file_name =:fileName";
         $query .= " WHERE announcement.aid =:aID";
         $data['aID'] = $aid;
         $data['title'] = $title;
         $data['content'] = $content;
         $data['attachment'] = $attachment;
+        $data['fileName'] = $filename;
 
         $res = $this -> update_table($query, $data);
 
@@ -163,7 +164,7 @@ class Announcement extends Model{
 
     }
 
-    public function editAnnouncements($aid,$order = 'desc'){
+    public function getAnnouncements($aid,$order = 'desc'){
 
         $query ="SELECT announcement.* FROM ".$this->table;
         $query .= " WHERE aid =:aID AND announcement.role = 'Receptionist'";

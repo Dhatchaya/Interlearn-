@@ -295,12 +295,12 @@ class Receptionist extends Controller
         }
 
         if($action == 'getCourseDetails'){
-            // if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                // echo ($_POST['course_id']);die;
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                // show($_POST['courseID']);die;
 
                 $result = $course -> getCourseDetails($_GET['course_id']);
                 echo json_encode($result);
-            // }
+            }
             exit;
         }
 
@@ -311,10 +311,10 @@ class Receptionist extends Controller
                 $day = $_POST['day'];
                 $timefrom = $_POST['timefrom'];
                 $timeto = $_POST['timeto'];
-                show($course_id);
-                show($day);
-                show($timefrom);
-                show($timeto);die;
+                // show($course_id);
+                // show($day);
+                // show($timefrom);
+                // show($timeto);die;
                 $result = $course -> updateCourse($course_id, $day, $timefrom, $timeto);
                 echo json_encode($result);
             }
@@ -600,26 +600,34 @@ class Receptionist extends Controller
         $data['editable'] = $time;
         // show($data['editable']);die;
 
-        if($action == 'editAnnouncement'){
+        if($action == 'getAnnouncement'){
             // echo $_POST['aid'];die;
 
-            $result = $announcement -> editAnnouncements($_GET['aid']);
+            $result = $announcement -> getAnnouncements($_GET['aid']);
             echo json_encode($result);
             die;
         }
 
         if($action == 'editAnnouncementFile'){
 
-            $file_pointer = "gfg.txt";
+            // $file_pointer = "gfg.txt";
 
-            if (!unlink($file_pointer)) {
-                echo ("$file_pointer cannot be deleted due to an error");
-            }
-            else {
+            // if (!unlink($file_pointer)) {
+            //     echo ("$file_pointer cannot be deleted due to an error");
+            // }
+            // else {
                 $result = $announcement -> deleteAnnFile($_GET['aid']);
                 echo json_encode($result);
-            }
+            // }
 
+            die;
+        }
+
+        if($action == 'submitEditAnnouncement'){
+            // echo $_POST;die;
+
+            $result = $announcement -> updateAnnouncement($_POST['aid'],$_POST['title'],$_POST['content'],$_POST['attachment'],$_POST['file_name']);
+            echo json_encode($result);
             die;
         }
 
