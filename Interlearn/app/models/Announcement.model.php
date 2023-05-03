@@ -181,6 +181,24 @@ class Announcement extends Model{
 
     }
 
+    public function getTeacherAnnouncements($aid,$order = 'desc'){
+
+        $query ="SELECT announcement.* FROM ".$this->table;
+        $query .= " WHERE aid =:aID AND announcement.role = 'Teacher'";
+        $query .= " order by announcement.date_time  $order";
+
+        $data['aID'] = $aid;
+    // echo $query;die;
+        $res = $this -> query($query,$data);
+        // show($res);die;
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;
+
+    }
+
     public function deleteAnnFile($aid){
 
         $query = "UPDATE ".$this->table;

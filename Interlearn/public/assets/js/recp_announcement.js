@@ -110,33 +110,8 @@ function openModal3(aid) {
                         }
                     });
 
-                    //   var xhr = new XMLHttpRequest();
-
-                    //   xhr.onreadystatechange = function() {
-                    //     if (this.readyState === XMLHttpRequest.DONE) {
-                    //       if (this.status === 200) {
-                    //         console.log(this.responseText);
-                    //         var response = JSON.parse(this.responseText);
-                    //         console.log(response);
-                    //       } else {
-                    //         console.error("Error:", this.statusText);
-                    //       }
-                    //     }
-                    //   };
-
-                    //   xhr.onerror = function() {
-                    //     console.error("Request failed:", xhr.statusText);
-                    //   };
-
-                    //   xhr.open("POST", "http://localhost/Interlearn/public/receptionist/announcement/submitEditAnnouncement");
-                    //     xhr.setRequestHeader("Content-Type", "multipart/form-data");
-                    //     xhr.send(formData);
 
                     });
-
-
-
-
 
                 }
                 else{
@@ -149,28 +124,6 @@ function openModal3(aid) {
     });
 console.log("out");
 
-    // $(document).on("click",".delete_file_btn", function(){
-    //     // const fileid = $(this).data("aid");
-    //     const confirmation = confirm("Are you sure you want to delete this file?");
-    // console.log(fileid);
-    //     if(confirmation){
-    //       const deleteBtn = $(this);
-    //       deleteBtn.closest('.file_div').remove();
-    //     //   console.log(`http://localhost/Interlearn/public/teacher/course/assignment/${course}/${week}/edit/d?id=${id}`);
-    //       $.ajax({
-    //         method:"POST",
-    //         url : `http://localhost/Interlearn/public/teacher/course/assignment/${course}/${week}/edit/d?id=${id}`,
-    //         data:{file_id : fileid},
-    //         success:function(response){
-    //           console.log(response);
-
-    //         },
-    //         error:function(xhr,status,error){
-    //           console.log("Error: " + error);
-    //         }
-    //       });
-    //     }
-    //   });
 
 
 

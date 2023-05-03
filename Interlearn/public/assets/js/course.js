@@ -99,6 +99,46 @@ function openModal3(number) {
 
     modal3.style.display = "block";
     console.log(modal3);
+
+    console.log(number);
+
+    $.ajax({
+        url: `http://localhost/Interlearn/public/teacher/course/view/${course_id}?week_no=`+number+`/getWeekName`,
+        type: 'GET',
+        success: function(response) {
+            console.log("hello");
+            console.log(response);
+            response = JSON.parse(response);
+
+            for(var i=0; i<response.length; i++){
+                console.log("hi");
+                // console.log(response[i].grade);
+                if(response[i].week_no == number){
+                    document.getElementById("week-title").value = response[i].week_name;
+                }
+            }
+        }
+    });
+
+
+    var update = document.getElementById('add-btn');
+    update.addEventListener('submit', function(){
+        var week_id = document.getElementById('weeknumber').val();
+        var name = document.getElementById('week-title').val();
+        console.log('hi');
+        $.ajax({
+            url: 'http://localhost/Interlearn/public/teacher/course/editWeekName',
+            type: 'POST',
+            data: {'week_id':week_id, 'week_name': name},
+            success:function(response){
+                console.log("submit here");
+                console.log(response);
+            },
+            error:function(xhr,status,error){
+                console.log("Error: " + error);
+            }
+        });
+    });
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -159,6 +199,46 @@ function openModal5(number) {
     document.getElementById("cid").value = number;
     modal5.style.display = "block";
     console.log(modal5);
+
+    console.log(number);
+
+    $.ajax({
+        url: `http://localhost/Interlearn/public/teacher/course/view/${course_id}?week_no=`+number+`/getUploadName`,
+        type: 'GET',
+        success: function(response) {
+            console.log("hello");
+            console.log(response);
+            response = JSON.parse(response);
+
+            for(var i=0; i<response.length; i++){
+                console.log("hi");
+                // console.log(response[i].grade);
+                if(response[i].cid == number){
+                    document.getElementById("edit-upload").value = response[i].upload_name;
+                }
+            }
+        }
+    });
+
+
+    var update = document.getElementById('edit-name-btn');
+    update.addEventListener('submit', function(){
+        var c_id = document.getElementById('cid').val();
+        var name = document.getElementById('edit-upload').val();
+        console.log('hi');
+        $.ajax({
+            url: 'http://localhost/Interlearn/public/teacher/course/editUploadName',
+            type: 'POST',
+            data: {'cid':c_id, 'upload_name': name},
+            success:function(response){
+                console.log("submit here");
+                console.log(response);
+            },
+            error:function(xhr,status,error){
+                console.log("Error: " + error);
+            }
+        });
+    });
 }
 
 // When the user clicks on <span> (x), close the modal

@@ -18,13 +18,18 @@
                 <div class="maindash">
                     <?php if(!empty($sums)):?>
                     <?php foreach($sums as $sum):?>
-                        <div class="recp_crs_rectangle">
+                        <div class="teacher_crs_rectangle">
 
                             <a href="<?=ROOT?>/teacher/course/view/<?=$sum->course_id?> ">
-                                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
+                                <img src="<?=ROOT?>/assets/images/book.jpg" alt="" class="teacher_crs_img">
                                 <br><br>
-                                <p>Grade <?=esc($sum->grade)?> - <?=esc($sum->subject)?></p>
-                                <p>(<?=esc($sum->language_medium)?>)</p>
+                                <div class="teacher-home-text">
+                                    <p>Grade <?=esc($sum->grade)?> - <?=esc($sum->subject)?></p>
+                                </div>
+                                <div class="teacher-home-medium">
+                                    <p><?=esc($sum->language_medium)?> Medium</p>
+                                </div>
+
                             </a>
 
                         </div>
