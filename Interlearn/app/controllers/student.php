@@ -89,11 +89,8 @@ class Student extends Controller
                 $announcement = new Announcement();
                 $ann_course = new AnnouncementCourse();
                 $student_course = new StudentCourse();
-                // show($user_id);die;
-                // show($id);die;
 
                 $data['announcements'] = $announcement->stdAnnouncements([],$user_id,$id);
-                // show($data['announcements']);die;
 
                 $this->view('student/announcement',$data);
             }
@@ -545,6 +542,62 @@ class Student extends Controller
         if($action == "view"){
             $this->view('student/coursepg');
         }
+
+        $question = new ZQuestion();
+
+        if($action == "quiz") {
+
+            $result = $question->ChoiceInnerjoinQuestion();
+            // show($result);
+            $quiz = array();
+            foreach ($result as $row) {
+                $question = array(
+                    'q' => $row->question_title,
+                    'options' => array(
+                        array('text' => $row->choice1, 'marks' => intval($row->choice1_mark)),
+                        array('text' => $row->choice2, 'marks' => intval($row->choice2_mark)),
+                        array('text' => $row->choice3, 'marks' => intval($row->choice3_mark)),
+                        array('text' => $row->choice4, 'marks' => intval($row->choice4_mark))
+                    ),
+                    'mark' => $row->question_mark,
+                    'quiz_description' => $row->quiz_description
+                );
+                array_push($quiz, $question);
+            }
+            $json_data = json_encode($quiz);
+
+
+
+            // $newquiz = new ZQuiz();
+            // $result1 = $newquiz->GetQuiz(['quiz_id'=>'640584214e2ff']);
+
+            // $myquiz = array();
+            // foreach ($result1 as $row) {
+            //     $newquiz = array(
+            //         'quiz_name' => $row->quiz_name,
+            //         'quiz_descriptions' => $row->quiz_description,
+            //         'enable_time' => $row->enable_time,
+            //         'disable_time' => $row->disable_time,
+            //         'format_time' => $row->format_time
+            //     );
+            //     array_push($myquiz, $newquiz);
+            // }
+
+            // $json_data1 = json_encode($myquiz);
+            header('Content-Type: application/json');
+            // echo $json_data1;
+            echo $json_data;
+
+            // show($result1);
+
+            exit;
+
+        }
+
+        if ($action == "quiz_view") {
+            $this->view('coursepg/quiz');
+        }
+
         $data['title'] = "404";
         $this->view('404',$data);
     }
@@ -634,6 +687,8 @@ class Student extends Controller
     //     $this->view('student/submissionstatus');
     // }
 
+
+    // before adding quiz into course ------------------------------------------------> 
     public function quiz($action ='null')
     {
         if(!Auth::is_student()){
@@ -650,8 +705,8 @@ class Student extends Controller
 
         if($action == "view"){
 
-
-            $result = $question->ChoiceInnerjoinQuestion();
+            $result = $question->ChoicejoinQuestion();
+            // $result = $question->ChoiceInnerjoinQuestion();
             // show($result);
             $quiz = array();
             foreach ($result as $row) {
@@ -711,6 +766,8 @@ class Student extends Controller
 
         // die();
     }
+
+    //before adding quiz into course ----------------------------------------------------->
     public function cardPayment($action = NULL)
     {
         if (!Auth::is_student()) {
@@ -863,6 +920,19 @@ class Student extends Controller
         }
         $this->view("student/student-payment");
     }
+    public function calendar()
+    {
+        if (!Auth::is_student()) {
+            redirect('home');
+        }
+        $assignment = new Assignment();
+        $userid = Auth::getUID();;
+        $result= $assignment->getallAssignments(['uid'=>$userid]);
+        
 
+        header('Content-Type: application/json');
+        echo json_encode($result);
+       // $this->view('includes/calendar');
+    }
 
 }

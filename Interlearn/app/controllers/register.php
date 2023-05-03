@@ -13,7 +13,8 @@ class Register extends Controller
         $tempStudentcourse = new TempStudentCourse();
          if($action == "view"){
             if($_SERVER['REQUEST_METHOD'] == "POST"){
-
+         
+                // show($_POST);die;
                 $_POST['studentID'] = $student_id = uniqid();
                 if($user -> validate($_POST))
                 {
@@ -40,6 +41,7 @@ class Register extends Controller
                             if(in_array($img_final_ext,$allowed_ext)){
                                 $new_image_name = uniqid($_POST['username'],true).'.'.$img_final_ext;
                                 $destination = "uploads/images/". $new_image_name;
+                            // echo $destination;die;
                                 move_uploaded_file($pic_tmp,$destination);
                                 $_POST['display_picture'] = $new_image_name ;
                             }
@@ -52,7 +54,36 @@ class Register extends Controller
                             $data['errors']['pic'] ="unknown error occured";
                            
                         }
-
+                
+                        // if($user->insert($_POST)){
+                        //     echo "success user";
+                        //     if($student->insert($_POST)){
+                        //         echo "success";
+                        //         // if($extra == "course"){
+                        //         //     // show($_POST);die;
+                        //         //     if($_SERVER['REQUEST_METHOD'] == "POST"){
+                        //         //         foreach ($_POST['course_id'] as $courseId) {
+                        //         //             $_POST['studentID']=187;
+                        //         //             $_POST['course_id'] = $courseId;
+                        //         //             // show($_POST);die;
+                        //         //             $result = $tempStudentcourse->insert($_POST);
+                        //         //         }
+                        //         //         if($result){
+                        //         //             echo "sucess";
+                        //         //         }
+                        //         //         else{
+                        //         //             echo "failed";
+                        //         //         }
+                        //         //     }
+                        //         //     exit;
+                        //         // }
+                        //     }
+                        //     $verify = $user -> sendemail([
+                        //         'email' => $email,
+                        //         'user_activation_code'=>$user_activation_code,
+                        //         'user_otp'=>$user_otp
+                        //     ]);
+                        // } 
                    
                    
                     }
@@ -68,7 +99,24 @@ class Register extends Controller
                                 ]);
                                 echo json_encode(['url' => $verify,'status' => "success","studentID"=>$_POST['studentID']]);
                 
-
+                                // if($extra == "course"){
+                                //     // show($_POST);die;
+                                //     if($_SERVER['REQUEST_METHOD'] == "POST"){
+                                //         foreach ($_POST['course_id'] as $courseId) {
+                                //             $_POST['studentID']=187;
+                                //             $_POST['course_id'] = $courseId;
+                                //             // show($_POST);die;
+                                //             $result = $tempStudentcourse->insert($_POST);
+                                //         }
+                                //         if($result){
+                                //             echo "sucess";
+                                //         }
+                                //         else{
+                                //             echo "failed";
+                                //         }
+                                //     }
+                                //     exit;
+                                // }
                             }
                         
                     

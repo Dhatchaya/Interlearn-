@@ -1,12 +1,12 @@
 <?php $this->view("includes/header");?>
+<?php $this->view("includes/nav"); 
+$url = $_GET['url'];
+$url = rtrim($url,'/');
+$val = explode('/',$url);
+?>
 
-<div class="main-body-div">
-    <?php $this->view("includes/sidebar_recep");?>
-
-
-
-<div class="recp_cl_container top-to-bottom-content">
-<?php $this->view("includes/nav");?>
+<div class="recp_cl_container">
+<?php $this->view("includes/sidebar_recep");?>
     <div class="recp-enroll-content">
     <!-- <div class="recp_cl_staff"> -->
             <table class="std-enroll-table">
@@ -121,7 +121,6 @@
         </div>
 
 
-    </div>
     </div>
 </div>
 

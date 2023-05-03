@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<!-- <head>
+<head>
  
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -60,22 +60,8 @@
             </div>
            
             
-        </header> -->
+        </header>
         <body>
-        <div class="all-header">
-
-                    <div class="aboutme">
-                        <img src="<?=ROOT?>/uploads/images/<?= Auth::getdisplay_picture();?>" alt="picture" class="display_picture_img"/>
-                        <span class="user-name">
-
-                        <?= ucfirst(Auth::getusername())?>
-                        </span>
-
-                    </div>
-        </div>
-
-
-
-        <!-- <script src="<?=ROOT?>/assets/js/navbar.js"></script> -->
+        <script src="<?=ROOT?>/assets/js/navbar.js"></script>
 </body>
 </html>

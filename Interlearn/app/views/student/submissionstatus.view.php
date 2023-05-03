@@ -1,15 +1,8 @@
 <?php $this->view("includes/header");?>
-
-
-
-
-<div class="main-body-div">
-<?php $this->view("includes/sidebar");?>
-
-<div class="std_sub_grd_container top-to-bottom-content">
 <?php $this->view("includes/nav");?>
 
-
+<div class="std_sub_grd_container">
+<?php $this->view("includes/sidebar");?>
         <div class="std_sub_grd_content">
             <h2><?=esc($assignment->subject)?> - <?=esc($assignment->grade)?></h2><br>
             <p style="font-size: large;">Description</p><br>
@@ -54,4 +47,4 @@
         </div>
     </div>
 
-    <!-- <?php $this->view("includes/footer");?> -->
+    <?php $this->view("includes/footer");?>
