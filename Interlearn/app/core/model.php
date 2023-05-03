@@ -327,8 +327,7 @@ class Model extends Database {
     //distinct function
     public function distinctSubject($data=[],$orderby=null,$order = 'desc'){
 
-        $query ="select subject_id,subject,grade from ".$this->table;
-        // $query = " INNER JOIN course ON course.subject_id = subject.subject_id";
+        $query ="SELECT count(language_medium) AS count, subject_id,subject,grade from ".$this->table;
         $query .= " group by subject, grade";
         $query .= " order by $orderby  $order";
         $res = $this -> query($query,$data);
@@ -340,6 +339,20 @@ class Model extends Database {
         return false;
 
     }
+
+    // public function countMedium($data=[]){
+
+    //     $query ="SELECT count(language_medium) AS count,subject,grade FROM ".$this->table;
+    //     $query .= " group by subject, grade";
+    //     $res = $this -> query($query,$data);
+    //     // show($query);die;
+
+    //     if(is_array($res)){
+    //         return $res;
+    //     }
+    //     return false;
+
+    // }
 
     public function selectTeachers($data=[],$medium='English'){
         $keys = array_keys($data);

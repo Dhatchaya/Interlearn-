@@ -12,8 +12,8 @@ class Courses extends Controller
         $course_instructor = new CourseInstructor();
         $students = new Students();
         $data = [];
-        $data['sums']= $subject -> distinctSubject([],'subject');
-        //show($data['sums']);die;
+        $data['sums']= $subject -> distinctSubject([],'grade');
+        // show($data['sums']);die;
         
         if($action == 'view')
         {

@@ -12,18 +12,46 @@
  
         <?php if(!empty($sums)):?>
             <?php foreach($sums as $sum):?>
-        <div class="recp_crs_rectangle">
+        <div class="guest_crs_rectangle">
         
-            <a href="<?=ROOT?>/courses/index/view/1/?id=<?=esc($sum->subject_id)?>">
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
+            <div class="guest-view-image">
+                <?php if($sum->grade == 6) :?>
+                    <img src="<?=ROOT?>/assets/images/6.png" alt="" class="guest_crs_img">
+                <?php elseif($sum->grade == 7) :?>
+                    <img src="<?=ROOT?>/assets/images/7.png" alt="" class="guest_crs_img">
+                <?php elseif($sum->grade == 8) :?>
+                    <img src="<?=ROOT?>/assets/images/8.png" alt="" class="guest_crs_img">
+                <?php elseif($sum->grade == 9) :?>
+                    <img src="<?=ROOT?>/assets/images/9.jpg" alt="" class="guest_crs_img">
+                <?php elseif($sum->grade == 10) :?>
+                    <img src="<?=ROOT?>/assets/images/10.png" alt="" class="guest_crs_img">
+                <?php elseif($sum->grade == 11) :?>
+                    <img src="<?=ROOT?>/assets/images/11.jpg" alt="" class="guest_crs_img">
+                <?php elseif($sum->grade == 12) :?>
+                    <img src="<?=ROOT?>/assets/images/12.png" alt="" class="guest_crs_img">
+                <?php else :?>
+                    <img src="<?=ROOT?>/assets/images/13.jpg" alt="" class="guest_crs_img">
+                <?php endif;?>
+            </div>
+
                 <!-- <p>Grade 11 Mathematics</p> -->
-                <p>Grade <?=esc($sum->grade)?> - <?=esc($sum->subject)?></p>
-                <div class="recp_crs_butn2">
-                    <!-- <a href="<?=ROOT?>/courses/view/1/?id=<?=esc($sum->subject_id)?>"> -->
-                        <button class="recp_crs_btn2">More info</button>
-                    <!-- </a> -->
+                <div class="subject-name">
+                <!-- Grade <?=esc($sum->grade)?> -->
+                <?=esc($sum->subject)?>
                 </div>
-            </a>
+                <div class="grade-text">
+                We have the best qualified teachers for <?=esc($sum->subject)?> for grade <?=esc($sum->grade)?> in <?=esc($sum->count)?> mediums!
+                </div>
+                <div class="link-guest">
+                <a href="<?=ROOT?>/courses/index/view/1/?id=<?=esc($sum->subject_id)?>" class="link-guest">
+                <button class="guest-view-btn">More</button>
+
+                </a>
+                </div>
+
+
+
+            <!-- </a> -->
             
         </div>
         <?php endforeach;?>

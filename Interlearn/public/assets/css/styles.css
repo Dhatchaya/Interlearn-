@@ -3551,14 +3551,61 @@ transition: width 1s, height 1s;
     height: 22vh;
     transition: width 1s, height 1s;
 }
+.guest-view-image{
+    text-align: center;
+    padding-top: 2%;
+}
+.guest_crs_img{
+    align-items: center;
+    width: 15vw;
+    height: 16vh;
+    transition: width 1s, height 1s;
+    font-size: small;
+}
 .grade-text{
-    font-weight: bold;
-    font-size: large;
+    /* font-weight: bold; */
+    font-size: small;
     color: #000000;
     margin-bottom: 1%;
     margin-top: 2%;
     padding: 3%;
-    text-align: center;
+    text-align: left;
+
+}
+.link-guest{
+    color: #000;
+    text-decoration: none;
+    text-align: left;
+}
+.guest_crs_rectangle{
+    background-color: white;
+    /* border: solid rgba(62, 32, 109, 100%); */
+    width: 17vw;
+    height: 40vh;
+    float: left;
+    margin-right: 3%;
+    margin-bottom: 4%;
+    transition: width 0.5s, height 0.5s;
+    padding-left: 1%;
+    padding-right: 1%;
+    /* cursor: pointer; */
+    /* background-color: rgb(155, 103, 240); */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.guest_crs_rectangle:hover{
+    transform: scale(1.02);
+    box-shadow: 10px 10px 5px rgb(104, 44, 198,25%);
+}
+.guest-view-btn{
+    width: 7vw;
+    height: 4vh;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    cursor: pointer;
+    margin-left: 2%;
+}
+.guest-view-btn:hover{
+    transform: scale(1.02);
 }
 
 .subject-name{
@@ -3568,7 +3615,7 @@ transition: width 1s, height 1s;
     margin-bottom: 5%;
     margin-top: 0%;
     padding: 3%;
-    text-align: center;
+    text-align: left;
 }
 /* receptionist class details view */
 .recp_cl_container{
@@ -3617,6 +3664,24 @@ transition: width 1s, height 1s;
 .recp_cl_nav.active{
   background-color: var(--left-sidebar-color);
 }
+.guest_cl_nav{
+    display: block;
+    float: left;
+  padding: 15px;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  width: 28.3vw;
+  cursor: pointer;
+}
+.guest_cl_nav:hover{
+    background-color: rgb(104, 44, 198,25%);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.guest_cl_nav.active{
+  background-color: var(--left-sidebar-color);
+}
+
 .recp_cl_staff{
     display: flex;
     flex-wrap: wrap;
@@ -5555,6 +5620,9 @@ flex-direction: row;
     cursor: pointer;
     margin-right: 2%;
     float: right;
+}
+.std-enroll-btn:hover{
+    transform: scale(1.02);
 }
 .std-enroll-content{
     margin-top: 5%;
