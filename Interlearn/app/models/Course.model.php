@@ -361,19 +361,4 @@ class Course extends Model
         }
     }
 
-    public function getCourseDetails($course_id){
-        $query = "SELECT course.*, concat(staff.first_name, ' ', staff.last_name) AS teacherName FROM ".$this->table;
-        $query .= " INNER JOIN staff ON staff.emp_ID = course.teacher_ID ";
-        $query .= " WHERE course_id =:courseID";
-        $data['courseID'] = $course_id;
-        $res = $this -> query($query, $data);
-        // show($query);die;
-
-        if($res){
-            return $res;
-        }else{
-            return false;
-        }
-    }
-
 }

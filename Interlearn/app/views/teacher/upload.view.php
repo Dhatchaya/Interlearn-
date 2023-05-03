@@ -20,7 +20,7 @@
             <br><br>
             <form action="" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="week_no" value="<?=$week_no?>">
-                <p>Name of the Upload:</p><br>
+                <p>Name of the Upload:</p>
                 <input type="text" class="teacher_upl_name" name="upload_name"><br><br><br>
 
                 <label class="teacher-upload-container" for="file-input" name="file-input">
@@ -31,11 +31,7 @@
 
                 <br><br><br>
                 <button type="submit" class="teacher_upl_btn" name="submit">Upload</button>
-                <button type="reset" class="teacher_upl_btn">
-                    <a href="<?= ROOT ?>/teacher/course/view/<?= $course_id ?>" >
-                    Cancel
-                    </a>
-                </button>
+                <button type="reset" class="teacher_upl_btn">Cancel</button>
             </form>
 
             <script>

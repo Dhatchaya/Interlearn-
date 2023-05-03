@@ -14,30 +14,18 @@
 
         <form method="POST" action="" enctype="multipart/form-data">
 
-            <div class="add-announcement-label">
-                <label for="">Announcement name: </label><br>
-                <input type="text" class="add_recp_ann_name" name="title">
-            </div>
-            <br><br>
+            <label for="">Announcement name: </label><br>
+            <input type="text" class="recp_ann_name" name="title"><br><br>
 
-            <div class="add-announcement-label">
-                <label for="">Content: </label><br>
-                <!-- <input type="text" class="recp_ann_cont" name="content"> -->
-                <input type="text" name="content" id="content" class="add_ann_content">
-            </div>
-            <br><br>
+            <label for="">Content: </label><br>
+            <!-- <input type="text" class="recp_ann_cont" name="content"> -->
+            <input type="text" name="content" id="content" class="edit_ann_content"><br><br>
 
-            <div class="add-announcement-label">
-                <label for="">Attach Files: </label><br>
-                <input type="file" class="add_recp_ann_name_file" name="attachment[]" multiple>
-            </div>
-            <br><br>
+            <label for="">Attach Files: </label><br><br>
+            <input type="file" class="recp_ann_name" name="attachment[]" multiple>
 
-            <div class="add-announcement-label">
-                <p>Name of the file attached:</p>
-                <input type="text" class="add_recp_ann_name" name="file_name">
-            </div>
-            <br><br><br>
+            <p>Name of the file attached:</p>
+            <input type="text" class="recp_ann_name" name="file_name"><br><br><br>
 
             <button type="submit" class="recp_det_btn">Publish</button>
 

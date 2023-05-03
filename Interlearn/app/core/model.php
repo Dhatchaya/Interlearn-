@@ -116,8 +116,8 @@ class Model extends Database {
                 $mail -> Host = 'smtp.gmail.com';
                 $mail->Port = 465;
                 $mail -> SMTPAuth = true;
-                $mail -> Username ='add interlearn email';
-                $mail -> Password = 'add your password';
+                $mail -> Username ='interlearnsl@gmail.com';
+                $mail -> Password = 'qeffokfsaebqwngl';
                 $mail->SMTPSecure ='ssl';
                 $mail->SMTPOptions = array(
                     'ssl' => array(
@@ -260,10 +260,10 @@ class Model extends Database {
 
         $query ="delete from ".$this->table." where ";
         foreach($keys as $key){
-            $query .= $key." =:".$key." , ";
+            $query .= $key." =:".$key." && ";
         }
-        $query = trim($query," , ");
-
+        $query = trim($query," && ");
+// echo $query;die;
        $res = $this ->delete_table($query,$data);
   
         if($res){
@@ -327,7 +327,8 @@ class Model extends Database {
     //distinct function
     public function distinctSubject($data=[],$orderby=null,$order = 'desc'){
 
-        $query ="SELECT count(language_medium) AS count, subject_id,subject,grade from ".$this->table;
+        $query ="select subject_id,subject,grade from ".$this->table;
+        // $query = " INNER JOIN course ON course.subject_id = subject.subject_id";
         $query .= " group by subject, grade";
         $query .= " order by $orderby  $order";
         $res = $this -> query($query,$data);
@@ -339,20 +340,6 @@ class Model extends Database {
         return false;
 
     }
-
-    // public function countMedium($data=[]){
-
-    //     $query ="SELECT count(language_medium) AS count,subject,grade FROM ".$this->table;
-    //     $query .= " group by subject, grade";
-    //     $res = $this -> query($query,$data);
-    //     // show($query);die;
-
-    //     if(is_array($res)){
-    //         return $res;
-    //     }
-    //     return false;
-
-    // }
 
     public function selectTeachers($data=[],$medium='English'){
         $keys = array_keys($data);

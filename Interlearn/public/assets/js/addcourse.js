@@ -80,141 +80,20 @@ const span3 = document.getElementsByClassName("close")[0];
 function openModal3(courseID) {
 
     // document.getElementById("delete-course").value = number;
-    const modal3 = document.getElementById("profileModal3");
+    const modal3 = document.getElementById("profileModal3_"+courseID);
     modal3.style.display = "block";
     console.log(modal3);
-
-    // var teacher_id = $('#teacher_id').val();
-    // var day = $('#daysEdit').val();
-    // var timeFrom = $('#timefromEdit').val();
-    // var timeTo = $('#timetoEdit').val();
-
-    console.log(courseID);
-
-    $.ajax({
-        url: 'http://localhost/Interlearn/public/receptionist/course/getCourseDetails?course_id='+courseID,
-        type: 'GET',
-        // data: {'course_id':courseID, 'day': day, 'timefrom': timeFrom, 'timeto': timeTo},
-        success: function(response) {
-            console.log("hello");
-            console.log(response);
-            response = JSON.parse(response);
-
-            for(var i=0; i<response.length; i++){
-                console.log("hi");
-                // console.log(response[i].grade);
-                if(response[i].course_id == courseID){
-                    // console.log("hi");
-                    // console.log(response[i].grade);
-                    document.getElementById("course_id").value = response[i].course_id;
-                    document.getElementById("teacher_id").value = response[i].teacher_ID;
-                    document.getElementById("teacher_id_edit").value = response[i].teacher_ID + ' : ' + response[i].teacherName;
-                    document.getElementById("daysEdit").value = response[i].day;
-                    document.getElementById("timefromEdit").value = response[i].timefrom;
-                    document.getElementById("timetoEdit").value = response[i].timeto;
-
-
-                    // var teacher_id = $('#teacher_id').val();
-                    // var day = $('#daysEdit').val();
-                    // var timeFrom = $('#timefromEdit').val();
-                    // var timeTo = $('#timetoEdit').val();
-
-                    $.ajax({
-                        method:"GET",
-                        url : 'http://localhost/Interlearn/public/receptionist/course/getInstructors?course_id='+courseID,
-                        // data:{'course_id':courseID, 'day': day, 'timefrom': timeFrom, 'timeto': timeTo},
-                        success:function(response){
-                            console.log("submit here");
-                          console.log(response == 'false');
-                          if(response == 'false'){
-                            console.log("hello");
-                            document.getElementById("instructorName").style.display = 'none';
-                            document.getElementById("submit-remove-instructor").style.display = 'none';
-                            document.getElementById("noInstructors").innerHTML = "No instructors to show!";
-                          }
-                          response = JSON.parse(response);
-
-                          for(var i=0; i<response.length; i++){
-                            console.log(response[i].instructorName);
-                                document.getElementById("instructorName").value = response[i].instructorName;
-                                console.log(response[i].instructorName);
-                                document.getElementById("instructorID").value = response[i].emp_id;
-                            document.getElementById("courseID").value = courseID;
-                            var instructor_id = response[i].emp_id;
-                            console.log(instructor_id);
-
-                            function removeInstructor(instructor_id, courseID){
-                                event.preventDefault();
-                                console.log("inside remove");
-                                console.log(instructor_id);
-                                var div = this.parentElement;
-                                console.log(div);
-                                div.style.display = "none";
-                                $.ajax({
-                                    method:"GET",
-                                    url : 'http://localhost/Interlearn/public/receptionist/course/removeInstructors?instructor_id='+instructor_id+'&course_id='+courseID,
-                                    success:function(response){
-                                      console.log(response);
-                                    },
-                                    error:function(xhr,status,error){
-                                      console.log("Error: " + error);
-                                    }
-                                });
-                            }
-
-                            }
-
-                        },
-                        error:function(xhr,status,error){
-                          console.log("Error: " + error);
-                        }
-                    });
-
-
-
-                    // Click on a close button to hide the current list item
-                    var close = document.getElementsByClassName("instructor-remove");
-                    var i;
-                    for (i = 0; i < close.length; i++) {
-                      close[i].onclick = function() {
-                        console.log("inside");
-                        var div = this.parentElement;
-                        console.log(div);
-                        div.style.display = "none";
-                        $.ajax({
-                            method:"POST",
-                            url : 'http://localhost/Interlearn/public/receptionist/course/editCourse',
-                            data:{'course_id':courseID, 'day': day, 'timefrom': timeFrom, 'timeto': timeTo},
-                            success:function(response){
-                              console.log(response);
-                            },
-                            error:function(xhr,status,error){
-                              console.log("Error: " + error);
-                            }
-                        });
-                      }
-                    }
-                }
-                else{
-                    continue;
-                }
-                console.log(response);
-            }
-
-        }
-    });
-
 }
 
 // When the user clicks on <span> (x), close the modal
-function closeModal3() {
-    const modal3 = document.getElementById("profileModal3");
+function closeModal3(courseID) {
+    const modal3 = document.getElementById("profileModal3_"+courseID);
     modal3.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    const modal3 = document.getElementById("profileModal3");
+    const modal3 = document.getElementById("profileModal3_"+courseID);
     if (event.target == modal3) {
         modal3.style.display = "none";
     }

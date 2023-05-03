@@ -4,22 +4,22 @@
 <div class="recp_det_container">
 <?php $this->view("includes/sidebar_recep");?>
     <div class="recp_det_content">
-        <h2>Add new course</h2><br>
+        <h2>--Add a new course--</h2><br>
         <form method="post" action="" enctype="multipart/form-data">
         <?php if(!empty($errors)){show($errors) ;} ?>
         <!-- <div class="recp_crs_add"> -->
             
 
             <div class="recp_det_box" id="new">
-            <h4>Subject:</h4><br>
+            <h4>Subject:</h4>
                 <input type="text" class="recp_det_name" name="subject" id="subject">
                 <div id="alert-div1" style="display:none;" class="warning"></div>
             </div>
-            <br><br><br>
+            <br><br>
 
             <div class="recp_det_box">
             <h4>Grade:</h4>
-            <select name="grade" id="grades" class="recp_dropdown_clz">
+            <select name="grade" id="grades" class="recp_ann_clz">
                     <option value="grade" selected>--Select grade--</option>
                    <option value="6">Grade 6</option>
                    <option value="7">Grade 7</option>
@@ -33,7 +33,7 @@
             </div><br><br>
             <div class="recp_det_box">
                 <h4>Language Medium:</h4>
-                <select name="language_medium" id="mediums" class="recp_dropdown_clz">
+                <select name="language_medium" id="mediums" class="recp_ann_clz">
                 <!-- <input type="hidden" name="medium" id="medium"> -->
                     <option value="language_medium" selected>--select language medium--</option>
                     <option value="Sinhala">Sinhala</option>
@@ -49,18 +49,18 @@
             <br><br>
 
             <div class="recp_det_box">
-                <h4>Description:</h4><br>
+                <h4>Description:</h4>
                 <input type="text" class="recp_det_name" name="description" id="description">
                 <div id="alert-div4" style="display:none;" class="warning"></div>
                 <?php if(!empty($errors)):?>
                 <p class="warning"><?=$errors['description'];?></p>
                 <?php endif;?>
-            </div><br><br><br>
+            </div><br><br>
             
 
             <div class="recp_det_box">
             <h4>Teacher ID:</h4>
-            <select name="teacher_id" id="teacher_id" class="recp_dropdown_clz">
+            <select name="teacher_id" id="teacher_id" class="recp_ann_clz">
                 <option value="" selected>--Select teacher id--</option>
                 <?php if(!empty($teachers)):?>
                 <?php foreach($teachers as $teacher):?>
@@ -78,7 +78,7 @@
 
             <div class="recp_det_box">
             <h4>Day: </h4>
-            <select name="day" id="day" class="recp_dropdown_clz">
+            <select name="day" id="day" class="recp_ann_clz">
             <option value="slct" selected>--select day--</option>
                 <option value="Monday">Monday</option>
                 <option value="Tuesday">Tuesday</option>
@@ -109,14 +109,15 @@
                 </div>
 
             </div>
-            <br>
+            <br><br>
             <div class="recp_det_box">
-                <h4>Capacity:</h4><br>
+                <h4>Capacity:</h4>
                 <input type="text" class="recp_det_name" name="capacity" id="capacity">
                 <?php if(!empty($errors)):?>
                 <p class="warning"><?=$errors['capacity'];?></p>
                 <?php endif;?>
             </div>
+            <br><br>
             <br><br>
             <div class="recp_add_butn">
                 <a href="<?=ROOT?>/receptionist/course">

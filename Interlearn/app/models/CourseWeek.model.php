@@ -112,21 +112,7 @@ class CourseWeek extends Model
             return false;
         }
     }
-
-    public function getWeekName($course_id,$week_no){
-        $query = "SELECT * FROM ".$this->table;
-        $query .= " WHERE course_id =:courseId AND week_no =:weekNo";
-        $data['courseId'] = $course_id;
-        $data['weekNo'] = $week_no;
-        $res = $this -> query($query,$data);
-
-        if($res){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
+        	
     public function UpdateWeekName($course_id,$week_no,$updated_name){
         $query = "UPDATE ".$this->table." SET week_name= :updateName WHERE course_id = :courseId and week_no= :weekNo";
         $data['updateName'] = $updated_name;

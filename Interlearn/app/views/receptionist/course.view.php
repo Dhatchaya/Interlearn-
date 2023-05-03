@@ -18,19 +18,12 @@
                 <!-- <img src="<?=ROOT?>/uploads/images/<?= Auth::getdisplay_picture();?>" alt="" class="recp_crs_img"> -->
                 <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
                 <!-- <p>Grade 11 Mathematics</p> -->
-                <div class="grade-text">
-                    Grade <?=esc($sum->grade)?>
-                </div>
-                <div class="subject-name">
-                <?=esc($sum->subject)?>
-                </div>
-                <!-- <p > </p>
-                <p class="subject-name"> <?=esc($sum->subject)?></p><br> -->
-                <!-- <div class="recp_crs_butn2">
+                <p>Grade <?=esc($sum->grade)?> - <?=esc($sum->subject)?></p><br>
+                <div class="recp_crs_butn2">
                     <a href="<?=ROOT?>/receptionist/course/view/1/?id=<?=esc($sum->subject_id)?>">
                         <button class="recp_crs_btn2">More info</button>
                     </a>
-                </div> -->
+                </div>
                 
             </a>
             

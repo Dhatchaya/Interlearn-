@@ -158,8 +158,8 @@ var barColors = [
   var pieColors = [
     "#EF2BFE",
     "#5733ff",
-    "#2488b3",
-    "#222b7d",
+    "#8900F2",
+    "#eb5f8c",
     "#1e7145",
         "#611666",
     "#AF8AEA",
