@@ -38,7 +38,7 @@
 //   ]
 
 const quiz = [];
-
+let totques = 0;
 // make an AJAX request to retrieve the quiz data
 const xhr = new XMLHttpRequest();
 
@@ -46,10 +46,14 @@ xhr.open('GET', 'http://localhost/Interlearn/public/Student/quiz/view', true);
 // xhr.setRequestHeader('Content-Type', 'application/json');
 xhr.onload = () => {
     if (xhr.status === 200) {
+        console.log(xhr.responseText);
+        // console.log(xhr.responseText.length);
         const data = JSON.parse(xhr.responseText);
         
         console.log(data);
-        data.forEach(question => {  
+        console.log(data.length);
+        totques = data.length;
+        data.forEach(question => {
             quiz.push(question);
         });
     } else {

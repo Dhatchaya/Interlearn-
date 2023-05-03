@@ -255,6 +255,6 @@ function StartQuiz() {
 }
 
 window.onload = function () {
-    homeBox.querySelector(".total-question").innerHTML = quiz.length;
+    homeBox.querySelector(".total-question").innerHTML = totques;
     homeBox.querySelector(".description").innerHTML = quiz.description;
 }

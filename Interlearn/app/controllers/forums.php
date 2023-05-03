@@ -54,7 +54,6 @@ class Forums extends Controller
         if($_SERVER['REQUEST_METHOD'] == "POST")
         {
             if($forum -> validate($_POST)){
-
             $_POST['date']= date("Y-m-d H:i:s");
             $_POST['course_id']= $courseID;
             $_POST['creator']= $user;
