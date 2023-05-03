@@ -28,32 +28,6 @@
                 
 
 
-            <!-- updating announcement details -->
-            <div id="profileModal3" class="popupModal">
-                <div class="tchr-popupmodal-content3">
-                    <span class="ann_close" onclick="closeModal3()">&times;</span><br>
-                    <h4>--Edit Announcement--</h4><br>
-                    <form action="" method="post" class="up-profile">
-                        <div class="teacher-crs-activities2">
-                            <input type="hidden" value="" name="aid" id="aid">
-                            <label for="">Announcement name: </label><br>
-                            <input type="text" class="edit_ann_name" name="title" value="<?=$row->title?>"><br><br>
-                            <label for="">Content: </label><br>
-                            <input id="content" name="content" class="edit_ann_cont" value="<?=$row->content?>"><br><br>
-                            <label for="">Attach Files: </label><br>
-                            <input type="file" class="edit_ann_name" name="attachment" value="<?=$row->attachment?>">
-                            <div class="teacher-announcement-edit">
-                                <?=esc($row->file_name)?>
-                                <span class="announcement-edit-close">&times;</span>
-                            </div><br>
-                            <button type="submit" class="teacher_upl_btn" name="edit-announcement" id="add-btn">Save</button>
-                            <button type="reset" class="teacher_upl_btn" id="cancel-btn">Cancel</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-
             <!-- deleting the upload popup -->
             <div id="profileModal6" class="popupModal">
                 <div class="tchr-popupmodal-content2">
@@ -77,8 +51,8 @@
                     <p><?=$row->content?></p><br>
                     
                     <div class="recp_ann_attachment">
-                        <a href="">
-                        <?=esc($row->attachment)?>
+                        <a href="<?=esc($row->attachment)?>">
+                        <?=esc($row->file_name)?>
                         </a>
                     </div><br>
                     <p class="recp_ann_bot"><?=esc($row->fullname)?></p>
@@ -87,6 +61,40 @@
                 </div><br>
                 <?php endforeach;?>
                 <?php endif?>
+            </div>
+        </div>
+
+        <!-- updating announcement details -->
+        <div id="profileModal3" class="popupModal">
+            <div class="tchr-popupmodal-content3">
+                <span class="ann_close" onclick="closeModal3()">&times;</span><br>
+                <h4>--Edit Announcement--</h4><br>
+                <form action="" method="post" class="up-profile">
+                    <div class="teacher-crs-activities2">
+                        <input type="hidden" value="" name="aid" id="aid">
+                        <label for="">Announcement name: </label><br>
+                        <input type="text" class="edit_ann_name" name="title" value="" id="title"><br><br>
+                        <label for="">Content: </label><br>
+                        <input id="content" name="content" class="edit_ann_cont" value=""><br><br>
+                        <div class="recp_file_box">
+                        <label for="">Attach Files: </label>
+                        <input type="hidden" id="attachment_file">
+                        <div><input type="text" id="file_teacher_announcement" disabled><span class="edit_file_announcement" >&times;</span></div>
+                        <br>
+                        <input type="file"  name="attach_teacher_file" id="attach_teacher_file" value="">
+                        </div><br>
+                        <!-- <label for="">Attach Files: </label><br>
+                        <input type="file" class="edit_ann_name" name="attachment" value="">
+                        <div class="teacher-announcement-edit">
+                            <?=esc($row->file_name)?>
+                            <span class="announcement-edit-close">&times;</span>
+                        </div><br> -->
+                        <label for="">File name: </label><br>
+                        <input type="text" class="edit_file_ann_name" value="" name="title" id="file_name_teacher"><br><br><br>
+                        <button type="submit" class="teacher_upl_btn" name="edit-announcement" id="edit-announcement-btn" onclick="closeModal3()">Update</button>
+                        <button type="reset" class="teacher_upl_btn" id="cancel-btn">Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

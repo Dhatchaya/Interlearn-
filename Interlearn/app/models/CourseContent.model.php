@@ -47,6 +47,22 @@ class CourseContent extends Model
         return false;
     }
 
+    public function getUploads($course_id,$week_no){
+        $query = "SELECT * FROM ".$this->table;
+        $query .= " WHERE course_id =:courseId AND week_no =:weekNo ";
+        $data['courseId'] = $course_id;
+        $data['weekNo'] = $week_no;
+        $res = $this -> query($query,$data);
+        // echo $res;die;
+        // show($query);die;
+
+        if($res){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function UpdateUploadName($course_id,$cid,$updated_name){
         $query = "UPDATE ".$this->table." SET upload_name =:updateName WHERE course_id =:courseId and cid =:cId";
         $data['updateName'] = $updated_name;

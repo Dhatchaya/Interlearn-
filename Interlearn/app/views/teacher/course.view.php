@@ -14,7 +14,7 @@
                     <?php if (!empty($courses)) : ?>
                         <div id="course_id" style="display: none;"><?= $courses[0]->course_id ?></div>
                         <h2 class="teacher_crs_subject">Grade <?= esc($courses[0]->grade) ?> - <?= esc($courses[0]->subject) ?></h2>
-                        <h4 class="teacher_crs_subject"><i><?= esc($courses[0]->language_medium) ?> Medium</i></h4>
+                        <h4 class="teacher_crs_subject"><?= esc($courses[0]->language_medium) ?> Medium</h4>
                     <?php endif; ?>
                 </div>
             </div>
@@ -54,7 +54,7 @@
                                                 <?php elseif ($material->file_type === "text/plain") : ?>
                                                     <p >
                                                         <a href="<?= $material->view_URL ?>" class="teacher-content">
-                                                            <img src="<?= ROOT ?>/assets/images/pp.png" alt="" class="teacher_card_img3">
+                                                            <img src="<?= ROOT ?>/assets/images/note.png" alt="" class="teacher_card_img3">
                                                             <?= $material->upload_name ?>
                                                         </a>
                                                         <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>')">
@@ -109,7 +109,7 @@
                                             <?php elseif ($material->type == "URL") : ?>
                                                 <p>
                                                     <a href=<?= $material->view_URL ?> class="teacher-content">
-                                                        <img src="<?= ROOT ?>/assets/images/web.png" alt="" class="teacher_card_img3">
+                                                        <img src="<?= ROOT ?>/assets/images/web-new.png" alt="" class="teacher_card_img3">
                                                         <?= $material->upload_name ?>
                                                     </a>
                                                     <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>')">
@@ -133,36 +133,41 @@
                 <div id="profileModal" class="popupModal">
                     <div class="tchr-popupmodal-content">
                         <span class="ann_close" onclick="closeModal()">&times;</span><br>
-                        <h4>--Add an activity--</h4><br>
+                        <h4>Add an activity</h4><br>
                         <form action="" method="post" class="up-profile">
                             <input type="hidden" name="week_no" id="week_no">
                             <div class="teacher-crs-activities">
                                 <?php if (!empty($courses)) : ?>
                                     <?php foreach ($courses as $course) : ?>
                                         <div class="teacher-crs-activity">
-                                            <a href="<?= ROOT ?>/teacher/course/forum/<?= $course->course_id ?>" name="upload"><img src="<?= ROOT ?>/assets/images/forum.png" alt="" class="teacher-crs-img"><br>Add Forum</a>
+                                            <a href="<?= ROOT ?>/teacher/course/forum/<?= $course->course_id ?>" name="upload">
+                                                <img src="<?= ROOT ?>/assets/images/discussion.png" alt="" class="teacher-crs-img"><br>Add Forum
+                                            </a>
                                         </div>
                                         <div class="teacher-crs-activity">
-                                            <a href="<?= ROOT ?>/teacher/course/quiz/<?= $course->course_id ?>" name="quiz"><img src="<?= ROOT ?>/assets/images/quiz.png" alt="" class="teacher-crs-img"><br>Add a quiz</a>
+                                            <a href="<?= ROOT ?>/teacher/course/quiz/<?= $course->course_id ?>" name="quiz">
+                                                <img src="<?= ROOT ?>/assets/images/quiz-new.png" alt="" class="teacher-crs-img"><br>Add quiz
+                                            </a>
                                         </div>
                                         <div class="teacher-crs-activity">
-                                            <a href="<?= ROOT ?>/teacher/course/quiz/<?= $course->course_id ?>"><img src="<?= ROOT ?>/assets/images/quizb.png" alt="" class="teacher-crs-img"><br>Add a quiz bank</a>
+                                            <a href="<?= ROOT ?>/teacher/course/quiz/<?= $course->course_id ?>">
+                                                <img src="<?= ROOT ?>/assets/images/quiz-bank.png" alt="" class="teacher-crs-img"><br>Add quiz bank
+                                            </a>
                                         </div>
                                         <div class="teacher-crs-activity">
-                                            <a href="<?= ROOT ?>/teacher/course/assignment/<?= $course->course_id ?>" name="assignment"><img src="<?= ROOT ?>/assets/images/submission.png" alt="" class="teacher-crs-img"><br>Add a submission</a>
+                                            <a href="<?= ROOT ?>/teacher/course/assignment/<?= $course->course_id ?>" name="assignment">
+                                                <img src="<?= ROOT ?>/assets/images/submission.png" alt="" class="teacher-crs-img"><br>Add submission
+                                            </a>
                                         </div>
 
                                         <div class="teacher-crs-activity">
                                             <a href="<?= ROOT ?>/teacher/course/upload/<?= $course->course_id ?>" name="upload">
-                                                <img src="<?= ROOT ?>/assets/images/paper.png" alt="" class="teacher-crs-img"><br>Add lecture materials
+                                                <img src="<?= ROOT ?>/assets/images/material.png" alt="" class="teacher-crs-img"><br>Add lecture materials
                                             </a>
                                         </div>
-                                        <!-- <div class="teacher-crs-activity">
-                                <a href="#"><img src="<?= ROOT ?>/assets/images/recording.png" alt="" class="teacher-crs-img"><br>Add recordings</a>
-                             </div> -->
                                         <div class="teacher-crs-activity">
                                             <a href="<?= ROOT ?>/teacher/course/url/<?= $course->course_id ?>" name="url">
-                                                <img src="<?= ROOT ?>/assets/images/web.png" alt="" class="teacher-crs-img"><br>Add URL
+                                                <img src="<?= ROOT ?>/assets/images/web-new.png" alt="" class="teacher-crs-img"><br>Add URL
                                             </a>
                                         </div>
                                     <?php endforeach; ?>
@@ -244,13 +249,13 @@
             <div id="profileModal5" class="popupModal">
                 <div class="tchr-popupmodal-content2">
                     <span class="ann_close" onclick="closeModal5()">&times;</span><br>
-                    <h4>--Edit Upload Name--</h4><br>
+                    <h4>Edit Upload Name</h4><br>
                     <form action="" method="post" class="up-profile">
                         <div class="teacher-crs-activities2">
                             <label for="upload-title" class="teacher-edit">New upload name: </label>
                             <input type="hidden" value="" name="cid" id="cid">
-                            <input type="text" class="teacher-edit-title" name="upload-title"><br><br>
-                            <button type="submit" class="teacher_upl_btn" name="submit-upload" id="add-btn">Save</button>
+                            <input type="text" class="teacher-edit-title" name="upload-title" id="edit-upload"><br><br>
+                            <button type="submit" class="teacher_upl_btn" name="submit-upload" id="edit-name-btn">Save</button>
                             <button type="reset" class="teacher_upl_btn" id="cancel-btn">Cancel</button>
                         </div>
                     </form>

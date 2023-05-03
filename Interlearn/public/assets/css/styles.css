@@ -2973,20 +2973,27 @@ std_view_bottom{
 }
 
 .teacher_upl_content{
-    margin-top: 5%;
-    margin-left: 5%;
+    /* margin-top: 5%; */
+    margin-left: 2%;
     margin-bottom: 2%;
-    border: solid;
-    border-color: rgb(0 0 0 / 30%);
+    /* border: solid; */
+    /* border-color: rgb(0 0 0 / 30%); */
     padding: 2%;
     min-height: 40vh;
     border-radius: 5px;
 }
 
 .teacher_upl_name{
-    width: 60vw;
+    width: 73vw;
     height: 8vh;
-    border-radius: 3px;
+    border: none;
+    /* border-radius: 3px; */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.teacher_upl_name:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 .teacher_upl_img{
@@ -3019,8 +3026,14 @@ std_view_bottom{
     margin-right: 2%;
 }
 
+.teacher_upl_btn a{
+    text-decoration: none;
+    color: white;
+}
+
 .teacher_upl_btn:hover{
     background-color: rgb(62, 32, 109,75%);
+    transform: scale(1.02);
 
 }
 
@@ -3338,6 +3351,9 @@ width: 45vw;
     margin-right: 3%;
     cursor: pointer;
 }
+.teacher_crs_img2:hover{
+    transform: scale(1.22);
+}
 /* receptionist view page */
 .recp_view_container{
     width: 100%;
@@ -3650,41 +3666,15 @@ transition: width 1s, height 1s;
     cursor: pointer;
     /* margin-bottom: 5%; */
 }
-/* .overlay_popup{
-    position: absolute;
-    top: 15vh;
-    background-color: rgb(104, 44, 198,9%);
-    transition: opacity 500ms;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin-left: 10vw;
+.recp_cl_btn:hover{
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
-.overlay_popup:target{
-    visibility: visible;
-    opacity: 1;
-}
-.wrapper_popup{
-    margin: 70px auto;
-    padding: 20px;
-    border-radius: 5px;
-    width: 30vw;
-    height: 60vh;
-    position: relative;
-    transition: all 5s ease-in-out;
-    background-color: white;
-}
-.wrapper_popup .close{
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    transition: all 200ms;
-    font-size: 30px;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 50%;
-} */
+
+
+
+
+
 #popup {
     display: none;
     position: fixed;
@@ -6368,5 +6358,5 @@ left: 5rem;
 .teacher-content:hover{
     /* transform: scale(1.02); */
     -webkit-text-stroke: 1px #393939;
-	text-shadow: 0px 4px 4px #606060;
+	text-shadow: 0px 2px 2px #606060;
 }
