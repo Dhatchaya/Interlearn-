@@ -72,9 +72,18 @@
                         </span>
 
                     </div>
+                    <div class="noti_bell" id="noti_bell">
+                        <img src="<?=ROOT?>/assets/images/sidebar_icons/bell.png" alt="picture" class="display_picture_img"/>
+                        <div class="notification" id="notification">
+                            <div class="allnoti" id="allnoti">
+
+                            </div>
+                        </div>
+
+                    </div>
         </div>
 
-
+        <script defer src="<?=ROOT?>/assets/js/notification.js?v=<?php echo time(); ?>"></script>
 
         <!-- <script src="<?=ROOT?>/assets/js/navbar.js"></script> -->
 </body>

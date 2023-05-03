@@ -260,10 +260,10 @@ class Model extends Database {
 
         $query ="delete from ".$this->table." where ";
         foreach($keys as $key){
-            $query .= $key." =:".$key." , ";
+            $query .= $key." =:".$key." && ";
         }
-        $query = trim($query," , ");
-
+        $query = trim($query," && ");
+// echo $query;die;
        $res = $this ->delete_table($query,$data);
   
         if($res){
