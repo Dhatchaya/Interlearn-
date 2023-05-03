@@ -834,10 +834,14 @@ class Teacher extends Controller
                             $_POST['course_id'] = $id;
                             $_POST['week_no'] = $week;
                             $_POST['upload_name'] = $_POST['quiz_name'];
-                            $_POST['view_URL'] = 'http://localhost/Interlearn/public/teacher/course/quiz/4/79/view';
+
+                            // $viewURL="http://localhost/Interlearn/public/forums/".$id."/".$week."/?main=".$mainforum_id;
+
+                            $_POST['view_URL'] = 'http://localhost/Interlearn/public/teacher/course/quiz/'.$id.'/'.$week.'/quiz_view/?id='.$quiz_id;
                             $_POST['edit_URL'] =  'http://localhost/Interlearn/public/teacher/course/quiz/4/79/edit';
                             $_POST['delete_URL'] = 'http://localhost/Interlearn/public/teacher/course/quiz/4/79/edit';
-                            $_POST['student_URL'] = 'http://localhost/Interlearn/public/STUDENT/course/quiz/4/79/'.$quiz_id;
+                            // http://localhost/Interlearn/public/student/course/view/103
+                            $_POST['studentView_URL'] = 'http://localhost/Interlearn/public/student/quiz?quiz_id='.$quiz_id;
 
                             $result = $content->insert($_POST);
 
@@ -896,6 +900,14 @@ class Teacher extends Controller
                 }
 
                 $this->view('teacher/Zquiz_new');
+                exit();
+            }
+
+            if($option == 'quiz_view') {
+                // $id = $_GET['id'];
+                echo "hello quiz";
+                // $result = $question->delete(['question_number'=>$qnum]);
+                // header("Location:http://localhost/Interlearn/public/teacher/course/quiz/".$id."/".$week);
                 exit();
             }
 

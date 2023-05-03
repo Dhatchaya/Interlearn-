@@ -1,3 +1,10 @@
+const queryParams = new URLSearchParams(window.location.search);
+let id="";
+if (queryParams.has("quiz_id")) {
+
+    id = queryParams.get("quiz_id");
+}
+console.log(id);
 // const quiz = [
 //     {
 //       "q": 'What is the capital of France?',
@@ -42,7 +49,7 @@ let totques = 0;
 // make an AJAX request to retrieve the quiz data
 const xhr = new XMLHttpRequest();
 
-xhr.open('GET', 'http://localhost/Interlearn/public/Student/quiz/view', true);
+xhr.open('GET', 'http://localhost/Interlearn/public/Student/quiz/view?quiz_id='+id, true);
 // xhr.setRequestHeader('Content-Type', 'application/json');
 xhr.onload = () => {
     if (xhr.status === 200) {

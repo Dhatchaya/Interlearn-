@@ -67,6 +67,12 @@
                                 <?=$material->upload_name?> 
                                 </a></p>
 
+                                <?php elseif($material->type == "quiz"):?>
+                                    <p><a href="<?=$material->studentView_URL?>">
+                                <img src="<?=ROOT?>/assets/images/quiz.png" alt="" class="teacher_card_img3">
+                                <?=$material->upload_name?> 
+                                </a></p>
+
                                 <?php elseif($material->type == "URL"):?>
                                     <p><a href="<?=$material->view_URL?>">
                                 <img src="<?=ROOT?>/assets/images/web.png" alt="" class="teacher_card_img3">

@@ -87,7 +87,7 @@ class ZQuestion extends Model
     }
 
     public function ChoicejoinQuestion($data= null){
-
+        $keys = array_keys($data);
         // $query = "SELECT c.choice1, c.choice2, c.choice3, c.choice4, c.choice1_mark, c.choice2_mark, c.choice3_mark,c.choice4_mark,q.question_title, q.question_mark, q.quiz_bank, q.question_number
         // FROM mychoice c
         // INNER JOIN myquestion q ON c.question_number = q.question_number";
@@ -101,12 +101,23 @@ class ZQuestion extends Model
         // WHERE qq.quiz_id = '64507fdcc0fc2' AND quiz.quiz_id = '64507fdcc0fc2'";
 
 
+        // $query = "SELECT myquiz.* , myquestion.question_title, myquestion.question_mark, mychoice.* FROM myquiz 
+        // INNER JOIN myquiz_myquestion ON myquiz.quiz_id = myquiz_myquestion.quiz_id 
+        // INNER JOIN myquestion ON myquestion.question_number = myquiz_myquestion.question_number
+        // INNER JOIN mychoice ON myquestion.question_number = mychoice.question_number
+        // where myquiz.quiz_id = '64521661bc4bf' and myquiz.course_id = 103";
+
         $query = "SELECT myquiz.* , myquestion.question_title, myquestion.question_mark, mychoice.* FROM myquiz 
         INNER JOIN myquiz_myquestion ON myquiz.quiz_id = myquiz_myquestion.quiz_id 
         INNER JOIN myquestion ON myquestion.question_number = myquiz_myquestion.question_number
         INNER JOIN mychoice ON myquestion.question_number = mychoice.question_number
-        where myquiz.quiz_id = '64507fdcc0fc2' and myquiz.course_id = 95";
+        where ";
 
+        foreach($keys as $key){
+            $query .= "myquiz.".$key. " =:".$key." && ";
+        }
+        $query = trim($query,"&& ");
+        $res = $this -> query($query,$data);
         $res = $this -> query($query,$data);
 
         if(is_array($res)){

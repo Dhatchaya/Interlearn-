@@ -550,6 +550,7 @@ class Student extends Controller
 
         if($action == "quiz") {
 
+            
             $result = $question->ChoiceInnerjoinQuestion();
             // show($result);
             $quiz = array();
@@ -708,7 +709,9 @@ class Student extends Controller
 
         if($action == "view"){
 
-            $result = $question->ChoicejoinQuestion();
+            $quiz = $_GET['quiz_id'];
+           
+            $result = $question->ChoicejoinQuestion(['quiz_id' => $quiz]);
             // $result = $question->ChoiceInnerjoinQuestion();
             // show($result);
             $quiz = array();
