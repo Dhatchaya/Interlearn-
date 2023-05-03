@@ -460,8 +460,8 @@ class Model extends Database {
     //select subject.subject_id,subject.subject,grade from subject INNER JOIN course ON course.subject_id = subject.subject_id WHERE course.teacher_id = '1' group by subject, grade;
 
     public function teacherCourse($data=[],$id,$orderby = null, $order=null){
-        $query = "SELECT subject.subject_id,subject.subject,grade,language_medium,course.* from ".$this->table;
-        $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN staff ON staff.emp_id = course.teacher_id ";
+        $query = "SELECT subject.subject_id,subject.subject,grade,language_medium,course.* FROM ".$this->table;
+        $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN staff ON staff.emp_id = course.teacher_ID ";
         $query .= " WHERE staff.uid = '$id'";
         // $query .= " group by subject, grade";
         // $query .= " order by $orderby  $order";
