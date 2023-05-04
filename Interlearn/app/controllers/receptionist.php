@@ -529,7 +529,7 @@ class Receptionist extends Controller
                                         // echo "helloo";die;
                                         $fileNameNew = uniqid('',true).".".$fileActualExt;
                                         // show($fileNameNew);die;
-                                        $fileDestination = "/xampp/htdocs/Interlearn/uploads/receptionist/announcements/".$announcement_id;
+                                        $fileDestination = "/xampp/htdocs/Interlearn/uploads/0/announcements/".$announcement_id;
                                         if (!is_dir($fileDestination)){
                                             // print_r("test1");
                                             mkdir($fileDestination,0644, true);

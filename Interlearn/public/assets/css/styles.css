@@ -1727,8 +1727,8 @@ transform: scale(0.97,0.97);
     margin-left: 100px;
     margin-right: 100px;
     position: absolute;
-    top: 20%;
-    left: 15%;
+    top: 25%;
+    left: 20%;
     background: var(--secondary-color);
     display: flex;
     flex-direction: row;
@@ -2472,6 +2472,12 @@ transform: scale(0.97,0.97);
     height: 20vh;
     border-radius: 10%;
 }
+.std_crs_img_new{
+    width: 15vw;
+    height: 20vh;
+    margin-top: 1%;
+    /* border-radius: 10%; */
+}
 .std_view_rectangle:hover{
     transform: scale(1.02);
 }
@@ -2680,7 +2686,7 @@ std_view_bottom{
 
 .std_crs_pg_btn:hover{
     background-color: rgb(62, 32, 109,75%);
-
+    transform: scale(1.02);
 }
 
 
@@ -3545,6 +3551,7 @@ transition: width 1s, height 1s;
 }
 .recp_crs_rectangle a{
     text-decoration: none;
+    color: #000;
 }
 .recp_crs_img{
     width: 17vw;
@@ -3563,6 +3570,15 @@ transition: width 1s, height 1s;
     font-size: small;
 }
 .grade-text{
+    font-weight: bold;
+    font-size: large;
+    color: #000000;
+    margin-bottom: 1%;
+    margin-top: 2%;
+    padding: 3%;
+    text-align: center;
+}
+.guest-grade-text{
     /* font-weight: bold; */
     font-size: small;
     color: #000000;
@@ -3570,7 +3586,15 @@ transition: width 1s, height 1s;
     margin-top: 2%;
     padding: 3%;
     text-align: left;
-
+}
+.guest-subject-name{
+    font-weight: bolder;
+    font-size: large;
+    color: #000000;
+    margin-bottom: 5%;
+    margin-top: 0%;
+    padding: 3%;
+    text-align: left;
 }
 .link-guest{
     color: #000;
@@ -3615,7 +3639,7 @@ transition: width 1s, height 1s;
     margin-bottom: 5%;
     margin-top: 0%;
     padding: 3%;
-    text-align: left;
+    text-align: center;
 }
 /* receptionist class details view */
 .recp_cl_container{
@@ -3854,7 +3878,7 @@ transition: width 1s, height 1s;
     /* margin-left: 5%; */
     margin-right: 3%;
     /* padding: 2%; */
-    border: solid;
+    /* border: solid; */
 }
 /* quiz page */
 
@@ -4192,6 +4216,7 @@ tr:nth-child(even) {
 .std_crs_content{
     margin-top: 5%;
     margin-left: 2%;
+    width: 80vw;
 }
 
 .std_crs_heading{
@@ -5213,6 +5238,24 @@ flex-direction: row;
 
 
 /* student cards */
+
+.student_crs_content2{
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 3%;
+    padding: 2%;
+    /* border: solid; */
+    display: grid;
+    margin-bottom: 4%;
+    gap: 1rem;
+    /* grid-template-rows: minmax(30rem,1fr); */
+    align-items: start;
+}
+
+.student_crs_content2 a{
+    text-decoration: none;
+    color: #000;
+}
 
 .teacher_crs_content2{
     margin-top: 2%;

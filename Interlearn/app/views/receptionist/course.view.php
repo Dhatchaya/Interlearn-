@@ -15,8 +15,26 @@
         <div class="recp_crs_rectangle">
         
             <a href="<?=ROOT?>/receptionist/course/view/1?id=<?=esc($sum->subject_id)?> ">
-                <!-- <img src="<?=ROOT?>/uploads/images/<?= Auth::getdisplay_picture();?>" alt="" class="recp_crs_img"> -->
-                <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img">
+            <div class="guest-view-image">
+                <?php if($sum->grade == 6) :?>
+                    <img src="<?=ROOT?>/assets/images/6n.png" alt="" class="guest_crs_img">
+                <?php elseif($sum->grade == 7) :?>
+                    <img src="<?=ROOT?>/assets/images/7n.png" alt="" class="guest_crs_img">
+                <?php elseif($sum->grade == 8) :?>
+                    <img src="<?=ROOT?>/assets/images/8n.png" alt="" class="guest_crs_img">
+                <?php elseif($sum->grade == 9) :?>
+                    <img src="<?=ROOT?>/assets/images/9n.png" alt="" class="guest_crs_img">
+                <?php elseif($sum->grade == 10) :?>
+                    <img src="<?=ROOT?>/assets/images/10n.png" alt="" class="guest_crs_img">
+                <?php elseif($sum->grade == 11) :?>
+                    <img src="<?=ROOT?>/assets/images/11n.png" alt="" class="guest_crs_img">
+                <?php elseif($sum->grade == 12) :?>
+                    <img src="<?=ROOT?>/assets/images/12n.png" alt="" class="guest_crs_img">
+                <?php else :?>
+                    <img src="<?=ROOT?>/assets/images/13n.png" alt="" class="guest_crs_img">
+                <?php endif;?>
+            </div>
+                <!-- <img src="<?=ROOT?>/assets/images/bookn.jpg" alt="" class="recp_crs_img"> -->
                 <!-- <p>Grade 11 Mathematics</p> -->
                 <div class="grade-text">
                     Grade <?=esc($sum->grade)?>

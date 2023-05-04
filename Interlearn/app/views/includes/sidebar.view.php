@@ -14,7 +14,7 @@
                     
                    
                         <div class="dashboard">
-                            <a href="<?=ROOT?>/student/home">
+                            <a href="<?=ROOT?>/student/course">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/dashboard.png" alt="Dashboard"></br>
                             <span>Dashboard</span>
                             </a>
@@ -44,7 +44,7 @@
                         </div>
                     
                         <div class="Courses">
-                            <a href="<?=ROOT?>/student/course">
+                            <a href="<?=ROOT?>/courses/courses">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/book.png" alt="Courses"></br>
                             <span>Courses</span>
                             </a>
