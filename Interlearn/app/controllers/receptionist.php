@@ -529,7 +529,7 @@ class Receptionist extends Controller
                                         // echo "helloo";die;
                                         $fileNameNew = uniqid('',true).".".$fileActualExt;
                                         // show($fileNameNew);die;
-                                        $fileDestination = "/xampp/htdocs/Interlearn/uploads/receptionist/announcements/".$announcement_id;
+                                        $fileDestination = "/xampp/htdocs/Interlearn/uploads/0/announcements/".$announcement_id;
                                         if (!is_dir($fileDestination)){
                                             // print_r("test1");
                                             mkdir($fileDestination,0644, true);
@@ -557,7 +557,7 @@ class Receptionist extends Controller
                         // }
 
                         // $viewURL="http://localhost/Interlearn/uploads/receptionist/announcements/".$announcement_id."/".$fileNameNew;
-                        $viewURL="http://localhost/Interlearn/uploads/receptionist/announcements/".$announcement_id."/".$fileNameNew;
+                        $viewURL="http://localhost/Interlearn/uploads/0/announcements/".$announcement_id."/".$fileNameNew;
                         // $_POST['file_name'] = $fileNameNew;
                         $_POST['attachment'] = $viewURL;
                         $result1 = $announcement->insert($_POST);

@@ -81,8 +81,8 @@ class CourseContent extends Model
 
     //student contents
     public function studentCourseContent($data=[],$id,$orderby = null, $order=null){
-        $query = "SELECT course.*,course_content.* FROM ".$this->table; 
-        $query .= " INNER JOIN course ON course.course_id = course_content.course_id ";
+        $query = "SELECT course.*,course_content.*,course_material.file_type FROM ".$this->table; 
+        $query .= " INNER JOIN course ON course.course_id = course_content.course_id LEFT JOIN course_material ON course_material.cid = course_content.cid";
         $query .= " WHERE course.course_id = $id";
         // $query .= " order by $orderby  $order";
         // var_dump($_SESSION);exit;

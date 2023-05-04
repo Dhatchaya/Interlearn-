@@ -21,7 +21,6 @@ class Assignment extends Model
    'file_size',
     'deadline',
     'acceptDate',
-    'status',
     'edit_URL',
     'view_URL',
     'cid',
