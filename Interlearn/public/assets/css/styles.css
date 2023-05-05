@@ -6525,3 +6525,16 @@ left: 5rem;
     color: blue;
     cursor: pointer;
 }
+
+
+.class-edit-box{
+    /* background-color: rgb(104, 44, 198,9%); */
+    width: 35vw;
+    height: 10vh;
+}
+.edit-class-disable{
+    width: 25vw;
+    height: 6vh;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}

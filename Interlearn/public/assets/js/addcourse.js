@@ -125,42 +125,23 @@ function openModal3(courseID) {
                         // data:{'course_id':courseID, 'day': day, 'timefrom': timeFrom, 'timeto': timeTo},
                         success:function(response){
                             console.log("submit here");
-                          console.log(response == 'false');
-                          if(response == 'false'){
-                            console.log("hello");
-                            document.getElementById("instructorName").style.display = 'none';
-                            document.getElementById("submit-remove-instructor").style.display = 'none';
-                            document.getElementById("noInstructors").innerHTML = "No instructors to show!";
-                          }
-                          response = JSON.parse(response);
-
-                          for(var i=0; i<response.length; i++){
-                            console.log(response[i].instructorName);
-                                document.getElementById("instructorName").value = response[i].instructorName;
-                                console.log(response[i].instructorName);
-                                document.getElementById("instructorID").value = response[i].emp_id;
-                            document.getElementById("courseID").value = courseID;
-                            var instructor_id = response[i].emp_id;
-                            console.log(instructor_id);
-
-                            function removeInstructor(instructor_id, courseID){
-                                event.preventDefault();
-                                console.log("inside remove");
-                                console.log(instructor_id);
-                                var div = this.parentElement;
-                                console.log(div);
-                                div.style.display = "none";
-                                $.ajax({
-                                    method:"GET",
-                                    url : 'http://localhost/Interlearn/public/receptionist/course/removeInstructors?instructor_id='+instructor_id+'&course_id='+courseID,
-                                    success:function(response){
-                                      console.log(response);
-                                    },
-                                    error:function(xhr,status,error){
-                                      console.log("Error: " + error);
-                                    }
-                                });
+                            console.log(response == 'false');
+                            if(response == 'false'){
+                              console.log("hello");
+                              document.getElementById("instructorName").style.display = 'none';
+                              document.getElementById("submit-remove-instructor").style.display = 'none';
+                              document.getElementById("noInstructors").innerHTML = "No instructors to show!";
                             }
+                            response = JSON.parse(response);
+
+                            for(var i=0; i<response.length; i++){
+                              console.log(response[i].instructorName);
+                              document.getElementById("instructorName").value = response[i].emp_id + ' : ' + response[i].instructorName;
+                              // console.log(response[i].instructorName);
+                              document.getElementById("instructorID").value = response[i].emp_id;
+                              document.getElementById("courseID").value = courseID;
+                              var instructor_id = response[i].emp_id;
+                              console.log(instructor_id);
 
                             }
 
@@ -206,6 +187,8 @@ function openModal3(courseID) {
 
 }
 
+
+
 // When the user clicks on <span> (x), close the modal
 function closeModal3() {
     const modal3 = document.getElementById("profileModal3");
@@ -238,6 +221,36 @@ function openModal4(number) {
 
     modal4.style.display = "block";
     console.log(modal4);
+
+    console.log(number);
+
+    $.ajax({
+        method:"GET",
+        url : 'http://localhost/Interlearn/public/receptionist/course/removeCourse?course_id='+number,
+        success:function(response){
+          console.log(response);
+        },
+        error:function(xhr,status,error){
+          console.log("Error: " + error);
+        }
+    });
+
+    $('#delete-course-btn').on('submit', function(){
+        var course_id = number;
+          console.log(course_id);
+          $.ajax({
+              url: 'http://localhost/Interlearn/public/receptionist/course/removeCourse?course_id='+number,
+              type: 'POST',
+              data: {'course_id':course_id},
+              success:function(response){
+                        console.log("submit here");
+                      console.log(response);
+                    },
+                    error:function(xhr,status,error){
+                      console.log("Error: " + error);
+                    }
+          });
+      });
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -253,3 +266,21 @@ window.onclick = function(event) {
 }
 
 
+function removeInstructor(instructor_id, courseID){
+    event.preventDefault();
+    console.log("inside remove");
+    console.log(instructor_id);
+    var div = this.parentElement;
+    console.log(div);
+    div.style.display = "none";
+    $.ajax({
+        method:"GET",
+        url : 'http://localhost/Interlearn/public/receptionist/course/removeInstructors?instructor_id='+instructor_id+'&course_id='+courseID,
+        success:function(response){
+          console.log(response);
+        },
+        error:function(xhr,status,error){
+          console.log("Error: " + error);
+        }
+    });
+}
