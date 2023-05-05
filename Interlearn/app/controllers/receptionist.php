@@ -268,32 +268,22 @@ class Receptionist extends Controller
                     $course -> updateCourse($course_id, $day, $timefrom, $timeto);
                 }
 
-                if(isset($_POST['submit-delete-course'])){
-                    // show("hi");die;
-                    $result = $course->delete(['course_id'=>$id]);
-                    // header("Location:http://localhost/Interlearn/public/receptionist/course/view/1/".$id);
-                }
-
-                // if(isset($_POST['submit-remove-instructor'])){
-                //     // show($_POST);die;
-                //     // show($_POST['instructorID']);die;
-                //     // show(['course_id'=>$_POST['courseID']]);die;
-                //     // show($_POST['courseID']);die;
-                //     $instructor_id = $_POST['instructorID'];
-                //     $course_id = $_POST['courseID'];
-                //     $input1 = array('course_id'=>$course_id,'emp_id'=>$instructor_id);
-                //     // show($input1);die;
-                //     $result2 = $course_instructor->deleteInstructors($course_id,$instructor_id);
+                // if(isset($_POST['submit-delete-course'])){
+                //     show($_POST['course_id']);die;
+                //     $result = $course->delete($_POST['course_id']);
+                //     // header("Location:http://localhost/Interlearn/public/receptionist/course/view/1/".$id);
                 // }
 
-                // show($_GET['id']);die;
-
-                // $data['mediums'] = $subject -> getSubjectMedium($_GET['id']);
-                // // show($data['mediums'][0]->language_medium);die;
-                // $now_medium = $data['mediums'][0]->language_medium;
 
                 $this->view('receptionist/class',$data);
                 exit;
+        }
+
+        if($action == 'removeCourse'){
+            $result2 = $course->deleteCourse($_GET['course_id']);
+
+            echo json_encode($result2);
+            exit;
         }
 
         if($action == 'removeInstructors'){
@@ -377,6 +367,15 @@ class Receptionist extends Controller
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
                 $result = $course -> getTime($_POST['teacher_id'], $_POST['day']);
+                echo json_encode($result);
+            }
+            exit;
+        }
+
+        if($action == 'checkAvailableEdit'){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+                $result = $course -> getTimeEdit($_POST['teacher_id'], $_POST['day'],$_POST['course_id']);
                 echo json_encode($result);
             }
             exit;
