@@ -58,18 +58,24 @@ addressBtn.addEventListener('click', () => {
     address.focus();
 });
 
-uploadDP.addEventListener('change', handleFileSelect, false); 
-function handleFileSelect(event) {
-    const file = event.target.files[0];
-    const formData = new FormData();
-    formData.append('uploadDP', file);
-    // add other form data
-    console.log('uploading');
-}
+
+
+// const formData = new FormData();
+
+// dpBtn.addEventListener('change', handleFileSelect, false); 
+
+// function handleFileSelect(event) {
+//     const file = uploadDP.files[0];
+//     const formData = new FormData();
+//     formData.append('uploadDP', file);
+//     // add other form data
+//     console.log('key value pare added to the from data');
+// }
 
 
 
- saveBtn.addEventListener('click', () => {
+ saveBtn.addEventListener('click', (e) => {
+    e.preventDefault();
     console.log('save');
     const data = {
         first_name: fName.value.trim() !== '' ? fName.value : null,

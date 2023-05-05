@@ -30,13 +30,13 @@
 
                     <label class="user-data-label" for="display-picture">PROFILE PICTURE</label>
                     <div class="circle-container">
-                    <img id="dp" class="display-picture" src="<?=ROOT?>/assets/images/<?= $userData[0]->display_picture ?>" alt="No profile picture"/> 
-                        
+                        <img id="dp" class="display-picture" src="<?= ROOT ?>/assets/images/<?= $userData[0]->display_picture ?>" alt="No profile picture" />
+
                         <!-- <?= ROOT ?>/assets/images/expert-teacher.png -->
                     </div>
 
                     <div class="change-pic">
-                        <input name="display_picture " class="user-detail empImage" type="file" id="empImage" accept=".jpg">
+                        <input name="display_picture " class="user-detail empImage" type="file" id="empImage" accept="jpg,png,jpeg">
                         <button id="change-dp" class="dp-edit edit-btn" type="button">🙎 Change Profile Picture</button>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
             </div>
             <div id="emp-detail" class="sub-div2">
 
-                
+
                 <div class="profile-data">
                     <label class="user-data-label" for="display-picture">POSITION</label>
                     <input id="role" class="user-detail" placeholder="<?= $userData[0]->role ?>" readonly>
@@ -103,18 +103,18 @@
                 <div class="profile-data">
                     <label class="user-data-label" for="display-picture">CURRENT PASSWORD</label>
 
-                    <input id="old-pw" class="user-detail" placeholder="" >
+                    <input id="old-pw" class="user-detail" placeholder="">
                 </div>
 
                 <div class="profile-data">
                     <label class="user-data-label" for="display-picture">NEW PASSWORD</label>
 
-                    <input id="new-pw" class="user-detail" placeholder="" >
+                    <input id="new-pw" class="user-detail" placeholder="">
                 </div>
                 <div class="profile-data">
                     <label class="user-data-label" for="display-picture">CONFIRM PASSWORD</label>
 
-                    <input id="confirm-pw" class="user-detail" placeholder="" >
+                    <input id="confirm-pw" class="user-detail" placeholder="">
                 </div>
 
 
