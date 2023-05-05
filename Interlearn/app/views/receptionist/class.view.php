@@ -148,27 +148,25 @@ $sub_id = $_GET['id'];
                 <p id="addCourseerror" class="warning"></p>
                 <form action="" method="post" class="up-profile">
                     <input type="hidden" name="course_id" id="course_id" value="">
-                    <div class="recp_det_box">
+                    <div class="class-edit-box">
                         <h4>Teacher ID: </h4>
                         <!-- <?php show($teacher); ?> -->
                         <input type="hidden" name="teacher_id" id="teacher_id" value="">
-                        <input type="text" name="teacher_id" id="teacher_id_edit" value="" class="recp_ann_clz" disabled>
-                    </div>
-                    <div class="recp_det_box">
+                        <input type="text" name="teacher_id" id="teacher_id_edit" value="" class="edit-class-disable" disabled>
+                    </div><br>
+                    <div class="class-edit-box">
                         <h4>Instructor ID: </h4>
 
                         <p style="font-size: small;" id="noInstructors"></p>
-                        <input type="text" value="" id="instructorName" disabled>
+                        <input type="text" value="" id="instructorName" class="edit-class-disable" disabled>
 
                         <input type="hidden" value="<?= $teach_instructor->emp_id ?>" id="instructorID" name="instructorID">
                         <input type="hidden" value="<?= $teach_instructor->course_id ?>" id="courseID" name="courseID">
-                        <button type="submit" id="submit-remove-instructor" class="remove_instructor" onsubmit="removeInstructor(instrcutorId, courseId)">
+                        <button type="submit" id="submit-remove-instructor" class="remove_instructor" onsubmit="removeInstructor(<?= $teach_instructor->emp_id ?>, <?= $teach_instructor->course_id ?>)">
                             <span class="instructor-remove">&times;</span>
                         </button> <br>
-
-
-                    </div>
-                    <div class="recp_det_box">
+                    </div><br>
+                    <div class="class-edit-box">
                         <h4>Day: </h4>
                         <select name="day" id="daysEdit" class="recp_ann_clz">
                             <option value="" selected></option>
@@ -181,7 +179,7 @@ $sub_id = $_GET['id'];
                             <option value="Sunday">Sunday</option>
                         </select>
                     </div><br>
-                    <div class="recp_det_box">
+                    <div class="class-edit-box">
                         <h4>Time:</h4>
                         <div class="recp_det_dura">
                             <input type="time" name="timefrom" value="" id="timefromEdit" class="recp_det_time">
@@ -200,16 +198,16 @@ $sub_id = $_GET['id'];
         <div id="profileModal4" class="popupModal">
             <div class="tchr-popupmodal-content2">
                 <span class="ann_close" onclick="closeModal4()">&times;</span><br>
-                <h4>--Delete Course--</h4><br>
+                <h4>Delete Course</h4><br>
                 <form action="" method="post" class="up-profile">
                     <div class="teacher-crs-activities2">
                         <label for="delete-sec" class="teacher-edit">Are you sure you want to delete this course? </label>
                         <!-- <input type="text" class="teacher-edit-title" name="title"> -->
                         <input type="hidden" value="" name="delete-course" id="delete-course">
                         <br><br>
-                        <a href="<?= ROOT ?>/receptionist/course/view/1/?id=<?= esc($teacher->subject_id) ?>">
-                            <button type="button" class="teacher_upl_btn" name="submit-delete-course" id="add-btn">Yes</button>
-                        </a>
+                        <!-- <a href="<?= ROOT ?>/receptionist/course/view/1/?id=<?= esc($teacher->subject_id) ?>"> -->
+                            <button type="submit" class="teacher_upl_btn" name="submit-delete-course" id="delete-course-btn">Yes</button>
+                        <!-- </a> -->
                         <button type="reset" class="teacher_upl_btn" id="cancel-btn" onclick="closeModal4()">Cancel</button>
                     </div>
                 </form>
@@ -325,4 +323,5 @@ $sub_id = $_GET['id'];
 <script defer src="<?= ROOT ?>/assets/js/addcourse.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?= ROOT ?>/assets/js/courseTime.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?= ROOT ?>/assets/js/editCourse.js?v=<?php echo time(); ?>"></script>
+
 <?php $this->view("includes/footer"); ?>
