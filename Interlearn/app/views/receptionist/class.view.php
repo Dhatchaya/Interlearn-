@@ -150,7 +150,7 @@ $sub_id = $_GET['id'];
                     <input type="hidden" name="course_id" id="course_id" value="">
                     <div class="class-edit-box">
                         <h4>Teacher ID: </h4>
-                        <!-- <?php show($teacher); ?> -->
+
                         <input type="hidden" name="teacher_id" id="teacher_id" value="">
                         <input type="text" name="teacher_id" id="teacher_id_edit" value="" class="edit-class-disable" disabled>
                     </div><br>
@@ -162,7 +162,7 @@ $sub_id = $_GET['id'];
 
                         <input type="hidden" value="<?= $teach_instructor->emp_id ?>" id="instructorID" name="instructorID">
                         <input type="hidden" value="<?= $teach_instructor->course_id ?>" id="courseID" name="courseID">
-                        <button type="submit" id="submit-remove-instructor" class="remove_instructor" onsubmit="removeInstructor(<?= $teach_instructor->emp_id ?>, <?= $teach_instructor->course_id ?>)">
+                        <button type="button" id="submit-remove-instructor" class="remove_instructor" onclick="removeInstructor('<?= $teach_instructor->emp_id ?>','<?= $teach_instructor->course_id ?>')">
                             <span class="instructor-remove">&times;</span>
                         </button> <br>
                     </div><br>

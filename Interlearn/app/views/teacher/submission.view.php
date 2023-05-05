@@ -11,7 +11,9 @@
                 <div id="record"></div>
                 <form method= "POST" enctype="multipart/form-data" >
                 <div id="errorall" class="display-error"></div>
+
                     <?php if(!empty($errors)): ?>
+
                         <?php foreach($errors as $error):?>
                         <div id="error" class="display-error">*<?=esc($error)?></div><br>
                         <?php endforeach;?>

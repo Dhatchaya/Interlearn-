@@ -15,15 +15,17 @@ class Assignment extends Model
 
     protected $allowed_columns = [     
     'assignmentId',
+    'Nid',
     'title',
     'courseId',
     'description',
-   'file_size',
+    'file_size',
     'deadline',
     'acceptDate',
     'edit_URL',
     'view_URL',
     'cid',
+
     ];
 
     public function validatefile($data)

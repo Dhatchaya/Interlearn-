@@ -66,6 +66,23 @@ class SubmissionFiles extends Model
         return false;
 
     }
+    
+
+    public function getSubmissionsize($data=[]){
+        $keys = array_keys($data);
+        $query = "SELECT SUM(filesize) as total FROM ".$this->table;
+        $query .= " Where ";
+        foreach($keys as $key){
+                    $query .= $key. " =:".$key." && ";
+        }
+        $query = trim($query,"&& ");
+        $res = $this -> query($query,$data);
+        if(is_array($res)){
+            return $res[0];
+        }
+        return false;
+
+    }
     // public function joinstudentSubmission($data=[],$orderby=null,$order='desc')
     // {
     //     $keys = array_keys($data);
