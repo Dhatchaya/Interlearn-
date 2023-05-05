@@ -24,7 +24,7 @@ class Manager extends Controller{
         $staffData = new Staff();
         $staff_data = $staffData->ProfileDetails($currentUserID);
 
-        
+
 
         if (!$staff_data) {
             // handle error here
@@ -36,21 +36,21 @@ class Manager extends Controller{
 
         $this->view('staff/user', $ProfileData);
     }
-    
+
     // public function profile($id = null)
     // {    if(!Auth::is_manager()){
     //         redirect('home');
-           
+
     //     }
     //     $id = $id?? Auth::getId();
     //     $user = new User();
-        
+
     //     $data['row'] = $user -> first(['id' => $id]);
     //     $data['title'] = "Profile";
     //     $this->view('manager/profile',$data);
     // }
 
-    
+
 
     public function staff($id = null)
     {
@@ -101,8 +101,6 @@ class Manager extends Controller{
 
         
     }
-
-
 
     public function rejoin()
     {

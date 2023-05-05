@@ -32,18 +32,18 @@
     <div class="validation-container">
       <div class="pending-list">
         <?php foreach ($bankPayments as $bankPayment) : ?>
-          <div class="pending-item each-payment" id="<?= $bankPayment->BankPaymentID ?>" >
+          <div class="pending-item each-payment" id="<?= $bankPayment->BankPaymentID ?>">
             <h4><?= $bankPayment->CourseID  ?></h4>
             <h4><?= $bankPayment->NameOnSlip  ?></h4>
-              <h4><?= $bankPayment->monthlyFee ?></h4>
-              <h4><?= $bankPayment->PaymentDate  ?></h4>
+            <h4><?= $bankPayment->monthlyFee ?></h4>
+            <h4><?= $bankPayment->PaymentDate  ?></h4>
 
           </div>
         <?php endforeach; ?>
 
       </div>
       <script>
-        
+
       </script>
 
       <div class="preview-container">
@@ -53,11 +53,15 @@
           <span class="preview-value" id="preview-name-on-slip"></span>
         </div>
         <div class="preview-group">
+          <label class="preview-label">StudentID:</label>
+          <span class="preview-value" id="StudentID"></span>
+        </div>
+        <div class="preview-group">
           <label class="preview-label">Address:</label>
           <span class="preview-value" id="preview-address"></span>
         </div>
         <div class="preview-group">
-          <label class="preview-label">Course ID:</label>
+          <label class="preview-label">Course Name:</label>
           <span class="preview-value" id="preview-course-name"></span>
         </div>
         <div class="preview-group">
@@ -89,8 +93,8 @@
         </div>
 
 
-        <button class="paynow " id="payment-submission-1" type="submit">Approve</button>
-        <button class="next-payment " id="decline-payment" type="submit">Decline</button>
+        <button class="paynow " id="approve" type="submit">Approve</button>
+        <button class="next-payment " id="decline" type="submit">Decline</button>
       </div>
 
     </div>
@@ -261,6 +265,7 @@
 <script defer src="<?= ROOT ?>/assets/js/nextPayment.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?= ROOT ?>/assets/js/preview-bank-payments.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?= ROOT ?>/assets/js/callBankPaymentData.js?v=<?php echo time(); ?>"></script>
+<script defer src="<?= ROOT ?>/assets/js/approveBP.js?v=<?php echo time(); ?>"></script>
 
 
 

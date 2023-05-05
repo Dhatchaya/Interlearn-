@@ -1,5 +1,6 @@
 const DP = document.querySelector('#dp');
 const uploadDP = document.querySelector('.empImage');
+const displayPicture = document.querySelector('#display-picture');
 const fName = document.querySelector('#fname');
 const lName = document.querySelector('#lname');
 const email = document.querySelector('#email');
@@ -15,7 +16,7 @@ const fNameBtn = document.querySelector('#change-fname');
 const lNameBtn = document.querySelector('#change-lname');
 const emailBtn = document.querySelector('#change-email');
 const addressBtn = document.querySelector('#change-address');
-const mobileNoBtn = document.querySelector ('#change-monile-no');
+const mobileNoBtn = document.querySelector ('#change-mobile-no');
 const dp = document.querySelector('#change-dp');
 const saveBtn = document.querySelector('#save-btn');
 const cancelBtn = document.querySelector('#cancel-btn');
@@ -57,12 +58,20 @@ addressBtn.addEventListener('click', () => {
     address.focus();
 });
 
+uploadDP.addEventListener('change', handleFileSelect, false); 
+function handleFileSelect(event) {
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append('uploadDP', file);
+    // add other form data
+    console.log('uploading');
+}
 
 
-saveBtn.addEventListener('click', () => {
+
+ saveBtn.addEventListener('click', () => {
     console.log('save');
     const data = {
-        dp: dp.value.trim() !== '' ? dp.value : null,
         first_name: fName.value.trim() !== '' ? fName.value : null,
         last_name: lName.value.trim() !== '' ? lName.value : null, 
         email: email.value.trim() !== '' ? email.value : null, 
@@ -77,6 +86,18 @@ saveBtn.addEventListener('click', () => {
         }
         return acc;
     }, {});
+
+    
+
+    const formData = new FormData();
+    if (uploadDP.files.length > 0) {
+        formData.append('uploadDP', uploadDP.files[0]);
+        console.log('uploading level 2');
+    }
+
+    for (let key in filteredData) {
+        formData.append(key, filteredData[key]);
+    }
 
     console.log(JSON.stringify(filteredData));
     if (Object.keys(filteredData).length === 0) {
@@ -95,24 +116,6 @@ saveBtn.addEventListener('click', () => {
     //     if (response.status === 'success') {
     //         console.log('Update successful');
 
-    //         dpBtn.style.display = 'flex';
-    //         uploadDP.style.display = 'none';
-    //         fNameBtn.style.display = 'flex';
-    //         fName.setAttribute('readonly','readonly');
-    //         console.log(fName.value);
-    //         fName.value = '';
-    //         lNameBtn.style.display = 'flex';
-    //         lName.setAttribute('readonly','readonly');
-    //         lName.value = '';
-    //         emailBtn.style.display = 'flex';
-    //         email.setAttribute('readonly','readonly');
-    //         email.value = '';
-    //         addressBtn.style.display = 'flex';
-    //         address.setAttribute('readonly','readonly');
-    //         address.value = '';
-    //         mobileNoBtn.style.display = 'flex';
-    //         mobileNo.setAttribute('readonly','readonly');
-    //         mobileNo.value = '';
 
     //     } else {
     //         console.error('Update failed');
@@ -120,17 +123,36 @@ saveBtn.addEventListener('click', () => {
     // })
     // .catch(error => console.log(error));
 
-    .then(response => response.text())
-.then(jsonString => {
-    console.log('Response data:', jsonString);
-    const data = JSON.parse(jsonString);
+    .then(response => response.json())
+.then(data => {
+    console.log('Response data:', data);
     if (data.status === 'success') {
         console.log('Update successful');
+        
+        dpBtn.style.display = 'flex';
+        uploadDP.style.display = 'none';
+        fNameBtn.style.display = 'flex';
+        fName.setAttribute('readonly','readonly');
+        console.log(fName.value);
+        fName.value = '';
+        lNameBtn.style.display = 'flex';
+        lName.setAttribute('readonly','readonly');
+        lName.value = '';
+        emailBtn.style.display = 'flex';
+        email.setAttribute('readonly','readonly');
+        email.value = '';
+        addressBtn.style.display = 'flex';
+        address.setAttribute('readonly','readonly');
+        address.value = '';
+        mobileNoBtn.style.display = 'flex';
+        mobileNo.setAttribute('readonly','readonly');
+        mobileNo.value = '';
     } else {
         console.error('Update failed');
     }
 })
 .catch(error => console.log(error));
+
     
     
 });

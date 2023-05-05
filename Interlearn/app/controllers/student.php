@@ -850,10 +850,13 @@ class Student extends Controller
         if (!Auth::is_student()) {
             redirect('home');
         }
-
+        
+        $userid = Auth::getUID();
 
         if (isset($_POST)) {
             // $_POST['payment_status'] = '1';
+            
+            $_POST['userid'] = $userid;
             $payment_model = new BankPayment();
             $payment_model->insert($_POST);
             $this->view("student/student-payment");

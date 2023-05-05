@@ -19,32 +19,28 @@ next_payment.addEventListener('click', function() {
         }
     }
 
-    
-    
     else{
-    fetch('/Interlearn/public/receptionist/nextCashPayment', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({courseID: CourseID.value,studentName: studentName.value, studentID: studentId.value, month: Month.value, amount: Amount.value}),
-    })
-    .then(response => response.json())
-    .then(response => {
-        console.log("asdf");
-        Last_payment.value = data[0]['PaymentID']
-        Last_payment.innerHTML = "Last Payment ID: " + Last_payment.value;
-    }).catch(error=>console.log(error));
-    // console.log(studentId.value);
-}
-CourseID.value = "";
-studentId.value = "";
-studentName.value = "";
-Month.value = "";
-Amount.value = "";
+        fetch('/Interlearn/public/receptionist/nextCashPayment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({courseID: CourseID.value,studentName: studentName.value, studentID: studentId.value, month: Month.value, amount: Amount.value}),
+        })
+        .then(response => response.text())
+        .then(data => {
+            // Last_payment.value = data[0]['PaymentID']
+            // Last_payment.innerHTML = "Last Payment ID: " + Last_payment.value;
+        })
+        .catch(error => console.log(error));
+    }
+    CourseID.value = "";
+    studentId.value = "";
+    studentName.value = "";
+    Month.value = "";
+    Amount.value = "";
+});
 
-}
-)
 
 submit_payment.addEventListener('click', function() {
 
@@ -53,38 +49,32 @@ submit_payment.addEventListener('click', function() {
         if(CourseID.value == ''){
             error2.innerHTML = "Please insert a course ID";
             if(Month.value == ''){
-                error3.innerHTML = "Please insert a month";
+                error3.innerHTML = "Please select a month";
             }
         }
     }
 
-    
-    
     else{
-    fetch('/Interlearn/public/receptionist/nextCashPayment', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({courseID: CourseID.value,studentName: studentName.value, studentID: studentId.value, month: Month.value, amount: Amount.value}),
-    })
-    .then(response => response.json())
-    .then(response => {
-        console.log("asdf");
-        Last_payment.value = data[0]['PaymentID']
-    }).catch(error=>console.log(error));
-    // console.log(studentId.value);
-    
-    setTimeout(hiddenDiv2.style.display = "none", 500);
-}
-CourseID.value = "";
-studentId.value = "";
-studentName.value = "";
-Month.value = "";
-Amount.value = "";
+        fetch('/Interlearn/public/receptionist/nextCashPayment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({courseID: CourseID.value,studentName: studentName.value, studentID: studentId.value, month: Month.value, amount: Amount.value}),
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Last_payment.value = data[0]['PaymentID']
+        })
+        .catch(error => console.log(error));
+    }
+    CourseID.value = "";
+    studentId.value = "";
+    studentName.value = "";
+    Month.value = "";
+    Amount.value = "";
 
+    setTimeout(() => hiddenDiv2.style.display = "none", 500);
+});
 
-
-}
-)
 

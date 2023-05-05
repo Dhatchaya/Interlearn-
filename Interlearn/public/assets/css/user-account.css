@@ -24,7 +24,7 @@
 .sub-div2{
     position: relative;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr ;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
     grid-gap: 15px;
     border-radius: 10px;
     width: 100%;
@@ -35,11 +35,15 @@
     border-radius: 20px;
 }
 
+.dp-section{
+  height: 300px;
+}
 
 .profile-data{
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.082);
     border-radius: 10px;
+    height: 96.8px;
 }
 .user-data-label{
     position: relative;
@@ -133,8 +137,7 @@
     display: grid;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: auto;
+    height: 150px;
     background-color: #fff;
     border-radius: 10px;
     overflow: hidden;
@@ -142,6 +145,9 @@
 
 .change-pic{
     display: flex;
+    position: relative;
+    top: -200px;
+    left: 150px;
 }
 .empImage{
     display: none;

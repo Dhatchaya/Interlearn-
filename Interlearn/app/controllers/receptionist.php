@@ -355,6 +355,51 @@ class Receptionist extends Controller
         //$this->view('receptionist/class',$data);
     }
 
+    
+public function editUser()
+{
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+        
+        $data['uid'] = $id ?? Auth::getUID();
+
+        
+        if(isset($_FILES['display_picture']['name']) AND !empty($_FILES['display_picture']['name'])){
+            $pic_tmp = $_FILES['display_picture']["tmp_name"];
+            $pic_name = $_FILES['display_picture']["name"];
+            $error= $_FILES['display_picture']['error'];
+            if($error === 0){
+              $img_ext = pathinfo($pic_name,PATHINFO_EXTENSION);
+              $img_final_ext = strtolower($img_ext);
+              $allowed_ext = array('jpg','png','jpeg');
+              if(in_array($img_final_ext,$allowed_ext)){
+                $new_image_name = uniqid($_POST['username'],true).'.'.$img_final_ext;
+                $destination = "uploads/images/". $new_image_name;
+                move_uploaded_file($pic_tmp,$destination);
+                $data['pic'] = $new_image_name;
+                $response = array('status' => 'success', 'message' => 'Image uploaded successfully');
+              }
+              else{
+                $response = array('status' => 'error', 'message' => 'You cannot upload this type of file');
+              }
+            }
+            else{
+              $response = array('status' => 'error', 'message' => 'Unknown error occurred');
+            }
+          }
+          
+
+        $changeProfile = new Staff();
+        $response = $changeProfile->editProfile($data);
+
+
+        echo json_encode($response);
+        exit;
+    }
+    exit;
+}
+
+
 
     public function announcement($action=null,$aid=null)
     {
@@ -709,7 +754,7 @@ class Receptionist extends Controller
         $ProfileData['userData'] = $staff_data;
         // $data['userData2'] = $user_data2;
 
-        $this->view('staff/user', $ProfileData);
+        $this->view('receptionist/user', $ProfileData);
     }
 
     // public function user()
@@ -726,39 +771,7 @@ class Receptionist extends Controller
 
 
     //     $this->view('receptionist/user',  $data);
-    public function editUser()
-    {
-        if (!Auth::is_receptionist()) {
-            redirect('home');
-        }
-    
-        // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        //     $currentUserID = $id ?? Auth::getUID();
-    
-        //     $data = $_POST;
-
-        //     $staffData = new Staff();
-        //     $staffData->updateStaffData($currentUserID, $data);
-    
-        //     // Return a JSON response
-        //     header('Content-Type: application/json');
-        //     echo json_encode(['status' => 'success']);
-        //     exit;
-        // }
-
-        {
-            $data = json_decode(file_get_contents("php://input"), true);
-            
-            $data['uid'] = $id ?? Auth::getUID();
-
-            $changeProfile = new Staff();
-            $res = $changeProfile->editProfile($data);
-    
-            echo json_encode($res);
-            exit;
-        }
-        exit;
-    }
+ 
     
     
     public function payments()
@@ -793,12 +806,31 @@ class Receptionist extends Controller
             $data['payment_status'] = '1';
 
             $payment_model = new Payment();
-            $payment_model->insert($data);
+            $respond = $payment_model->submitCashPayment($data);
         }
-        // echo json_encode($payment_model);
+        echo json_encode($respond);
         exit;
     }
+    public function approveBP(){
+        if (!Auth::is_receptionist()) {
+            redirect('home');
+        }
 
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        
+             $data['payment_status'] = '1';
+             $data['method'] = 'bank deposit';	
+
+            $approveBP = new Payment();
+            $respond = $approveBP->approveBP($data);
+
+            $removefromBankPayment = new BankPayment();
+            $removefromBankPayment->removefromBankPayment($data['BankPaymentID']);
+
+        
+        echo json_encode($respond);
+    }
 
 
     public function getPaymentData()
@@ -807,6 +839,7 @@ class Receptionist extends Controller
         $data = $payment->getAll();
         return $data;
     }
+
     public function callEachBPdata()
     {
         $data = json_decode(file_get_contents("php://input"), true);
@@ -817,9 +850,15 @@ class Receptionist extends Controller
         header('Content-Type: application/json'); // set the content type to JSON
         echo json_encode($BankPaymentData);
     }
-    
-    
-    
+
+    public function callBankPaymentData()
+    {
+
+        $callBPdata = new BankPayment();
+        $BankPaymentData = $callBPdata->validateBankPayment();
+        return $BankPaymentData;
+    }
+
     public function getStudentName()
     {
         $data = json_decode(file_get_contents("php://input"), true);
@@ -832,40 +871,53 @@ class Receptionist extends Controller
         echo json_encode($res);
         exit;
     }
+
     public function getMonthlyFee()
     {
         $data = json_decode(file_get_contents("php://input"), true);
         $courseId = $data['CourseID'];
         $studentID = $data['StudentID'];
-        $paymonth = $data['Month'];
-    
-        $studentFtCourse = new Payment();
-        $respond = $studentFtCourse->checkStudent($courseId, $studentID);
-    
-        if($respond[0]->course_id == $courseId){
-    
-            $isHEpaid= new Payment();
-            $respond1 = $isHEpaid->checkPaidORnot($studentID, $courseId, $paymonth);
-    
-            if($respond1) {
-                    $monthlyFee = new Payment();
-                    $respond2 = $monthlyFee->getMonthlyFee($courseId);
-                    echo json_encode($respond2);
-                    exit; 
-            } 
-            else {
-                echo json_encode($respond1);
+        $month = $data['Month'];
+
+        
+        $monthlyFee = new Course();
+        $respond1 = $monthlyFee->getMonthlyFee($courseId);
+
+
+
+        if(is_array($respond1) && $respond1[0]['course_id'] == $courseId){
+            
+            $studentFtCourse = new Course();
+            $respond2 = $studentFtCourse->checkStudent($courseId, $studentID);
+
+
+            if (is_array($respond2) &&$respond2[0]['student_id'] == $studentID) {
+                $alreadyPaid = new Payment();
+                $respond3 = $alreadyPaid->checkAlreadyPaid($courseId, $studentID, $month);
+            
+                if ($respond3[0]['course_id'] == 'alreadyPaid') {
+                    echo json_encode($respond3);
+                    exit;
+                } else {
+                    echo json_encode($respond1);
+                    exit;
+                }
+            } else {
+                $respond = array(array("course_id" => "notRegistered"));
+                echo json_encode($respond);
                 exit;
             }
+            
+
+            
         }
         else{
+            $respond = array(array("course_id" => "noCourse"));
             echo json_encode($respond);
             exit;
-        }    
+        }
+        
     }
-    
-    
-
 
     public function registration($action = null,$id = null)
     {

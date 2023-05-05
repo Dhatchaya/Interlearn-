@@ -29,9 +29,35 @@ class Payment extends Model
         return $data;
     }
 
+    public function approveBP($data)
+    {
+        $currentMonth = date('F');
+        $query = "INSERT INTO payment (studentID, paymentMonth, amount, method, courseID, payment_status, studentName) 
+                  VALUES ('".$data['StudentID']."', 
+                  '".$currentMonth."', 
+                  '".$data['BPAmount']."', 
+                  '".$data['method']."', 
+                  '".$data['CourseID']."', 
+                  '".$data['payment_status']."', 
+                  '".$data['NameOnSlip']."')";
+        $data = $this->query($query);
 
-    // $uid
+        if ($data == NULL) {
+            $data = array();
+        }
 
+        return $data;
+    }
+
+    public function submitCashPayment($data)
+    {
+        $query = "INSERT INTO payment (studentID, paymentMonth, amount, method, courseID, payment_status, studentName) 
+                  VALUES ('".$data['studentID']."', '".$data['month']."', '".$data['Amount']."', '".$data['method']."', '".$data['courseID']."', '".$data['payment_status']."', '".$data['studentName']."')";
+        $result = $this->query($query);
+    
+        return $result;
+    }
+    
 
 
     public function eachStudentPaymentHistory($uid)
@@ -76,6 +102,20 @@ class Payment extends Model
 
         return $data;
     }
+    public function checkAlreadyPaid($courseId, $studentID, $month){
+        $query = "SELECT COUNT(*) as count FROM payment WHERE courseID = '$courseId' AND studentID = '$studentID' AND paymentMonth  = '$month' AND payment_status = '1'";
+        $data = $this->query($query);
+    
+        $data = json_decode(json_encode($data), true);
+    
+        if ($data[0]['count'] > 0) {
+            return array(array('course_id' => 'alreadyPaid'));
+        } else {
+            return array(array('course_id' => 'notPaid'));
+        }
+    }
+    
+    
 
     public function pendingPayments()
     {
@@ -90,45 +130,6 @@ class Payment extends Model
 
         return $data;
     }
-
-
-    
-    public function checkStudent($courseId, $studentId) {
-        $studentID = $studentId;
-    
-        $query = "SELECT * FROM student_course WHERE student_id = " . $studentID . " AND course_id = " . $courseId;
-        $res = $this->query($query);
-        
-        
-        if (empty($res)) {
-            $res[0] = new stdClass();
-            $res[0]->course_id = "noCourse";
-        }
-        return $res;
-    }
-
-    public function checkPaidOrNot($studentId, $courseId, $month) {
-        $query = "SELECT count(*) FROM payment WHERE studentID = $studentId AND courseID = $courseId AND paymentMonth = '$month'";
-        $res = $this->query($query);
-        if( $res[0]->{'count(*)'} > 0) {
-            $res[0]->course_id = "AlreadyPaid";
-        }
-        return true;
-    }
-    
-
-        public function getMonthlyFee($courseId){
-        $courseID = $courseId; 
-        $query = "SELECT monthlyFee FROM course where course_id = " . $courseID ;
-        $res = $this -> query($query);
-
-        if ($res == NULL) {
-            $res = array();
-        }
-        
-        return $res;
-    }
-    
     /////////////////////
     //     public function addNewPendingPayments()
     //     {
@@ -151,4 +152,47 @@ class Payment extends Model
     //     }
 }
 
-// 
+class BankPayment extends Model
+{
+    //says what table it has to target
+    public $error = [];
+
+    protected $table = "bank_payment";
+    protected $allowed_columns = [
+        'NameOnSlip',
+        'Address',
+        'CourseID',
+        'PayerNIC',
+        'SlipImage',
+        'PaymentDate',
+        'Amount',
+        'Bank',
+        'Branch',
+        'ChequeNo',
+        'BankPaymentID',
+        'status',
+    ];
+
+    public function validateBankPayment()
+    {
+        $query = "SELECT * FROM bank_payment ";
+        $data = $this->query($query);
+
+        if ($data == NULL) {
+            $data = array();
+        }
+
+        return $data;
+    }
+}
+class GetStudentName extends Model
+{
+    //says what table it has to target
+    public $error = [];
+    protected $table = "student";
+    protected $allowed_columns = [
+        'studentID',
+        'first_name',
+        'last_name',
+    ];
+}

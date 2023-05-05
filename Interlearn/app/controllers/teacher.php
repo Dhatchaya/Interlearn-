@@ -94,27 +94,6 @@ class Teacher extends Controller
         $this->view('teacher/home',$data);
     }
 
-    public function profile()
-    {
-        if (!Auth::is_teacher()) {
-            redirect('home');
-        }
-        $currentUserID = $id ?? Auth::getUID();
-
-        $staffData = new Staff();
-        $staff_data = $staffData->ProfileDetails($currentUserID);
-
-        
-
-        if (!$staff_data) {
-            redirect('home');
-        }
-
-        $ProfileData['userData'] = $staff_data;
-
-        $this->view('staff/user', $ProfileData);
-    }
-
     //each course will have a ID when clicked get that ID pass it as a parameter and
     //access that course
     // $action=null,$id = null,$week = null, $option = null,$extra=null
@@ -1084,22 +1063,22 @@ class Teacher extends Controller
 
 
 
-    // public function profile($action=null,$id = null)
-    // {
-    //     if(!Auth::is_teacher()){
-    //         redirect('home');
-    //        exit;
-    //     }
-    //     // if($action=='add'){
+    public function profile($action=null,$id = null)
+    {
+        if(!Auth::is_teacher()){
+            redirect('home');
+           exit;
+        }
+        // if($action=='add'){
 
-    //     // }
-    //     $id = $id ?? Auth::getEMP_ID();
-    //     $staff = new Staff();
-    //     $data['row'] = $staff->first(['emp_id'=>$id],'emp_id');
-    //     $data['title'] = "Profile";
+        // }
+        $id = $id ?? Auth::getEMP_ID();
+        $staff = new Staff();
+        $data['row'] = $staff->first(['emp_id'=>$id],'emp_id');
+        $data['title'] = "Profile";
         
-    //     $this->view('teacher/profile',$data);
-    // }
+        $this->view('teacher/profile',$data);
+    }
 
     // -----------------------Not used ------------------------------------//
     public function quizz($action=null,$id = null)

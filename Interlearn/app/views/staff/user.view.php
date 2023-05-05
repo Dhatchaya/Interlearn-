@@ -26,17 +26,17 @@
         <div class="profile-container">
             <div id="bio-data" class="sub-div">
 
-                <div class="profile-data">
+                <div class="profile-data " style="height:210px;">
 
                     <label class="user-data-label" for="display-picture">PROFILE PICTURE</label>
                     <div class="circle-container">
-                    <img src="<?=ROOT?>/uploads/images/<?= Auth::getdisplay_picture();?>" alt="No profile picture"/> 
-                        <!-- <img id="dp" class="display-picture" src="<?= $userData[0]->display_picture ?>" alt="display picture"> -->
+                    <img id="dp" class="display-picture" src="<?=ROOT?>/assets/images/<?= $userData[0]->display_picture ?>" alt="No profile picture"/> 
+                        
                         <!-- <?= ROOT ?>/assets/images/expert-teacher.png -->
                     </div>
 
                     <div class="change-pic">
-                        <input name="empImage " class="user-detail empImage" type="file" id="empImage" accept=".jpg">
+                        <input name="display_picture " class="user-detail empImage" type="file" id="empImage" accept=".jpg">
                         <button id="change-dp" class="dp-edit edit-btn" type="button">🙎 Change Profile Picture</button>
                     </div>
                 </div>
@@ -59,15 +59,11 @@
                     <button id="change-email" class="edit-btn" type="button">✒️ EDIT</button>
                 </div>
 
-
-            </div>
-            <div id="emp-detail" class="sub-div2">
-
                 <div class="profile-data">
                     <label class="user-data-label" for="phone-no">PHONE NO</label>
 
                     <input id="mobile-no" class="user-detail" placeholder="0<?= $userData[0]->mobile_no ?? '' ?>" readonly maxlength="10">
-                    <button id="change-monile-no" class="edit-btn" type="button">✒️ EDIT</button>
+                    <button id="change-mobile-no" class="edit-btn" type="button">✒️ EDIT</button>
                 </div>
                 <div class="profile-data">
                     <label class="user-data-label" for="display-picture">ADDRESS</label>
@@ -75,6 +71,12 @@
                     <input id="address" class="user-detail" placeholder="<?= $userData[0]->Addressline1 ?? '' ?>" readonly>
                     <button id="change-address" class="edit-btn" type="button">✒️ EDIT</button>
                 </div>
+
+
+            </div>
+            <div id="emp-detail" class="sub-div2">
+
+                
                 <div class="profile-data">
                     <label class="user-data-label" for="display-picture">POSITION</label>
                     <input id="role" class="user-detail" placeholder="<?= $userData[0]->role ?>" readonly>
@@ -96,6 +98,23 @@
                     <label class="user-data-label" for="display-picture">EMPLOYEMENT STATUS</label>
 
                     <input id="emp-status" class="user-detail" placeholder="<?= $userData[0]->emp_status   ?? '' ?>" readonly>
+                </div>
+
+                <div class="profile-data">
+                    <label class="user-data-label" for="display-picture">CURRENT PASSWORD</label>
+
+                    <input id="old-pw" class="user-detail" placeholder="" >
+                </div>
+
+                <div class="profile-data">
+                    <label class="user-data-label" for="display-picture">NEW PASSWORD</label>
+
+                    <input id="new-pw" class="user-detail" placeholder="" >
+                </div>
+                <div class="profile-data">
+                    <label class="user-data-label" for="display-picture">CONFIRM PASSWORD</label>
+
+                    <input id="confirm-pw" class="user-detail" placeholder="" >
                 </div>
 
 
@@ -165,6 +184,7 @@
 
 
     <script defer src="<?= ROOT ?>/assets/js/ProfileEdit.js?v=<?php echo time(); ?>"></script>
+    <script defer src="<?= ROOT ?>/assets/js/changePW.js?v=<?php echo time(); ?>"></script>
 
 
 </body>
