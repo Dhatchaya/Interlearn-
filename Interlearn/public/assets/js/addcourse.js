@@ -128,18 +128,19 @@ function openModal3(courseID) {
                             console.log(response == 'false');
                             if(response == 'false'){
                               console.log("hello");
-                              document.getElementById("instructorName").style.display = 'none';
-                              document.getElementById("submit-remove-instructor").style.display = 'none';
+                              // document.getElementById("instructorName").style.display = 'none';
+                              // document.getElementById("submit-remove-instructor").style.display = 'none';
                               document.getElementById("noInstructors").innerHTML = "No instructors to show!";
                             }
                             response = JSON.parse(response);
 
                             for(var i=0; i<response.length; i++){
-                              console.log(response[i].instructorName);
-                              document.getElementById("instructorName").value = response[i].emp_id + ' : ' + response[i].instructorName;
                               // console.log(response[i].instructorName);
-                              document.getElementById("instructorID").value = response[i].emp_id;
-                              document.getElementById("courseID").value = courseID;
+                              //
+                              // document.getElementById("instructorName").value = response[i].emp_id + ' : ' + response[i].instructorName;
+                              // // console.log(response[i].instructorName);
+                              // document.getElementById("instructorID").value = response[i].emp_id;
+                              // document.getElementById("courseID").value = courseID;
                               var instructor_id = response[i].emp_id;
                               console.log(instructor_id);
 
@@ -253,21 +254,25 @@ window.onclick = function(event) {
 }
 
 
-function removeInstructor(instructor_id, courseID){
+function removeInstructor(target,instructor_id, courseID){
     // event.preventDefault();
     console.log("inside remove");
     console.log(instructor_id);
-    var div = this.parentElement;
-    console.log(div);
+    var div = target.parentElement;
+    console.log(target.parentElement);
     div.style.display = "none";
+    // para = document.getElementById("noInstructors");
+    // para.innerHTML="No instructors to show!";
+
     $.ajax({
-        method:"GET",
-        url : 'http://localhost/Interlearn/public/receptionist/course/removeInstructors?instructor_id='+instructor_id+'&course_id='+courseID,
+        method:"POST",
+        url : 'http://localhost/Interlearn/public/receptionist/course/removeInstructor',
+        data:{'courseID':courseID, 'instructorID':instructor_id},
         success:function(response){
-          console.log(response);
+            console.log(response);
         },
         error:function(xhr,status,error){
-          console.log("Error: " + error);
+            console.log("Error: " + error);
         }
     });
 }

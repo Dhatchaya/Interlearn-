@@ -93,17 +93,17 @@ const btn3 = document.getElementById("button30");
 const span3 = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal
-function openModal3(number) {
-
+function openModal3(number,course) {
+console.log("Im called");
     document.getElementById("weeknumber").value = number;
 
     modal3.style.display = "block";
     console.log(modal3);
 
-    console.log(number);
+    console.log(`http://localhost/Interlearn/public/teacher/course/view/`+course+`/`+number+`/getWeekName`);
 
     $.ajax({
-        url: `http://localhost/Interlearn/public/teacher/course/view/${course_id}?week_no=`+number+`/getWeekName`,
+        url: `http://localhost/Interlearn/public/teacher/course/view/`+course+`/`+number+`/getWeekName`,
         type: 'GET',
         success: function(response) {
             console.log("hello");

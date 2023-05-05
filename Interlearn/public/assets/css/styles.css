@@ -6531,7 +6531,7 @@ left: 5rem;
 .class-edit-box{
     /* background-color: rgb(104, 44, 198,9%); */
     width: 35vw;
-    height: 10vh;
+    /*height: 10vh;*/
 }
 .edit-class-disable{
     width: 25vw;
