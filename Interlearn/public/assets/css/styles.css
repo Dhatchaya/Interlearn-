@@ -33,7 +33,7 @@
 
 }
 .otpcontent{
-    min-height: 34.5vh;
+    min-height: 40vh;
     background: white;
     width: 50rem;
     margin: 2rem auto 2rem auto;
@@ -622,7 +622,7 @@ body{
 }
 
 .login_header {
-    position: absolute;
+    /* position: absolute; */
     top: 0;
     left: 0%;
     height: 100px;
@@ -1727,8 +1727,8 @@ transform: scale(0.97,0.97);
     margin-left: 100px;
     margin-right: 100px;
     position: absolute;
-    top: 25%;
-    left: 20%;
+    top: 20%;
+    left: 15%;
     background: var(--secondary-color);
     display: flex;
     flex-direction: row;
@@ -3386,7 +3386,7 @@ width: 45vw;
 } */
 
 .recp_view_rectangle{
-    background-color: var(--left-sidebar-color);
+
 /* background-color: var(--primary-color); */
 /* border: 1px solid rgb(62 32 109 / 55%); */
     /* border-radius: 10%; */
@@ -3409,17 +3409,16 @@ width: 45vw;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-}
-.recp_view_rectangle:nth-child(odd){
+
     background-color: white;
     /* background-color: #41044b; */
-    border: 1px solid rgb(62 32 109 / 14%);
+    border: 2px solid rgb(62 32 109 / 14%);
 }
-.recp_view_rectangle:nth-child(odd) p{
+/* .recp_view_rectangle p{
     color: var(--primary-color);
     text-shadow: none;
     font-weight:600;
-}
+} */
 .recp_view_rectangle:hover{
     transition: all 350ms ease;
     transform: scale(1.1) translateY(8px);
@@ -3466,13 +3465,15 @@ transition: width 1s, height 1s;
 
         font-weight: 500;
         font-size: large;
-        color: #ffffff;
+        color: var(--primary-color);
+        text-shadow: none;
+       
         margin-bottom: 5%;
         padding: 3%;
         text-align: center;
         position: relative;
         /* position: absolute; */
-        font-weight: 500;
+        font-weight: 600;
         line-height: 1.5;
         font-size: 1.2rem;
         /* line-height: 47px; */
@@ -3481,7 +3482,7 @@ transition: width 1s, height 1s;
         top: 1rem;
         left: 3.5rem;
         transform: translate(-30%, 100%);
-        text-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
+     
 }
 
 /* receptionist course page */
@@ -4593,7 +4594,7 @@ tr:nth-child(even) {
 }
 
 .up-profile {
-    display: grid;
+    /* display: grid; */
     grid-template-columns: 1fr 1fr;
     grid-gap: 15px;
     justify-content: space-between;

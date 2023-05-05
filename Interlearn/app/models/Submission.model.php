@@ -76,5 +76,25 @@ class Submission extends Model
         return false;
            
     }
+    public function Checkstatus($data,$orderby=null,$order = 'desc'){
+        $keys = array_keys($data);
+        $id = $this->table[0]."id";
+        $query ="select * from ".$this->table." inner join student on student.studentID =".$this->table.".studentID where ";
    
+        foreach($keys as $key){
+            $query .= $key. " =:".$key." && ";
+        }
+     
+    
+        $query = trim($query,"&& ");
+        $query .= " order by $orderby  $order limit 1";
+
+        $res = $this -> query($query,$data);
+      
+        if(is_array($res)){
+           return $res[0];
+        }
+        return false;
+           
+    }
 }

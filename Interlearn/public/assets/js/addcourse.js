@@ -253,3 +253,21 @@ window.onclick = function(event) {
 }
 
 
+function removeInstructor(instructor_id, courseID){
+    // event.preventDefault();
+    console.log("inside remove");
+    console.log(instructor_id);
+    var div = this.parentElement;
+    console.log(div);
+    div.style.display = "none";
+    $.ajax({
+        method:"GET",
+        url : 'http://localhost/Interlearn/public/receptionist/course/removeInstructors?instructor_id='+instructor_id+'&course_id='+courseID,
+        success:function(response){
+          console.log(response);
+        },
+        error:function(xhr,status,error){
+          console.log("Error: " + error);
+        }
+    });
+}

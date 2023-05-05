@@ -516,6 +516,7 @@ class Teacher extends Controller
         if($action == "assignment")
         {
             $assignment = new Assignment();
+            $notify = new Notification();
             $assignmentfiles = new AssignmentFiles();
             $data=[];
             $data['errors']=[];
@@ -526,12 +527,12 @@ class Teacher extends Controller
                
             if($_SERVER["REQUEST_METHOD"]=="POST"){
                 if($assignment -> validate($_POST)){
-                    // echo "IM here";die;
-                    if(isset($_FILES['assignment_file']['name']) AND !empty($_FILES['assignment_file']['name'])){
-                        if($assignmentfiles -> validatefile($_FILES)){
-                   
                     $_POST['courseId'] = intval($id);
                     $_POST['assignmentId'] =$assignmentid= uniqid($user,true);
+                    if(isset($_FILES['assignment_file']['name']) AND !empty($_FILES['assignment_file']['name'][0])){
+                        if($assignmentfiles -> validatefile($_FILES)){
+                   
+                
                     
                         //checks every file inside the $_FILES array of files
                         for($i=0; $i<count($_FILES['assignment_file']['name']); $i++) {
@@ -545,6 +546,7 @@ class Teacher extends Controller
 
                                 $allowed_ext = array('jpg','jpeg','doc','png','pdf','xls','html','css','js');
                                 if(in_array($file_final_ext,$allowed_ext)){
+                                
                                     $new_file_name = uniqid($user,true).'.'.$file_final_ext;
                                     $directory = "/xampp/htdocs/Interlearn/uploads/".$id."/assignments/".$assignmentid;
                                     if (!is_dir($directory)){
@@ -561,11 +563,13 @@ class Teacher extends Controller
                                     //$result2 = $assignmentfiles->insert($_POST);
                                 }
                                 else{
+                                  
                                     $data['errors']['assignment_file']='Unsupported file type : '.$file_final_ext;
                                     break;
                                 }
                             }
                             else{
+                              
                                 $data['errors']['assignment_file'] ="Unknown error occured";
                                 break;
 
@@ -578,6 +582,7 @@ class Teacher extends Controller
                         $viewURL="http://localhost/Interlearn/public/teacher/course/submissions/".$id."/".$week."/?id=".$assignmentid;
                         $studentView ="http://localhost/Interlearn/public/student/coursepg/submissionstatus/".$id."/?id=".$assignmentid;;
                         $cid = uniqid();
+                        $nid=uniqid();
                         $_POST['cid']=$cid;
                         $_POST['edit_URL']=$editURL;
                         $_POST['view_URL']=$viewURL;
@@ -588,12 +593,18 @@ class Teacher extends Controller
                         $_POST['upload_name']=$_POST['title'];
                         $_POST['type']="assignment";
                         $_POST['course_id'] = $id;
+                        $_POST['Nid'] = $nid;
                         $_POST['file_size'] = $assignmentfiles->size;
-// show($assignmentfiles->size);die;
-                       $material = $course_content->insert($_POST);
-                       if(empty($data['errors'])){
-                       $result = $assignment->insert($_POST);
+                        $_POST['category']="Assignment";
 
+                    
+                
+                       if(empty($data['errors'])){
+                    
+                        $material = $course_content->insert($_POST);
+                        $notification = $notify->insert($_POST);
+                       $result = $assignment->insert($_POST);
+                       
                         foreach($filenames as $file){
 
                                 $_POST['assignmentId'] =$assignmentid;
@@ -606,6 +617,7 @@ class Teacher extends Controller
                         }
                     
                         if($result && $result2){
+                         
                             header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
                         }
                     }
@@ -620,13 +632,54 @@ class Teacher extends Controller
                       
                     }
                     }
+                    else{
+                                //assignment submission if no file was selected
+                                $editURL = "http://localhost/Interlearn/public/teacher/course/assignment/".$id."/".$week."/view?id=".$assignmentid;
+                                $deleteURL = "http://localhost/Interlearn/public/teacher/course/assignment/".$id."/".$week."/delete?id=".$assignmentid;
+                                $viewURL="http://localhost/Interlearn/public/teacher/course/submissions/".$id."/".$week."/?id=".$assignmentid;
+                                $studentView ="http://localhost/Interlearn/public/student/coursepg/submissionstatus/".$id."/?id=".$assignmentid;;
+                                $cid = uniqid();
+                                $nid=uniqid();
+                                $_POST['cid']=$cid;
+                                $_POST['edit_URL']=$editURL;
+                                $_POST['view_URL']=$viewURL;
+                                $_POST['studentView_URL']=$studentView;
+                                $_POST['delete_URL']=$deleteURL;
+                                $_POST['week_no']=$week;
+                                // $_POST['course_material']="Home Work";
+                                $_POST['upload_name']=$_POST['title'];
+                                $_POST['type']="assignment";
+                                $_POST['course_id'] = $id;
+                                $_POST['Nid'] = $nid;
+                                $_POST['category']="Assignment";
+                                
+
+                            
+                        
+                                if(empty($data['errors'])){
+                                
+                                    $material = $course_content->insert($_POST);
+                                    $notification = $notify->insert($_POST);
+                                    $result = $assignment->insert($_POST);
+
+                    
+                            
+                                if($result){
+                                
+                                    header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
+                                }
+                            }
+
+
+                        }
+
                 }
                 else{
                     $data['errors'] =  $assignment->error;
                  
                 }
 
-                    // header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
+                   
             }
 
         }
@@ -763,6 +816,7 @@ class Teacher extends Controller
             }
 
             if($option == "delete"){
+                echo "here";die;
                     if(isset($_GET['id'])){
                         $assignmentId = $_GET['id'];
                     }
@@ -770,21 +824,23 @@ class Teacher extends Controller
                     $assignment = new Assignment();
                     $content = new CourseContent();
                     $contentdetails = $assignment->first(['assignmentId'=> $assignmentId],'assignmentId');
+                    show(   $contentdetails);die;
+                    $result2=   $notify  -> delete(['Nid'=>$contentdetails->Nid]);
                     $result1=   $content  -> delete(['cid'=>  $contentdetails->cid]);
                     $result= $assignment  -> delete(['assignmentId'=> $assignmentId]);
-                    if($result && $result1){
+                    if($result && $result1&&$result2){
                         header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
                     }
                  
                     exit;
                 
             }
-
+            // show( $data);
             $thisCourse = $subject -> coursedetails(['course_id'=> $id]);
             $data["courseTitle"] = $thisCourse->subject;
             $data["Grade"] = $thisCourse->grade;
-            $data['errors'] =  $assignment->error;
-
+            // $data['errors'] =  $assignment->error;//commented because this is preventing from displaying other errors
+// show($data);die;
             $this->view('teacher/submission',$data);
         }
         if($action == "submissions"){

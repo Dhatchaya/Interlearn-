@@ -28,7 +28,7 @@ const showpw = document.querySelector('.show-pw');
 
     $isAllFilled = true;
 
-    contractEndingDate.addEventListener("input", () => {
+contractEndingDate.addEventListener("input", () => {
 
         const enteredDate = contractEndingDate.value;
         const currentDate = new Date().toISOString().slice(0, 10); 
@@ -44,6 +44,7 @@ const showpw = document.querySelector('.show-pw');
     
 submitBtn.addEventListener('click', async function(event) {
     event.preventDefault();
+    $isAllFilled = true;
     console.log("button eka nm wada karanwa kolloooo");
 
 
