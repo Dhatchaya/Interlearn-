@@ -27,8 +27,7 @@
                    <option value="9">Grade 9</option>
                    <option value="10">Grade 10</option>
                    <option value="11">Grade 11</option>
-                   <option value="12">Grade 12</option>
-                   <option value="13">Grade 13</option>
+                   <option value="A/L">Grade A/L</option>
                 </select>
                 <div id="alert-div2" style="display:none;" class="warning"></div>
             </div><br><br>

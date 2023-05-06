@@ -14,47 +14,40 @@
                 <?php if(!empty($announcements)):?>
                 <?php foreach($announcements as $row):?>
                 <div class="ann_view_msg">
-                <?php if($row->role == 'Instructor'):?>
+                    
                     <?php 
                         $expiryTime = strtotime($row->date_time) + 60*60; // expiry time is 1 hour after creation
                         $currentTime = time(); //timestap
                         if($expiryTime > $currentTime):?>
                             <img src="<?=ROOT?>/assets/images/edit.png" class="teacher_crs_img2" id="button30" onclick="openModal3('<?=($row->aid)?>')">
-                            <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_crs_img2" id="button33" onclick="openModal6('<?=($row->aid)?>')">
                     <?php else :?>
-                        <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_crs_img2" id="button33" onclick="openModal6('<?=($row->aid)?>')">
+                        <?php echo "Editing is no longer allowed for this record.";?>
                     <?php endif; ?>
-                    <?php endif; ?>
+                    
+                    <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_crs_img2" id="button33" onclick="openModal6('<?=($row->aid)?>')">
                 
 
 
             <!-- updating announcement details -->
             <div id="profileModal3" class="popupModal">
-            <div class="tchr-popupmodal-content3">
-                <span class="ann_close" onclick="closeModal3()">&times;</span><br>
-                <h4>Edit Announcement</h4><br>
-                <form action="" method="post" class="up-profile">
-                    <div class="teacher-crs-activities2">
-                        <input type="hidden" value="" name="aid" id="aid">
-                        <label for="">Announcement name: </label><br>
-                        <input type="text" class="edit_ann_name" name="title" value="" id="title"><br><br>
-                        <label for="">Content: </label><br>
-                        <input id="content" name="content" class="edit_ann_cont" value=""><br><br>
-                        <div class="recp_file_box">
-                        <label for="">Attach Files: </label>
-                        <input type="hidden" id="attachment_file">
-                        <div><input type="text" id="file_teacher_announcement" disabled><span class="edit_file_announcement" >&times;</span></div>
-                        <br>
-                        <input type="file"  name="attach_teacher_file" id="attach_teacher_file" value="">
-                        </div><br>
-                        <label for="">File name: </label><br>
-                        <input type="text" class="edit_file_ann_name" value="" name="title" id="file_name_teacher"><br><br><br>
-                        <button type="submit" class="teacher_upl_btn" name="edit-announcement" id="edit-announcement-btn" onclick="closeModal3()">Update</button>
-                        <button type="reset" class="teacher_upl_btn" id="cancel-btn">Cancel</button>
-                    </div>
-                </form>
+                <div class="tchr-popupmodal-content3">
+                    <span class="ann_close" onclick="closeModal3()">&times;</span><br>
+                    <h4>--Edit Announcement--</h4><br>
+                    <form action="" method="post" class="up-profile">
+                        <div class="teacher-crs-activities2">
+                            <input type="hidden" value="" name="aid" id="aid">
+                            <label for="">Announcement name: </label><br>
+                            <input type="text" class="edit_ann_name" name="title" value="<?=$row->title?>"><br><br>
+                            <label for="">Content: </label><br>
+                            <textarea id="address" name="address" class="edit_ann_cont"><?=$row->content?></textarea><br><br>
+                            <label for="">Attach Files: </label><br>
+                            <input type="file" class="edit_ann_name" name="attachment" value="<?=esc($row->attachment)?>"><br>
+                            <button type="submit" class="teacher_upl_btn" name="edit-announcement" id="add-btn">Save</button>
+                            <button type="reset" class="teacher_upl_btn" id="cancel-btn">Cancel</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
 
 
             <!-- deleting the upload popup -->
@@ -80,8 +73,8 @@
                     <p><?=$row->content?></p><br>
                     
                     <div class="recp_ann_attachment">
-                        <a href="<?=esc($row->attachment)?>">
-                        <?=esc($row->file_name)?>
+                        <a href="">
+                        <?=esc($row->attachment)?>
                         </a>
                     </div><br>
                     <p class="recp_ann_bot"><?=esc($row->fullname)?></p>
@@ -94,5 +87,5 @@
         </div>
     </div>
 </div>
-<script defer src="<?=ROOT?>/assets/js/announcement_ins.js?v=<?php echo time(); ?>"></script>
+<script defer src="<?=ROOT?>/assets/js/announcement.js?v=<?php echo time(); ?>"></script>
 <?php $this->view("includes/footer");?>

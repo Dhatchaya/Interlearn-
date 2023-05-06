@@ -39,6 +39,16 @@
                 <button type="reset" class="teacher_upl_btn">Cancel</button>
             </form>
 
+            <!-- <script>
+                const fileInput = document.querySelector('#file-input');
+                const fileName = document.querySelector('#teacher-upload-name');
+
+                fileInput.addEventListener('change', (event) => {
+                  const selectedFile = event.target.files[0];
+                  fileName.textContent = selectedFile ? selectedFile.name : '';
+                });
+                fileName.textContent = 'No file chosen';
+            </script> -->
         </div>
     </div>
 

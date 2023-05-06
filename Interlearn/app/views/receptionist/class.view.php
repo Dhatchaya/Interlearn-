@@ -150,7 +150,7 @@ $sub_id = $_GET['id'];
                     <input type="hidden" name="course_id" id="course_id" value="">
                     <div class="class-edit-box">
                         <h4>Teacher ID: </h4>
-                        <!-- <?php show($teacher); ?> -->
+
                         <input type="hidden" name="teacher_id" id="teacher_id" value="">
                         <input type="text" name="teacher_id" id="teacher_id_edit" value="" class="edit-class-disable" disabled>
                     </div><br>
@@ -158,14 +158,26 @@ $sub_id = $_GET['id'];
                         <h4>Instructor ID: </h4>
 
                         <p style="font-size: small;" id="noInstructors"></p>
-                        <input type="text" value="" id="instructorName" class="edit-class-disable" disabled>
+                        <?php if(!empty($teach_instructors)):?>
+                            <?php foreach ($teach_instructors as $teach_inst):?>
+                        <?php foreach ($teach_inst as $teach_in):?>
 
-                        <input type="hidden" value="<?= $teach_instructor->emp_id ?>" id="instructorID" name="instructorID">
-                        <input type="hidden" value="<?= $teach_instructor->course_id ?>" id="courseID" name="courseID">
-                        <button type="submit" id="submit-remove-instructor" class="remove_instructor" onsubmit="removeInstructor(<?= $teach_instructor->emp_id ?>, <?= $teach_instructor->course_id ?>)">
-                            <span class="instructor-remove">&times;</span>
-                        </button> <br>
-                    </div><br>
+                            <div>
+
+                            <input type="text" value="<?= $teach_in->instructorName ?>" id="instructorName" class="edit-class-disable" disabled>
+
+                            <input type="hidden" value="<?= $teach_in->emp_id ?>" id="instructorID" name="instructorID">
+                            <input type="hidden" value="<?= $teach_in->course_id ?>" id="courseID" name="courseID">
+                            <button type="button" id="submit-remove-instructor" class="remove_instructor" onclick="removeInstructor(this,'<?= $teach_in->emp_id ?>','<?= $teach_in->course_id ?>')">
+                                <span class="instructor-remove">&times;</span>
+                            </button>
+                            </div>
+                                <?php endforeach;?>
+                            <?php endforeach;?>
+                        <?php endif;?>
+                            <br>
+                    </div>
+                    <br>
                     <div class="class-edit-box">
                         <h4>Day: </h4>
                         <select name="day" id="daysEdit" class="recp_ann_clz">
@@ -323,5 +335,4 @@ $sub_id = $_GET['id'];
 <script defer src="<?= ROOT ?>/assets/js/addcourse.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?= ROOT ?>/assets/js/courseTime.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?= ROOT ?>/assets/js/editCourse.js?v=<?php echo time(); ?>"></script>
-
 <?php $this->view("includes/footer"); ?>

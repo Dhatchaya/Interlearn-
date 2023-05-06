@@ -201,19 +201,6 @@ function next() {
 function quizResults() {
     ResultBox.querySelector(".total-question").innerHTML = quiz.length;
     ResultBox.querySelector(".total-score").innerHTML = totalMarks;
-
-    console.log(totalMarks);
-    // Send totalMarks to the server using AJAX
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost/Interlearn/public/Student/quiz/marks", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function() {
-        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-        console.log(this.responseText);
-        }
-    };
-    xhr.send("totalMarks=" + totalMarks);
-
 }
 
 function resetQuiz() {
@@ -271,7 +258,3 @@ window.onload = function () {
     homeBox.querySelector(".total-question").innerHTML = totques;
     homeBox.querySelector(".description").innerHTML = quiz.description;
 }
-
-
-// Set the totalMarks variable
-// var totalMarks = 80;

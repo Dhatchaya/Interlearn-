@@ -14,19 +14,17 @@
                 <?php if(!empty($announcements)):?>
                 <?php foreach($announcements as $row):?>
                 <div class="ann_view_msg">
-                    <?php if($row->role == 'Teacher'):?>
+                    
                     <?php 
                         $expiryTime = strtotime($row->date_time) + 60*60; // expiry time is 1 hour after creation
                         $currentTime = time(); //timestap
                         if($expiryTime > $currentTime):?>
                             <img src="<?=ROOT?>/assets/images/edit.png" class="teacher_crs_img2" id="button30" onclick="openModal3('<?=($row->aid)?>')">
-                            <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_crs_img2" id="button33" onclick="openModal6('<?=($row->aid)?>')">
                     <?php else :?>
-                        <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_crs_img2" id="button33" onclick="openModal6('<?=($row->aid)?>')">
+                        <?php echo "Editing is no longer allowed for this record.";?>
                     <?php endif; ?>
                     
-
-                    <?php endif; ?>
+                    <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_crs_img2" id="button33" onclick="openModal6('<?=($row->aid)?>')">
                 
 
 

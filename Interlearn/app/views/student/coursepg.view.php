@@ -40,31 +40,35 @@
                                 <?php foreach ($materials as $material) : ?>
                                     <?php if ($material->week_no == $i) : ?>
                                         <?php if ($material->type == "material") : ?>
+                                            <!-- <p><a href="<?= $material->view_URL ?>">
+                                <img src="<?= ROOT ?>/assets/images/pdf.png" alt="" class="teacher_card_img3">
+                                <?= $material->upload_name ?>
+                                </a></p> -->
 
                                             <?php if ($material->file_type === "application/pdf") : ?>
                                                 <p>
-                                                    <a href="<?= $material->view_URL ?>" class="student-content">
+                                                    <a href="<?= $material->view_URL ?>">
                                                         <img src="<?= ROOT ?>/assets/images/pdf-file.png" alt="" class="teacher_card_img3">
                                                         <?= $material->upload_name ?>
                                                     </a>
                                                 </p>
                                             <?php elseif ($material->file_type === "text/plain") : ?>
                                                 <p>
-                                                    <a href="<?= $material->view_URL ?>" class="student-content">
+                                                    <a href="<?= $material->view_URL ?>">
                                                         <img src="<?= ROOT ?>/assets/images/note.png" alt="" class="teacher_card_img3">
                                                         <?= $material->upload_name ?>
                                                     </a>
                                                 </p>
                                             <?php elseif ($material->file_type === "application/x-zip-compressed") : ?>
                                                 <p>
-                                                    <a href="<?= $material->view_URL ?>" class="student-content">
+                                                    <a href="<?= $material->view_URL ?>">
                                                         <img src="<?= ROOT ?>/assets/images/zip-new.png" alt="" class="teacher_card_img3">
                                                         <?= $material->upload_name ?>
                                                     </a>
                                                 </p>
                                             <?php else : ?>
                                                 <p>
-                                                    <a href="<?= $material->view_URL ?>" class="student-content">
+                                                    <a href="<?= $material->view_URL ?>">
                                                         <img src="<?= ROOT ?>/assets/images/documents.png" alt="" class="teacher_card_img3">
                                                         <?= $material->upload_name ?>
                                                     </a>
@@ -73,7 +77,7 @@
 
                                         <?php elseif ($material->type == "assignment") : ?>
                                             <p>
-                                                <a href="<?= $material->studentView_URL ?>" class="student-content">
+                                                <a href="<?= $material->studentView_URL ?>">
                                                     <img src="<?= ROOT ?>/assets/images/assignment.png" alt="" class="teacher_card_img3">
                                                     <?= $material->upload_name ?>
                                                 </a>
@@ -81,7 +85,7 @@
 
                                         <?php elseif ($material->type == "quiz") : ?>
                                             <p>
-                                                <a href="<?= $material->studentView_URL ?>" class="student-content">
+                                                <a href="<?= $material->studentView_URL ?>">
                                                     <img src="<?= ROOT ?>/assets/images/quiz-new.png" alt="" class="teacher_card_img3">
                                                     <?= $material->upload_name ?>
                                                 </a>
@@ -89,7 +93,7 @@
 
                                         <?php elseif ($material->type == "URL") : ?>
                                             <p>
-                                                <a href="<?= $material->view_URL ?>" class="student-content">
+                                                <a href="<?= $material->view_URL ?>">
                                                     <img src="<?= ROOT ?>/assets/images/web-new.png" alt="" class="teacher_card_img3">
                                                     <?= $material->upload_name ?>
                                                 </a>
@@ -97,7 +101,7 @@
 
                                         <?php elseif ($material->type == "forum") : ?>
                                             <p>
-                                                <a href="<?= $material->view_URL ?>" class="student-content">
+                                                <a href="<?= $material->view_URL ?>">
                                                     <img src="<?= ROOT ?>/assets/images/discussion.png" alt="" class="teacher_card_img3">
                                                     <?= $material->upload_name ?>
                                                 </a>

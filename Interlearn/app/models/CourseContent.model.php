@@ -11,7 +11,6 @@ class CourseContent extends Model
         'cid',
         'type',
         'course_id',
-        'emp_id',
         'week_no',
         'upload_name',
         'view_URL',
