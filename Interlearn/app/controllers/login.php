@@ -28,33 +28,30 @@ class Login extends Controller
             
             if($row)
             {
-                if($row->User_email_status == "verified"){
-                    $studentDetails = $student->first([
-                        'uid'=>$row->uid
-                    ],'studentID');
-
-                        if($row -> role === "Student"){
-                            if($studentDetails)
+             
+                $studentDetails = $student->first([
+                    'uid'=>$row->uid
+                ],'studentID');
+            
+                    if($row -> role === "Student"){
+                        if($studentDetails)
+                        {
+                            if(password_verify($_POST['password'],$row -> password ))
                             {
-                                if(password_verify($_POST['password'],$row -> password ))
-                                {
 
-                                Auth::authenticate($row);
-                                header('Location: ../'.$row -> role.'/home');
-                                }
-                                $data['errors']['email']= "wrong email or password";
+                            Auth::authenticate($row);
+                            header('Location: ../'.$row -> role.'/home');
                             }
-                            else{
-                                $data['errors']['status']= "No Account";
-                            }
+                            $data['errors']['email']= "wrong email or password";
                         }
                         else{
-                            message("Please login as staff");
+                            $data['errors']['status']= "No Account"; 
                         }
-                }
-                else{
-                    $data['errors']['email']= "Please verify your email before login";
-                }
+                    }
+                    else{
+                        message("Please login as staff");
+                    }
+                  
                 
                 
             }
@@ -78,7 +75,7 @@ class Login extends Controller
         $data['errors'] = [];
         $data['title'] = "login";
         $user = new User();
-        $staff=new Staff();
+
         if($_SERVER['REQUEST_METHOD'] == "POST")
         {
             $row = $user -> first([
@@ -90,34 +87,20 @@ class Login extends Controller
             ],'uid');
             if($row)
             {
-                if($row->User_email_status == "verified"){
-                    $staffDetails = $staff->first([
-                        'uid'=>$row->uid
-                    ],'emp_id');
-                    if($staffDetails->emp_status=="1"){
-                        if (in_array($role,$user->staffs)) {
-                            if(password_verify($_POST['password'],$row -> password ))
-                            {
-                            Auth::authenticate($row);
-                            header('Location: ../'.$row -> role.'/home');
-
-                            }
-                            $data['errors']['email']= "wrong email or password";
-                        }
-                        else if($role == "Student"){
-                            message("Please login as ".$role);
-                        }
+               
+                if (in_array($role,$user->staffs)) {
+                    if(password_verify($_POST['password'],$row -> password ))
+                    {
+                    Auth::authenticate($row);
+                    header('Location: ../'.$row -> role.'/home');
+                    
                     }
-                    else{
-                        $data['errors']['email']= "You No longer can Access your account";
-                    }
-
+                    $data['errors']['email']= "wrong email or password";
                 }
-
-                else{
-                    $data['errors']['email']= "Please verify your email before login";
+                else if($role == "Student"){
+                    message("Please login as ".$role);
                 }
-
+                
          
                 }
                 else{

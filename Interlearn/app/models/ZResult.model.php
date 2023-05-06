@@ -128,4 +128,20 @@ class ZResult extends Model
         return false;       
     }
 
+    public function UpdateMarks($id,$updated_marks){
+        $query = "UPDATE ".$this->table." SET marks =:updateMarks WHERE id =:ID";
+        $data['updateMarks'] = $updated_marks;
+        $data['ID'] = $id;
+        // $data['cId'] = $cid;
+        $res = $this -> update_table($query,$data);
+        // echo $res;die;
+        // show($query);die;
+
+        if($res){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }

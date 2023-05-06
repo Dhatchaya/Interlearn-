@@ -17,12 +17,12 @@ class Database{
 
         $conn = $this -> connect();
         $stmt = $conn -> prepare($query);
-
+    
         if($stmt)
         {
            
+
             $check = $stmt -> execute($data);
-         
             if($check){
              
                 if($type == 'object'){

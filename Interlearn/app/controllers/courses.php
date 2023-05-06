@@ -12,8 +12,8 @@ class Courses extends Controller
         $course_instructor = new CourseInstructor();
         $students = new Students();
         $data = [];
-        $data['sums']= $subject -> distinctSubject([],'grade');
-        // show($data['sums']);die;
+        $data['sums']= $subject -> distinctSubject([],'subject');
+        //show($data['sums']);die;
         
         if($action == 'view')
         {
@@ -94,9 +94,8 @@ class Courses extends Controller
                 if(isset($_POST['enroll-me'])){
                     $enroll_req = new RequestEnroll();
                     $student_course = new StudentCourse();
-
+                    $_POST['emp_id'] = 4;
                     $teacher_id = $_POST['teacher'];
-                    $_POST['emp_id'] = $teacher_id;
                     // show($_POST);die;
                     // show($teacher_id);die;
                     // show($subject_id);die;
@@ -129,7 +128,7 @@ class Courses extends Controller
                         // show($data['courses']);die;
 
                         $data['requestedCourses'] = $enroll_req -> getRequestedCourses($_POST['student_id']);
-                        // show($data['requestedCourses'] == null);die;
+                        // show($data['requestedCourses']);die;
                         $reqCourses = $data['requestedCourses'];
 
                         $flag = 0;
@@ -144,24 +143,19 @@ class Courses extends Controller
                             }
                         }
 
-                        if(!empty($reqCourses)){
-                            foreach($reqCourses as $val) {
-                                // show($requested_course);
-                                foreach($val as $req_course => $value) {
-                                    // show($value);
-                                    if($value == $_POST['course_id']){
-                                        $flag = 2;
-                                        break;
-                                    }
+                        foreach($reqCourses as $val) {
+                            // show($requested_course);
+                            foreach($val as $req_course => $value) {
+                                // show($value);
+                                if($value == $_POST['course_id']){
+                                    $flag = 2;
+                                    break;
                                 }
                             }
                         }
 
-
                         if($flag == 0){
-                            // show($_POST);die;
                             $result = $enroll_req -> insert($_POST);
-                            echo "Request successfully sent!";
                         }
                         elseif($flag == 2){
                             $data['enroll_error'] = "You have already requested for this class!\nWait for the response of the request!";

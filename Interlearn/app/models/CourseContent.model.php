@@ -47,22 +47,6 @@ class CourseContent extends Model
         return false;
     }
 
-    public function getUploads($course_id,$week_no){
-        $query = "SELECT * FROM ".$this->table;
-        $query .= " WHERE course_id =:courseId AND week_no =:weekNo ";
-        $data['courseId'] = $course_id;
-        $data['weekNo'] = $week_no;
-        $res = $this -> query($query,$data);
-        // echo $res;die;
-        // show($query);die;
-
-        if($res){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
     public function UpdateUploadName($course_id,$cid,$updated_name){
         $query = "UPDATE ".$this->table." SET upload_name =:updateName WHERE course_id =:courseId and cid =:cId";
         $data['updateName'] = $updated_name;
@@ -81,8 +65,8 @@ class CourseContent extends Model
 
     //student contents
     public function studentCourseContent($data=[],$id,$orderby = null, $order=null){
-        $query = "SELECT course.*,course_content.*,course_material.file_type FROM ".$this->table;
-        $query .= " INNER JOIN course ON course.course_id = course_content.course_id LEFT JOIN course_material ON course_material.cid = course_content.cid";
+        $query = "SELECT course.*,course_content.* FROM ".$this->table; 
+        $query .= " INNER JOIN course ON course.course_id = course_content.course_id ";
         $query .= " WHERE course.course_id = $id";
         // $query .= " order by $orderby  $order";
         // var_dump($_SESSION);exit;

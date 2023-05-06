@@ -8,8 +8,8 @@ for (i = 0; i < close.length; i++) {
     var instructor_id = $('#instructorID').val();
     var course_id = $('#courseID').val();
     var div = this.parentElement;
-    console.log(div);
-    div.style.display = "none";
+    // console.log(div);
+    // div.style.display = "none";
     $.ajax({
         method:"POST",
         url : 'http://localhost/Interlearn/public/receptionist/course/removeInstructor',
@@ -25,6 +25,28 @@ for (i = 0; i < close.length; i++) {
   }
 }
 
+// $(document).on("click",".remove_instructor", function(){
+//   const instructorid = $(this).data("instructorID");
+//   const confirmation = confirm("Are you sure you want to delete this file?");
+// console.log(instructorid);
+//   if(confirmation){
+//     const deleteBtn = $(this);
+//     deleteBtn.closest('.file_div').remove();
+//     // console.log(`http://localhost/Interlearn/public/teacher/course/assignment/${course}/${week}/edit/d?id=${id}`);
+//     $.ajax({
+//       method:"POST",
+//       url : `http://localhost/Interlearn/public/teacher/course/assignment/${course}/${week}/edit/d?id=${id}`,
+//       data:{file_id : fileid},
+//       success:function(response){
+//         console.log(response);
+
+//       },
+//       error:function(xhr,status,error){
+//         console.log("Error: " + error);
+//       }
+//     });
+//   }
+// });
 
 
 
@@ -112,13 +134,11 @@ $('#timefromEdit').on('change', function(){
     var day = $('#daysEdit').val();
     var timeFrom = $('#timefromEdit').val();
     var timeTo = $('#timetoEdit').val();
-    var courseID = document.getElementById('course_id').value;
-    console.log(courseID);
     console.log('hi');
     $.ajax({
-        url: 'http://localhost/Interlearn/public/receptionist/course/checkAvailableEdit',
+        url: 'http://localhost/Interlearn/public/receptionist/course/checkAvailable',
         type: 'POST',
-        data: {'teacher_id':teacher_id, 'day': day, 'timefrom': timeFrom, 'timeto': timeTo,'course_id' : courseID},
+        data: {'teacher_id':teacher_id, 'day': day, 'timefrom': timeFrom, 'timeto': timeTo},
       success: function(response) {
         console.log(response);
          response = JSON.parse(response);
@@ -162,12 +182,11 @@ $('#timetoEdit').on('change', function(){
     var day = $('#daysEdit').val();
     var timeFrom = $('#timefromEdit').val();
     var timeTo = $('#timetoEdit').val();
-    var courseID = document.getElementById('course_id').value;
     console.log('hi');
     $.ajax({
-        url: 'http://localhost/Interlearn/public/receptionist/course/checkAvailableEdit',
+        url: 'http://localhost/Interlearn/public/receptionist/course/checkAvailable',
         type: 'POST',
-        data: {'teacher_id':teacher_id, 'day': day, 'timefrom': timeFrom, 'timeto': timeTo, 'course_id' : courseID},
+        data: {'teacher_id':teacher_id, 'day': day, 'timefrom': timeFrom, 'timeto': timeTo},
       success: function(response) {
         console.log(response);
          response = JSON.parse(response);

@@ -25,7 +25,7 @@ class Model extends Database {
             $keys = array_keys($data);
             
             $query = "insert into ".$this->table."(".implode(",",$keys) .") values (:".implode(",:",$keys).")";
-
+        //   echo $query;die;
             $this -> query($query,$data);
             return true;
     }
@@ -260,10 +260,10 @@ class Model extends Database {
 
         $query ="delete from ".$this->table." where ";
         foreach($keys as $key){
-            $query .= $key." =:".$key." && ";
+            $query .= $key." =:".$key." , ";
         }
-        $query = trim($query," && ");
-// echo $query;die;
+        $query = trim($query," , ");
+
        $res = $this ->delete_table($query,$data);
   
         if($res){
@@ -327,7 +327,8 @@ class Model extends Database {
     //distinct function
     public function distinctSubject($data=[],$orderby=null,$order = 'desc'){
 
-        $query ="SELECT count(language_medium) AS count, subject_id,subject,grade from ".$this->table;
+        $query ="select subject_id,subject,grade from ".$this->table;
+        // $query = " INNER JOIN course ON course.subject_id = subject.subject_id";
         $query .= " group by subject, grade";
         $query .= " order by $orderby  $order";
         $res = $this -> query($query,$data);
@@ -339,20 +340,6 @@ class Model extends Database {
         return false;
 
     }
-
-    // public function countMedium($data=[]){
-
-    //     $query ="SELECT count(language_medium) AS count,subject,grade FROM ".$this->table;
-    //     $query .= " group by subject, grade";
-    //     $res = $this -> query($query,$data);
-    //     // show($query);die;
-
-    //     if(is_array($res)){
-    //         return $res;
-    //     }
-    //     return false;
-
-    // }
 
     public function selectTeachers($data=[],$medium='English'){
         $keys = array_keys($data);
@@ -627,7 +614,7 @@ class Model extends Database {
     public function teacherCourseDetails($data=[],$id,$orderby = null, $order=null){
         $query = "SELECT subject.subject_id,subject.subject,subject.grade,subject.language_medium,course.*,staff.* from ".$this->table;
         $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN staff ON staff.emp_id = course.teacher_id";
-        $query .= " WHERE course.course_id = '$id' AND staff.role = 'Teacher'";
+        $query .= " WHERE course.course_id = $id AND staff.role = 'Teacher'";
         $query .= " group by subject.subject, subject.grade";
         // $query .= " order by $orderby  $order";
         //var_dump($_SESSION);exit;

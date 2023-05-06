@@ -31,7 +31,7 @@ console.log(id);
         //                 <div class = "file_div" id = "file_div">
         //                   <a href="../../uploads/assignments/${data[i].filename}"  class= "attachment-link">${data[i].filename}</a>
         //                   <div class="closebtn" id="closebtn">
-        //                   <button class = "delete_file_btn" data-file_id = "${data[i].fileID}"> &times;</button>
+        //                   <button class = "delete_file_btn" data-file-id = "${data[i].fileID}"> &times;</button>
         //                   </div>
                         // </div>`;
       const item = document.createElement("div");
@@ -47,10 +47,8 @@ console.log(id);
       const closebtn = document.createElement("button");
       closebtn.classList.add("delete_file_btn");
       closebtn.classList.add("closebtn");
-      closebtn.setAttribute("type","button");
-      closebtn.setAttribute("data-file_id", data[i].fileID);
+      closebtn.setAttribute("data-file-id", data[i].fileID);
       const icon = document.createElement("img");
-      icon.setAttribute("data-file_id", data[i].fileID);
       icon.classList.add("assignmentIcon");
         icon.src = "/Interlearn/public/assets/images/assignmentIcon.png";
         icon.alt = "close btn";
@@ -134,37 +132,31 @@ console.log(formData);
 
   } );
 
-  FileName.addEventListener("click",function(e){
-    console.log(e.target);
-    if (e.target && (e.target.matches('.delete_file_button') || e.target.matches('.assignmentIcon') )) {
- console.log(e.target);
-    // $(document).on("click",".delete_file_btn", function(){
-      const fileid = e.target.dataset.file_id;
-      // const confirmation = confirm("Are you sure you want to delete this file?");
- 
-      // if(confirmation){
-        const deleteBtn =  e.target; 
-        deleteBtn.closest('.file_div').remove();
-        console.log(`http://localhost/Interlearn/public/teacher/course/assignment/${course}/${week}/edit/d?id=${id}`);
-        $.ajax({
-          method:"POST",
-          url : `http://localhost/Interlearn/public/teacher/course/assignment/${course}/${week}/edit/d?id=${id}`,
-          data:{file_id : fileid},
-          success:function(response){
-            console.log(response);
-           
-          },
-          error:function(xhr,status,error){
-            console.log("Error: " + error);
-          }
-        });
-    
+
+  $(document).on("click",".delete_file_btn", function(){
+    const fileid = $(this).data("file-id");
+    const confirmation = confirm("Are you sure you want to delete this file?");
+console.log(fileid);
+    if(confirmation){
+      const deleteBtn = $(this); 
+      deleteBtn.closest('.file_div').remove();
+      console.log(`http://localhost/Interlearn/public/teacher/course/assignment/${course}/${week}/edit/d?id=${id}`);
+      $.ajax({
+        method:"POST",
+        url : `http://localhost/Interlearn/public/teacher/course/assignment/${course}/${week}/edit/d?id=${id}`,
+        data:{file_id : fileid},
+        success:function(response){
+          console.log(response);
+         
+        },
+        error:function(xhr,status,error){
+          console.log("Error: " + error);
+        }
+      });
     }
-    });
-  
+  });
+
 }
-
-
 
 // submitbtn.addEventListener('click',function(e){
 //   e.preventDefault();
@@ -225,6 +217,6 @@ input.addEventListener("change", function() {
 });
 
 cancel.addEventListener('click',function(){
-  window.location.href = `http://localhost/Interlearn/public/teacher/course/view/${course}`;
+  window.location.href = `http://localhost/Interlearn/public/teacher/course/view`;
 
 });

@@ -1,7 +1,7 @@
 <?php $this -> view('includes/header'); ?>
 <?php $this -> view('includes/nav'); ?>
 <head>
-    <!-- <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles2.css"> -->
+    <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles4.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <style>
         .edit_delete {
@@ -95,7 +95,7 @@
                         <td class="std_crs_ov_col1">
                             <div class="edit_delete">
                                 <div class="edit" onclick=editQuestion(<?=esc($row->id)?>)>
-                                    <button>edit</button>
+                                    <button onclick="toModal(<?=esc($row->marks)?>)">edit</button>
                                 </div>
                                 <div class="delete">
                                     <a href="<?=ROOT?>/instructor/course/progress/<?=esc($course_id)?>/1/delete?qnum=<?=esc($row->id)?>"><button>delete</button></a>
@@ -111,9 +111,20 @@
                 </tbody>
             </table>
         </div>
+        <div class="bg_modal" id="modal">
+            <div class="box_modal">
+                <h3> -- Update Marks -- </h3>
+                <form action="" method="POST">
+                    <input type="hidden" value="<?=esc($row->id)?>" name="id" id="id">
+                    <input type="number" id="input_marks" name="mymarks" class="time_period" placeholder="update marks">
+
+                    <input type="submit" value="Update" class = "home_form_sbt" name="edit_marks">
+                </form>
+            </div>
+        </div>
         <!-- <p>Hello I'm all</p> -->
     </div>
 </div>
-
+<script defer src="<?=ROOT?>/assets/js/progress_popup.js?v=<?php echo time(); ?>"></script>
 <!-- <script defer src="<?=ROOT?>/assets/js/progress.js?v=<?php echo time(); ?>"></script> -->
 <?php $this -> view('includes/footer'); ?>

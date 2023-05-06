@@ -204,11 +204,8 @@ allthreads.addEventListener('click', function(e) {
         replyContainer.find(`[data-thread-id='${parent}']`).after(threadHTML);
       }
       },
-      error: function(xhr, status, error) {
-        // Handle errors
-        console.error(xhr.responseText);
-        console.error(status);
-        console.error(error);
+      error:function(xhr){
+        alert('Error loading threads: ' + xhr.responseText);
       }
       
     });
@@ -248,11 +245,8 @@ allthreads.addEventListener('click', function(e) {
             location.reload();
            
           },
-          error: function(xhr, status, error) {
-            // Handle errors
-            console.error(xhr.responseText);
-            console.error(status);
-            console.error(error);
+          error:function(xhr){
+            alert('Error loading threads: ' + xhr.responseText);
           }
         });
 
@@ -406,11 +400,8 @@ $.ajax({
     }
     
   },
-  error: function(xhr, status, error) {
-    // Handle errors
-    console.error(xhr.responseText);
-    console.error(status);
-    console.error(error);
+  error:function(xhr){
+    alert('Error loading threads: ' + xhr.responseText);
   }
 });
 
@@ -488,11 +479,8 @@ if(details.attachment){
 
 
     },
-    error: function(xhr, status, error) {
-      // Handle errors
-      console.error(xhr.responseText);
-      console.error(status);
-      console.error(error);
+    error:function(xhr){
+      alert('Error loading threads: ' + xhr.responseText);
     }
   });
   const cancelEdit = function(eve) {

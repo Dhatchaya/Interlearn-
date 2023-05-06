@@ -3,11 +3,10 @@
 $url = $_GET['url'];
 $url = rtrim($url,'/');
 $val = explode('/',$url);
-$sub_id = $_GET['id'];
 ?>
 
 
-<div class="recp_cl_container" onload="setTab()">
+<div class="recp_cl_container">
     <div class="std-enroll-content">
         <?php if(!empty($subjects)):?>
             <?php $subject_id=0;
@@ -32,44 +31,12 @@ $sub_id = $_GET['id'];
         <nav class="recp_cl_navbar">
             <ul class="recp_cl_medium">
 
-            <?php if (!empty($mediums)) : ?>
-                    <?php foreach ($mediums as $medium) : ?>
-
-                        <?php if ($medium->language_medium == 'Sinhala') : ?>
-                            <li><a href="<?=ROOT?>/courses/index/view/1/?id=<?=$medium->subject_id?>" id="Sinhala" class="guest_cl_nav" ><?= $medium->language_medium ?></a></li>
-                        <?php elseif ($medium->language_medium == 'English') : ?>
-                            <li><a href="<?=ROOT?>/courses/index/view/1/?id=<?=$medium->subject_id?>" id="English" class="guest_cl_nav" ><?= $medium->language_medium ?></a></li>
-                        <?php else : ?>
-                            <li><a href="<?=ROOT?>/courses/index/view/1/?id=<?=$medium->subject_id?>" id="Tamil" class="guest_cl_nav" ><?= $medium->language_medium ?></a></li>
-                        <?php endif; ?>
-
-                    <?php endforeach; ?>
-                <?php endif; ?>
-
+            <?php if(!empty($mediums)):?>
+                    <?php foreach($mediums as $medium):?>
+                    <li><a href="<?=ROOT?>/courses/index/view/1/?id=<?=$medium->subject_id?>" class="recp_cl_nav active"><?=$medium->language_medium?></a></li>
+               <?php endforeach;?>
+               <?php endif;?>
             </ul>
-
-
-            <!-- selecting the selected medium -->
-            <?php $currentMedium = []; ?>
-            <?php
-            foreach ($mediums as $medium)
-            {
-                if ($medium->subject_id == $sub_id)
-                {
-                    $currentMedium = $medium->language_medium;
-                }
-            }
-           ?>
-
-            <!-- adding the class active to the selected id -->
-           <script>
-            const medium = '<?php echo $currentMedium;?>';
-            // console
-            console.log(medium);
-            var element = document.getElementById(medium);
-            element.classList.add("active");
-           </script>
-
         </nav>
         <br>
         <!-- content table -->

@@ -241,8 +241,8 @@ class Student extends Controller
 
             $result = $assignment->joinCourseAssignment(['assignmentId'=>$sub_id,'course_id'=>$id],'assignmentId');
             $data['assignment']= $result;
-            $getstatus = $submission -> Checkstatus(['assignmentId'=>$sub_id,'uid'=>Auth::getUID()],'assignmentId');
-        //  show($getstatus);die;
+            $getstatus = $submission -> first(['assignmentId'=>$sub_id],'assignmentId');
+         // show($result);die;
             if($getstatus){
                 $data['assignment']->status = $getstatus->status;
                 $data['assignment']->modified = $getstatus->modified;
@@ -362,7 +362,6 @@ class Student extends Controller
                     $data['errors'] =  $submissionFiles->error;
                 }
                 if(empty($data['errors'])){
-             
                     $_POST['studentID']=$student_id;
                     $_POST['assignmentId']= $assignment_id;
                     $_POST['status'] = "Submitted";
@@ -401,13 +400,7 @@ class Student extends Controller
                     $submissionFiles = new SubmissionFiles();
                     $submission = new Submission();
                     $filedetails = $submissionFiles -> joinSubmissionfiles(['fileID'=> $fileID],'fileID');
-                    // echo json_encode($filedetails );die;
-                    $newfilesize = $filedetails->file_size-$filedetails->filesize;
-                    if($newfilesize<0){
-                        $newfilesize = 0;
-                    }
-                    // echo json_encode ( $newfilesize);
-                    $result= $submission->update(['submissionId'=>$filedetails->submissionId],['file_size'=>$newfilesize]);
+                    $result= $submission->update(['submissionId'=>$filedetails->submissionId],['file_size'=>($filedetails->file_size-$filedetails->filesize)]);
                     $path = "/xampp/htdocs/Interlearn/uploads/".$id."/submissions/".$filedetails->assignmentId."/". $submissionID."/".$filedetails->filename;
                     unlink($path);
                     $result= $submissionFiles -> delete(['fileID'=> $fileID]);
@@ -426,15 +419,15 @@ class Student extends Controller
             $submissionfiles = new SubmissionFiles();
             $submission_details = $submission -> first(['submissionId'=>$submissionID],'submissionId');
             $assignment_id = $submission_details->assignmentId;
+
                 //handle update
             if($_SERVER["REQUEST_METHOD"]=="POST"){
-                $previousFilesize = $submissionfiles->getSubmissionsize(['submissionId'=>$submissionID]);
 
                 // $result = $assignment->update(['assignmentId'=>$assignmentID],$_POST);
-     
+         
       
                     if(isset($_FILES['submission']['name']) AND !empty($_FILES['submission']['name'])){
-                        if($submissionfiles -> validatefile($_FILES,$previousFilesize->total)){
+                        if($submissionfiles -> validatefile($_FILES,$submission_details->file_size)){
                          
                         //checks every file inside the $_FILES array of files
                         for($i=0; $i<count($_FILES['submission']['name']); $i++) {
@@ -482,12 +475,7 @@ class Student extends Controller
                     }
                     }
                     else{
-                        $submission_details2 = $submission -> first(['submissionId'=>$submissionID],'submissionId');
-                        $submissionfiles->size=$previousFilesize->total;
-                        if($submission_details2->file_size == 0){
-                            $data['errors']['submission'] ="Please upload your files to submit";
-                        }
-                        
+                        $data['errors']['submission'] ="Please upload your files to submit";
                
 
                         }
@@ -498,12 +486,8 @@ class Student extends Controller
                     try {
                         date_default_timezone_set('Asia/Colombo');
                         $_POST['modified'] = date("Y-m-d H:i:s",time());
-                        if(!empty($_POST)){ 
-                  
-
-                            $totalfilesize = $submissionfiles->size;
-
-                            $_POST['file_size'] = $totalfilesize;
+                        if(!empty($_POST)){
+                            $_POST['file_size'] = $submissionfiles->size;
                             $result = $submission->update(['submissionId'=>$submissionID],$_POST);
                         }
                         else{
@@ -722,6 +706,11 @@ class Student extends Controller
         // $question = new Question();
         $question = new ZQuestion();
 
+        if($action == 'marks') {
+
+            echo($_POST['totalMarks']);die;
+            exit();
+        }
 
         if($action == "view"){
 

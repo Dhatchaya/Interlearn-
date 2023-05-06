@@ -176,7 +176,6 @@ let assignmentID = "";
            
           },
           error:function(xhr,status,error){
-            console.log(error);
             console.log("Error: " + error);
           }
         });

@@ -199,7 +199,7 @@ class Course extends Model
     }
 
     public function getWeekCount($Course_id){
-        $query = "SELECT No_Of_Weeks FROM ".$this->table." WHERE course_id = '$Course_id'";
+        $query = "SELECT No_Of_Weeks FROM ".$this->table." WHERE course_id = ".$Course_id; 
         $res = $this -> query($query);
         // echo $query;die;
         // show($res);die;
@@ -329,25 +329,6 @@ class Course extends Model
         return false;
     }
 
-    public function getTimeEdit($teacher_id, $day, $course_id){
-        $query = "SELECT timefrom, timeto FROM ".$this->table;
-        $query .= " WHERE teacher_ID =:teahcerID AND day =:Day AND course_id != :courseID ";
-
-        $data['teahcerID'] = $teacher_id;
-        $data['Day'] = $day;
-        $data['courseID'] = $course_id;
-
-        $res = $this -> query($query,$data);
-        //  show($query);die;
-
-        if(is_array($res)){
-            // echo $res;die;
-            return $res;
-        }
-        // echo "hi";die;
-        return false;
-    }
-
     public function getDistinctTeachers($subject_id){
         $query = "SELECT DISTINCT CONCAT(staff.first_name, ' ', staff.last_name) AS teacherName, course.teacher_ID FROM staff,".$this->table;
         $query .= " WHERE course.subject_id =:subjectID AND staff.role = 'Teacher' AND staff.emp_id = course.teacher_ID";
@@ -386,20 +367,6 @@ class Course extends Model
         $query .= " WHERE course_id =:courseID";
         $data['courseID'] = $course_id;
         $res = $this -> query($query, $data);
-        // show($query);die;
-
-        if($res){
-            return $res;
-        }else{
-            return false;
-        }
-    }
-
-    public function deleteCourse($course_id){
-        $query = "DELETE FROM ".$this->table;
-        $query .= " WHERE course_id =:courseID";
-        $data['courseID'] = $course_id;
-        $res = $this -> delete_table($query, $data);
         // show($query);die;
 
         if($res){
