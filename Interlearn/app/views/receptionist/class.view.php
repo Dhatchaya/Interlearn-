@@ -323,4 +323,5 @@ $sub_id = $_GET['id'];
 <script defer src="<?= ROOT ?>/assets/js/addcourse.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?= ROOT ?>/assets/js/courseTime.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?= ROOT ?>/assets/js/editCourse.js?v=<?php echo time(); ?>"></script>
+
 <?php $this->view("includes/footer"); ?>
