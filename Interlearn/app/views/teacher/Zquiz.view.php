@@ -77,19 +77,6 @@
                 </tbody>
             </table>
         </div>
-
-        <!-- <div class="bg_modal" id="modal">
-            <div class="box_modal">
-                <h3> -- Update Marks -- </h3>
-                <form action="" method="POST">
-                    <input type="hidden" value="<?=esc($row->id)?>" name="id" id="id">
-                    <input type="number" id="input_marks" name="mymarks" class="time_period" placeholder="update marks">
-
-                    <input type="submit" value="Update" class = "home_form_sbt" name="edit_marks">
-                </form>
-            </div>
-        </div> -->
-
         <!-- <p>Hello I'm all</p> -->
     </div>
 </div>

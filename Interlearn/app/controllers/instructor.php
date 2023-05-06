@@ -546,13 +546,6 @@ class Instructor extends Controller
                 $data['newArray'] = $newArray;
                 // show($data['newArray']);die;
                 $data['table'] = $data['rows2'];
-
-                if(isset($_POST['edit_marks'])){
-                    // echo $_POST['mymarks'];die;
-                    // echo $_POST['id'];die;
-                    $result = $results->UpdateMarks($_POST['id'], $_POST['mymarks']);
-                }
-
                 $this->view('instructor/overview_progress', $data);
                 exit();
             }
