@@ -38,17 +38,6 @@ class Instructor extends Controller
 
         $this->view('instructor/profile');
     }
-    public function editUploadName($id=null)
-    { 
-        $course_content = new CourseContent();
-        if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
-        
-        $result = $course_content->UpdateUploadName($id,$_POST['cid'],$_POST['upload_name']);
-
-        echo json_encode($result);
-        exit;
-        }
-    }
     public function course($action=null,$id = null,$week = null,$option = null,$extra=null,$aid=null)
     {
         if(!Auth::is_instructor()){
@@ -154,7 +143,12 @@ class Instructor extends Controller
                 exit;
             }
 
-       
+            if($option == 'editUploadName'){
+                $result = $course_content->UpdateUploadName($id,$_POST['cid'],$_POST['upload_name']);
+
+                echo json_encode($result);
+                exit;
+            }
 
             // $this->view('instructor/course',$data);
         }

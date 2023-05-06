@@ -209,7 +209,7 @@
                         <label for="upload-title" class="teacher-edit">New upload name: </label>
                         <input type="hidden" value="" name="cid" id="cid">
                         <input type="text" class="teacher-edit-title" name="upload-title" id="upload-title"><br><br>
-                        <button type="button" class="teacher_upl_btn" name="submit-upload" id="edit-name-btn">Save</button>
+                        <button type="submit" class="teacher_upl_btn" name="submit-upload" id="edit-name-btn">Save</button>
                         <button type="reset" class="teacher_upl_btn" id="cancel-btn">Cancel</button>
                     </div>
                 </form>

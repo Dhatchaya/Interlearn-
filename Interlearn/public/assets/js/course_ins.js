@@ -216,12 +216,12 @@ function openModal5(number,course,week) {
 
 
     var update = document.getElementById('edit-name-btn');
-    update.addEventListener('click', function(){
+    update.addEventListener('submit', function(){
         var c_id = number;
-        var name = document.getElementById('upload-title').value;
+        var name = document.getElementById('upload-title').val();
         console.log('hi');
         $.ajax({
-            url: 'http://localhost/Interlearn/public/instructor/editUploadName/courseid',//replace course id with actual courseid
+            url: 'http://localhost/Interlearn/public/teacher/course/editUploadName',
             type: 'POST',
             data: {'cid':c_id, 'upload_name': name},
             success:function(response){
