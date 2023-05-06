@@ -23,6 +23,7 @@
                     Announcements
                     <img src="<?= ROOT ?>/assets/images/next.png" alt="" class="teacher-course-ann-img">
                 </a>
+                <?php if(!empty($courseWeeks)):?>
                 <?php
                 $i = 1;
                 foreach ($courseWeeks as $value) {
@@ -33,7 +34,7 @@
                             <div class="teacher-card-title">
                                 <div class="teacher-card-head">
                                     <p class="teacher-card-head-title"><?= $value->week_name ?></p>
-                                    <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button30" onclick="openModal3(<?= $value->week_no ?>)">
+                                    <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button30" onclick="openModal3(<?= $value->week_no ?>,<?= $value->course_id ?>)">
                                 </div>
                             </div>
                             <div class="teacher-card-body">
@@ -47,7 +48,7 @@
                                                             <img src="<?= ROOT ?>/assets/images/pdf-file.png" alt="" class="teacher_card_img3">
                                                             <?= $material->upload_name ?>
                                                         </a>
-                                                        <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>')">
+                                                        <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>',<?= $material->course_id ?>,<?= $material->week_no ?>)">
                                                         <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?= $material->cid ?>')">
 
                                                     </p>
@@ -57,7 +58,7 @@
                                                             <img src="<?= ROOT ?>/assets/images/note.png" alt="" class="teacher_card_img3">
                                                             <?= $material->upload_name ?>
                                                         </a>
-                                                        <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>')">
+                                                        <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>',<?= $material->course_id ?>,<?= $material->week_no ?>)">
                                                         <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?= $material->cid ?>')">
 
                                                     </p>
@@ -67,7 +68,7 @@
                                                             <img src="<?= ROOT ?>/assets/images/zip-new.png" alt="" class="teacher_card_img3">
                                                             <?= $material->upload_name ?>
                                                         </a>
-                                                        <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>')">
+                                                        <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>',<?= $material->course_id ?>,<?= $material->week_no ?>)">
                                                         <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?= $material->cid ?>')">
 
                                                     </p>
@@ -77,7 +78,7 @@
                                                             <img src="<?= ROOT ?>/assets/images/documents.png" alt="" class="teacher_card_img3">
                                                             <?= $material->upload_name ?>
                                                         </a>
-                                                        <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>')">
+                                                        <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>',<?= $material->course_id ?>,<?= $material->week_no ?>)">
                                                         <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?= $material->cid ?>')">
 
                                                     </p>
@@ -126,8 +127,9 @@
                     </div>
                 <?php $i++;
                 } ?>
+                <?php endif; ?>
                 <p class="add-week" id="button29" onclick="openModal2()"> <a href="#">+ Add a week</a></p>
-
+                
 
                 <!-- add activity popup -->
                 <div id="profileModal" class="popupModal">

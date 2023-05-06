@@ -82,4 +82,42 @@ class StudentCourse extends Model
         }
         return false;       
     }
+
+    public function getStudents($course_id){
+        $query = "SELECT student_course.student_id, student.* FROM ".$this->table;
+        $query .= " INNER JOIN student ON student.studentID = student_course.student_id";
+        $query .= " WHERE course_id =:courseId";
+        $data['courseId'] = $course_id;
+        // show($student_id) ;die;
+
+        $res = $this -> query($query,$data);
+        //  show($query);die;
+
+        if(is_array($res)){
+            // echo $res;die;
+            return $res;
+        }
+        // echo "hi";die;
+        return false;
+
+    }
+
+    public function deleteStudent($student_id,$course_id){
+        $query = "DELETE FROM ".$this->table;
+        $query .= " WHERE course_id =:courseId AND student_id = :studentId";
+        $data['courseId'] = $course_id;
+        $data['studentId'] = $student_id;
+        // show($student_id) ;die;
+
+        $res = $this -> delete_table($query,$data);
+        //  show($query);die;
+
+        if(is_array($res)){
+            // echo $res;die;
+            return $res;
+        }
+        // echo "hi";die;
+        return false;
+
+    }
 }

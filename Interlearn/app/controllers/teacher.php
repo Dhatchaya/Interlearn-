@@ -137,7 +137,8 @@ class Teacher extends Controller
             //$data['sums']= $subject -> teacherCourse([],$user_id);
             $data['courses'] = $subject -> teacherCourseDetails([],$id);
             //show($data['courses']);die;
-            $data['noOfWeeks'] = $course->getWeekCount($id)->No_Of_Weeks;
+            $weeks = $course->getWeekCount($id);
+            $data['noOfWeeks'] = $weeks->No_Of_Weeks;
             $data['courseWeeks'] = $course_week->getWeeks($id);
 
             // show($course_week->getWeeks($id));
@@ -164,11 +165,11 @@ class Teacher extends Controller
                 header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
             }
 
-            if(isset($_POST['submit-title'])){
-                // show($_POST);die;
+            // if(isset($_POST['submit-title'])){
+            //     // show($_POST);die;
 
-                $result = $course_week->UpdateWeekName($id,$_POST['weeknumber'],$_POST['title']);
-            }
+            //     $result = $course_week->UpdateWeekName($id,$_POST['weeknumber'],$_POST['title']);
+            // }
 
             if(isset($_POST['submit-upload'])){
                 // echo $_POST['upload-title'];die;
@@ -191,7 +192,9 @@ class Teacher extends Controller
 
             if($option == 'getWeekName'){
                 // show($_GET);die;
-                $result = $course_week->getWeekName($id,$_GET['week_no']);
+                // $result = $course_week->getWeekName($id,$_GET['week_no']);
+                $result = $course_week->getWeekName($id,$week);
+
 
                 echo json_encode($result);
                 exit;
@@ -206,7 +209,7 @@ class Teacher extends Controller
 
             if($option == 'getUploadName'){
                 // show($_GET);die;
-                $result = $course_content->getUploads($id,$_GET['week_no']);
+                $result = $course_content->getUploads($id,$week);
 
                 echo json_encode($result);
                 exit;
