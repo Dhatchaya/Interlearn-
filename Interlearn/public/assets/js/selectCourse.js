@@ -23,7 +23,7 @@ $('#subject').on('input',function(){
 
       response = JSON.parse(response);
 
-      let allGrades = ['6', '7', '8', '9', '10', '11', 'A/L'];
+      let allGrades = ['6', '7', '8', '9', '10', '11', '12', '13'];
 
 
       let gradesNotInJson = [];

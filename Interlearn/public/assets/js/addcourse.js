@@ -185,7 +185,7 @@ function openModal3(courseID) {
                         $.ajax({
                             method:"POST",
                             url : 'http://localhost/Interlearn/public/receptionist/course/editCourse',
-                            data:{'course_id':courseID, 'day': day, 'timefrom': timeFrom, 'timeto': timeTo},
+                            data:{'course_id':courseID},
                             success:function(response){
                               console.log(response);
                             },

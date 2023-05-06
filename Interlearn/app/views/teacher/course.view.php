@@ -23,8 +23,6 @@
                     Announcements
                     <img src="<?= ROOT ?>/assets/images/next.png" alt="" class="teacher-course-ann-img">
                 </a>
-                <?php if(!empty($courseWeeks)):?>
-
                 <?php
                 $i = 1;
                 foreach ($courseWeeks as $value) {
@@ -35,7 +33,7 @@
                             <div class="teacher-card-title">
                                 <div class="teacher-card-head">
                                     <p class="teacher-card-head-title"><?= $value->week_name ?></p>
-                                    <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button30" onclick="openModal3(<?= $value->week_no ?>,<?= $value->course_id ?>)">
+                                    <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button30" onclick="openModal3(<?= $value->week_no ?>)">
                                 </div>
                             </div>
                             <div class="teacher-card-body">
@@ -128,7 +126,6 @@
                     </div>
                 <?php $i++;
                 } ?>
-                <?php endif;?>
                 <p class="add-week" id="button29" onclick="openModal2()"> <a href="#">+ Add a week</a></p>
 
 

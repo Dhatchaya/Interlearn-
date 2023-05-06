@@ -241,6 +241,9 @@ class Receptionist extends Controller
                         $inputs=array("subject_id"=>$_GET['id'],"teacher_id"=>$_POST['teacher_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto'],"capacity"=>$_POST['capacity']);
                         // show($inputs);die;
                         $course->insert($inputs);
+                        $id= $course->getLastCourse()[0]->course_id;
+                        // // // print_r($Course);die;
+                        $course_week->createWeek($id, 1);
                     }
                     else{
                         $data['errors'] =  $course->error;

@@ -10,7 +10,7 @@ function getInstructorAvail($id) {
             var dropdown = document.getElementById("instructor_dd");
              console.log('response',response);
             response = JSON.parse(response);
-            // console.log(response);
+            console.log(response);
    
             var error = $('#addCourseerror');
 

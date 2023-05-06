@@ -64,19 +64,19 @@ class CourseMaterial extends Model
     //     }
     // }
 
-    public function deleteUpload($file_no){
+    // public function deleteUpload($file_no){
 
-        $query ="DELETE FROM ".$this->table." WHERE file_id = :fileId";
+    //     $query ="DELETE FROM ".$this->table." WHERE cid = :cId";
         
-        $data['fileId'] = $file_no;
+    //     $data['cId'] = $file_no;
 
-        $res = $this -> delete_table($query,$data);
+    //     $res = $this -> delete_table($query,$data);
        
-        if($res){
-            return true;
-        }
-        return false;
-    }
+    //     if($res){
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
     public function downloadFiles($file_id){
         $query = "SELECT * FROM ".$this->table; 

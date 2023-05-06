@@ -105,7 +105,6 @@ class Teacher extends Controller
             redirect('home');
 
         }
-
         $user = Auth::getUsername();
         $user_id = Auth::getUid();
         $subject = new Subject();
@@ -118,14 +117,13 @@ class Teacher extends Controller
         $course_content = new CourseContent();
         $course_url = new CourseUrl();
         $announcement = new Announcement();
+        $staff = new Staff();
         $data = [];
         $data['course_id'] = $id;
         $data['week_no'] = $week;
 
         if($action == "view")
         {
-
-
             $data = [];
             $data['action'] = $action;
             $data['course_id'] = $id;
@@ -139,9 +137,7 @@ class Teacher extends Controller
             //$data['sums']= $subject -> teacherCourse([],$user_id);
             $data['courses'] = $subject -> teacherCourseDetails([],$id);
             //show($data['courses']);die;
-
-            $weeks= $course->getWeekCount($id);
-            $data['noOfWeeks'] =$weeks->No_Of_Weeks;
+            $data['noOfWeeks'] = $course->getWeekCount($id)->No_Of_Weeks;
             $data['courseWeeks'] = $course_week->getWeeks($id);
 
             // show($course_week->getWeeks($id));
@@ -192,9 +188,10 @@ class Teacher extends Controller
                 $result = $course_content->deleteUpload($_POST['delete-filenumber']);
                 header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
             }
+
             if($option == 'getWeekName'){
                 // show($_GET);die;
-                $result = $course_week->getWeekName($id,$week);
+                $result = $course_week->getWeekName($id,$_GET['week_no']);
 
                 echo json_encode($result);
                 exit;
@@ -265,6 +262,9 @@ class Teacher extends Controller
                                     $_POST['file_type'] = $fileType;
                                     $_POST['size'] = $fileSize;
                                     $_POST['course_id'] = $id;
+                                    $empId = $staff -> getEmpId($user_id);
+                                    $emp_id = $empId[0] -> emp_id;
+                                    $_POST['emp_id'] = $emp_id;
                                     //show($_POST);die;
                                     $_POST['type'] = "material";
                                     $_POST['cid'] = $cid;
@@ -313,6 +313,9 @@ class Teacher extends Controller
                     $viewURL = $_POST['URL'];
 
                     $_POST['course_id'] = $id;
+                    $empId = $staff -> getEmpId($user_id);
+                    $emp_id = $empId[0] -> emp_id;
+                    $_POST['emp_id'] = $emp_id;
                     //show($_POST);die;
                     $_POST['type'] = "URL";
                     $_POST['cid'] = $cid;

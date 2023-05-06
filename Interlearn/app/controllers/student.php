@@ -126,8 +126,9 @@ class Student extends Controller
                 
         }
         $data['rows']= $course->select([],'course_id');
+        // show($user_id);die;
         $data['sums']= $subject -> studentCourse([],$user_id);
-        //show($data['sums']);die;
+        // show($data['sums']);die;
         
 
         //$data['courses'] = $subject->stdCoursePg([],$course_id);
