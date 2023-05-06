@@ -232,5 +232,5 @@
         </div>
     </div>
 </div>
-<script defer src="<?= ROOT ?>/assets/js/course_ins.js?v=<?php echo time(); ?>"></script>
-<?php $this->view("includes/footer"); ?>
+<script defer src="<?=ROOT?>/assets/js/course.js?v=<?php echo time(); ?>"></script>
+<?php $this->view("includes/footer");?>
