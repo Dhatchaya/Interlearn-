@@ -35,7 +35,7 @@
 
         </li>
         <li class="nav-li"><a href="">Contact</a></li>
-
+      </ul>
     </div>
 
     <div class="notification">
@@ -121,30 +121,30 @@
 
             <div class="form-group">
               <h2>Depositor’s Details</h2><br>
-              <label class="payment-label" for="Name">Name on payment slip</label>
+              <label class="payment-label" for="Name">Name on payment slip<span class="required-star">*</span></label>
               <div class="errorSpace1" style="top: 65px"></div>
               <input value="<?= set_value('NameOnSlip') ?>" name="NameOnSlip " class="payment-input" type="text" id="name-on-slip" placeholder="   Pavithra H.M.M">
             </div>
 
             <div class="form-group">
-              <label class="payment-label" for="Address">Address</label>
+              <label class="payment-label" for="Address">Address<span class="required-star">*</span></label>
               <div class="errorSpace2"></div>
               <input value="<?= set_value('Address') ?>" name="Address" class="payment-input" type="text" id="address" placeholder="   ">
             </div>
 
 
             <div class="form-group  ">
-              <label class="payment-label" for="CourseID">Course ID</label>
+              <label class="payment-label" for="CourseID">Course ID<span class="required-star">*</span></label>
               <div class="errorSpace3"></div>
               <input value="<?= set_value('CourseID') ?>" name="CourseID " class="payment-input" type="text" id="address" maxlength="5" placeholder="   ">
             </div>
             <div class="form-group  ">
-              <label class="payment-label" for="NIC">NIC Number</label>
+              <label class="payment-label" for="NIC">NIC Number<span class="required-star">*</span></label>
               <div class="errorSpace4"></div>
               <input value="<?= set_value('PayerNIC') ?>" name="PayerNIC" class="payment-input" type="text" id="NIC" placeholder="990331472v" maxlength="12">
             </div>
             <div class="form-group  ">
-              <label class="payment-label" for="SlipImage">Payment Slip Image (.pdf is only acceptable)</label>
+              <label class="payment-label" for="SlipImage">Payment Slip Image (.pdf is only acceptable)<span class="required-star">*</span></label>
               <div class="errorSpace4"></div>
               <input name="SlipImage" class="payment-input" type="file" id="file-upload" accept=".pdf" onchange="showUploadButton()">
               <button id="upload-button" disabled>Upload</button>
@@ -154,18 +154,18 @@
           <div class="sub-container">
             <div class="form-group">
               <h2>Payment Details</h2><br>
-              <label class="payment-label" for="PaymentDate">Payment Date</label>
+              <label class="payment-label" for="PaymentDate">Payment Date<span class="required-star">*</span></label>
               <div class="errorSpace1" style="top: 65px"></div>
               <input value="<?= set_value('PaymentDate') ?>" name="PaymentDate" class="payment-input" type="date" id="card-number">
             </div>
 
             <div class="form-group">
-              <label class="payment-label" for="card-holder-name">Ammount(LKR)</label>
+              <label class="payment-label" for="card-holder-name">Ammount(LKR)<span class="required-star">*</span></label>
               <div class="errorSpace2"></div>
               <input value="<?= set_value('Ammount') ?>" name="Ammount" class="payment-input" type="currency" maxlength="7" id="ammount" placeholder=" 5000">
             </div>
             <div class="form-group  ">
-              <label class="payment-label" for="Bank">Bank</label>
+              <label class="payment-label" for="Bank">Bank<span class="required-star">*</span></label>
               <div class="errorSpace4"></div>
               <select class="selecter">
                 <option value="" disabled selected>Select a bank</option>
@@ -179,7 +179,7 @@
               </select>
             </div>
             <div class="form-group div-adject-4 ">
-              <label class="payment-label" for="Branch">Branch</label>
+              <label class="payment-label" for="Branch">Branch<span class="required-star">*</span></label>
               <div class="errorSpace3"></div>
               <input value="<?= set_value('Branch') ?>" name="Branch" class="payment-input" type="text" id="Cheque-No" placeholder=" Colombo">
             </div>
@@ -219,7 +219,7 @@
             <tr>
               <th>Subject code</th>
               <th>Payment month</th>
-              <th>Payment date</th>
+              <th>Payment due date</th>
               <th>Amount</th>
               <th>Payment Options</th>
             </tr>
@@ -243,26 +243,45 @@
               </td>
 
             </tr> -->
-            <?php foreach ($haveToPaySet as $pendingPayment) : ?>
+            <?php
+            $totalPayment = 0; // Initialize the total payment variable
+            foreach ($haveToPaySet as $pendingPayment) :
+              $totalPayment += $pendingPayment->amount; // Add the current payment amount to the total payment
+            ?>
               <tr>
                 <td><?= $pendingPayment->courseID ?></td>
                 <td><?= $pendingPayment->month ?></td>
-                <td> 03/15/2023</td>
-                <!-- <td><?= $pendingPayment->dueDate ?></td> -->
+                <td><?= $pendingPayment->dueDate ?></td>
                 <td><?= $pendingPayment->amount ?></td>
-                <td><button id="" onclick="checkout()" class="card-btn">paynow</button>
-
+                <td>
+                  <button id="" onclick="checkout(<?= json_encode($pendingPayment) ?>)" class="card-btn">paynow</button>
+                  <button id="bank-btn" class="bank-btn">Bank Payment</button>
                   <script>
                     function checkout() {
-                      window.location.href = "<?= ROOT ?> /student/checkout";
+                      console.log("print checkout");
+                      // Redirect to the checkout page with the payment data as a URL parameter
+                      window.location.href = "<?= ROOT ?>/student/checkout?payment=" + encodeURIComponent(JSON.stringify($pendingPayment));
                     }
                   </script>
-
-                  <button id="bank-btn" class="bank-btn">Bank Payment</button>
                 </td>
-
               </tr>
             <?php endforeach; ?>
+
+            <tr>
+              <td colspan="3" style="text-align:right;">Total Payment:</td>
+              <td><?= $totalPayment ?></td>
+              <td><button id="" onclick="checkout( json_encode($haveToPaySet))" class="card-btn">paynow</button>
+                <button id="bank-btn" class="bank-btn">Bank Payment</button>
+              </td>
+            </tr>
+
+            <script>
+              function fullPayment() {
+                // Redirect to the checkout page with the payment data as a URL parameter
+                window.location.href = "<?= ROOT ?>/student/checkout?payment=" + encodeURIComponent(JSON.stringify($haveToPaySet));
+              }
+            </script>
+
 
           </tbody>
         </table>
@@ -304,62 +323,7 @@
 
               </tr>
             <?php endforeach; ?>
-            <!-- <tr>
-              <td>XYZ456</td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Card Payment</td>
-              <td><button>Print</button></td>
-            </tr>
-            <tr>
-              <td>XYZ456</td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Card Payment</td>
-              <td><button>Print</button></td>
-            </tr>
-            <tr>
-              <td>XYZ456</td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Card Payment</td>
-              <td><button>Print</button></td>
-            </tr>
-            <tr>
-              <td>XYZ456</td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Cash</td>
-              <td><button>Print</button></td>
-            </tr>
-            <tr>
-              <td>XYZ456</td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Card Payment</td>
-              <td><button>Print</button></td>
-            </tr>
-            <tr>
-              <td>XYZ456</td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Card Payment</td>
-              <td><button>Print</button></td>
-            </tr>
-            <tr>
-              <td>XYZ456</td>
-              <td>February</td>
-              <td>02/01/2023</td>
-              <td>$200</td>
-              <td>Card Payment</td>
-              <td><button>Print</button></td>
-            </tr> -->
+
           </tbody>
         </table>
 
@@ -392,7 +356,7 @@
         observer
       ) {
         entries.forEach(entry => {
-          console.log(entry.target)
+          // console.log(entry.target);
           if (entry.isIntersecting) {
             sidebar.classList.add("sidebar-short");
             container.classList.add("segment-out");
@@ -410,9 +374,9 @@
     //***********************footer support hright changer********************************//
 
 
-    var div1 = document.getElementByClassName("student-payment");
-    var div2 = document.getElementByClassName("footer-support");
-    div2.style.height = div1.offsetHeight + "px";
+    // var div1 = document.getElementByClassName("student-payment");
+    // var div2 = document.getElementByClassName("footer-support");
+    // div2.style.height = div1.offsetHeight + "px";
   </script>
 
 

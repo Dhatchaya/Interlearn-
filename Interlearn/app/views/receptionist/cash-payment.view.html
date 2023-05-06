@@ -5,6 +5,32 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<div class="pending-list">
+  <?php foreach ($bankPayments as $bankPayment) : ?>
+    <div class="pending-item each-payment" id="<?= $bankPayment->BankPaymentID ?>">
+      <h4><?= $bankPayment->CourseID  ?></h4>
+      <h4><?= $bankPayment->NameOnSlip  ?></h4>
+      <h4><?= $bankPayment->monthlyFee ?></h4>
+      <h4><?= $bankPayment->PaymentDate  ?></h4>
+
+    </div>
+  <?php endforeach; ?>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <head>
   <title>Payments</title>
   <link rel="stylesheet" href="style/navbar-last.css">

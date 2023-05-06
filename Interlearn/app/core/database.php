@@ -30,7 +30,6 @@ class Database{
                 }
                 else{
                     $type = PDO::FETCH_ASSOC;
-
                 }
                 $result = $stmt -> fetchAll($type);
                 
@@ -43,6 +42,10 @@ class Database{
         }
         return false;
         
+    }
+    public function lastInserted(){
+        $conn = $this -> connect();
+        return $conn ->lastInsertId();
     }
     public function update_table($query,$data = [], $type = 'object')
     {
@@ -71,6 +74,7 @@ class Database{
             if($check){
              
                     return true;
+                    exit;
                 }
         }
         return false;
@@ -95,6 +99,23 @@ class Database{
            ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4
          ";
          $this->query($query);
+
+
+         //course table create
+         $query = "
+         CREATE TABLE `course` (
+            `course_id` int(11) NOT NULL,
+            `grade` int(11) NOT NULL,
+            `created_date` date NOT NULL DEFAULT current_timestamp(),
+            `language_medium` varchar(55) NOT NULL,
+            `emp_ID` int(11) NOT NULL,
+            `course_material` varchar(55) NOT NULL,
+            `description` varchar(55) NOT NULL,
+            `subject` varchar(55) NOT NULL,
+            `name` varchar(55) NOT NULL
+           ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+           ";
+           $this->query($query);
      }
 
 }

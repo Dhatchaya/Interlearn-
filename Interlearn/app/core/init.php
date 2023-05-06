@@ -2,8 +2,9 @@
 
 spl_autoload_register(
 
-    function ($class_name) {
-        require "../app/models/" . $class_name . ".model.php";
+    function ($class_name){
+     
+        require "../app/models/".$class_name.".model.php";
     }
 );
 

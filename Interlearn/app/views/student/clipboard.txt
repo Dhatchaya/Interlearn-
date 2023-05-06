@@ -51,3 +51,29 @@
   </div>
   </div>
   </div> -->
+
+
+
+
+
+  <?php foreach ($haveToPaySet as $pendingPayment) : ?>
+              <tr>
+                <td><?= $pendingPayment->courseID ?></td>
+                <td><?= $pendingPayment->month ?></td>
+                <td> 03/15/2023</td>
+                <!-- <td><?= $pendingPayment->dueDate ?></td> -->
+                <td><?= $pendingPayment->amount ?></td>
+                <td><button id="" onclick="checkout($pendingPayment)" class="card-btn">paynow</button>
+
+                  <script>
+                    function checkout($paymentData) {
+                      window.location.href = "<?= ROOT ?> /student/checkout";
+                      fetch
+                    }
+                  </script>
+
+                  <button id="bank-btn" class="bank-btn">Bank Payment</button>
+                </td>
+
+              </tr>
+            <?php endforeach; ?>

@@ -14,11 +14,20 @@
     margin:0;
 	padding:0;
 	box-sizing: border-box;
- 
-    
-  
- 
-} 
+
+
+}
+
+.whiteInput:hover{
+    box-shadow: 0 0 5pt 0.5pt #D3D3D3;
+  }
+.whiteInput:focus {
+    box-shadow: 0 0 5pt 2pt #D3D3D3;
+    outline-width: 0px;
+  }
+input,select,textarea{
+    padding-left: 0.5rem;
+}
 /* body, html {
     height: 100%;
     margin: 0;
@@ -255,6 +264,11 @@ body{
     align-content: center;
 }
 
+.class a, .teacher a{
+    text-decoration: none;
+    color: white;
+}
+
 .post img {
     height: 23rem;
     width: 18rem;
@@ -377,6 +391,7 @@ body{
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    /* margin-left: 86%; */
   }
   
   .home_form_sbt:hover {
@@ -392,6 +407,7 @@ body{
     margin-top: 6px;
     margin-bottom: 12px;
     resize: vertical;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   }
 
 .home_form {
@@ -702,7 +718,7 @@ body{
     position: relative;
     margin-bottom: 0.5em;
     font-size: 1.05em;
-    padding: 5px;
+    /* padding: 5px; */
     color: var(--secondary-color);
     left: 5px;
 }
@@ -733,6 +749,7 @@ body{
     border-radius: 2em;
     cursor: pointer;
     font-weight: bold;
+    position: relative;
 }
 .login-row{
     margin: 1vw 0vw 1vw 0;
@@ -773,7 +790,8 @@ body{
 }
 .warning{
     color: red;
-    font-size: small;
+    font-size: 1rem;
+    font-weight: 600;
 }
 .home_parent{
     display: flex;
@@ -1038,21 +1056,26 @@ li.lo-nav {
 /* form */
 
 .enq_tbl{
-	margin-left: auto; 
-	margin-right: auto;
+	/* margin-left: auto;  */
+	/* margin-right: auto; */
     border-collapse: collapse;
-    width: 80%;
-    margin-top: 10vh;
+    width: 95%;
+    margin-top: 6vh;
     margin-bottom: 10vh;
+    box-shadow: 0 2px 10px rgba(0, 67, 115, 0.2);
+    border-collapse: separate;
+    border: none;
+    border-spacing: 0 1px;
 }
 .enq_tbl td, .enq_tbl th{
-    border: 1px solid #ddd;
-    padding: 8px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    /* border-top: 1px solid #ddd; */
+    padding: 5px;
+    height: 3rem;
   
 }
-.enq_tbl tr:nth-child(even){
-    background-color: var(--light-purple-bg);
-}
+
 .enq_tbl th {
     padding-top: 12px;
     padding-bottom: 12px;
@@ -1065,9 +1088,9 @@ li.lo-nav {
     transform: translate(-35%, -30%) scale(0);
     transition: 200ms ease-in-out;
     position: fixed;
-    width: 40%;
+    width: 31rem;
     max-width: 40%;
-    height: 70%;
+    height: 80%;
     top: 40%;
     left: 50%;
     margin-left: auto;
@@ -1076,10 +1099,13 @@ li.lo-nav {
     justify-content: center;
     align-items: center;
     border: 1px solid var(--primary-color);
-    box-shadow: 2px 5px #eaeaea;
+    /* box-shadow: 2px 5px #eaeaea; */
     z-index: 5;
     background-color: var(--secondary-color);
+    border-radius: 10px;
 }
+
+
 .modal.active{
     transform: translate(-35%, -30%) scale(1);
 }
@@ -1087,9 +1113,9 @@ li.lo-nav {
     transform: translate(-35%, -30%) scale(0);
     transition: 200ms ease-in-out;
     position: fixed;
-    width: 40%;
+    width: 31rem;
     max-width: 40%;
-    height: 70%;
+    height: 80%;
     top: 40%;
     left: 50%;
     margin-left: auto;
@@ -1098,9 +1124,11 @@ li.lo-nav {
     justify-content: center;
     align-items: center;
     border: 1px solid var(--primary-color);
-    box-shadow: 2px 5px #eaeaea;
+    /* box-shadow: 2px 5px #eaeaea; */
     z-index: 5;
     background-color: var(--secondary-color);
+    border-radius: 10px;
+
 }
 .modal1.active{
     transform: translate(-35%, -30%) scale(1);
@@ -1112,11 +1140,42 @@ li.lo-nav {
     max-width: 80%;
    
 }
+.enq_form_body{
+    height: 30%;
+    width: 90%;
+}
 .enq_cat{
     width: 80%;
     height: 2rem;
+    margin: 0rem 0 1rem 0;
+    background-color: var(--secondary-color);
+    border-radius: 4px;
+    border: solid 1.5px #D3D3D3;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
 }
+.edit_enq_btn,.delete_enq_btn,.view_enq_btn{
+    width: 4rem;
+    border: 0.8px solid #3E206D57;
+    padding: 0.2rem;
+    box-shadow: 0 0 8pt 0.5pt #D3D3D3;
+    border-radius: 4px;
+    margin: 0.5rem;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
 
+
+}
+.eno{
+    width: 10%;
+}
+.enq_action_clm{
+    width : 28%;
+}
+.enq_action_clm2{
+    width : 15%;
+}
 .sub_btn{
     width: 80%;
     height: 2rem;
@@ -1134,8 +1193,29 @@ li.lo-nav {
     display: inline;
 }
 .enq_title{
-    height: 2rem;
+    height: 2.5rem;
+    margin: 0rem 0 1rem 0;
+    width: 80%;
+    border-radius: 4px;
+    border: solid 1.5px #D3D3D3;
+    -webkit-transition:0.5s;
+    transition: 0.5s;
+
 }
+#sub{
+    margin: 0rem 0 1rem 0;
+    border-radius: 4px;
+    border: solid 1.5px #D3D3D3;
+    -webkit-transition:0.5s;
+    transition: 0.5s;
+}
+#sub:hover,.enq_title:hover,.enq_cat:hover{
+    box-shadow: 0 0 5pt 0.5pt #D3D3D3;
+  }
+#sub:focus,.enq_title:focus,.enq_cat:focus {
+    box-shadow: 0 0 5pt 2pt #D3D3D3;
+    outline-width: 0px;
+  }
 .enq_actions {
     display: flex;
     width: 5rem;
@@ -1146,7 +1226,7 @@ li.lo-nav {
     width: inherit;
   }
   .enq_actions>div {
-    width: 50%;
+
     text-align: center;
   }
   
@@ -1168,8 +1248,12 @@ li.lo-nav {
     color: var(--secondary-color);
     height: 5vh;
     width: 10vw;
-    margin: 3vh;
+    margin: 3vh 3vh 3vh 0;
+
 }
+/* .enq_actions > * >*>:hover{
+    background-color: var(--light-purle-bg);
+} */
 .Add_enq:hover{
     cursor: pointer;
    opacity: 0.8;
@@ -1181,8 +1265,9 @@ li.lo-nav {
     color: var(--secondary-color);
     height: 3rem;
     width: 12rem;
-    margin: 3vh;
+    margin: 3vh 3vh 3vh 0;
     border:none;
+
 }
 .Add_forum:hover{
     cursor: pointer;
@@ -1191,7 +1276,7 @@ li.lo-nav {
    background-color: var(--left-sidebar-color);
 }
 .add_heading,.add_heading_init{
-    margin: 3vh 3vh 0 3vh;
+    margin: 3vh 3vh 0 0;
     font-size: 2rem;
     display: block;
 }
@@ -1199,10 +1284,13 @@ li.lo-nav {
 .center-body {
 	display: flex;
 	flex-direction: row;
-    /* gap: 8vw; */
+    gap: 8vw;
 }
 .clm2{
     flex-grow:1;
+}
+.marginlow{
+    margin-top: 4%;
 }
 .side-bar {
     background-color: var(--primary-color);
@@ -1210,7 +1298,7 @@ li.lo-nav {
     width: 100%;
     max-width: 10rem;
     height: 85vh;
-    margin: 10px;
+    /* margin: 10px; */
     margin-left: 15px;
     border-radius: 10px;
     flex-direction: column;
@@ -1219,6 +1307,8 @@ li.lo-nav {
     margin-top: 4.5rem;
     margin-bottom: 10vh;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    /* position: absolute;
+    top:11rem; */
 }
 
 .side-bar img {
@@ -1435,12 +1525,11 @@ li.lo-nav {
 }
 .reg_radio{
     width: 13px;
+    margin: 0;
   
 }
 
-#AL,#grade{
-    display: none;
-}
+
 .grade-select{
     position: absolute;
     top:0;
@@ -1456,8 +1545,8 @@ li.lo-nav {
 }
 .display-error,.display-msg{
     color: #e42113;
-    height: 2.5rem;
-  
+    /* height: 2.5rem; */
+
     padding-top: 0.5rem;
     font-weight: 600;
 }
@@ -1659,25 +1748,37 @@ li.lo-nav {
 
 /* enquiry view */
 .enq_view_body {
-    width: 70%;
-    background: #d5d8ed;
-    border: 2px solid #808080bf;
+    width: 100%;
+    background: white;
+    /* border: 2px solid #808080bf; */
+    border: 1px solid #D2D2C8;
     padding: 3rem;
-    margin: 4rem 0 2rem 0;
-   
+    margin: 4rem 0 2rem 0rem;
+    /* background-color: #d5d8ed; */
+    border-radius: 25px;
+    /* box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.7); */
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 12rem;
 }
-
+.enq_right_body{
+    width: 70%;
+}
 .init_enq{
     overflow: hidden;
     position: relative;
-    background: var(--secondary-color);
-    width: 60%;
+    background: var(--light-purple-bg);
+    width: 47%;
     height: auto;
     margin: 1rem 0 1rem 0;
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
     padding: 1rem;
     border-radius: 10px;
-  
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.3);
+
 
 }
 .init_enq >span :first-child{
@@ -1708,6 +1809,7 @@ li.lo-nav {
     height: 30rem;
     overflow-y: scroll;
     overflow-x: auto;
+
 }
 .view-reply {
     /* position: absolute; */
@@ -1724,9 +1826,12 @@ li.lo-nav {
     border: 1px solid black;
     height: 25vh;
     padding: 1rem;
-    display: none;
+    position: absolute;
+    bottom:2rem;
+    /* display: none; */
     transition: .5s;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    width: 90%;
 }
 .enq-view-form input[type="text"]{
     height: 15vh;
@@ -1745,6 +1850,7 @@ li.lo-nav {
     margin: 0.5rem;
     background-color: var(--primary-color);
     color: var(--secondary-color);
+    float: right;
 }
 .profile_submit_btn{
     border: 1px;
@@ -1760,12 +1866,12 @@ li.lo-nav {
     width:8rem;
 }
 .sender{
-    margin-left:23vw;
+    margin-left:30vw;
 }
 .enq_full_body{
     line-height: 0.5;
   text-align: center;
-  margin: 2rem 0 1rem 0;
+  margin: 2rem 0 1rem 0rem;
     
 }
 .add_heading {
@@ -1782,7 +1888,7 @@ li.lo-nav {
     border-bottom: 1px solid rgb(20, 15, 15);
     /* //border-top: 1px solid rgb(24, 18, 18); */
     top: 0;
-    width: 600px;
+    width: 400px;
   }
   .add_heading:before {
     right: 100%;
@@ -1795,8 +1901,38 @@ li.lo-nav {
 .enqStatus{
     background-color: transparent;
     border-radius: 5px;
-    height: 3rem;
+    height: 2.5rem;
 }
+.enq_tabs_container{
+    display: flex;
+    justify-content: center;
+     align-items: center;
+    margin:1rem 3rem 1rem 0;
+    text-align: center;
+
+}
+.enq_tab{
+    flex: 1;
+    border-bottom: 2px solid rgba(128, 128, 128, 0.479);
+    padding-bottom: 10px;
+    transition: 0.5s;
+}
+.enq_tab:hover{
+    color: #8655d3;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.active_tab{
+    color: #8655d3;
+    border-color:#8655d3;
+    transition: 0.5s;
+}
+.hide{
+    display: none;
+}
+
+/* end of enquiry secion */
+
 /* student profile view */
 
 .std_profile_container{
@@ -1936,7 +2072,7 @@ li.lo-nav {
 
 .teacher_profile_heading{
     margin-left: 20%;
-   
+
 }
 
 .teacher_profile_rectangle{
@@ -2055,7 +2191,7 @@ li.lo-nav {
 
 .teacher_view_container{
     text-align: center;
-  
+
     display: flex;
     padding-bottom: 2%;
 }
@@ -2063,13 +2199,15 @@ li.lo-nav {
 .teacher_view_content{
     margin-top: 5%;
     margin-left: 2%;
+    width: 70vw;
 }
 
 .teacher_view_greeting{
-    padding-top: 5%;
     padding-left: 0;
     float: left;
     margin-right: 50%;
+    font-size: xx-large;
+    padding-bottom: 1%;
 }
 
 .teacher_view_Rectangle{
@@ -2142,7 +2280,7 @@ li.lo-nav {
     height: 5vh;
     border-radius: 4%;
     background-color: rgb(104, 44, 198,9%);
-    padding-top: 1%; 
+    padding-top: 1%;
     display: flex;
 }
 
@@ -2179,9 +2317,8 @@ li.lo-nav {
     margin-left: 5%;
     display: flex;
 }
-.std_crs_pg_butn{
-    padding-left: 60%;
-    padding-top: 5%;
+.std_crs_pg_name{
+    width: 60vw;
 }
 .std_crs_pg_btn{
     width: 10vw;
@@ -2189,6 +2326,8 @@ li.lo-nav {
     background-color: rgb(62, 32, 109);
     color: white;
     cursor: pointer;
+    float: right;
+    margin-top: 3%;
 }
 .std_crs_pg_btn:hover{
     background-color: rgb(62, 32, 109,75%);
@@ -2273,7 +2412,7 @@ li.lo-nav {
     float: left;
     margin-right: 8%;
     margin-top: 5%;
-    margin: bottom 5%; 
+    margin: bottom 5%;
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
 }
@@ -2311,11 +2450,11 @@ li.lo-nav {
     position: relative;
     display: flex;
     margin-bottom: 2%;
+    justify-content: space-between;
 }
 
 .std_view_content{
     margin-top: 5%;
-    margin-left: 2%;
 }
 
 .std_view_greeting{
@@ -2361,9 +2500,9 @@ li.lo-nav {
     padding-top: 2%;
     padding-left: 2%;
     width: 47vw;
-    height: 20vh;
+    /* height: 20vh; */
 }
-std_crs_pg_content2{
+.std_crs_pg_content2{
     margin-top: 5%;
     margin-left: 5%;
     margin-right: 3%;
@@ -2406,7 +2545,7 @@ std_view_bottom{
     float: left;
     margin-right: 8%;
     margin-top: 5%;
-    margin: bottom 5%; 
+    margin: bottom 5%;
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
 }
@@ -2446,12 +2585,12 @@ std_view_bottom{
 }
 
 .std_crs_main{
-    width: 60vw;
+    width: 75vw;
     margin-bottom: 5%;
 }
 
 .std_crs_pg_content{
-    margin-top: 10%;
+    margin-top: 5%;
     margin-left: 5%;
     display: flex;
 }
@@ -2496,12 +2635,15 @@ std_view_bottom{
     float: left;
     margin-right: 8%;
     margin-top: 5%;
-    margin: bottom 5%; 
+    margin: bottom 5%;
     margin-left: 2%;
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
     text-align: center;
     border-style: groove;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .std_op_loader{
@@ -2567,7 +2709,7 @@ std_view_bottom{
     float: left;
     margin-right: 8%;
     margin-top: 0%;
-    margin: bottom 5%; 
+    margin: bottom 5%;
     margin-left: 2%;
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
@@ -2701,17 +2843,18 @@ std_view_bottom{
 /* student submission status view */
 
 .std_sub_grd_container{
-    width: 100%;
+    width: 80%;
     display: flex;
 }
 
 .std_sub_grd_content{
     margin-top: 5%;
     margin-left: 5%;
+    width: 80%;
 }
 
 .std_sub_grd_row1, .std_sub_grd_row2{
-    width: 80vw;
+    /* width: 80vw; */
     height: 10vh;
     display: flex;
     padding-left: 1%;
@@ -2762,11 +2905,18 @@ std_view_bottom{
 .teacher_upl_content{
     margin-top: 5%;
     margin-left: 5%;
+    margin-bottom: 2%;
+    border: solid;
+    border-color: rgb(0 0 0 / 30%);
+    padding: 2%;
+    min-height: 40vh;
+    border-radius: 5px;
 }
 
 .teacher_upl_name{
     width: 60vw;
     height: 8vh;
+    border-radius: 3px;
 }
 
 .teacher_upl_img{
@@ -2826,7 +2976,7 @@ std_view_bottom{
     height: 70vh;
     margin-right: 8%;
     margin-top: 5%;
-    margin: bottom 5%; 
+    margin: bottom 5%;
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
     justify-content: center;
@@ -2868,7 +3018,7 @@ std_view_bottom{
     /* height: 5vh; */
     margin-right: 8%;
     margin-top: 5%;
-    margin: bottom 5%; 
+    margin: bottom 5%;
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
     justify-content: center;
@@ -2933,15 +3083,24 @@ std_view_bottom{
 }
 
 .teacher_subm_content{
-    margin-top: 5%;
+    /* margin-top: 5%; */
     margin-left: 5%;
+    width: 80%;
+    /* height: 100%; */
+    margin-bottom: 5%;
 }
 
 .teacher_subm_name{
-    width: 60vw;
-    height: 10vh;
+    width: 30vw;
+    height: 3rem;
 }
-
+.teacher_subm_desc{
+height: 10rem;
+width: 45vw;
+}
+.teacher_subm_file{
+    width: 25vw;
+}
 .teacher_subm_type{
     margin-right: 2%;
 }
@@ -2987,14 +3146,14 @@ std_view_bottom{
     text-decoration: none;
     color: black;
 }
-teacher_crs_dropbtn {
+.teacher_crs_dropbtn {
     color: white;
     padding: 16px;
     font-size: 16px;
     border: none;
     cursor: pointer;
 }
-  
+
 .teacher_crs_dropdown {
   position: relative;
   display: inline-block;
@@ -3105,6 +3264,7 @@ teacher_crs_dropbtn {
     float: right;
     margin-top: 1%;
     margin-right: 1%;
+    cursor: pointer;
 }
 /* receptionist view page */
 .recp_view_container{
@@ -3126,7 +3286,7 @@ teacher_crs_dropbtn {
     height: 30vh;
     float: left;
     margin-right: 8%;
-    margin: bottom 5%; 
+    margin-bottom: 4%;
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
 }
@@ -3158,15 +3318,21 @@ teacher_crs_dropbtn {
 .recp_crs_content{
     margin-top: 5%;
     margin-left: 5%;
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 60vw;
+    /* display: flex;
+    flex-wrap: wrap; */
+    width: 75vw;
 }
 .recp_crs_butn{
     padding-left: 60%;
     padding-top: 0%;
     margin-bottom: 5%;
     width: 60vw;
+}
+.recp_crs_butn2{
+    padding-top: 0%;
+    margin-bottom: 5%;
+    display: flex;
+    justify-content: center;
 }
 .recp_crs_btn{
     width: 10vw;
@@ -3175,32 +3341,42 @@ teacher_crs_dropbtn {
     color: white;
     cursor: pointer;
     float: right;
+    /* margin-bottom: 5%; */
 }
-.recp_crs_btn:hover{
+.recp_crs_btn2{
+    width: 8vw;
+    height: 4vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    cursor: pointer;
+    float: right;
+    text-align: center;
+    /* margin-bottom: 5%; */
+}
+.recp_crs_btn:hover, .recp_crs_btn2:hover{
     background-color: rgb(62, 32, 109,75%);
 }
 .recp_crs_rectangle{
     background-color: white;
     border: solid rgba(62, 32, 109, 100%);
-    border-radius: 10%;
-    width: 15vw;
-    height: 20vh;
+    width: 17vw;
+    height: 40vh;
     float: left;
-    margin-right: 8%;
+    margin-right: 4%;
     margin-bottom: 4%;
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
 }
 .recp_crs_rectangle:hover{
     transform: scale(1.02);
+    box-shadow: 10px 10px 5px rgb(104, 44, 198,25%);
 }
 .recp_crs_rectangle a{
     text-decoration: none;
 }
 .recp_crs_img{
-    width: 14.7vw;
-    height: 10vh;
-    border-radius: 10%;
+    width: 16.7vw;
+    height: 15vh;
     transition: width 1s, height 1s;
 }
 .recp_crs_rectangle p{
@@ -3219,15 +3395,55 @@ teacher_crs_dropbtn {
 .recp_cl_content{
     margin-top: 5%;
     margin-left: 5%;
+    /* flex-wrap: wrap; */
+    width: 75vw;
+}
+.recp_cl_medium{
+    /* list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(104, 44, 198,12%); */
+    margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+}
+.recp_cl_navbar{
+    background-color: rgb(104, 44, 198,9%);
+}
+.recp_cl_nav{
+    display: block;
+    float: left;
+  padding: 15px;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  width: 25vw;
+  cursor: pointer;
+}
+.recp_cl_nav:hover{
+    background-color: rgb(104, 44, 198,25%);
+}
+.recp_cl_nav.active{
+  background-color: var(--left-sidebar-color);
+}
+.recp_cl_staff{
+    display: flex;
     flex-wrap: wrap;
-    max-width: 60vw;
+}
+.recp_cl_teacher{
+    width: 20vw;
+}
+.recp_cl_day{
+    width: 10vw;
 }
 .recp_cl_names{
-    width: 40vw;
+    width: 20vw;
     text-align: left;
 }
 .recp_cl_row, .recp_cl_row1{
-    width: 40vw;
+    /* width: 40vw; */
     height: 7vh;
     cursor: pointer;
     display: flex;
@@ -3243,6 +3459,95 @@ teacher_crs_dropbtn {
 .recp_cl_row1{
     background-color: white;
 }
+.recp_cl_butn{
+    /* padding-left: 60%;
+    padding-top: 0%; */
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    margin-bottom: 5%;
+    /* width: 60vw; */
+    margin: 0 auto;
+}
+.recp_cl_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    cursor: pointer;
+    /* margin-bottom: 5%; */
+}
+/* .overlay_popup{
+    position: absolute;
+    top: 15vh;
+    background-color: rgb(104, 44, 198,9%);
+    transition: opacity 500ms;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 10vw;
+}
+.overlay_popup:target{
+    visibility: visible;
+    opacity: 1;
+}
+.wrapper_popup{
+    margin: 70px auto;
+    padding: 20px;
+    border-radius: 5px;
+    width: 30vw;
+    height: 60vh;
+    position: relative;
+    transition: all 5s ease-in-out;
+    background-color: white;
+}
+.wrapper_popup .close{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 50%;
+} */
+#popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.popup-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 400px;
+}
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
 /* receptionist- add course details */
 .recp_det_container{
     width: 100%;
@@ -3250,18 +3555,37 @@ teacher_crs_dropbtn {
 }
 .recp_det_content{
     margin-top: 5%;
-    margin-left: 5%;
+    margin-left: 2%;
     flex-wrap: wrap;
-    max-width: 60vw;
+    width: 70vw;
+    margin-bottom: 5%;
+    padding: 2%;
+    background-color: rgb(0 0 0 / 6%);
 }
+.recp_crs_add{
+    display: flex;
+    flex-wrap: wrap;
+    width: 80vw;
+}
+.recp_det_box{
+    /* background-color: rgb(104, 44, 198,9%); */
+    width: 20vw;
+    height: 10vh;
+    /* margin: 5%; */
+}
+/* .recp_det_box:hover{
+    box-shadow: 10px 10px 5px rgb(104, 44, 198,25%);
+    cursor: pointer;
+} */
 .recp_det_name{
     width: 60vw;
-    height: 10vh;
+    height: 5vh;
     padding: 3%;
 }
 
 .recp_det_dura{
     display: flex;
+    padding-left: 2vw;
 }
 .recp_det_dura p{
     margin-left: 3%;
@@ -3271,6 +3595,9 @@ teacher_crs_dropbtn {
     width: 8vw;
     height: 4vh;
 }
+.recp_add_butn{
+    width: 25vw;
+}
 .recp_det_btn{
     width: 10vw;
     height: 5vh;
@@ -3278,6 +3605,7 @@ teacher_crs_dropbtn {
     color: white;
     cursor: pointer;
     float: right;
+    margin-right: 3%;
 }
 .recp_det_btn:hover{
     background-color: rgb(62, 32, 109,75%);
@@ -3299,8 +3627,10 @@ teacher_crs_dropbtn {
 }
 .quizz_right {
     width: 70%;
-    background: aliceblue;
-    border: 2px solid #808080bf;
+    background: white;
+    border-radius: 8px;
+    /* border: 2px solid #808080bf; */
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
     padding: 3rem;
     margin: 4rem 0 2rem 0;
     display: flex;
@@ -3308,6 +3638,12 @@ teacher_crs_dropbtn {
     justify-content: center;
 }
 
+.confirm_submit_button {
+    display:flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+}
 .quizz_right input[text] {
     width: 100%;
     padding: 8px;
@@ -3329,8 +3665,9 @@ teacher_crs_dropbtn {
 }
 
 .quizz_right hr {
-    width: 85%;
+    width: 97%;
     margin: auto;
+    margin-left: 25px;
     border: 1px solid #ccc;
 }
 
@@ -3344,7 +3681,17 @@ teacher_crs_dropbtn {
     margin-top: 20px;
 }
 
+
+.quiz-head p {
+    color: #b7b0b0;
+}
 .quiz-description {
+    margin-left: 25px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.quiz-total {
     margin-left: 25px;
     margin-top: 20px;
     margin-bottom: 50px;
@@ -3352,14 +3699,17 @@ teacher_crs_dropbtn {
 
 .quiz-next-options {
     margin-left: 25px;
+    margin-top: 50px;
 }
 
 .question_right {
     width: 70%;
-    background: aliceblue;
-    border: 2px solid #808080bf;
+    background: white;
+    /* border: 2px solid #808080bf; */
     padding: 3rem;
     margin: 4rem 0 2rem 0;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
     /* display: flex;
     flex-direction: column;
     justify-content: center; */
@@ -3367,6 +3717,11 @@ teacher_crs_dropbtn {
 
 .question_right p {
     color: #808080bf;
+}
+
+.choices {
+    border-top: 1px solid #cccccc;
+    margin-top: 30px;
 }
 .choice_inp {
     width: 100%;
@@ -3377,10 +3732,12 @@ teacher_crs_dropbtn {
     margin-top: 6px;
     margin-bottom: 12px;
     resize: vertical;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    /* box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset; */
 }
 
 select {
-    width: 10%;
+    width: 100px;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -3388,6 +3745,8 @@ select {
     margin-top: 6px;
     margin-bottom: 12px;
     resize: vertical;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    /* box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset; */
 }
 
 /* .question_right input[text] {
@@ -3421,7 +3780,7 @@ select {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin-left: 86.5%;
+    /* margin-left: 86.5%; */
   }
 
   strong {
@@ -3430,9 +3789,9 @@ select {
 
   /* forum style */
 
-  .forum_heading{
+  /* .forum_heading{
       margin-left: 17%;
-  }
+  } */
   .forum_body{
       display: flex;
       /* grid-template-areas: "side heading .."
@@ -3446,7 +3805,7 @@ select {
     /* background-color: red; */
     /* width: 80%; */
     width: 36rem;
-    height: 30rem;
+    /* height: 30rem; */
     border: 1px solid gray;
     padding: 2rem;
     display: none;
@@ -3471,10 +3830,15 @@ select {
     height: 1rem;
     width: 1rem;
 }
+.enq_sender{
+    float: right;
+    margin-right:2rem ;
+
+}
 .discuss_body{
     display: flex;
     gap:5rem;
-    margin-top: 5%;
+    /* margin-top: 5%; */
 }
 .discuss_card{
     height: 15rem;
@@ -3493,14 +3857,15 @@ select {
     /* background-color: #f2f2f2;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px; */
-    /* width: 20%; */
-    padding: 8px;
+    width: 250px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
     margin-top: 6px;
     margin-bottom: 12px;
     resize: vertical;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 
 .select_duration {
@@ -3509,6 +3874,7 @@ select {
 }
 
 .enable_disable {
+    padding-top: 15px;
     display: flex;
     flex-direction: row;
 }
@@ -3539,7 +3905,7 @@ select {
     float: left;
     margin-right: 8%;
     margin-top: 5%;
-    margin: bottom 5%; 
+    margin: bottom 5%;
     margin-left: 2%;
     background-color: white;
     transition: width 0.5s, height 0.5s;
@@ -3553,22 +3919,22 @@ select {
 .std_per_subject h3 {
     margin-top: 100px;
 }
-/* styling table */
+/* styling table
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
   }
-  
+
 td, th {
     border: 1px solid black;
     text-align: left;
     padding: 8px;
 }
-  
+
 tr:nth-child(even) {
     background: rgba(104, 44, 198, 0.09);
-}
+} */
 
 .que_right {
     width: 70%;
@@ -3680,7 +4046,7 @@ tr:nth-child(even) {
     height: 30vh;
     float: left;
     margin-right: 8%;
-    margin: bottom 5%; 
+    margin: bottom 5%;
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
     margin-bottom: 5%;
@@ -3726,7 +4092,7 @@ tr:nth-child(even) {
     float: left;
     margin-right: 8%;
     margin-top: 5%;
-    margin: bottom 5%; 
+    margin: bottom 5%;
     margin-left: 2%;
     background-color: white;
     transition: width 0.5s, height 0.5s;
@@ -3763,4 +4129,1405 @@ tr:nth-child(even) {
 .std_op_btn:hover{
     background-color: rgb(62, 32, 109,75%);
 
+}
+.tbl_row{
+    display:block;
+}
+.setWidth{
+    width: 100%;
+
+}
+
+
+
+
+
+
+/* manager home page */
+
+.mng_view_content{
+    margin-top: 5%;
+    margin-left: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    max-width: 80vw;
+}
+
+.mng_view_rectangle{
+    background-color: rgb(104, 44, 198,12%);
+    border: solid rgba(62, 32, 109, 100%);
+    border-radius: 10%;
+    width: 20vw;
+    height: 30vh;
+    float: left;
+    margin-right: 10%;
+    margin-bottom: 7%;
+    transition: width 0.5s, height 0.5s;
+    cursor: pointer;
+    text-align: center;
+}
+
+.mng_view_rectangle:hover{
+    transform: scale(1.02);
+}
+
+.mng_view_rectangle a{
+    text-align: center;
+    text-decoration: none;
+    color: #000000;
+}
+
+.mng_view_rectangle p, .mng_view_rectangle h3{
+    /* font-weight: 500; */
+    /* font-size: large; */
+    color: #000000;
+    /* margin-bottom: 2%; */
+    /* padding: 3%; */
+    text-align: center;
+}
+
+.mng_view_rectangle h3{
+    margin-top: 3%;
+}
+
+.mng_view_img{
+    width: 10vw;
+    height: 8vh;
+    margin-top: 15%;
+    transition: width 1s, height 1s;
+}
+
+
+
+
+
+/* receptionist announcement view */
+
+.recp_ann_container{
+    width: 100%;
+    display: flex;
+}
+.recp_ann_content{
+    margin-top: 5%;
+    margin-left: 5%;
+    width: 65vw;
+    margin-bottom: 5%;
+}
+
+.recp_ann_name, .recp_ann_cont{
+    width: 65vw;
+    height: 10vh;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.recp_ann_cont{
+    height: 30vh;
+}
+
+.recp_ann_clz{
+    width: 20vw;
+    cursor: pointer;
+}
+
+.recp_ann_attachment a{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.recp_ann_bot{
+    font-size: small;
+}
+
+
+.outer-popup1,.outer-popup2 {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.wrapper-popup {
+    display: flex;
+    position: relative;
+    /* top: 50%;
+    left: 50%; */
+    /* transform: translate(-50%, -50%); */
+    width: 50vw;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.close1, .close2{
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background: white;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    box-shadow: 6px 6px 29px -4px rgba(0, 0, 0, 0.75);
+    cursor: pointer;
+}
+
+
+
+.popupModal {
+    display: none; /* Hide the modal by default */
+    position: fixed; /* Position the modal */
+    z-index: 1; /* Set the z-index */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Add a dark background with transparency */
+}
+
+/* Style the modal content */
+.popupmodal-content {
+    background-color: #fff;
+    margin: 10% auto; /* 10% from the top and centered */
+    padding: 25px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 800px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Style the close button */
+.ann_close {
+    color: #af15ac;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    /* transition: all 0.2s ease-in-out; */
+}
+
+.ann_close:hover,
+.ann_close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Style form labels */
+.up-profile label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.up-profile {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15px;
+    justify-content: space-between;
+    align-item: center;
+}
+
+/* Style the submit button */
+.up-profile input[type="submit"] {
+    /* width: 50%;
+    background-color: #FAB84C;
+    margin-top: 15px;
+    margin-right: 14px;
+    grid-column: 2;
+    justify-self: end;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out; */
+
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .up-profile {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+.edit_ann_name, .edit_ann_cont{
+    width: 45vw;
+    height: 10vh;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.edit_ann_cont{
+    height: 30vh;
+}
+
+.recp_ann_clz{
+    width: 20vw;
+    cursor: pointer;
+}
+
+.edit_ann_attachment a{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.recp_cl_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    cursor: pointer;
+}
+
+.recp_cl_btn:hover{
+    background-color: rgb(104, 44, 198,65%);
+}
+
+.recp_view_announcement{
+    width: 70vw;
+}
+
+.ann_view_msg{
+    text-align: left;
+    border-style: solid;
+    border-color: rgba(62, 32, 109, 100%);
+    padding-top: 2%;
+    padding-left: 2%;
+    width: 67vw;
+    /* height: 20vh; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+  /* forum style */
+
+  /* .forum_heading{
+      margin-left: 17%;
+  } */
+  .forum_body{
+    display: flex;
+    /* grid-template-areas: "side heading .."
+                          "side discuss discuss discuss"; */
+    gap:6vw
+}
+.forum_discussion {
+  width: 90%;
+}
+.new_discussion {
+   background-color: var(--secondary-color);
+  /* width: 80%; */
+  width: 36rem;
+  /* height: 30rem; */
+  /* border: 1px solid gray; */
+  padding: 2rem;
+  display: none;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
+}
+.add_view {
+  width: 100%;
+}
+.new_discussion input[type="text"]{
+  height: 2rem;
+  width: 15rem;
+  margin-bottom: 2rem;
+}
+.forum_right{
+
+  position: relative;
+  bottom: 0;
+}
+.descrip{
+  margin-bottom: 2rem;
+}
+.enq_view img{
+  height: 1rem;
+  width: 1rem;
+}
+.enq_view a{
+    text-decoration: none;
+}
+.enq_sender{
+  float: right;
+  margin-right:2rem ;
+
+}
+.discuss_body{
+  display: flex;
+  gap:5rem;
+  margin-bottom: 5rem;
+
+}
+.all_discussions{
+    width: 90%;
+    margin-top: 5%;
+}
+.discuss_card{
+
+  width: 70%;
+  padding: 2rem;
+  position: relative;
+  height: auto; /* Set the height to auto */
+  overflow: visible; /* Set the overflow property to visible */
+  background-color: #fff;
+  background-clip: border-box;
+  border: 0 solid rgba(0,0,0,.125);
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
+  border-radius: 0.25rem;
+  border-left: 7px solid var(--left-sidebar-color);
+}
+
+.discuss_content p{
+  margin: 1rem 0 2rem 0;
+}
+
+.forum_reply_form{
+    background: white;
+    border: 1px solid #80808059;
+    padding: 1rem;
+    bottom:2rem;
+    display: none;
+    transition: .5s;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    overflow: hidden;
+}
+.forum_reply_form input[type="text"]{
+    height: 18vh;
+    width: 100%;
+    border: 1px solid #80808059;
+    text-align: left;
+    transition: .5s;
+
+}
+
+.each_thread_reply{
+    margin: 1rem 0 1rem 0rem;
+    position: relative;
+    /* left: 2rem; */
+    width: calc(100% - 7rem);
+    margin-left: 5rem;
+
+}
+.each_thread {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user_img{
+    height: 53px;
+    width: 57px;
+    margin-right: 3px;
+    border-radius: 50%;
+    display: inline;
+}
+.user_title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.discuss_creator {
+    display: flex;
+    flex-direction: row;
+    gap:2rem;
+}
+.discuss_creator h3{
+    font-size: 1rem;
+    font-weight: 700;
+}
+.discuss_creator h2{
+    font-size: .9375rem;
+    font-weight: normal;
+}
+.discuss_content{
+    display: grid;
+}
+.forum_reply_btn{
+    float: right;
+}
+.file_attachment {
+    width: 350px;
+    max-width: 100%;
+    color: #444;
+    padding: 5px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #555;
+    margin: 1rem 0 0 0;
+  }
+
+  .file_attachment::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: var(--left-sidebar-color);
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+  }
+
+  .file_attachment::file-selector-button:hover {
+    background: #441492;
+  }
+  .attachment-link{
+      text-decoration: none;
+      color: var(--left-sidebar-color);
+      font-weight: bolder;
+  }
+  .reply-textarea{
+    width: 100%;
+    height: 20vh;
+    resize: vertical;
+    padding-top: 6px;
+  }
+
+ /* student submission page */
+
+.std_subm_container {
+    width: 100%;
+    display: flex;
+    margin-bottom: 2rem;
+    /* flex-direction: column; */
+
+}
+.std_subm_container2 {
+    width: 100%;
+    display: flex;
+    margin-bottom: 2rem;
+    flex-direction: column;
+
+}
+.std_subm_content{
+    margin-top: 5%;
+    margin-left: 5%;
+    width: 75vw;
+}
+
+.std_subm_outerline{
+    border-style: 1px solid black;
+    display: flex;
+}
+
+.std_subm_outerline h4{
+    width: 48vw;
+}
+
+.std_subm_outerline p{
+    float: right;
+}
+
+.std_subm_file{
+    display: flex;
+}
+
+.std_subm_name{
+    width: 60vw;
+    height: 8vh;
+}
+
+.std_subm_img{
+    width: 2vw;
+    height: 3vh;
+    cursor: pointer;
+    margin-right: 1vw;
+}
+
+.std_subm_box{
+    width: 75vw;
+    height: 30vh;
+    border: solid;
+    padding: 2%;
+    text-align: center;
+}
+
+.std_subm_inner_box{
+    position: relative;
+    border: 1px dashed #e0e0e0;
+    border-radius: 6px;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    text-align: center;
+
+}
+.std_subm_inner_box:focus {
+    border-color: #6a64f1;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+  }
+.std_subm_btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    cursor: pointer;
+    margin-right: 2%;
+}
+
+.std_subm_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+
+}
+
+  .sub_title{
+    width: 60%;
+    max-height: 5rem;
+    min-height: 3rem;
+  }
+  .std_sub_input_div label{
+    position: relative;
+    border: 1px dashed #bcbcbc;
+    border-radius: 6px;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    text-align: center;
+    width: 98%;
+  }
+.sub-browse{
+  font-weight: 500;
+  font-size: 16px;
+  color: #07074d;
+  display: inline-block;
+  padding: 8px 28px;
+  border: 1px solid  #e0e0e0;
+  border-radius: 4px;
+}
+.sub_file_input{
+    opacity:0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+}
+.std_sub_input_div{
+    margin-bottom: 20px;
+}
+.sub-drag{
+    display: block;
+    font-weight: 600;
+    color: #07074d;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+.sub-or{
+    font-weight: 500;
+    font-size: 16px;
+    color: #6b7280;
+    display: block;
+    margin-bottom: 8px;
+}
+/* .sub-file-list {
+
+    display: none;
+} */
+.sub-file-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 6px;
+    background: #e6e6e7;
+    padding: 16px 32px;
+    margin-bottom: 20px;
+    width: 70%;
+    max-height: 4rem;
+
+}
+.sub-file-name {
+    font-weight: 500;
+    font-size: 16px;
+    color: #07074d;
+    padding-right: 12px;
+
+}
+.sub-file-item button {
+
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+.teacher_sub_form  input,.teacher_sub_form textarea{
+    /* width: 100%; */
+    padding: 12px 24px;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+    background: white;
+    font-weight: 500;
+    font-size: 16px;
+    color: #6b7280;
+    outline: none;
+    resize: none;
+}
+/* .content_width input,textarea{
+     width: 100%;
+
+} */
+.teacher_sub_form label{
+    display: block;
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+.teacher_sub_form{
+    width: 85%;
+    padding: 2rem;
+    border-radius: 6px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 67, 115, 0.2);
+}
+.file_div {
+    display: flex;
+    gap: 1rem;
+    height: 2rem;
+}
+.assignmentIcon{
+    width: 15px;
+    height: 15px;
+    margin-top: 3px;
+}
+.closebtn {
+    border: none;
+    background-color: transparent;
+}
+.teacher_assignment_container{
+display: flex;
+flex-direction: row;
+gap: 8vw;
+}
+
+.subm_details{
+    width: 90%;
+}
+.subm_details h1 {
+
+    padding: 0;
+    margin: 0;
+    margin: 8vh 3vh 0 0;
+    font-weight: 300;
+    font-size: 40px;
+    color: #080808;
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.5em;
+    padding-bottom: 15px;
+    position: relative;
+    -webkit-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+  }
+
+  .subm_details h1 span {
+    display: block;
+    font-size: 1.5rem;
+    line-height: 1.3;
+    font-weight: bold;
+}
+
+
+
+  .subm_details h1:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 5px;
+    width: 55px;
+    background-color:var(--primary-color);
+  }
+  .subm_details h1:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 2px;
+    height: 1px;
+    width: 95%;
+    max-width: 255px;
+    background-color: var(--primary-color);
+  }
+  .subm_details h4{
+  margin-top: 3rem;
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    display: inline-block;
+  }
+  .files_display{
+      margin:0.5rem;
+  }
+  .check_files{
+      height: 100%;
+      padding: 0.5rem 0.5rem 0.5rem 0;
+
+  }
+
+  .check_files .reply-btn {
+    margin-top: 0;
+    height: 2rem;
+}
+.assign_body table{
+    width: 80%;
+    margin-top: 0rem;
+}
+
+
+/* student calendar */
+
+.student_calendar{
+    margin-right: 2%;
+    margin-top: 5%;
+}
+.assignment_card{
+    background-color: white;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+    width: 100%;
+    height: 8rem;
+    margin: 1rem 0 1rem 0;
+        border-radius: 5px;
+        cursor: pointer;
+}
+.assignment_card ul{
+    list-style-type: none;
+    text-align: left;
+    margin-left: 15%;
+}
+.assignment_card li{
+   line-height: 2rem;
+   color: var(--black-text);
+}
+.assignment_card_title {
+    height: 35%;
+    background-color: var(--left-sidebar-color);
+     text-align: left;
+    padding-top: 0.8rem;
+    border-radius: inherit;
+    color: white;
+    font-weight: 500;
+}
+.assignment_card_title p{
+    margin-left: 15%;
+}
+.assignment_today a{
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+/* student cards */
+
+.teacher_crs_content2{
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 3%;
+    padding: 2%;
+    border: solid;
+    display: grid;
+    margin-bottom: 4%;
+    gap: 1rem;
+    /* grid-template-rows: minmax(30rem,1fr); */
+    align-items: start;
+}
+.teacher-grid-item{
+    box-sizing: border-box;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    /* cursor: pointer; */
+    transition: 0.2s;
+    padding-bottom: 2%;
+    padding-top: 1%;
+}
+.teacher-card{
+    /* margin-bottom: 1%; */
+}
+.teacher-card-head{
+    display: flex;
+    padding: 1%;
+}
+.teacher-card-head-title{
+    margin-right: 2%;
+    padding-bottom: 0.2px;
+    font-size: larger;
+    color: rgb(104, 44, 198,95%);
+}
+.teacher_card_img2{
+    width: 1vw;
+    height: 2vh;
+    float: right;
+    /* margin-top: 1%; */
+    margin-right: 1%;
+    cursor: pointer;
+    /* margin-bottom: 1%; */
+    padding-bottom: 0.1px;
+}
+.teacher-card-content{
+    width: 100%;
+    /* object-fit: cover; */
+    padding: 2%;
+}
+.teacher-card-body{
+    font-size: medium;
+    line-height: 1.7;
+    color: rgb(104, 44, 198,25%);
+    margin-bottom: 2%;
+}
+.add-week{
+    /* float: right; */
+    letter-spacing: 0.1rem;
+    margin-right: 2%;
+    justify-content: center;
+    text-align: right;
+}
+.add-activity{
+    float: right;
+    letter-spacing: 0.1rem;
+}
+.teacher-crs-activities{
+    display: flex;
+    flex-wrap: wrap;
+    width: 35vw;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.teacher-crs-activity{
+    width: 10vw;
+    height: 10vh;
+    margin: 2%;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    background-color: white;
+    align-items: center;
+    width: 10vw;
+    height: 15vh;
+}
+.teacher-crs-activity:hover{
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.teacher-crs-activity a{
+    font-size: small;
+}
+.teacher-crs-img{
+    width: 3vw;
+    height: 5vh;
+}
+.tchr-popupmodal-content {
+    background-color: #efefef;
+    margin: 10% auto; /* 10% from the top and centered */
+    padding: 25px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 600px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.value-button {
+    display: flex;
+    border: 1px solid #ddd;
+    margin: 0px;
+    width: 3vw;
+    height: 5vh;
+    text-align: center;
+    vertical-align: middle;
+    justify-content: center;
+    padding: 11px 0;
+    background: #ffd2ff;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.value-button:hover {
+  cursor: pointer;
+}
+
+#decrease {
+  margin-right: -4px;
+  padding-bottom: 8%;
+  border-radius: 8px 0 0 8px;
+}
+
+#increase {
+  margin-left: -5px;
+  border-radius: 0 8px 8px 0;
+  padding-bottom: 8%;
+}
+
+#input-wrap {
+  margin: 0px;
+  padding: 0px;
+}
+
+#card-number {
+  text-align: center;
+  border: none;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  margin: 0px;
+  width: 2.8vw;
+    height: 6.5vh;
+}
+
+#card-number::-webkit-inner-spin-button,
+#card-number::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.teacher-crs-activities2{
+    width: 25vw;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.teacher-inc-head{
+    float: left;
+}
+.teacher-increment{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.tchr-popupmodal-content2 {
+    background-color: #efefef;
+    margin: 10% auto; /* 10% from the top and centered */
+    padding: 25px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 450px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.teacher-edit{
+    text-align: left;
+}
+.teacher-edit-title{
+    width: 22vw;
+    height: 5vh;
+    padding: 1%;
+}
+.teacher_card_img3{
+    width: 1vw;
+    height: 2vh;
+    float: left;
+    margin-right: 1%;
+    cursor: pointer;
+    padding-top: 1px;
+    margin-top: 5px;
+}
+.teacher-course-announcement{
+    width: 12vw;
+    height: 6vh;
+    background-color: rgb(104, 44, 198,85%);
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    /* color: white; */
+    border: 1px solid rgb(0 0 0 / 10%);
+}
+.teacher-course-announcement:hover{
+    background-color: rgb(104, 44, 198,100%);
+}
+.teacher-course-ann-img{
+    width: 1vw;
+    height: 2vh;
+    margin-top: 1px;
+    margin-left: 2px;
+}
+
+
+
+
+.teacher-class-table{
+    border-collapse: collapse;
+    width: 75vw;
+}
+.teacher-class-table th, .teacher-class-table td{
+    border: 1px solid black;
+    padding: 1%;
+    text-align: center;
+}
+.teacher-class-table th{
+    /* background-color: rgb(104, 44, 198,55%); */
+    background-color: var(--primary-color);
+    color: white;
+}
+/* .teacher-class-table tbody tr:nth-child(even){
+    background-color: rgb(104, 44, 198,12%);
+} */
+.teacher-class-table tbody tr:hover{
+    background-color: rgb(104, 44, 198,35%);
+}
+
+
+
+.teacher-ann-edit-btn{
+    width: 10vw;
+    height: 6vh;
+    background-color: rgba(62, 32, 109, 70%);
+    cursor: pointer;
+    color: white;
+}
+.teacher-ann-edit-btn:hover{
+    background-color: rgb(62, 32, 109,50%);
+}
+.tchr-popupmodal-content3 {
+    background-color: #efefef;
+    margin: 2% auto; /* 10% from the top and centered */
+    padding: 25px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 50vw;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+
+/* main forum */
+.mainforum_right{
+
+    position: relative;
+    bottom: 0;
+    float: right;
+}
+.mainforum_desc{
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 2rem 2rem 1rem 1rem;
+}
+.mainforum_sub{
+    margin: 2rem 0 0 0;
+    text-decoration: underline;
+    font-size: x-large;
+    font-weight: 500;
+}
+.mainf_des{
+    width : 75%;
+}
+.mainforum_discussion {
+    width: 90%;
+    margin-left: 5%;
+  }
+.main_discussion input[type="text"]{
+    height: 2.5rem;
+    width: 25rem;
+    margin-bottom: 2rem;
+    margin-top:1rem;
+  }
+.mainforumdes{
+    margin-bottom: 2rem;
+    margin-top:1rem;
+}
+.main_discussion {
+    background-color: var(--secondary-color);
+  /* width: 80%; */
+  width: 55rem;
+  /* height: 30rem; */
+  /* border: 1px solid gray; */
+  padding: 2rem;
+  margin-top: 2%;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
+  position: absolute;
+
+}
+
+
+
+/* student course announcement */
+.std-announcement-container{
+    display: flex;
+    margin-bottom: 2%;
+}
+.std-course-announcement{
+    width: 65vw;
+    margin-top: 5%;
+    margin-left: 4%;
+}
+.std-announcement-box{
+    border: solid;
+    border-color: rgba(62, 32, 109, 20%);
+    padding: 2%;
+    align-items: center;
+    width: 65vw;
+}
+.std-announcement-msg{
+    text-align: left;
+    border-style: solid;
+    border-color: rgba(62, 32, 109, 100%);
+    padding-top: 2%;
+    padding-left: 2%;
+    width: 62vw;
+}
+
+
+
+
+
+.teacher-announcement-edit{
+    margin-top: 0%;
+    float: left;
+}
+.teacher-ann-edit-file{
+    width: 20vw;
+    height: 5vh;
+
+    /* padding-left: 2%;
+    padding-right: 2%; */
+}
+.announcement-edit-close{
+    cursor: pointer;
+    background-color: rgb(255, 255, 255);
+    color: rgb(104, 44, 198,55%);
+    width: 5vw;
+}
+
+
+
+
+
+/* student enrollment */
+
+.std-enroll-btn{
+    width: 10vw;
+    height: 5vh;
+    background-color: var(--left-sidebar-color);
+    color: white;
+    cursor: pointer;
+    margin-right: 2%;
+    float: right;
+}
+.std-enroll-content{
+    margin-top: 5%;
+    margin-left: 10%;
+    width: 85vw;
+}
+.std-enroll-table{
+    border-collapse: collapse;
+    width: 85vw;
+}
+.std-enroll-table th, .std-enroll-table td{
+    border: 1px solid black;
+    padding: 1%;
+    text-align: center;
+}
+.std-enroll-table th{
+    background-color: var(--left-sidebar-color);
+    color: white;
+}
+.std-enroll-table tbody tr:nth-child(odd){
+    background-color: rgb(104, 44, 198,12%);
+}
+.recp-enroll-content{
+    margin-left: 2%;
+    margin-top: 5%;
+}
+
+
+
+
+/* teacher upload drag and drop */
+
+.teacher-upload-container {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px dashed #555;
+    color: #444;
+    cursor: pointer;
+    transition: background .2s ease-in-out, border .2s ease-in-out;
+}
+
+.teacher-upload-container:hover {
+    background: #eee;
+    border-color: #111;
+}
+
+.teacher-upload-container:hover .teacher-upload-title {
+    color: #222;
+}
+
+.teacher-upload-title {
+    color: #444;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    transition: color .2s ease-in-out;
+}
+.teacher-upload-file::file-selector-button{
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: rgb(104, 44, 198,100%);
+    color: white;
+    cursor: pointer;
+    padding: 1%;
+}
+.teacher-upload-file::file-selector-button:hover {
+    background: rgb(104, 44, 198,75%);
+}
+
+
+
+
+
+.enroll-display{
+    width: 30vw;
+    float: left;
+    display: grid;
+}
+.studentDetails{
+    width: 90%;
+    /* height: 50px; */
+    background: white;
+    /* border: 2px solid #808080bf; */
+    /* border: 1px solid #D2D2C8; */
+    padding: 1.5rem;
+    margin: 1rem 0 2rem 0rem;
+    /* background-color: #d5d8ed; */
+    border-radius: 9px;
+    /* box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.7); */
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+
+}
+.enq_full_body2{
+    line-height: 0.5;
+  text-align: center;
+  /* margin: 2rem 0 1rem 0rem; */
+    
+}
+.add_heading2 {
+    display: inline-block;
+    position: relative;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    /* text-shadow: 0.3px 1px 3px #171718;  */
+  }
+  .add_heading2:before,
+  .add_heading2:after {
+    content: "";
+    position: absolute;
+    height: 5px;
+    border-bottom: 1px solid rgb(20, 15, 15);
+    /* //border-top: 1px solid rgb(24, 18, 18); */
+    top: 0;
+    width: 400px;
+
+  }
+  .add_heading2:before {
+    right: 100%;
+    margin-right: 15px;
+  }
+  .add_heading2:after {
+    left: 100%;
+    margin-left: 15px;
+  }
+  .StudentDetailsContent{
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    align-self: center;
+    margin-top: 3rem;
+  }
+  .floatright{
+  
+      float: right;
+  }
+
+  .crs_add_btn{
+    width: 7rem;
+    height: 1.5rem;
+    background-color: rgb(62, 32, 109);
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    float: right;
+}
+
+.crs_add_btn:hover{
+    background-color: rgb(62, 32, 109,75%);
+
+}
+.reg_form{
+    width: 67.5%;
+}
+.reg_details_head{
+    font-weight: 200;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #9895955e;
+    color: var(--left-sidebar-color);
+
+
+}
+.sameclm{
+    margin-top: 2rem;
+}
+.reg_details_body{
+    font-weight: 100;
+    font-size: medium;
+}
+.fieldError{
+    color: #e42113;
+    font-weight: 500;
+    font-size: 14px;
+}
+.delete_file_btn{
+    cursor: pointer;
+}
+.onlyEdit{
+    margin-top: 2rem;
+}
+/* close button of removing instructors */
+.instructor-remove{
+    cursor: pointer;
 }

@@ -1,54 +1,135 @@
-<?php
-
-/**
- *manager class
- */
-class Manager extends Controller
-{
+<?php /**
+*manager class
+*/
+class Manager extends Controller{
 
     public function index()
-    {
+    {   
         //if not logged in as manager redirect to home 
-        if (!Auth::is_manager()) {
+        if(!Auth::is_manager()){
             redirect('home');
+           
         }
         $data['title'] = "manager";
-        $this->view('manager/home', $data);
+        $this->view('manager/home',$data);
     }
 
-    public function profile($id = null)
+    public function profile()
     {
         if (!Auth::is_manager()) {
             redirect('home');
         }
-        //check whether ID exists if not 
-        //it'll get the Id of the logged in user
-        $id = $id ?? Auth::getId();
-        $user = new User();
-        //for it to go to view we have to put it inside data
-        $data['row'] = $user->first(['id' => $id]);
-        $data['title'] = "Profile";
-        $this->view('manager/profile', $data);
+        $currentUserID = $id ?? Auth::getUID();
+
+        $staffData = new Staff();
+        $staff_data = $staffData->ProfileDetails($currentUserID);
+
+
+
+        if (!$staff_data) {
+            // handle error here
+            redirect('home');
+        }
+
+        $ProfileData['userData'] = $staff_data;
+        // $data['userData2'] = $user_data2;
+
+        $this->view('staff/user', $ProfileData);
     }
+
+    // public function profile($id = null)
+    // {    if(!Auth::is_manager()){
+    //         redirect('home');
+
+    //     }
+    //     $id = $id?? Auth::getId();
+    //     $user = new User();
+
+    //     $data['row'] = $user -> first(['id' => $id]);
+    //     $data['title'] = "Profile";
+    //     $this->view('manager/profile',$data);
+    // }
+
+
 
     public function staff($id = null)
     {
         if (!Auth::is_manager()) {
             redirect('home');
         }
-        //check whether ID exists if not 
+        //check whether ID exists if not
         //it'll get the Id of the logged in user
         // $id = $id ?? Auth::getId();
         // $user = new User();
         //for it to go to view we have to put it inside data
         // $data['row'] = $user->first(['id' => $id]);
         // $data['title'] = "Profile";
-        
-        $getStaffDetails = new Staff();
-        $staffDetailSet = $getStaffDetails->getStaffDetails();
 
-        $this->view('manager/view_staff',['staffMenbers'=> $staffDetailSet,]);
+        $currentStaffDetails = new Staff();
+        $staffDetailSet = $currentStaffDetails->crrEmpData();
+
+        $formerEmployeeData = new Staff();
+        $formerStaffDataSet = $formerEmployeeData->formerEmpData();
+
+
+        $this->view('manager/view_staff', ['staffMembers' => $staffDetailSet,"dumpedStaffSet"=>$formerStaffDataSet]);
     }
+
+    public function removeStaff()
+    {
+        if (!Auth::is_manager()) {
+            redirect('home');
+        }
+
+        if (isset($_POST)) {
+            $empRemoveData = json_decode(file_get_contents("php://input"), true);
+            $emp_uid = $empRemoveData['staffId'];
+
+            $current_date = date("Y-m-d");
+
+            $removeStaff = new Staff();
+            $removeStaff->updateStaffData($emp_uid, $current_date);
+
+            exit;
+        }
+        http_response_code(400);
+        echo json_encode([
+            'success' => false,
+            'message' => 'Invalid request.'
+        ]);
+        exit;
+
+        
+    }
+
+    public function rejoin()
+    {
+        if (!Auth::is_manager()) {
+            redirect('home');
+        }
+
+        if (isset($_POST)) {
+            $empRemoveData = json_decode(file_get_contents("php://input"), true);
+            $emp_uid = $empRemoveData['staffId'];
+
+            $current_date = date("Y-m-d");
+
+            $removeStaff = new Staff();
+            $removeStaff->rejoinStaff($emp_uid, $current_date);
+
+            exit;
+        }
+        http_response_code(400);
+        echo json_encode([
+            'success' => false,
+            'message' => 'Invalid request.'
+        ]);
+        exit;
+
+
+    }
+
+
 
     public function addStaff()
     {
@@ -56,23 +137,100 @@ class Manager extends Controller
             redirect('home');
         }
 
-        // show($_POST);
         if (isset($_POST)) {
             $data = json_decode(file_get_contents("php://input"), true);
 
-            // $password_raw=   $data['password'];
-            // $data['password'] = password_hash($password_raw, PASSWORD_DEFAULT);
 
+            if($data['role'] == 'Manager'){
+                $prefix = 'M';
+            }
+            elseif($data['role'] == 'Teacher'){
+                $prefix = 'T';
+            }
+            elseif($data['role'] == 'Instructor'){
+                $prefix = 'I';
+            }
+            elseif($data['role'] == 'Receptionist'){
+                $prefix = 'R';
+            }
+            $data['username'] = $data['first_name'].$prefix;
+            $data['emp_status'] = '1';
+            $data['uid'] = $prefix.uniqid();
+            
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+            $addUser = new User();
+            $addUser->Adduser($data);
+            
+            
             $addStaff = new Staff();
             $addStaff->Addstaff($data);
+            
+
+            
+
+            $json_response = json_encode(
+                $data
+            );
+            
+            
+            if ($json_response === false) {
+                http_response_code(500);
+                echo json_encode([
+                    'success' => true,
+                    'message' => 'Error generating JSON response.',
+                    'data'=> $data
+                ]);
+                exit;
+            }
+
+            echo $json_response;
+            exit;
         }
-        echo json_encode($addStaff);
+
+        http_response_code(400);
+        echo json_encode([
+            'success' => false,
+            'message' => 'Invalid request.'
+        ]);
         exit;
     }
 
+public function testing()
+{
+    if (!Auth::is_manager()) {
+        redirect('home');
+    }
+
+        $data = array(
+        'emp_id' => '1234561',
+        'NIC_no'=> '990331472v',
+        'enrollment_date'=> '2020-12-12'  ,
+        'contractEndingDate'=> '2024-12-12',
+        'first_name'=> 'Kamal',
+        'last_name'=> 'Perera',
+        'mobile_no'=>   '0771789456',
+        'Addressline1'=> 'No 12,',
+        'display_picture'=> '1',
+        'gender'=> '1' ,
+        'emp_status'=> '1',
+        'uid'=>'3',);
+
+        $data['emp_status'] = '1';
+
+
+        $addStaff = new Staff();
+        $addStaff->insert($data);
+
+
+        exit;
+
+}
+
+
 
     // public function recrewStaff()
-    // {   
+    // {
     //     if (!Auth::is_manager()) {
     //         redirect('home');
     //     }
@@ -148,66 +306,79 @@ class Manager extends Controller
         if (!Auth::logged_in()) {
             message('please login');
             redirect('login/manager');
-        }
+		}
+  
 
-
-        if (!Auth::is_manager()) {
+        if(!Auth::is_manager()){
             redirect('home');
+           
         }
         $user_id = Auth::getUid();
         $role = Auth::getrole();
         $enquiry = new Enquiry();
         $data = [];
-        $data['action'] = $action;
-        $data['id'] = $eid;
+		$data['action'] = $action;
+		$data['id'] = $eid;
         $orderby = 'eid';
         $data['enquiry_title'] = 'New Enquiry';
-        $data['some'] = " ";
+        $data['some']=" ";
         $data['reply'] = "set";
 
-        if ($action == "delete") {
-            $result = $enquiry->delete(['eid' => $eid]);
+        if($action == "delete"){
+            $result = $enquiry->delete(['eid'=>$eid]);
             header("Location:http://localhost/Interlearn/public/manager/enquiry");
         }
-        if ($action == "view") {
+        if($action == "view"){
             $reply = new Reply();
             $enq = $enquiry->first([
-                'eid' => $eid
-            ], 'eid');
-
+                'eid'=>$eid
+            ],'eid');
+            
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                if (isset($_GET['rid'])) {
-                    $reParent = $_GET['rid'];
-                }
-                $_POST['eid'] = $eid;
-                $_POST['senderId'] = $user_id;
-                $_POST['receiverId'] = $enq->user_Id;
-                $_POST['reply_user'] = $role;
+                // if(isset($_GET['rid'])){
+                //     $reParent = $_GET['rid'];
+                // }
+                $_POST['eid']=$eid;
+                $_POST['senderId']=$user_id;
+                $_POST['receiverId']= $enq->user_Id;
+                $_POST['reply_user']=$role;
 
 
-                $result = $reply->insert($_POST);
+                $result= $reply->insert($_POST);
 
-                if ($result) {
-                    if ($enq->status == 'pending') {
-                        $updateStatus = $enquiry->update(['eid' => $eid], ['status' => 'In progress']);
+                if($result){
+                    if($enq->status == 'pending'){
+                       $updateStatus= $enquiry->update(['eid'=>$eid],['status'=>'In progress']);
                     }
-                    $replied = $reply->update(['repId' => $reParent], ['status' => 'replied']);
-                } else {
-                    echo "fail";
+                  // $replied = $reply -> update(['repId'=>$reParent],['status'=>'replied']);
                 }
+                else{
+                    echo"fail";
+                }
+
             }
-            $data['reply'] = $reply->where(['eid' => $eid], 'eid');
+            $data['reply'] = $reply -> where(['eid'=>$eid],'eid');
             $enq = $enquiry->first([
-                'eid' => $eid
-            ], 'eid');
-            $data['enq'] = $enq;
-
-            $this->view('manager/enquiry_view', $data);
+                'eid'=>$eid
+            ],'eid');
+            $data['enq']=$enq;
+         
+            $this->view('manager/enquiry_view',$data);
             exit;
+           
         }
-
-        $data['rows']  = $enquiry->where(['status' => "Escalated"], $orderby);
-
-        $this->view('manager/enquiry', $data);
+        if(isset($_GET['id'])&&isset($_GET['status'])){
+          
+            $id=$_GET['id'];
+            $value = $_GET['status'];
+           
+            $status = $enquiry -> update(['eid'=>$id],['status'=>$value]);
+           
+        }
+     
+        $data['rows']  = $enquiry->where(['status'=>"Escalated"], $orderby);
+            
+        $this->view('manager/enquiry',$data);
     }
+    
 }

@@ -23,7 +23,7 @@ class BankPayment extends Model
 
     public function validateBankPayment()
     {
-        $query = "SELECT * FROM bank_payment";
+        $query = "SELECT * FROM bank_payment where status IN( '1','2')";
         $data = $this->query($query);
 
         if ($data == NULL) {
@@ -32,4 +32,33 @@ class BankPayment extends Model
 
         return $data;
     }
+
+    public function removefromBankPayment ($bankPaymentID){
+
+        $query = "UPDATE bank_payment SET status = '0' WHERE BankPaymentID = '$bankPaymentID'";
+        $this->query($query);
+
+
+
+    }
+
+    public function declined($bankPaymentID){
+        
+        $query = "UPDATE bank_payment SET status = '2' WHERE BankPaymentID = '$bankPaymentID'";
+        $this->query($query);
+    }
+    
+
+    public function getEachBPdata($BP_ID)
+{
+    $query = "SELECT * FROM bank_payment where  BankPaymentID  = '$BP_ID'";
+    $data = $this->query($query);
+
+    if ($data == NULL) {
+        $data = array();
+    }
+
+    return $data;
+}
+
 }

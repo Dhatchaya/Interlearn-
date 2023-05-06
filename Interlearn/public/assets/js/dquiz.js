@@ -42,20 +42,19 @@ const quiz = [];
 // make an AJAX request to retrieve the quiz data
 const xhr = new XMLHttpRequest();
 
-xhr.open('GET', 'http://localhost/Interlearn/public/Student/quiz', true);
+xhr.open('GET', 'http://localhost/Interlearn/public/Student/quiz/view', true);
 // xhr.setRequestHeader('Content-Type', 'application/json');
 xhr.onload = () => {
     if (xhr.status === 200) {
         const data = JSON.parse(xhr.responseText);
         
-        caches.log(data);
-        data.forEach(question => {
-          
+        console.log(data);
+        data.forEach(question => {  
             quiz.push(question);
         });
     } else {
         console.error('Error fetching quiz data');
-    }
+    } 
 };
 
 xhr.send();
