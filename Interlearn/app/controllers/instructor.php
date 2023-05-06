@@ -25,35 +25,7 @@ class Instructor extends Controller
         
         $this->view('instructor/home',$data);
     }
-    public function profile($action=null)
-    { 
-        if(!Auth::is_instructor()){
-            redirect('home');
-        }
-        $ProfileData['title'] = "Profile";
-        if($action="view"){
-            $currentUserID = Auth::getUID();
 
-            $staffData = new Staff();
-            $staff_data = $staffData->ProfileDetails($currentUserID);
-
-
-
-            if (!$staff_data) {
-                redirect('home');
-            }
-
-            $ProfileData['userData'] = $staff_data;
-            $this->view('staff/user', $ProfileData);
-        }
-        if($action="changepw"){
-
-            exit;
-        }
-
-
-
-    }
 
     // public function profile($id = null)
     // {

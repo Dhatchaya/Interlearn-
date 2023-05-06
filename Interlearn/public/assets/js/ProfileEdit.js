@@ -23,6 +23,7 @@ const cancelBtn = document.querySelector('#cancel-btn');
 const oldPW = document.getElementById('old-pw');
 const newPW = document.getElementById('new-pw');
 const confirmPW = document.getElementById('confirm-pw');
+
 // const error1 = document.querySelector('#errorSpace1');
 // const error2 = document.querySelector('#errorSpace2');
 // const error3 = document.querySelector('#errorSpace3');
@@ -145,50 +146,40 @@ addressBtn.addEventListener('click', () => {
 
 
 
-     if(oldPW.value === "" && newPW.value === "" && confirmPW.value === ""){
 
-         return 0;
-     }
+         if (oldPW.value !== "" && newPW.value === "" && confirmPW.value === "") {
+             console.log("here4");
+             newPW.placeholder = 'Please enter a new password';
+             confirmPW.placeholder = 'Please confirm your new password';
+             $isAllFilled = false;
+         } else if (oldPW.value === "" && newPW.value !== "" && confirmPW.value === "") {
+             oldPW.placeholder = 'Please enter your old password';
+             confirmPW.placeholder = 'Please confirm your new password';
+             $isAllFilled = false;
+         } else if (oldPW.value === "" && newPW.value === "" && confirmPW.value !== "") {
+             oldPW.placeholder = 'Please enter your old password';
+             newPW.placeholder = 'Please enter a new password';
+             $isAllFilled = false;
+         } else if (oldPW.value !== "" && newPW.value !== "" && confirmPW.value === "") {
+             confirmPW.placeholder = 'Please confirm your new password';
+             $isAllFilled = false;
+         } else if (oldPW.value !== "" && newPW.value === "" && confirmPW.value !== "") {
+             console.log("here1");
+             newPW.placeholder = 'Please enter a new password';
+             $isAllFilled = false;
+         } else if (oldPW.value === "" && newPW.value !== "" && confirmPW.value !== "") {
+             console.log("here");
+             oldPW.placeholder = 'Please enter your old password';
+             $isAllFilled = false;
+         } else if (oldPW.value !== "" && newPW.value !== "" && confirmPW.value !== "") {
+             if (newPW.value !== confirmPW.value) {
+                 error9.innerHTML = "Passwords do not match";
+                 error8.innerHTML = "Passwords do not match";
+                 $isAllFilled = false;
+             }
+         }
 
-     else if(oldPW.value !== "" && newPW.value === "" && confirmPW.value === ""){
-         console.log("here4");
-         newPW.placeholder= 'Please enter a new password';
-         confirmPW.placeholder= 'Please confirm your new password';
-         $isAllFilled = false;
-     }
-     else if(oldPW.value === "" && newPW.value !== "" && confirmPW.value === ""){
-         oldPW.placeholder= 'Please enter your old password';
-         confirmPW.placeholder= 'Please confirm your new password';
-         $isAllFilled = false;
-     }
-     else if(oldPW.value === "" && newPW.value === "" && confirmPW.value !== ""){
-         oldPW.placeholder= 'Please enter your old password';
-         newPW.placeholder= 'Please enter a new password';
-         $isAllFilled = false;
-     }
-     else if(oldPW.value !== "" && newPW.value !== "" && confirmPW.value === ""){
-         confirmPW.placeholder= 'Please confirm your new password';
-         $isAllFilled = false;
-     }
-     else if(oldPW.value !== "" && newPW.value === "" && confirmPW.value !== ""){
-         console.log("here1");
-         newPW.placeholder= 'Please enter a new password';
-         $isAllFilled = false;
-     }
-     else if(oldPW.value === "" && newPW.value !== "" && confirmPW.value !== ""){
-         console.log("here");
-         oldPW.placeholder= 'Please enter your old password';
-         $isAllFilled = false;
-     }
-
-     else if(oldPW.value !== "" && newPW.value !== "" && confirmPW.value !== ""){
-       if(newPW.value !== confirmPW.value){
-           error9.innerHTML = "Passwords do not match";
-           error8.innerHTML = "Passwords do not match";
-           $isAllFilled = false;
-       }
-     }
-     else {
+         console.log($isAllFilled);
          if ($isAllFilled) {
              console.log(JSON.stringify(data));
              const filteredData = Object.keys(data).reduce((acc, key) => {
@@ -215,7 +206,7 @@ addressBtn.addEventListener('click', () => {
                  console.log('No data to save');
                  return;
              }
-             fetch('/Interlearn/public/receptionist/editUser', {
+             fetch('/Interlearn/public/staffs/myprofile/editUser', {
                  method: 'POST',
 
                  body: formData
@@ -244,14 +235,17 @@ addressBtn.addEventListener('click', () => {
                          mobileNoBtn.style.display = 'flex';
                          mobileNo.setAttribute('readonly', 'readonly');
                          mobileNo.value = '';
-                     } else {
+                     } else if(data.status === 'error'){
+                         error10.innerHTML = data.message;
+                     }
+                     else{
                          console.error('Update failed');
                      }
                  })
                  .catch(error => console.log(error));
 
          }
-     }
+
 
 });
 
