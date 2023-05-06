@@ -8,18 +8,23 @@
         <?php $this -> view('includes/sidebar_teach'); ?>
     </div>
 
+    <div class="question_right">
         <?php if(!empty($rows)):?>
-
-        <?php foreach($rows as $row):?>
+        <!-- <div class="pro_view_container"> -->
+            <?php foreach($rows as $row):?>
             <div class="progress">
                 <h2><?=esc($row->exam_name)?></h2>
                 <a href="<?=ROOT?>/instructor/course/progress/<?=esc($course_id)?>/1/overview?overall=<?=esc($row->exam_id)?>"><button>view</button></a>
             </div>
 
-        <?php endforeach;?>
+            <?php endforeach;?>
+        <!-- </div> -->
+
         <?php else:?>
         <h3>No records found!</h3>
         <?php endif;?>
+    </div>
+
     <!-- </div> -->
 </div>
 

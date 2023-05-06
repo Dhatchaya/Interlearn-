@@ -722,6 +722,11 @@ class Student extends Controller
         // $question = new Question();
         $question = new ZQuestion();
 
+        if($action == 'marks') {
+
+            echo($_POST['totalMarks']);die;
+            exit();
+        }
 
         if($action == "view"){
 

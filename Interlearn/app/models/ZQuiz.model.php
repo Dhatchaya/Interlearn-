@@ -72,4 +72,49 @@ class ZQuiz extends Model
         return false; 
            
     }
+
+    public function ViewQuiz($data= null){
+
+        $keys = array_keys($data);
+
+        $query = "SELECT * FROM myquiz where ";
+
+        foreach($keys as $key){
+            $query .= $key. " =:".$key." && ";
+        }
+        $query = trim($query,"&& ");
+        $res = $this -> query($query,$data);
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;
+
+    }
+
+    public function UpdateQuiz($qid, $updated_duration, $updated_description, $updated_qname, $total, $enable, $disable, $format){
+        $query = "UPDATE ".$this->table." SET duration =:updateDuration , quiz_description =:updateDescription ,
+        quiz_name =:updateName , total_points =:updatePoints , enable_time =:updateEnable , 
+        disable_time =:updateDisable , format_time =:updateFormat WHERE quiz_id =:ID";
+
+        $data['updateDescription'] = $updated_description;
+        $data['updateDuration'] = $updated_duration;
+        $data['updateName'] = $updated_qname;
+        $data['updatePoints'] = $total;
+        $data['updateEnable'] = $enable;
+        $data['updateDisable'] = $disable;
+        $data['updateFormat'] = $format;
+        $data['ID'] = $qid;
+        // $data['cId'] = $cid;
+        $res = $this -> update_table($query,$data);
+        // echo $res;die;
+        // show($query);die;
+
+        if($res){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
