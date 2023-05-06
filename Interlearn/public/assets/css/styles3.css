@@ -27,17 +27,25 @@ ul li {
     color: #555;
     margin-left: 25px;
 }
+.pro_view_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* flex-wrap: wrap; */
+    background-color: #084cdf;
+}
 
 .progress {
     width: 200px;
     height: 250px;
-    /* background-color: #0d45a5; */
+    background-color: #0d45a5;
     /* border: 5px solid #0d45a5; */
     border-radius: 10px;
     margin-top: 50px;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     display: flex;
-    flex-direction: column;
+    /* flex-wrap: wrap; */
+    flex-direction: row;
     justify-content: space-around;
     align-items: center;
 }
@@ -52,4 +60,6 @@ ul li {
     cursor: pointer;
     /* margin-top: 5rem; */
 }
+
+
 
