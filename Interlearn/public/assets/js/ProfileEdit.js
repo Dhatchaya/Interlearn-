@@ -60,23 +60,10 @@ addressBtn.addEventListener('click', () => {
 
 
 
-// const formData = new FormData();
-
-// dpBtn.addEventListener('change', handleFileSelect, false); 
-
-// function handleFileSelect(event) {
-//     const file = uploadDP.files[0];
-//     const formData = new FormData();
-//     formData.append('uploadDP', file);
-//     // add other form data
-//     console.log('key value pare added to the from data');
-// }
-
-
 
  saveBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log('save');
+    // console.log('save');
     const data = {
         first_name: fName.value.trim() !== '' ? fName.value : null,
         last_name: lName.value.trim() !== '' ? lName.value : null, 
@@ -85,7 +72,7 @@ addressBtn.addEventListener('click', () => {
         mobile_no: mobileNo.value.trim() !== '' ? mobileNo.value : null, 
         emp_status: empState.value.trim() !== '' ? empState.value : null
     };
-    console.log(JSON.stringify(data));
+    // console.log(JSON.stringify(data));
     const filteredData = Object.keys(data).reduce((acc, key) => {
         if (data[key] !== '') {
             acc[key] = data[key];
@@ -96,18 +83,24 @@ addressBtn.addEventListener('click', () => {
     
 
     const formData = new FormData();
-    if (uploadDP.files.length > 0) {
-        formData.append('uploadDP', uploadDP.files[0]);
-        console.log('uploading level 2');
+    formData.append('uploadDP', uploadDP.files.length > 0 ? uploadDP.files[0] : null);
+
+    for (let key in filteredData) {
+        formData.append(key, filteredData[key]);
+    }
+    
+    if (Object.keys(filteredData).length === 0 && uploadDP.files.length === 0) {
+        // console.log('No data to save');
+        return;
     }
 
     for (let key in filteredData) {
         formData.append(key, filteredData[key]);
     }
 
-    console.log(JSON.stringify(filteredData));
+    // console.log(JSON.stringify(filteredData));
     if (Object.keys(filteredData).length === 0) {
-        console.log('No data to save');
+        // console.log('No data to save');
         return;
     }
     fetch('/Interlearn/public/receptionist/editUser', {
@@ -117,29 +110,18 @@ addressBtn.addEventListener('click', () => {
         },
         body: JSON.stringify(filteredData),
     })
-    // .then(response => response.json())
-    // .then(response => {
-    //     if (response.status === 'success') {
-    //         console.log('Update successful');
-
-
-    //     } else {
-    //         console.error('Update failed');
-    //     }
-    // })
-    // .catch(error => console.log(error));
 
     .then(response => response.json())
 .then(data => {
-    console.log('Response data:', data);
+    // console.log('Response data:', data);
     if (data.status === 'success') {
-        console.log('Update successful');
+        // console.log('Update successful');
         
         dpBtn.style.display = 'flex';
         uploadDP.style.display = 'none';
         fNameBtn.style.display = 'flex';
         fName.setAttribute('readonly','readonly');
-        console.log(fName.value);
+        // console.log(fName.value);
         fName.value = '';
         lNameBtn.style.display = 'flex';
         lName.setAttribute('readonly','readonly');

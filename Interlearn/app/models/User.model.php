@@ -59,6 +59,27 @@ class User extends Model
         return $this->error;
     }
 
+    public function checkPW($data)
+    {
+        $uid = $data['uid'];
+        $oldPassword = $data['oldPW'];
+        $query = "SELECT password FROM users where uid = '$uid'";
+        $result = $this->query($query);
+
+
+        if ($data == NULL) {
+            $data = array();
+        }
+        else if(password_verify($oldPassword, $result[0]->password)){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+
+    
 
     public function validate($data)
     {   

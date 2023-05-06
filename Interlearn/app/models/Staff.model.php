@@ -151,6 +151,20 @@ class Staff extends Model
     
     
 
+    public function updatePassword($data)
+    {
+        $emp_id = $data['uid'];
+        $password = $data['newPW'];
+
+        $query = "UPDATE users SET 
+                    password = '$password'
+                    WHERE uid = '$emp_id'";
+        $this->query($query);
+    
+        return array('status' => 'success');
+    }
+
+
 
     // public function editProfile($data)
     // {

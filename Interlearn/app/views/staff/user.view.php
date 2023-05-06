@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="change-pic">
-                        <input name="display_picture " class="user-detail empImage" type="file" id="empImage" accept="jpg,png,jpeg">
+                        <input name="display_picture " class="user-detail empImage" type="file" id="empImage" accept="jpg,png,jpeg" >
                         <button id="change-dp" class="dp-edit edit-btn" type="button">🙎 Change Profile Picture</button>
                     </div>
                 </div>
@@ -103,18 +103,19 @@
                 <div class="profile-data">
                     <label class="user-data-label" for="display-picture">CURRENT PASSWORD</label>
 
-                    <input id="old-pw" class="user-detail" placeholder="">
+                    <input id="old-pw" class="user-detail" placeholder="**********" readonly>
+                    <button id="change-pw" class="edit-btn" type="button" >✒️ EDIT</button>
                 </div>
 
                 <div class="profile-data">
-                    <label class="user-data-label" for="display-picture">NEW PASSWORD</label>
+                    <label class="user-data-label" for="display-picture" >NEW PASSWORD</label>
 
-                    <input id="new-pw" class="user-detail" placeholder="">
+                    <input id="new-pw" class="user-detail" placeholder="" readonly>
                 </div>
                 <div class="profile-data">
-                    <label class="user-data-label" for="display-picture">CONFIRM PASSWORD</label>
+                    <label class="user-data-label" for="display-picture" >CONFIRM PASSWORD</label>
 
-                    <input id="confirm-pw" class="user-detail" placeholder="">
+                    <input id="confirm-pw" class="user-detail" placeholder="" readonly>
                 </div>
 
 
