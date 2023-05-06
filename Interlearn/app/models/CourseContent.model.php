@@ -58,7 +58,7 @@ class CourseContent extends Model
         // show($query);die;
 
         if($res){
-            return true;
+            return $res;
         }else{
             return false;
         }

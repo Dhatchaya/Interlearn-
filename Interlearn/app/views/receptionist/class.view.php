@@ -31,11 +31,11 @@ $sub_id = $_GET['id'];
                     <?php foreach ($mediums as $medium) : ?>
 
                         <?php if ($medium->language_medium == 'Sinhala') : ?>
-                            <li><a href="<?= ROOT ?>/receptionist/course/view/1/?id=<?= $medium->subject_id ?>" id="Sinhala" class="recp_cl_nav" ><?= $medium->language_medium ?></a></li>
+                            <li><a href="<?= ROOT ?>/receptionist/course/view/1/?id=<?= $medium->subject_id ?>" id="Sinhala" class="recp_cl_nav"><?= $medium->language_medium ?></a></li>
                         <?php elseif ($medium->language_medium == 'English') : ?>
-                            <li><a href="<?= ROOT ?>/receptionist/course/view/1/?id=<?= $medium->subject_id ?>" id="English" class="recp_cl_nav" ><?= $medium->language_medium ?></a></li>
+                            <li><a href="<?= ROOT ?>/receptionist/course/view/1/?id=<?= $medium->subject_id ?>" id="English" class="recp_cl_nav"><?= $medium->language_medium ?></a></li>
                         <?php else : ?>
-                            <li><a href="<?= ROOT ?>/receptionist/course/view/1/?id=<?= $medium->subject_id ?>" id="Tamil" class="recp_cl_nav" ><?= $medium->language_medium ?></a></li>
+                            <li><a href="<?= ROOT ?>/receptionist/course/view/1/?id=<?= $medium->subject_id ?>" id="Tamil" class="recp_cl_nav"><?= $medium->language_medium ?></a></li>
                         <?php endif; ?>
 
                     <?php endforeach; ?>
@@ -47,23 +47,21 @@ $sub_id = $_GET['id'];
             <!-- selecting the selected medium -->
             <?php $currentMedium = []; ?>
             <?php
-            foreach ($mediums as $medium)
-            {
-                if ($medium->subject_id == $sub_id)
-                {
+            foreach ($mediums as $medium) {
+                if ($medium->subject_id == $sub_id) {
                     $currentMedium = $medium->language_medium;
                 }
             }
-           ?>
+            ?>
 
             <!-- adding the class active to the selected id -->
-           <script>
-            const medium = '<?php echo $currentMedium;?>';
-            // console
-            console.log(medium);
-            var element = document.getElementById(medium);
-            element.classList.add("active");
-           </script>
+            <script>
+                const medium = '<?php echo $currentMedium; ?>';
+                // console
+                console.log(medium);
+                var element = document.getElementById(medium);
+                element.classList.add("active");
+            </script>
 
 
 
@@ -125,9 +123,11 @@ $sub_id = $_GET['id'];
                             </td>
                             <td>
                                 <?php if (!empty($mediums)) : ?>
-                                    <img src="<?= ROOT ?>/assets/images/edit.png" class="teacher_crs_img2" id="button30" onclick="openModal3(<?= esc($teacher->course_id) ?>)">
-
                                     <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_crs_img2" id="button35" onclick="openModal4(<?= esc($teacher->course_id) ?>)">
+                                    <a href="<?=ROOT?>/receptionist/course/view/<?= esc($teacher->course_id) ?>/student_view">
+                                    <img src="<?= ROOT ?>/assets/images/graduated.png" alt="" class="teacher_crs_img2">
+                                    </a>
+                                    <img src="<?= ROOT ?>/assets/images/edit.png" class="teacher_crs_img2" id="button30" onclick="openModal3(<?= esc($teacher->course_id) ?>)">
 
                                 <?php endif; ?>
                             </td>
@@ -158,14 +158,35 @@ $sub_id = $_GET['id'];
                         <h4>Instructor ID: </h4>
 
                         <p style="font-size: small;" id="noInstructors"></p>
-                        <input type="text" value="" id="instructorName" class="edit-class-disable" disabled>
+                        <!-- <input type="text" value="" id="instructorName" class="edit-class-disable" disabled>
 
                         <input type="hidden" value="<?= $teach_instructor->emp_id ?>" id="instructorID" name="instructorID">
                         <input type="hidden" value="<?= $teach_instructor->course_id ?>" id="courseID" name="courseID">
                         <button type="submit" id="submit-remove-instructor" class="remove_instructor" onsubmit="removeInstructor(<?= $teach_instructor->emp_id ?>, <?= $teach_instructor->course_id ?>)">
                             <span class="instructor-remove">&times;</span>
                         </button> <br>
-                    </div><br>
+                    </div><br> -->
+
+                    <?php if(!empty($teach_instructors)):?>
+                            <?php foreach ($teach_instructors as $teach_inst):?>
+                        <?php foreach ($teach_inst as $teach_in):?>
+
+                            <div>
+
+                            <input type="text" value="<?= $teach_in->instructorName ?>" id="instructorName" class="edit-class-disable" disabled>
+
+                            <input type="hidden" value="<?= $teach_in->emp_id ?>" id="instructorID" name="instructorID">
+                            <input type="hidden" value="<?= $teach_in->course_id ?>" id="courseID" name="courseID">
+                            <button type="button" id="submit-remove-instructor" class="remove_instructor" onclick="removeInstructor(this,'<?= $teach_in->emp_id ?>','<?= $teach_in->course_id ?>')">
+                                <span class="instructor-remove">&times;</span>
+                            </button>
+                            </div>
+                                <?php endforeach;?>
+                            <?php endforeach;?>
+                        <?php endif;?>
+                            <br>
+                    </div>
+                    <br><br>
                     <div class="class-edit-box">
                         <h4>Day: </h4>
                         <select name="day" id="daysEdit" class="recp_ann_clz">
@@ -187,8 +208,9 @@ $sub_id = $_GET['id'];
                             <input type="time" name="timeto" value="" id="timetoEdit" class="recp_det_time">
                         </div>
                     </div>
-                    <br><br>
+                    <!-- <br><br> -->
                     <button name="edit-teacher" type="submit" id="edit_class_submit" class="recp_det_btn">Save</button>
+                    <br><br>
                 </form>
             </div>
         </div>
@@ -206,7 +228,7 @@ $sub_id = $_GET['id'];
                         <input type="hidden" value="" name="delete-course" id="delete-course">
                         <br><br>
                         <!-- <a href="<?= ROOT ?>/receptionist/course/view/1/?id=<?= esc($teacher->subject_id) ?>"> -->
-                            <button type="submit" class="teacher_upl_btn" name="submit-delete-course" id="delete-course-btn">Yes</button>
+                        <button type="submit" class="teacher_upl_btn" name="submit-delete-course" id="delete-course-btn">Yes</button>
                         <!-- </a> -->
                         <button type="reset" class="teacher_upl_btn" id="cancel-btn" onclick="closeModal4()">Cancel</button>
                     </div>
@@ -278,6 +300,7 @@ $sub_id = $_GET['id'];
                         <?php endif; ?>
                     </div><br>
                     <button name="add-teacher" type="submit" class="recp_det_btn">Save</button>
+                    <br><br><br>
                 </form>
             </div>
         </div>
@@ -306,7 +329,7 @@ $sub_id = $_GET['id'];
                     </div>
                     <br><br>
                     <button name="add-instructor" type="submit" class="recp_det_btn">Save</button>
-
+                    <br><br><br>
                 </form>
             </div>
         </div>
