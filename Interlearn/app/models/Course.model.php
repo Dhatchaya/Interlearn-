@@ -248,7 +248,7 @@ class Course extends Model
             WHERE 
                 staff.role = 'Teacher'
         ) AS teacher ON teacher.emp_id = course.teacher_ID ";
-        $query .= " WHERE staff.uid = $id AND staff.role = 'Instructor'";
+        $query .= " WHERE staff.uid = '$id' AND staff.role = 'Instructor'";
         // $query .= " group by subject, grade";
         // $query .= " order by $orderby  $order";
         //var_dump($_SESSION);exit;

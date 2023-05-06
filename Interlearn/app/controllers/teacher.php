@@ -117,6 +117,7 @@ class Teacher extends Controller
         $course_content = new CourseContent();
         $course_url = new CourseUrl();
         $announcement = new Announcement();
+        $staff = new Staff();
         $data = [];
         $data['course_id'] = $id;
         $data['week_no'] = $week;
@@ -261,6 +262,9 @@ class Teacher extends Controller
                                     $_POST['file_type'] = $fileType;
                                     $_POST['size'] = $fileSize;
                                     $_POST['course_id'] = $id;
+                                    $empId = $staff -> getEmpId($user_id);
+                                    $emp_id = $empId[0] -> emp_id;
+                                    $_POST['emp_id'] = $emp_id;
                                     //show($_POST);die;
                                     $_POST['type'] = "material";
                                     $_POST['cid'] = $cid;
@@ -309,6 +313,9 @@ class Teacher extends Controller
                     $viewURL = $_POST['URL'];
 
                     $_POST['course_id'] = $id;
+                    $empId = $staff -> getEmpId($user_id);
+                    $emp_id = $empId[0] -> emp_id;
+                    $_POST['emp_id'] = $emp_id;
                     //show($_POST);die;
                     $_POST['type'] = "URL";
                     $_POST['cid'] = $cid;
