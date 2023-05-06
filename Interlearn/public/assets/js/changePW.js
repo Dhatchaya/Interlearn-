@@ -27,6 +27,9 @@ function checkFields(){
     
 }
 
+
+const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/;
+
 saveBtn.addEventListener('click', () => {
 
     if(oldPW.value === "" && newPW.value === "" && confirmPW.value === ""){
@@ -54,7 +57,10 @@ saveBtn.addEventListener('click', () => {
         oldPW.placeholder= 'Please enter your old password';
     }
     else if(oldPW.value == newPW.value ){
-        oldPW.placeholder= 'Please enter your old password';
+        newPW.value = '';
+        newPW.placeholder= 'Old password and new password cannot be the same';
+        confirmPW.value = '';
+        confirmPW.placeholder= 'Please confirm your new password';
     }
     else if(newPW.value !== confirmPW.value){
         confirmPW.value = '';
@@ -80,6 +86,10 @@ saveBtn.addEventListener('click', () => {
             console.log(data);
             if(data.status === 'success'){
                 console.log('old pw correct');
+                oldPW.value = '';
+                oldPW.placeholder= 'Password changed successfully';
+                newPW.value = '';
+                confirmPW.value = '';
 
             }
             else if(data.status === 'error'){

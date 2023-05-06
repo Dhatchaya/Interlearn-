@@ -1063,21 +1063,27 @@ class Teacher extends Controller
 
 
 
-    public function profile($action=null,$id = null)
+    public function profile()
     {
-        if(!Auth::is_teacher()){
+        if (!Auth::is_teacher()) {
             redirect('home');
-           exit;
         }
-        // if($action=='add'){
+        $currentUserID = $id ?? Auth::getUID();
 
-        // }
-        $id = $id ?? Auth::getEMP_ID();
-        $staff = new Staff();
-        $data['row'] = $staff->first(['emp_id'=>$id],'emp_id');
-        $data['title'] = "Profile";
+        $staffData = new Staff();
+        $staff_data = $staffData->ProfileDetails($currentUserID);
+
         
-        $this->view('teacher/profile',$data);
+
+        if (!$staff_data) {
+            // handle error here
+            redirect('home');
+        }
+
+        $ProfileData['userData'] = $staff_data;
+        // $data['userData2'] = $user_data2;
+
+        $this->view('staff/user', $ProfileData);
     }
 
     // -----------------------Not used ------------------------------------//

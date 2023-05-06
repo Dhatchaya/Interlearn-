@@ -789,7 +789,7 @@ class Receptionist extends Controller
         $ProfileData['userData'] = $staff_data;
         // $data['userData2'] = $user_data2;
 
-        $this->view('receptionist/user', $ProfileData);
+        $this->view('staff/user', $ProfileData);
     }
 
     // public function user()
