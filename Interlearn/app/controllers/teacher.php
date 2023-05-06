@@ -137,8 +137,7 @@ class Teacher extends Controller
             //$data['sums']= $subject -> teacherCourse([],$user_id);
             $data['courses'] = $subject -> teacherCourseDetails([],$id);
             //show($data['courses']);die;
-            $weeks = $course->getWeekCount($id);
-            $data['noOfWeeks'] = $weeks->No_Of_Weeks;
+            $data['noOfWeeks'] = $course->getWeekCount($id)->No_Of_Weeks;
             $data['courseWeeks'] = $course_week->getWeeks($id);
 
             // show($course_week->getWeeks($id));

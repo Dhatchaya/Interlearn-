@@ -121,7 +121,7 @@ class CourseWeek extends Model
         $res = $this -> query($query,$data);
 
         if($res){
-            return $res;
+            return true;
         }else{
             return false;
         }

@@ -18,7 +18,6 @@
                 Announcements
                 <img src="<?= ROOT ?>/assets/images/next.png" alt="" class="teacher-course-ann-img">
             </a>
-            <?php if(!empty($courseWeeks)):?>
             <?php
             $i = 1;
             foreach ($courseWeeks as $value) {
@@ -29,7 +28,7 @@
                         <div class="teacher-card-title">
                             <div class="teacher-card-head">
                                 <p class="teacher-card-head-title"><?= $value->week_name ?></p>
-                                <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button30" onclick="openModal3(<?= $value->week_no ?>,<?= $value->course_id ?>)">
+                                <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button30" onclick="openModal3(<?= $i ?>)">
                             </div>
                         </div>
                         <div class="teacher-card-body">
@@ -44,7 +43,7 @@
                                                         <?= $material->upload_name ?>
                                                     </a>
                                                     <?php if($material -> role === "Instructor"):?>
-                                                    <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>',<?= $material->course_id ?>,<?= $material->week_no ?>)">
+                                                    <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>')">
                                                     <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?= $material->cid ?>')">
                                                     <?php endif; ?>
                                                 </p>
@@ -55,7 +54,7 @@
                                                         <?= $material->upload_name ?>
                                                     </a>
                                                     <?php if($material -> role === "Instructor"):?>
-                                                    <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>',<?= $material->course_id ?>,<?= $material->week_no ?>)">
+                                                    <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>')">
                                                     <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?= $material->cid ?>')">
                                                     <?php endif; ?>
                                                 </p>
@@ -66,7 +65,7 @@
                                                         <?= $material->upload_name ?>
                                                     </a>
                                                     <?php if($material -> role === "Instructor"):?>
-                                                    <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>',<?= $material->course_id ?>,<?= $material->week_no ?>)">
+                                                    <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>')">
                                                     <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?= $material->cid ?>')">
                                                     <?php endif; ?>
                                                 </p>
@@ -77,7 +76,7 @@
                                                         <?= $material->upload_name ?>
                                                     </a>
                                                     <?php if($material -> role === "Instructor"):?>
-                                                    <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>',<?= $material->course_id ?>,<?= $material->week_no ?>)">
+                                                    <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>')">
                                                     <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?= $material->cid ?>')">
                                                     <?php endif; ?>
                                                 </p>
@@ -89,7 +88,7 @@
                                                     <?= $material->upload_name ?>
                                                 </a>
                                                 <?php if($material -> role === "Instructor"):?>
-                                                <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>',<?= $material->course_id ?>,<?= $material->week_no ?>)">
+                                                <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>')">
                                                 <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?= $material->cid ?>')">
                                                 <?php endif; ?>
                                             </p>
@@ -103,7 +102,6 @@
                 </div>
             <?php $i++;
             } ?>
-            <?php endif; ?>
             <p class="add-week" id="button29" onclick="openModal2()"> <a href="#">+ Add a week</a></p>
 
 
@@ -173,8 +171,8 @@
                     <div class="teacher-crs-activities2">
                         <label for="title" class="teacher-edit">Title: </label>
                         <input type="hidden" value="" name="weeknumber" id="weeknumber">
-                        <input type="text" class="teacher-edit-title" name="title" id="title"><br><br>
-                        <button type="button" class="teacher_upl_btn" name="submit-title" id="add-btn">Save</button>
+                        <input type="text" class="teacher-edit-title" name="title"><br><br>
+                        <button type="submit" class="teacher_upl_btn" name="submit-title" id="add-btn">Save</button>
                         <button type="reset" class="teacher_upl_btn" id="cancel-btn">Cancel</button>
                     </div>
                 </form>
@@ -208,8 +206,8 @@
                     <div class="teacher-crs-activities2">
                         <label for="upload-title" class="teacher-edit">New upload name: </label>
                         <input type="hidden" value="" name="cid" id="cid">
-                        <input type="text" class="teacher-edit-title" name="upload-title" id="upload-title"><br><br>
-                        <button type="submit" class="teacher_upl_btn" name="submit-upload" id="edit-name-btn">Save</button>
+                        <input type="text" class="teacher-edit-title" name="upload-title"><br><br>
+                        <button type="submit" class="teacher_upl_btn" name="submit-upload" id="add-btn">Save</button>
                         <button type="reset" class="teacher_upl_btn" id="cancel-btn">Cancel</button>
                     </div>
                 </form>
@@ -234,5 +232,5 @@
         </div>
     </div>
 </div>
-<script defer src="<?=ROOT?>/assets/js/course_ins.js?v=<?php echo time(); ?>"></script>
+<script defer src="<?=ROOT?>/assets/js/course.js?v=<?php echo time(); ?>"></script>
 <?php $this->view("includes/footer");?>
