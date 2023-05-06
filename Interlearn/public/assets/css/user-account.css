@@ -11,7 +11,7 @@
 .sub-div{
     position: relative;
     display: grid;
-    grid-template-rows: 3fr 1fr 1fr  1fr ;
+    grid-template-rows: 2fr 1fr 1fr  1fr ;
     grid-gap: 15px;
     border-radius: 10px;
     width: 100%;
@@ -157,23 +157,27 @@
   } */
 
 .circle-container {
-    width: 18vw;
-    height: 18vw;
-    border-radius: 10px;
-    overflow: hidden;
-    margin: 10px;
-  }
+  width: 14rem;
+  height: 11rem;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px;
+}
+  
 
 .display-picture{
-    position: relative;
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    height: 150px;
-    background-color: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top: 10px;
+  position: relative;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .change-pic{
