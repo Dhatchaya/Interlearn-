@@ -5,8 +5,8 @@
 <html lang="en">
 
 <head>
-    <title>Payments</title>
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user-account.css">
+    <title><?=$title?></title>
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user-account.css?v=<?php echo time(); ?>">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
@@ -18,8 +18,9 @@
     <?php $this->view("includes/nav"); ?>
 
 
-    <?php $this->view("includes/sidebar_rece"); ?>
-    <form action="#" method="post">
+
+    <div class="all-middle-content">
+    <form action="#" method="post"   encType='multipart/form-data'>
 
 
 
@@ -30,17 +31,24 @@
 
                     <label class="user-data-label" for="display-picture">PROFILE PICTURE</label>
                     <div class="circle-container">
-                        <img id="dp" class="display-picture" src="<?= ROOT ?>/assets/images/<?= $userData[0]->display_picture ?>" alt="No profile picture" />
+
+                        <img id="dp" class="display-picture" src="<?= ROOT ?>/uploads/images/<?=esc($userData[0]->display_picture)?>" alt="No profile picture" />
 
                         <!-- <?= ROOT ?>/assets/images/expert-teacher.png -->
                     </div>
 
                     <div class="change-pic">
-                        <input name="display_picture " class="user-detail empImage" type="file" id="empImage" accept="jpg,png,jpeg" >
-                        <button id="change-dp" class="dp-edit edit-btn" type="button">🙎 Change Profile Picture</button>
+
+                        <input  style="width: 248px;" name="display_picture " class="user-detail empImage file_attachment" type="file" id="empImage" accept="jpg,png,jpeg">
+                        <button id="change-dp" class="dp-edit edit-btn" type="button">✒️ Change Profile Picture</button>
                     </div>
                 </div>
+                <div class="profile-data">
+                    <label class="user-data-label" for="email">EMAIL ADRESS</label>
 
+                    <input id="email" class="user-detail" placeholder="<?= $userData[0]->email ?? '' ?>" readonly>
+
+                </div>
                 <div class="profile-data">
                     <label class="user-data-label" for="f-name" place>FIRST NAME</label>
                     <input id="fname" class="user-detail" placeholder="<?= $userData[0]->first_name ?>" readonly="readonly">
@@ -52,15 +60,11 @@
                     <button id="change-lname" class="edit-btn" type="button">✒️ EDIT</button>
                 </div>
 
-                <div class="profile-data">
-                    <label class="user-data-label" for="email">EMAIL ADRESS</label>
 
-                    <input id="email" class="user-detail" placeholder="<?= $userData[0]->email ?? '' ?>" readonly>
-                    <button id="change-email" class="edit-btn" type="button">✒️ EDIT</button>
-                </div>
 
                 <div class="profile-data">
-                    <label class="user-data-label" for="phone-no">PHONE NO</label>
+
+                    <label class="user-data-label" for="phone-no">PHONE NO</label><p class="leftmargin" id="errorSpace11"> </p>
 
                     <input id="mobile-no" class="user-detail" placeholder="0<?= $userData[0]->mobile_no ?? '' ?>" readonly maxlength="10">
                     <button id="change-mobile-no" class="edit-btn" type="button">✒️ EDIT</button>
@@ -101,21 +105,23 @@
                 </div>
 
                 <div class="profile-data">
+
                     <label class="user-data-label" for="display-picture">CURRENT PASSWORD</label>
-
-                    <input id="old-pw" class="user-detail" placeholder="**********" readonly>
-                    <button id="change-pw" class="edit-btn" type="button" >✒️ EDIT</button>
+                    <p class="leftmargin" id="errorSpace10"> </p>
+                    <input id="old-pw" class="user-detail" placeholder="">
                 </div>
 
                 <div class="profile-data">
-                    <label class="user-data-label" for="display-picture" >NEW PASSWORD</label>
 
-                    <input id="new-pw" class="user-detail" placeholder="" readonly>
+                    <label class="user-data-label" for="display-picture">NEW PASSWORD</label>
+                    <p class="leftmargin" id="errorSpace9"> </p>
+                    <input id="new-pw" class="user-detail" placeholder="">
                 </div>
                 <div class="profile-data">
-                    <label class="user-data-label" for="display-picture" >CONFIRM PASSWORD</label>
 
-                    <input id="confirm-pw" class="user-detail" placeholder="" readonly>
+                    <label class="user-data-label" for="display-picture">CONFIRM PASSWORD</label>
+                    <p class="leftmargin" id="errorSpace8"> </p>
+                    <input id="confirm-pw" class="user-detail" placeholder="">
                 </div>
 
 
@@ -130,7 +136,7 @@
 
     </form>
 
-
+</div>
 
 
     <div class="footer-support"></div>
@@ -185,7 +191,7 @@
 
 
     <script defer src="<?= ROOT ?>/assets/js/ProfileEdit.js?v=<?php echo time(); ?>"></script>
-    <script defer src="<?= ROOT ?>/assets/js/changePW.js?v=<?php echo time(); ?>"></script>
+<!--    <script defer src="--><?php //= ROOT ?><!--/assets/js/changePW.js?v=--><?php //echo time(); ?><!--"></script>-->
 
 
 </body>

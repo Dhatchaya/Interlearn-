@@ -5,8 +5,8 @@
     grid-gap: 15px;
     width: 80vw;
     height: auto;
-    left: 17vw;
-    top: 5vh;
+    /*left: 17vw;*/
+    /*top: 5vh;*/
 }
 .sub-div{
     position: relative;
@@ -18,7 +18,7 @@
     height: 800px;
     padding: 15px;
     background: transparent;
-    border: 1px solid #3E206D;
+    /*border: 1px solid #3E206D;*/
     border-radius: 20px;
 }
 .sub-div2{
@@ -31,7 +31,7 @@
     height: 800px;
     padding: 15px;
     background: transparent;
-    border: 1px solid #3E206D;
+    /*border: 1px solid #3E206D;*/
     border-radius: 20px;
 }
 
@@ -41,9 +41,10 @@
 
 .profile-data{
     padding: 10px;
-    background-color: rgba(0, 0, 0, 0.082);
+    background-color: #f7f6fc;
     border-radius: 10px;
     height: 96.8px;
+    box-shadow: 0px -1px 3px 0px rgb(90 17 123 / 18%), 1px 3px 5px 0 rgb(122 31 137 / 20%);
 }
 .user-data-label{
     position: relative;
@@ -57,16 +58,17 @@
 }
 .user-detail{
     margin: 10px;
-    font-size: 22px;
+    width: 248px;
     width: 100%;
     border: none;
     background: transparent;
+    font-size: 20px;
 
 }
 .user-detail::placeholder {
     display: flex;
     color: black;
-    font-size: 22px; 
+    font-size: 18px;
     font-weight: bold;
     z-index: 100;
     opacity: 1;
@@ -89,16 +91,23 @@
     text-decoration: none;
     cursor: pointer;
     border-radius: 4px;
+    position: relative;
+    /* margin-bottom: 12rem; */
+    bottom: 1rem;
   }
   
   .dp-edit{
     float: none;
-    margin: auto;
-    margin-top: 10px;
+    /*margin: auto;*/
+      margin-top: 48px;
   }
 
   .edit-btn:active {
     color: #682CC6;
+  }
+  .leftmargin{
+      color: red;
+      margin-left: 10px;
   }
   
 
@@ -183,7 +192,12 @@
     color: #3E206D;
     border: solid #3E206D;
   }
-
+.all-middle-content{
+    display: flex;
+    /* background-color: white; */
+    justify-content: space-evenly;
+    margin: 4rem 1rem 2rem 1rem;
+}
   /* .edit-btn:focus {
     outline: none;
   } */
