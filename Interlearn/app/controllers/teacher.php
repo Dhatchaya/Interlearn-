@@ -137,7 +137,8 @@ class Teacher extends Controller
             //$data['sums']= $subject -> teacherCourse([],$user_id);
             $data['courses'] = $subject -> teacherCourseDetails([],$id);
             //show($data['courses']);die;
-            $data['noOfWeeks'] = $course->getWeekCount($id)->No_Of_Weeks;
+            $weeks = $course->getWeekCount($id);
+            $data['noOfWeeks'] = $weeks->No_Of_Weeks;
             $data['courseWeeks'] = $course_week->getWeeks($id);
 
             // show($course_week->getWeeks($id));
@@ -1094,22 +1095,10 @@ class Teacher extends Controller
             }
 
             if($option == 'quiz_view') {
-                $qid = $_GET['id'];
-                // echo $qid;
-
-                $data['rows'] = $quiz->ViewQuiz(['quiz_id' => $qid]);
-                // show($result);die;
-
-                if(isset($_POST['edit_quiz'])){
-                    // echo $_POST['duration'];die;
-                    // echo $_POST['id'];die;
-                    $qid = $_GET['id'];
-                    // echo $qid;die;
-                    // echo $_POST['quiz_name'];die;
-                    $result = $quiz->UpdateQuiz($qid, $_POST['duration'], $_POST['quiz_description'], $_POST['quiz_name'], $_POST['total_points'], $_POST['enable_time'], $_POST['disable_time'], $_POST['format_time']);
-                }
-
-                $this->view('teacher/Zquiz_edit', $data);
+                // $id = $_GET['id'];
+                echo "hello quiz";
+                // $result = $question->delete(['question_number'=>$qnum]);
+                // header("Location:http://localhost/Interlearn/public/teacher/course/quiz/".$id."/".$week);
                 exit();
             }
 
@@ -1121,8 +1110,6 @@ class Teacher extends Controller
             }
 
             $data['rows'] = $question->ChoiceInnerjoinQuestion(['course_id'=>$id]);
-
-
         // show($data['rows']);die;
             $this->view('teacher/Zquiz', $data);
         }

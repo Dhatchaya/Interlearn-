@@ -6607,3 +6607,30 @@ left: 5rem;
     /* display: none; */
     color: var(--error);
 }
+
+.actions-section-recep{
+    width: 12vw;
+    height: 10vh;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20%;
+}
+.actions-img-recep{
+    width: 6vw;
+    height: 4vh;
+    display: flex;
+}
+.view-student-butn{
+    width: 8vw;
+    height: 6vh;
+    text-align: center;
+}
+.view-student-btn{
+    width: 8vw;
+    height: 5vh;
+    background-color: rgb(104, 44, 198,100%);
+}
+.view-student-btn:hover{
+    transform: scale(1.02);
+}

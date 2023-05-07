@@ -66,30 +66,3 @@ td button {
     padding-left: 5px;
     padding-right: 5px;
 }
-
-.bg_modal {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0,0, 0, 0.3);
-    width: auto;
-    height: auto;
-    z-index: 999;
-    display: none;
-}
-
-.box_modal {
-    position: absolute;
-    top: 30%;
-    bottom: 0;
-    left: 30%;
-    right: 0;
-    width: 50%;
-    height: 500px;
-    background: white;
-    border-radius: 5px;
-    padding: 3vw;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
-}
