@@ -1,8 +1,10 @@
-<?php $this->view("includes/header");?>
-<?php $this->view("includes/nav");?>
-
+<?php $this->view("includes/header"); ?>
+<div class="main-body-div">
+    <?php $this->view("includes/sidebar_recep"); ?>
+    <div class="top-to-bottom-content">
+        <?php $this->view("includes/nav"); ?>
+        <div class="all-middle-content">
 <div class="recp_ann_container">
-<?php $this->view("includes/sidebar_recep");?>
     <div class="recp_ann_content">
         <a href="<?=ROOT?>/receptionist/announcement/add">
             <button class="recp_cl_btn">+Add Announcements</button><br><br>
@@ -92,5 +94,6 @@
         </div>
     </div>
 </div>
+</div></div></div>
 <script defer src="<?=ROOT?>/assets/js/recp_announcement.js?v=<?php echo time(); ?>"></script>
 <?php $this->view("includes/footer");?>

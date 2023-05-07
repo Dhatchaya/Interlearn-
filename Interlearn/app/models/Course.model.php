@@ -40,17 +40,21 @@ class Course extends Model
             {
                 $this -> error['subject'] = "Please provide a name for the subject";
             }
-            if(empty($data['grade']))
+            if(empty($data['grades']))
             {
-                $this -> error['grade'] = "Please select a grade";
+                $this -> error['grades'] = "Please select a grade";
             }
-            if(empty($data['language_medium']))
+            if(empty($data['mediums']))
             {
-                $this -> error['language_medium'] = "Please select a language_medium";
+                $this -> error['mediums'] = "Please select a language_medium";
             }
             if(empty($data['day']))
             {
                 $this -> error['day'] = "Please select a day";
+            }
+            if(empty($data['description']))
+            {
+                $this -> error['description'] = "Please insert a description";
             }
             if(empty($data['teacher_id']))
             {

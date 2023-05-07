@@ -82,7 +82,9 @@ class Receptionist extends Controller
 
                 }
                 else{
+                    
                     $data['errors'] =  $course->error;
+                    // show($data['errors']);die;
 
                     // $data['error']['invalid'] = "There is an unknown error occured!";
                 }

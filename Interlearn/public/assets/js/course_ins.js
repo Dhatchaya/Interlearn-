@@ -114,16 +114,16 @@ function openModal3(number,course) {
     });
 console.log("outside");
 
-    var update = document.getElementById('add-btn');
+    var update = document.getElementById('edit-week-btn');
     console.log(update);
-    console.log('http://localhost/Interlearn/public/instructor/editWeekName/'+course);
+    // console.log('http://localhost/Interlearn/public/instructor/editWeekName/');
     update.addEventListener('click', function(){
         console.log('hi');
-        var week_id = document.getElementById('weeknumber').val();
-        var name = document.getElementById('title').val();
+        var week_id = document.getElementById('weeknumber').value;
+        var name = document.getElementById('title').value;
         console.log('hi');
         $.ajax({
-            url: 'http://localhost/Interlearn/public/instructor/editWeekName/'+course,
+            url: `http://localhost/Interlearn/public/instructor/course/view/`+course+`/`+number+`/editWeekName`,
             type: 'POST',
             data: {'week_no':week_id, 'week_name': name},
             success:function(response){
