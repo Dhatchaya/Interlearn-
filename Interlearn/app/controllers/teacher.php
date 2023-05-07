@@ -118,6 +118,7 @@ class Teacher extends Controller
         $course_url = new CourseUrl();
         $announcement = new Announcement();
         $staff = new Staff();
+        $notification = new Notification();
         $data = [];
         $data['course_id'] = $id;
         $data['week_no'] = $week;
@@ -407,16 +408,20 @@ class Teacher extends Controller
                                 echo "You cannot upload this file!";
                             }
                         }
+
+                        $result = $announcement->insert($_POST);
+                    $result2 = $ann_course->insert($_POST);
+                    $_POST['category'] = "Announcement";
+                    $result3 = $notification->insert($_POST);
+                    echo "Announcement successfully published!";
+                    header("Location:http://localhost/Interlearn/public/teacher/course/announcement/" . $id . "/0");
                     }
                     else {
                         // show("hello");
                         $data['errors'] = $announcement -> error;
                     }
 
-                    $result = $announcement->insert($_POST);
-                    $result2 = $ann_course->insert($_POST);
-                    echo "Announcement successfully published!";
-                    header("Location:http://localhost/Interlearn/public/teacher/course/announcement/" . $id . "/0");
+
                 }
                 $this->view('teacher/addAnnouncement',$data);
             }
