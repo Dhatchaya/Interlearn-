@@ -157,7 +157,7 @@
                                             </div>
                                             <div class="teacher-crs-activity">
                                                 <a href="<?= ROOT ?>/teacher/course/assignment/<?= $course->course_id ?>" name="assignment">
-                                                    <img src="<?= ROOT ?>/assets/images/submission.png" alt="" class="teacher-crs-img"><br>Add submission
+                                                    <img src="<?= ROOT ?>/assets/images/submission.png" alt="" class="teacher-crs-img"><br>Add assignment
                                                 </a>
                                             </div>
 

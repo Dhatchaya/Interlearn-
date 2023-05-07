@@ -10,10 +10,11 @@
 
 
 //filter grades with all 3 mediums
-$('#subject').on('input',function(){
-  var subject = $(this).val();
+var sub = document.getElementById('subject');
+sub.addEventListener('input',function(event){
+  var subject = document.getElementById(this).value;
   if (subject != '') {  // check if the subject field is not empty
-    $('#alert-div1').hide();  // hide the alert div
+    document.getElementById('alert-div1').hide();  // hide the alert div
   }
   $.ajax({
     url:'http://localhost/Interlearn/public/receptionist/course/findGrade',
@@ -59,17 +60,18 @@ $('#subject').on('input',function(){
 
 
 // Filter available mediums
-$('#grades').on('change', function() {
-  var subject = $('#subject').val();
+var grd = document.getElementById('grades');
+grd.addEventListener('change', function() {
+  var subject = document.getElementById('subject').value;
   if(subject == ''){
-    $('#alert-div1').html('Please enter a subject before selecting a grade.');  // set the message in the alert div
-    $('#alert-div1').show();  // show the alert div
-    $('#grades').val('');  // clear the selected grade
+    document.getElementById('alert-div1').innerHTML = 'Please enter a subject before selecting a grade.';  // set the message in the alert div
+    document.getElementById('alert-div1').show();  // show the alert div
+    document.getElementById('grades').value = '';  // clear the selected grade
   }
   else{
-    var grade = $(this).val();
+    var grade = document.getElementById(this).value;
     if (grade != '') {  // check if the grade field is not empty
-      $('#alert-div2').hide();  // hide the alert div
+      document.getElementById('alert-div2').hide();  // hide the alert div
     }
     $.ajax({
         url: 'http://localhost/Interlearn/public/receptionist/course/findMedium',
@@ -116,73 +118,73 @@ $('#grades').on('change', function() {
 
 });
 
-
-$('#mediums').on('change',function(){
-  var subject = $('#subject').val();
-  var grade = $('#grades').val();
-  var medium = $(this).val();
+var med = document.getElementById('mediums');
+med.addEventListener('change',function(){
+  var subject = document.getElementById('subject').value;
+  var grade = document.getElementById('grades').value;
+  var medium = document.getElementById(this).value;
   console.log("1");
   if (subject == '') {  // check if the subject field is empty
     console.log("2");
-    // $('#alert-div1').show();
-    $('#alert-div1').html('Please enter a subject before selecting a grade.');  // set the message in the alert div
-    $('#alert-div1').show();  // show the alert div
-    $('#grades').val('');  // clear the selected grade
+    // document.getElementById('alert-div1').show();
+    document.getElementById('alert-div1').innerHtml = 'Please enter a subject before selecting a grade.';  // set the message in the alert div
+    document.getElementById('alert-div1').show();  // show the alert div
+    document.getElementById('grades').value = '';  // clear the selected grade
   }
   console.log(grade == null);
 
   if(grade == null || grade == 'grade'){
     console.log('hi');
-    $('#alert-div2').html('Please select a grade before selecting a language medium.');  // set the message in the alert div
-    $('#alert-div2').show();  // show the alert div
-    $('#mediums').val('');  // clear the selected grade
+    document.getElementById('alert-div2').innerHtml = 'Please select a grade before selecting a language medium.';  // set the message in the alert div
+    document.getElementById('alert-div2').show();  // show the alert div
+    document.getElementById('mediums').value = '';  // clear the selected grade
   }
   else{
-    $('#alert-div1').hide(); // hide the subject alert div
-    $('#alert-div2').hide(); // hide the grade alert div
+    document.getElementById('alert-div1').hide(); // hide the subject alert div
+    document.getElementById('alert-div2').hide(); // hide the grade alert div
   }
 });
 
 
-
-$('#description').on('input',function(){
-  var subject = $('#subject').val();
-  var grade = $('#grades').val();
-  var medium = $('#mediums').val();
-  var description = $(this).val();
+var desc = document.getElementById('description');
+desc.addEventListener('input',function(){
+  var subject = document.getElementById('subject').value;
+  var grade = document.getElementById('grades').value;
+  var medium = document.getElementById('mediums').value;
+  var description = document.getElementById(this).value;
   if (subject == '') {  // check if the subject field is empty
-    $('#alert-div1').html('Please enter a subject before selecting a grade.');  // set the message in the alert div
-    $('#alert-div1').show();  // show the alert div
-    $('#grades').val('');  // clear the selected grade
+    document.getElementById('alert-div1').innerHtml = 'Please enter a subject before selecting a grade.';  // set the message in the alert div
+    document.getElementById('alert-div1').show();  // show the alert div
+    document.getElementById('grades').value = '';  // clear the selected grade
   }
   if(grade == null || grade == 'grade'){
     console.log('hi');
-    $('#alert-div2').html('Please select a grade before selecting a language medium.');  // set the message in the alert div
-    $('#alert-div2').show();  // show the alert div
-    $('#mediums').val('');  // clear the selected grade
+    document.getElementById('alert-div2').innerHtml = 'Please select a grade before selecting a language medium.';  // set the message in the alert div
+    document.getElementById('alert-div2').show();  // show the alert div
+    document.getElementById('mediums').value = '';  // clear the selected grade
   }
   if(medium == '' || medium == '--Select language medium--'){
     console.log('hi');
-    $('#alert-div3').html('Please select a language medium before adding a description.');  // set the message in the alert div
-    $('#alert-div3').show();  // show the alert div
-    $('#description').val('');  // clear the selected grade
+    document.getElementById('alert-div3').innerHtml = 'Please select a language medium before adding a description.';  // set the message in the alert div
+    document.getElementById('alert-div3').show();  // show the alert div
+    document.getElementById('description').value = '';  // clear the selected grade
   }
   else{
-    $('#alert-div1').hide(); // hide the subject alert div
-    $('#alert-div2').hide(); // hide the grade alert div
-    $('#alert-div3').hide(); // hide the grade alert div
+    document.getElementById('alert-div1').hide(); // hide the subject alert div
+    document.getElementById('alert-div2').hide(); // hide the grade alert div
+    document.getElementById('alert-div3').hide(); // hide the grade alert div
   }
 });
 
 
 // Filter available teachers
-$('#day').on('change', function() {
-  var subject = $('#subject').val();
-  var grade = $('#grades').val();
-  var teacher_id = $('#teacher_id').val();
-  var day = $('#day').val();
-  var timeFrom = $('#timefrom').val();
-  var timeTo = $('#timeto').val();
+document.getElementById('day').on('change', function() {
+  var subject = document.getElementById('subject').value;
+  var grade = document.getElementById('grades').value;
+  var teacher_id = document.getElementById('teacher_id').value;
+  var day = document.getElementById('day').value;
+  var timeFrom = document.getElementById('timefrom').value;
+  var timeTo = document.getElementById('timeto').value;
   // console.log('hi');
   $.ajax({
       url: 'http://localhost/Interlearn/public/receptionist/course/available',
@@ -191,11 +193,12 @@ $('#day').on('change', function() {
       success: function(response) {
          response = JSON.parse(response);
         console.log(response);
-        var error = $('#addCourseerror');
-        $('#timefrom').on('change', function(){
+        var error = document.getElementById('addCourseerror');
+        var time5 = document.getElementById('timefrom');
+        time5.addEventListener('change', function(){
           // console.log("here");
-          var timeFrom = $('#timefrom').val();
-          var timeTo = $('#timeto').val();
+          var timeFrom = document.getElementById('timefrom').value;
+          var timeTo = document.getElementById('timeto').value;
 
 
           for(i in response){
@@ -234,10 +237,11 @@ $('#day').on('change', function() {
           }
         });
 
-        $('#timeto').on('change', function(){
+        var time6 = document.getElementById('timeto');
+        time6.addEventListener('change', function(){
           console.log("here");
-          var timeFrom = $('#timefrom').val();
-          var timeTo = $('#timeto').val();
+          var timeFrom = document.getElementById('timefrom').value;
+          var timeTo = document.getElementById('timeto').value;
 
           for(i in response){
             console.log(response[i]);
@@ -269,7 +273,7 @@ $('#day').on('change', function() {
       });
 
 function teacherHasClassOnTime(teacher, timeFrom, timeTo) {
-  var day = $('#day').val();
+  var day = document.getElementById('day').value;
   var teacherHasClass = false;
   // Check if the teacher has a class scheduled in the selected time range
   $.ajax({

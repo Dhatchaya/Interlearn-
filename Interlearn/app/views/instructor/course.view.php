@@ -87,6 +87,16 @@
                                                                 <?php endif; ?>
                                                             </p>
                                                         <?php endif; ?>
+                                                    <?php elseif ($material->type == "forum") : ?>
+                                                        <p><a href=<?= $material->view_URL ?> class="teacher-content">
+                                                                <img src="<?= ROOT ?>/assets/images/assignment.png" alt="" class="teacher_card_img3">
+                                                                <?= $material->upload_name ?>
+                                                            </a>
+                                                            <!-- <a href=<?= $material->delete_URL ?>> -->
+                                                            <!-- <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>')"> -->
+                                                            <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?= $material->cid ?>')">
+                                                            <!-- </a></p> -->
+                                                        </p>
                                                     <?php elseif ($material->type == "URL") : ?>
                                                         <p>
                                                             <a href=<?= $material->view_URL ?> class="teacher-content">
@@ -123,7 +133,14 @@
                                     <?php if (!empty($courses)) : ?>
                                         <?php foreach ($courses as $course) : ?>
                                             <div class="teacher-crs-activity">
-                                                <a href="#"><img src="<?= ROOT ?>/assets/images/marking.png" alt="" class="teacher-crs-img"><br>Upload Marks</a>
+                                                <a href="#">
+                                                    <img src="<?= ROOT ?>/assets/images/marking.png" alt="" class="teacher-crs-img"><br>Upload Marks
+                                                </a>
+                                            </div>
+                                            <div class="teacher-crs-activity">
+                                                <a href="#">
+                                                    <img src="<?= ROOT ?>/assets/images/discussion.png" alt="" class="teacher-crs-img"><br>Add Forum
+                                                </a>
                                             </div>
                                             <div class="teacher-crs-activity">
                                                 <a href="<?= ROOT ?>/instructor/course/upload/<?= $course->course_id ?>" name="upload">

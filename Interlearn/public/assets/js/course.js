@@ -123,8 +123,8 @@ console.log("Im called");
 
     var update = document.getElementById('add-btn');
     update.addEventListener('submit', function(){
-        var week_id = document.getElementById('weeknumber').val();
-        var name = document.getElementById('week-title').val();
+        var week_id = document.getElementById('weeknumber').value;
+        var name = document.getElementById('week-title').value;
         console.log('hi');
         $.ajax({
             url: 'http://localhost/Interlearn/public/teacher/course/editWeekName',
@@ -225,7 +225,7 @@ function openModal5(number,course,week) {
     var update = document.getElementById('edit-name-btn');
     update.addEventListener('submit', function(){
         var c_id = number;
-        var name = document.getElementById('edit-upload').val();
+        var name = document.getElementById('edit-upload').value;
         console.log('hi');
         $.ajax({
             url: 'http://localhost/Interlearn/public/teacher/course/editUploadName',
