@@ -743,11 +743,14 @@ class Receptionist extends Controller
             //
             // $viewURL="http://localhost/Interlearn/uploads/receptionist/announcements/".$announcement_id."/".$fileNameNew;
             $viewURL="http://localhost/Interlearn/uploads/receptionist/announcements/".$_POST['aid']."/".$fileNameNew;
+            // show($_POST['file_name']);die;
             // $_POST['file_name'] = $fileNameNew;
             $_POST['attachment'] = $viewURL;
             }
 
-
+            if(empty($_POST['file_name'])){
+                $_POST['file_name'] = $fileNameNew;
+            }
 
             $result = $announcement -> updateAnnouncement($_POST['aid'],$_POST['title'],$_POST['content'],$_POST['attachment'],$_POST['file_name']);
             echo json_encode($result);

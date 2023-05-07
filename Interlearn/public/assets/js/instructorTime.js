@@ -12,7 +12,7 @@ function getInstructorAvail($id) {
             response = JSON.parse(response);
             console.log(response);
    
-            var error = $('#addCourseerror');
+            var error = document.getElementById('addCourseerror');
 
             // Get the modal
             const modal2 = document.getElementById("profileModal2");

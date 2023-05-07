@@ -5,8 +5,8 @@ var i;
 for (i = 0; i < close.length; i++) {
   close[i].onclick = function() {
     console.log("inside");
-    var instructor_id = $('#instructorID').val();
-    var course_id = $('#courseID').val();
+    var instructor_id = document.getElementById('instructorID').value;
+    var course_id = document.getElementById('courseID').value;
     var div = this.parentElement;
     console.log(div);
     div.style.display = "none";
@@ -29,12 +29,12 @@ for (i = 0; i < close.length; i++) {
 
 
 // when day is changed
-
-$('#daysEdit').on('change', function() {
-    var teacher_id = $('#teacher_id').val();
-    var day = $('#daysEdit').val();
-    var timeFrom = $('#timefromEdit').val();
-    var timeTo = $('#timetoEdit').val();
+var dayedit = document.getElementById('daysEdit');
+dayedit.addEventListener('change', function(event) {
+    var teacher_id = document.getElementById('teacher_id').value;
+    var day = document.getElementById('daysEdit').value;
+    var timeFrom = document.getElementById('timefromEdit').value;
+    var timeTo = document.getElementById('timetoEdit').value;
     console.log('hi');
     $.ajax({
         url: 'http://localhost/Interlearn/public/receptionist/course/checkAvailable',
@@ -44,11 +44,12 @@ $('#daysEdit').on('change', function() {
         console.log(response);
          response = JSON.parse(response);
         console.log(response);
-        var error = $('#addCourseerror');
-        $('#timefromEdit').on('change', function(){
+        var error = document.getElementById('addCourseerror');
+        var timeEdit = document.getElementById('timefromEdit');
+        timeEdit.addEventListener('change', function(event){
           console.log("here");
-          var timeFrom = $('#timefromEdit').val();
-          var timeTo = $('#timetoEdit').val();
+          var timeFrom = document.getElementById('timefromEdit').value;
+          var timeTo = document.getElementById('timetoEdit').value;
 
 
           for(i in response){
@@ -78,10 +79,11 @@ $('#daysEdit').on('change', function() {
           }
         });
 
-        $('#timetoEdit').on('change', function(){
+        var timeEdit2 = document.getElementById('timetoEdit');
+        timeEdit2.addEventListener('change', function(event){
           console.log("here");
-          var timeFrom = $('#timefrom').val();
-          var timeTo = $('#timeto').val();
+          var timeFrom = document.getElementById('timefrom').value;
+          var timeTo = document.getElementById('timeto').value;
 
           for(i in response){
             console.log(response[i]);
@@ -107,11 +109,12 @@ $('#daysEdit').on('change', function() {
 
 // when start time is changed
 
-$('#timefromEdit').on('change', function(){
-  var teacher_id = $('#teacher_id').val();
-    var day = $('#daysEdit').val();
-    var timeFrom = $('#timefromEdit').val();
-    var timeTo = $('#timetoEdit').val();
+var timeEdit3 = document.getElementById('timefromEdit');
+timeEdit3.addEventListener('change', function(event){
+  var teacher_id = document.getElementById('teacher_id').value;
+    var day = document.getElementById('daysEdit').value;
+    var timeFrom = document.getElementById('timefromEdit').value;
+    var timeTo = document.getElementById('timetoEdit').value;
     var courseID = document.getElementById('course_id').value;
     console.log(courseID);
     console.log('hi');
@@ -156,12 +159,12 @@ $('#timefromEdit').on('change', function(){
 
 
 // when ending time is changed
-
-$('#timetoEdit').on('change', function(){
-  var teacher_id = $('#teacher_id').val();
-    var day = $('#daysEdit').val();
-    var timeFrom = $('#timefromEdit').val();
-    var timeTo = $('#timetoEdit').val();
+var timeEdit4 = document.getElementById('timetoEdit');
+timeEdit4.addEventListener('change', function(event){
+  var teacher_id = document.getElementById('teacher_id').value;
+    var day = document.getElementById('daysEdit').value;
+    var timeFrom = document.getElementById('timefromEdit').value;
+    var timeTo = document.getElementById('timetoEdit').value;
     var courseID = document.getElementById('course_id').value;
     console.log('hi');
     $.ajax({
@@ -172,7 +175,7 @@ $('#timetoEdit').on('change', function(){
         console.log(response);
          response = JSON.parse(response);
         console.log(response);
-        var error = $('#addCourseerror');
+        var error = document.getElementById('addCourseerror');
 
         for(i in response){
           console.log(response[i]);
@@ -194,11 +197,12 @@ $('#timetoEdit').on('change', function(){
 
 
 
-$('#edit_class_submit').on('submit', function(){
-  var teacher_id = $('#teacher_id').val();
-    var day = $('#daysEdit').val();
-    var timeFrom = $('#timefromEdit').val();
-    var timeTo = $('#timetoEdit').val();
+var editClass = document.getElementById('edit_class_submit');
+editClass.addEventListener('submit', function(event){
+  var teacher_id = document.getElementById('teacher_id').value;
+    var day = document.getElementById('daysEdit').value;
+    var timeFrom = document.getElementById('timefromEdit').value;
+    var timeTo = document.getElementById('timetoEdit').value;
     console.log('hi');
     $.ajax({
         url: 'http://localhost/Interlearn/public/receptionist/course/editCourse',
