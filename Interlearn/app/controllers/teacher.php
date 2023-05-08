@@ -99,6 +99,20 @@ class Teacher extends Controller
     //access that course
     // $action=null,$id = null,$week = null, $option = null,$extra=null
 
+    public function editUploadName($id=null)
+    {
+        $course_content = new CourseContent();
+        // show("check");die;
+        if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+            // show($_POST);die;
+
+            $result = $course_content->UpdateUploadName($id,$_POST['cid'],$_POST['upload_name']);
+
+            echo json_encode($result);
+            exit;
+        }
+    }
+
     public function course($action=null,$id = null,$week = null,$option = null,$extra=null,$aid=null)
     {
         if(!Auth::is_teacher()){
@@ -166,17 +180,17 @@ class Teacher extends Controller
                 header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
             }
 
-            if(isset($_POST['submit-title'])){
-                // show($_POST);die;
+            // if(isset($_POST['submit-title'])){
+            //     // show($_POST);die;
 
-                $result = $course_week->UpdateWeekName($id,$_POST['weeknumber'],$_POST['title']);
-            }
+            //     $result = $course_week->UpdateWeekName($id,$_POST['weeknumber'],$_POST['title']);
+            // }
 
-            if(isset($_POST['submit-upload'])){
-                // echo $_POST['upload-title'];die;
-                // echo $_POST['cid'];die;
-                $result = $course_content->UpdateUploadName($id,$_POST['cid'],$_POST['upload-title']);
-            }
+            // if(isset($_POST['submit-upload'])){
+            //     // echo $_POST['upload-title'];die;
+            //     // echo $_POST['cid'];die;
+            //     $result = $course_content->UpdateUploadName($id,$_POST['cid'],$_POST['upload-title']);
+            // }
 
             if(isset($_POST['submit-delete-week'])){
                 $result = $course_week->deleteWeek($_POST['delete-weeknumber']);
@@ -191,9 +205,15 @@ class Teacher extends Controller
                 header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
             }
 
+            if(isset($_POST['submit-delete-text'])){
+                // $result = $course_material->deleteUpload($_POST['delete-filenumber']);
+                $result = $course_content->deleteUpload($_POST['delete-text-filenumber']);
+                header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
+            }
+
             if($option == 'getWeekName'){
-                // show($_GET);die;
-                $result = $course_week->getWeekName($id,$_GET['week_no']);
+                // show($_GET['week_no']);die;
+                $result = $course_week->getWeekName($id,$week);
 
                 echo json_encode($result);
                 exit;
@@ -208,14 +228,30 @@ class Teacher extends Controller
 
             if($option == 'getUploadName'){
                 // show($_GET);die;
-                $result = $course_content->getUploads($id,$_GET['week_no']);
+                $result = $course_content->getUploads($id,$week);
 
                 echo json_encode($result);
                 exit;
             }
 
-            if($option == 'editUploadName'){
-                $result = $course_content->UpdateUploadName($id,$_POST['cid'],$_POST['upload_name']);
+            // if($option == 'editUploadName'){
+            //     $result = $course_content->UpdateUploadName($id,$_POST['cid'],$_POST['upload_name']);
+
+            //     echo json_encode($result);
+            //     exit;
+            // }
+
+            if($option == 'getTextName'){
+                // show($_GET);die;
+                $result = $course_content->getUploads($id,$week);
+
+                echo json_encode($result);
+                exit;
+            }
+
+            if($option == 'editTextName'){
+                show($_POST);die;
+                $result = $course_content->UpdateUploadText($id,$_POST['cid'],$_POST['upload_name'],$_POST['view_URL']);
 
                 echo json_encode($result);
                 exit;
@@ -341,6 +377,43 @@ class Teacher extends Controller
             // show($data['week_no']);die;
             //   show($data['courses']);die;
             $this->view('teacher/url',$data);
+        }
+
+        if($action == "text"){
+            if(isset($_POST['submit']))
+            {
+                // if($course_content -> validate($_POST)){
+                    $cid = uniqid();
+                    // $viewURL="http://localhost/Interlearn/public/teacher/course/submissions/".$id."/".$week."/?id=".$cid;
+                    $viewURL = $_POST['content'];
+
+                    $_POST['course_id'] = $id;
+                    $empId = $staff -> getEmpId($user_id);
+                    $emp_id = $empId[0] -> emp_id;
+                    $_POST['emp_id'] = $emp_id;
+                    //show($_POST);die;
+                    $_POST['type'] = "Note";
+                    $_POST['cid'] = $cid;
+                    $_POST['view_URL'] = $viewURL;
+                    $result2 = $course_content -> insert($_POST);
+                    // $result = $course_url->insert($_POST);
+                    echo "Note successfully published!";
+                    header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
+                // }
+                // else{
+                //     $data['errors'] =  $course_content->error;
+
+                // }
+            }
+            $data['rows']= $course->select([],'course_id');
+            //show($data['rows']);die;
+            $data['sums']= $subject -> teacherCourse([],$user_id);
+            //show($data['sums']);die;
+            $data['courses'] = $subject -> CoursePage(['course_id' => $id],$user_id);
+            $data['week_no'] = $week;
+            // show($data['week_no']);die;
+            //   show($data['courses']);die;
+            $this->view('teacher/note',$data);
         }
 
         if($action == "announcement") {

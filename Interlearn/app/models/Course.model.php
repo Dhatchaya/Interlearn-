@@ -82,7 +82,7 @@ class Course extends Model
             return true;
         
         }
-        //show($this->error);die;
+        // show($this->error);die;
         return false; 
     }
 
