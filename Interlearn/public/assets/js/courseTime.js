@@ -1,11 +1,10 @@
 // console.log("ct");
 // console.log($('#days'));
-var dayAdd = document.getElementById("dayAdd");
-dayAdd.addEventListener('change', function(event) {
-    var teacher_id = document.getElementById('teacher_id').value;
-    var day = document.getElementById('dayAdd').value;
-    var timeFrom = document.getElementById('timefrom').value;
-    var timeTo = document.getElementById('timeto').value;
+$('#dayAdd').on('change', function() {
+    var teacher_id = $('#teacher_id').val();
+    var day = $('#dayAdd').val();
+    var timeFrom = $('#timefrom').val();
+    var timeTo = $('#timeto').val();
     console.log('hi');
     $.ajax({
         url: 'http://localhost/Interlearn/public/receptionist/course/checkAvailable1',
@@ -15,12 +14,11 @@ dayAdd.addEventListener('change', function(event) {
         console.log(response);
          response = JSON.parse(response);
         console.log(response);
-        var error = document.getElementById('addCourseerror1');
-        var time1 = document.getElementById('timefrom');
-        time1.addEventListener('change', function(event){
+        var error = $('#addCourseerror1');
+        $('#timefrom').on('change', function(){
           // console.log("here");
-          var timeFrom = document.getElementById('timefrom').value;
-          var timeTo = document.getElementById('timeto').val;
+          var timeFrom = $('#timefrom').val();
+          var timeTo = $('#timeto').val();
 
 
           for(i in response){
@@ -67,11 +65,10 @@ dayAdd.addEventListener('change', function(event) {
           }
         });
 
-        var time2 = document.getElementById('timeto');
-        time2.addEventListener('change', function(event){
+        $('#timeto').on('change', function(){
           console.log("here");
-          var timeFrom = document.getElementById('timefrom').value;
-          var timeTo = document.getElementById('timeto').value;
+          var timeFrom = $('#timefrom').val();
+          var timeTo = $('#timeto').val();
 
           for(i in response){
             console.log(response[i]);

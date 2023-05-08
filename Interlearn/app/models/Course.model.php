@@ -40,21 +40,17 @@ class Course extends Model
             {
                 $this -> error['subject'] = "Please provide a name for the subject";
             }
-            if(empty($data['grades']))
+            if(empty($data['grade']))
             {
-                $this -> error['grades'] = "Please select a grade";
+                $this -> error['grade'] = "Please select a grade";
             }
-            if(empty($data['mediums']))
+            if(empty($data['language_medium']))
             {
-                $this -> error['mediums'] = "Please select a language_medium";
+                $this -> error['language_medium'] = "Please select a language_medium";
             }
             if(empty($data['day']))
             {
                 $this -> error['day'] = "Please select a day";
-            }
-            if(empty($data['description']))
-            {
-                $this -> error['description'] = "Please insert a description";
             }
             if(empty($data['teacher_id']))
             {
@@ -203,7 +199,7 @@ class Course extends Model
     }
 
     public function getWeekCount($Course_id){
-        $query = "SELECT No_Of_Weeks FROM ".$this->table." WHERE course_id = ".$Course_id;
+        $query = "SELECT No_Of_Weeks FROM ".$this->table." WHERE course_id = '$Course_id'";
         $res = $this -> query($query);
         // echo $query;die;
         // show($res);die;
@@ -256,8 +252,9 @@ class Course extends Model
         // $query .= " group by subject, grade";
         // $query .= " order by $orderby  $order";
         //var_dump($_SESSION);exit;
+        // show($query);die;
         $res = $this -> query($query,$data);
-         //show($query);die;
+       
 
         if(is_array($res)){
             return $res;

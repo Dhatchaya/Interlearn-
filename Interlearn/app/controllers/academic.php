@@ -37,6 +37,7 @@ class Academic extends Controller
         $data['enquiry_title'] = 'New Enquiry';
         $data['some']=" ";
         $data['reply'] = "set";
+
         if($action == "add"){
             $data['action']= "add";
             $title = new stdClass();
@@ -44,25 +45,45 @@ class Academic extends Controller
             header('Content-Type: application/json; charset=utf-8');
             echo json_encode($title);
           
-            
-            if($_SERVER['REQUEST_METHOD'] == "POST")
-			{
-            
-                if($enquiry->validate($_POST)){
-                    $_POST['user_Id']= $user_id;
-                    $_POST['date']= date("Y-m-d H:i:s");
-                    $_POST['status']="pending";
-                    $_POST['role']=$role;
-                    $result= $enquiry->insert($_POST);
-                
-                }
-                if($result){
-                    header("Location:http://localhost/Interlearn/public/academic/enquiry");
-                }
-                
-            }
+       
          
             exit;
+        }
+        if($action=="posting"){
+            header('Content-Type: application/json; charset=utf-8');
+            if($_SERVER['REQUEST_METHOD'] == "POST"){
+               
+                    if($enquiry->validate($_POST)){
+                        
+                       
+                           $_POST['user_Id']= $user_id;
+                           $_POST['date']= date("Y-m-d H:i:s");
+                           $_POST['status']="pending";
+                           $_POST['role']=$role;
+                           $result= $enquiry->insert($_POST);
+                       
+                       
+                       if($result){
+                           $response = array("status"=>"success");
+                           echo json_encode( $response);
+                           exit;
+                           // header("Location:http://localhost/Interlearn/public/academic/enquiry");
+                       }
+                
+                    }
+                   else{
+               
+                       $data['errors']=$enquiry->error; 
+                       echo json_encode($data['errors']);
+                       exit;
+                      
+                   }
+            exit;
+
+            }
+    
+                 exit;
+                
         }
 
         if($action == "edit"){
@@ -119,6 +140,10 @@ class Academic extends Controller
                 // if(isset($_GET['rid'])){
                 //     $reParent = $_GET['rid'];
                 // }
+                if(empty($_POST['content'])){
+                    $data['empty']="Please type your reply before submitting";
+                }
+                else{
                 $_POST['eid']=$eid;
              
                 $_POST['senderId']=$user_id;
@@ -128,7 +153,7 @@ class Academic extends Controller
                 
            
                 $result= $reply->insert($_POST);
-             
+                }
                 // if($result){
                 //     if($enq->status == 'pending'){
                 //        $updateStatus= $enquiry->update(['eid'=>$eid],['status'=>'In progress']);

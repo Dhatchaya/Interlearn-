@@ -46,11 +46,8 @@ function openModal3(aid) {
                         document.getElementById("file_recp_announcement").parentElement.innerHTML = "";
                     }
                      //assignement_edit
-
-                     document.getElementById("attachment_file").value = response[i].attachment;
+                    document.getElementById("attachment_file").value = response[i].attachment;
                     document.getElementById("file_name_recp").value = response[i].file_name;
-                    var link = document.getElementById("attachment_file").value;
-                    var name = document.getElementById("file_name_recp").value;
 
                     // Click on a close button to hide the current list item
                     var close = document.getElementsByClassName("edit_file_announcement");
@@ -62,14 +59,6 @@ function openModal3(aid) {
 
                          console.log(div);
                          div.style.display = "none";
-                         console.log(link);
-                         console.log(name);
-
-                        link = null;
-                        name = "";
-                        console.log(link);
-                        console.log(name);
-                        console.log('http://localhost/Interlearn/public/receptionist/announcement/editAnnouncementFile?aid='+aid);
                         $.ajax({
                             method:"POST",
                             url : 'http://localhost/Interlearn/public/receptionist/announcement/editAnnouncementFile?aid='+aid,
@@ -98,22 +87,12 @@ function openModal3(aid) {
                       var attachment = document.getElementById("attachment_file").value;
                       var newAttachment = document.getElementById("attach_recp_file").files;
                       console.log(newAttachment);
-                      console.log(newAttachment[0] == null);
 
                       formData.append('aid', aid);
                       formData.append('title', title);
                       formData.append('content', content);
                       formData.append('file_name', fileName);
-                      if(newAttachment[0] == null){
-                        console.log("hel");
-                        formData.append('attachment', attachment);
-                      }
-                      else{
-                        formData.append('attachment', newAttachment[0]);
-                      }
-
-
-                      console.log(formData);
+                      formData.append('attachment', newAttachment[0]);
 
                       console.log(attachment);
 

@@ -12,6 +12,7 @@ if ( window.history.replaceState ) {
 
   window.history.replaceState( null, null, window.location.href );
 }
+console.log("here at discuss.js");
 // console.log(replies.length);
 // for (let i = 0; i < replies.length; i++) {
 //   replies[i].addEventListener('click', function(e) {
@@ -26,6 +27,7 @@ if ( window.history.replaceState ) {
 allthreads.addEventListener('click', function(e) {
 
   if (e.target && e.target.matches('.forum_reply_btn')) {
+    // e.target.preventDefault();
    const replyBtn = e.target;
    const discussContent = replyBtn.closest('.discuss_content');
    const replyForm = discussContent.nextElementSibling;
@@ -47,13 +49,15 @@ allthreads.addEventListener('click', function(e) {
 
 // send forum reply to php using ajax
   const submitHandler = function(event) {
+    console.log("inside submit handler");
       event.preventDefault();
+      replyForm.removeEventListener('submit', submitHandler);
       flag = 0;
       var replycontentdiv = event.target.querySelector("#reply");
       var attachmentInputdiv = event.target.querySelector(".file_attachment");
       var replycontent = event.target.querySelector("#reply").value;
       var attachmentInput = event.target.querySelector(".file_attachment").files[0];
-
+      console.log(replycontent);
           const error =document.createElement("p");
           error.classList.add("warning");
           if (!regex2.test(replycontent)) {
@@ -66,38 +70,38 @@ allthreads.addEventListener('click', function(e) {
             flag = 1;
           }
           else{
+            console.log("im in the else");
             error.innerHTML="";
-            flag =0;
+            
           }
           console.log(error);
 
           replycontentdiv.previousElementSibling.replaceWith(error);
-      if(attachmentInput){
-        console.log(e.target);
-        const error2 =document.createElement("p");
-        error2.classList.add("warning");
-
-        const file =attachmentInput;
-        const fileSize = file.size;
-
-        if (fileSize > 5242880) {
-          error2.innerHTML='File size exceeds the limit of 5MB.';
-          flag = 1;
-          // reset the file input
-          attachmentInputdiv.value = '';
-        }else{
-          error2.innerHTML="";
-          flag=0;
-        }
-        attachmentInputdiv.nextElementSibling.replaceWith(error2);
-      }
+          if(attachmentInput){
+            console.log(e.target);
+            const error2 =document.createElement("p");
+            error2.classList.add("warning");
+            const file =attachmentInput;
+            const fileSize = file.size;
+            if (fileSize > 5242880) {
+              error2.innerHTML='File size exceeds the limit of 5MB.';
+              flag = 1;
+              // reset the file input
+              attachmentInputdiv.value = '';
+            }else{
+              error2.innerHTML="";
+            
+            }
+            attachmentInputdiv.nextElementSibling.replaceWith(error2);
+          }
 
        console.log('flag',flag);
 
      if(flag==0){
-      replyForm.style.display = 'none';
+      event.target.querySelector("#file_type_error").innerHTML = "";
+      // replyForm.style.display = 'none';
   
-      replyForm.removeEventListener('submit', submitHandler);//removes the event listener 
+      //removes the event listener 
 
       //get input values
       var parent = event.target.querySelector("#parent_id").value;
@@ -124,7 +128,7 @@ allthreads.addEventListener('click', function(e) {
 
     $.ajax({
       type:'POST',
-      url:window.location.href,
+      url:window.location.href+"/reply",
       data:formData,
       //dataType: 'json',
       processData: false, 
@@ -135,9 +139,16 @@ allthreads.addEventListener('click', function(e) {
           console.log(response);
           for (i in thread.errors){
             console.log(i);
+            console.log(thread.errors[i]);
+            if(i === "attachment"){
+              console.log("hi");
+              console.log(event.target.querySelector("#file_type_error"));
+              event.target.querySelector("#file_type_error").innerHTML = thread.errors[i];
+            }
           }
         }
        else{
+        replyForm.style.display = 'none';
         var replyContainer = $(allthreads);
 
         console.log(thread.PostedDate);
@@ -189,11 +200,11 @@ allthreads.addEventListener('click', function(e) {
           </div>
           <form method="POST" class="forum_reply_form" id="forum_reply_box" enctype="multipart/form-data">
             <input name = "parent_id" id="parent_id"type="hidden"  value='${thread.discussion_id}'/></br>
-            <p></p>
+            <p id="content_type_error" class="warning"></p>
             <textarea name = "content" id="reply" type="text" placeholder="write your reply" class="reply-textarea"></textarea>
             <label class="forum_subject" for="fsubject"> Attachments: </label></br>
      
-            <input type ="file"  class = "file_attachment" name="attachment" /></br></br>       <p></p>
+            <input type ="file"  class = "file_attachment" name="attachment" /></br><p id="file_type_error" class="warning"></p>
             <input class="reply-btn" type="submit" value="Reply" name = "reply_submit"  />
             <input class="forum_cancel_btn reply-btn" type="reset" value="Cancel" id = "forum_cancel_btn" name = "reply_cancel"/>
           </form>
@@ -214,7 +225,10 @@ allthreads.addEventListener('click', function(e) {
     });
     replyForm.reset();
   }
+  console.log("coming here1");
+  replyForm.addEventListener("submit", submitHandler);
 }
+console.log("coming here");
   replyForm.addEventListener("submit", submitHandler);
 
   }
@@ -296,6 +310,7 @@ allthreads.addEventListener('change', function(e) {
       error.innerHTML="Topic is required";
     }
     else{
+      console.log("im here in this else");
       error.innerHTML="";
     }
     e.target.previousElementSibling.replaceWith(error);
@@ -308,12 +323,14 @@ allthreads.addEventListener('change', function(e) {
     const file = e.target.files[0];
     const fileSize = file.size; 
   
-    if (fileSize > 1048576) {
+    if (fileSize > 5242880) {
       error.innerHTML='File size exceeds the limit of 5MB.';
       // reset the file input
       this.value = '';
     }else{
+      console.log("im here in this else for attachment");
       error.innerHTML="";
+      e.target.parentElement.querySelector("#file_type_error").innerHTML = "";
     }
     e.target.nextElementSibling.replaceWith(error);
   };
@@ -388,12 +405,12 @@ $.ajax({
         </div>
         <form method="POST" class="forum_reply_form" id="forum_reply_box" enctype="multipart/form-data">
           <input name = "parent_id" id="parent_id"type="hidden"  value='${thread.discussion_id}'/></br>
-          <p></p>
+          <p id="content_type_error" class="warning"></p>
           <textarea name = "content" id="reply" type="text" placeholder="write your reply"  class="reply-textarea"></textarea>
           <label class="forum_subject" for="fsubject"> Attachments: </label></br>
     
           <input type ="file" class = "file_attachment" name="attachment" /></br></br>
-          <p></p>
+          <p id="file_type_error" class="warning"></p>
           <input class="reply-btn" type="submit" value="Reply" name = "reply_submit"  />
           <input class="forum_cancel_btn reply-btn" type="reset" value="Cancel" id = "forum_cancel_btn" name = "reply_cancel"/>
         </form>
@@ -428,11 +445,11 @@ console.log('main',maintarget);
       console.log(details.attachment);
       var divHtml = `  
       <div class="forum_para onlyEdit">
-      <p></p>
+      <p id="content_type_error"></p>
       <textarea name = "content" id="reply" type="text" placeholder="write your reply" data-id = '${discussID}'data-table = '${table}' class="reply-textarea">${details.content}</textarea>
     
       <input type ="file"  class = "file_attachment" name="attachment" /></br>
-      <p></p>
+      <p id="file_type_error" class="warning"></p>
       </div>
        <input class="reply-btn save_update" type="submit" value="Save" name = "reply_submit"  />
       <input class="reply-btn cancel_update" type="button" value="Cancel" name = "reply_cancel"  />
@@ -534,3 +551,4 @@ if(details.attachment){
 
 // }
 
+console.log("reaching the end");

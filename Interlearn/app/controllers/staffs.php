@@ -15,6 +15,7 @@ class Staffs extends Controller
      $data=[];
      $students = new Student();
      $details = $students->joinstudentUser([],'first_name','asc');
+     $data['user']="student";
      $data['rows']=$details;
        $this->view('staff/student_details',$data);
     }
@@ -30,6 +31,7 @@ class Staffs extends Controller
      $data=[];
      $staff = new Staff();
      $details = $staff->joinstudentUser([],'first_name','asc');
+     $data['user']="staff";
      $data['rows']=$details;
        $this->view('staff/student_details',$data);
     }

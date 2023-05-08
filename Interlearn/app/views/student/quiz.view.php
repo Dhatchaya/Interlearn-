@@ -52,7 +52,6 @@
 
         <div class="result-box custom-box hide">
             <h1>Quiz Result</h1>
-            <!-- <input type="hidden" name="totalMarks" value="50"> -->
             <table>
                 <tr>
                     <td>Total Question</td>

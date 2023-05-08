@@ -24,22 +24,22 @@
                     <!-- add form -->
             <div class="modal1" id="modal1" >
             
-            <form method= "POST" class= "enq_form"  >
+            <form method= "POST" class= "enq_form" id="enq_form"  >
                 <div class = "form-header">
                 <h2 class="enq_heading" id="enq_heading"><?= $enquiry_title ?></h2>
                 <button type="button" onclick=closeEnquiry();  data-close-button class ="close-btn">&times;</button>
                 </div>
             
-                <lable for= "category">Category</lable></br>
-                <select name = "type" class="enq_cat whiteInput">
-                    <option value = "" selected>--</option>
+                <lable for= "category">Category</lable><p class="warning" id="cate_warning"></p></br>
+                <select name = "type" class="enq_cat whiteInput" id="cat_enq">
+                    <option value = " " selected>--</option>
                     <option value = "personal">Personal</option>
                     <option value = "suggestion">General Suggestion</option>
                     
                 </select></br>
-                <lable for= "title">Title</lable></br>
-                <input type = "text" name ="title" class="enq_title whiteInput"/></br>
-                <lable for= "Subject">Description</lable></br>
+                <lable for= "title">Title</lable><p class="warning" id="titl_warning"></p></br>
+                <input type = "text" id="titl_enq" name ="title" class="enq_title whiteInput"/></br>
+                <lable for= "Subject">Description</lable><p class="warning" id="desc_warning"></p></br>
                 <textarea class="whiteInput" id="sub" name="content" rows="8" cols="50" placeholder="Type your concern"></textarea></br>  
                 <input type = "submit" id ="sub_btn" class ="sub_btn" name="submit" value="Submit" />
 
@@ -54,17 +54,17 @@
                     <button type="button" onclick=closeEnquiry();  data-close-button class ="close-btn">&times;</button>
                     </div>
                 
-                    <lable for= "category">Category</lable></br>
-                    <select name = "edittype" class="enq_cat whiteInput">
-                        <option value = "" selected>--</option>
+                    <lable for= "category">Category</lable><p class="warning" id="cate_warning2"></p></br>
+                    <select name = "edittype" class="enq_cat whiteInput" id="cat_enq2">
+                        <option value = " " selected>--</option>
                         <option value = "personal">Personal</option>
                         <option value = "suggestion">General Suggestion</option>
                         
                     </select></br>
-                    <lable for= "title">Title</lable>
-                    <input type = "text" name ="edittitle" class="enq_title whiteInput"/></br>
-                    <lable for= "Subject">Description</lable>
-                    <textarea class="whiteInput" id="sub" name="editcontent" rows="8" cols="50" placeholder="Type your concern"></textarea></br>  
+                    <lable for= "title">Title</lable><p class="warning" id="titl_warning2"></p>
+                    <input type = "text" id="titl_enq2" name ="edittitle" class="enq_title whiteInput"/></br>
+                    <lable for= "Subject">Description</lable><p class="warning" id="desc_warning2"></p>
+                    <textarea class="whiteInput" id="sub2" name="editcontent" rows="8" cols="50" placeholder="Type your concern"></textarea></br>  
                     <input type = "submit" id ="sub_btn" class ="sub_btn" name="editsubmit" value="save" />
 
 

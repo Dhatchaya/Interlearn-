@@ -54,10 +54,10 @@
             </div>
          <div class="decisionbtn">
              <a href = "<?=ROOT?>/receptionist/registration">
-                <button type="submit" class="std_subm_btn floatright" id="std_subm_btn" onclick = "updatestatus('rejected',<?=esc($student[0]->studentID)?>);">Reject</button>
+                <button type="submit" class="std_subm_btn floatright" id="std_subm_btn" onclick = "updatestatus('rejected','<?=esc($student[0]->studentID)?>');">Reject</button>
             </a>
             <a href = "<?=ROOT?>/receptionist/registration">
-           <button type="reset" class="std_subm_btn floatright" id ="std_subm_cl" onclick = "updatestatus('accept',<?=esc($student[0]->studentID)?>);">Accept</button>
+           <button type="reset" class="std_subm_btn floatright" id ="std_subm_cl" onclick = "updatestatus('accept','<?=esc($student[0]->studentID)?>');">Accept</button>
                     </a>
         </div>
         <?php else:?>

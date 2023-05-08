@@ -11,7 +11,6 @@ class CourseContent extends Model
         'cid',
         'type',
         'course_id',
-        'emp_id',
         'week_no',
         'upload_name',
         'view_URL',
@@ -58,7 +57,7 @@ class CourseContent extends Model
         // show($query);die;
 
         if($res){
-            return $res;
+            return true;
         }else{
             return false;
         }

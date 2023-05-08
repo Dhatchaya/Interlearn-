@@ -31,7 +31,7 @@ function changeStatus(id,value,role){
 
 function addEnquiry(){
 
-  const newURL = "http://localhost/Interlearn/public/academic/enquiry/add";
+  // const newURL = "http://localhost/Interlearn/public/academic/enquiry/add";
 
   modal1.classList. add('active');
   overlay.classList.add('active');
@@ -50,7 +50,99 @@ function addEnquiry(){
   enqTitle.innerHTML=response.enquiry_title;
   });
 
-  window.history.pushState({}, "", newURL);
+  // window.history.pushState({}, "", newURL);
+  const enq_form1 = document.getElementById("enq_form");
+
+enq_form1.addEventListener('submit',function(e){
+  e.preventDefault();
+  console.log("inside this");
+  flag = 0;
+  const Category = document.getElementById("cat_enq");
+  const title = document.getElementById("titl_enq");
+  const desc = document.getElementById("sub");
+  console.log(Category.value);
+  console.log(title.value);
+  
+  const err1 = document.getElementById("cate_warning");
+  const err2=document.getElementById("titl_warning");
+  const err3=document.getElementById("desc_warning");
+if(Category.value ==" "){
+  Category.value ="";
+  err1.innerText="Select a category";
+  flag=1;
+}
+if(title.value == ""){
+  err2.innerText="Title is required";
+  flag=1;
+}
+if(desc.value == ""){
+  err3.innerText="Content is required";
+  flag=1;
+}
+if(flag==0){
+
+  err1.innerText="";
+  err2.innerText="";
+  err3.innerText="";
+  
+      const formData = new FormData(enq_form1);
+      let data = {};
+      for (const [key, value] of formData.entries()) {
+        console.log(key,value);
+        let newKey = key;
+        data[newKey] = value;
+      }
+
+      $.ajax({
+        method:"POST",
+        url : "/Interlearn/public/academic/enquiry/posting",
+        data:{type:Category.value,content:desc.value,title:title.value},
+        success:function(response){
+          console.log(response);
+          if(response.status!="success"){
+            if(response.type){
+              err1.innerText=response.type;
+            }
+            if(response.title){
+              err2.innerText=response.title;
+            }
+            if(response.content){
+              err3.innerText=response.content;
+            }
+            
+           
+            
+          }else{
+            location.reload();
+          }
+         
+        },
+        error:function(xhr,status,error){
+          console.log("Error: " + error);
+        }
+      });
+      // fetch('/Interlearn/public/academic/enquiry/add', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-type': 'application/json'
+      //     },
+      //   body: JSON.stringify(data)
+    
+      // }).then(res => {
+      //   console.log('Data being sent to the server: ', data);
+      //   if (res.ok) { console.log("HTTP request successful")
+      
+      // }
+      //   else { console.log("HTTP request unsuccessful") }
+
+      //   return res
+      //   })
+      //   .then(res => res.json())
+      //   .then(data => console.log(data))
+      //   .catch(error => console.log(error))
+  }
+
+});
 
 }
 
@@ -63,6 +155,7 @@ function closeEnquiry(){
    window.history.pushState({}, "", currentURL);
 
 }
+
 
 
 
@@ -96,8 +189,37 @@ function editEnquiry(id){
 
 const enq_form = document.getElementById("enq_form2");
 
-
 enq_form.addEventListener('submit',function(e){
+  e.preventDefault();
+  console.log("inside this");
+  flag = 0;
+  const Category = document.getElementById("cat_enq2");
+  const title = document.getElementById("titl_enq2");
+  const desc = document.getElementById("sub2");
+  console.log(Category.value);
+  console.log(title.value);
+  
+  const err1 = document.getElementById("cate_warning2");
+  const err2=document.getElementById("titl_warning2");
+  const err3=document.getElementById("desc_warning2");
+if(Category.value ==" "){
+  Category.value ="";
+  err1.innerText="Select a category";
+  flag=1;
+}
+if(title.value == ""){
+  err2.innerText="Title is required";
+  flag=1;
+}
+if(desc.value == ""){
+  err3.innerText="Content is required";
+  flag=1;
+}
+if(flag==0){
+
+  err1.innerText="";
+  err2.innerText="";
+  err3.innerText="";
   
   
   const formData = new FormData(enq_form);
@@ -118,7 +240,7 @@ enq_form.addEventListener('submit',function(e){
   }).then(res => {
     console.log('Data being sent to the server: ', data);
     if (res.ok) { console.log("HTTP request successful")
-   
+    location.reload();
   }
     else { console.log("HTTP request unsuccessful") }
 
@@ -128,7 +250,7 @@ enq_form.addEventListener('submit',function(e){
     .then(data => console.log(data))
     .catch(error => console.log(error))
     
-
+  }
 });
 }
 

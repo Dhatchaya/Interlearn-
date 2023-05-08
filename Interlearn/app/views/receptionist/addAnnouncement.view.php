@@ -1,10 +1,8 @@
-<?php $this->view("includes/header"); ?>
-<div class="main-body-div">
-    <?php $this->view("includes/sidebar_recep"); ?>
-    <div class="top-to-bottom-content">
-        <?php $this->view("includes/nav"); ?>
-        <div class="all-middle-content">
+<?php $this->view("includes/header");?>
+<?php $this->view("includes/nav");?>
+
 <div class="recp_ann_container">
+<?php $this->view("includes/sidebar_recep");?>
     <div class="recp_ann_content">
         <h3>Add Announcements</h3><br><br>
 
@@ -48,5 +46,5 @@
         
     </div>
 </div>
-        </div></div></div>
+
 <?php $this->view("includes/footer");?>
