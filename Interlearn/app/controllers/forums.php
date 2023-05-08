@@ -465,22 +465,24 @@ class Forums extends Controller
         }
       
     }
-    // public function deleteMain()
-    // {
-    //     $mainforum = new mainForum();
-    //     $role = Auth::getrole();
-    //     if(isset($_GET['id'])){
-    //         $id = $_GET['id'];
-    //     if($role != "Student"){
-    //         $result = $mainforum->delete(['mainforum_id'=>$id]);
-    //         if($result){
-    //             echo "Success";
-    //         }
+    public function deleteMain()
+    {
+        $mainforum = new mainForum();
+        $role = Auth::getrole();
+        if(isset($_GET['id'])){
+            $id = $_GET['id'];
+            $maindetails = $mainforum->first(['mainforum_id'=>$id],'mainforum_id');
 
-    //     }
-    // }
+        if($role != "Student"){
+            $result = $mainforum->delete(['mainforum_id'=>$id]);
+            if($result){
+                header('location:http://localhost/Interlearn/public/'.$role.'/course/view/'.$maindetails->course_id);
+            }
 
-    // }
+        }
+    }
+
+    }
 
 
     public function profile($id = null)

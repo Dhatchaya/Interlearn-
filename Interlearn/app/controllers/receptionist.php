@@ -14,8 +14,31 @@ class Receptionist extends Controller
 
         $this->view('receptionist/home');
     }
+    public function allprofiles($action = null,$uid=null)
+    {
+        if(!Auth::is_receptionist()){
+            redirect('home');
+        }
+        $data = [];
+        $data['title']='Staff-Profiles';
+        $student = new Students();
+        $staff = new Staff();
+        if($action=="student"){
+            $details = $student->studentConnectCourse(['uid'=>$uid],'studentID');
+            $data['userData']=$details;
+            $this->view('student/profiles',$data);
+        }
+        if($action=="staff"){
+            $details = $staff->ProfileDetails($uid);
+            $data['userData']=$details;
 
-    public function course($action = null, $id = null, $option = null)
+            $this->view('staff/profiles',$data);
+        }
+
+
+        exit;
+    }
+    public function course($action = null, $id = null)
     { 
         if(!Auth::is_receptionist()){
             redirect('home');
@@ -914,6 +937,10 @@ class Receptionist extends Controller
                 if(isset($_GET['rid'])){
                     $reParent = $_GET['rid'];
                 }
+                if(empty($_POST['content'])){
+                    $data['empty']="Please type your reply before submitting";
+                }
+                else{
                 $_POST['eid']=$eid;
                 $_POST['senderId']=$user_id;
                 $_POST['receiverId']= $enq->user_Id;
@@ -932,7 +959,7 @@ class Receptionist extends Controller
                 else{
                     echo"fail";
                 }
-
+            }
             }
             $data['reply'] = $reply -> where(['eid'=>$eid],'eid');
             $enq = $enquiry->first([

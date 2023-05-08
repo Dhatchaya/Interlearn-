@@ -629,7 +629,43 @@ class Instructor extends Controller
             exit();
         }
         
-        $this->view('instructor/course',$data);
+        if($action == "forum")
+        {
+            $mainForum = new mainForum();
+            $data['course']  = $subject -> coursedetails(['course_id'=>$id]);
+
+            if($_SERVER["REQUEST_METHOD"]=="POST"){
+                $mainforum_id = uniqid('F',true);
+                $_POST['mainforum_id']=$mainforum_id;
+                $_POST['course_id']= $id;
+
+                $editURL = "#";
+                $viewURL="http://localhost/Interlearn/public/forums/".$id."/".$week."/?main=".$mainforum_id;
+                $deleteURL="http://localhost/Interlearn/public/forums/deleteMain?id=".$mainforum_id;
+                $cid = uniqid();
+                $_POST['cid']=$cid;
+                $_POST['edit_URL']=$editURL;
+                $_POST['view_URL']=$viewURL;
+                $_POST['delete_URL']=$deleteURL;
+                $_POST['week_no']=$week;
+                // $_POST['course_material']="Home Work";
+                $_POST['upload_name']=$_POST['subject'];
+                $_POST['type']="forum";
+              //  $_POST['course_id'] = $id;
+                $material = $course_content->insert($_POST);
+                $result =  $mainForum -> insert($_POST);
+
+                if($result){
+                    header('location:http://localhost/Interlearn/public/forums/'.$id.'/'.$week.'/?main='.$mainforum_id);
+                }
+            }
+
+            $this->view('teacher/mainForum',$data);
+            exit;
+        }
+
+
+
     }
    
     public function submission()
