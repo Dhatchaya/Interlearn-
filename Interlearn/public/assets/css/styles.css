@@ -5458,11 +5458,20 @@ flex-direction: row;
     -webkit-appearance: none;
     margin: 0;
 }
+.teacher-crs-addweek{
+    width: 26vw;
+    /* align-items: center;
+    text-align: center;
+    justify-content: center; */
+}
 .teacher-crs-activities2{
     width: 45vw;
     /* align-items: center;
     text-align: center;
     justify-content: center; */
+}
+.teacher-crs-activities3{
+    width: 60vw;
 }
 .teacher-inc-head{
     float: left;
@@ -5482,12 +5491,31 @@ flex-direction: row;
     max-width: 450px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
+.teachr-popupmodal-content3 {
+    background-color: #efefef;
+    margin: 15% auto; /* 10% from the top and centered */
+    padding: 25px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 650px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
 .teacher-edit{
     text-align: left;
 }
 .teacher-edit-title{
     width: 22vw;
     height: 5vh;
+    padding: 1%;
+}
+.teacher-edit-text{
+    width: 36vw;
+    height: 5vh;
+    padding: 1%;
+}
+.teacher-edit-content{
+    width: 36vw;
+    height: 15vh;
     padding: 1%;
 }
 .teacher_card_img3{

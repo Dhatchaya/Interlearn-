@@ -38,7 +38,7 @@ class Receptionist extends Controller
 
         exit;
     }
-    public function course($action = null, $id = null)
+    public function course($action = null, $id = null, $option = null)
     { 
         if(!Auth::is_receptionist()){
             redirect('home');
@@ -80,7 +80,7 @@ class Receptionist extends Controller
             {   
                 // echo "check 1";die;
                 // show($_POST);die;
-                if($course -> validate($_POST)){
+                // if($course -> validate($_POST)){
                     $subject_id = uniqid();
                     //uniqueid("S",true)
 
@@ -103,14 +103,14 @@ class Receptionist extends Controller
                     $course_week->createWeek($id, 1);
                     header("Location:http://localhost/Interlearn/public/receptionist/course");
 
-                }
-                else{
+                // }
+                // else{
 
-                    $data['errors'] =  $course->error;
-                    // show($data['errors']);die;
+                //     $data['errors'] =  $course->error;
+                //     // show($data['errors']);die;
 
-                    // $data['error']['invalid'] = "There is an unknown error occured!";
-                }
+                //     // $data['error']['invalid'] = "There is an unknown error occured!";
+                // }
             }
 
 
@@ -345,31 +345,6 @@ class Receptionist extends Controller
 
         if($action == 'getInstructors'){
 
-            // $data['teach_instructors'] = [];
-            //         $extra = [];
-            //         if($data['subjects']){
-            //             for($i=0; $i<count($data['subjects']); $i++){
-            //                 // show($data['subjects']);die;
-            //                 // show(count($data['subjects'][$i]));die;
-            //                 for($x=0; $x<count($data['subjects'][$i]); $x++){
-            //                     // show($data['subjects'][$i][$x]->course_id);die;
-            //                     if(!empty($data['subjects'][$i][$x]->course_id)){
-            //                         // show($data['subjects'][$i][$x]->course_id);die;
-            //                         $extra= $course_instructor -> getInstructors($data['subjects'][$i][$x]->course_id);
-            //                         if(!empty($extra)){
-            //                             // show($extra);die;
-            //                             $data['teach_instructors'][$data['subjects'][$i][$x]->course_id] = $extra;
-            //                             $data['course_id'] = $data['subjects'][$i][$x]->course_id;
-            //                             $result = $data['teach_instructors'][$data['subjects'][$i][$x]->course_id];
-            //                         }
-            //                     }
-            //                 }
-            //             }
-
-            //         // show($data['teach_instructors']);die;
-            //         // show($data['subjects']);die;
-
-            //         }
                     $result = $course_instructor -> getInstructors($_GET['course_id']);
                     // show($_GET['course_id']);die;
 

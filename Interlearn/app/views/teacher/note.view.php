@@ -18,20 +18,20 @@
                         <?php endforeach; ?>
                     <?php endif; ?>
 
-                    <h3>Post URL Links</h3>
+                    <h3>Post a Note</h3>
                     <br><br>
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form action="" method="post">
                         <input type="hidden" name="week_no" value="<?= $week_no ?>">
-                        <p>Name to be displayed:</p><br>
+                        <p>Title for the content:</p><br>
                         <input type="text" class="teacher_upl_name" name="upload_name"><br><br><br>
 
-                        <p>Paste your URL here:</p><br>
-                        <input type="text" class="teacher_upl_name" name="URL">
+                        <p>Add your content:</p><br>
+                        <input type="text" class="teacher_upl_name" name="content">
 
 
                         <br><br><br><br><br>
                         <a href="<?= ROOT ?>/teacher/course">
-                            <button type="submit" class="teacher_upl_btn" name="submit">Upload</button>
+                            <button type="submit" class="teacher_upl_btn" name="submit">Post</button>
                         </a>
                         <button type="reset" class="teacher_upl_btn">Cancel</button>
                     </form>

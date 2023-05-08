@@ -12,6 +12,7 @@ const span = document.getElementsByClassName("close")[0];
 function openModal(id) {
     const upload = document.getElementsByName("upload");
     const url = document.getElementsByName("url");
+    const note = document.getElementsByName("text");
     // console.log(url);
     console.log(upload);
     console.log(url);
@@ -21,6 +22,9 @@ function openModal(id) {
     }
     for(i=0; i<url.length; i++){
         url[i].href = url[i].href + "/" + id;
+    }
+    for(i=0; i<note.length; i++){
+        note[i].href = note[i].href + "/" + id;
     }
     modal.style.display = "block";
     console.log(id);
@@ -277,6 +281,113 @@ function closeModal6() {
 window.onclick = function(event) {
     if (event.target == modal6) {
         modal6.style.display = "none";
+    }
+}
+
+
+
+// Get the modal
+const modal7 = document.getElementById("profileModal7");
+
+// Get the button that opens the modal
+const btn7 = document.getElementById("button32");
+// const btn2 = document.getElementById("button29");
+
+// Get the <span> element that closes the modal
+const span7 = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+function openModal7(number,course,week) {
+    document.getElementById("cid").value = number;
+    modal7.style.display = "block";
+    console.log(modal7);
+
+    console.log(number);
+    console.log(course);
+    console.log(week);
+
+    $.ajax({
+        url: `http://localhost/Interlearn/public/instructor/course/view/`+course+`/`+week+`/getTextName`,
+        type: 'GET',
+        success: function(response) {
+            console.log("hello");
+            console.log(response);
+            response = JSON.parse(response);
+            // document.getElementById("edit-upload").value = response[i].upload_name;
+
+            for(var i=0; i<response.length; i++){
+                console.log("hi");
+                // console.log(response[i].grade);
+                if(response[i].cid == number){
+                    document.getElementById("edit-text").value = response[i].upload_name;
+                    document.getElementById("uedit-text-content").value = response[i].view_URL;
+                }
+            }
+        }
+    });
+
+
+    var update = document.getElementById('edit-text-btn');
+    update.addEventListener('submit', function(){
+        var c_id = number;
+        var title = document.getElementById('edit-text').value;
+        var content = document.getElementById('edit-text-content').value;
+        console.log('hi');
+        $.ajax({
+            url: 'http://localhost/Interlearn/public/instructor/course/editTextName',
+            type: 'POST',
+            data: {'cid':c_id, 'upload_name': title, 'view_URL' : content},
+            success:function(response){
+                console.log("submit here");
+                console.log(response);
+            },
+            error:function(xhr,status,error){
+                console.log("Error: " + error);
+            }
+        });
+    });
+}
+
+// When the user clicks on <span> (x), close the modal
+function closeModal7() {
+    modal7.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal7) {
+        modal7.style.display = "none";
+    }
+}
+
+
+
+// Get the modal
+const modal8 = document.getElementById("profileModal8");
+
+// Get the button that opens the modal
+const btn8 = document.getElementById("button33");
+// const btn2 = document.getElementById("button29");
+
+// Get the <span> element that closes the modal
+const span8 = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+function openModal8(number) {
+    document.getElementById("delete-text-filenumber").value = number;
+    modal8.style.display = "block";
+    console.log(modal8);
+}
+
+// When the user clicks on <span> (x), close the modal
+function closeModal8() {
+    modal8.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal8) {
+        modal8.style.display = "none";
     }
 }
 
