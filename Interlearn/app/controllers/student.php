@@ -725,7 +725,36 @@ class Student extends Controller
 
         if($action == 'marks') {
 
-            echo($_POST['totalMarks']);die;
+
+            $student = new Students();
+            $myresult = new ZResult();
+            $user_id = Auth::getuid();
+
+            // show($user_id);
+            // $result = $student->getStudentName($user_id);
+            // show($result);
+            $result = $student->getStudentID($user_id);
+            // show($result);
+            $student_value = $result[0];
+            $student_id = $student_value->studentID;
+            // echo($student_id);die;
+            // show($result);die();
+            // echo($_POST['totalMarks']);die;
+            // echo($_POST['quizId']);die;
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+                $_POST['studentID'] = $student_id;
+                $_POST['marks'] = $_POST['totalMarks'];
+                $_POST['exam_id'] = $_POST['quizId'];
+
+                $result = $myresult->insert($_POST);
+
+                if($result) {
+                    echo "success";
+                }
+
+            }
+
             exit();
         }
 

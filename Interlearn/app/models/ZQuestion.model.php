@@ -163,4 +163,22 @@ class ZQuestion extends Model
         return false;       
     }
 
+
+    public function UpdateQuestion($id,$updated_title, $updated_marks){
+        $query = "UPDATE ".$this->table." SET question_title =:updateTitle , question_mark =:updateMarks WHERE question_number =:ID";
+        $data['updateTitle'] = $updated_title;
+        $data['updateMarks'] = $updated_marks;
+        $data['ID'] = $id;
+        // $data['cId'] = $cid;
+        $res = $this -> update_table($query,$data);
+        // echo $res;die;
+        // show($query);die;
+
+        if($res){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }

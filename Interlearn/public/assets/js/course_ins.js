@@ -78,7 +78,7 @@ const btn3 = document.getElementById("button30");
 const span3 = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal
-function openModal3(number) {
+function openModal3(number,course) {
 
     document.getElementById("weeknumber").value = number;
 
@@ -86,35 +86,46 @@ function openModal3(number) {
     console.log(modal3);
 
     console.log(number);
+    console.log(`http://localhost/Interlearn/public/instructor/course/view/`+course+`/`+number+`/getWeekName`);
 
     $.ajax({
-        url: `http://localhost/Interlearn/public/instructor/course/view/${course_id}?week_no=`+number+`/getWeekName`,
+        url: `http://localhost/Interlearn/public/instructor/course/view/`+course+`/`+number+`/getWeekName`,
         type: 'GET',
         success: function(response) {
             console.log("hello");
             console.log(response);
             response = JSON.parse(response);
+            console.log(response[0].week_name);
 
             for(var i=0; i<response.length; i++){
                 console.log("hi");
+                console.log(i);
+                console.log(response[i].week_no);
+                // document.getElementById("week-title").value = response.week_name;
                 // console.log(response[i].grade);
                 if(response[i].week_no == number){
-                    document.getElementById("week-title").value = response[i].week_name;
+                    console.log(response[i].week_name);
+                    // var name = document.getElementById("title").value;
+                    // console.log(name);
+                    document.getElementById("title").value = response[i].week_name;
                 }
             }
         }
     });
+console.log("outside");
 
-
-    var update = document.getElementById('add-btn');
-    update.addEventListener('submit', function(){
-        var week_id = document.getElementById('weeknumber').val();
-        var name = document.getElementById('week-title').val();
+    var update = document.getElementById('edit-week-btn');
+    console.log(update);
+    // console.log('http://localhost/Interlearn/public/instructor/editWeekName/');
+    update.addEventListener('click', function(){
+        console.log('hi');
+        var week_id = document.getElementById('weeknumber').value;
+        var name = document.getElementById('title').value;
         console.log('hi');
         $.ajax({
-            url: 'http://localhost/Interlearn/public/instructor/course/editWeekName',
+            url: `http://localhost/Interlearn/public/instructor/course/view/`+course+`/`+number+`/editWeekName`,
             type: 'POST',
-            data: {'week_id':week_id, 'week_name': name},
+            data: {'week_no':week_id, 'week_name': name},
             success:function(response){
                 console.log("submit here");
                 console.log(response);
@@ -180,15 +191,16 @@ const btn5 = document.getElementById("button32");
 const span5 = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal
-function openModal5(number) {
+function openModal5(number,course,week) {
     document.getElementById("cid").value = number;
     modal5.style.display = "block";
     console.log(modal5);
-
     console.log(number);
 
+    // console.log(number);
+
     $.ajax({
-        url: `http://localhost/Interlearn/public/instructor/course/view/${course_id}?week_no=`+number+`/getUploadName`,
+        url: `http://localhost/Interlearn/public/instructor/course/view/`+course+`/`+week+`/getUploadName`,
         type: 'GET',
         success: function(response) {
             console.log("hello");
@@ -199,7 +211,7 @@ function openModal5(number) {
                 console.log("hi");
                 // console.log(response[i].grade);
                 if(response[i].cid == number){
-                    document.getElementById("edit-upload").value = response[i].upload_name;
+                    document.getElementById("upload-title").value = response[i].upload_name;
                 }
             }
         }
@@ -207,12 +219,12 @@ function openModal5(number) {
 
 
     var update = document.getElementById('edit-name-btn');
-    update.addEventListener('submit', function(){
-        var c_id = document.getElementById('cid').val();
-        var name = document.getElementById('edit-upload').val();
+    update.addEventListener('click', function(){
+        var c_id = number;
+        var name = document.getElementById('upload-title').value;
         console.log('hi');
         $.ajax({
-            url: 'http://localhost/Interlearn/public/teacher/course/editUploadName',
+            url: 'http://localhost/Interlearn/public/instructor/editUploadName/'+course,//replace course id with actual courseid
             type: 'POST',
             data: {'cid':c_id, 'upload_name': name},
             success:function(response){

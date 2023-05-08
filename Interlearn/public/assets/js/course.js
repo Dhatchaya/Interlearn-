@@ -123,8 +123,8 @@ console.log("Im called");
 
     var update = document.getElementById('add-btn');
     update.addEventListener('submit', function(){
-        var week_id = document.getElementById('weeknumber').val();
-        var name = document.getElementById('week-title').val();
+        var week_id = document.getElementById('weeknumber').value;
+        var name = document.getElementById('week-title').value;
         console.log('hi');
         $.ajax({
             url: 'http://localhost/Interlearn/public/teacher/course/editWeekName',
@@ -195,7 +195,7 @@ const btn5 = document.getElementById("button32");
 const span5 = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal
-function openModal5(number) {
+function openModal5(number,course,week) {
     document.getElementById("cid").value = number;
     modal5.style.display = "block";
     console.log(modal5);
@@ -203,12 +203,13 @@ function openModal5(number) {
     console.log(number);
 
     $.ajax({
-        url: `http://localhost/Interlearn/public/teacher/course/view/${course_id}?week_no=`+number+`/getUploadName`,
+        url: `http://localhost/Interlearn/public/teacher/course/view/`+course+`/`+week+`/getUploadName`,
         type: 'GET',
         success: function(response) {
             console.log("hello");
             console.log(response);
             response = JSON.parse(response);
+            // document.getElementById("edit-upload").value = response[i].upload_name;
 
             for(var i=0; i<response.length; i++){
                 console.log("hi");
@@ -223,8 +224,8 @@ function openModal5(number) {
 
     var update = document.getElementById('edit-name-btn');
     update.addEventListener('submit', function(){
-        var c_id = document.getElementById('cid').val();
-        var name = document.getElementById('edit-upload').val();
+        var c_id = number;
+        var name = document.getElementById('edit-upload').value;
         console.log('hi');
         $.ajax({
             url: 'http://localhost/Interlearn/public/teacher/course/editUploadName',

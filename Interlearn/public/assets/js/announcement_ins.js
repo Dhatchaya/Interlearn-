@@ -99,16 +99,14 @@ function openModal3(aid) {
                       formData.append('title', title);
                       formData.append('content', content);
                       formData.append('file_name', fileName);
-                      if(newAttachment[0] != 'undefined'){
-                        console.log("hi");
-                        formData.append('attachment', newAttachment[0]);
-                        // formData.append('attachment', attachment);
-                      }
-                      else{
-                        // formData.append('attachment', newAttachment[0]);
+                      if(newAttachment[0] == null){
+                        console.log("hel");
                         formData.append('attachment', attachment);
                       }
-                      
+                      else{
+                        formData.append('attachment', newAttachment[0]);
+                      }
+
 
                       console.log(attachment);
 

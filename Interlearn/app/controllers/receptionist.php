@@ -15,7 +15,7 @@ class Receptionist extends Controller
         $this->view('receptionist/home');
     }
 
-    public function course($action = null, $id = null)
+    public function course($action = null, $id = null, $option = null)
     { 
         if(!Auth::is_receptionist()){
             redirect('home');
@@ -30,6 +30,7 @@ class Receptionist extends Controller
         $course_week = new CourseWeek();
         $staff = new Staff();
         $course_instructor = new CourseInstructor();
+        $student_course = new StudentCourse();
         // $instructor_course = new InstructorCourse();
         $data = [];
         // echo $user_id;die;
@@ -81,15 +82,20 @@ class Receptionist extends Controller
 
                 }
                 else{
+
                     $data['errors'] =  $course->error;
+                    // show($data['errors']);die;
 
                     // $data['error']['invalid'] = "There is an unknown error occured!";
                 }
             }
 
+
+
             $this->view('receptionist/addCourse',$data);
             exit;   
         }
+
 
         if($action == 'findGrade'){
 
@@ -143,7 +149,7 @@ class Receptionist extends Controller
                 $data['action'] = $action;
                 $data['id'] = $id;
                 $subject = new Subject();
-                //show($data['id']);die;
+                // show($data['id']);die;
 
                 //if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                     if(isset($_GET['id'])){
@@ -276,6 +282,24 @@ class Receptionist extends Controller
                 //     $result = $course->delete($_POST['course_id']);
                 //     // header("Location:http://localhost/Interlearn/public/receptionist/course/view/1/".$id);
                 // }
+
+                if($option == 'student_view'){
+                    // show($id);die;
+                    // $course_id = $_GET['id'];
+                    // show($course_id);die;
+
+                    $data['students'] = $student_course -> getStudents($id);
+
+                    if(isset($_POST['submit-delete-student'])){
+                        $std_id = $_POST['delete-student'];
+                        // show($std_id);die;
+
+                        $student_course -> deleteStudent($std_id,$id);
+                    }
+
+                    $this->view('receptionist/student_view',$data);
+                    exit;
+                }
 
 
                 $this->view('receptionist/class',$data);
@@ -719,11 +743,14 @@ class Receptionist extends Controller
             //
             // $viewURL="http://localhost/Interlearn/uploads/receptionist/announcements/".$announcement_id."/".$fileNameNew;
             $viewURL="http://localhost/Interlearn/uploads/receptionist/announcements/".$_POST['aid']."/".$fileNameNew;
+            // show($_POST['file_name']);die;
             // $_POST['file_name'] = $fileNameNew;
             $_POST['attachment'] = $viewURL;
             }
 
-
+            if(empty($_POST['file_name'])){
+                $_POST['file_name'] = $fileNameNew;
+            }
 
             $result = $announcement -> updateAnnouncement($_POST['aid'],$_POST['title'],$_POST['content'],$_POST['attachment'],$_POST['file_name']);
             echo json_encode($result);
