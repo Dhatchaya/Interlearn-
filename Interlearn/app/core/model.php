@@ -627,7 +627,7 @@ class Model extends Database {
     public function teacherCourseDetails($data=[],$id,$orderby = null, $order=null){
         $query = "SELECT subject.subject_id,subject.subject,subject.grade,subject.language_medium,course.*,staff.* from ".$this->table;
         $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN staff ON staff.emp_id = course.teacher_id";
-        $query .= " WHERE course.course_id = $id AND staff.role = 'Teacher'";
+        $query .= " WHERE course.course_id = '$id' AND staff.role = 'Teacher'";
         $query .= " group by subject.subject, subject.grade";
         // $query .= " order by $orderby  $order";
         //var_dump($_SESSION);exit;
@@ -645,28 +645,7 @@ class Model extends Database {
         // $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN course_material ON course_material.course_id = course.course_id INNER JOIN course_content ON course_content.cid = course_material.cid INNER JOIN teachers ON teachers.teacher_id = course.teacher_id";
         // $query .= " WHERE course.course_id = $id ";
         // $query .= " group by course_material.course_material";
-         $query = "SELECT course_material.*,course_content.* FROM course_content ";
-         $query .= " LEFT JOIN course_material ON course_content.cid = course_material.cid";
-         $query .= " WHERE course_content.course_id = $id;";
-        //var_dump($_SESSION);exit;
-        //show($query);die;
-        $res = $this -> query($query,$data);
-         //show($query);die;
-
-        if(is_array($res)){
-            return $res;
-        }
-        return false;
-    }
-
-    public function instructorCourseMaterial($data=[],$id,$orderby = null, $order=null){
-        // $query = "SELECT subject.subject_id,subject.subject,subject.grade,subject.language_medium,course_material.*,course.*,teachers.*,course_content.* from ".$this->table;
-        // $query .= " INNER JOIN course ON course.subject_id = subject.subject_id INNER JOIN course_material ON course_material.course_id = course.course_id INNER JOIN course_content ON course_content.cid = course_material.cid INNER JOIN teachers ON teachers.teacher_id = course.teacher_id";
-        // $query .= " WHERE course.course_id = $id ";
-        // $query .= " group by course_material.course_material";
-         $query = "SELECT course_material.*,course_content.*,staff.role FROM course_content ";
-         $query .= " LEFT JOIN course_material ON course_content.cid = course_material.cid INNER JOIN staff ON staff.emp_id = course_content.emp_id";
-         $query .= " WHERE course_content.course_id = $id;";
+         $query = "SELECT course_material.*,course_content.* from course_content LEFT JOIN course_material ON course_content.cid = course_material.cid WHERE course_content.course_id = $id;";
         //var_dump($_SESSION);exit;
         //show($query);die;
         $res = $this -> query($query,$data);

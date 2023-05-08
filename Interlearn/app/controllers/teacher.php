@@ -105,6 +105,7 @@ class Teacher extends Controller
             redirect('home');
 
         }
+
         $user = Auth::getUsername();
         $user_id = Auth::getUid();
         $subject = new Subject();
@@ -117,14 +118,14 @@ class Teacher extends Controller
         $course_content = new CourseContent();
         $course_url = new CourseUrl();
         $announcement = new Announcement();
-        $staff = new Staff();
-        $notification = new Notification();
         $data = [];
         $data['course_id'] = $id;
         $data['week_no'] = $week;
 
         if($action == "view")
         {
+
+
             $data = [];
             $data['action'] = $action;
             $data['course_id'] = $id;
@@ -138,8 +139,9 @@ class Teacher extends Controller
             //$data['sums']= $subject -> teacherCourse([],$user_id);
             $data['courses'] = $subject -> teacherCourseDetails([],$id);
             //show($data['courses']);die;
-            $weeks = $course->getWeekCount($id);
-            $data['noOfWeeks'] = $weeks->No_Of_Weeks;
+
+            $weeks= $course->getWeekCount($id);
+            $data['noOfWeeks'] =$weeks->No_Of_Weeks;
             $data['courseWeeks'] = $course_week->getWeeks($id);
 
             // show($course_week->getWeeks($id));
@@ -190,10 +192,9 @@ class Teacher extends Controller
                 $result = $course_content->deleteUpload($_POST['delete-filenumber']);
                 header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
             }
-
             if($option == 'getWeekName'){
                 // show($_GET);die;
-                $result = $course_week->getWeekName($id,$_GET['week_no']);
+                $result = $course_week->getWeekName($id,$week);
 
                 echo json_encode($result);
                 exit;
@@ -264,9 +265,6 @@ class Teacher extends Controller
                                     $_POST['file_type'] = $fileType;
                                     $_POST['size'] = $fileSize;
                                     $_POST['course_id'] = $id;
-                                    $empId = $staff -> getEmpId($user_id);
-                                    $emp_id = $empId[0] -> emp_id;
-                                    $_POST['emp_id'] = $emp_id;
                                     //show($_POST);die;
                                     $_POST['type'] = "material";
                                     $_POST['cid'] = $cid;
@@ -315,9 +313,6 @@ class Teacher extends Controller
                     $viewURL = $_POST['URL'];
 
                     $_POST['course_id'] = $id;
-                    $empId = $staff -> getEmpId($user_id);
-                    $emp_id = $empId[0] -> emp_id;
-                    $_POST['emp_id'] = $emp_id;
                     //show($_POST);die;
                     $_POST['type'] = "URL";
                     $_POST['cid'] = $cid;
@@ -408,20 +403,16 @@ class Teacher extends Controller
                                 echo "You cannot upload this file!";
                             }
                         }
-
-                        $result = $announcement->insert($_POST);
-                    $result2 = $ann_course->insert($_POST);
-                    $_POST['category'] = "Announcement";
-                    $result3 = $notification->insert($_POST);
-                    echo "Announcement successfully published!";
-                    header("Location:http://localhost/Interlearn/public/teacher/course/announcement/" . $id . "/0");
                     }
                     else {
                         // show("hello");
                         $data['errors'] = $announcement -> error;
                     }
 
-
+                    $result = $announcement->insert($_POST);
+                    $result2 = $ann_course->insert($_POST);
+                    echo "Announcement successfully published!";
+                    header("Location:http://localhost/Interlearn/public/teacher/course/announcement/" . $id . "/0");
                 }
                 $this->view('teacher/addAnnouncement',$data);
             }
@@ -1128,6 +1119,17 @@ class Teacher extends Controller
 
             $data['rows'] = $question->ChoiceInnerjoinQuestion(['course_id'=>$id]);
 
+            if(isset($_POST['edit_question'])){
+                // echo $_POST['id'];die;
+                $question_id = $_POST['id'];
+                // echo $question_id;die;
+                // echo $_POST['id'];die;
+                // $qid = $_GET['id'];
+                // echo $qid;die;
+                // echo $_POST['quiz_name'];die;
+                $result1 = $question->UpdateQuestion($question_id, $_POST['question_title'], $_POST['mymarks']);
+                $result2 = $choice->UpdateChoice($question_id, $_POST['choice_1'], $_POST['format_time1'], $_POST['choice_2'], $_POST['format_time2'], $_POST['choice_3'], $_POST['format_time3'], $_POST['choice_4'], $_POST['format_time4']);
+            }
 
         // show($data['rows']);die;
             $this->view('teacher/Zquiz', $data);

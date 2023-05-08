@@ -2,6 +2,7 @@
 <?php $this -> view('includes/nav'); ?>
 <head>
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles2.css">
+    <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles6.css">
 </head>
 <div class="mid-container">
     <div class="quizz_left">
@@ -60,7 +61,7 @@
                         <td><?=esc($row->question_mark)?></td>
                         <td>
                             <div class="edit_delete">
-                                <div class="edit" onclick=editQuestion(<?=esc($row->question_number)?>)>
+                                <div class="edit" onclick=editQuestion(<?=esc($row->question_mark)?>)>
                                     <button>edit</button>
                                 </div>
                                 <div class="delete">
@@ -78,21 +79,108 @@
             </table>
         </div>
 
-        <!-- <div class="bg_modal" id="modal">
+        <div class="bg_modal" id="modal">
             <div class="box_modal">
-                <h3> -- Update Marks -- </h3>
+                <h3> -- Update Question -- </h3>
                 <form action="" method="POST">
-                    <input type="hidden" value="<?=esc($row->id)?>" name="id" id="id">
-                    <input type="number" id="input_marks" name="mymarks" class="time_period" placeholder="update marks">
+                    <input type="hidden" value="<?=esc($row->question_number)?>" name="id" id="id">
+                    
+                    
+                    <label for="question_name" style="font-size:16px; font-weight:500;">Question <strong> *</strong> : </label>
+                    <input class="home_cnt_inp" type=text name="question_title" value="" placeholder="Eg : When UCSC is established ?" id="input_question">
+                    
+                    <label for="time_period">Choice 1 <strong> *</strong> : </label><br>
+                    <div class="select_duration">
+                        <!-- <div> -->
+                            <input class="time_period1" type=number name="choice_1" value="" id="input_choice1" placeholder="">
+                        <!-- </div>   -->
+                        <!-- <div> -->
+                            <select name="format_time1" id="format_time1">
+                                <option value="-1.00"> -100% </option>
+                                <option value="-0.75"> -75% </option>
+                                <option value="-0.50"> -50% </option>
+                                <option value="-0.25"> -25% </option>
+                                <option value="0"> 0% </option>
+                                <option value="0.25"> 25% </option>
+                                <option value="0.33"> 33.3% </option>
+                                <option value="0.50"> 50% </option>
+                                <option value="1.00"> 100% </option>
+                            </select>
+                        <!-- </div> -->
+                    </div>
 
-                    <input type="submit" value="Update" class = "home_form_sbt" name="edit_marks">
+                    <label for="time_period">Choice 2 <strong> *</strong> : </label><br>
+                    <div class="select_duration">
+                        <!-- <div> -->
+                            <input class="time_period1" type=number name="choice_2" value="" id="input_choice1" placeholder="">
+                        <!-- </div>   -->
+                        <!-- <div> -->
+                            <select name="format_time2" id="format_time">
+                                <option value="-1.00"> -100% </option>
+                                <option value="-0.75"> -75% </option>
+                                <option value="-0.50"> -50% </option>
+                                <option value="-0.25"> -25% </option>
+                                <option value="0"> 0% </option>
+                                <option value="0.25"> 25% </option>
+                                <option value="0.33"> 33.3% </option>
+                                <option value="0.50"> 50% </option>
+                                <option value="1.00"> 100% </option>
+                            </select>
+                        <!-- </div> -->
+                    </div>
+
+                    <label for="time_period">Choice 3 <strong> *</strong> : </label><br>
+                    <div class="select_duration">
+                        <!-- <div> -->
+                            <input class="time_period1" type=number name="choice_3" value="" id="input_choice1" placeholder="">
+                        <!-- </div>   -->
+                        <!-- <div> -->
+                            <select name="format_time3" id="format_time">
+                                <option value="-1.00"> -100% </option>
+                                <option value="-0.75"> -75% </option>
+                                <option value="-0.50"> -50% </option>
+                                <option value="-0.25"> -25% </option>
+                                <option value="0"> 0% </option>
+                                <option value="0.25"> 25% </option>
+                                <option value="0.33"> 33.3% </option>
+                                <option value="0.50"> 50% </option>
+                                <option value="1.00"> 100% </option>
+                            </select>
+                        <!-- </div> -->
+                    </div>
+
+                    <label for="time_period">Choice 4 <strong> *</strong> : </label><br>
+                    <div class="select_duration">
+                        <!-- <div> -->
+                            <input class="time_period1" type=number name="choice_4" value="" id="input_choice1" placeholder="">
+                        <!-- </div>   -->
+                        <!-- <div> -->
+                            <select name="format_time4" id="format_time">
+                                <option value="-1.00"> -100% </option>
+                                <option value="-0.75"> -75% </option>
+                                <option value="-0.50"> -50% </option>
+                                <option value="-0.25"> -25% </option>
+                                <option value="0"> 0% </option>
+                                <option value="0.25"> 25% </option>
+                                <option value="0.33"> 33.3% </option>
+                                <option value="0.50"> 50% </option>
+                                <option value="1.00"> 100% </option>
+                            </select>
+                        <!-- </div> -->
+                    </div>
+
+                    <label for="question_name" style="font-size:16px; font-weight:500;">Question Marks<strong> *</strong> : </label><br>
+                    <input type="number" id="input_marks" name="mymarks" class="time_period" placeholder="Question marks">
+
+                    <input type="submit" value="Update" class = "home_form_sbt" name="edit_question">
                 </form>
             </div>
-        </div> -->
+        </div>
 
         <!-- <p>Hello I'm all</p> -->
     </div>
 </div>
 <script defer src="<?=ROOT?>/assets/js/zquiz.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?=ROOT?>/assets/js/course.js?v=<?php echo time(); ?>"></script>
+<script defer src="<?=ROOT?>/assets/js/EditQuestion.js?v=<?php echo time(); ?>"></script>
 <?php $this -> view('includes/footer'); ?>

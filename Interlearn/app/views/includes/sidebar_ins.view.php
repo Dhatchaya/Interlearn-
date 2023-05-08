@@ -14,7 +14,7 @@
                     
                    
                         <div class="dashboard">
-                            <a href="<?=ROOT?>/instructor/home">
+                            <a href="<?=ROOT?>/instructor/course">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/dashboard.png" alt="Dashboard"></br>
                             <span>Dashboard</span>
                             </a>

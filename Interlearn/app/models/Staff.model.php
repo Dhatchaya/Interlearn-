@@ -353,22 +353,4 @@ class Staff extends Model
         // echo "hi";die;
         return false;
     }
-
-    public function getEmpId($user_id)
-    {
-        $query = "SELECT emp_id FROM " . $this->table;
-        $query .= " WHERE uid =:uId";
-
-        $data['uId'] = $user_id;
-
-        $res = $this->query($query, $data);
-        //  show($query);die;
-
-        if (is_array($res)) {
-            // echo $res;die;
-            return $res;
-        }
-        // echo "hi";die;
-        return false;
-    }
 }

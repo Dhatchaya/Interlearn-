@@ -10,9 +10,9 @@ function getInstructorAvail($id) {
             var dropdown = document.getElementById("instructor_dd");
              console.log('response',response);
             response = JSON.parse(response);
-            console.log(response);
+            // console.log(response);
    
-            var error = document.getElementById('addCourseerror');
+            var error = $('#addCourseerror');
 
             // Get the modal
             const modal2 = document.getElementById("profileModal2");

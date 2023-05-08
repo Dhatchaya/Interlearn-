@@ -1,14 +1,12 @@
-<?php $this->view("includes/header"); ?>
-<div class="main-body-div">
-    <?php $this->view("includes/sidebar_recep"); ?>
-    <div class="top-to-bottom-content">
-        <?php $this->view("includes/nav"); ?>
-        <div class="all-middle-content">
+<?php $this->view("includes/header");?>
+<?php $this->view("includes/nav");?>
+
 <div class="recp_det_container">
+<?php $this->view("includes/sidebar_recep");?>
     <div class="recp_det_content">
         <h2>Add new course</h2><br>
         <form method="post" action="" enctype="multipart/form-data">
-        <!-- <?php if(!empty($errors)){show($errors) ;} ?> -->
+        <?php if(!empty($errors)){show($errors) ;} ?>
         <!-- <div class="recp_crs_add"> -->
             
 
@@ -16,9 +14,6 @@
             <h4>Subject:</h4><br>
                 <input type="text" class="recp_det_name" name="subject" id="subject">
                 <div id="alert-div1" style="display:none;" class="warning"></div>
-                <?php if(!empty($errors)):?>
-                <p class="warning"><?=$errors['subject'];?></p>
-                <?php endif;?>
             </div>
             <br><br><br>
 
@@ -32,13 +27,9 @@
                    <option value="9">Grade 9</option>
                    <option value="10">Grade 10</option>
                    <option value="11">Grade 11</option>
-                   <option value="12">Grade 12</option>
-                   <option value="13">Grade 13</option>
+                   <option value="A/L">Grade A/L</option>
                 </select>
                 <div id="alert-div2" style="display:none;" class="warning"></div>
-                <?php if(!empty($errors)):?>
-                <p class="warning"><?=$errors['grades'];?></p>
-                <?php endif;?>
             </div><br><br>
             <div class="recp_det_box">
                 <h4>Language Medium:</h4>
@@ -52,7 +43,7 @@
                 </select>
                 <div id="alert-div3" style="display:none;" class="warning"></div>
                 <?php if(!empty($errors)):?>
-                <p class="warning"><?=$errors['mediums'];?></p>
+                <p class="warning"><?=$errors['language_medium'];?></p>
                 <?php endif;?>
             </div>
             <br><br>
@@ -138,7 +129,6 @@
         </form>
     </div>
 </div>
-        </div></div></div>
 <!-- <script defer src="<?=ROOT?>/assets/js/addCourse.js?v=<?php echo time(); ?>"></script> -->
 <script defer src="<?=ROOT?>/assets/js/selectCourse.js?v=<?php echo time(); ?>"></script>
 <?php $this->view("includes/footer");?>
