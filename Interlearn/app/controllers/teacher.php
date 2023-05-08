@@ -1128,6 +1128,17 @@ class Teacher extends Controller
 
             $data['rows'] = $question->ChoiceInnerjoinQuestion(['course_id'=>$id]);
 
+            if(isset($_POST['edit_question'])){
+                // echo $_POST['id'];die;
+                $question_id = $_POST['id'];
+                // echo $question_id;die;
+                // echo $_POST['id'];die;
+                // $qid = $_GET['id'];
+                // echo $qid;die;
+                // echo $_POST['quiz_name'];die;
+                $result1 = $question->UpdateQuestion($question_id, $_POST['question_title'], $_POST['mymarks']);
+                $result2 = $choice->UpdateChoice($question_id, $_POST['choice_1'], $_POST['format_time1'], $_POST['choice_2'], $_POST['format_time2'], $_POST['choice_3'], $_POST['format_time3'], $_POST['choice_4'], $_POST['format_time4']);
+            }
 
         // show($data['rows']);die;
             $this->view('teacher/Zquiz', $data);

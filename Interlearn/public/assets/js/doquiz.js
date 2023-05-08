@@ -198,10 +198,34 @@ function next() {
     }
 }
 
+// getting URL
+// Example JS code in your_js_file.js
+function getQuizIdFromUrl() {
+    // Get the current URL
+    const url = window.location.href;
+
+    // Extract the quiz_id from the URL using a regular expression
+    const regex = /quiz_id=([\w\d]+)/;
+    const match = url.match(regex);
+
+    if (match) {
+      // Return the quiz_id if it was found in the URL
+      return match[1];
+    } else {
+      // Return null if the quiz_id was not found in the URL
+      return null;
+    }
+}
+
+// URL
+
 function quizResults() {
     ResultBox.querySelector(".total-question").innerHTML = quiz.length;
     ResultBox.querySelector(".total-score").innerHTML = totalMarks;
 
+    let x = 5;
+    const quizId = getQuizIdFromUrl();
+    console.log(quizId);
     console.log(totalMarks);
     // Send totalMarks to the server using AJAX
     var xhr = new XMLHttpRequest();
@@ -212,7 +236,7 @@ function quizResults() {
         console.log(this.responseText);
         }
     };
-    xhr.send("totalMarks=" + totalMarks);
+    xhr.send("totalMarks=" + totalMarks + "&quizId=" + quizId);
 
 }
 
