@@ -1,16 +1,46 @@
 table {
-    width: 600px;
+    width: 800px;
     height: 100%;
-
-}
-
-/* tr {
-    padding: 5px;
     border: none;
-} */
-th {
-    background-color: aliceblue;
 }
+
+.mytable {
+    position: absolute;
+    top: 35%;
+    left: 27%;
+
+}
+tr {
+    /* background-color: #ffffff; */
+    border: none;
+    height: 5vh;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+tr:nth-child(odd) {
+    background-color: #edeef1;
+}
+
+.home_myform_sbt {
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    background-color: #3E206D;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    /* margin-left: 86%; */
+}
+
+/* th {
+    background-color: aliceblue;
+} */
 
 .bg_modal {
     position: absolute;
@@ -20,14 +50,14 @@ th {
     right: 0;
     background: rgba(0,0, 0, 0.3);
     width: auto;
-    height: auto;
+    height: 156vh;
     z-index: 999;
     display: none;
     
 }
 
 .box_modal {
-    position: absolute;
+    position: fixed;
     top: 30%;
     bottom: 0;
     left: 30%;

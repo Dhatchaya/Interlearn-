@@ -2708,9 +2708,10 @@ std_view_bottom{
 }
 
 .std_op_subject{
+    border: none;
     border-radius: 10%;
     width: 25vw;
-    height: 60vh;
+    height: 50vh;
     float: left;
     margin-right: 8%;
     margin-top: 5%;

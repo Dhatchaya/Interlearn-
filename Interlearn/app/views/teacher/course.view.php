@@ -122,6 +122,14 @@
                                                             <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal7('<?= $material->cid ?>',<?= $material->course_id ?>,<?= $material->week_no ?>)">
                                                             <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal8('<?= $material->cid ?>')">
                                                         </p>
+                                                    <?php elseif($material->type == "quiz"):?>
+                                                        <p><a href=<?=$material->view_URL?>>
+                                                                <img src="<?=ROOT?>/assets/images/quiz.png" alt="" class="teacher_card_img3">
+                                                                <?=$material->upload_name?>
+                                                            </a>
+                                                            <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
+                                                            <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->cid?>')">
+                                                        </p>
                                                     <?php endif; ?>
 
                                                 <?php endif; ?>
