@@ -9,49 +9,55 @@
     </div>
     <!-- <h1>hello</h1> -->
     <div class="question_right">
-        <table >
-            <thread>
-                <?php if(!empty($rows)):?>
-            
-                <?php foreach($rows as $row):?>
-                <tr>
-                    <th >Quiz ID</th>
-                    <td><?=esc($row->quiz_id)?></td>
-                </tr>
-                <tr>
-                    <th >Quiz Description</th>
-                    <td><?=esc($row->quiz_description)?></td>
-                </tr>
-                <tr>
-                    <th >Total Points</th>
-                    <td><?=esc($row->total_points)?></td>
-                </tr>
-                <tr>
-                    <th >Quiz Date</th>
-                    <td><?=esc($row->quiz_date)?></td>
-                </tr>
-                <tr>
-                    <th >Enable Time</th>
-                    <td><?=esc($row->enable_time)?></td>
-                </tr>
-                <tr>
-                    <th >Disable Time</th>
-                    <td><?=esc($row->disable_time)?></td>
-                </tr>
-                <tr>
-                    <th >Duration</th>
-                    <td><?=esc($row->duration)?></td>
-                </tr>
-                <tr>
-                    <th >Format Time</th>
-                    <td><?=esc($row->format_time)?></td>
-                </tr>
-            </thread>
-            <tbody> 
+        <h1>Edit Quiz</h1>
+        <p>Here, you can edit the quiz </p>
+        <br>
+        <div class="mytable">
+            <table>
+                <thread>
+                    <?php if(!empty($rows)):?>
                 
-                
-            </tbody>
-        </table>
+                    <?php foreach($rows as $row):?>
+                    <tr>
+                        <th >Quiz ID</th>
+                        <td><?=esc($row->quiz_id)?></td>
+                    </tr>
+                    <tr>
+                        <th >Quiz Description</th>
+                        <td><?=esc($row->quiz_description)?></td>
+                    </tr>
+                    <tr>
+                        <th >Total Points</th>
+                        <td><?=esc($row->total_points)?></td>
+                    </tr>
+                    <tr>
+                        <th >Quiz Date</th>
+                        <td><?=esc($row->quiz_date)?></td>
+                    </tr>
+                    <tr>
+                        <th >Enable Time</th>
+                        <td><?=esc($row->enable_time)?></td>
+                    </tr>
+                    <tr>
+                        <th >Disable Time</th>
+                        <td><?=esc($row->disable_time)?></td>
+                    </tr>
+                    <tr>
+                        <th >Duration</th>
+                        <td><?=esc($row->duration)?></td>
+                    </tr>
+                    <tr>
+                        <th >Format Time</th>
+                        <td><?=esc($row->format_time)?></td>
+                    </tr>
+                </thread>
+                <tbody> 
+                    
+                    
+                </tbody>
+            </table>
+        </div>
+        
         <div class="bg_modal" id="modal">
             <div class="box_modal">
                 <h3> -- Update Quiz -- </h3><br>
@@ -59,7 +65,7 @@
                     <!-- <input type="hidden" value="" name="id" id="id"> -->
                     
                     <label for="question_total">Quiz Description <strong> *</strong> : </label>
-                    <textarea class="home_cnt_inp" id="message" name="quiz_description" id="input_description" placeholder="Insert a quiz description" style="height:50px"></textarea>
+                    <textarea class="home_cnt_inp" name="quiz_description" id="input_description" placeholder="Insert a quiz description" style="height:50px"></textarea>
                     
                     <div class="enable_disable">
                         <div class="enable">
@@ -111,7 +117,7 @@
             </div>
         </div>
         
-        <button class="home_form_sbt" onclick="toModal(<?=esc($row->duration)?>, <?=esc($row->total_points)?>)">Update Quiz</button>
+        <button class="home_myform_sbt" onclick="toModal(<?=esc($row->duration)?>, <?=esc($row->total_points)?>, '<?=esc($row->quiz_description)?>', '<?=esc($row->quiz_name)?>')">Update Quiz</button>
         <?php endforeach;?>
         <?php else:?>
         <tr><td colspan="15">No records found!</td></tr>

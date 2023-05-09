@@ -141,12 +141,6 @@ class Instructor extends Controller
                 header("Location:http://localhost/Interlearn/public/instructor/course/view/".$id);
             }
 
-            if(isset($_POST['submit-delete-text'])){
-                // $result = $course_material->deleteUpload($_POST['delete-filenumber']);
-                $result = $course_content->deleteUpload($_POST['delete-text-filenumber']);
-                header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
-            }
-
             if($option == 'getWeekName'){
                 // show($_GET);die;
                 // $result = $course_week->getWeekName($id,$_GET['week_no']);
@@ -172,21 +166,6 @@ class Instructor extends Controller
                 // $result = $course_week->getWeekName($id,$_GET['week_no']);
                 // show($_POST);die;
                 $result = $course_week->UpdateWeekName($id,$_POST['week_no'],$_POST['week_name']);
-
-                echo json_encode($result);
-                exit;
-            }
-
-            if($option == 'getTextName'){
-                // show($_GET);die;
-                $result = $course_content->getUploads($id,$_GET['week_no']);
-
-                echo json_encode($result);
-                exit;
-            }
-
-            if($option == 'editTextName'){
-                $result = $course_content->UpdateUploadText($id,$_POST['cid'],$_POST['upload_name'],$_POST['view_URL']);
 
                 echo json_encode($result);
                 exit;
@@ -314,44 +293,6 @@ class Instructor extends Controller
             //   show($data['courses']);die;
             $this->view('instructor/url',$data);
         }
-
-        if($action == "text"){
-            if(isset($_POST['submit']))
-            {
-                // if($course_content -> validate($_POST)){
-                    $cid = uniqid();
-                    // $viewURL="http://localhost/Interlearn/public/teacher/course/submissions/".$id."/".$week."/?id=".$cid;
-                    $viewURL = $_POST['content'];
-
-                    $_POST['course_id'] = $id;
-                    $empId = $staff -> getEmpId($user_id);
-                    $emp_id = $empId[0] -> emp_id;
-                    $_POST['emp_id'] = $emp_id;
-                    //show($_POST);die;
-                    $_POST['type'] = "Note";
-                    $_POST['cid'] = $cid;
-                    $_POST['view_URL'] = $viewURL;
-                    $result2 = $course_content -> insert($_POST);
-                    // $result = $course_url->insert($_POST);
-                    echo "Note successfully published!";
-                    header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
-                // }
-                // else{
-                //     $data['errors'] =  $course_content->error;
-
-                // }
-            }
-            $data['rows']= $course->select([],'course_id');
-            //show($data['rows']);die;
-            $data['sums']= $subject -> teacherCourse([],$user_id);
-            //show($data['sums']);die;
-            $data['courses'] = $subject -> CoursePage(['course_id' => $id],$user_id);
-            $data['week_no'] = $week;
-            // show($data['week_no']);die;
-            //   show($data['courses']);die;
-            $this->view('instructor/note',$data);
-        }
-
 
         if($action == "announcement")
         {
@@ -688,43 +629,7 @@ class Instructor extends Controller
             exit();
         }
         
-        if($action == "forum")
-        {
-            $mainForum = new mainForum();
-            $data['course']  = $subject -> coursedetails(['course_id'=>$id]);
-
-            if($_SERVER["REQUEST_METHOD"]=="POST"){
-                $mainforum_id = uniqid('F',true);
-                $_POST['mainforum_id']=$mainforum_id;
-                $_POST['course_id']= $id;
-
-                $editURL = "#";
-                $viewURL="http://localhost/Interlearn/public/forums/".$id."/".$week."/?main=".$mainforum_id;
-                $deleteURL="http://localhost/Interlearn/public/forums/deleteMain?id=".$mainforum_id;
-                $cid = uniqid();
-                $_POST['cid']=$cid;
-                $_POST['edit_URL']=$editURL;
-                $_POST['view_URL']=$viewURL;
-                $_POST['delete_URL']=$deleteURL;
-                $_POST['week_no']=$week;
-                // $_POST['course_material']="Home Work";
-                $_POST['upload_name']=$_POST['subject'];
-                $_POST['type']="forum";
-              //  $_POST['course_id'] = $id;
-                $material = $course_content->insert($_POST);
-                $result =  $mainForum -> insert($_POST);
-
-                if($result){
-                    header('location:http://localhost/Interlearn/public/forums/'.$id.'/'.$week.'/?main='.$mainforum_id);
-                }
-            }
-
-            $this->view('teacher/mainForum',$data);
-            exit;
-        }
-
-
-
+        $this->view('instructor/course',$data);
     }
    
     public function submission()

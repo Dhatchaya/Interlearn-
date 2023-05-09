@@ -14,7 +14,7 @@
                             <?php endif; ?>
                         </div>
                         <div class="std_crs_pg_butn">
-                            <a href="<?= ROOT ?>/student/overall">
+                            <a href="<?=ROOT?>/student/myprogress/view?id=<?php echo($id)?>">
                                 <button class="std_crs_pg_btn">View Progress</button>
                             </a>
                         </div>

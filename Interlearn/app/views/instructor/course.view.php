@@ -108,13 +108,6 @@
                                                                 <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?= $material->cid ?>')">
                                                             <?php endif; ?>
                                                         </p>
-                                                    <?php elseif ($material->type == "Note") : ?>
-                                                        <p class="text-upload-crs">
-                                                            <b><u><?= $material->upload_name ?></u></b><br>
-                                                            <?= $material->view_URL ?>
-                                                            <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal7('<?= $material->cid ?>',<?= $material->course_id ?>,<?= $material->week_no ?>)">
-                                                            <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal8('<?= $material->cid ?>')">
-                                                        </p>
                                                     <?php endif; ?>
                                                 <?php endif; ?>
                                             <?php endforeach; ?>
@@ -160,11 +153,6 @@
                                                     <img src="<?= ROOT ?>/assets/images/web-new.png" alt="" class="teacher-crs-img"><br>Add URL
                                                 </a>
                                             </div>
-                                            <div class="teacher-crs-activity">
-                                                <a href="<?= ROOT ?>/instructor/course/text/<?= $course->course_id ?>" name="text">
-                                                    <img src="<?= ROOT ?>/assets/images/note.png" alt="" class="teacher-crs-img"><br>Add note
-                                                </a>
-                                            </div>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </div>
@@ -180,7 +168,7 @@
                         <span class="ann_close" onclick="closeModal2()">&times;</span><br>
                         <h4>Add weeks</h4><br>
                         <form action="" method="post" class="up-profile">
-                            <div class="teacher-crs-addweek">
+                            <div class="teacher-crs-activities2">
                                 <label for="card-count" class="teacher-inc-head">No.of sections you want to add:</label><br><br>
                                 <hr>
                                 <div class="teacher-increment">
@@ -261,44 +249,6 @@
                                 <input type="hidden" value="" name="delete-filenumber" id="delete-filenumber">
                                 <br><br>
                                 <button type="submit" class="teacher_upl_btn" name="submit-delete-up" id="add-btn">Yes</button>
-                                <button type="reset" class="teacher_upl_btn" id="cancel-btn">Cancel</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-
-                <!-- editing the upload text -->
-                <div id="profileModal7" class="popupModal">
-                    <div class="teachr-popupmodal-content3">
-                        <span class="ann_close" onclick="closeModal7()">&times;</span><br>
-                        <h4>Edit Uploaded Text</h4><br>
-                        <form action="" method="post" class="up-profile">
-                            <div class="teacher-crs-activities3">
-                                <label for="upload-title" class="teacher-edit">Content title: </label>
-                                <input type="hidden" value="" name="cid" id="cid">
-                                <input type="text" class="teacher-edit-text" name="upload-text" id="edit-text"><br>
-                                <label for="upload-title" class="teacher-edit">Content: </label>
-                                <input type="text" class="teacher-edit-content" name="upload-content" id="edit-text-content"><br><br>
-                                <button type="submit" class="teacher_upl_btn" name="submit-upload" id="edit-text-btn">Update</button>
-                                <button type="reset" class="teacher_upl_btn" id="cancel-btn">Cancel</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-
-                <!-- deleting the upload text popup -->
-                <div id="profileModal8" class="popupModal">
-                    <div class="tchr-popupmodal-content2">
-                        <span class="ann_close" onclick="closeModal8()">&times;</span><br>
-                        <h4>Delete Text Content</h4><br>
-                        <form action="" method="post" class="up-profile">
-                            <div class="teacher-crs-activities2">
-                                <label for="delete-upload" class="teacher-edit">Are you sure you want to delete this text content? </label>
-                                <input type="hidden" value="" name="delete-text-filenumber" id="delete-text-filenumber">
-                                <br><br>
-                                <button type="submit" class="teacher_upl_btn" name="submit-delete-text" id="add-btn">Yes</button>
                                 <button type="reset" class="teacher_upl_btn" id="cancel-btn">Cancel</button>
                             </div>
                         </form>

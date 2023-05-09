@@ -80,23 +80,6 @@ class CourseContent extends Model
         }
     }
 
-    public function UpdateUploadText($course_id,$cid,$updated_name,$content){
-        $query = "UPDATE ".$this->table." SET upload_name =:updateName, view_URL = :content WHERE course_id =:courseId and cid =:cId";
-        $data['updateName'] = $updated_name;
-        $data['content'] = $content;
-        $data['courseId'] = $course_id;
-        $data['cId'] = $cid;
-        $res = $this -> update_table($query,$data);
-        // echo $res;die;
-        // show($query);die;
-
-        if($res){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
     //student contents
     public function studentCourseContent($data=[],$id,$orderby = null, $order=null){
         $query = "SELECT course.*,course_content.*,course_material.file_type FROM ".$this->table;

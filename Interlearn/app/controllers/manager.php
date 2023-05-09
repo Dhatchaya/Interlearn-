@@ -366,28 +366,24 @@ public function testing()
                 // if(isset($_GET['rid'])){
                 //     $reParent = $_GET['rid'];
                 // }
-                if(empty($_POST['content'])){
-                    $data['empty']="Please type your reply before submitting";
+                $_POST['eid']=$eid;
+                $_POST['senderId']=$user_id;
+                $_POST['receiverId']= $enq->user_Id;
+                $_POST['reply_user']=$role;
+
+
+                $result= $reply->insert($_POST);
+
+                if($result){
+                    if($enq->status == 'pending'){
+                       $updateStatus= $enquiry->update(['eid'=>$eid],['status'=>'In progress']);
+                    }
+                  // $replied = $reply -> update(['repId'=>$reParent],['status'=>'replied']);
                 }
                 else{
-                    $_POST['eid']=$eid;
-                    $_POST['senderId']=$user_id;
-                    $_POST['receiverId']= $enq->user_Id;
-                    $_POST['reply_user']=$role;
-
-
-                    $result= $reply->insert($_POST);
-
-                    if($result){
-                        if($enq->status == 'pending'){
-                        $updateStatus= $enquiry->update(['eid'=>$eid],['status'=>'In progress']);
-                        }
-                    // $replied = $reply -> update(['repId'=>$reParent],['status'=>'replied']);
-                    }
-                    else{
-                        echo"fail";
-                    }
+                    echo"fail";
                 }
+
             }
             $data['reply'] = $reply -> where(['eid'=>$eid],'eid');
             $enq = $enquiry->first([

@@ -40,10 +40,9 @@
 
                     <form method="POST" class="forum_reply_form" id="forum_reply_box"  enctype="multipart/form-data" >
                         <input name = "parent_id" id="parent_id" type="hidden"  value='<?=esc($forum->forum_id)?>'/></br>
-                        <p id="content_type_error" class="warning"></p>
                         <textarea name = "content" id="reply" type="text" placeholder="write your reply" class="reply-textarea" ></textarea>
                         <input type ="file"  class = "file_attachment" name="attachment" /></br>
-                        <p id="file_type_error" class="warning"></p>
+
 
                         <input class="reply-btn" type="submit" value="Reply" name = "reply_submit"  />
                         <input class="forum_cancel_btn reply-btn" type="reset" value="Cancel" id = "forum_cancel_btn" name = "reply_cancel"/>
@@ -53,7 +52,6 @@
 
         </div>
     </div>
-</div>
 </div>
 <script defer src="<?=ROOT?>/assets/js/discuss.js?v=<?php echo time(); ?>"></script>
 <?php $this->view("includes/footer");?>

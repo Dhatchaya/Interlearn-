@@ -9,7 +9,7 @@
         <?php $this -> view('includes/sidebar_teach'); ?>
     </div>
 
-    
+   
     <div class="clm2">
         <h2 class="add_heading_init">Quizz Bank</h2>
         <!-- <a href="<?=ROOT?>/teacher/course/quiz/<?=$course->course_id?>" name="question"><button type="button" data-modal-target= "#modal" class="Add_enq" >+ Add New Question</button></a> -->
@@ -26,20 +26,23 @@
             <table >
                 <thread>
                     <tr>
-                        <th >Question ID</th>
-                        <th>Question</th>
-                        <th>Choice#1</th>
-                        <th>Choice#1 Mark</th>
-                        <th>Choice#2</th>
-                        <th>Choice#2 Mark</th>
-                        <th>Choice#3</th>
-                        <th>Choice#3 Mark</th>
-                        <th>Choice#4</th>
-                        <th>Choice#4 Mark</th>
-                        <th>#Quizbank</th>
-                        <th>Question Mark</th>
-                        <th class="action_clm">Actions</th>
+                        <th rowspan="2">Question ID</th>
+                        <th rowspan="2">Question</th>
+                        <th colspan="8">Choices</th>
+                        <th rowspan="2">Quizbank</th>
+                        <th rowspan="2">Question Mark</th>
+                        <th class="action_clm" rowspan="2">Actions</th>
                     </tr>
+                        <tr>
+                            <th>Choice#1</th>
+                            <th>Choice#1 Mark</th>
+                            <th>Choice#2</th>
+                            <th>Choice#2 Mark</th>
+                            <th>Choice#3</th>
+                            <th>Choice#3 Mark</th>
+                            <th>Choice#4</th>
+                            <th>Choice#4 Mark</th>  
+                        </tr>
                 </thread>
                 <tbody>
                     <?php if(!empty($rows)):?>
@@ -61,8 +64,8 @@
                         <td><?=esc($row->question_mark)?></td>
                         <td>
                             <div class="edit_delete">
-                                <div class="edit" onclick=editQuestion(<?=esc($row->question_mark)?>)>
-                                    <button>edit</button>
+                                <div class="edit">
+                                    <button onclick="editQuestion('<?=esc($row->question_title)?>' , <?=esc($row->question_mark)?>, '<?=esc($row->choice1)?>', '<?=esc($row->choice2)?>', '<?=esc($row->choice3)?>', '<?=esc($row->choice4)?>', <?=esc($row->choice1_mark)?>)">edit</button>
                                 </div>
                                 <div class="delete">
                                     <a href="<?=ROOT?>/teacher/course/quiz/4/79/delete?qnum=<?=esc($row->question_number)?>"><button>delete</button></a>
@@ -112,10 +115,10 @@
                     <label for="time_period">Choice 2 <strong> *</strong> : </label><br>
                     <div class="select_duration">
                         <!-- <div> -->
-                            <input class="time_period1" type=number name="choice_2" value="" id="input_choice1" placeholder="">
+                            <input class="time_period1" type=number name="choice_2" value="" id="input_choice2" placeholder="">
                         <!-- </div>   -->
                         <!-- <div> -->
-                            <select name="format_time2" id="format_time">
+                            <select name="format_time2" id="format_time2">
                                 <option value="-1.00"> -100% </option>
                                 <option value="-0.75"> -75% </option>
                                 <option value="-0.50"> -50% </option>
@@ -132,10 +135,10 @@
                     <label for="time_period">Choice 3 <strong> *</strong> : </label><br>
                     <div class="select_duration">
                         <!-- <div> -->
-                            <input class="time_period1" type=number name="choice_3" value="" id="input_choice1" placeholder="">
+                            <input class="time_period1" type=number name="choice_3" value="" id="input_choice3" placeholder="">
                         <!-- </div>   -->
                         <!-- <div> -->
-                            <select name="format_time3" id="format_time">
+                            <select name="format_time3" id="format_time3">
                                 <option value="-1.00"> -100% </option>
                                 <option value="-0.75"> -75% </option>
                                 <option value="-0.50"> -50% </option>
@@ -152,10 +155,10 @@
                     <label for="time_period">Choice 4 <strong> *</strong> : </label><br>
                     <div class="select_duration">
                         <!-- <div> -->
-                            <input class="time_period1" type=number name="choice_4" value="" id="input_choice1" placeholder="">
+                            <input class="time_period1" type=number name="choice_4" value="" id="input_choice4" placeholder="">
                         <!-- </div>   -->
                         <!-- <div> -->
-                            <select name="format_time4" id="format_time">
+                            <select name="format_time4" id="format_time4">
                                 <option value="-1.00"> -100% </option>
                                 <option value="-0.75"> -75% </option>
                                 <option value="-0.50"> -50% </option>

@@ -818,7 +818,12 @@ class Student extends Controller
 
         // echo $quiz_json;
         // show($quiz_json);
-        $this->view('student/quiz');
+        $myquiz = new ZQuiz();
+        $quizID = $_GET['quiz_id'];
+        // echo $quizID;die;
+        $data['row'] = $myquiz->GetQuiz(['quiz_id' => $quizID]);
+        // show($data);die;
+        $this->view('student/quiz', $data);
 
 
         // die();

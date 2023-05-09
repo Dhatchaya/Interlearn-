@@ -12,9 +12,9 @@
 //filter grades with all 3 mediums
 var sub = document.getElementById('subject');
 sub.addEventListener('input',function(event){
-  var subject = document.getElementById('subject').value;
+  var subject = document.getElementById(this).value;
   if (subject != '') {  // check if the subject field is not empty
-    document.getElementById('alert-div1').style.display = 'none';  // hide the alert div
+    document.getElementById('alert-div1').hide();  // hide the alert div
   }
   $.ajax({
     url:'http://localhost/Interlearn/public/receptionist/course/findGrade',
@@ -65,13 +65,13 @@ grd.addEventListener('change', function() {
   var subject = document.getElementById('subject').value;
   if(subject == ''){
     document.getElementById('alert-div1').innerHTML = 'Please enter a subject before selecting a grade.';  // set the message in the alert div
-    document.getElementById('alert-div1').style.display = 'block';  // show the alert div
+    document.getElementById('alert-div1').show();  // show the alert div
     document.getElementById('grades').value = '';  // clear the selected grade
   }
   else{
-    var grade = document.getElementById('grades').value;
+    var grade = document.getElementById(this).value;
     if (grade != '') {  // check if the grade field is not empty
-      document.getElementById('alert-div2').style.display = 'none';  // hide the alert div
+      document.getElementById('alert-div2').hide();  // hide the alert div
     }
     $.ajax({
         url: 'http://localhost/Interlearn/public/receptionist/course/findMedium',
@@ -122,13 +122,13 @@ var med = document.getElementById('mediums');
 med.addEventListener('change',function(){
   var subject = document.getElementById('subject').value;
   var grade = document.getElementById('grades').value;
-  var medium = document.getElementById('mediums').value;
+  var medium = document.getElementById(this).value;
   console.log("1");
   if (subject == '') {  // check if the subject field is empty
     console.log("2");
-    // document.getElementById('alert-div1').style.display = 'block';
+    // document.getElementById('alert-div1').show();
     document.getElementById('alert-div1').innerHtml = 'Please enter a subject before selecting a grade.';  // set the message in the alert div
-    document.getElementById('alert-div1').style.display = 'block';  // show the alert div
+    document.getElementById('alert-div1').show();  // show the alert div
     document.getElementById('grades').value = '';  // clear the selected grade
   }
   console.log(grade == null);
@@ -136,12 +136,12 @@ med.addEventListener('change',function(){
   if(grade == null || grade == 'grade'){
     console.log('hi');
     document.getElementById('alert-div2').innerHtml = 'Please select a grade before selecting a language medium.';  // set the message in the alert div
-    document.getElementById('alert-div2').style.display = 'block';  // show the alert div
+    document.getElementById('alert-div2').show();  // show the alert div
     document.getElementById('mediums').value = '';  // clear the selected grade
   }
   else{
-    document.getElementById('alert-div1').style.display = 'none'; // hide the subject alert div
-    document.getElementById('alert-div2').style.display = 'none'; // hide the grade alert div
+    document.getElementById('alert-div1').hide(); // hide the subject alert div
+    document.getElementById('alert-div2').hide(); // hide the grade alert div
   }
 });
 
@@ -151,35 +151,34 @@ desc.addEventListener('input',function(){
   var subject = document.getElementById('subject').value;
   var grade = document.getElementById('grades').value;
   var medium = document.getElementById('mediums').value;
-  var description = document.getElementById('description').value;
+  var description = document.getElementById(this).value;
   if (subject == '') {  // check if the subject field is empty
     document.getElementById('alert-div1').innerHtml = 'Please enter a subject before selecting a grade.';  // set the message in the alert div
-    document.getElementById('alert-div1').style.display = 'block';  // show the alert div
+    document.getElementById('alert-div1').show();  // show the alert div
     document.getElementById('grades').value = '';  // clear the selected grade
   }
   if(grade == null || grade == 'grade'){
     console.log('hi');
     document.getElementById('alert-div2').innerHtml = 'Please select a grade before selecting a language medium.';  // set the message in the alert div
-    document.getElementById('alert-div2').style.display = 'block';  // show the alert div
+    document.getElementById('alert-div2').show();  // show the alert div
     document.getElementById('mediums').value = '';  // clear the selected grade
   }
   if(medium == '' || medium == '--Select language medium--'){
     console.log('hi');
     document.getElementById('alert-div3').innerHtml = 'Please select a language medium before adding a description.';  // set the message in the alert div
-    document.getElementById('alert-div3').style.display = 'block';  // show the alert div
+    document.getElementById('alert-div3').show();  // show the alert div
     document.getElementById('description').value = '';  // clear the selected grade
   }
   else{
-    document.getElementById('alert-div1').style.display = 'none'; // hide the subject alert div
-    document.getElementById('alert-div2').style.display = 'none'; // hide the grade alert div
-    document.getElementById('alert-div3').style.display = 'none'; // hide the grade alert div
+    document.getElementById('alert-div1').hide(); // hide the subject alert div
+    document.getElementById('alert-div2').hide(); // hide the grade alert div
+    document.getElementById('alert-div3').hide(); // hide the grade alert div
   }
 });
 
 
 // Filter available teachers
-var dayChng = document.getElementById('day');
-dayChng.addEventListener('change', function() {
+document.getElementById('day').on('change', function() {
   var subject = document.getElementById('subject').value;
   var grade = document.getElementById('grades').value;
   var teacher_id = document.getElementById('teacher_id').value;

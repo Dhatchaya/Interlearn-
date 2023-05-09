@@ -12,7 +12,7 @@
 
         <div class="std_sub_grd_content">
             <h2><?=esc($assignment->subject)?> - <?=esc($assignment->grade)?></h2><br>
-            <p style="font-size: large;"><?=esc($assignment->title)?></p><br>
+            <p style="font-size: large;">Description</p><br>
             <p> <?=esc($assignment->description)?> </p><br><br>
             <div class="std_subm_container2">
                 <div class="std_sub_grd_row1">

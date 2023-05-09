@@ -11,9 +11,17 @@
     </div>
     <div class="do_quiz_right">
         <div class="home-box custom-box">
-            <h3>Instruction : </h3>
-            <span class="description"></span>
-            <p>Total number of questions : <span class="total-question"></span></p>
+            <?php if (!empty($row)) : ?>
+            <?php foreach($row as $rows):?>
+                
+            <h3>Instruction : </h3><br>
+            <div><span class="tab"><?php echo($rows->quiz_description) ?></span></div><br>
+            <!-- <span class="description"></span> -->
+            <p>Total number of questions : <?php echo($rows->display_question) ?>
+            <!-- <span class="total-question"></span> -->
+            </p>
+            <?php endforeach;?>
+            <?php endif; ?>
             <button type="button" class="btn" onclick="StartQuiz()">Start Quiz</button>
         </div>
 

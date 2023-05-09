@@ -28,6 +28,11 @@
                         <p>Paste your URL here:</p><br>
                         <input type="text" class="teacher_upl_name" name="URL">
 
+                        <!-- <label class="teacher-upload-container" for="file-input">
+                    <span id="teacher-upload-name" class="teacher-upload-title">Drag and drop your files here</span>
+                    or
+                    <input type="file" name="file" id="file-input" class="teacher-upload-file">
+                </label> -->
 
                         <br><br><br><br><br>
                         <a href="<?= ROOT ?>/teacher/course">

@@ -3,6 +3,7 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -48,6 +49,10 @@ tr:hover td {
     background-color: #ffffff;
 }
 
+/* Adding new design */
+
+/* finished */
+
 td button {
     border: none;
     padding: 7px 8px;
@@ -67,7 +72,7 @@ td button {
     padding-right: 5px;
 }
 
-.bg_modal {
+/* .bg_modal {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -92,4 +97,4 @@ td button {
     border-radius: 5px;
     padding: 3vw;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
-}
+} */

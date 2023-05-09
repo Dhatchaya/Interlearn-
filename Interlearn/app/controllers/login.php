@@ -23,7 +23,7 @@ class Login extends Controller
             if($user -> validateLogin($_POST)){
             $row = $user -> first([
                 'email' => $_POST['email'],
-                // 'User_email_status' => 'verified'
+                'User_email_status' => 'verified'
             ],'uid');
             
             if($row)
@@ -85,19 +85,17 @@ class Login extends Controller
                 'email' => $_POST['email'],
                 
             ],'uid');
-            // $role=$user -> role([
-            //     'email' => $_POST['email'],
-            // ],'uid');
+            $role=$user -> role([
+                'email' => $_POST['email'],
+            ],'uid');
             if($row)
             {
                 if($row->User_email_status == "verified"){
                     $staffDetails = $staff->first([
                         'uid'=>$row->uid
                     ],'emp_id');
-
-
-                        if (in_array($row->role,$user->staffs)) {
-                            if($staffDetails->emp_status=="1"){
+                    if($staffDetails->emp_status=="1"){
+                        if (in_array($role,$user->staffs)) {
                             if(password_verify($_POST['password'],$row -> password ))
                             {
                             Auth::authenticate($row);
@@ -106,12 +104,12 @@ class Login extends Controller
                             }
                             $data['errors']['email']= "wrong email or password";
                         }
-                        else{
-                            $data['errors']['email']= "You No longer can Access your account";
+                        else if($role == "Student"){
+                            message("Please login as ".$role);
                         }
                     }
-                    else if($row->role == "Student"){
-                        message("Please login as ".$row->role);
+                    else{
+                        $data['errors']['email']= "You No longer can Access your account";
                     }
 
                 }
