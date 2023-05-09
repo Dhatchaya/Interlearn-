@@ -234,12 +234,11 @@ function openModal5(number,course,week) {
         console.log('http://localhost/Interlearn/public/teacher/course/editUploadName/'+course);
         console.log('hi');
         $.ajax({
-            url: 'http://localhost/Interlearn/public/teacher/course/editUploadName/'+course,
+            url: 'http://localhost/Interlearn/public/teacher/editUploadName/'+course,
             type: 'POST',
             data: {'cid':c_id, 'upload_name': name},
             success:function(response){
-                console.log("submit here");
-                console.log(response);
+                location.reload();
             },
             error:function(xhr,status,error){
                 console.log("Error: " + error);

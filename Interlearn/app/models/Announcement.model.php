@@ -220,12 +220,12 @@ class Announcement extends Model{
     public function deleteAnnFile($aid){
 
         $query = "UPDATE ".$this->table;
-        $query .= " SET file_name = NULL AND attachment = NULL";
+        $query .= " SET file_name = NULL , attachment = NULL";
         $query .= " WHERE announcement.aid =:aID AND announcement.role = 'Receptionist'";
         $data['aID'] = $aid;
 
         $res = $this -> update_table($query, $data);
-        // echo $query;die;
+   
 
         if($res){
             // show($res);die;

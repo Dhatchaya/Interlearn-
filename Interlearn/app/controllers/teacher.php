@@ -102,7 +102,7 @@ class Teacher extends Controller
     public function editUploadName($id=null)
     {
         $course_content = new CourseContent();
-        // show("check");die;
+      
         if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
             // show($_POST);die;
 
