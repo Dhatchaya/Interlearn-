@@ -31,13 +31,7 @@ class Tempstudent extends Model
         'email',
 
     ];
-    protected $staffs = [
-        'Manager',
-        'Teacher',
-        'Instructor',
-        'Receptionist',
 
-    ];
     // public function validate($data)
     // {   
     //     $this->error = [];

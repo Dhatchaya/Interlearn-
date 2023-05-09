@@ -13,7 +13,7 @@ class Staffs extends Controller
         redirect('home');
     }
      $data=[];
-     $students = new Student();
+     $students = new Students();
      $details = $students->joinstudentUser([],'first_name','asc');
      $data['user']="student";
      $data['rows']=$details;

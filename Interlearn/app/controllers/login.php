@@ -131,5 +131,89 @@ class Login extends Controller
         }
         $this->view('staff/login',$data);
     }
+    public function user($action=null)
+    {
+        $data=[];
+        $user = new User();
+        if($action=="email"){
+            if($_SERVER['REQUEST_METHOD'] == "POST"){
+                $row = $user -> first([
+                    'email' => $_POST['email'],
+
+                ],'uid');
+
+                if($row){
+                    $user_otp= rand(100000,999999);
+                    $user_activation_code= md5(rand());
+                    $email= $_POST['email'];
+                    $_POST['User_activation_code'] = $user_activation_code;
+                    $result=$user->update(['email'=>$email],$_POST);
+                    if($result){
+
+
+                        $verify = $user -> ForgotPW([
+                            'email' => $email,
+                            'user_activation_code'=>$user_activation_code,
+                            'user_otp'=>$user_otp
+                        ]);
+                        $data['response']="Please check your email to change your password";
+                    }
+
+                }
+                else{
+                    $data['error']="Invalid email";
+                }
+            }
+            $this->view('email',$data);
+        }
+        if($action=="change"){
+            if($_SERVER['REQUEST_METHOD'] == "POST"){
+                if(isset($_GET['code'])){
+                    $User_activation_code = $_GET['code'];
+                    $rows = $user -> first([
+                        'User_activation_code' => $_GET['code'],
+
+                    ],'uid');
+                    if($rows){
+                       if($_POST['password']==$_POST['confpass']){
+                            $pattern = '/^.{8,}$/';
+
+                            if (preg_match($pattern, $_POST['password'])) {
+
+                                    $pass = password_hash($_POST['password'],PASSWORD_DEFAULT);//hash password
+                                $status = $user->update(
+                                [
+                                    "uid"=>$rows->uid
+                                ],
+                                [
+                                "password" => $pass,
+
+                                ]
+                                );
+                                if($status){
+                                    $data['response']="Password Change successful!";
+                                }
+
+
+                            }
+                        else {
+                            $data['errors']['password']="Password must be at least 8 characters long.";
+
+                         }
+                        }
+                        else{
+                            $data['errors']['password']="Passwords do not match";
+                        }
+                    }
+                    else{
+                        $data['errors']['account']="No Associated account found";
+                    }
+
+            }
+        }
+        $this->view('forgotpw',$data);
+        }
+
+    }
 
 }

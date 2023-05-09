@@ -484,7 +484,10 @@ class Teacher extends Controller
 
                         $result = $announcement->insert($_POST);
                     $result2 = $ann_course->insert($_POST);
+                    $nid=uniqid();
+
                     $_POST['category'] = "Announcement";
+                    $_POST['Nid'] = $nid;
                     $result3 = $notification->insert($_POST);
                     echo "Announcement successfully published!";
                     header("Location:http://localhost/Interlearn/public/teacher/course/announcement/" . $id . "/0");

@@ -21,7 +21,10 @@ class Notifications extends Controller
         //    show($_POST);die;
         $res= $noti ->delete(['Nid'=>$_POST['Nid'],'uid'=>$userid]);  
 
-      
+        if($res){
+           $response = array("status"=>"success");
+           echo json_encode($response) ;
+        }
 
        }
      

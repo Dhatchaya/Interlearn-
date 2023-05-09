@@ -79,10 +79,11 @@
             <?=$empty['password']?>
             </div>
             <?php endif;?>    
+            <a href="<?= ROOT ?>/login/user/email" class="forpw">Forgot Password?</a>
         </div>
             <br>
           <button type="submit"  class="st_lgn_btn">Login</button>
-            
+
         </form>
         </div>
         <div class="signup">

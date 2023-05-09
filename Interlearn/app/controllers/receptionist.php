@@ -946,12 +946,35 @@ class Receptionist extends Controller
            
         }
         if(isset($_GET['id'])&&isset($_GET['status'])){
-          
+            $noti = new Notification();
+            $notifyuser = new Notify_user();
+            $user = new User();
             $id=$_GET['id'];
             $value = $_GET['status'];
-           
+            $enqnew = $enquiry->first([
+                'eid'=>$id
+            ],'eid');
+
             $status = $enquiry -> update(['eid'=>$id],['status'=>$value]);
-           
+
+            if($status && $value=="escalated"){
+
+                $nid = uniqid();
+                $notification['Nid']=$nid;
+                $notification['title']=$enqnew->title;
+                $notification['category']="Enquiry";
+                $managers = $user->where([
+                    'role'=>"Manager"
+                ],'uid');
+
+                $insertNoti=$noti->insert($notification);
+                foreach($managers as $manager){
+                    $notiU['uid']=$manager->uid;
+                    $notiU['Nid']=$nid;
+                    $insertUser=$notifyuser->insert($notiU);
+                }
+            }
+
         }
 
         $data['rows']  = $enquiry->selectUserCourse(null, $orderby);

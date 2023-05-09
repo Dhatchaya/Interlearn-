@@ -11,19 +11,15 @@
     <body class="otp-body">
         <div class="form-div">
             <form  method ="post" class= "otp-form">
-            <h1 class="title_otp">OTP Verification</h1>
+            <h2 class="title_otp">Email Confirmation</h2>
             <br/>
-            <!-- <?php echo $message; ?> -->
-            <?php 
-                if(@$_GET['Empty']){
-                    ?>
-                    <div class = "warning"><?php echo $_GET['Empty']?></div><br/>
-                    <?php
-                }
-            ?>
-            
-            <input class= "otp-inp" type="text" name = "otp"  placeholder="   Enter verification code"/><br/>
-            <input class= "otp-inp" type="text" name = "otp"  placeholder="   Enter verification code"/>
+          
+            <?php if(!empty($response)):?>
+                <p class="good_res"><?=$response?></p>
+            <?php elseif(!empty($error)):?>
+                <p class="warning"><?=$error?></p>
+            <?php endif;?>
+            <input class= "otp-inp" type="email" name = "email"  placeholder=" Enter your email"/><br/> <br/>
             <input class= "otp-inp"  type = "submit" name = "otp_submit" value="Submit"/><br/><br/>
 
             </form>

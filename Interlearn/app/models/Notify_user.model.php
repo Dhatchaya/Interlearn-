@@ -13,13 +13,7 @@ class Notify_user extends Model
 
 
     ];
-    protected $staffs = [
-        'Manager',
-        'Teacher',
-        'Instructor',
-        'Receptionist',
 
-    ];
 
 
 

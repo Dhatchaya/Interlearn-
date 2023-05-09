@@ -151,27 +151,52 @@ class Model extends Database {
                 }
 
 }
-    // public function update($data){
+public function ForgotPW($data){
       
-    //     $keys = array_keys($data);
-    //     //this will pop the last key and assign it to a variable
-    //     $last= array_pop($keys);
-        
-    //     $query ="update ".$this->table." set ";
-    //     foreach($keys as $key){
-    //         $query .= $key. " =:".$key." , ";
-    //     }
-    //     $query = trim($query,", ")." where ";
-    //     $query .= $last." =:".$last;
+    require_once "../public/assets/phpmailer/src/Exception.php";
+    require_once '../public/assets/phpmailer/src/PHPMailer.php';
+    require_once '../public/assets/phpmailer/src/SMTP.php';
 
-      
-    //     $res = $this ->update_table($query,$data);
-       
-    //     if($res){
-    //         return $res;
-    //     }
-    //     return false;
-    // }
+            $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+            $mail -> isSMTP();
+            $mail -> Host = 'smtp.gmail.com';
+            $mail->Port = 465;
+            $mail -> SMTPAuth = true;
+            $mail -> Username ='add interlearn email';
+            $mail -> Password = 'add your password';
+            $mail->SMTPSecure ='ssl';
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+                )
+                );
+            $mail->From ='interlearnsl@gmail.com';
+            $mail -> FromName = 'Interlearn';
+            $mail -> AddAddress($data['email']);
+            $mail ->IsHTML(true);
+            $mail -> Subject = 'Password change request';
+            $message_body ='<p> To change your password click on the below link <a href=http://localhost/Interlearn/public/login/user/change?code='.$data['user_activation_code'].'> click here </a>.</p>
+                        <p> Sincerely, </p>
+                        <p> Interlearn </p>';
+            $mail->Body = $message_body;
+
+            if ($mail -> Send()){
+                // $query_string = '?code=' . $data['user_activation_code'];
+                $current_url = 'http://localhost/Interlearn/public/login/user/change';
+                // echo $current_url;die;
+                //  echo json_encode(['url' => $current_url]);
+                //header('Location: ' . $current_url);
+
+                return $current_url;
+
+            }
+            else{
+                return 0;
+            }
+
+}
 
     public function update($cred=[],$data=[])
 	{
@@ -281,7 +306,7 @@ class Model extends Database {
 
         //call it in this way 
 
-        // $student = new Student();
+        // $student = new Students();
         // $annoucement = new Annoucement();
         // $course = new Course();
  

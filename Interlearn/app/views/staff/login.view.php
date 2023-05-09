@@ -63,7 +63,8 @@
                        <!--  <input type="text" name="username" placeholder="username">-->
                     </div>
                     <div class="staff_login_input2">
-                        <input type="password" name="password" placeholder="Enter password">
+                        <input type="password" name="password" placeholder="Enter password"><br/>
+                        <a href="<?= ROOT ?>/login/user/email" class="forpwstaff">Forgot Password?</a>
                     </div>
                     <div class="staff_login_button1">
                         <button class="staff_login_btn">Login</button>
