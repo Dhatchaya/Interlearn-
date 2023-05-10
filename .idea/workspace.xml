@@ -6,27 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="eeccaff2-1398-4ed1-939e-7255de6e7aca" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/controllers/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/controllers/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/controllers/manager.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/controllers/manager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/controllers/notifications.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/controllers/notifications.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/controllers/receptionist.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/controllers/receptionist.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/controllers/staffs.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/controllers/staffs.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/controllers/teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/controllers/teacher.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/core/model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/core/model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/models/Notification.model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/models/Notification.model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/models/Notify_user.model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/models/Notify_user.model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/models/Staff.model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/models/Staff.model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/models/Tempstudent.model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/models/Tempstudent.model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/includes/nav.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/includes/nav.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/manager/enquiry.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/manager/enquiry.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/staff/login.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/staff/login.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/student/login.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/student/login.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/student/otp.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/student/otp.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/student/submissionstatus.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/student/submissionstatus.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/teacher/assignment_submission.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/teacher/assignment_submission.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/public/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/public/assets/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/public/assets/js/enquiry.js" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/public/assets/js/enquiry.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/public/assets/js/notification.js" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/public/assets/js/notification.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,20 +34,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/DELL/Desktop/Interlearn/Interlearn-&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Nisaf/Documents/GitHub/Interlearn-",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -89,6 +68,7 @@
       <workItem from="1683648061921" duration="881000" />
       <workItem from="1683663222635" duration="44000" />
       <workItem from="1683663268172" duration="730000" />
+      <workItem from="1683698616504" duration="57000" />
     </task>
     <servers />
   </component>
