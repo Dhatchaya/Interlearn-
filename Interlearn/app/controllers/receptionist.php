@@ -80,7 +80,7 @@ class Receptionist extends Controller
             {   
                 // echo "check 1";die;
                 // show($_POST);die;
-                // if($course -> validate($_POST)){
+                if($course -> validate($_POST)){
                     $subject_id = uniqid();
                     //uniqueid("S",true)
 
@@ -103,14 +103,14 @@ class Receptionist extends Controller
                     $course_week->createWeek($id, 1);
                     header("Location:http://localhost/Interlearn/public/receptionist/course");
 
-                // }
-                // else{
+                }
+                else{
 
-                //     $data['errors'] =  $course->error;
-                //     // show($data['errors']);die;
+                    $data['errors'] =  $course->error;
+                    // show($data['errors']);die;
 
-                //     // $data['error']['invalid'] = "There is an unknown error occured!";
-                // }
+                    // $data['error']['invalid'] = "There is an unknown error occured!";
+                }
             }
 
 
@@ -581,7 +581,7 @@ class Receptionist extends Controller
                         // }
 
                         // $viewURL="http://localhost/Interlearn/uploads/receptionist/announcements/".$announcement_id."/".$fileNameNew;
-                        $viewURL="http://localhost/Interlearn/uploads/receptionist/announcements/".$announcement_id."/".$fileNameNew;
+                        $viewURL="http://localhost/Interlearn/uploads/0/announcements/".$announcement_id."/".$fileNameNew;
                         // $_POST['file_name'] = $fileNameNew;
                         $_POST['attachment'] = $viewURL;
                         $result1 = $announcement->insert($_POST);
@@ -716,7 +716,7 @@ class Receptionist extends Controller
                         // echo "helloo";die;
                         $fileNameNew = uniqid('',true).".".$fileActualExt;
                         // show($fileNameNew);die;
-                        $fileDestination = "/xampp/htdocs/Interlearn/uploads/receptionist/announcements/".$_POST['aid'];
+                        $fileDestination = "/xampp/htdocs/Interlearn/uploads/0/".$_POST['aid'];
                         if (!is_dir($fileDestination)){
                             // print_r("test1");
                             mkdir($fileDestination,0644, true);
@@ -740,7 +740,7 @@ class Receptionist extends Controller
             }
             //
             // $viewURL="http://localhost/Interlearn/uploads/receptionist/announcements/".$announcement_id."/".$fileNameNew;
-            $viewURL="http://localhost/Interlearn/uploads/receptionist/announcements/".$_POST['aid']."/".$fileNameNew;
+            $viewURL="http://localhost/Interlearn/uploads/0/".$_POST['aid']."/".$fileNameNew;
             // show($_POST['file_name']);die;
             // $_POST['file_name'] = $fileNameNew;
             $_POST['attachment'] = $viewURL;

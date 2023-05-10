@@ -112,7 +112,7 @@
                                                                 <img src="<?= ROOT ?>/assets/images/web-new.png" alt="" class="teacher_card_img3">
                                                                 <?= $material->upload_name ?>
                                                             </a>
-                                                            <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>')">
+                                                            <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>',<?= $material->course_id ?>,<?= $material->week_no ?>)">
                                                             <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?= $material->cid ?>')">
                                                         </p>
                                                     <?php elseif ($material->type == "Note") : ?>
@@ -237,7 +237,7 @@
                                 <label for="title" class="teacher-edit">Title: </label>
                                 <input type="hidden" value="" name="weeknumber" id="weeknumber">
                                 <input type="text" class="teacher-edit-title" name="title" id="week-title" value=""><br><br>
-                                <button type="submit" class="teacher_upl_btn" name="submit-title" id="add-btn">Save</button>
+                                <button type="button" class="teacher_upl_btn" name="submit-title" id="edit-week-btn" onclick="closeModal3()">Save</button>
                                 <button type="reset" class="teacher_upl_btn" id="cancel-btn">Cancel</button>
                             </div>
                         </form>
@@ -316,7 +316,7 @@
                                 <input type="text" class="teacher-edit-text" name="upload-text" id="edit-text"><br>
                                 <label for="upload-title" class="teacher-edit">Content: </label>
                                 <input type="text" class="teacher-edit-content" name="upload-content" id="edit-text-content"><br><br>
-                                <button type="button" class="teacher_upl_btn" name="submit-upload" id="edit-text-btn">Update</button>
+                                <button type="button" class="teacher_upl_btn" name="submit-upload" id="edit-text-btn" onclick="closeModal7()">Update</button>
                                 <button type="reset" class="teacher_upl_btn" id="cancel-btn">Cancel</button>
                             </div>
                         </form>
