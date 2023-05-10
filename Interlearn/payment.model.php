@@ -77,32 +77,41 @@ class Payment extends Model
     
 
 
-    public function eachStudentPaymentHistory($uid)
-    {
-        $get_uid = $uid;
-        $query_get_StudentID = "SELECT studentID from student WHERE uid =$get_uid";
-        $student_ID = $this->query($query_get_StudentID);
+public function eachStudentPaymentHistory($uid)
+{   
+    // Check if $uid is an integer
+
+    $query_get_StudentID = "SELECT studentID from student WHERE uid ='$uid'";
+    $student_ID = $this->query($query_get_StudentID);
 
 
-        $currentSID = $student_ID[0]->studentID;
-        $query = "SELECT * FROM payment where  studentID = '$currentSID'  AND payment_status = '1'";
-        $data = $this->query($query);
+    $currentSID = $student_ID[0]->studentID;
+    $query = "SELECT * FROM payment where  studentID = '$currentSID'  AND payment_status = '1'";
+    $data = $this->query($query);
 
-        if ($data == NULL) {
-            $data = array();
-        }
-
-        return $data;
+    if ($data == NULL) {
+        $data = array();
     }
+
+    return $data;
+}
 
 
     public function eachStudentPendingPayment($uid)
-    {
-        $get_uid = $uid;
-        $query_get_StudentID = "SELECT studentID from student WHERE uid ='$get_uid'";
-        $student_ID = $this->query($query_get_StudentID);
-
+    {   
         
+    // Check if $uid is an integer
+    if (!ctype_digit($uid)) {
+        return array(array('studentID' => 'Invalid user ID'));
+    }
+
+    
+    $query_get_StudentID = "SELECT studentID from student WHERE uid =$uid";
+    $student_ID = $this->query($query_get_StudentID);
+
+    if (!isset($student_ID['studentID'])) {
+        return array(array('studentID' => 'StudentID not found'));
+    }
 
         $currentSID = $student_ID[0]->studentID;
         $query = "SELECT * FROM payment where  studentID = '$currentSID'  AND payment_status = '0'";

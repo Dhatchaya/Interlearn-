@@ -3,9 +3,11 @@
 
 <head>
     <title>View Staff details</title>
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/manager.css">
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/bank-payment.css">
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/staff-view.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/manager.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/bank-payment.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/staff-view.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/cash-payment-style.css?v=<?php echo time(); ?>">
+
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 

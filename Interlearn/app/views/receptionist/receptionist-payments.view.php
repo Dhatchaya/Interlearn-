@@ -94,8 +94,8 @@
         </div>
 
 
-        <button class="paynow " id="approve" type="submit">Approve</button>
-        <button class="next-payment " id="decline" type="submit">Decline</button>
+        <button class="paynow " id="payment-submission-1" type="submit">Approve</button>
+        <button class="next-payment " id="payment-submission-1" type="submit">Next Payment</button>
       </div>
 
     </div>
