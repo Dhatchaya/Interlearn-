@@ -76,7 +76,7 @@ function openModal3(aid) {
                             data:{'aid' : aid},
                             success:function(response){
                               document.getElementById("attachment_file").value="";
-                              document.getElementById("file_name_recp").value = ""
+                              document.getElementById("file_name_recp").value = "";
                             },
                             error:function(xhr,status,error){
                               console.log("Error: " + error);

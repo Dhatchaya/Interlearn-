@@ -6804,3 +6804,16 @@ left: 5rem;
     gap: 1rem;
 
 }
+
+
+.instructor-prg-butn{
+    align-items:end;
+    text-align: right;
+    justify-content: right;
+    position: relative;
+    float: right;
+}
+
+.text-upload-crs{
+    color: #000;
+}
