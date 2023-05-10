@@ -45,9 +45,7 @@ let totalMarks = 0;
 
 //set duration -------------------------------------------------------------------------------//
  // 5 minutes in seconds
- console.log('hi');
-let timeRemaining = 200;
-console.log(timeRemaining);
+
 // Format the remaining time as MM:SS
 function formatTime(time) {
   const minutes = Math.floor(time / 60).toString().padStart(2, '0');
@@ -257,42 +255,7 @@ function tryAgainQuiz() {
     
 }
 // window.onload = function () {
-function StartQuiz() {
-    //1st we set all questions in availableQuestions array
 
-    homeBox.classList.add("hide");
-
-    quizBox.classList.remove("hide");
-
-// Display the timer -------------------------------------------//
-    const timerDisplay = document.querySelector('.timer');
-    timerDisplay.innerHTML = formatTime(timeRemaining);
-    
-    // Create the countdown timer
-    const timer = setInterval(() => {
-    
-    // const remainTime = document.querySelector('.remain-time');
-    timeRemaining--;
-    timerDisplay.innerHTML = formatTime(timeRemaining);
-        // console.log(timeRemaining);
-    // Alert participants when time is running out
-    if (timeRemaining < 60) {
-        timerDisplay.classList.add('warning');
-    }
-
-    // Submit answers automatically when time is up
-    if (timeRemaining <= 0) {
-        clearInterval(timer);
-        quizOver();
-    }
-    }, 1000);
-//-----------------------------------------------------------------//
-    setAvailableQuestions();
-    // 2nd we call getNewQuestion(); function
-    getNewQuestion();
-
-    answerIndicator();
-}
 
 // window.onload = function () {
 //     // homeBox.querySelector(".total-question").innerHTML = totques;
