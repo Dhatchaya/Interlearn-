@@ -17,6 +17,17 @@ class Payment extends Model
         'payment_status',
 
     ];
+    public function addNewPendingPayments(){
+        $query = "INSERT INTO payment (studentID, courseID, month )SELECT studentID, courseID, 0 FROM student_course;";
+        $data = $this->query($query);
+
+        if ($data == NULL) {
+            $data = array();
+        }
+
+        return $data;
+    }
+
     public function getAll()
     {
         $query = "SELECT * FROM payment WHERE payment_status = 1";
@@ -29,13 +40,45 @@ class Payment extends Model
         return $data;
     }
 
+    public function approveBP($data)
+    {
 
-    // $uid
+
+        $query = "UPDATE payment 
+                    SET 
+                        amount = '".$data['BPAmount']."',
+                        method = '".$data['method']."',
+                        payment_status = '1',
+                        studentName = '".$data['NameOnSlip']."'
+                    WHERE 
+                        studentID = '".$data['StudentID']."' AND 
+                        courseID = '".$data['CourseID']."'
+                        AND month = '".$data['month']."'";
+                        //
+        $data = $this->query($query);
+
+        if ($data == NULL) {
+            $data = array();
+        }
+
+        $apple = "Apple";
+
+        return $apple;
+    }
+
+    public function submitCashPayment($data)
+    {
+        $query = "INSERT INTO payment (studentID, paymentMonth, amount, method, courseID, payment_status, studentName) 
+                  VALUES ('".$data['studentID']."', '".$data['month']."', '".$data['Amount']."', '".$data['method']."', '".$data['courseID']."', '".$data['payment_status']."', '".$data['studentName']."')";
+        $result = $this->query($query);
+
+        return $result;
+    }
 
 
 
     public function eachStudentPaymentHistory($uid)
-    {   
+    {
         $get_uid = $uid;
         $query_get_StudentID = "SELECT studentID from student WHERE uid =$get_uid";
         $student_ID = $this->query($query_get_StudentID);
@@ -76,6 +119,22 @@ class Payment extends Model
 
         return $data;
     }
+
+
+    public function checkAlreadyPaid($courseId, $studentID, $month){
+        $query = "SELECT COUNT(*) as count FROM payment WHERE courseID = '$courseId' AND studentID = '$studentID' AND paymentMonth  = '$month' AND payment_status = '1'";
+        $data = $this->query($query);
+
+        $data = json_decode(json_encode($data), true);
+
+        if ($data[0]['count'] > 0) {
+            return array(array('course_id' => 'alreadyPaid'));
+        } else {
+            return array(array('course_id' => 'notPaid'));
+        }
+    }
+
+
 
     public function pendingPayments()
     {

@@ -489,7 +489,87 @@ class Receptionist extends Controller
         //$this->view('receptionist/class',$data);
     }
 
+    public function changePW(){
 
+        $data = json_decode(file_get_contents("php://input"), true);
+        $data ['uid']= Auth::getUID();
+
+        $data['newPW'] = password_hash($data['newPW'], PASSWORD_DEFAULT);
+
+        $user = new User();
+        $staff = new Staff();
+
+        if($user->checkPW($data)){
+            $staff->updatePassword($data);
+            echo json_encode(['status'=>'success']);
+        }else{
+            echo json_encode(['status'=>'error']);
+        }
+
+
+    }
+
+
+    public function editUser()
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+        $data['uid'] = $id ?? Auth::getUID();
+        if(isset($_FILES['uploadDP']['name']) && $_FILES['uploadDP']['error'] === UPLOAD_ERR_OK && $_FILES['uploadDP']['tmp_name'] !== '' && $_FILES['uploadDP']['size'] > 0){
+        // if(isset($_FILES['uploadDP']['name']) && !empty($_FILES['uploadDP']['name'])){
+            $pic_tmp = $_FILES['uploadDP']["tmp_name"];
+            $pic_name = $_FILES['uploadDP']["name"];
+            $error= $_FILES['uploadDP']['error'];
+
+            if($error === 0){
+                $img_ext = pathinfo($pic_name, PATHINFO_EXTENSION);
+                $img_final_ext = strtolower($img_ext);
+                $allowed_ext = array('jpg','png','jpeg');
+
+                if(in_array($img_final_ext, $allowed_ext)){
+                    $img_size = $_FILES['uploadDP']['size'];
+                    $max_size = 5 * 1024 * 1024; // 5 MB
+
+                    if($img_size <= $max_size){
+                        $img_info = getimagesize($pic_tmp);
+
+                        if($img_info !== false){
+                            $mime_type = $img_info['mime'];
+
+                            if(in_array($mime_type, array('image/jpeg', 'image/png', 'image/gif'))){
+                                $new_image_name = time() . '_' . uniqid('', true) . '.' . $img_final_ext;
+                                $destination = "uploads/images/" . $new_image_name;
+
+                                if(move_uploaded_file($pic_tmp, $destination)){
+                                    $data['pic'] = $new_image_name;
+                                    $response = array('status' => 'success', 'message' => 'Image uploaded successfully');
+                                } else {
+                                    $response = array('status' => 'error', 'message' => 'Failed to save image file');
+                                }
+                            } else {
+                                $response = array('status' => 'error', 'message' => 'Invalid image type');
+                            }
+                        } else {
+                            $response = array('status' => 'error', 'message' => 'Failed to read image file');
+                        }
+                    } else {
+                        $response = array('status' => 'error', 'message' => 'Image file size exceeds limit (5 MB)');
+                    }
+                } else {
+                    $response = array('status' => 'error', 'message' => 'Invalid file type (only JPG, PNG, and GIF are allowed)');
+                }
+            } else {
+                $response = array('status' => 'error', 'message' => 'Failed to upload image file');
+            }
+        } else {
+            $response = array('status' => 'success', 'message' => 'No image file to upload');
+        }
+
+        $changeProfile = new Staff();
+        $changeProfile->editProfile($data);
+
+        echo json_encode($response);
+        exit;
+    }
     public function announcement($action=null,$aid=null)
     {
         if(!Auth::is_receptionist()){
@@ -1003,7 +1083,7 @@ class Receptionist extends Controller
         $ProfileData['userData'] = $staff_data;
         // $data['userData2'] = $user_data2;
 
-        $this->view('receptionist/user', $ProfileData);
+        $this->view('staff/user', $ProfileData);
     }
 
     // public function user()
@@ -1057,9 +1137,17 @@ class Receptionist extends Controller
     
     public function payments()
     {
+
         if (!Auth::is_receptionist()) {
             redirect('home');
         }
+
+
+
+        if(date("d") == "01"){
+            addNewPendingPayments();
+        }
+
 
         $payment_model = new Payment();
         $payment_history = $payment_model->getAll();
@@ -1071,6 +1159,32 @@ class Receptionist extends Controller
         $this->view('receptionist/receptionist-payments',  ['bankPayments' => $BankPaymentData, 'transactions' => $payment_history]);
     }
 
+    public function addNewPendingPayments(){
+        if (!Auth::is_receptionist()) {
+            redirect('home');
+        }
+        $currentMonth = date('m');
+        $months = array(
+            "01" => "January",
+            "02" => "February",
+            "03" => "March",
+            "04" => "April",
+            "05" => "May",
+            "06" => "June",
+            "07" => "July",
+            "08" => "August",
+            "09" => "September",
+            "10" => "October",
+            "11" => "November",
+            "12" => "December"
+        );
+
+        $month = $months[$currentMonth];
+        $student = new StudentCourse();
+        $student->getAll($month);
+
+        exit;
+    }
 
 
     public function nextCashPayment()
@@ -1087,12 +1201,70 @@ class Receptionist extends Controller
             $data['payment_status'] = '1';
 
             $payment_model = new Payment();
-            $payment_model->insert($data);
+            $respond = $payment_model->submitCashPayment($data);
         }
-        // echo json_encode($payment_model);
+        echo json_encode($respond);
         exit;
     }
+    public function approveBP(){
+        if (!Auth::is_receptionist()) {
+            redirect('home');
+        }
 
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        $currentMonth = date('m');
+        $months = array(
+            "01" => "January",
+            "02" => "February",
+            "03" => "March",
+            "04" => "April",
+            "05" => "May",
+            "06" => "June",
+            "07" => "July",
+            "08" => "August",
+            "09" => "September",
+            "10" => "October",
+            "11" => "November",
+            "12" => "December"
+        );
+
+        $data['month' ]= $months[$currentMonth];
+             $data['payment_status'] = '1';
+             $data['method'] = 'bank deposit';
+
+
+            $approveBP = new Payment();
+            $return = $approveBP->approveBP($data);
+
+            if($return == "Apple"){
+                $removefromBankPayment = new BankPayment();
+                $respond = $removefromBankPayment->removefromBankPayment($data['BankPaymentID']);
+            }
+
+            // $removefromBankPayment = new BankPayment();
+            // $respond = $removefromBankPayment->removefromBankPayment($data['BankPaymentID']);
+
+
+        echo json_encode($respond);
+    }
+
+    public function declineBP(){
+        if (!Auth::is_receptionist()) {
+            redirect('home');
+        }
+
+        $data = json_decode(file_get_contents("php://input"), true);
+
+
+             $data['method'] = 'bank deposit';
+
+            $removefromBankPayment = new BankPayment();
+            $respond = $removefromBankPayment->declined($data['BankPaymentID']);
+
+
+        echo json_encode($respond);
+    }
 
 
     public function getPaymentData()
@@ -1100,6 +1272,17 @@ class Receptionist extends Controller
         $payment = new Payment();
         $data = $payment->getAll();
         return $data;
+    }
+
+    public function callEachBPdata()
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        $getEachBPdata = new BankPayment();
+        $BankPaymentData = $getEachBPdata->getEachBPdata($data['bankPaymentID']);
+
+        header('Content-Type: application/json'); // set the content type to JSON
+        echo json_encode($BankPaymentData);
     }
 
     public function callBankPaymentData()
@@ -1128,19 +1311,42 @@ class Receptionist extends Controller
         $data = json_decode(file_get_contents("php://input"), true);
         $courseId = $data['CourseID'];
         $studentID = $data['StudentID'];
+        $month = $data['Month'];
 
-        $studentFtCourse = new Course();
-        $respond = $studentFtCourse->checkStudent($courseId, $studentID);
 
-        if($respond[0]->course_id == $courseId){
+        $monthlyFee = new Course();
+        $respond1 = $monthlyFee->getMonthlyFee($courseId);
 
-            $monthlyFee = new Course();
-            $respond = $monthlyFee->getMonthlyFee($courseId);
-            echo json_encode($respond);
-            exit;
+
+
+        if(is_array($respond1) && $respond1[0]['course_id'] == $courseId){
+
+            $studentFtCourse = new Course();
+            $respond2 = $studentFtCourse->checkStudent($courseId, $studentID);
+
+
+            if (is_array($respond2) &&$respond2[0]['student_id'] == $studentID) {
+                $alreadyPaid = new Payment();
+                $respond3 = $alreadyPaid->checkAlreadyPaid($courseId, $studentID, $month);
+
+                if ($respond3[0]['course_id'] == 'alreadyPaid') {
+                    echo json_encode($respond3);
+                    exit;
+                } else {
+                    echo json_encode($respond1);
+                    exit;
+                }
+            } else {
+                $respond = array(array("course_id" => "notRegistered"));
+                echo json_encode($respond);
+                exit;
+            }
+
+
+
         }
         else{
-            $respond[0]->student_id = null;
+            $respond = array(array("course_id" => "noCourse"));
             echo json_encode($respond);
             exit;
         }

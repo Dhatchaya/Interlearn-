@@ -62,6 +62,17 @@ class StudentCourse extends Model
 
     }
 
+    public function getAll(){
+        $query = "SELECT * FROM student_course ";
+        $data = $this->query($query);
+
+        if ($data == NULL) {
+            $data = array();
+        }
+
+        return $data;
+    }
+
     public function CourseForStudent($data= null){
         
         $keys = array_keys($data);
