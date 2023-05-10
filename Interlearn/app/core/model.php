@@ -780,8 +780,8 @@ public function ForgotPW($data){
     public function getYearandMonth(){
 
         $query ="SELECT EXTRACT(year FROM user_datetime) as Year,EXTRACT(month FROM user_datetime) AS month,";
-        $query .="count(EXTRACT(year FROM user_datetime)) as Count FROM `users` GROUP BY EXTRACT(month FROM user_datetime),";
-        $query .="EXTRACT(year FROM user_datetime);";
+        $query .="count(EXTRACT(year FROM user_datetime)) as Count FROM `users` WHERE role='Student' GROUP BY EXTRACT(month FROM user_datetime),";
+        $query .="EXTRACT(year FROM user_datetime) ;";
 
 
 

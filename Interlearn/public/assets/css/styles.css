@@ -2572,7 +2572,7 @@ transform: scale(0.97,0.97);
 }
 
 .std_view_box::-webkit-scrollbar-thumb {
-  background-color: rgb(127, 64, 196);    /* color of the scroll thumb */
+  background-color: rgb(22, 5, 41);    /* color of the scroll thumb */
   border-radius: 15px;       /* roundness of the scroll thumb */
   border: 3px solid rgb(115, 35, 131);  /* creates padding around scroll thumb */
 }
@@ -6153,6 +6153,7 @@ background: white;
     padding: 1rem 2rem 1rem 2rem;
     border-radius: 10px;
     transition: all 350ms ease-out 0s;
+    width: 60%;
 }
 .statNow {
     display: flex;

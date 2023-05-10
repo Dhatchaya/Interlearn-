@@ -6,6 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="eeccaff2-1398-4ed1-939e-7255de6e7aca" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/core/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/core/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/core/init.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/core/init.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/core/model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/core/model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/includes/calendar.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/includes/calendar.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/includes/header.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/includes/header.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/includes/nav.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/includes/nav.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/receptionist/receptionist-payments.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/receptionist/receptionist-payments.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/student/submissionstatus.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/student/submissionstatus.view.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,7 +26,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="addfeatures" />
+        <entry key="$PROJECT_DIR$" value="lastfewchanges" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -39,7 +47,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Nisaf/Documents/GitHub/Interlearn-",
+    "last_opened_file_path": "C:/Users/DELL/Desktop/Interlearn/Interlearn-",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -69,6 +77,7 @@
       <workItem from="1683663222635" duration="44000" />
       <workItem from="1683663268172" duration="730000" />
       <workItem from="1683698616504" duration="57000" />
+      <workItem from="1683743335940" duration="928000" />
     </task>
     <servers />
   </component>
