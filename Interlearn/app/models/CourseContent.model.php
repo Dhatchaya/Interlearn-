@@ -53,7 +53,6 @@ class CourseContent extends Model
         $query .= " WHERE course_id =:courseId AND week_no =:weekNo ";
         $data['courseId'] = $course_id;
         $data['weekNo'] = $week_no;
-        // show($query);die;
         $res = $this -> query($query,$data);
         // echo $res;die;
         // show($query);die;

@@ -75,8 +75,7 @@ function openModal3(aid) {
                             url : 'http://localhost/Interlearn/public/receptionist/announcement/editAnnouncementFile?aid='+aid,
                             data:{'aid' : aid},
                             success:function(response){
-                              document.getElementById("attachment_file").value="";
-                              document.getElementById("file_name_recp").value = "";
+                              console.log(response);
                             },
                             error:function(xhr,status,error){
                               console.log("Error: " + error);

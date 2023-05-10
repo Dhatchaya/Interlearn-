@@ -44,9 +44,10 @@ let attempt = 0;
 let totalMarks = 0;
 
 //set duration -------------------------------------------------------------------------------//
-const duration = 300; // 5 minutes in seconds
-let timeRemaining = duration;
-
+ // 5 minutes in seconds
+ console.log('hi');
+let timeRemaining = 200;
+console.log(timeRemaining);
 // Format the remaining time as MM:SS
 function formatTime(time) {
   const minutes = Math.floor(time / 60).toString().padStart(2, '0');
@@ -73,6 +74,7 @@ function getNewQuestion() {
     const questionIndex = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
     currentQuestion = questionIndex;
     questionText.innerHTML = currentQuestion.q;
+    console.log(currentQuestion.duration);
 
     //get the position of the questionIndex from the availableQuestions array\
     const index1 = availableQuestions.indexOf(questionIndex);
@@ -252,6 +254,7 @@ function tryAgainQuiz() {
 
     resetQuiz();
     StartQuiz();
+    
 }
 // window.onload = function () {
 function StartQuiz() {
@@ -291,10 +294,10 @@ function StartQuiz() {
     answerIndicator();
 }
 
-window.onload = function () {
-    homeBox.querySelector(".total-question").innerHTML = totques;
-    homeBox.querySelector(".description").innerHTML = quiz.description;
-}
+// window.onload = function () {
+//     // homeBox.querySelector(".total-question").innerHTML = totques;
+//     homeBox.querySelector(".description").innerHTML = quiz.description;
+// }
 
 
 // Set the totalMarks variable

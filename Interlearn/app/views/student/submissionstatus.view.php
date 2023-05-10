@@ -17,11 +17,7 @@
             <div class="std_subm_container2">
                 <div class="std_sub_grd_row1">
                     <p class="std_sub_grd_col1">assignment Status</p>
-                    <?php if ($assignment->deadline<$assignment->modified):?>
-                        <p class="warning">Late Submission</p>
-                    <?php else:?>
                     <p><?=esc($assignment->status)?></p>
-                    <?php endif;?>
                 </div>
                 <!-- <div class="std_sub_grd_row2">
                     <p class="std_sub_grd_col1">Grading Status</p>

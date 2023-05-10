@@ -3,10 +3,8 @@ $.ajax({
     url:`http://localhost/Interlearn/public/notifications`,
 
     success: function(data) { 
-      console.log(data);
+
   if(data){
-    const count = document.getElementById("badge");
-    count.innerText=data.length;
     for(let i=0;i<data.length;i++){
       const NotificationCard = document.createElement("div");
       NotificationCard.classList.add('noticard');
@@ -16,12 +14,12 @@ $.ajax({
       NotificationTitle.innerHTML=`New ${data[i].category}`;
       NotificationCard.append(NotificationTitle);
 
-     if(data[i].category!="Enquiry"){
+      if(data[i].category ==="Assignment"){
         const NotificationContent = document.createElement("p");
         NotificationContent.classList.add('noticardContent');
         NotificationContent.innerHTML=`${data[i].subject} -${data[i].fullname}`;
         NotificationCard.append(NotificationContent);
-     }
+      }
 
 
       const NotificationContent2 = document.createElement("p");
@@ -42,8 +40,6 @@ $.ajax({
       
   }
   else{
-    const count = document.getElementById("badge");
-    count.innerText='0';
     // const NotificationCard = document.createElement("div");
     // NotificationCard.classList.add('noticard');
 
@@ -79,33 +75,7 @@ $.ajax({
         data:{Nid:Noti},
 
         success: function(response){
-          e.target.parentElement.remove();
-          $.ajax({
-            method: "GET",
-            url:`http://localhost/Interlearn/public/notifications`,
-
-            success: function(data) {
-              console.log(data);
-              if(data){
-                const count = document.getElementById("badge");
-                count.innerText=data.length;
-              }
-              else{
-                const count = document.getElementById("badge");
-                count.innerText="0";
-                const NotificationTitle = document.createElement("p");
-                NotificationTitle.classList.add('noticardTitle');
-                NotificationTitle.innerHTML="No Unread Notifications";
-                // NotificationCard.append(NotificationTitle);
-                document.getElementById("allnoti").append(NotificationTitle);
-              }
-
-            },
-            error: function(xhr, status, error) {
-              console.log("Error: " + error);
-            }
-          });
-
+          console.log(response);
          
         },
         error: function(xhr, status, error) {

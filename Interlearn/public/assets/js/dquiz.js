@@ -45,6 +45,7 @@ console.log(id);
 //   ]
 
 const quiz = [];
+
 let totques = 0;
 // make an AJAX request to retrieve the quiz data
 const xhr = new XMLHttpRequest();
@@ -57,12 +58,13 @@ xhr.onload = () => {
         // console.log(xhr.responseText.length);
         const data = JSON.parse(xhr.responseText);
         
-        console.log(data);
+        console.log(data[0].duration);
         console.log(data.length);
         totques = data.length;
         data.forEach(question => {
             quiz.push(question);
         });
+      
     } else {
         console.error('Error fetching quiz data');
     } 
@@ -71,3 +73,4 @@ xhr.onload = () => {
 xhr.send();
 
 console.log(quiz);
+console.log(duration);
