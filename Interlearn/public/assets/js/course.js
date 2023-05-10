@@ -104,7 +104,6 @@ console.log("Im called");
     modal3.style.display = "block";
     console.log(modal3);
     console.log(number);
-    console.log(course);
 
     console.log(`http://localhost/Interlearn/public/teacher/course/view/`+course+`/`+number+`/getWeekName`);
 
@@ -127,17 +126,15 @@ console.log("Im called");
     });
 
 
-    var update = document.getElementById('edit-week-btn');
-    update.addEventListener('click', function(){
+    var update = document.getElementById('add-btn');
+    update.addEventListener('submit', function(){
         var week_id = document.getElementById('weeknumber').value;
         var name = document.getElementById('week-title').value;
         console.log('hi');
-        console.log(week_id);
-        console.log(name);
         $.ajax({
-            url: `http://localhost/Interlearn/public/teacher/course/view/`+course+`/`+number+`/editWeekName`,
+            url: 'http://localhost/Interlearn/public/teacher/course/editWeekName',
             type: 'POST',
-            data: {'week_no':week_id, 'week_name': name},
+            data: {'week_id':week_id, 'week_name': name},
             success:function(response){
                 console.log("submit here");
                 console.log(response);
@@ -209,9 +206,6 @@ function openModal5(number,course,week) {
     console.log(modal5);
 
     console.log(number);
-    console.log(course);
-    console.log(week);
-    console.log(`http://localhost/Interlearn/public/teacher/course/view/`+course+`/`+week+`/getUploadName`);
 
     $.ajax({
         url: `http://localhost/Interlearn/public/teacher/course/view/`+course+`/`+week+`/getUploadName`,
@@ -345,7 +339,7 @@ function openModal7(number,course,week) {
         var content = document.getElementById('edit-text-content').value;
         console.log('hi');
         $.ajax({
-            url: `http://localhost/Interlearn/public/teacher/course/view/`+course+`/`+week+`/editTextName`,
+            url: 'http://localhost/Interlearn/public/teacher/course/editTextName',
             type: 'POST',
             data: {'cid':c_id, 'upload_name': title, 'view_URL' : content},
             success:function(response){

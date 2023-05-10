@@ -12,15 +12,8 @@
                     <img src="<?= ROOT ?>/assets/images/tchrview.png" class="teacher_crs_topimg">
                     <div class="teacher_crs_tophead">
                         <?php if (!empty($courses)) : ?>
-                            <a href="<?= ROOT ?>/instructor/course/progress/<?= $course_id ?>/0/view" class="teacher-course-announcement">View Progress</a>
                             <div id="course_id" style="display: none;"><?= $courses[0]->course_id ?></div>
                             <h2 class="teacher_crs_subject">Grade <?= esc($courses[0]->grade) ?> - <?= esc($courses[0]->subject) ?></h2>
-                            <div class="instructor-prg-butn">
-                                <a href="<?= ROOT ?>/instructor/course/progress/<?= $course_id ?>/0/view" class="teacher-course-announcement">
-                                    View Progress
-                                    <img src="<?= ROOT ?>/assets/images/next.png" alt="" class="teacher-course-ann-img">
-                                </a>
-                            </div>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -94,19 +87,6 @@
                                                                 <?php endif; ?>
                                                             </p>
                                                         <?php endif; ?>
-                                                    <?php elseif ($material->type == "assignment") : ?>
-                                                        <p><a href=<?= $material->view_URL ?> class="teacher-content">
-                                                                <img src="<?= ROOT ?>/assets/images/assignment.png" alt="" class="teacher_card_img3">
-
-                                                                <?= $material->upload_name ?>
-                                                            </a>
-                                                            <a href=<?= $material->edit_URL ?>>
-                                                                <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32">
-                                                            </a>
-                                                            <!-- <a href=<?= $material->delete_URL ?>> -->
-                                                            <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?= $material->cid ?>')">
-                                                            <!-- </a></p> -->
-                                                        </p>
                                                     <?php elseif ($material->type == "forum") : ?>
                                                         <p><a href=<?= $material->view_URL ?> class="teacher-content">
                                                                 <img src="<?= ROOT ?>/assets/images/assignment.png" alt="" class="teacher_card_img3">
@@ -132,20 +112,8 @@
                                                         <p class="text-upload-crs">
                                                             <b><u><?= $material->upload_name ?></u></b><br>
                                                             <?= $material->view_URL ?>
-                                                            <?php if ($material->role === "Instructor") : ?>
-                                                                <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal7('<?= $material->cid ?>',<?= $material->course_id ?>,<?= $material->week_no ?>)">
-                                                                <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal8('<?= $material->cid ?>')">
-                                                            <?php endif; ?>
-                                                        </p>
-                                                    <?php elseif($material->type == "quiz"):?>
-                                                        <p><a href=<?=$material->view_URL?>>
-                                                                <img src="<?=ROOT?>/assets/images/quiz.png" alt="" class="teacher_card_img3">
-                                                                <?=$material->upload_name?>
-                                                            </a>
-                                                            <?php if ($material->role === "Instructor") : ?>
-                                                                <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">
-                                                                <img src="<?=ROOT?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?=$material->cid?>')">
-                                                            <?php endif; ?>
+                                                            <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal7('<?= $material->cid ?>',<?= $material->course_id ?>,<?= $material->week_no ?>)">
+                                                            <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal8('<?= $material->cid ?>')">
                                                         </p>
                                                     <?php endif; ?>
                                                 <?php endif; ?>
@@ -171,11 +139,11 @@
                                 <div class="teacher-crs-activities">
                                     <?php if (!empty($courses)) : ?>
                                         <?php foreach ($courses as $course) : ?>
-                                            <!-- <div class="teacher-crs-activity">
+                                            <div class="teacher-crs-activity">
                                                 <a href="#">
                                                     <img src="<?= ROOT ?>/assets/images/marking.png" alt="" class="teacher-crs-img"><br>Upload Marks
                                                 </a>
-                                            </div> -->
+                                            </div>
                                             <div class="teacher-crs-activity">
                                                 <a href="#">
                                                     <img src="<?= ROOT ?>/assets/images/discussion.png" alt="" class="teacher-crs-img"><br>Add Forum
@@ -312,7 +280,7 @@
                                 <input type="text" class="teacher-edit-text" name="upload-text" id="edit-text"><br>
                                 <label for="upload-title" class="teacher-edit">Content: </label>
                                 <input type="text" class="teacher-edit-content" name="upload-content" id="edit-text-content"><br><br>
-                                <button type="button" class="teacher_upl_btn" name="submit-upload" id="edit-text-btn">Update</button>
+                                <button type="submit" class="teacher_upl_btn" name="submit-upload" id="edit-text-btn">Update</button>
                                 <button type="reset" class="teacher_upl_btn" id="cancel-btn">Cancel</button>
                             </div>
                         </form>

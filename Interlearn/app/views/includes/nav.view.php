@@ -70,13 +70,14 @@
 
                         <?= ucfirst(Auth::getusername())?>
                         </span>
-
-                    </div class="notibellCount">
-                    <div class="noti_bell" id="noti_bell">
-                        <div>
-                    <span class="badge" id="badge"></span>
-                        <img src="<?=ROOT?>/assets/images/sidebar_icons/bell.png" alt="picture" class="display_picture_img"/>
                 </div>
+                <?php if(Auth::getrole()=="Student"||Auth::getrole()=="Manager"):?>
+                <div class="notibellCount">
+                    <div class="noti_bell" id="noti_bell">
+                    <div>
+                        <span class="badge" id="badge"></span>
+                        <img src="<?=ROOT?>/assets/images/sidebar_icons/bell.png" alt="picture" class="display_picture_img"/>
+                    </div>
                         <div class="notification" id="notification">
                             <div class="allnoti" id="allnoti">
 
@@ -84,8 +85,13 @@
                         </div>
 
                     </div>
+                    </div>
+                <?php endif;?>
+                    
+                    
         </div>
-
+      
+      
         <script defer src="<?=ROOT?>/assets/js/notification.js?v=<?php echo time(); ?>"></script>
 
         <!-- <script src="<?=ROOT?>/assets/js/navbar.js"></script> -->

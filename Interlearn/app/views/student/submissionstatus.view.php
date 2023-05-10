@@ -40,6 +40,7 @@
                     <p><?=esc($assignment->modified)?></p>
                 </div>
                 <br><br>
+                <?php if(strtotime($assignment->acceptDate) < strtotime(date("Y/m/d h:i:sa"))):?>
                 <div class="std_sub_grd_bottom">
                     <?php if($assignment->status == "Submitted"):?>
                         <a href="<?=ROOT?>/student/coursepg/submission/<?=esc($assignment->courseId)?>/view?sub_id=<?=esc($assignment->submissionID)?>">
@@ -53,6 +54,10 @@
                         <p>You have not made a submission yet.</p>
                     <?php endif;?>
                 </div>
+                <?php else:?>
+                    <p style="text-align:center">Acceptes submissions from <?=esc($assignment->acceptDate)?> </p>
+                <?php endif;?>
+
             </div>
             </div>
         </div>

@@ -905,7 +905,7 @@ class Student extends Controller
         if (!Auth::is_student()) {
             redirect('home');
         }
-        $currentUserID = $id ?? Auth::getUID();
+        $currentStudentID = $id ?? Auth::getUID();
 
         // $payment_model = new Payment();
         // $haveToPay = $payment_model->pendingPayments();
@@ -913,15 +913,13 @@ class Student extends Controller
         ////////////////////////////////
 
         $payment_history = new Payment();
-        $each_s_p_h = $payment_history->eachStudentPaymentHistory($currentUserID);
+        $each_s_p_h = $payment_history->eachStudentPaymentHistory($currentStudentID);
 
 
-        if($each_s_p_h[0] == null){
-            $each_s_p_h = array();
-        }
+
 
         $pending_payment_model = new Payment();
-        $haveToPay = $pending_payment_model->eachStudentPendingPayment($currentUserID);
+        $haveToPay = $pending_payment_model->eachStudentPendingPayment($currentStudentID);
 
         $this->view('student/student-payment',['payment_history_list'=>$each_s_p_h,'haveToPaySet'=>$haveToPay]);
 
