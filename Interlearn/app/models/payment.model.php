@@ -101,17 +101,11 @@ public function eachStudentPaymentHistory($uid)
     {   
         
     // Check if $uid is an integer
-    if (!ctype_digit($uid)) {
-        return array(array('studentID' => 'Invalid user ID'));
-    }
 
     
-    $query_get_StudentID = "SELECT studentID from student WHERE uid =$uid";
+    $query_get_StudentID = "SELECT studentID from student WHERE uid ='$uid'";
     $student_ID = $this->query($query_get_StudentID);
-
-    if (!isset($student_ID['studentID'])) {
-        return array(array('studentID' => 'StudentID not found'));
-    }
+        
 
         $currentSID = $student_ID[0]->studentID;
         $query = "SELECT * FROM payment where  studentID = '$currentSID'  AND payment_status = '0'";

@@ -242,17 +242,17 @@
                 <button id="bank-btn" class="bank-btn">Bank Payment</button>
               </td>
                 
-              $totalPayment = 0;
-               $totalPayment += $pendingPayment->amount; 
-            </tr> -->
+            </tr>  -->
             
           <?php if (!empty($haveToPaySet)): ?>
             <?php // Initialize the total payment variable
               foreach ($haveToPaySet as $pendingPayment) :// Add the current payment amount to the total payment
                 
+              $totalPayment = 0;
+              $totalPayment += $pendingPayment->amount; 
             ?>
               <tr>
-                <td><?= $pendingPayment['courseID']  ?></td>
+                <td><?= $pendingPayment->courseID  ?></td>
                 <td><?= $pendingPayment->month ?></td>
                 <td><?= $dueDate = date("Y-m-30"); ?></td>
                 <td><?= $pendingPayment->amount ?></td>
@@ -277,7 +277,7 @@
 
             <tr>
               <td colspan="3" style="text-align:right;">Total Payment:</td>
-              <!-- <td><?= $totalPayment ?></td> -->
+              <td><?= $totalPayment ?></td>
               <td><button id="" onclick="checkout( json_encode($haveToPaySet))" class="card-btn">paynow</button>
                 <button id="bank-btn" class="bank-btn">Bank Payment</button>
               </td>

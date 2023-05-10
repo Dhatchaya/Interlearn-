@@ -796,7 +796,7 @@ class Student extends Controller
 
         $pending_payment_model = new Payment();
         $haveToPay = $pending_payment_model->eachStudentPendingPayment($currentUserID);
-        show($haveToPay);die();
+     
         $this->view('student/student-payment',['payment_history_list'=>$each_s_p_h,'haveToPaySet'=>$haveToPay]);
 
     }
