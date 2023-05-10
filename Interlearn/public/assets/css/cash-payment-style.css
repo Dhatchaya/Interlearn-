@@ -163,3 +163,51 @@
   background-color: lightgreen;
   justify-content: center;
 }
+
+/* print recepit */
+
+@media print {
+  /* Hide everything except the receipt when printing */
+  body * {
+    visibility: hidden;
+  }
+  #receipt, #receipt * {
+    visibility: visible;
+  }
+  /* Adjust margins and padding */
+  #receipt {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  /* Add a border to the receipt */
+  #receipt {
+    border: 1px solid black;
+    padding: 1em;
+  }
+  /* Style the receipt headings */
+  #receipt h1, #receipt h2 {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  /* Style the receipt table */
+  #receipt table {
+    border-collapse: collapse;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    width: 100%;
+  }
+  #receipt th, #receipt td {
+    border: 1px solid black;
+    padding: 0.5em;
+    text-align: left;
+  }
+  /* Style the "Print" button */
+  .print-btn {
+    display: none;
+  }
+}
+

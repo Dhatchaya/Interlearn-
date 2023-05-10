@@ -12,6 +12,7 @@
   <link rel="stylesheet" media="screen and (max-width: 100px)" href="<?= ROOT ?>/assets/css/mobile-nav-bar.css">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 
 </head>
 
@@ -170,7 +171,7 @@
 
   <div class="student-payment">
     <h2 class="table-title">Transaction history</h2>
-    <table class="payment-table">
+    <table class="payment-table" id="payment-table">
       <thead>
         <tr>
           <th>Transaction ID</th>
@@ -183,7 +184,7 @@
           <th>Print payment slip</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="payment-table-body">
         <?php foreach ($transactions as $transaction) : ?>
           <tr>
             <td><?= $transaction->PaymentID ?></td>
@@ -193,7 +194,7 @@
             <td><?= $transaction->payment_date ?></td>
             <td><?= $transaction->amount ?></td>
             <td><?= $transaction->method ?></td>
-            <td><button>Print</button></td>
+            <td><button class="print-btn" onclick="printPaymentSlip(this)">Print</button></td>
 
           </tr>
         <?php endforeach; ?>
@@ -266,6 +267,8 @@
 <script defer src="<?= ROOT ?>/assets/js/preview-bank-payments.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?= ROOT ?>/assets/js/callBankPaymentData.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?= ROOT ?>/assets/js/approveBP.js?v=<?php echo time(); ?>"></script>
+<script defer src="<?= ROOT ?>/assets/js/printRecipt.js?v=<?php echo time(); ?>"></script>
+
 
 
 

@@ -241,17 +241,20 @@
 
                 <button id="bank-btn" class="bank-btn">Bank Payment</button>
               </td>
-
+                
+              $totalPayment = 0;
+               $totalPayment += $pendingPayment->amount; 
             </tr> -->
-            <?php
-            $totalPayment = 0; // Initialize the total payment variable
-            foreach ($haveToPaySet as $pendingPayment) :
-              $totalPayment += $pendingPayment->amount; // Add the current payment amount to the total payment
+            
+          <?php if (!empty($haveToPaySet)): ?>
+            <?php // Initialize the total payment variable
+              foreach ($haveToPaySet as $pendingPayment) :// Add the current payment amount to the total payment
+                
             ?>
               <tr>
-                <td><?= $pendingPayment->courseID ?></td>
+                <td><?= $pendingPayment['courseID']  ?></td>
                 <td><?= $pendingPayment->month ?></td>
-                <td><?= $pendingPayment->dueDate ?></td>
+                <td><?= $dueDate = date("Y-m-30"); ?></td>
                 <td><?= $pendingPayment->amount ?></td>
                 <td>
                   <button id="" onclick="checkout(<?= json_encode($pendingPayment) ?>)" class="card-btn">paynow</button>
@@ -266,10 +269,15 @@
                 </td>
               </tr>
             <?php endforeach; ?>
+                        
+            <?php else: ?>
+                <p>No payments ot do.</p>
+            <?php endif; ?>
+
 
             <tr>
               <td colspan="3" style="text-align:right;">Total Payment:</td>
-              <td><?= $totalPayment ?></td>
+              <!-- <td><?= $totalPayment ?></td> -->
               <td><button id="" onclick="checkout( json_encode($haveToPaySet))" class="card-btn">paynow</button>
                 <button id="bank-btn" class="bank-btn">Bank Payment</button>
               </td>
@@ -306,23 +314,28 @@
               <th>Payment ID</th>
               <th>Amount</th>
               <th>Method</th>
-              <th>Print Payment Slip</th>
+              <!-- <th>Print Payment Slip</th> -->
             </tr>
           </thead>
           <tbody>
 
-            <?php foreach ($payment_history_list as $payments) : ?>
-              <tr>
-                <td><?= $payments->courseID ?></td>
-                <td><?= $payments->month ?></td>
-                <td><?= $payments->payment_date ?></td>
-                <td><?= $payments->PaymentID ?></td>
-                <td><?= $payments->amount ?></td>
-                <td><?= $payments->method ?></td>
-                <td><button>Print</button></td>
+          <?php if (!empty($payment_history_list)): ?>
+    <?php foreach ($payment_history_list as $payments) : ?>
+        <tr>
+            <td><?= $payments->courseID ?></td>
+            <td><?= $payments->month ?></td>
+            <td><?= date('Y-m-d', strtotime($payments->payment_date)) ?></td>
+            <td><?= $payments->PaymentID ?></td>
+            <td><?= $payments->amount ?></td>
+            <td><?= $payments->method ?></td>
+            <!-- <td><button>Print</button></td> -->
+        </tr>
+    <?php endforeach; ?>
+<?php else: ?>
+    <p>No payment history found.</p>
+<?php endif; ?>
 
-              </tr>
-            <?php endforeach; ?>
+
 
           </tbody>
         </table>
