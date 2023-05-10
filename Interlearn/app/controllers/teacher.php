@@ -250,7 +250,7 @@ class Teacher extends Controller
             }
 
             if($option == 'editTextName'){
-                show($_POST);die;
+                // show($_POST);die;
                 $result = $course_content->UpdateUploadText($id,$_POST['cid'],$_POST['upload_name'],$_POST['view_URL']);
 
                 echo json_encode($result);

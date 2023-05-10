@@ -9,6 +9,11 @@
 // });
 
 
+if ( window.history.replaceState ) {
+
+  window.history.replaceState( null, null, window.location.href );
+}
+
 //filter grades with all 3 mediums
 var sub = document.getElementById('subject');
 sub.addEventListener('input',function(event){
@@ -64,12 +69,14 @@ var grd = document.getElementById('grades');
 grd.addEventListener('change', function() {
   var subject = document.getElementById('subject').value;
   if(subject == ''){
+  
     document.getElementById('alert-div1').innerHTML = 'Please enter a subject before selecting a grade.';  // set the message in the alert div
     document.getElementById('alert-div1').style.display = 'block';  // show the alert div
     document.getElementById('grades').value = '';  // clear the selected grade
   }
   else{
     var grade = document.getElementById('grades').value;
+    console.log(grade);
     if (grade != '') {  // check if the grade field is not empty
       document.getElementById('alert-div2').style.display = 'none';  // hide the alert div
     }
@@ -124,18 +131,24 @@ med.addEventListener('change',function(){
   var grade = document.getElementById('grades').value;
   var medium = document.getElementById('mediums').value;
   console.log("1");
+  if (medium != '') {  // check if the grade field is not empty
+    document.getElementById('alert-div3').style.display = 'none';  // hide the alert div
+  }
   if (subject == '') {  // check if the subject field is empty
     console.log("2");
     // document.getElementById('alert-div1').style.display = 'block';
-    document.getElementById('alert-div1').innerHtml = 'Please enter a subject before selecting a grade.';  // set the message in the alert div
+    document.getElementById('alert-div1').innerHTML = 'Please enter a subject before selecting a grade.';  // set the message in the alert div
     document.getElementById('alert-div1').style.display = 'block';  // show the alert div
     document.getElementById('grades').value = '';  // clear the selected grade
+  
   }
-  console.log(grade == null);
+  console.log(grade == '');
 
-  if(grade == null || grade == 'grade'){
+  if(grade == ''){
     console.log('hi');
-    document.getElementById('alert-div2').innerHtml = 'Please select a grade before selecting a language medium.';  // set the message in the alert div
+
+  
+    document.getElementById('alert-div2').innerHTML = 'Please select a grade before selecting a language medium.';  // set the message in the alert div
     document.getElementById('alert-div2').style.display = 'block';  // show the alert div
     document.getElementById('mediums').value = '';  // clear the selected grade
   }
@@ -153,45 +166,196 @@ desc.addEventListener('input',function(){
   var medium = document.getElementById('mediums').value;
   var description = document.getElementById('description').value;
   if (subject == '') {  // check if the subject field is empty
-    document.getElementById('alert-div1').innerHtml = 'Please enter a subject before selecting a grade.';  // set the message in the alert div
+    console.log(3);
+    document.getElementById('alert-div1').innerHTML = 'Please enter a subject before selecting a grade.';  // set the message in the alert div
     document.getElementById('alert-div1').style.display = 'block';  // show the alert div
     document.getElementById('grades').value = '';  // clear the selected grade
   }
-  if(grade == null || grade == 'grade'){
-    console.log('hi');
-    document.getElementById('alert-div2').innerHtml = 'Please select a grade before selecting a language medium.';  // set the message in the alert div
+  if(grade == '' ){
+    console.log(4);
+    document.getElementById('alert-div2').innerHTML = 'Please select a grade before selecting a language medium.';  // set the message in the alert div
     document.getElementById('alert-div2').style.display = 'block';  // show the alert div
     document.getElementById('mediums').value = '';  // clear the selected grade
   }
-  if(medium == '' || medium == '--Select language medium--'){
+  if(medium == '' ){
     console.log('hi');
-    document.getElementById('alert-div3').innerHtml = 'Please select a language medium before adding a description.';  // set the message in the alert div
+    document.getElementById('alert-div3').innerHTML = 'Please select a language medium before adding a description.';  // set the message in the alert div
     document.getElementById('alert-div3').style.display = 'block';  // show the alert div
     document.getElementById('description').value = '';  // clear the selected grade
   }
   else{
+    console.log('hi');
     document.getElementById('alert-div1').style.display = 'none'; // hide the subject alert div
     document.getElementById('alert-div2').style.display = 'none'; // hide the grade alert div
-    document.getElementById('alert-div3').style.display = 'none'; // hide the grade alert div
+    document.getElementById('alert-div3').style.display = 'none'; // hide the medium alert div
   }
 });
 
 
-// Filter available teachers
-var dayChng = document.getElementById('day');
-dayChng.addEventListener('change', function() {
+// select teacher 
+var teacher = document.getElementById('teacher_id');
+teacher.addEventListener('change',function(event){
+  if(teacher != ''){
+    document.getElementById('alert-div5').style.display = 'none';  // show the alert div
+  }
+});
+
+
+// filter teachers according to day 
+var day1 = document.getElementById('day');
+day1.addEventListener('change',function(event){
   var subject = document.getElementById('subject').value;
   var grade = document.getElementById('grades').value;
   var teacher_id = document.getElementById('teacher_id').value;
   var day = document.getElementById('day').value;
   var timeFrom = document.getElementById('timefrom').value;
   var timeTo = document.getElementById('timeto').value;
-  // console.log('hi');
-  $.ajax({
+
+  if(day != ''){
+    document.getElementById('alert-div6').style.display = 'none';  // show the alert div
+  }
+  
+  if (teacher_id == '') {  // check if the subject field is not empty
+    document.getElementById('alert-div5').innerHTML = 'Please select a teacher before selecting a day.';  // set the message in the alert div
+    document.getElementById('alert-div5').style.display = 'block';  // show the alert div
+    document.getElementById('day').value = '';  // clear the selected grade
+  }
+  else{
+    $.ajax({
       url: 'http://localhost/Interlearn/public/receptionist/course/available',
       type: 'POST',
       data: {'teacher_id':teacher_id, 'day': day, 'timefrom': timeFrom, 'timeto': timeTo},
       success: function(response) {
+        var flag = 0;
+         response = JSON.parse(response);
+        console.log(response);
+        var error = document.getElementById('addCourseerror');
+
+
+
+        var time5 = document.getElementById('timefrom');
+        time5.addEventListener('change', function(){
+          // console.log("here");
+          var timeFrom = document.getElementById('timefrom').value;
+          var timeTo = document.getElementById('timeto').value;
+
+
+          for(i in response){
+            console.log(response[i]);
+            let getMinute = timeFrom.split(':')[1];
+            getMinute = parseInt(getMinute) + 1;
+            let getHours = timeFrom.split(':')[0];
+            getHours = parseInt(getHours);
+
+
+            if(getMinute < 0 ){
+              getMinute = 59;
+              getHours = getHours - 1;
+            }
+
+            let newDay = getHours + ':' + getMinute;
+            console.log(newDay);
+            console.log(timeFrom);
+
+
+            console.log(timeFrom>=response[i].timefrom);
+            console.log(timeFrom<=response[i].timeto);
+            if(timeFrom<response[i].timeto && timeFrom>=response[i].timefrom){
+              console.log("in" + response[i].timefrom);
+              document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
+              flag = 1;
+              break;
+            }else{
+              flag = 0;
+            }
+          }
+
+          console.log(flag);
+
+          if(flag == 0){
+            document.getElementById('addCourseerror').style.display = "none";
+          }
+        });
+
+        var time6 = document.getElementById('timeto');
+        time6.addEventListener('change', function(){
+          console.log("here");
+          var timeFrom = document.getElementById('timefrom').value;
+          var timeTo = document.getElementById('timeto').value;
+
+          for(i in response){
+            console.log(response[i]);
+            console.log(timeTo);
+            console.log(timeFrom);
+            console.log(timeTo>=response[i].timefrom);
+            if(timeFrom > timeTo){
+              console.log("inside");
+              document.getElementById('addCourseerror').innerHTML = "Ending time should be greater than start time";
+              document.getElementById('addCourseerror').style.display = "block";
+              flag = 1; 
+              break;
+              
+            }
+            else{
+              flag = 0;
+            }
+            if(timeTo<=response[i].timeto && timeTo>=response[i].timefrom){
+              document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
+              document.getElementById('addCourseerror').style.display = "block";
+              flag = 1;
+              break;
+            }
+            else{
+              flag = 0;
+            }
+          }
+
+          if(flag == 0){
+            document.getElementById('addCourseerror').style.display = "none";
+          }
+        });
+
+          }
+        });
+  }
+});
+
+
+var timef = document.getElementById('timefrom');
+timef.addEventListener('change',function(event){
+  var subject = document.getElementById('subject').value;
+  var grade = document.getElementById('grades').value;
+  var teacher_id = document.getElementById('teacher_id').value;
+  var day = document.getElementById('day').value;
+  var timeFrom = document.getElementById('timefrom').value;
+  var timeTo = document.getElementById('timeto').value;
+
+  if(timeFrom != ''){
+    document.getElementById('alert-div7').style.display = 'none';  // show the alert div
+  }
+  if(teacher_id == ''){
+    console.log('hi');
+    document.getElementById('alert-div5').innerHTML = 'Please select a teacher before adding a time.';  // set the message in the alert div
+    document.getElementById('alert-div5').style.display = 'block';  // show the alert div
+    document.getElementById('description').value = '';  // clear the selected grade
+  }
+  if(day == ''){
+    console.log('hi');
+    document.getElementById('alert-div6').innerHTML = 'Please select a day before adding a time.';  // set the message in the alert div
+    document.getElementById('alert-div6').style.display = 'block';  // show the alert div
+    document.getElementById('description').value = '';  // clear the selected grade
+  }
+  else{
+    document.getElementById('alert-div5').style.display = 'none'; // hide the teacher alert div
+    document.getElementById('alert-div6').style.display = 'none'; // hide the day alert div
+
+
+    $.ajax({
+      url: 'http://localhost/Interlearn/public/receptionist/course/available',
+      type: 'POST',
+      data: {'teacher_id':teacher_id, 'day': day, 'timefrom': timeFrom, 'timeto': timeTo},
+      success: function(response) {
+        var flag = 0;
          response = JSON.parse(response);
         console.log(response);
         var error = document.getElementById('addCourseerror');
@@ -219,22 +383,23 @@ dayChng.addEventListener('change', function() {
             console.log(newDay);
             console.log(timeFrom);
 
-            // var tmpnewDay = new Date(timeFrom);
-            // var newDay = new Date(tmpnewDay.getTime());
-            // console.log(tmpnewDay);
-            // console.log(timeFrom);
-            // // console.log(newDay.getMinutes() - 1);
-
-            // newDay.setMinutes(newDay.getMinutes() - 1);
-            // console.log(newDay);
 
             console.log(timeFrom>=response[i].timefrom);
             console.log(timeFrom<=response[i].timeto);
             if(timeFrom<response[i].timeto && timeFrom>=response[i].timefrom){
               console.log("in" + response[i].timefrom);
               document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
+              flag = 1;
               break;
+            }else{
+              flag = 0;
             }
+          }
+
+          console.log(flag);
+
+          if(flag == 0){
+            document.getElementById('addCourseerror').style.display = "none";
           }
         });
 
@@ -247,31 +412,250 @@ dayChng.addEventListener('change', function() {
           for(i in response){
             console.log(response[i]);
             console.log(timeTo);
+            console.log(timeFrom);
             console.log(timeTo>=response[i].timefrom);
             if(timeFrom > timeTo){
+              console.log("inside");
               document.getElementById('addCourseerror').innerHTML = "Ending time should be greater than start time";
+              document.getElementById('addCourseerror').style.display = "block";
+              flag = 1; 
               break;
+              
+            }
+            else{
+              flag = 0;
             }
             if(timeTo<=response[i].timeto && timeTo>=response[i].timefrom){
               document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
+              document.getElementById('addCourseerror').style.display = "block";
+              flag = 1;
               break;
             }
+            else{
+              flag = 0;
+            }
+          }
+
+          if(flag == 0){
+            document.getElementById('addCourseerror').style.display = "none";
           }
         });
 
-
-          // Filter out teachers who already have a class scheduled in the selected time range
-          // var filteredTeachers = teachers.filter(function(teacher) {
-          //     return !teacherHasClassOnTime(teacher, timeFrom, timeTo);
-          // });
-          // Update the teacher dropdown
-          // $('#teacher_id').empty();
-          // $.each(filteredTeachers, function(index, teacher) {
-          //   $('#teacher_id').append('<option value="' + teacher.id + '">' + teacher.firstname + '</option>');
-          // });
           }
         });
-      });
+  }
+});
+
+
+
+
+var timet = document.getElementById('timeto');
+timet.addEventListener('change',function(event){
+  var subject = document.getElementById('subject').value;
+  var grade = document.getElementById('grades').value;
+  var teacher_id = document.getElementById('teacher_id').value;
+  var day = document.getElementById('day').value;
+  var timeFrom = document.getElementById('timefrom').value;
+  var timeTo = document.getElementById('timeto').value;
+
+  if(timeTo != ''){
+    document.getElementById('alert-div7').style.display = 'none';  // show the alert div
+  }
+  if(teacher_id == ''){
+    console.log('hi');
+    document.getElementById('alert-div5').innerHTML = 'Please select a teacher before adding a time.';  // set the message in the alert div
+    document.getElementById('alert-div5').style.display = 'block';  // show the alert div
+    document.getElementById('description').value = '';  // clear the selected grade
+  }
+  if(day == ''){
+    console.log('hi');
+    document.getElementById('alert-div6').innerHTML = 'Please select a day before adding a time.';  // set the message in the alert div
+    document.getElementById('alert-div6').style.display = 'block';  // show the alert div
+    document.getElementById('description').value = '';  // clear the selected grade
+  }
+  else{
+    document.getElementById('alert-div5').style.display = 'none'; // hide the teacher alert div
+    document.getElementById('alert-div6').style.display = 'none'; // hide the day alert div
+
+
+
+    $.ajax({
+      url: 'http://localhost/Interlearn/public/receptionist/course/available',
+      type: 'POST',
+      data: {'teacher_id':teacher_id, 'day': day, 'timefrom': timeFrom, 'timeto': timeTo},
+      success: function(response) {
+        var flag = 0;
+         response = JSON.parse(response);
+        console.log(response);
+        var error = document.getElementById('addCourseerror');
+        var time5 = document.getElementById('timefrom');
+        time5.addEventListener('change', function(){
+          // console.log("here");
+          var timeFrom = document.getElementById('timefrom').value;
+          var timeTo = document.getElementById('timeto').value;
+
+
+          for(i in response){
+            console.log(response[i]);
+            let getMinute = timeFrom.split(':')[1];
+            getMinute = parseInt(getMinute) + 1;
+            let getHours = timeFrom.split(':')[0];
+            getHours = parseInt(getHours);
+
+
+            if(getMinute < 0 ){
+              getMinute = 59;
+              getHours = getHours - 1;
+            }
+
+            let newDay = getHours + ':' + getMinute;
+            console.log(newDay);
+            console.log(timeFrom);
+
+
+            console.log(timeFrom>=response[i].timefrom);
+            console.log(timeFrom<=response[i].timeto);
+            if(timeFrom<response[i].timeto && timeFrom>=response[i].timefrom){
+              console.log("in" + response[i].timefrom);
+              document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
+              flag = 1;
+              break;
+            }
+            else{
+              flag = 0;
+            }
+          }
+
+          console.log(flag);
+
+          if(flag == 0){
+            document.getElementById('addCourseerror').style.display = "none";
+          }
+        });
+
+        var time6 = document.getElementById('timeto');
+        time6.addEventListener('change', function(){
+          console.log("here");
+          var timeFrom = document.getElementById('timefrom').value;
+          var timeTo = document.getElementById('timeto').value;
+
+          for(i in response){
+            console.log(response[i]);
+            console.log(timeTo);
+            console.log(timeFrom);
+            console.log(timeTo>=response[i].timefrom);
+            if(timeFrom > timeTo){
+              console.log("inside");
+              document.getElementById('addCourseerror').innerHTML = "Ending time should be greater than start time";
+              document.getElementById('addCourseerror').style.display = "block";
+              flag = 1; 
+              break;
+              
+            }
+            else{
+              flag = 0;
+            }
+            if(timeTo<=response[i].timeto && timeTo>=response[i].timefrom){
+              document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
+              document.getElementById('addCourseerror').style.display = "block";
+              flag = 1;
+              break;
+            }
+            else{
+              flag = 0;
+            }
+          }
+
+          //here
+
+          if(timeFrom != '' && timeTo != ''){
+            for(i in response){
+              console.log(response[i]);
+              console.log(timeTo);
+              console.log(timeFrom);
+
+              if(response[i].timefrom>= timeFrom && response[i].timefrom <= timeTo){
+                document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
+                document.getElementById('addCourseerror').style.display = "block";
+                flag = 1;
+                break;
+              }
+              else if(response[i].timeto>= timeFrom && response[i].timeto <= timeTo){
+                document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
+                document.getElementById('addCourseerror').style.display = "block";
+                flag = 1;
+                break;
+              }
+              else{
+                flag = 0;
+              }
+            }
+          } 
+
+          if(flag == 0){
+            document.getElementById('addCourseerror').style.display = "none";
+          }
+        });
+
+          }
+        });
+  }
+});
+
+
+
+var capacity = document.getElementById('capacity');
+capacity.addEventListener('input',function(event){
+  var subject = document.getElementById('subject').value;
+  var grade = document.getElementById('grades').value;
+  var teacher_id = document.getElementById('teacher_id').value;
+  var day = document.getElementById('day').value;
+  var timeFrom = document.getElementById('timefrom').value;
+  var timeTo = document.getElementById('timeto').value;
+
+  if(capacity != ''){
+    if(isNaN(capacity)){
+      document.getElementById('alert-div8').innerHTML = 'Please enter a numeric value.';  // set the message in the alert div
+      document.getElementById('alert-div8').style.display = 'block';  // show the alert div
+      document.getElementById('description').value = '';  // clear the selected grade
+    }
+    else{
+      document.getElementById('alert-div8').style.display = 'none';
+    }
+  }
+  
+  if(teacher_id == ''){
+    console.log('hi');
+    document.getElementById('alert-div5').innerHTML = 'Please select a teacher before adding a capacity.';  // set the message in the alert div
+    document.getElementById('alert-div5').style.display = 'block';  // show the alert div
+    document.getElementById('description').value = '';  // clear the selected grade
+  }
+  if(day == ''){
+    console.log('hi');
+    document.getElementById('alert-div6').innerHTML = 'Please select a day before adding a capacity.';  // set the message in the alert div
+    document.getElementById('alert-div6').style.display = 'block';  // show the alert div
+    document.getElementById('description').value = '';  // clear the selected grade
+  }
+  if(timeFrom == ''){
+    console.log('hi');
+    document.getElementById('alert-div7').innerHTML = 'Please select a start time before adding a capacity.';  // set the message in the alert div
+    document.getElementById('alert-div7').style.display = 'block';  // show the alert div
+    document.getElementById('description').value = '';  // clear the selected grade
+  }
+  if(timeTo == ''){
+    console.log('hi');
+    document.getElementById('alert-div7').innerHTML = 'Please select an end time before adding a capacity.';  // set the message in the alert div
+    document.getElementById('alert-div7').style.display = 'block';  // show the alert div
+    document.getElementById('description').value = '';  // clear the selected grade
+  }
+  else{
+    document.getElementById('alert-div5').style.display = 'none'; // hide the teacher alert div
+    document.getElementById('alert-div6').style.display = 'none'; // hide the day alert div
+    document.getElementById('alert-div7').style.display = 'none'; // hide the time alert div
+  }
+});
+
+
 
 function teacherHasClassOnTime(teacher, timeFrom, timeTo) {
   var day = document.getElementById('day').value;

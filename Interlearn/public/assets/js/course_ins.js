@@ -320,7 +320,7 @@ function openModal7(number,course,week) {
                 // console.log(response[i].grade);
                 if(response[i].cid == number){
                     document.getElementById("edit-text").value = response[i].upload_name;
-                    document.getElementById("uedit-text-content").value = response[i].view_URL;
+                    document.getElementById("edit-text-content").value = response[i].view_URL;
                 }
             }
         }
@@ -328,13 +328,15 @@ function openModal7(number,course,week) {
 
 
     var update = document.getElementById('edit-text-btn');
-    update.addEventListener('submit', function(){
+    update.addEventListener('click', function(){
         var c_id = number;
         var title = document.getElementById('edit-text').value;
         var content = document.getElementById('edit-text-content').value;
+        console.log(title)
+        console.log(content)
         console.log('hi');
         $.ajax({
-            url: 'http://localhost/Interlearn/public/instructor/course/editTextName',
+            url: `http://localhost/Interlearn/public/instructor/course/view/`+course+`/`+week+`/editTextName`,
             type: 'POST',
             data: {'cid':c_id, 'upload_name': title, 'view_URL' : content},
             success:function(response){
