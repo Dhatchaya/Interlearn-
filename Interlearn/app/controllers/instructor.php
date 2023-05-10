@@ -194,7 +194,7 @@ class Instructor extends Controller
 
 
 
-            // $this->view('instructor/course',$data);
+            $this->view('instructor/course',$data);
         }
 
         if($action == 'upload') {
@@ -589,7 +589,7 @@ class Instructor extends Controller
                         }
                         
                         if($result) {
-                            echo "successfully";
+                            header("Location:http://localhost/Interlearn/public/instructor/course/progress/".$id."/".$week."/view");
                         }
                     }
                 }

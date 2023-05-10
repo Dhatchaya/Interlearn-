@@ -102,7 +102,7 @@ class Teacher extends Controller
     public function editUploadName($id=null)
     {
         $course_content = new CourseContent();
-      
+        // show("check");die;
         if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
             // show($_POST);die;
 
@@ -484,10 +484,7 @@ class Teacher extends Controller
 
                         $result = $announcement->insert($_POST);
                     $result2 = $ann_course->insert($_POST);
-                    $nid=uniqid();
-
                     $_POST['category'] = "Announcement";
-                    $_POST['Nid'] = $nid;
                     $result3 = $notification->insert($_POST);
                     echo "Announcement successfully published!";
                     header("Location:http://localhost/Interlearn/public/teacher/course/announcement/" . $id . "/0");
@@ -1219,7 +1216,6 @@ class Teacher extends Controller
         // show($data['rows']);die;
             $this->view('teacher/Zquiz', $data);
         }
-
 
 
         if($action == "forum")

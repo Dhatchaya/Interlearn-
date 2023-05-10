@@ -8,10 +8,12 @@
         <div class="all-middle-content">
             <div class="teacher_crs_main">
 
+            <!-- <a href="<?=ROOT?>/Instructor/course/progress/<?=$id?>/0/view"><button class="">View Progress</button></a> -->
                 <div class="teacher_crs_content">
                     <img src="<?= ROOT ?>/assets/images/tchrview.png" class="teacher_crs_topimg">
                     <div class="teacher_crs_tophead">
                         <?php if (!empty($courses)) : ?>
+                            <a href="<?= ROOT ?>/instructor/course/progress/<?= $course_id ?>/0/view" class="teacher-course-announcement">View Progress</a>
                             <div id="course_id" style="display: none;"><?= $courses[0]->course_id ?></div>
                             <h2 class="teacher_crs_subject">Grade <?= esc($courses[0]->grade) ?> - <?= esc($courses[0]->subject) ?></h2>
                         <?php endif; ?>

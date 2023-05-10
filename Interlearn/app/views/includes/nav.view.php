@@ -71,12 +71,9 @@
                         <?= ucfirst(Auth::getusername())?>
                         </span>
 
-                    </div class="notibellCount">
+                    </div>
                     <div class="noti_bell" id="noti_bell">
-                        <div>
-                    <span class="badge" id="badge"></span>
                         <img src="<?=ROOT?>/assets/images/sidebar_icons/bell.png" alt="picture" class="display_picture_img"/>
-                </div>
                         <div class="notification" id="notification">
                             <div class="allnoti" id="allnoti">
 

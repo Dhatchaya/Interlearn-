@@ -13,7 +13,7 @@ function changeStatus(id,value,role){
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function(){
       if(this.readyState==4 && this.status == 200){
-        console.log(xmlhttp.responseText);
+        console.log("success");
         for(let i=0; i<enqStatus.options.length; i++){
           if (enqStatus.options[i].value == value){
             enqStatus.options[i].selected = true;

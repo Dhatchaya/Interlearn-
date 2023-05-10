@@ -9,8 +9,10 @@
     </div>
 
     <div class="question_right">
+
+    <a href="<?=ROOT?>/Instructor/course/progress/<?=esc($course_id)?>/1/add"><button class="home_myform_sbt">Add New Progress</button></a>
         <?php if(!empty($rows)):?>
-        <!-- <div class="pro_view_container"> -->
+        <div class="pro_view_container">
             <?php foreach($rows as $row):?>
             <div class="progress">
                 <h2><?=esc($row->exam_name)?></h2>
@@ -18,7 +20,7 @@
             </div>
 
             <?php endforeach;?>
-        <!-- </div> -->
+        </div>
 
         <?php else:?>
         <h3>No records found!</h3>

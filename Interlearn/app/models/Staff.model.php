@@ -34,13 +34,25 @@ class Staff extends Model
 
     public function Addstaff($data)
     {
-
+        // $this->insert($data);
 
         $data = (array) $data;
 
+        // $last_inserted_email = $data['email'];
+        // $query = "SELECT * FROM users where email = '$last_inserted_email'";
+        // $newStaffuid = $this->query($query);
+        // $data['uid']  = $newStaffuid[0]->uid;
         $this->insert($data);
         return true;
 
+
+        // $this->error = [];
+        // if ($this->where(['NIC_no' => $data['NIC_no']], 'emp_ID')) {
+        //     $this->error['NIC_no_error'] = "NIC_no already exists";
+        // } else {
+        //     $this->insert($data);
+        //     $this->error['success'] = "Staff added to staff table successfully";
+        // }
     }
 
 
@@ -140,6 +152,122 @@ class Staff extends Model
     
 
 
+    // public function editProfile($data)
+    // {
+
+    //     if (isset($data['first_name'])) {
+    //         $first_name = $data['first_name'];
+    //     } else {
+    //         $first_name = '';
+    //     }
+
+    //     if (isset($data['last_name'])) {
+    //         $last_name = $data['last_name'];
+    //     } else {
+    //         $last_name = '';
+    //     }
+
+    //     if (isset($data['email'])) {
+    //         $email = $data['email'];
+    //     } else {
+    //         $email = '';
+    //     }
+    //     if(isset($data['Addressline1'])){
+    //         $Addressline1 = $data['Addressline1'];
+    //     }else{
+    //         $Addressline1 = '';
+    //     }
+
+    //     if(isset($data['mobile_no'])){
+    //         $mobile_no = $data['mobile_no'];
+    //     }else{
+    //         $mobile_no = '';
+    //     }
+
+
+    //     $emp_id = $data['uid'];
+    //     $query1 = "UPDATE staff SET 
+    //                 first_name = $first_name, 
+    //                 last_name =$last_name, 
+    //                 Addressline1 = $Addressline1, 
+    //                 mobile_no = $mobile_no
+    //                 WHERE uid = $emp_id";
+    //             $data = $this->query($query1);
+    
+    //     $query2 = "UPDATE users SET  email = $email, WHERE uid = $emp_id";
+    //     $data = $this->query($query1);
+    //     return array('status' => 'success');
+    // }
+    
+    
+
+    // public function updateStaffData($emp_id, $data)
+    // {
+
+
+    //     // Check if emp_id is set
+    //     if (empty($emp_id)) {
+    //         $this->error[] = 'Emp ID is required.';
+    //         return false;
+    //     }
+
+    //     // Check if data is empty
+    //     if (empty($data)) {
+    //         $this->error[] = 'No data to update.';
+    //         return false;
+    //     }
+    //     $query = "UPDATE staff SET ";
+    //     $data = $this->update_table($query, $data);
+
+    //     // $values = array();
+
+    //     // foreach ($data as $key => $values) {
+    //     //     if (in_array($key, $this->allowed_columns)) {
+    //     //         $values[] = "$key = ?";
+    //     //     }
+    //     // }
+
+    //     // $query .= implode(", ", $values) . " WHERE emp_ID = ?";
+    //     // $data[] = $emp_id;
+
+    //     // // Debugging statements
+    //     // var_dump($query);
+    //     // var_dump(array_values($data));
+
+    //     // // Execute query
+    //     // $result = $this->query($query, array_values($data));
+
+    //     $result = $this->query($query, $data);
+
+
+    //     // Validate data
+    //     // ...
+
+    //     // Build update query
+    //     $query = "UPDATE staff SET ";
+    //     $values = array();
+
+    //     foreach ($data as $key => $value) {
+    //         if (in_array($key, $this->allowed_columns)) {
+    //             $values[] = "$key = ?";
+    //         }
+    //     }
+
+    //     $query .= implode(", ", $values) . " WHERE emp_ID = ?";
+    //     $data[] = $emp_id;
+
+    //     // Execute query
+    //     $result = $this->query($query, $data);
+
+    //     if (!$result) {
+    //         $this->error[] = 'Failed to update staff data.';
+    //         return false;
+    //     }
+
+    //     return true;
+    // }
+
+
     public function getStaffDetails()
     {
         // $query = "SELECT * FROM staff";
@@ -216,13 +344,13 @@ class Staff extends Model
         $data['courseID'] = $course_id;
 
         $res = $this->query($query, $data);
-
+        //  show($query);die;
 
         if (is_array($res)) {
-
+            // echo $res;die;
             return $res;
         }
-
+        // echo "hi";die;
         return false;
     }
 
@@ -234,13 +362,13 @@ class Staff extends Model
         $data['uId'] = $user_id;
 
         $res = $this->query($query, $data);
-
+        //  show($query);die;
 
         if (is_array($res)) {
-
+            // echo $res;die;
             return $res;
         }
-
+        // echo "hi";die;
         return false;
     }
 }
