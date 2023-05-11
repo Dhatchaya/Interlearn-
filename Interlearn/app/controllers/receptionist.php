@@ -13,7 +13,30 @@ class Receptionist extends Controller
         
         $this->view('receptionist/home');
     }
-
+    public function allprofiles($action = null,$uid=null)
+    {
+        if(!Auth::is_receptionist()){
+            redirect('home');
+        }
+        $data = [];
+        $data['title']='Staff-Profiles';
+        $student = new Students();
+        $staff = new Staff();
+        if($action=="student"){
+            $details = $student->studentConnectCourse(['uid'=>$uid],'studentID');
+            $data['userData']=$details;
+            $this->view('student/profiles',$data);
+        }
+        if($action=="staff"){
+            $details = $staff->ProfileDetails($uid);
+            $data['userData']=$details;
+            
+            $this->view('staff/profiles',$data);
+        }
+        
+        
+        exit;
+    }
     public function course($action = null, $id = null)
     { 
         if(!Auth::is_receptionist()){
@@ -355,87 +378,10 @@ class Receptionist extends Controller
         //$this->view('receptionist/class',$data);
     }
 
-    public function changePW(){
-        
-        $data = json_decode(file_get_contents("php://input"), true);
-        $data ['uid']= Auth::getUID();
-        
-        $data['newPW'] = password_hash($data['newPW'], PASSWORD_DEFAULT);
-
-        $user = new User();
-        $staff = new Staff();
-
-        if($user->checkPW($data)){
-            $staff->updatePassword($data);
-            echo json_encode(['status'=>'success']);
-        }else{
-            echo json_encode(['status'=>'error']);
-        }
+    
 
 
-    }
 
-    
-    public function editUser()
-    {
-        $data = json_decode(file_get_contents("php://input"), true);
-        $data['uid'] = $id ?? Auth::getUID();
-        if(isset($_FILES['uploadDP']['name']) && $_FILES['uploadDP']['error'] === UPLOAD_ERR_OK && $_FILES['uploadDP']['tmp_name'] !== '' && $_FILES['uploadDP']['size'] > 0){
-        // if(isset($_FILES['uploadDP']['name']) && !empty($_FILES['uploadDP']['name'])){
-            $pic_tmp = $_FILES['uploadDP']["tmp_name"];
-            $pic_name = $_FILES['uploadDP']["name"];
-            $error= $_FILES['uploadDP']['error'];
-    
-            if($error === 0){
-                $img_ext = pathinfo($pic_name, PATHINFO_EXTENSION);
-                $img_final_ext = strtolower($img_ext);
-                $allowed_ext = array('jpg','png','jpeg');
-    
-                if(in_array($img_final_ext, $allowed_ext)){
-                    $img_size = $_FILES['uploadDP']['size'];
-                    $max_size = 5 * 1024 * 1024; // 5 MB
-    
-                    if($img_size <= $max_size){
-                        $img_info = getimagesize($pic_tmp);
-    
-                        if($img_info !== false){
-                            $mime_type = $img_info['mime'];
-    
-                            if(in_array($mime_type, array('image/jpeg', 'image/png', 'image/gif'))){
-                                $new_image_name = time() . '_' . uniqid('', true) . '.' . $img_final_ext;
-                                $destination = "uploads/images/" . $new_image_name;
-    
-                                if(move_uploaded_file($pic_tmp, $destination)){
-                                    $data['pic'] = $new_image_name;
-                                    $response = array('status' => 'success', 'message' => 'Image uploaded successfully');
-                                } else {
-                                    $response = array('status' => 'error', 'message' => 'Failed to save image file');
-                                }
-                            } else {
-                                $response = array('status' => 'error', 'message' => 'Invalid image type');
-                            }
-                        } else {
-                            $response = array('status' => 'error', 'message' => 'Failed to read image file');
-                        }
-                    } else {
-                        $response = array('status' => 'error', 'message' => 'Image file size exceeds limit (5 MB)');
-                    }
-                } else {
-                    $response = array('status' => 'error', 'message' => 'Invalid file type (only JPG, PNG, and GIF are allowed)');
-                }
-            } else {
-                $response = array('status' => 'error', 'message' => 'Failed to upload image file');
-            }
-        } else {
-            $response = array('status' => 'success', 'message' => 'No image file to upload');
-        }
-    
-        $changeProfile = new Staff();
-        $changeProfile->editProfile($data);
-    
-        echo json_encode($response);
-        exit;
-    }
     public function announcement($action=null,$aid=null)
     {
         if(!Auth::is_receptionist()){

@@ -90,7 +90,26 @@ class Students extends Model
             return false;
         }
     }
+    public function studentConnectCourse($data,$orderby=null,$order = 'desc'){
+        $keys = array_keys($data);
+        $query ="SELECT subjectcoursestaff.* , student.*,users.* FROM ".$this->table." INNER JOIN student_course ";
+        $query.="on student.studentID=student_course.student_id INNER JOIN users on users.uid=student.uid inner join subjectcoursestaff ON ";
+        $query.="student_course.course_id=subjectcoursestaff.course_id WHERE ";
 
+        foreach($keys as $key){
+            $query .= "student.".$key. " =:".$key." && ";
+        }
+        $query = trim($query,"&& ");
+        $query .= " order by $orderby  $order";
+
+        $res = $this -> query($query,$data);
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;
+
+    }
 
 
 }
