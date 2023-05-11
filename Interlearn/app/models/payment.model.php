@@ -90,7 +90,7 @@ class Payment extends Model
     public function eachStudentPaymentHistory($uid)
     {
         $get_uid = $uid;
-        $query_get_StudentID = "SELECT studentID from student WHERE uid =$get_uid";
+        $query_get_StudentID = "SELECT studentID from student WHERE uid ='$get_uid'";
         $student_ID = $this->query($query_get_StudentID);
 
         if (!isset($student_ID['studentID'])) {
