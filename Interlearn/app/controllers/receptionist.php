@@ -86,10 +86,6 @@ class Receptionist extends Controller
 
                     // show($_POST);die;
 
-                    // if(isset($_POST['courseSubmitBtn'])){
-
-                    // }
-
                     $_POST['subject_id']=$subject_id;
                     $subject->insert($_POST);
 
@@ -154,65 +150,6 @@ class Receptionist extends Controller
             }
             exit;
 
-        }
-
-        if($action == 'submitAddCourse'){
-            $data = [];
-            $data['action'] = $action;
-            $data['id'] = $id; 
-        
-            $data['errors']=[];
-
-            $data['subjects'] = $subject->getSubject();
-            $data['grades'] = $subject->getGrade();
-            $data['teachers'] = $staff->getTeachers();
-            // show($data['teachers']);die;
-            $data['instructors'] = $staff->getInstructors();
-            // show($data['instructors']);die;
-
-            // echo "check 1";die;
-        
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') 
-            {   
-                // echo "check 1";die;
-                // show($_POST);die;
-                if($course -> validate($_POST)){
-                    $subject_id = uniqid();
-                    //uniqueid("S",true)
-
-                    // show($_POST);die;
-
-                    // if(isset($_POST['courseSubmitBtn'])){
-
-                    // }
-
-                    $_POST['subject_id']=$subject_id;
-                    $subject->insert($_POST);
-
-                    //  show($_POST);die;
-
-                    // $subject_details = $subject->getSubjectId($_POST['subject'],$_POST['grade'],$_POST['language_medium']);
-
-                    // $_POST['subject_id'] = $subject_details[0]->subject_id;
-                    // print_r ($subject_id);die;
-                    $course->insert($_POST);
-
-                    // show($subject_id);die;
-                    $id= $course->getLastCourse()[0]->course_id;
-                    // // // print_r($Course);die;
-                    $course_week->createWeek($id, 1);
-                    header("Location:http://localhost/Interlearn/public/receptionist/course");
-
-                }
-                else{
-
-                    $data['errors'] =  $course->error;
-                    // show($data['errors']);die;
-
-                    // $data['error']['invalid'] = "There is an unknown error occured!";
-                }
-            }
-            exit;
         }
 
         if($action == 'view')

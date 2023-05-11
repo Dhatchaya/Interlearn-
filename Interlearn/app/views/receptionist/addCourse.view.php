@@ -16,7 +16,7 @@
             <h4>Subject:</h4><br>
                 <input type="text" class="recp_det_name" name="subject" id="subject">
                 <div id="alert-div1" style="display:none;" class="warning"></div>
-                <?php if(!empty($errors['subject'])):?>
+                <?php if(!empty($errors)):?>
                 <p class="warning"><?=$errors['subject'];?></p>
                 <?php endif;?>
             </div>
@@ -36,7 +36,7 @@
                    <option value="13">Grade 13</option>
                 </select>
                 <div id="alert-div2" style="display:none;" class="warning"></div>
-                <?php if(!empty($errors['grades'])):?>
+                <?php if(!empty($errors)):?>
                 <p class="warning"><?=$errors['grades'];?></p>
                 <?php endif;?>
             </div><br><br>
@@ -51,7 +51,7 @@
 
                 </select>
                 <div id="alert-div3" style="display:none;" class="warning"></div>
-                <?php if(!empty($errors['mediums'])):?>
+                <?php if(!empty($errors)):?>
                 <p class="warning"><?=$errors['mediums'];?></p>
                 <?php endif;?>
             </div>
@@ -61,7 +61,7 @@
                 <h4>Description:</h4><br>
                 <input type="text" class="recp_det_name" name="description" id="description">
                 <div id="alert-div4" style="display:none;" class="warning"></div>
-                <?php if(!empty($errors['description'])):?>
+                <?php if(!empty($errors)):?>
                 <p class="warning"><?=$errors['description'];?></p>
                 <?php endif;?>
             </div><br><br><br>
@@ -80,7 +80,7 @@
             <div id="alert-div5" style="display:none;" class="warning"></div>
 
             <!-- <p id="addCourseerror" class="warning"></p> -->
-            <?php if(!empty($errors['teacher_id'])):?>
+            <?php if(!empty($errors)):?>
                 <p class="warning"><?=$errors['teacher_id'];?></p>
                 <?php endif;?>
             </div><br><br>
@@ -98,7 +98,7 @@
                 <option value="Sunday">Sunday</option>
             </select>
             <div id="alert-div6" style="display:none;" class="warning"></div>
-            <?php if(!empty($errors['day'])):?>
+            <?php if(!empty($errors)):?>
                 <p class="warning"><?=$errors['day'];?></p>
                 <?php endif;?>
             </div><br><br>
@@ -108,12 +108,12 @@
                 <p id="addCourseerror" class="warning"></p>
                 <div class="recp_det_dura">
                     <input type="time" name="timefrom" value="" id="timefrom" class="recp_det_time">
-                    <?php if(!empty($errors['timefrom'])):?>
+                    <?php if(!empty($errors)):?>
                     <p class="warning"><?=$errors['timefrom'];?></p>
                     <?php endif;?>
                     <p> to </p>
                     <input type="time" name="timeto" value="" id="timeto" class="recp_det_time">
-                    <?php if(!empty($errors['timeto'])):?>
+                    <?php if(!empty($errors)):?>
                     <p class="warning"><?=$errors['timeto'];?></p>
                     <?php endif;?>
                 </div>
@@ -122,8 +122,8 @@
             <br>
             <div class="recp_det_box">
                 <h4>Capacity:</h4><br>
-                <input type="number" class="recp_det_name" name="capacity" id="capacity">
-                <?php if(!empty($errors['capacity'])):?>
+                <input type="text" class="recp_det_name" name="capacity" id="capacity">
+                <?php if(!empty($errors)):?>
                 <p class="warning"><?=$errors['capacity'];?></p>
                 <?php endif;?>
             </div>
