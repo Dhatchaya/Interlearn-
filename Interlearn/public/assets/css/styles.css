@@ -1635,11 +1635,11 @@ transform: scale(0.97,0.97);
     position: relative;
     display: flex;
     justify-content: center;
-    min-width: 32rem;
-    height: 37vh;
+    min-width: 22rem;
+    height: 30vh;
     top: 35vh;
     bottom:30vh;
-    left: 34vw;
+    left: 37vw;
     padding: 2rem;
     text-align: center;
     box-shadow: 1px 5px #d3c4c4;
@@ -1652,21 +1652,17 @@ transform: scale(0.97,0.97);
 }
 .otp-inp{
     width: 100%;
-    height: 2.5rem;
+    height: 2rem;
     border-radius: 5px;
     padding-left: 10px;
     border: 1px solid #bab8b8;
-    margin-top: 1rem;
-
-
+   
 }
 .otp-inp[type="submit"]{
     background-color: var(--left-sidebar-color);
     color: var(--secondary-color);
     font-size: 20px;
     cursor: pointer;
-    width: 13rem;
-    text-align: center;
 
 }
 .otp-inp[type="submit"]:hover{
@@ -1922,7 +1918,7 @@ transform: scale(0.97,0.97);
 }
 .sender{
     margin-left:25vw;
-    background: #717171;
+    background: #9e9e9e;
     color: #ffffff;
 }
 .enq_full_body{
@@ -2572,7 +2568,7 @@ transform: scale(0.97,0.97);
 }
 
 .std_view_box::-webkit-scrollbar-thumb {
-  background-color: rgb(22, 5, 41);    /* color of the scroll thumb */
+  background-color: rgb(127, 64, 196);    /* color of the scroll thumb */
   border-radius: 15px;       /* roundness of the scroll thumb */
   border: 3px solid rgb(115, 35, 131);  /* creates padding around scroll thumb */
 }
@@ -6153,7 +6149,6 @@ background: white;
     padding: 1rem 2rem 1rem 2rem;
     border-radius: 10px;
     transition: all 350ms ease-out 0s;
-    width: 60%;
 }
 .statNow {
     display: flex;
@@ -6756,65 +6751,4 @@ left: 5rem;
     font-size: 1.5rem;
     font-weight: bold;
     margin: 1.2rem;
-}
-.late_subm{
-    background-color: #efcfcf;
-}
-.good_res{
-    color: #199419;
-    font-weight: bold;
-}
-.forpw{
-    text-decoration: none;
-    color: white;
-    font-size: 13px;
-    margin-bottom: 1rem;
-
-}
-.forpwstaff{
-    text-decoration: none;
-    color: var(--left-sidebar-color);
-    font-size: 13px;
-    margin-bottom: 1rem;
-
-}
-.badge {
-    display: inline-block;
-    position: relative;
-    top: -17px;
-    left: 17px;
-    padding: 0.25em 0.4em;
-    font-size: 75%;
-    font-weight: 900;
-    line-height: 1;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: 50%;
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
-    border: 2px solid;
-    z-index: 1;
-}
-.notibellCount{
-    position: relative;
-    float: right;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 1rem;
-
-}
-
-
-.instructor-prg-butn{
-    align-items:end;
-    text-align: right;
-    justify-content: right;
-    position: relative;
-    float: right;
-}
-
-.text-upload-crs{
-    color: #000;
 }

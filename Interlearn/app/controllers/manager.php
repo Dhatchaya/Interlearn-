@@ -405,25 +405,10 @@ public function testing()
             $value = $_GET['status'];
            
             $status = $enquiry -> update(['eid'=>$id],['status'=>$value]);
-            if($status && $value=="escalated"){
-                $nid = uniqid();
-                $notification['Nid']=$nid;
-                $notification['title']=$enqnew->title;
-                $notification['category']="Enquiry";
-                $managers = $user->where([
-                    'role'=>"Manager"
-                ],'uid');
-                $insertNoti=$noti->insert($notification);
-                foreach($managers as $manager){
-                    $notiU['uid']=$manager->uid;
-                    $notiU['Nid']=$nid;
-                    $insertUser=$notifyuser->insert($notiU);
-                }
-            }
-
+           
         }
      
-        $data['rows']  =$enquiry->selectUserCourse(null, $orderby);
+        $data['rows']  = $enquiry->where(['status'=>"Escalated"], $orderby);
             
         $this->view('manager/enquiry',$data);
     }

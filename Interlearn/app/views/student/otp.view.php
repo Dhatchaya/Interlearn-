@@ -22,8 +22,7 @@
                 }
             ?>
             
-            <input class= "otp-inp" type="text" name = "otp"  placeholder="   Enter verification code"/><br/>
-            <input class= "otp-inp" type="text" name = "otp"  placeholder="   Enter verification code"/>
+            <input class= "otp-inp" type="text" name = "otp"  placeholder="   Enter verification code"/><br/> <br/>
             <input class= "otp-inp"  type = "submit" name = "otp_submit" value="Submit"/><br/><br/>
 
             </form>

@@ -30,10 +30,10 @@
                         <th >Total Points</th>
                         <td><?=esc($row->total_points)?></td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <th >Quiz Date</th>
                         <td><?=esc($row->quiz_date)?></td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <th >Enable Time</th>
                         <td><?=esc($row->enable_time)?></td>
@@ -61,7 +61,7 @@
         <div class="bg_modal" id="modal">
             <div class="box_modal">
                 <h3> -- Update Quiz -- </h3><br>
-                <form action="" method="POST">
+                <form name="confirmEditForm" action="" method="POST" onsubmit="return validateQuizPopUp();" id="my-form">
                     <!-- <input type="hidden" value="" name="id" id="id"> -->
                     
                     <label for="question_total">Quiz Description <strong> *</strong> : </label>
@@ -96,7 +96,7 @@
                         </div>
                         
                     </div>
-
+                    <span id="enable-disable-error" style="color:red"></span><br>
                     <label for="time_period">Duration <strong> *</strong> : </label><br>
                     <div class="select_duration">
                         <!-- <div> -->
@@ -117,7 +117,7 @@
             </div>
         </div>
         
-        <button class="home_myform_sbt" onclick="toModal(<?=esc($row->duration)?>, <?=esc($row->total_points)?>, '<?=esc($row->quiz_description)?>', '<?=esc($row->quiz_name)?>')">Update Quiz</button>
+        <button class="home_myform_sbt" onclick="toModal(<?=esc($row->duration)?>, <?=esc($row->total_points)?>, '<?=esc($row->quiz_description)?>', '<?=esc($row->quiz_name)?>', '<?=esc($row->enable_time)?>', '<?=esc($row->disable_time)?>')">Update Quiz</button>
         <?php endforeach;?>
         <?php else:?>
         <tr><td colspan="15">No records found!</td></tr>
@@ -129,4 +129,5 @@
     
 </div>
 <script defer src="<?=ROOT?>/assets/js/quizEdit.js?v=<?php echo time(); ?>"></script>
+<script defer src="<?=ROOT?>/assets/js/validate_quiz.js?v=<?php echo time(); ?>"></script>
 <?php $this -> view('includes/footer'); ?>

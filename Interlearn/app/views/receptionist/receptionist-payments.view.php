@@ -32,11 +32,11 @@
     <div class="validation-container">
       <div class="pending-list">
         <?php foreach ($bankPayments as $bankPayment) : ?>
-          <div class="pending-item each-payment" id="<?= $bankPayment->BankPaymentID ?>">
+          <div class="pending-item each-payment" id="<?= $bankPayment->BankPaymentID ?>" >
             <h4><?= $bankPayment->CourseID  ?></h4>
             <h4><?= $bankPayment->NameOnSlip  ?></h4>
-            <h4><?= $bankPayment->monthlyFee ?></h4>
-            <h4><?= $bankPayment->PaymentDate  ?></h4>
+              <h4><?= $bankPayment->monthlyFee ?></h4>
+              <h4><?= $bankPayment->PaymentDate  ?></h4>
 
           </div>
         <?php endforeach; ?>
@@ -51,10 +51,6 @@
         <div class="preview-group">
           <label class="preview-label">Name on payment slip:</label>
           <span class="preview-value" id="preview-name-on-slip"></span>
-        </div>
-        <div class="preview-group">
-          <label class="preview-label">StudentID:</label>
-          <span class="preview-value" id="StudentID"></span>
         </div>
         <div class="preview-group">
           <label class="preview-label">Address:</label>
@@ -93,8 +89,8 @@
         </div>
 
 
-        <button class="paynow " id="approve" type="submit">Approve</button>
-        <button class="next-payment " id="decline" type="submit">Decline</button>
+        <button class="paynow " id="payment-submission-1" type="submit">Approve</button>
+        <button class="next-payment " id="payment-submission-1" type="submit">Next Payment</button>
       </div>
 
     </div>
@@ -170,7 +166,7 @@
 
   <div class="student-payment">
     <h2 class="table-title">Transaction history</h2>
-    <table class="payment-table" id="payment-table">
+    <table class="payment-table">
       <thead>
         <tr>
           <th>Transaction ID</th>
@@ -183,7 +179,7 @@
           <th>Print payment slip</th>
         </tr>
       </thead>
-      <tbody id="payment-table-body">
+      <tbody>
         <?php foreach ($transactions as $transaction) : ?>
           <tr>
             <td><?= $transaction->PaymentID ?></td>
@@ -193,7 +189,7 @@
             <td><?= $transaction->payment_date ?></td>
             <td><?= $transaction->amount ?></td>
             <td><?= $transaction->method ?></td>
-            <td><button class="print-btn" onclick="printPaymentSlip(this)">Print</button></td>
+            <td><button>Print</button></td>
 
           </tr>
         <?php endforeach; ?>
@@ -265,9 +261,6 @@
 <script defer src="<?= ROOT ?>/assets/js/nextPayment.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?= ROOT ?>/assets/js/preview-bank-payments.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?= ROOT ?>/assets/js/callBankPaymentData.js?v=<?php echo time(); ?>"></script>
-<script defer src="<?= ROOT ?>/assets/js/approveBP.js?v=<?php echo time(); ?>"></script>
-<script defer src="<?= ROOT ?>/assets/js/printRecipt.js?v=<?php echo time(); ?>"></script>
-
 
 
 

@@ -28,25 +28,10 @@
                         </tr>
            
                         <?php if(!empty($submissions)):?>
-
+                        
                         <?php foreach($submissions as $row):?>
-                    <?php if ($row->deadline<$row->modified):?>
-                        <tr class="late_subm">
-                            <td><input type = "checkbox" name = "files[]" id="files" value="<?=$row->submissionId?>"/></td>
-                            <td><?=esc($row->studentID)?></td>
-                            <td><?=esc($row->Name)?></td>
-                            <td>
 
-                                <?php foreach($row->Files as $file):?>
-                                    <p class="files_display"><?=esc($file)?></p>
-                                <?php endforeach;?>
-
-                            </td>
-                            <td><?=esc($row->modified)?></td>
-
-                        </tr>
-                        <?php else:?>
-                            <tr>
+                        <tr>
                             <td><input type = "checkbox" name = "files[]" id="files" value="<?=$row->submissionId?>"/></td>
                             <td><?=esc($row->studentID)?></td>
                             <td><?=esc($row->Name)?></td>
@@ -60,7 +45,6 @@
                             <td><?=esc($row->modified)?></td>
                     
                         </tr>
-                        <?php endif;?>
                         <?php endforeach;?>
                             <td colspan="5">
                                 <div class="check_files">
