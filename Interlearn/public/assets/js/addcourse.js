@@ -23,6 +23,7 @@ function openModal() {
 // When the user clicks on <span> (x), close the modal
 function closeModal() {
     modal.style.display = "none";
+    location.reload();
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -57,6 +58,7 @@ function openModal2(courseID) {
 // When the user clicks on <span> (x), close the modal
 function closeModal2() {
     modal2.style.display = "none";
+    location.reload();
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -211,6 +213,7 @@ function openModal3(courseID) {
 function closeModal3() {
     const modal3 = document.getElementById("profileModal3");
     modal3.style.display = "none";
+    location.reload();
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -244,6 +247,7 @@ function openModal4(number) {
 // When the user clicks on <span> (x), close the modal
 function closeModal4() {
     modal4.style.display = "none";
+    location.reload();
 }
 
 // When the user clicks anywhere outside of the modal, close it

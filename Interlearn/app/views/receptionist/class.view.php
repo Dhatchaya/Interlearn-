@@ -242,7 +242,7 @@
                             <form action="" method="post" class="up-profile">
                                 <div class="recp_det_box">
                                     <h4>Teacher ID: </h4>
-                                    <select name="teacher_id" id="teacher_id" class="recp_ann_clz">
+                                    <select name="teacher_id" id="ateacher_id" class="recp_ann_clz">
                                         <option value="" selected>--Select teacher id--</option>
                                         <?php if (!empty($teachers)) : ?>
                                             <?php foreach ($teachers as $teacher) : ?>
@@ -250,15 +250,16 @@
                                             <?php endforeach; ?>
                                         <?php endif; ?>
                                     </select>
-                                    <!-- <?php if (!empty($errors)) : ?>
+                                    <div id="alert-div5" style="display:none;" class="warning"></div>
+                                    <?php if (!empty($errors['teacher_id'])) : ?>
                             <p class="warning"><?= $errors['teacher_id']; ?></p>
-                        <?php endif; ?> -->
+                        <?php endif; ?>
                                 </div>
                                 <br><br>
                                 <div class="recp_det_box">
                                     <h4>Day: </h4>
                                     <select name="day" id="dayAdd" class="recp_ann_clz">
-                                        <option value="slct" selected>--select day--</option>
+                                        <option value="" selected>--select day--</option>
                                         <option value="Monday">Monday</option>
                                         <option value="Tuesday">Tuesday</option>
                                         <option value="Wednesday">Wednesday</option>
@@ -267,32 +268,35 @@
                                         <option value="Saturday">Saturday</option>
                                         <option value="Sunday">Sunday</option>
                                     </select>
-                                    <!-- <?php if (!empty($errors)) : ?>
+                                    <div id="alert-div6" style="display:none;" class="warning"></div>
+                                    <?php if (!empty($errors['day'])) : ?>
                             <p class="warning"><?= $errors['day']; ?></p>
-                        <?php endif; ?> -->
+                        <?php endif; ?>
                                 </div><br><br>
                                 <div class="recp_det_box">
                                     <h4>Time:</h4>
                                     <div class="recp_det_dura">
-                                        <input type="time" name="timefrom" value="00:00" id="timefrom" class="recp_det_time">
-                                        <!-- <?php if (!empty($errors)) : ?>
+                                        <input type="time" name="timefrom" value="" id="timefrom" class="recp_det_time">
+                                        <?php if (!empty($errors['timefrom'])) : ?>
                                 <p class="warning"><?= $errors['timefrom']; ?></p>
-                            <?php endif; ?> -->
+                            <?php endif; ?>
                                         <p> to </p>
-                                        <input type="time" name="timeto" value="00:00" id="timeto" class="recp_det_time">
-                                        <!-- <?php if (!empty($errors)) : ?>
+                                        <input type="time" name="timeto" value="" id="timeto" class="recp_det_time">
+                                        <?php if (!empty($errors['timeto'])) : ?>
                                 <p class="warning"><?= $errors['timeto']; ?></p>
-                            <?php endif; ?> -->
+                            <?php endif; ?>
                                     </div>
+                                    <div id="alert-div7" style="display:none;" class="warning"></div>
                                 </div><br>
                                 <div class="recp_det_box">
                                     <h4>Capacity:</h4>
-                                    <input type="text" class="recp_ann_clz" name="capacity">
-                                    <?php if (!empty($errors)) : ?>
+                                    <input type="number" class="recp_ann_clz" name="capacity" value="" id="capacity">
+                                    <div id="alert-div8" style="display:none;" class="warning"></div>
+                                    <?php if (!empty($errors['capacity'])) : ?>
                                         <p class="warning"><?= $errors['capacity']; ?></p>
                                     <?php endif; ?>
                                 </div><br>
-                                <button name="add-teacher" type="submit" class="recp_det_btn">Save</button>
+                                <button name="add-teacher" type="submit" class="recp_det_btn" id="add-teacher">Save</button>
                                 <br><br><br>
                             </form>
                         </div>

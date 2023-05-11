@@ -11,7 +11,6 @@
   <link rel="stylesheet" media="screen and (max-width: 100px)" href="<?= ROOT ?>/assets/css/mobile-nav-bar.css">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-  <script src="https://js.stripe.com/v3/"></script>
 </head>
 
 <body style="background-color: #FFFFFF;">
@@ -243,72 +242,61 @@
                 <button id="bank-btn" class="bank-btn">Bank Payment</button>
               </td>
 
-            <?php $totalPayment = 0;
-            if (!empty($haveToPaySet)) : ?>
-              <?php // Initialize the total payment variable
-              foreach ($haveToPaySet as $pendingPayment) :
-                // Add the current payment amount to the total payment
-                $totalPayment += $pendingPayment->amount;
-              ?>
-                <tr>
-                  <td class="courseID"><?= $pendingPayment->courseID ?></td>
-                  <td class="month"><?= $pendingPayment->month ?></td>
-                  <td><?= $dueDate = date("Y-m-30"); ?></td>
-                  <td class="amount"><?= $pendingPayment->amount ?></td>
-                  <td>
-                    <!-- <button id="" class="card-btn" >paynow</button> -->
-                    <?php
-                    echo '<form action="' . ROOT . '/student/success" method="POST">
-                  <input type="text" name="PaymentID" value="' . $pendingPayment->PaymentID . '" hidden>
-                  <input type="number" name="amount" value="' . $pendingPayment->amount . ' " hidden>
-                  <input type="text" name="rest_key" value="' . skey . '" hidden>
-                  <script
-                      src="https://checkout.stripe.com/checkout.js"
-                      class="stripe-button"
-                      data-key="' . pkey . '"
-                      data-name="Online Payment"
-                      data-description="Course ID - ' . $pendingPayment->courseID . '        ' . 'Month - ' . $pendingPayment->month . '"
-                      data-amount="' . $pendingPayment->amount . '00"
-                      data-PaymentID="' . $pendingPayment->PaymentID . '"
-                      data-email="' . $pendingPayment->studentID . '"
-                      data-currency="lkr">
+            </tr>  -->
+
+          <?php if (!empty($haveToPaySet)): ?>
+            <?php // Initialize the total payment variable
+              foreach ($haveToPaySet as $pendingPayment) :// Add the current payment amount to the total payment
+
+              $totalPayment = 0;
+              $totalPayment += $pendingPayment->amount;
+            ?>
+              <tr>
+                <td><?= $pendingPayment->courseID  ?></td>
+                <td><?= $pendingPayment->month ?></td>
+                <td><?= $dueDate = date("Y-m-30"); ?></td>
+                <td><?= $pendingPayment->amount ?></td>
+                <td>
+                  <button id="" onclick="checkout(<?= json_encode($pendingPayment) ?>)" class="card-btn">paynow</button>
+                  <button id="bank-btn" class="bank-btn">Bank Payment</button>
+                  <script>
+                    function checkout() {
+                      console.log("print checkout");
+                      // Redirect to the checkout page with the payment data as a URL parameter
+                      window.location.href = "<?= ROOT ?>/student/checkout?payment=" + encodeURIComponent(JSON.stringify($pendingPayment));
+                    }
                   </script>
-              </form>';
+                </td>
+              </tr>
+            <?php endforeach; ?>
 
-                    ?>
-                    <button id="bank-btn" class="bank-btn">Bank Payment</button>
-                  </td>
-                </tr>
-              <?php endforeach; ?>
-
-            <?php else : ?>
-              <p>No payments to do.</p>
+            <?php else: ?>
+                <p>No payments ot do.</p>
             <?php endif; ?>
+
 
             <tr>
               <td colspan="3" style="text-align:right;">Total Payment:</td>
               <td><?= $totalPayment ?></td>
-              <td>
-                <button id="full-payment-btn" onclick="showCheckoutPopup()" class="card-btn">paynow</button>
+              <td><button id="" onclick="checkout( json_encode($haveToPaySet))" class="card-btn">paynow</button>
                 <button id="bank-btn" class="bank-btn">Bank Payment</button>
               </td>
             </tr>
+
+            <script>
+              function fullPayment() {
+                // Redirect to the checkout page with the payment data as a URL parameter
+                window.location.href = "<?= ROOT ?>/student/checkout?payment=" + encodeURIComponent(JSON.stringify($haveToPaySet));
+              }
+            </script>
+
+
           </tbody>
         </table>
 
       </div>
 
     </div>
-
-    <div id="checkout-popup" class="popup">
-      <div class="popup-content">
-        <span class="close" onclick="hideCheckoutPopup()">&times;</span>
-        <h2>Checkout</h2>
-        <p id="checkout-details"></p>
-        <!-- Add payment form here -->
-      </div>
-    </div>
-
 
 
     <div class="table-container">
@@ -331,30 +319,22 @@
           </thead>
           <tbody>
 
-            <?php if (!empty($payment_history_list)) : ?>
-              <?php foreach ($payment_history_list as $payments) : ?>
-                <tr>
-                  <td><?= $payments->courseID ?></td>
-                  <td><?= $payments->month ?></td>
-                  <td><?= date('Y-m-d', strtotime($payments->payment_date)) ?></td>
-                  <td><?= $payments->PaymentID ?></td>
-                  <td><?= $payments->amount ?></td>
-                  <td><?= $payments->method ?></td>
-                  <!-- <td><button>Print</button></td> -->
-                </tr>
-              <?php endforeach; ?>
-            <?php else : ?>
-              <p>No payment history found.</p>
-            <?php endif; ?>
-            <tr>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <!-- <td><button>Print</button></td> -->
-            </tr>
+          <?php if (!empty($payment_history_list)): ?>
+    <?php foreach ($payment_history_list as $payments) : ?>
+        <tr>
+            <td><?= $payments->courseID ?></td>
+            <td><?= $payments->month ?></td>
+            <td><?= date('Y-m-d', strtotime($payments->payment_date)) ?></td>
+            <td><?= $payments->PaymentID ?></td>
+            <td><?= $payments->amount ?></td>
+            <td><?= $payments->method ?></td>
+            <!-- <td><button>Print</button></td> -->
+        </tr>
+    <?php endforeach; ?>
+<?php else: ?>
+    <p>No payment history found.</p>
+<?php endif; ?>
+
 
 
           </tbody>
