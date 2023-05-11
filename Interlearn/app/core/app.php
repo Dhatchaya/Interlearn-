@@ -12,14 +12,12 @@ class App
     {
   
         $arr=$this->getURL();
-
         $filename = "../app/controllers/".ucfirst($arr[0]).".php";
         if(file_exists($filename)){
             require $filename;
             $this -> controller = $arr[0];
             self::$page = $arr[0];
             unset($arr[0]);
-
         }
         else{
             require "../app/controllers/".$this->controller.".php";

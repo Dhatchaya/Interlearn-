@@ -131,7 +131,7 @@ class Staff extends Model
         $Addressline1 = isset($data['Addressline1']) ? "'" . $data['Addressline1'] . "'" : "Addressline1";
         $mobile_no = isset($data['mobile_no']) ? "'" . $data['mobile_no'] . "'" : "mobile_no";
         $email = isset($data['email']) ? "'" . $data['email'] . "'" : "email";
-
+        
         $query = "UPDATE staff SET 
                     first_name = $first_name, 
                     last_name = $last_name, 
@@ -144,13 +144,26 @@ class Staff extends Model
                     email = $email,
                     display_picture = $dp  
                     WHERE uid = '$emp_id'";
-
         $this->query($query);
     
         return array('status' => 'success');
     }
     
     
+
+    public function updatePassword($data)
+    {
+        $emp_id = $data['uid'];
+        $password = $data['newPW'];
+
+        $query = "UPDATE users SET 
+                    password = '$password'
+                    WHERE uid = '$emp_id'";
+        $this->query($query);
+    
+        return array('status' => 'success');
+    }
+
 
 
     // public function editProfile($data)
