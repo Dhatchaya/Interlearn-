@@ -177,7 +177,7 @@
                                                 </a>
                                             </div> -->
                                             <div class="teacher-crs-activity">
-                                                <a href="#">
+                                                <a href="<?= ROOT ?>/instructor/course/forum/<?= $course->course_id ?>"  name="upload">
                                                     <img src="<?= ROOT ?>/assets/images/discussion.png" alt="" class="teacher-crs-img"><br>Add Forum
                                                 </a>
                                             </div>
