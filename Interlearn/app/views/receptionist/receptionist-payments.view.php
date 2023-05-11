@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="<?= ROOT ?>/assets/css/cash-payment-style.css">
   <link rel="stylesheet" media="screen and (max-width: 100px)" href="<?= ROOT ?>/assets/css/mobile-nav-bar.css">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
 </head>
 
@@ -32,11 +32,11 @@
     <div class="validation-container">
       <div class="pending-list">
         <?php foreach ($bankPayments as $bankPayment) : ?>
-          <div class="pending-item each-payment" id="<?= $bankPayment->BankPaymentID ?>" >
+          <div class="pending-item each-payment" id="<?= $bankPayment->BankPaymentID ?>">
             <h4><?= $bankPayment->CourseID  ?></h4>
             <h4><?= $bankPayment->NameOnSlip  ?></h4>
-              <h4><?= $bankPayment->monthlyFee ?></h4>
-              <h4><?= $bankPayment->PaymentDate  ?></h4>
+            <h4><?= $bankPayment->monthlyFee ?></h4>
+            <h4><?= $bankPayment->PaymentDate  ?></h4>
 
           </div>
         <?php endforeach; ?>
@@ -93,8 +93,8 @@
         </div>
 
 
-        <button class="paynow " id="payment-submission-1" type="submit">Approve</button>
-        <button class="next-payment " id="payment-submission-1" type="submit">Next Payment</button>
+        <button class="paynow " id="approve" type="submit">Approve</button>
+        <button class="next-payment " id="decline" type="submit">Decline</button>
       </div>
 
     </div>

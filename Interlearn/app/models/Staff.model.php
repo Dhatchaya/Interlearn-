@@ -38,9 +38,21 @@ class Staff extends Model
 
         $data = (array) $data;
 
+        // $last_inserted_email = $data['email'];
+        // $query = "SELECT * FROM users where email = '$last_inserted_email'";
+        // $newStaffuid = $this->query($query);
+        // $data['uid']  = $newStaffuid[0]->uid;
         $this->insert($data);
         return true;
 
+
+        // $this->error = [];
+        // if ($this->where(['NIC_no' => $data['NIC_no']], 'emp_ID')) {
+        //     $this->error['NIC_no_error'] = "NIC_no already exists";
+        // } else {
+        //     $this->insert($data);
+        //     $this->error['success'] = "Staff added to staff table successfully";
+        // }
     }
 
 

@@ -61,9 +61,7 @@ class Payment extends Model
             $data = array();
         }
 
-        $apple = "Apple";
-
-        return $apple;
+        return $data;
     }
 
     public function submitCashPayment($data)
