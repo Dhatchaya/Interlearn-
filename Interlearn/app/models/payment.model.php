@@ -40,6 +40,18 @@ class Payment extends Model
         return $data;
     }
 
+    public function updateCardPayment($paymentID,$method){
+
+        $query = "UPDATE payment SET method = '$method', payment_status = '1' WHERE PaymentID  = '$paymentID'";
+        $data = $this->query($query);
+
+        if ($data == NULL) {
+            $data = array("failed");
+        }
+
+        return $data;
+    }
+
     public function approveBP($data)
     {
 
