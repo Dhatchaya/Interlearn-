@@ -40,6 +40,18 @@ class Payment extends Model
         return $data;
     }
 
+    public function updateCardPayment($paymentID,$method){
+
+        $query = "UPDATE payment SET method = '$method', payment_status = '1' WHERE PaymentID  = '$paymentID'";
+        $data = $this->query($query);
+
+        if ($data == NULL) {
+            $data = array("failed");
+        }
+
+        return $data;
+    }
+
     public function approveBP($data)
     {
 
@@ -80,7 +92,7 @@ class Payment extends Model
     public function eachStudentPaymentHistory($uid)
     {
         $get_uid = $uid;
-        $query_get_StudentID = "SELECT studentID from student WHERE uid =$get_uid";
+        $query_get_StudentID = "SELECT studentID from student WHERE uid ='$get_uid'";
         $student_ID = $this->query($query_get_StudentID);
 
         if (!isset($student_ID['studentID'])) {

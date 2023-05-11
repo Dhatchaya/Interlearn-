@@ -1100,39 +1100,39 @@ class Receptionist extends Controller
 
 
     //     $this->view('receptionist/user',  $data);
-    public function editUser()
-    {
-        if (!Auth::is_receptionist()) {
-            redirect('home');
-        }
+    // public function editUser()
+    // {
+    //     if (!Auth::is_receptionist()) {
+    //         redirect('home');
+    //     }
     
-        // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        //     $currentUserID = $id ?? Auth::getUID();
+    //     // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //     //     $currentUserID = $id ?? Auth::getUID();
     
-        //     $data = $_POST;
+    //     //     $data = $_POST;
 
-        //     $staffData = new Staff();
-        //     $staffData->updateStaffData($currentUserID, $data);
+    //     //     $staffData = new Staff();
+    //     //     $staffData->updateStaffData($currentUserID, $data);
     
-        //     // Return a JSON response
-        //     header('Content-Type: application/json');
-        //     echo json_encode(['status' => 'success']);
-        //     exit;
-        // }
+    //     //     // Return a JSON response
+    //     //     header('Content-Type: application/json');
+    //     //     echo json_encode(['status' => 'success']);
+    //     //     exit;
+    //     // }
 
-        {
-            $data = json_decode(file_get_contents("php://input"), true);
+    //     {
+    //         $data = json_decode(file_get_contents("php://input"), true);
             
-            $data['uid'] = $id ?? Auth::getUID();
+    //         $data['uid'] = $id ?? Auth::getUID();
 
-            $changeProfile = new Staff();
-            $res = $changeProfile->editProfile($data);
+    //         $changeProfile = new Staff();
+    //         $res = $changeProfile->editProfile($data);
     
-            echo json_encode($res);
-            exit;
-        }
-        exit;
-    }
+    //         echo json_encode($res);
+    //         exit;
+    //     }
+    //     exit;
+    // }
     
     
     public function payments()
