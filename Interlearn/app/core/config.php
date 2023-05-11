@@ -17,7 +17,7 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
     define('DBHOST', 'localhost');
     define('DBNAME', 'interlearn');
     define('DBUSER', 'root');
-    define('DBPASS', '');
+    define('DBPASS', 'user');
     define('DBDRIVE', 'mysql');
     //root path 
     define('ROOT', 'http://localhost/Interlearn/public');
@@ -26,6 +26,6 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
     define('DBHOST', 'localhost');
     define('DBNAME', 'interlearn');
     define('DBUSER', 'root');
-    define('DBPASS', '');
+    define('DBPASS', 'user');
     define('DBDRIVE', 'mysql');
 }

@@ -20,8 +20,21 @@ const mobileNoBtn = document.querySelector ('#change-mobile-no');
 const dp = document.querySelector('#change-dp');
 const saveBtn = document.querySelector('#save-btn');
 const cancelBtn = document.querySelector('#cancel-btn');
+const oldPW = document.getElementById('old-pw');
+const newPW = document.getElementById('new-pw');
+const confirmPW = document.getElementById('confirm-pw');
 
-
+// const error1 = document.querySelector('#errorSpace1');
+// const error2 = document.querySelector('#errorSpace2');
+// const error3 = document.querySelector('#errorSpace3');
+// const error4 = document.querySelector('#errorSpace4');
+// const error5 = document.querySelector('#errorSpace5');
+// const error6 = document.querySelector('#errorSpace6');
+// const error7 = document.querySelector('#errorSpace7');
+const error8 = document.querySelector('#errorSpace8');
+const error9 = document.querySelector('#errorSpace9');
+const error10 = document.querySelector('#errorSpace10');
+const error11 = document.querySelector('#errorSpace11');
 
 dpBtn.addEventListener('click', () => {
     dpBtn.style.display = 'none';
@@ -41,11 +54,11 @@ lNameBtn.addEventListener('click', () => {
     lName.focus();
 });
 
-emailBtn.addEventListener('click', () => {
-    emailBtn.style.display = 'none';
-    email.removeAttribute  ('readonly');
-    email.focus();
-});
+// emailBtn.addEventListener('click', () => {
+//     emailBtn.style.display = 'none';
+//     email.removeAttribute  ('readonly');
+//     email.focus();
+// });
 mobileNoBtn.addEventListener('click', () => {
     mobileNoBtn.style.display = 'none';
     mobileNo.removeAttribute  ('readonly');
@@ -60,89 +73,180 @@ addressBtn.addEventListener('click', () => {
 
 
 
+// const formData = new FormData();
+
+// dpBtn.addEventListener('change', handleFileSelect, false); 
+
+// function handleFileSelect(event) {
+//     const file = uploadDP.files[0];
+//     const formData = new FormData();
+//     formData.append('uploadDP', file);
+//     // add other form data
+//     console.log('key value pare added to the from data');
+// }
+
+
 
  saveBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    // console.log('save');
+    console.log(uploadDP.files);
+     $isAllFilled = true;
     const data = {
         first_name: fName.value.trim() !== '' ? fName.value : null,
-        last_name: lName.value.trim() !== '' ? lName.value : null, 
-        email: email.value.trim() !== '' ? email.value : null, 
-        Addressline1: address.value.trim() !== '' ? address.value : null, 
-        mobile_no: mobileNo.value.trim() !== '' ? mobileNo.value : null, 
-        emp_status: empState.value.trim() !== '' ? empState.value : null
+        last_name: lName.value.trim() !== '' ? lName.value : null,
+        email: email.value.trim() !== '' ? email.value : null,
+        Addressline1: address.value.trim() !== '' ? address.value : null,
+        mobile_no: mobileNo.value.trim() !== '' ? mobileNo.value : null,
+        emp_status: empState.value.trim() !== '' ? empState.value : null,
+        curr_pass: oldPW.value.trim() !== '' ? oldPW.value : null,
+        new_pass: newPW.value.trim() !== '' ? newPW.value : null,
+        password: confirmPW.value.trim() !== '' ? confirmPW.value : null,
+
     };
-    // console.log(JSON.stringify(data));
-    const filteredData = Object.keys(data).reduce((acc, key) => {
-        if (data[key] !== '') {
-            acc[key] = data[key];
+
+
+     if(mobileNo.value!==""&&isNaN(mobileNo.value)){
+         error11.innerHTML = "Not a valid contact number";
+         $isAllFilled = false;
+     }
+     else if(mobileNo.value!==""&&mobileNo.value.length < 10){
+         error11.innerHTML = "Contact number must be 10 digits";
+
+         $isAllFilled = false;
+     }
+
+     mobileNo.addEventListener('input', function(event) {
+         error11.innerHTML = "";
+     });
+
+
+
+
+     newPW.addEventListener('input', function(event) {
+         error9.innerHTML = "";
+     });
+
+     if(newPW.value!==""&&newPW.value.length < 8){
+         error9.innerHTML = "Password must be at least 8 characters";
+
+         $isAllFilled = false;
+     }
+    if(confirmPW.value!==""){
+        if(confirmPW.value.length < 8){
+            error8.innerHTML = "Password must be at least 8 characters";
+
+            $isAllFilled = false;
         }
-        return acc;
-    }, {});
-
-    
-
-    const formData = new FormData();
-    formData.append('uploadDP', uploadDP.files.length > 0 ? uploadDP.files[0] : null);
-
-    for (let key in filteredData) {
-        formData.append(key, filteredData[key]);
     }
-    
-    if (Object.keys(filteredData).length === 0 && uploadDP.files.length === 0) {
-        // console.log('No data to save');
-        return;
-    }
+     confirmPW.addEventListener('input', function(event) {
+         error8.innerHTML = "";
+     });
 
-    for (let key in filteredData) {
-        formData.append(key, filteredData[key]);
-    }
 
-    // console.log(JSON.stringify(filteredData));
-    if (Object.keys(filteredData).length === 0) {
-        // console.log('No data to save');
-        return;
-    }
-    fetch('/Interlearn/public/receptionist/editUser', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(filteredData),
-    })
 
-    .then(response => response.json())
-.then(data => {
-    // console.log('Response data:', data);
-    if (data.status === 'success') {
-        // console.log('Update successful');
-        
-        dpBtn.style.display = 'flex';
-        uploadDP.style.display = 'none';
-        fNameBtn.style.display = 'flex';
-        fName.setAttribute('readonly','readonly');
-        // console.log(fName.value);
-        fName.value = '';
-        lNameBtn.style.display = 'flex';
-        lName.setAttribute('readonly','readonly');
-        lName.value = '';
-        emailBtn.style.display = 'flex';
-        email.setAttribute('readonly','readonly');
-        email.value = '';
-        addressBtn.style.display = 'flex';
-        address.setAttribute('readonly','readonly');
-        address.value = '';
-        mobileNoBtn.style.display = 'flex';
-        mobileNo.setAttribute('readonly','readonly');
-        mobileNo.value = '';
-    } else {
-        console.error('Update failed');
-    }
-})
-.catch(error => console.log(error));
 
-    
-    
+
+
+         if (oldPW.value !== "" && newPW.value === "" && confirmPW.value === "") {
+             console.log("here4");
+             newPW.placeholder = 'Please enter a new password';
+             confirmPW.placeholder = 'Please confirm your new password';
+             $isAllFilled = false;
+         } else if (oldPW.value === "" && newPW.value !== "" && confirmPW.value === "") {
+             oldPW.placeholder = 'Please enter your old password';
+             confirmPW.placeholder = 'Please confirm your new password';
+             $isAllFilled = false;
+         } else if (oldPW.value === "" && newPW.value === "" && confirmPW.value !== "") {
+             oldPW.placeholder = 'Please enter your old password';
+             newPW.placeholder = 'Please enter a new password';
+             $isAllFilled = false;
+         } else if (oldPW.value !== "" && newPW.value !== "" && confirmPW.value === "") {
+             confirmPW.placeholder = 'Please confirm your new password';
+             $isAllFilled = false;
+         } else if (oldPW.value !== "" && newPW.value === "" && confirmPW.value !== "") {
+             console.log("here1");
+             newPW.placeholder = 'Please enter a new password';
+             $isAllFilled = false;
+         } else if (oldPW.value === "" && newPW.value !== "" && confirmPW.value !== "") {
+             console.log("here");
+             oldPW.placeholder = 'Please enter your old password';
+             $isAllFilled = false;
+         } else if (oldPW.value !== "" && newPW.value !== "" && confirmPW.value !== "") {
+             if (newPW.value !== confirmPW.value) {
+                 error9.innerHTML = "Passwords do not match";
+                 error8.innerHTML = "Passwords do not match";
+                 $isAllFilled = false;
+             }
+         }
+
+         console.log($isAllFilled);
+         if ($isAllFilled) {
+             console.log(JSON.stringify(data));
+             const filteredData = Object.keys(data).reduce((acc, key) => {
+                 if (data[key] !== '') {
+                     acc[key] = data[key];
+                 }
+                 return acc;
+             }, {});
+
+
+             const formData = new FormData();
+             if (uploadDP.files.length > 0) {
+                 formData.append('display_picture', uploadDP.files[0]);
+                 console.log('uploading level 2');
+             }
+
+             for (let key in filteredData) {
+                 console.log(filteredData[key])
+                 formData.append(key, filteredData[key]);
+             }
+
+             console.log(JSON.stringify(filteredData));
+             if (Object.keys(filteredData).length === 0) {
+                 console.log('No data to save');
+                 return;
+             }
+             fetch('/Interlearn/public/staffs/myprofile/editUser', {
+                 method: 'POST',
+
+                 body: formData
+             })
+                 .then(response => response.json())
+                 .then(data => {
+                     console.log('Response data:', data);
+                     if (data.status === 'success') {
+                         console.log('Update successful');
+
+                         dpBtn.style.display = 'flex';
+                         uploadDP.style.display = 'none';
+                         fNameBtn.style.display = 'flex';
+                         fName.setAttribute('readonly', 'readonly');
+                         console.log(fName.value);
+                         fName.value = '';
+                         lNameBtn.style.display = 'flex';
+                         lName.setAttribute('readonly', 'readonly');
+                         lName.value = '';
+                         emailBtn.style.display = 'flex';
+                         email.setAttribute('readonly', 'readonly');
+                         email.value = '';
+                         addressBtn.style.display = 'flex';
+                         address.setAttribute('readonly', 'readonly');
+                         address.value = '';
+                         mobileNoBtn.style.display = 'flex';
+                         mobileNo.setAttribute('readonly', 'readonly');
+                         mobileNo.value = '';
+                     } else if(data.status === 'error'){
+                         error10.innerHTML = data.message;
+                     }
+                     else{
+                         console.error('Update failed');
+                     }
+                 })
+                 .catch(error => console.log(error));
+
+         }
+
+
 });
 
 
