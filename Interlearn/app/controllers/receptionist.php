@@ -174,13 +174,13 @@ class Receptionist extends Controller
         
             if ($_SERVER['REQUEST_METHOD'] == 'POST') 
             {   
-                // echo "check 1";die;
+                // show($_POST);die;
                 // show($_POST);die;
                 if($course -> validate($_POST)){
                     $subject_id = uniqid();
                     //uniqueid("S",true)
-
-                    // show($_POST);die;
+                    // echo "check 2";die;
+                    //  show($_POST);die;
 
                     // if(isset($_POST['courseSubmitBtn'])){
 
@@ -201,14 +201,17 @@ class Receptionist extends Controller
                     $id= $course->getLastCourse()[0]->course_id;
                     // // // print_r($Course);die;
                     $course_week->createWeek($id, 1);
-                    header("Location:http://localhost/Interlearn/public/receptionist/course");
+                    $response = array("status"=>"success");
+                    echo json_encode($response);
+                    exit;
+                    //header("Location:http://localhost/Interlearn/public/receptionist/course");
 
                 }
                 else{
 
                     $data['errors'] =  $course->error;
                     // show($data['errors']);die;
-
+                    echo json_encode($data['errors']);
                     // $data['error']['invalid'] = "There is an unknown error occured!";
                 }
             }
@@ -471,6 +474,7 @@ class Receptionist extends Controller
 
         if($action == 'checkAvailable1'){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                // show($_POST);die;
 
                 $result = $course -> getTime($_POST['teacher_id'], $_POST['day']);
                 echo json_encode($result);
@@ -487,6 +491,25 @@ class Receptionist extends Controller
                 die;
             }
             exit;
+        }
+
+        if($action == 'addTeacher')
+        {
+            show($_GET['id']);die;
+            $data['id'] = $id;
+
+            if($course -> validateAdd($_POST))
+            {
+                $inputs=array("subject_id"=>$_GET['id'],"teacher_id"=>$_POST['teacher_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto'],"capacity"=>$_POST['capacity']);
+                show($inputs);die;
+                $course->insert($inputs);
+                $id= $course->getLastCourse()[0]->course_id;
+                // // // print_r($Course);die;
+                $course_week->createWeek($id, 1);
+            }
+            else{
+                $data['errors'] =  $course->error;
+            }
         }
 
 

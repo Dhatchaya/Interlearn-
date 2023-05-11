@@ -48,6 +48,33 @@ class CourseContent extends Model
         return false;
     }
 
+    public function validateNote($data)
+    {   
+        $this->error = [];
+        if(empty($data['upload_name']))
+        {
+            $this -> error['upload_name'] = "Please provide a title for the text!";
+        }
+        if(empty($data['URL']))
+        {
+            $this -> error['URL'] = "Please provide a content to be displayed!";
+        }
+    
+            // // checks email is valid if so it'll check whther it already exists
+            // if(!filter_var($data['email'],FILTER_VALIDATE_EMAIL))
+            // {
+            //     $this->error['email'] = "Email is not valid";
+            // }else
+            // if($this->where(['email'=>$data['email']])){
+            //         $this->error['email'] = "Email already exists";
+                
+            // }
+        if(empty($this->error)){
+            return true;
+        }
+        return false;
+    }
+
     public function getUploads($course_id,$week_no){
         $query = "SELECT * FROM ".$this->table;
         $query .= " WHERE course_id =:courseId AND week_no =:weekNo ";

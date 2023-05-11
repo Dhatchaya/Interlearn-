@@ -94,86 +94,97 @@ class Courses extends Controller
             if (isset($_POST['enroll-me'])) {
                 $enroll_req = new RequestEnroll();
                 $student_course = new StudentCourse();
-
-                $teacher_id = $_POST['teacher'];
-                $_POST['emp_id'] = $teacher_id;
                 // show($_POST);die;
-                // show($teacher_id);die;
-                // show($subject_id);die;
-                $timeslot = explode('-', $_POST['day']);
-                $day = $timeslot[0];
-                $timefrom = $timeslot[1];
-                $timeto = $timeslot[2];
-                // show($day);
-                // show($timefrom);
-                // show($timeto);die;
-                if (!Auth::logged_in()) {
-                    message('please login');
-                    redirect('login/student');
-                    exit;
-                } else {
-                    $user = Auth::getUID();
-                    $student_id = $students->getStudentID($user);
-                    // show($student_id);die;
-                    $_POST['student_id'] = $student_id[0]->studentID;
-                    // show($user);die;
-                    $course = $course->getCourseID($subject_id, $teacher_id, $day, $timefrom, $timeto);
-                    // show($course[0]->course_id);die;
-                    $course_id = $course[0]->course_id;
-                    $_POST['course_id'] = $course_id;
-                    // show($_POST);die;
-                    // show($course_id);die;
-                    $data['courses'] = $student_course->getCourses($student_id[0]->studentID);
-                    $courses = $data['courses'];
-                    // show($data['courses']);die;
 
-                    $data['requestedCourses'] = $enroll_req->getRequestedCourses($_POST['student_id']);
-                    // show($data['requestedCourses'] == null);die;
-                    $reqCourses = $data['requestedCourses'];
-
-                    $flag = 0;
-                    if (!empty($reqCourses)) {
-                        foreach ($courses as $enroll_course => $val) {
-                            // show($val);
-                            foreach ($val as $req_course => $value) {
-                                // show($value);
-                                if ($value == $_POST['course_id']) {
-                                    $flag = 1;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-
-                    if (!empty($reqCourses)) {
-                        foreach ($reqCourses as $val) {
-                            // show($requested_course);
-                            foreach ($val as $req_course => $value) {
-                                // show($value);
-                                if ($value == $_POST['course_id']) {
-                                    $flag = 2;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-
-
-                    if ($flag == 0) {
-                        // show($_POST);die;
-                        $result = $enroll_req->insert($_POST);
-                        echo "Request successfully sent!";
-                    } elseif ($flag == 2) {
-                        $data['enroll_error'] = "You have already requested for this class!\nWait for the response of the request!";
+                if($enroll_req -> validate($_POST)){
+                    $teacher_id = $_POST['teacher'];
+                    $_POST['emp_id'] = $teacher_id;
+                    show($_POST);die;
+                    // show($teacher_id);die;
+                    // show($subject_id);die;
+                    $timeslot = explode('-', $_POST['day']);
+                    $day = $timeslot[0];
+                    $timefrom = $timeslot[1];
+                    $timeto = $timeslot[2];
+                    // show($day);
+                    // show($timefrom);
+                    // show($timeto);die;
+                    if (!Auth::logged_in()) {
+                        message('please login');
+                        redirect('login/student');
+                        exit;
                     } else {
-                        // echo "hi";
-                        $data['enroll_error'] = "You are already enrolled in this class!";
-                        // echo $enroll_error;
+                        $user = Auth::getUID();
+                        $student_id = $students->getStudentID($user);
+                        // show($student_id);die;
+                        $_POST['student_id'] = $student_id[0]->studentID;
+                        // show($user);die;
+                        $course = $course->getCourseID($subject_id, $teacher_id, $day, $timefrom, $timeto);
+                        // show($course[0]->course_id);die;
+                        $course_id = $course[0]->course_id;
+                        $_POST['course_id'] = $course_id;
+                        // show($_POST);die;
+                        // show($course_id);die;
+                        $data['courses'] = $student_course->getCourses($student_id[0]->studentID);
+                        $courses = $data['courses'];
+                        // show($data['courses']);die;
+    
+                        $data['requestedCourses'] = $enroll_req->getRequestedCourses($_POST['student_id']);
+                        // show($data['requestedCourses'] == null);die;
+                        $reqCourses = $data['requestedCourses'];
+                        // show($reqCourses);die;
+    
+                        $flag = 0;
+                        if (!empty($courses)) {
+                            // show($courses);die;
+                            foreach ($courses as $enroll_course => $val) {
+                                // show($courses);
+                                foreach ($val as $req_course => $value) {
+                                    // show($value);
+                                    if ($value == $_POST['course_id']) {
+                                        $flag = 1;
+                                        break;
+                                    }
+                                }
+                            }
+                            // die;
+                        }
+    
+                        if (!empty($reqCourses)) {
+                            foreach ($reqCourses as $val) {
+                                // show($requested_course);
+                                foreach ($val as $req_course => $value) {
+                                    // show($value);
+                                    if ($value == $_POST['course_id']) {
+                                        $flag = 2;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+    
+    
+                        if ($flag == 0) {
+                            // show($_POST);die;
+                            $result = $enroll_req->insert($_POST);
+                            echo "Request successfully sent!";
+                        } elseif ($flag == 2) {
+                            $data['enroll_error'] = "You have already requested for this class!\nWait for the response of the request!";
+                        } else {
+                            // echo "hi";
+                            $data['enroll_error'] = "You are already enrolled in this class!";
+                            // echo $enroll_error;
+                        }
+                        //   die;
+    
+                        // show($result);die;
                     }
-                    //   die;
-
-                    // show($result);die;
                 }
+                else{
+                    $data['errors'] =  $enroll_req->error;
+                }
+
+                
                 // if(!Auth::is_student()){
                 //     redirect('home');
 

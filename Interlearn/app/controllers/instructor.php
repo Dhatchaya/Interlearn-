@@ -144,7 +144,7 @@ class Instructor extends Controller
             if(isset($_POST['submit-delete-text'])){
                 // $result = $course_material->deleteUpload($_POST['delete-filenumber']);
                 $result = $course_content->deleteUpload($_POST['delete-text-filenumber']);
-                header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
+                header("Location:http://localhost/Interlearn/public/instructor/course/view/".$id);
             }
 
             if($option == 'getWeekName'){
@@ -333,7 +333,7 @@ class Instructor extends Controller
         if($action == "text"){
             if(isset($_POST['submit']))
             {
-                // if($course_content -> validate($_POST)){
+                if($course_content -> validateNote($_POST)){
                     $cid = uniqid();
                     // $viewURL="http://localhost/Interlearn/public/teacher/course/submissions/".$id."/".$week."/?id=".$cid;
                     $viewURL = $_POST['content'];
@@ -350,11 +350,11 @@ class Instructor extends Controller
                     // $result = $course_url->insert($_POST);
                     echo "Note successfully published!";
                     header("Location:http://localhost/Interlearn/public/instructor/course/view/".$id);
-                // }
-                // else{
-                //     $data['errors'] =  $course_content->error;
+                }
+                else{
+                    $data['errors'] =  $course_content->error;
 
-                // }
+                }
             }
             $data['rows']= $course->select([],'course_id');
             //show($data['rows']);die;

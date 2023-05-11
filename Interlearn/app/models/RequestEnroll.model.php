@@ -25,13 +25,14 @@ class RequestEnroll extends Model
     public function validate($data)
     {   
         $this->error = [];
-        foreach($data as $key => $value)
-        { 
-            if(empty($data[$key]))
-            {
-                $this -> error[$key] = ucfirst($key)." is required";
-            }
-         }
+        if(empty($data['teacher']))
+        {
+            $this -> error['teacher'] = "Please select a teacher";
+        }
+        if(empty($data['day']))
+        {
+            $this -> error['day'] = "Please select a time slot";
+        }
     
             // // checks email is valid if so it'll check whther it already exists
             // if(!filter_var($data['email'],FILTER_VALIDATE_EMAIL))
@@ -104,6 +105,7 @@ class RequestEnroll extends Model
 
 
         if(is_array($res)){
+            // show($res);die;
             return $res;
         }
         return false;

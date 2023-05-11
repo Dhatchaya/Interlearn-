@@ -80,3 +80,19 @@ function getRequests($id) {
 function closeModal() {
     modal.style.display = "none";
 }
+
+setTimeout(function(){
+    document.getElementById('info-message').style.display = 'none';
+    /* or
+    var item = document.getElementById('info-message')
+    item.parentNode.removeChild(item); 
+    */
+  }, 3000);
+
+// var enroll = document.getElementById('add-btn-enroll');
+// enroll.addEventListener('click',function setT(event){
+
+//     event.preventDefault();
+
+//     console.log(day, selectedTimeSlot);
+// });

@@ -160,23 +160,22 @@
 
                                     <p style="font-size: small;" id="noInstructors"></p>
 
-                                    <?php if (!empty($teach_instructors)) : ?>
+                                    <!-- <?php if (!empty($teach_instructors)) : ?>
                                         <?php foreach ($teach_instructors as $teach_inst) : ?>
-                                            <?php foreach ($teach_inst as $teach_in) : ?>
+                                            <?php foreach ($teach_inst as $teach_in) : ?> -->
 
                                                 <div>
+                                                    <input type="text" value="" id="instructorName" class="edit-class-disable" disabled>
 
-                                                    <input type="text" value="<?= $teach_in->instructorName ?>" id="instructorName" class="edit-class-disable" disabled>
-
-                                                    <input type="hidden" value="<?= $teach_in->emp_id ?>" id="instructorID" name="instructorID">
-                                                    <input type="hidden" value="<?= $teach_in->course_id ?>" id="courseID" name="courseID">
+                                                    <input type="hidden" value="" id="instructorID" name="instructorID">
+                                                    <input type="hidden" value="" id="courseID" name="courseID">
                                                     <button type="button" id="submit-remove-instructor" class="remove_instructor" onclick="removeInstructor(this,'<?= $teach_in->emp_id ?>','<?= $teach_in->course_id ?>')">
                                                         <span class="instructor-remove">&times;</span>
                                                     </button>
                                                 </div>
-                                            <?php endforeach; ?>
+                                            <!-- <?php endforeach; ?>
                                         <?php endforeach; ?>
-                                    <?php endif; ?>
+                                    <?php endif; ?> -->
                                     <br>
                                 </div>
                                 <br><br>
@@ -201,6 +200,10 @@
                                         <input type="time" name="timeto" value="" id="timetoEdit" class="recp_det_time">
                                     </div>
                                 </div>
+                                <div class="class-edit-box">
+                                    <h4>Capacity: </h4>
+                                    <input type="text" name="capacity" id="capacityEdit" value="" class="edit-class-disable">
+                                </div><br>
                                 <!-- <br><br> -->
                                 <button name="edit-teacher" type="submit" id="edit_class_submit" class="recp_det_btn">Save</button>
                                 <br><br>
@@ -242,7 +245,7 @@
                             <form action="" method="post" class="up-profile">
                                 <div class="recp_det_box">
                                     <h4>Teacher ID: </h4>
-                                    <select name="teacher_id" id="teacher_id" class="recp_ann_clz">
+                                    <select name="teacher_id" id="ateacher_id" class="recp_ann_clz">
                                         <option value="" selected>--Select teacher id--</option>
                                         <?php if (!empty($teachers)) : ?>
                                             <?php foreach ($teachers as $teacher) : ?>
@@ -250,15 +253,16 @@
                                             <?php endforeach; ?>
                                         <?php endif; ?>
                                     </select>
-                                    <!-- <?php if (!empty($errors)) : ?>
+                                    <div id="alert-div5" style="display:none;" class="warning"></div>
+                                    <?php if (!empty($errors['teacher_id'])) : ?>
                             <p class="warning"><?= $errors['teacher_id']; ?></p>
-                        <?php endif; ?> -->
+                        <?php endif; ?>
                                 </div>
                                 <br><br>
                                 <div class="recp_det_box">
                                     <h4>Day: </h4>
                                     <select name="day" id="dayAdd" class="recp_ann_clz">
-                                        <option value="slct" selected>--select day--</option>
+                                        <option value="" selected>--select day--</option>
                                         <option value="Monday">Monday</option>
                                         <option value="Tuesday">Tuesday</option>
                                         <option value="Wednesday">Wednesday</option>
@@ -267,32 +271,35 @@
                                         <option value="Saturday">Saturday</option>
                                         <option value="Sunday">Sunday</option>
                                     </select>
-                                    <!-- <?php if (!empty($errors)) : ?>
+                                    <div id="alert-div6" style="display:none;" class="warning"></div>
+                                    <?php if (!empty($errors['day'])) : ?>
                             <p class="warning"><?= $errors['day']; ?></p>
-                        <?php endif; ?> -->
+                        <?php endif; ?>
                                 </div><br><br>
                                 <div class="recp_det_box">
                                     <h4>Time:</h4>
                                     <div class="recp_det_dura">
-                                        <input type="time" name="timefrom" value="00:00" id="timefrom" class="recp_det_time">
-                                        <!-- <?php if (!empty($errors)) : ?>
+                                        <input type="time" name="timefrom" value="" id="timefrom" class="recp_det_time">
+                                        <?php if (!empty($errors['timefrom'])) : ?>
                                 <p class="warning"><?= $errors['timefrom']; ?></p>
-                            <?php endif; ?> -->
+                            <?php endif; ?>
                                         <p> to </p>
-                                        <input type="time" name="timeto" value="00:00" id="timeto" class="recp_det_time">
-                                        <!-- <?php if (!empty($errors)) : ?>
+                                        <input type="time" name="timeto" value="" id="timeto" class="recp_det_time">
+                                        <?php if (!empty($errors['timeto'])) : ?>
                                 <p class="warning"><?= $errors['timeto']; ?></p>
-                            <?php endif; ?> -->
+                            <?php endif; ?>
                                     </div>
+                                    <div id="alert-div7" style="display:none;" class="warning"></div>
                                 </div><br>
                                 <div class="recp_det_box">
                                     <h4>Capacity:</h4>
-                                    <input type="text" class="recp_ann_clz" name="capacity">
-                                    <?php if (!empty($errors)) : ?>
+                                    <input type="number" class="recp_ann_clz" name="capacity" value="" id="capacity">
+                                    <div id="alert-div8" style="display:none;" class="warning"></div>
+                                    <?php if (!empty($errors['capacity'])) : ?>
                                         <p class="warning"><?= $errors['capacity']; ?></p>
                                     <?php endif; ?>
                                 </div><br>
-                                <button name="add-teacher" type="submit" class="recp_det_btn">Save</button>
+                                <button name="add-teacher" type="submit" class="recp_det_btn" id="add-teacher">Save</button>
                                 <br><br><br>
                             </form>
                         </div>

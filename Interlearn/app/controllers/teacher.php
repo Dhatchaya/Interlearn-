@@ -323,7 +323,7 @@ class Teacher extends Controller
 
                     }
                     else {
-                        $data['errors']['file'] =  "Unknown error occured!";
+                        $data['errors']['file'] =  "Enter a file!";
 
                     }
                 }
@@ -336,7 +336,7 @@ class Teacher extends Controller
             // show($data['rows']);die;
             $data['sums']= $subject -> teacherCourse([],$user_id);
             // show($data['sums']);die;
-            $data['courses'] = $subject -> CoursePage(['course_id' => $id],$user_id);
+            // $data['courses'] = $subject -> CoursePage(['course_id' => $id],$user_id);
             $data['week_no'] = $week;
 
             $this->view('teacher/upload',$data);
@@ -372,7 +372,7 @@ class Teacher extends Controller
             //show($data['rows']);die;
             $data['sums']= $subject -> teacherCourse([],$user_id);
             //show($data['sums']);die;
-            $data['courses'] = $subject -> CoursePage(['course_id' => $id],$user_id);
+            // $data['courses'] = $subject -> CoursePage(['course_id' => $id],$user_id);
             $data['week_no'] = $week;
             // show($data['week_no']);die;
             //   show($data['courses']);die;
@@ -382,7 +382,7 @@ class Teacher extends Controller
         if($action == "text"){
             if(isset($_POST['submit']))
             {
-                // if($course_content -> validate($_POST)){
+                if($course_content -> validateNote($_POST)){
                     $cid = uniqid();
                     // $viewURL="http://localhost/Interlearn/public/teacher/course/submissions/".$id."/".$week."/?id=".$cid;
                     $viewURL = $_POST['content'];
@@ -399,17 +399,17 @@ class Teacher extends Controller
                     // $result = $course_url->insert($_POST);
                     echo "Note successfully published!";
                     header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
-                // }
-                // else{
-                //     $data['errors'] =  $course_content->error;
+                }
+                else{
+                    $data['errors'] =  $course_content->error;
 
-                // }
+                }
             }
             $data['rows']= $course->select([],'course_id');
             //show($data['rows']);die;
             $data['sums']= $subject -> teacherCourse([],$user_id);
             //show($data['sums']);die;
-            $data['courses'] = $subject -> CoursePage(['course_id' => $id],$user_id);
+            // $data['courses'] = $subject -> CoursePage(['course_id' => $id],$user_id);
             $data['week_no'] = $week;
             // show($data['week_no']);die;
             //   show($data['courses']);die;

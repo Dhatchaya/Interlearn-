@@ -41,7 +41,7 @@
                             <input type="hidden" id="studentId" name="studentId" value="<?=$request->student_id?>">
                             <input type="hidden" id="courseId" name="courseId" value="<?=$request->course_id?>">
 
-                            <button type="submit" class="view_enq_btn" name="accept-student" id="add-btn">Accept</button>
+                            <button type="submit" class="view_enq_btn" name="accept-student" id="add-btn-enroll" onclick="echo_msg()">Accept</button>
                         </form>
 
                         <button class="view_enq_btn" id="button29" onclick="openModal2(<?=$request->request_id?>)">Reject</button>
@@ -68,36 +68,51 @@
                     <input type="hidden" id="request_modal" name="request_id">
 
 
+<div class="std-details-enroll">
+    <div class="std-details-enroll-row">
+    <label for="student_id" class="enroll-display">Student ID: </label>
+                    <input type="text" class="enroll-details" id="student_id" value="" disabled>
+    </div>
+    <div class="std-details-enroll-row">
+    <label for="course_id" class="enroll-display">Requested Course ID: </label>
+                    <input type="text" class="enroll-details" id="course_id" value="" disabled>
+    </div>
+    <div class="std-details-enroll-row">
+    <label for="studentName" class="enroll-display">Student Name: </label>
+                    <input type="text" class="enroll-details" id="studentName" value="" disabled>
+    </div>
+    <div class="std-details-enroll-row">
+    <label for="requested_date" class="enroll-display">Requested Date: </label>
+                    <input type="text" class="enroll-details" id="requested_date" value="" disabled>
+    </div>
+    <div class="std-details-enroll-row">
+    <label for="subject" class="enroll-display">Subject: </label>
+                    <input type="text" class="enroll-details" id="subject" value="" disabled>
+    </div>
+    <div class="std-details-enroll-row">
+    <label for="grade" class="enroll-display">Grade: </label>
+                    <input type="text" class="enroll-details" id="grades" value="" disabled>
+    </div>
+    <div class="std-details-enroll-row">
+    <label for="teacherName" class="enroll-display">Teacher Name: </label>
+                    <input type="text" class="enroll-details" id="teacherName" value="" disabled>
+    </div>
+    <div class="std-details-enroll-row">
+    <label for="day" class="enroll-display">Class Day: </label>
+                    <input type="text" class="enroll-details" id="day" value="" disabled>
+    </div>
+    <div class="std-details-enroll-row">
+    <label for="time" class="enroll-display">Time Slot: </label>
+                    <input type="text" class="enroll-details" id="time" value="" disabled>
+    </div>
+    <div class="std-details-enroll-row">
+    <label for="available" class="enroll-display">Availability: </label>
+                    <input type="text" class="enroll-details" id="available" value="" disabled>
+    </div>
 
-                    <label for="student_id" class="enroll-display">Student ID: </label>
-                    <input type="text" id="student_id" value="" disabled>
-
-                    <label for="course_id" class="enroll-display">Requested Course ID: </label>
-                    <input type="text" id="course_id" value="" disabled>
-
-                    <label for="studentName" class="enroll-display">Student Name: </label>
-                    <input type="text" id="studentName" value="" disabled>
-
-                    <label for="requested_date" class="enroll-display">Requested Date: </label>
-                    <input type="text" id="requested_date" value="" disabled>
-
-                    <label for="subject" class="enroll-display">Subject: </label>
-                    <input type="text" id="subject" value="" disabled>
-
-                    <label for="grade" class="enroll-display">Grade: </label>
-                    <input type="text" id="grades" value="" disabled>
-
-                    <label for="teacherName" class="enroll-display">Teacher Name: </label>
-                    <input type="text" id="teacherName" value="" disabled>
-
-                    <label for="day" class="enroll-display">Class Day: </label>
-                    <input type="text" id="day" value="" disabled>
-
-                    <label for="time" class="enroll-display">Time Slot: </label>
-                    <input type="text" id="time" value="" disabled>
-
-                    <label for="available" class="enroll-display">Availability: </label>
-                    <input type="text" id="available" value="" disabled>
+                    
+</div>
+                    
 
 
 
@@ -108,7 +123,7 @@
 
         <!-- reject student popup -->
         <div id="profileModal2" class="popupModal">
-            <div class="popupmodal-content">
+            <div class="popupmodal-contenten">
                 <span class="ann_close" onclick="closeModal2()">&times;</span><br>
                 <h3>--Reject Student Enrollment Request--</h3><br>
                 <form action="" method="post" class="up-profile">
