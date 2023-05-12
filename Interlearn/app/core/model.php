@@ -288,7 +288,7 @@ public function ForgotPW($data){
             $query .= $key." =:".$key." && ";
         }
         $query = trim($query," && ");
-// echo $query;die;
+
        $res = $this ->delete_table($query,$data);
   
         if($res){

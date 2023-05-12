@@ -18,8 +18,8 @@
   position: relative;
   display: grid;
   gap: 20PX;
-  left: 250px;
-  top: 100px;
+  /* left: 250px; */
+  top: 50px;
 }
 
 .table-container{

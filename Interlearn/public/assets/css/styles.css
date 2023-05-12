@@ -6732,6 +6732,7 @@ left: 5rem;
     text-align: center;
     padding-top: 1%;
     font-weight: bold;
+ 
 }
 .head2-content-std{
     width: 10vw;
@@ -6739,6 +6740,7 @@ left: 5rem;
     text-align: center;
     padding-top: 1%;
     font-weight: bold;
+    display: flex;
 }
 .display_picture_div{
     height: 15rem;
@@ -6818,3 +6820,66 @@ left: 5rem;
 .text-upload-crs{
     color: #000;
 }
+/*******************   Staff remove popup css   *******************/
+
+
+.remove-staff-popup  {
+
+    position: fixed;
+    top: 40%;
+    left:38%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 450px;
+    height: 200px;
+    min-width: 400px;
+    padding: 40px;
+    text-align: center;
+    display: none;
+  }
+
+  .remove-staff-popup{
+    box-shadow: 1000 1000 2000px rgba(0, 0, 0, 0.5);
+  }
+
+  .ask {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .yes,
+  .no,
+  .refresh {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0px 10px;
+    font-size: 16px;
+  }
+
+  .yes, .refresh {
+    background-color: #3E206D;
+    color: white;
+  }
+
+  .no{
+    background-color: white;
+    color: #3E206D;
+    border: 1px solid #3E206D;
+  }
+
+  .refresh{
+    top: 10px;
+  }
+  .success-message, .rejoin-success-message{
+    display: none;
+  }

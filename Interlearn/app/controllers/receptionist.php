@@ -1223,20 +1223,25 @@ class Receptionist extends Controller
         if (!Auth::is_receptionist()) {
             redirect('home');
         }
-
+     
         // show($_POST);
         if (isset($_POST)) {
+        
             $data = json_decode(file_get_contents("php://input"), true);
-
+       
             $data['method'] =   'cash';
             $data['payment_status'] = '1';
-
+   
             $payment_model = new Payment();
             $respond = $payment_model->submitCashPayment($data);
+            echo json_encode($respond);
+            exit;
         }
-        echo json_encode($respond);
+
         exit;
     }
+
+
     public function approveBP(){
         if (!Auth::is_receptionist()) {
             redirect('home');
@@ -1268,7 +1273,8 @@ class Receptionist extends Controller
             $approveBP = new Payment();
             $return = $approveBP->approveBP($data);
 
-            if($return == "Apple"){
+            if($return == "success"){
+            
                 $removefromBankPayment = new BankPayment();
                 $respond = $removefromBankPayment->removefromBankPayment($data['BankPaymentID']);
             }
@@ -1296,7 +1302,30 @@ class Receptionist extends Controller
 
         echo json_encode($respond);
     }
+    public function removestudent(){
+        if (!Auth::is_receptionist()) {
+            redirect('home');
+        }
+        $student = new Students();
+        $user = new User();
+        $data = json_decode(file_get_contents("php://input"), true);
+  
+        $row = $student -> first([
+            'studentID' => $data['studentID'],
+           
+        ],'uid');
+        
+     
+            $respond = $student->delete($data);
+            if($respond){
+           
+                $respond2 = $user->delete(['uid'=>$row->uid]);
+            }
+           
 
+        echo json_encode($respond);
+        exit;
+    }
 
     public function getPaymentData()
     {
@@ -1328,10 +1357,11 @@ class Receptionist extends Controller
     {
         $data = json_decode(file_get_contents("php://input"), true);
         $studentId = $data['StudentID'];
-
-        $sql = "SELECT * FROM student WHERE studentID = '$studentId'";
-        $model = new Model();
-        $res = $model->query($sql);
+        $student = new Students();
+        $res = $student->where(["studentID"=>$studentId],'studentID');
+        // $sql = "SELECT * FROM student WHERE studentID = '$studentId'";
+        // $model = new Model();
+        // $res = $model->query($sql);
 
         echo json_encode($res);
         exit;
@@ -1340,6 +1370,7 @@ class Receptionist extends Controller
     public function getMonthlyFee()
     {
         $data = json_decode(file_get_contents("php://input"), true);
+     
         $courseId = $data['CourseID'];
         $studentID = $data['StudentID'];
         $month = $data['Month'];
@@ -1348,15 +1379,17 @@ class Receptionist extends Controller
         $monthlyFee = new Course();
         $respond1 = $monthlyFee->getMonthlyFee($courseId);
 
+        echo json_encode($respond1);
+        exit;
 
-
-        if(is_array($respond1) && $respond1[0]['course_id'] == $courseId){
-
+        if( $respond1){
+      
             $studentFtCourse = new Course();
             $respond2 = $studentFtCourse->checkStudent($courseId, $studentID);
+            echo json_encode($respond2);
+            exit;
 
-
-            if (is_array($respond2) &&$respond2[0]['student_id'] == $studentID) {
+            if ($respond2) {
                 $alreadyPaid = new Payment();
                 $respond3 = $alreadyPaid->checkAlreadyPaid($courseId, $studentID, $month);
 

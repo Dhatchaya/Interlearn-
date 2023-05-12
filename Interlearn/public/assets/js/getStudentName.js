@@ -33,7 +33,7 @@ CourseID.addEventListener('keyup', function() {
     }).catch(error=>console.log(error));
     // console.log(studentId.value);
 }
-)
+);
 
 function getStudentNAme(data) {
     if(studentName.value == 0){

@@ -6,22 +6,25 @@
 
 <head>
   <title>Payments</title>
-  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/payment-validation.css">
-  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/footer-style.css">
-  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/cash-payment-style.css">
-  <link rel="stylesheet" media="screen and (max-width: 100px)" href="<?= ROOT ?>/assets/css/mobile-nav-bar.css">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/payment-validation.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/footer-style.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/bank-payment-validation.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/cash-payment-style.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" media="screen and (max-width: 100px)" href="<?= ROOT ?>/assets/css/mobile-nav-bar.css?v=<?php echo time(); ?>">
+  <!-- <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css?v=<?php echo time(); ?>"> -->
 
 </head>
 
 <body style="background-color: #FFFFFF;">
-
-
+<div class="main-body-div">
+<?php $this->view("includes/sidebar_recep"); ?>
+<div class="top-to-bottom-content">
   <?php $this->view("includes/nav"); ?>
+  <div class="all-payment-content">
 
 
-  <?php $this->view("includes/sidebar_rece"); ?>
+  
 
   <button id="val-bank-btn" class="val-bank-ban">Validate Bank Payment</button>
   <button id="cash-btn" class="cash-btn" style="cursor: pointer">Cash Payments</button>
@@ -42,9 +45,6 @@
         <?php endforeach; ?>
 
       </div>
-      <script>
-        
-      </script>
 
       <div class="preview-container">
         <h2>Depositor’s Details</h2><br>
@@ -52,9 +52,10 @@
           <label class="preview-label">Name on payment slip:</label>
           <span class="preview-value" id="preview-name-on-slip"></span>
         </div>
+        <input type="hidden" value="" id="bankpaymentID"/>
         <div class="preview-group">
           <label class="preview-label">StudentID:</label>
-          <span class="preview-value" id="StudentID"></span>
+          <span class="preview-value" id="preview-StudentID"></span>
         </div>
         <div class="preview-group">
           <label class="preview-label">Address:</label>
@@ -103,8 +104,9 @@
 
   <!-- /******************** cash payment popup style="display:flex" ********************/ -->
   <div class="payment-form-popup" id="hiddenDiv-2">
+  <button class="close-button" id="close-button-2">&times</button>
     <div class=" payment-form-container">
-      <button class="close-button" id="close-button-2">&times</button>
+   
       <div class="payment-form-header">
 
       </div>
@@ -193,7 +195,7 @@
             <td><?= $transaction->payment_date ?></td>
             <td><?= $transaction->amount ?></td>
             <td><?= $transaction->method ?></td>
-            <td><button class="print-btn" onclick="printPaymentSlip(this)">Print</button></td>
+            <td><button class="print-btn" onclick="printPaymentSlip(this)" >Print</button></td>
 
           </tr>
         <?php endforeach; ?>
@@ -202,9 +204,10 @@
 
   </div>
   </div>
-
   </div>
-  <div class="footer-support"></div>
+  </div>
+  </div>
+  </div>
 
 
   <?php $this->view("includes/manojge_footer_eka"); ?>

@@ -22,7 +22,7 @@
                    
                     
                         <div class="payment">
-                         <a href="<?=ROOT?>/student/course">
+                         <a href="<?=ROOT?>/student/payment">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/card.png" alt="card"></br>
                             <span>My payments</span>
                          </a>

@@ -15,100 +15,18 @@
 </head>
 
 <body style="background-color: #FFFFFF;">
-  <div class="nav-bar">
-    <img id="navbar-logo" src="<?= ROOT ?>/assets/images/logo_bg_rm.png" alt="">
-    <img class="punchi-logo" src="<?= ROOT ?>/assets/images/punchi- logo.jpeg" alt="">
 
-    <input class="search-bar" type="text" placeholder="           Search">
+<body style="background-color: #FFFFFF;">
+<div class="main-body-div">
+<?php $this->view("includes/sidebar");?>
+<div class="top-to-bottom-content">
+  <?php $this->view("includes/nav"); ?>
 
-    <div class="nav-list">
-      <ul id="myTopnav">
-        <li class="nav-li"><a href="">Home</a></li>
-        <li class="nav-li"><a href="">About us</a></li>
-        <li class="dropdown nav-li">
-          <a class="dropbtn" href="">Classes</a>
-          <div class="dropdown-content">
-            <a href="#">Science</a>
-            <a href="#">Maths</a>
-            <a href="#">English</a>
-            <a href="#">Arts</a>
-          </div>
 
-        </li>
-        <li class="nav-li"><a href="">Contact</a></li>
-      </ul>
-    </div>
-
-    <div class="notification">
-      <img class="notifi-dwn" src="<?= ROOT ?>/assets/images/4.png" alt="">
-      <img id="dropbtn" class="notifi-up" src="<?= ROOT ?>/assets/images/3.png" alt="">
-      <div class="dropdown-content">
-        <a href="#">notification 1</a>
-        <a href="#">notification 2</a>
-        <a href="#">notification 3</a>
-        <a href="#">notification 4</a>
-      </div>
-    </div>
-    <div class="profile ">
-      <img class="profile-dwn" src="<?= ROOT ?>/assets/images/2.png" alt="">
-      <img class="profile-up" src="<?= ROOT ?>/assets/images/1.png" alt="">
-    </div>
-
-  </div>
-
-  <div class="side-col ">
-    <div class="profile ">
-      <a href="">
-        <img class="profile-dwn" src="<?= ROOT ?>/assets/images/2.png" alt="">
-        <img class="profile-up" src="<?= ROOT ?>/assets/images/1.png" alt="">
-        <h3 id="user-name"> Manoj</h3>
-        <!-- <hr class="sidebar-hr"> -->
-      </a>
-    </div>
-
-    <div class="sidebar-container">
-      <div class="edit-profile segment">
-        <a href="">
-          <img class="edit-img" src="<?= ROOT ?>/assets/images/edit2.png" alt="">
-          <h3 class="side-bar-txt"> Edit profile</h3>
-        </a>
-      </div>
-
-      <div class="dashboard segment">
-        <a href="">
-          <img class="edit-img" src="<?= ROOT ?>/assets/images/edit2.png" alt="">
-          <h3 class="side-bar-txt"> Dashboard</h3>
-        </a>
-      </div>
-
-      <div class="payment segment">
-        <a href="">
-          <img class="edit-img" src="<?= ROOT ?>/assets/images/edit2.png" alt="">
-          <h3 class="side-bar-txt"> Payment</h3>
-        </a>
-      </div>
-
-      <div class="enquiry segment">
-        <a href="">
-          <img class="edit-img" src="<?= ROOT ?>/assets/images/edit2.png" alt="">
-          <h3 class="side-bar-txt"> Enquiry</h3>
-        </a>
-      </div>
-    </div>
+  <div class="all-payment-content">
 
 
 
-    <div class="logout ">
-      <a href="">
-        <img class="edit-img" src="<?= ROOT ?>/assets/images/edit2.png" alt="" id="logout-img">
-        <h3 id="logout-txt"> Logout</h3>
-      </a>
-    </div>
-
-  </div>
-
-
-  /****bank payment ******/
 
   <div class="bank-payment-form-popup" id="hiddenDiv-1">
     <div class="bank-payment-form-container">
@@ -363,6 +281,13 @@
       </div>
     </div>
   </div>
+</div>
+</div>
+</div>
+
+
+
+
   <div class="footer-support"></div>
 
 

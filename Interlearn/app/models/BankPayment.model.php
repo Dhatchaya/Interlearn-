@@ -45,6 +45,8 @@ class BankPayment extends Model
     public function declined($bankPaymentID){
 
         $query = "UPDATE bank_payment SET status = '2' WHERE BankPaymentID = '$bankPaymentID'";
+
+
         $this->query($query);
     }
 
