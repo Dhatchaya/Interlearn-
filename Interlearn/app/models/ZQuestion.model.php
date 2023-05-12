@@ -181,4 +181,21 @@ class ZQuestion extends Model
         }
     }
 
+    public function CheckQuestion($data= null){
+        
+        $keys = array_keys($data);
+        $query = "SELECT COUNT(question_number) As TotalQuestions FROM myquestion WHERE ";
+
+
+        foreach($keys as $key){
+            $query .= $key. " =:".$key." && ";
+        }
+        $query = trim($query,"&& ");
+        $res = $this -> query($query,$data);
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;       
+    }
 }

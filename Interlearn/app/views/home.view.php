@@ -13,9 +13,9 @@
             <div class="nav-right" id="nav-right">
                <ul class="nav-right-login">
                 <li class="nav-li"> <a href="#">Home</a></li>
-              
-                <li class="nav-li"> <a href="<?=ROOT?>/courses">Classes</a></li>
-                <li class="nav-li"> <a href="#footer">Contact</a></li>
+                <li class="nav-li"> <a href="#">About</a></li>
+                <li class="nav-li"> <a href="#">Classes</a></li>
+                <li class="nav-li"> <a href="#">Contact</a></li>
                 </ul>
                 <?php if(!Auth::logged_in()):?>
                 <div class="dropdown">
@@ -161,7 +161,7 @@
 
 
         </section>
-    <div class="forth" id="footer">
+    <div class="forth">
         <?php $this -> view('includes/footer'); ?>
     </div>
 

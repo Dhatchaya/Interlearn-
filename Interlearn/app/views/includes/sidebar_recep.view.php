@@ -22,7 +22,7 @@
                    
                     
                         <div class="home">
-                         <a href="<?=ROOT?>/receptionist/payments">
+                         <a href="#">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/card.png" alt="card"></br>
                             <span>payments</span>
                          </a>

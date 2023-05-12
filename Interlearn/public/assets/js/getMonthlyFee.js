@@ -6,8 +6,6 @@ const Amount = document.getElementById('amount');
 const sbmtBtn = document.getElementById('payment-submission');
 const nxtBtn = document.getElementById('next-payment');
 
-sbmtBtn.disabled = true;
-nxtBtn.disabled = true;
 
 
 Month.addEventListener('change', function() {
@@ -20,45 +18,37 @@ Month.addEventListener('change', function() {
             },
             body: JSON.stringify({CourseID: courseID.value, StudentID: studentId2.value, Month: Month.value}),
         })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(response => {
-            console.log("response comes");
+            console.log("response open is good");
             getAmount(response);
-            // console.log(response);
-
+    
         }).catch(error=>console.log(error));
         // console.log(studentId.value);
     }
     )
 
 
-    function getAmount(data) {
-        console.log(data);
-        if (data[0]['course_id'] == 'noCourse') {
-            console.log('noCourse');
-            // courseID.value = '';
-            courseID.value = 'check the course ID';
-            Amount.value = ' ';
-            sbmtBtn.disabled = true;
-            nxtBtn.disabled = true;
-        } else if (data[0]['course_id'] === 'notRegistered') {
-            console.log('notRegistered');
-            Amount.value = 'Student is not registered for this course';
-            sbmtBtn.disabled = true;
-            nxtBtn.disabled = true;
-        } else if (data[0]['course_id'] === 'alreadyPaid') {
-            console.log('notRegistered');
-            Amount.value = 'Already paid for this month';
-            sbmtBtn.disabled = true;
-            nxtBtn.disabled = true;
-        }else {
-            console.log('default');
-            Amount.value = data[0].monthlyFee;
-            sbmtBtn.disabled = false;
-            nxtBtn.disabled = false;
-        }
-    }
 
+function getAmount(data) {
+    console.log(data);
+    if(data[0]['course_id'] == "noCourse"){
+        Amount.value = "Student is not registered for this course"   ;
+        sbmtBtn.disabled = true;
+        nxtBtn.disabled = true;
+
+        }
+    else if(data[0]['course_id'] == "AlreadyPaid"){
+        Amount.value = "Already Paid for this month"   ;
+        sbmtBtn.disabled = true;
+        nxtBtn.disabled = true;
+    }
+    else{
+        Amount.value = data[0].monthlyFee;
+        sbmtBtn.disabled = false;
+        nxtBtn.disabled = false;
+    }
+}
 
 
 

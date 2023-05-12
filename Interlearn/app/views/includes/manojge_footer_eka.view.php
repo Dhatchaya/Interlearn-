@@ -6,14 +6,14 @@
 
 <head>
   <title>Payments</title>
-
-  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/payment-validation.css?v=<?php echo time(); ?>">
-  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/footer-style.css?v=<?php echo time(); ?>">
-  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/cash-payment-style.css?v=<?php echo time(); ?>">
-  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/bank-payment-validation.css?v=<?php echo time(); ?>">
-  <link rel="stylesheet" media="screen and (max-width: 100px)" href="<?= ROOT ?>/assets/css/mobile-nav-bar.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/navbar-last.css">
+  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/payment-validation.css">
+  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/footer-style.css">
+  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/cash-payment-style.css">
+  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/bank-payment-validation.css">
+  <link rel="stylesheet" media="screen and (max-width: 100px)" href="<?= ROOT ?>/assets/css/mobile-nav-bar.css">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 
 <body>
