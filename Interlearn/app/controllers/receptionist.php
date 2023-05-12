@@ -334,7 +334,7 @@ class Receptionist extends Controller
                     //     show($inputs);die;
                     //     $course->insert($inputs);
                     if($course -> validateAdd($_POST)){
-                        $inputs=array("subject_id"=>$_GET['id'],"teacher_id"=>$_POST['teacher_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto'],"capacity"=>$_POST['capacity']);
+                        $inputs=array("subject_Id"=>$_POST['subject_Id'],"teacher_id"=>$_POST['teacher_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto'],"capacity"=>$_POST['capacity']);
                         // show($inputs);die;
                         $course->insert($inputs);
                         $id= $course->getLastCourse()[0]->course_id;
@@ -385,6 +385,7 @@ class Receptionist extends Controller
                         // show($std_id);die;
 
                         $student_course -> deleteStudent($std_id,$id);
+                        header("Location:http://localhost/Interlearn/public/receptionist/course/view/".$id."/student_view");
                     }
 
                     $this->view('receptionist/student_view',$data);
@@ -432,6 +433,7 @@ class Receptionist extends Controller
         if($action == 'editCourse'){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
+                show($_POST);die;
                 $course_id = $_POST['course_id'];
                 $day = $_POST['day'];
                 $timefrom = $_POST['timefrom'];
@@ -496,13 +498,13 @@ class Receptionist extends Controller
 
         if($action == 'addTeacher')
         {
-            show($_GET['id']);die;
-            $data['id'] = $id;
+            // show($_GET['id']);die;
+            // $data['id'] = $id;
 
             if($course -> validateAdd($_POST))
             {
-                $inputs=array("subject_id"=>$_GET['id'],"teacher_id"=>$_POST['teacher_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto'],"capacity"=>$_POST['capacity']);
-                show($inputs);die;
+                $inputs=array("subject_id"=>$_POST['subject_Id'],"teacher_id"=>$_POST['teacher_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto'],"capacity"=>$_POST['capacity']);
+                // show($inputs);die;
                 $course->insert($inputs);
                 $id= $course->getLastCourse()[0]->course_id;
                 // // // print_r($Course);die;

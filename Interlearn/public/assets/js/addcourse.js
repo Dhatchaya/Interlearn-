@@ -138,7 +138,7 @@ function openModal3(courseID) {
                             }
                             response = JSON.parse(response);
                             console.log(response);
-                            const MainElement = document.getElementById("ins_teach_name");
+
                             for(var i=0; i<response.length; i++){
                               // console.log(response[i].instructorName);
                               //
@@ -146,70 +146,11 @@ function openModal3(courseID) {
                               // // console.log(response[i].instructorName);
                               // document.getElementById("instructorID").value = response[i].emp_id;
                               // document.getElementById("courseID").value = courseID;
-                            //   var instructor_id = response[i].emp_id;
-                            //   console.log(instructor_id);
-                            //   document.getElementById("instructorName").value = response[i].instructorName;
-                              const input = document.createElement('input');
-                              input.classList.add("edit-class-disable");
-                              input.id = "instructorName";
-                                input.value =  response[i].instructorName;
+                              var instructor_id = response[i].emp_id;
+                              console.log(instructor_id);
+                              document.getElementById("instructorName").value = response[i].instructorName;
 
-                                const containerElement = document.createElement("div");
-                            // Create instructorID input element
-                            var instructorIDInput = document.createElement("input");
-                            instructorIDInput.setAttribute("type", "hidden");
-                            instructorIDInput.setAttribute("value", response[i].emp_id);
-                            instructorIDInput.setAttribute("id", "instructorID");
-                            instructorIDInput.setAttribute("name", "instructorID");
 
-                            // Create courseID input element
-                            var courseIDInput = document.createElement("input");
-                            courseIDInput.setAttribute("type", "hidden");
-                            courseIDInput.setAttribute("value", response[i].course_id);
-                            courseIDInput.setAttribute("id", "courseID");
-                            courseIDInput.setAttribute("name", "courseID");
-
-                            // Create submit-remove-instructor button
-                            var removeInstructorButton = document.createElement("button");
-                            removeInstructorButton.setAttribute("type", "button");
-                            removeInstructorButton.setAttribute("id", "submit-remove-instructor");
-                            removeInstructorButton.setAttribute("class", "remove_instructor");
-                            removeInstructorButton.setAttribute("onclick", "removeInstructor(this,"+response[i].emp_id+","+response[i].course_id+")");
-
-                            // Create instructor-remove span
-                            var instructorRemoveSpan = document.createElement("span");
-                            instructorRemoveSpan.setAttribute("class", "instructor-remove");
-                            instructorRemoveSpan.innerHTML = "&times;";
-
-                            // Append instructor-remove span to the removeInstructorButton
-                            removeInstructorButton.appendChild(instructorRemoveSpan);
-
-                            containerElement.appendChild(input);
-                            containerElement.appendChild(instructorIDInput);
-                            containerElement.appendChild(courseIDInput);
-                            containerElement.appendChild(removeInstructorButton);
-                            MainElement.appendChild(containerElement);
-                            //   <input type="text" value="<?= $teach_in->instructorName ?>" id="instructorName" class="edit-class-disable" disabled>
-                            
-                            // function removeInstructor(instructor_id, courseID){
-                            //     event.preventDefault();
-                            //     console.log("inside remove");
-                            //     console.log(instructor_id);
-                            //     var div = this.parentElement;
-                            //     console.log(div);
-                            //     div.style.display = "none";
-                            //     $.ajax({
-                            //         method:"GET",
-                            //         url : 'http://localhost/Interlearn/public/receptionist/course/removeInstructors?instructor_id='+instructor_id+'&course_id='+courseID,
-                            //         success:function(response){
-                            //           console.log(response);
-                            //         },
-                            //         error:function(xhr,status,error){
-                            //           console.log("Error: " + error);
-                            //         }
-                            //     });
-                            // }
-                            
                             }
 
                         },

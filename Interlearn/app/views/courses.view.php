@@ -1,43 +1,10 @@
 <?php $this->view("includes/header"); ?>
 <div class="main-body-div">
-<?php if (Auth::logged_in()): ?>
-        <?php if(Auth::getrole() == "Student"):?>
+    <?php if (Auth::logged_in() == "Student") : ?>
         <?php $this->view("includes/sidebar"); ?>
     <?php endif; ?>
-    <?php endif; ?>
     <div class="top-to-bottom-content">
-    <?php if (Auth::logged_in()): ?>
-        <?php if(Auth::getrole() == "Student"):?>
         <?php $this->view("includes/nav"); ?>
-        <?php endif; ?>
-       <?php else:?>
-        <header class="staff_login_nav">
-            <div class="staff_login_nav-left">
-                <img src="<?=ROOT?>/assets/images/logo_bg_rm.png" alt="logo">
-            </div>
-            <div class="header_right">
-                <div class="login-nav" id="login-nav">
-                    <ul>
-                    <li class="nav-li"> <a href="<?=ROOT?>/home">Home</a></li>
-                    </ul>
-                </div>
-                <div class="dropdown">
-                    <div class="loginas">
-                        <button class="dropbtn">Login as</button>
-                        <i class="material-icons">arrow_drop_down</i>
-                    </div>
-                    <div class="login-content">
-                        
-                    <li class="nav-li">  <a href="<?= ROOT ?>/login/student">Student</a></li>
-                    <li class="nav-li">  <a href="<?= ROOT ?>/login/staff">Staff</a></li>
-
-                    </div>
-                </div>
-            </div>
-        </header>
-    <?php endif; ?>
-
-
         <div class="all-middle-content">
 
 
@@ -61,21 +28,21 @@
 
                                     <div class="guest-view-image">
                                         <?php if ($sum->grade == 6) : ?>
-                                            <img src="<?= ROOT ?>/assets/images/grades/bg3.jpg" alt="" class="guest_crs_img">
+                                            <img src="<?= ROOT ?>/assets/images/grades/6.png" alt="" class="guest_crs_img">
                                         <?php elseif ($sum->grade == 7) : ?>
-                                            <img src="<?= ROOT ?>/assets/images/grades/bg3.jpg" alt="" class="guest_crs_img">
+                                            <img src="<?= ROOT ?>/assets/images/grades/7.png" alt="" class="guest_crs_img">
                                         <?php elseif ($sum->grade == 8) : ?>
-                                            <img src="<?= ROOT ?>/assets/images/grades/bg3.jpg" alt="" class="guest_crs_img">
+                                            <img src="<?= ROOT ?>/assets/images/grades/8.png" alt="" class="guest_crs_img">
                                         <?php elseif ($sum->grade == 9) : ?>
-                                            <img src="<?= ROOT ?>/assets/images/grades/bg3.jpg" alt="" class="guest_crs_img">
+                                            <img src="<?= ROOT ?>/assets/images/grades/9.png" alt="" class="guest_crs_img">
                                         <?php elseif ($sum->grade == 10) : ?>
-                                            <img src="<?= ROOT ?>/assets/images/grades/bg3.jpg" alt="" class="guest_crs_img">
+                                            <img src="<?= ROOT ?>/assets/images/grades/10.png" alt="" class="guest_crs_img">
                                         <?php elseif ($sum->grade == 11) : ?>
-                                            <img src="<?= ROOT ?>/assets/images/grades/bg3.jpg" alt="" class="guest_crs_img">
+                                            <img src="<?= ROOT ?>/assets/images/grades/11.png" alt="" class="guest_crs_img">
                                         <?php elseif ($sum->grade == 12) : ?>
-                                            <img src="<?= ROOT ?>/assets/images/grades/bg3.jpg" alt="" class="guest_crs_img">
+                                            <img src="<?= ROOT ?>/assets/images/grades/12.png" alt="" class="guest_crs_img">
                                         <?php else : ?>
-                                            <img src="<?= ROOT ?>/assets/images/grades/bg3.jpg" alt="" class="guest_crs_img">
+                                            <img src="<?= ROOT ?>/assets/images/grades/13.png" alt="" class="guest_crs_img">
                                         <?php endif; ?>
                                     </div>
 

@@ -1,5 +1,9 @@
-// console.log("ct");
-// console.log($('#days'));
+const queryParams = new URLSearchParams(window.location.search);
+console.log(queryParams);
+const sub_id = window.location.href.toString().split("=")[1];
+console.log(window.location.href.toString());
+console.log(sub_id);
+// const week = window.location.href.toString().split("/")[9];
 
 
 // select teacher
@@ -250,6 +254,7 @@ submitCheck.addEventListener('click',function(event){
 
         console.log("check 2");
 
+        formData.append('subject_Id', sub_id);
         formData.append('teacher_id', teacher_id);
         formData.append('day', day);
         formData.append('timefrom', timeFrom);
@@ -269,7 +274,7 @@ submitCheck.addEventListener('click',function(event){
 
             console.log("success");
             response = JSON.parse(response);
-            console.log(response.status);
+            console.log(response);
 
             console.log(formData);
 

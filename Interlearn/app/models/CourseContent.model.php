@@ -55,9 +55,9 @@ class CourseContent extends Model
         {
             $this -> error['upload_name'] = "Please provide a title for the text!";
         }
-        if(empty($data['URL']))
+        if(empty($data['content']))
         {
-            $this -> error['URL'] = "Please provide a content to be displayed!";
+            $this -> error['content'] = "Please provide a content to be displayed!";
         }
 
             // // checks email is valid if so it'll check whther it already exists
