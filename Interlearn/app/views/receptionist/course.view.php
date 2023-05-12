@@ -29,24 +29,24 @@
                                             <!-- <div class="guest_crs_div">
                                                 <p>6</p>
                                             </div> -->
-                                            <img src="<?= ROOT ?>/assets/images/grades/6n.png" alt="" class="guest_crs_img">
+                                            <img src="<?= ROOT ?>/assets/images/grades/bg3.jpg" alt="" class="guest_crs_img">
                                         <?php elseif ($sum->grade == 7) : ?>
-                                            <img src="<?= ROOT ?>/assets/images/grades/7n.png" alt="" class="guest_crs_img">
+                                            <img src="<?= ROOT ?>/assets/images/grades/bg3.jpg" alt="" class="guest_crs_img">
                                         <?php elseif ($sum->grade == 8) : ?>
-                                            <img src="<?= ROOT ?>/assets/images/grades/8n.png" alt="" class="guest_crs_img">
+                                            <img src="<?= ROOT ?>/assets/images/grades/bg3.jpg" alt="" class="guest_crs_img">
                                         <?php elseif ($sum->grade == 9) : ?>
-                                            <img src="<?= ROOT ?>/assets/images/grades/9n.png" alt="" class="guest_crs_img">
+                                            <img src="<?= ROOT ?>/assets/images/grades/bg3.jpg" alt="" class="guest_crs_img">
                                         <?php elseif ($sum->grade == 10) : ?>
                                             <!-- <div class="guest_crs_div">
                                                 <p>10</p>
                                             </div> -->
-                                            <img src="<?= ROOT ?>/assets/images/grades/10n.png" alt="" class="guest_crs_img">
+                                            <img src="<?= ROOT ?>/assets/images/grades/bg3.jpg" alt="" class="guest_crs_img">
                                         <?php elseif ($sum->grade == 11) : ?>
-                                            <img src="<?= ROOT ?>/assets/images/grades/11n.png" alt="" class="guest_crs_img">
+                                            <img src="<?= ROOT ?>/assets/images/grades/bg3.jpg" alt="" class="guest_crs_img">
                                         <?php elseif ($sum->grade == 12) : ?>
-                                            <img src="<?= ROOT ?>/assets/images/grades/12n.png" alt="" class="guest_crs_img">
+                                            <img src="<?= ROOT ?>/assets/images/grades/bg3.jpg" alt="" class="guest_crs_img">
                                         <?php else : ?>
-                                            <img src="<?= ROOT ?>/assets/images/grades/13n.png" alt="" class="guest_crs_img">
+                                            <img src="<?= ROOT ?>/assets/images/grades/bg3.jpg" alt="" class="guest_crs_img">
                                         <?php endif; ?>
                                     </div>
                                     <div class="grade-text">
