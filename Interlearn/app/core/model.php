@@ -116,8 +116,8 @@ class Model extends Database {
                 $mail -> Host = 'smtp.gmail.com';
                 $mail->Port = 465;
                 $mail -> SMTPAuth = true;
-                $mail -> Username ='add interlearn email';
-                $mail -> Password = 'add your password';
+                $mail -> Username ='interlearnsl@gmail.com';
+                $mail -> Password = 'qeffokfsaebqwngl';
                 $mail->SMTPSecure ='ssl';
                 $mail->SMTPOptions = array(
                     'ssl' => array(
@@ -162,8 +162,8 @@ public function ForgotPW($data){
             $mail -> Host = 'smtp.gmail.com';
             $mail->Port = 465;
             $mail -> SMTPAuth = true;
-            $mail -> Username ='add interlearn email';
-            $mail -> Password = 'add your password';
+            $mail -> Username ='interlearnsl@gmail.com';
+            $mail -> Password = 'qeffokfsaebqwngl';
             $mail->SMTPSecure ='ssl';
             $mail->SMTPOptions = array(
                 'ssl' => array(
@@ -754,6 +754,26 @@ public function ForgotPW($data){
             $query .= " staff.".$key. " =:".$key." && ";
         }
         $query = trim($query,"&& ");
+        $res = $this -> query($query,$data);
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;
+
+    }
+    public function getinstructorClasses($data=[]){
+
+        $keys = array_keys($data);
+        $query ="select  subjectcoursestaff.*,course.* from ".$this->table;
+        $query.= " INNER JOIN subjectcoursestaff on course_instructor.course_id = subjectcoursestaff.course_id INNER JOIN staff on staff.emp_id= course_instructor.emp_id";
+        $query.=" INNER JOIN course on course.course_id = course_instructor.course_id ";
+        $query.=" WHERE staff.role = 'Instructor' AND ";
+        foreach($keys as $key){
+            $query .= " staff.".$key. " =:".$key." && ";
+        }
+        $query = trim($query,"&& ");
+
         $res = $this -> query($query,$data);
 
         if(is_array($res)){

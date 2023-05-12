@@ -6,10 +6,12 @@
         <div class="all-middle-content">
             <div class="std_crs_container">
                 <div class="class-search-box">
-                    <input type="text" name="class-search" id="class-search" onkeyup="search_classes()" placeholder="Search here..">
+                    <input type="text" name="class-search" id="class-search" onkeyup="search_classes()" placeholder="Search here.."/>
                 </div><br>
                 <div class="std_crs_content">
+
                     <?php if (!empty($sums)) : ?>
+                 
                         <?php foreach ($sums as $sum) : ?>
                             <div class="empty-class-message" id="empty-class-message"></div>
 

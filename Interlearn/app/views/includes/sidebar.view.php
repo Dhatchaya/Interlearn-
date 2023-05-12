@@ -6,7 +6,7 @@
                 <div class="middle">
                     
                         <div class="profile">
-                            <a href="<?=ROOT?>/student/profile">
+                            <a href="<?=ROOT?>/student/profile/view">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/profile.png" alt="profile"></br>
                             <span>Edit Profile</span>
                             </a>

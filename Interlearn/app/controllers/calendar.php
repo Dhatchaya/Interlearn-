@@ -31,7 +31,7 @@ class Calendar extends Controller
         header('Content-Type: application/json');
         echo json_encode($result);
         exit;
-       // $this->view('includes/calendar');
+
     }
     public function student()
     {
@@ -45,11 +45,21 @@ class Calendar extends Controller
 
         header('Content-Type: application/json');
         echo json_encode($result);
-       // $this->view('includes/calendar');
+
     }
-    // public function courses()
-    // {
-    //     // echo "edit page";
-    //     $this->view('courses');
-    // }
+    public function instructor()
+    {
+        if (!Auth::is_instructor()) {
+            redirect('home');
+        }
+        $course = new CourseInstructor();
+        $userid = Auth::getUID();;
+        $result= $course->getinstructorClasses(['uid'=>$userid]);
+        
+
+        header('Content-Type: application/json');
+        echo json_encode($result);
+       
+    }
+ 
 }

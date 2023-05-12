@@ -8,6 +8,7 @@
                 <div class="std_crs_main">
                     <div class="std_crs_pg_content">
                         <div class="std_crs_pg_name">
+                          
                             <?php if (!empty($courses)) : ?>
                                 <h2>Grade <?= $courses[0]->grade ?> - <?= $courses[0]->subject ?></h2>
                                 <h3><?= $courses[0]->first_name ?> <?= $courses[0]->last_name ?></h3>
@@ -24,6 +25,7 @@
                             Announcements
                             <img src="<?= ROOT ?>/assets/images/next.png" alt="" class="teacher-course-ann-img">
                         </a>
+                        <?php if(!empty($courseWeeks)):?>
                         <?php
                         $i = 1;
                         foreach ($çourseWeeks as $value) {
@@ -36,8 +38,9 @@
                                         </div>
                                     </div>
                                     <div class="teacher-card-body">
+                                       
                                         <?php if (!empty($materials)) :
-                                            // var_dump($materials);
+                                        
                                         ?>
                                             <?php foreach ($materials as $material) : ?>
                                                 <?php if ($material->week_no == $i) : ?>
@@ -115,6 +118,8 @@
                             $i++;
                         }
                         ?>
+                       
+                         <?php endif; ?>
                     </div>
                 </div>
             </div>
