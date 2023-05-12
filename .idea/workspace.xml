@@ -6,7 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="eeccaff2-1398-4ed1-939e-7255de6e7aca" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/core/model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/core/model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/controllers/student.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/controllers/student.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/controllers/teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/controllers/teacher.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/models/ZQuestion.model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/models/ZQuestion.model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/models/ZQuiz.model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/models/ZQuiz.model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/student/quiz.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/student/quiz.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/teacher/Zquiz.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/teacher/Zquiz.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/teacher/Zquiz_add.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/teacher/Zquiz_add.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/teacher/Zquiz_edit.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/teacher/Zquiz_edit.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/public/assets/css/styles1.css" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/public/assets/css/styles1.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/public/assets/css/styles2.css" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/public/assets/css/styles2.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/public/assets/css/styles3.css" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/public/assets/css/styles3.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/public/assets/css/styles4.css" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/public/assets/css/styles4.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/public/assets/css/styles5.css" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/public/assets/css/styles5.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/public/assets/js/doquiz.js" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/public/assets/js/doquiz.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/public/assets/js/dquiz.js" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/public/assets/js/dquiz.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/public/assets/js/quizEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/public/assets/js/quizEdit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/public/assets/js/validate_quiz.js" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/public/assets/js/validate_quiz.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,20 +51,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/DELL/Desktop/Interlearn/Interlearn-&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Nisaf/Documents/GitHub/Interlearn-",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -74,6 +90,7 @@
       <workItem from="1683819517844" duration="5000" />
       <workItem from="1683870791320" duration="7000" />
       <workItem from="1683870799741" duration="1788000" />
+      <workItem from="1683884598743" duration="1818000" />
     </task>
     <servers />
   </component>

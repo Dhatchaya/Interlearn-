@@ -44,8 +44,7 @@ let attempt = 0;
 let totalMarks = 0;
 
 //set duration -------------------------------------------------------------------------------//
-const duration = 300; // 5 minutes in seconds
-let timeRemaining = duration;
+ // 5 minutes in seconds
 
 // Format the remaining time as MM:SS
 function formatTime(time) {
@@ -73,6 +72,28 @@ function getNewQuestion() {
     const questionIndex = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
     currentQuestion = questionIndex;
     questionText.innerHTML = currentQuestion.q;
+    console.log(currentQuestion.duration);
+
+    console.log(currentQuestion.disable_time);
+
+    var now = new Date();
+    var year = now.getFullYear().toString();
+    var month = ('0' + (now.getMonth() + 1)).slice(-2);
+    var day = ('0' + now.getDate()).slice(-2);
+    var hours = ('0' + now.getHours()).slice(-2);
+    var minutes = ('0' + now.getMinutes()).slice(-2);
+    var seconds = ('0' + now.getSeconds()).slice(-2);
+
+    var currentDateTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+    // console.log(currentDateTime);
+
+    console.log('hello');
+    console.log(currentDateTime);
+
+    if(currentQuestion.disable_time <= currentDateTime) {
+        clearInterval(timer);
+        quizOver();
+    }
 
     //get the position of the questionIndex from the availableQuestions array\
     const index1 = availableQuestions.indexOf(questionIndex);
@@ -252,49 +273,15 @@ function tryAgainQuiz() {
 
     resetQuiz();
     StartQuiz();
+
 }
 // window.onload = function () {
-function StartQuiz() {
-    //1st we set all questions in availableQuestions array
 
-    homeBox.classList.add("hide");
 
-    quizBox.classList.remove("hide");
-
-// Display the timer -------------------------------------------//
-    const timerDisplay = document.querySelector('.timer');
-    timerDisplay.innerHTML = formatTime(timeRemaining);
-    
-    // Create the countdown timer
-    const timer = setInterval(() => {
-    
-    // const remainTime = document.querySelector('.remain-time');
-    timeRemaining--;
-    timerDisplay.innerHTML = formatTime(timeRemaining);
-        // console.log(timeRemaining);
-    // Alert participants when time is running out
-    if (timeRemaining < 60) {
-        timerDisplay.classList.add('warning');
-    }
-
-    // Submit answers automatically when time is up
-    if (timeRemaining <= 0) {
-        clearInterval(timer);
-        quizOver();
-    }
-    }, 1000);
-//-----------------------------------------------------------------//
-    setAvailableQuestions();
-    // 2nd we call getNewQuestion(); function
-    getNewQuestion();
-
-    answerIndicator();
-}
-
-window.onload = function () {
-    homeBox.querySelector(".total-question").innerHTML = totques;
-    homeBox.querySelector(".description").innerHTML = quiz.description;
-}
+// window.onload = function () {
+//     // homeBox.querySelector(".total-question").innerHTML = totques;
+//     homeBox.querySelector(".description").innerHTML = quiz.description;
+// }
 
 
 // Set the totalMarks variable

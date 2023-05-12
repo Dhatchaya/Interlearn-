@@ -1054,99 +1054,115 @@ class Teacher extends Controller
 
             if($option == 'create') {
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+                    // show($_POST);die;
                         $quiz_id = uniqid();
                         $_POST['quiz_id']=$quiz_id;
 
                         $_POST['course_id'] = $id;
 
-                        $result = $quiz-> insert($_POST);
-                        // show($_POST);
-                        if($result) {
-                            $questions = [];
-                            $quiz_question = new ZQuizQuestion();
-                            // show($_POST['quiz_bank']);
-                            $result1 = $question->QuizInnerjoinQuestion(['quiz_bank'=>$_POST['quiz_bank']]);
-                            // var_dump($result1);
-                            // show($result1);
-                            shuffle($result1);
-                            $count = 0;
-                            $total_question = $_POST['display_question'];
-                            // show($total_question);
-                            foreach($result1 as $i ){
-                                if($count < $total_question) {
-                                    foreach($i as $question=>$number){
-                                        $questions[$question] = $number;
-                                        $questions['quiz_id'] = $quiz_id;
-                                        $result2= $quiz_question->insert($questions);
+                        $newresult = $question->CheckQuestion(['quiz_bank'=>$_POST['quiz_bank'], 'course_id'=>$id]);
+                        $myquestions = $newresult[0]->TotalQuestions;
 
-                                    }
-                                    $count = $count + 1; 
-                                }
-                                else {
-                                    break;
-                                }
-                                
-                            }
 
-                            $exam = new ZExam();
-                            $_POST['exam_id'] = $quiz_id;
-                            $quiz_name = $_POST['quiz_name'];
-                            $_POST['exam_name'] = $quiz_name;
-                            $_POST['course_id'] = $id;
-                            $month_name = date('F');
-                            $_POST['exam_month'] = $month_name;
-                            $result3 = $exam->insert($_POST);
-                            // show(date('F'));
+                        // echo $myquestions;
+                        // show($myquestions);die();
 
-                            $content = new CourseContent();
-                            $cid = uniqid();
-                            $_POST['cid'] = $cid;
-                            $_POST['type'] = 'quiz';
-                            $_POST['course_id'] = $id;
-                            $_POST['week_no'] = $week;
-                            $_POST['upload_name'] = $_POST['quiz_name'];
+                        // show($newresult[0]->TotalQuestions);die;
+                        // show($_POST['display_question']);die;
+                        if($myquestions >= $_POST['display_question']) {
 
-                            // $viewURL="http://localhost/Interlearn/public/forums/".$id."/".$week."/?main=".$mainforum_id;
-
-                            $_POST['view_URL'] = 'http://localhost/Interlearn/public/teacher/course/quiz/'.$id.'/'.$week.'/quiz_view/?id='.$quiz_id;
-                            $_POST['edit_URL'] =  'http://localhost/Interlearn/public/teacher/course/quiz/4/79/edit';
-                            $_POST['delete_URL'] = 'http://localhost/Interlearn/public/teacher/course/quiz/4/79/edit';
-                            // http://localhost/Interlearn/public/student/course/view/103
-                            $_POST['studentView_URL'] = 'http://localhost/Interlearn/public/student/quiz?quiz_id='.$quiz_id;
-
-                            $result = $content->insert($_POST);
-
-                            // $array = json_decode(json_encode($result1), true);
-
-                            // $data1 =[];
-                            // $data1 = (array) $result1;
-                            // show($data1);
-
-                            // foreach($result1 as $i ) {
-                            //     print_r($i);
-                            //     array_push($i,(object)['quiz_id'=>$quiz_id]);
-                            //     print_r($i);
-                            //     $result = $quiz_question-> insert($i);
-                            // }
-                            // show($result1);
-                            // $questions = array();
-
-                            // // Loop through each object and extract the question number
-                            // foreach ($result1 as $obj) {
-                            //     $questions[] = $obj->question_number;
-                            // }
-
-                            // Output the resulting array of question numbers
-                            // print_r($questions);
-                            // // show($array);
+                            $result = $quiz-> insert($_POST);
                             // show($_POST);
-                            // die;
-                            // $result2 = $quiz_question->insert($result1);
-                            // show($result2);
+                            if($result) {
+                                $questions = [];
+                                $quiz_question = new ZQuizQuestion();
+                                // show($_POST['quiz_bank']);
+                                $result1 = $question->QuizInnerjoinQuestion(['quiz_bank'=>$_POST['quiz_bank']]);
+                                // var_dump($result1);
+                                // show($result1);
+                                shuffle($result1);
+                                $count = 0;
+                                $total_question = $_POST['display_question'];
+                                // show($total_question);
+                                foreach($result1 as $i ){
+                                    if($count < $total_question) {
+                                        foreach($i as $question=>$number){
+                                            $questions[$question] = $number;
+                                            $questions['quiz_id'] = $quiz_id;
+                                            $result2= $quiz_question->insert($questions);
 
-                            header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
+                                        }
+                                        $count = $count + 1;
+                                    }
+                                    else {
+                                        break;
+                                    }
+
+                                }
+
+                                $exam = new ZExam();
+                                $_POST['exam_id'] = $quiz_id;
+                                $quiz_name = $_POST['quiz_name'];
+                                $_POST['exam_name'] = $quiz_name;
+                                $_POST['course_id'] = $id;
+                                $month_name = date('F');
+                                $_POST['exam_month'] = $month_name;
+                                $result3 = $exam->insert($_POST);
+                                // show(date('F'));
+
+                                $content = new CourseContent();
+                                $cid = uniqid();
+                                $_POST['cid'] = $cid;
+                                $_POST['type'] = 'quiz';
+                                $_POST['course_id'] = $id;
+                                $_POST['week_no'] = $week;
+                                $_POST['upload_name'] = $_POST['quiz_name'];
+
+                                // $viewURL="http://localhost/Interlearn/public/forums/".$id."/".$week."/?main=".$mainforum_id;
+
+                                $_POST['view_URL'] = 'http://localhost/Interlearn/public/teacher/course/quiz/'.$id.'/'.$week.'/quiz_view/?id='.$quiz_id;
+                                $_POST['edit_URL'] =  'http://localhost/Interlearn/public/teacher/course/quiz/4/79/edit';
+                                $_POST['delete_URL'] = 'http://localhost/Interlearn/public/teacher/course/quiz/4/79/edit';
+                                // http://localhost/Interlearn/public/student/course/view/103
+                                $_POST['studentView_URL'] = 'http://localhost/Interlearn/public/student/quiz?quiz_id='.$quiz_id;
+
+                                $result = $content->insert($_POST);
+
+                                // $array = json_decode(json_encode($result1), true);
+
+                                // $data1 =[];
+                                // $data1 = (array) $result1;
+                                // show($data1);
+
+                                // foreach($result1 as $i ) {
+                                //     print_r($i);
+                                //     array_push($i,(object)['quiz_id'=>$quiz_id]);
+                                //     print_r($i);
+                                //     $result = $quiz_question-> insert($i);
+                                // }
+                                // show($result1);
+                                // $questions = array();
+
+                                // // Loop through each object and extract the question number
+                                // foreach ($result1 as $obj) {
+                                //     $questions[] = $obj->question_number;
+                                // }
+
+                                // Output the resulting array of question numbers
+                                // print_r($questions);
+                                // // show($array);
+                                // show($_POST);
+                                // die;
+                                // $result2 = $quiz_question->insert($result1);
+                                // show($result2);
+
+                                header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
+                            }
                         }
+                        else {
+                            $data['question_error'] = 'Number of questions in the quiz bank does not match your value';
+                        }
+
                 }
                 $question = new ZQuestion();
                 $data['rows'] = $question->QuestionDropdown(['course_id'=>$id]);

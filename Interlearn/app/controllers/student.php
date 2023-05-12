@@ -865,7 +865,9 @@ class Student extends Controller
                         array('text' => $row->choice4, 'marks' => intval($row->choice4_mark))
                     ),
                     'mark' => $row->question_mark,
-                    'quiz_description' => $row->quiz_description
+                    'quiz_description' => $row->quiz_description,
+                    'duration' => $row->duration,
+                    'disable_time' => $row->disable_time
                 );
                 array_push($quiz, $question);
             }
