@@ -24,7 +24,7 @@
                             Announcements
                             <img src="<?= ROOT ?>/assets/images/next.png" alt="" class="teacher-course-ann-img">
                         </a>
-                        <?php if(!empty($courseWeeks)):?>
+                        <?php if(!empty($çourseWeeks)):?>
                         <?php
                         $i = 1;
                         foreach ($çourseWeeks as $value) {
