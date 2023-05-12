@@ -2,7 +2,12 @@ if ( window.history.replaceState ) {
 
     window.history.replaceState( null, null, window.location.href );
   }
-
+  const queryParams = new URLSearchParams(window.location.search);
+  let id="";
+  if (queryParams.has("id")) {
+  
+      id = queryParams.get("id");
+  }
 
 // Get the modal
 const modal = document.getElementById("profileModal");
@@ -25,6 +30,7 @@ function openModal() {
 
 // When the user clicks on <span> (x), close the modal
 function closeModal() {
+   
     modal.style.display = "none";
 }
 
@@ -83,10 +89,52 @@ function getDateTime(subject) {
 }
 
 var enroll = document.getElementById('enroll-std');
-enroll.addEventListener('submit',function(event){
-    const day = document.getElementById("day").value;
-    const selectedTimeSlot = document.getElementById("day").value;
+enroll.addEventListener('click',function(event){
     event.preventDefault();
+    const day = document.getElementById("day").value;
+    const teacher = document.getElementById("teacher").value;
+    const success = document.getElementById("success");
+    const errors = document.getElementById("errors");
+    const error1 = document.getElementById("error1");
+    const error2 = document.getElementById("error2");
+    $.ajax({
+        method:"POST",
+        url : "http://localhost/Interlearn/public/courses/enrollme/"+id,
+        data:{teacher:teacher,day: day},
+        success:function(response){
+          console.log(response);
+          data = response;
+ 
+          if(data.status == "success"){
+            console.log("success");
+            error1.innerHTML="";
+            error2.innerHTML="";
+            errors.innerHTML="";
+            success.innerHTML="Request successfully sent!";
+     
+                closeModal();
+            
+           
+             
+             
+          }
+          else if(data.enroll){
+           errors.innerHTML=data.enroll;
+          }
+          else if(data.error){
+              
+            if(data.error.day){
+                error1.innerHTML=data.error.day;
+            }
+            if(data.error.teacher){
+                error2.innerHTML=data.error.teacher;
+            }
+          }
+         
+        },
+        error:function(xhr,status,error){
+          console.log("Error: " + error);
+        }
+      });
 
-    console.log(day, selectedTimeSlot);
 });

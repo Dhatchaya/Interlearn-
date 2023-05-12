@@ -1,15 +1,46 @@
 <?php $this->view("includes/header"); ?>
 <div class="main-body-div">
-    <?php if (Auth::logged_in() == "Student") : ?>
-        <?php $this->view("includes/sidebar"); ?>
+<?php   $url = $_GET['url'];
+            $url = rtrim($url, '/');
+            $val = explode('/', $url);
+            $sub_id = $_GET['id'];
+             ?>
+    <?php if (Auth::logged_in()): ?>
+        <?php if(Auth::getrole() == "Student"):?>
+            <?php $this->view("includes/sidebar"); ?>
+    <?php endif; ?>
     <?php endif; ?>
     <div class="top-to-bottom-content">
-        <?php $this->view("includes/nav");
-        $url = $_GET['url'];
-        $url = rtrim($url, '/');
-        $val = explode('/', $url);
-        $sub_id = $_GET['id'];
-        ?>
+    <?php if (Auth::logged_in()): ?>
+        <?php if(Auth::getrole() == "Student"):?>
+            <?php $this->view("includes/nav");?>
+       <?php endif; ?>
+       <?php else:?>
+            <header class="staff_login_nav">
+            <div class="staff_login_nav-left">
+                <img src="<?=ROOT?>/assets/images/logo_bg_rm.png" alt="logo">
+            </div>
+            <div class="header_right">
+                <div class="login-nav" id="login-nav">
+                    <ul>
+                    <li class="nav-li"> <a href="<?=ROOT?>/home">Home</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <div class="loginas">
+                        <button class="dropbtn">Login as</button>
+                        <i class="material-icons">arrow_drop_down</i>
+                    </div>
+                    <div class="login-content">
+                        
+                    <li class="nav-li">  <a href="<?= ROOT ?>/login/student">Student</a></li>
+                    <li class="nav-li">  <a href="<?= ROOT ?>/login/staff">Staff</a></li>
+
+                    </div>
+                </div>
+            </div>
+        </header>
+    <?php endif; ?>
         <div class="all-middle-content">
 
 
@@ -82,6 +113,7 @@
                         <br>
                         <!-- content table -->
                         <div class="recp_cl_staff">
+                        <p class="warning" id = "success"></p>
                             <table class="std-enroll-table">
                                 <th>Day</th>
                                 <th>Time</th>
@@ -147,6 +179,8 @@
                             <div class="popupmodal-content">
                                 <span class="ann_close" onclick="closeModal()">&times;</span><br>
                                 <h3>Enroll Me</h3><br>
+                             
+                                <p class="warning" id = "errors"></p>
                                 <form action="" method="post" class="up-profile">
                                     <input type="hidden" value="" id="modal_subject_id" name="subject_id">
                                     <div>
@@ -159,9 +193,9 @@
                                                 <?php endforeach; ?>
                                             <?php endif ?>
                                         </select>
-                                        <?php if (!empty($errors)) : ?>
-                                            <p class="warning"><?= $errors['teacher']; ?></p>
-                                        <?php endif; ?>
+                                     
+                                            <p class="warning" id = "error1"></p>
+                                 
                                     </div>
                                     <br>
                                     <div>
@@ -169,11 +203,11 @@
                                         <select name="day" id="day" class="recp_ann_clz">
                                             <option value="" selected>--Select day and time--</option>
                                         </select>
-                                        <?php if (!empty($errors)) : ?>
-                                            <p class="warning"><?= $errors['day']; ?></p>
-                                        <?php endif; ?>
+                                 
+                                            <p class="warning" id = "error2"></p>
+                                      
                                         <br>
-                                        <button name="enroll-me" type="submit" id="enroll-std" class="recp_det_btn" onclick="enroll_student()">Enroll</button>
+                                        <button name="enroll-me" type="button" id="enroll-std" class="recp_det_btn" >Enroll</button>
                                     </div>
                                     <br><br><br>
 

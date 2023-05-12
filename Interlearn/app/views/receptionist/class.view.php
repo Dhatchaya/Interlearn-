@@ -110,6 +110,8 @@
                                         <td>
 
                                             <?php if (!empty($teach_instructors[$teacher->course_id])) : ?>
+                                            
+
                                                 <?php foreach ($teach_instructors[$teacher->course_id] as $teach_instructor) : ?>
                                                     <?= esc($teach_instructor->instructorName) ?>
                                                     <input type="hidden" value="<?= esc($teacher->day) ?>">
@@ -161,18 +163,19 @@
                                     <p style="font-size: small;" id="noInstructors"></p>
 
                                     <?php if (!empty($teach_instructors)) : ?>
+                                     
                                         <?php foreach ($teach_instructors as $teach_inst) : ?>
                                             <?php foreach ($teach_inst as $teach_in) : ?>
 
                                                 <div>
-
-                                                    <input type="text" value="<?= $teach_in->instructorName ?>" id="instructorName" class="edit-class-disable" disabled>
-
-                                                    <input type="hidden" value="<?= $teach_in->emp_id ?>" id="instructorID" name="instructorID">
+                                                    <div id="ins_teach_name">
+                                                        <!-- <input type="text" value="<?= $teach_in->instructorName ?>" id="instructorName" class="edit-class-disable" disabled> -->
+                                                    </div>
+                                                    <!-- <input type="hidden" value="<?= $teach_in->emp_id ?>" id="instructorID" name="instructorID">
                                                     <input type="hidden" value="<?= $teach_in->course_id ?>" id="courseID" name="courseID">
                                                     <button type="button" id="submit-remove-instructor" class="remove_instructor" onclick="removeInstructor(this,'<?= $teach_in->emp_id ?>','<?= $teach_in->course_id ?>')">
                                                         <span class="instructor-remove">&times;</span>
-                                                    </button>
+                                                    </button> -->
                                                 </div>
                                             <?php endforeach; ?>
                                         <?php endforeach; ?>
