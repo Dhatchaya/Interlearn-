@@ -1,5 +1,9 @@
-// console.log("ct");
-// console.log($('#days'));
+const queryParams = new URLSearchParams(window.location.search);
+console.log(queryParams);
+const sub_id = window.location.href.toString().split("=")[1];
+console.log(window.location.href.toString());
+console.log(sub_id);
+// const week = window.location.href.toString().split("/")[9];
 
 
 // select teacher

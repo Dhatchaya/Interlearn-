@@ -212,7 +212,8 @@ class Student extends Controller
             }
             
             $this->view('student/coursepg',$data);
-                
+            exit;
+
         }
         $data['rows']= $course->select([],'course_id');
         // show($user_id);die;

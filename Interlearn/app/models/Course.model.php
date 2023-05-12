@@ -295,7 +295,6 @@ class Course extends Model
     }
 
     public function getCourseID($subject_id, $teacher_id, $day, $timefrom, $timeto){
-    
         $query = "SELECT course.course_id FROM ".$this->table;
         $query .= " INNER JOIN subject ON subject.subject_id = course.subject_id";
         $query .= " WHERE course.subject_id =:subjectID AND course.teacher_id =:teacherID AND course.day =:Day AND course.timefrom =:timeFrom AND course.timeto =:timeTo";
@@ -304,10 +303,10 @@ class Course extends Model
         $data['Day'] = $day;
         $data['timeFrom'] = $timefrom;
         $data['timeTo'] = $timeto;
-  
+
         $res = $this -> query($query,$data);
         //  show($query);die;
-    
+
         if(is_array($res)){
             // echo $res;die;
             return $res;

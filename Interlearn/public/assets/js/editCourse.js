@@ -371,7 +371,7 @@ submitCheck.addEventListener('click',function(event){
 
             console.log("success");
             response = JSON.parse(response);
-            console.log(response.status);
+            console.log(response);
 
             console.log(response.status === "success");
 
