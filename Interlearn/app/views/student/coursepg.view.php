@@ -24,6 +24,7 @@
                             Announcements
                             <img src="<?= ROOT ?>/assets/images/next.png" alt="" class="teacher-course-ann-img">
                         </a>
+                        <?php if(!empty($courseWeeks)):?>
                         <?php
                         $i = 1;
                         foreach ($çourseWeeks as $value) {
@@ -37,7 +38,7 @@
                                     </div>
                                     <div class="teacher-card-body">
                                         <?php if (!empty($materials)) :
-                                            // var_dump($materials);
+
                                         ?>
                                             <?php foreach ($materials as $material) : ?>
                                                 <?php if ($material->week_no == $i) : ?>
@@ -115,6 +116,8 @@
                             $i++;
                         }
                         ?>
+
+                         <?php endif; ?>
                     </div>
                 </div>
             </div>
