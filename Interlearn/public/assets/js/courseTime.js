@@ -79,6 +79,14 @@ timeta.addEventListener('change',function(event){
 });
 
 
+var capacity = document.getElementById('capacity');
+capacity.addEventListener('change',function(event){
+  if(capacity != ''){
+    document.getElementById('alert-div8').style.display = 'none';  // show the alert div
+  }
+});
+
+
 
 var dayAdd = document.getElementById("dayAdd");
 dayAdd.addEventListener('change', function(event) {
@@ -167,7 +175,7 @@ submitCheck.addEventListener('click',function(event){
       var flag = 0;
        response = JSON.parse(response);
       console.log(response);
-      var error = document.getElementById('addCourseerror');
+      var error = document.getElementById('addCourseerror1');
 
       for(i in response){
         console.log(response[i]);
@@ -187,33 +195,33 @@ submitCheck.addEventListener('click',function(event){
         console.log(timeFrom);
         if(timeFrom > timeTo){
           console.log("inside");
-          document.getElementById('addCourseerror').innerHTML = "Ending time should be greater than start time";
-          document.getElementById('addCourseerror').style.display = "block";
+          document.getElementById('addCourseerror1').innerHTML = "Ending time should be greater than start time";
+          document.getElementById('addCourseerror1').style.display = "block";
           flag = 1;
           break;
 
         }
         if(timeFrom<response[i].timeto && timeFrom>=response[i].timefrom){
           console.log("in" + response[i].timefrom);
-          document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
+          document.getElementById('addCourseerror1').innerHTML = "Teacher already has a class";
           flag = 1;
           break;
         }
         if(timeTo<=response[i].timeto && timeTo>=response[i].timefrom){
-          document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
-          document.getElementById('addCourseerror').style.display = "block";
+          document.getElementById('addCourseerror1').innerHTML = "Teacher already has a class";
+          document.getElementById('addCourseerror1').style.display = "block";
           flag = 1;
           break;
         }
         if(response[i].timefrom<=timeTo && response[i].timefrom>=timeFrom){
-          document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
-          document.getElementById('addCourseerror').style.display = "block";
+          document.getElementById('addCourseerror1').innerHTML = "Teacher already has a class";
+          document.getElementById('addCourseerror1').style.display = "block";
           flag = 1;
           break;
         }
         if(response[i].timeto<=timeTo && response[i].timeto>=timeFrom){
-          document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
-          document.getElementById('addCourseerror').style.display = "block";
+          document.getElementById('addCourseerror1').innerHTML = "Teacher already has a class";
+          document.getElementById('addCourseerror1').style.display = "block";
           flag = 1;
           break;
         }
@@ -254,6 +262,7 @@ submitCheck.addEventListener('click',function(event){
 
         console.log("check 2");
 
+        formData.append('subject_Id', sub_id);
         formData.append('teacher_id', teacher_id);
         formData.append('day', day);
         formData.append('timefrom', timeFrom);
@@ -272,15 +281,20 @@ submitCheck.addEventListener('click',function(event){
           success:function(response){
 
             console.log("success");
+            closeModal();
+            // console.log(response);
             response = JSON.parse(response);
-            console.log(response.status);
+            // console.log(response.status);
 
-            console.log(formData);
+            // console.log(formData);
+            console.log(response);
 
             console.log(response.status === "success");
 
-            // if(response.status == 'success'){
-            //   window.location.href = "http://localhost/Interlearn/public/receptionist/course";
+            // if(response.status == true){
+            //   console.log("hellooooooo");
+              
+              // window.location.href = "http://localhost/Interlearn/public/receptionist/course";
             // }
           },
           error:function(xhr,status,error){

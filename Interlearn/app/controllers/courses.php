@@ -226,6 +226,7 @@ class Courses extends Controller
 public function enrollme($id=null){
     header('Content-Type: application/json');
     $subject_id=$id;
+
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $enroll_req = new RequestEnroll();
         $student_course = new StudentCourse();
