@@ -5749,6 +5749,11 @@ flex-direction: row;
     margin-left: 10%;
     width: 85vw;
 }
+.std-enroll-content-logged{
+    margin-top: 5%;
+    margin-left: 1%;
+    width: 85vw;
+}
 .std-enroll-table{
     border-collapse: collapse;
     width: 85vw;
@@ -6838,6 +6843,44 @@ left: 5rem;
 .text-upload-crs{
     color: #000;
 }
+
+.guest_crs_container{
+    width: 100%;
+    display: flex;
+}
+.guest_crs_content{
+    margin-top: 5%;
+    margin-left: 7%;
+    /* display: flex;
+    flex-wrap: wrap; */
+    width: 85vw;
+}
+.guest_crs_content-logged{
+    /* margin-top: 2%; */
+    margin-left: 1%;
+    /* display: flex;
+    flex-wrap: wrap; */
+    width: 85vw;
+}
+
+.std-details-enroll-row{
+    display: flex;
+}
+
+.enroll-details{
+    width: 30vw;
+    height: 4vh;
+    margin: 1px;
+}
+
+
+.std-details-enroll{
+    width: 60vw;
+}
+
+
+
+
 /*******************   Staff remove popup css   *******************/
 
 

@@ -99,7 +99,7 @@ class Courses extends Controller
                 if($enroll_req -> validate($_POST)){
                     $teacher_id = $_POST['teacher'];
                     $_POST['emp_id'] = $teacher_id;
-                    show($_POST);die;
+                    // show($_POST);die;
                     // show($teacher_id);die;
                     // show($subject_id);die;
                     $timeslot = explode('-', $_POST['day']);
