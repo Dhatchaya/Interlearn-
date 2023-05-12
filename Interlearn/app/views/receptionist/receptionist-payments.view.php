@@ -34,15 +34,15 @@
     <button class=" close-button-4" id="close-button-1">&times</button>
     <div class="validation-container">
       <div class="pending-list">
-        <?php foreach ($bankPayments as $bankPayment) : ?>
-          <div class="pending-item each-payment" id="<?= $bankPayment->BankPaymentID ?>">
-            <h4><?= $bankPayment->CourseID  ?></h4>
-            <h4><?= $bankPayment->NameOnSlip  ?></h4>
-            <h4><?= $bankPayment->monthlyFee ?></h4>
-            <h4><?= $bankPayment->PaymentDate  ?></h4>
+      <?php foreach ($bankPayments as $bankPayment) : ?>
+  <div class="pending-item each-payment" id="<?= $bankPayment->BankPaymentID ?>" data-status="<?= $bankPayment->status ?>">
+    <h4><?= $bankPayment->CourseID  ?></h4>
+    <h4><?= $bankPayment->NameOnSlip  ?></h4>
+    <h4><?= $bankPayment->monthlyFee ?></h4>
+    <h4><?= $bankPayment->PaymentDate  ?></h4>
+  </div>
+<?php endforeach; ?>
 
-          </div>
-        <?php endforeach; ?>
 
       </div>
 
@@ -58,16 +58,12 @@
           <span class="preview-value" id="preview-StudentID"></span>
         </div>
         <div class="preview-group">
-          <label class="preview-label">Address:</label>
-          <span class="preview-value" id="preview-address"></span>
-        </div>
-        <div class="preview-group">
-          <label class="preview-label">Course Name:</label>
+          <label class="preview-label">Course ID:</label>
           <span class="preview-value" id="preview-course-name"></span>
         </div>
         <div class="preview-group">
-          <label class="preview-label">NIC Number:</label>
-          <span class="preview-value" id="preview-nic"></span>
+          <label class="preview-label">month:</label>
+          <span class="preview-value" id="preview-month"></span>
         </div>
 
         <br>
@@ -91,6 +87,10 @@
         <div class="preview-group">
           <label class="preview-label">Cheque No.:</label>
           <span class="preview-value" id="preview-cheque-no"></span>
+        </div>
+        <div class="preview-group">
+          <label class="preview-label">preview payment Slip:</label>
+          <span class="preview-value" id="preview-cheque-date"></span>
         </div>
 
 

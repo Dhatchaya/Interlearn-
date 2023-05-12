@@ -51,7 +51,7 @@
 
         <!-- delete student -->
         <div id="profileModal4" class="popupModal">
-            <div class="tchr-popupmodal-content4">
+            <div class="tchr-popupmodal-content2">
                 <span class="ann_close" onclick="closeModal4()">&times;</span><br>
                 <h4>Delete Student</h4><br>
                 <form action="" method="post" class="up-profile">
@@ -60,11 +60,10 @@
                         <!-- <input type="text" class="teacher-edit-title" name="title"> -->
                         <input type="hidden" value="" name="delete-student" id="delete-student">
                         <br><br>
-
-                    </div>
-                    <button type="submit" class="teacher_upl_btn" name="submit-delete-student" id="delete-student-btn">Yes</button>
+                        <button type="submit" class="teacher_upl_btn" name="submit-delete-student" id="delete-student-btn">Yes</button>
                         <!-- </a> -->
                         <button type="reset" class="teacher_upl_btn" id="cancel-btn" onclick="closeModal4()">Cancel</button>
+                    </div>
                 </form>
             </div>
         </div>

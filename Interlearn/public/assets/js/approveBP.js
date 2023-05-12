@@ -19,9 +19,8 @@ approveBtn.addEventListener('click', function() {
     body: JSON.stringify({
       NameOnSlip: NameOnSlip.innerHTML,
       StudentID: studentID.innerHTML,
-      Address: Address.innerHTML,
+      month: month.innerHTML,
       CourseID: CourseName.innerHTML,
-      NIC: NIC.innerHTML,
       BPAmount: BPAmount.innerHTML,
       BPDate: BPDate.innerHTML,
       BankName: BankName.innerHTML,
@@ -33,10 +32,18 @@ approveBtn.addEventListener('click', function() {
   .then(response => response.text())
   .then(data => {
     console.log(data);
+    let ApprovedDiv = document.getElementById(bankPaymentID);
+    ApprovedDiv.style.backgroundColor = '#98D8AA';
+    this.disabled = true;
+    approveBtn.disabled = true;
+
+
   })
   .catch(error => console.log(error));
 });
 });
+
+
 declineBtn.addEventListener('click', function() {
   fetch('/Interlearn/public/receptionist/declineBP', {
     method: 'POST',

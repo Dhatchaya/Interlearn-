@@ -23,7 +23,6 @@ function openModal() {
 // When the user clicks on <span> (x), close the modal
 function closeModal() {
     modal.style.display = "none";
-    location.reload();
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -58,7 +57,6 @@ function openModal2(courseID) {
 // When the user clicks on <span> (x), close the modal
 function closeModal2() {
     modal2.style.display = "none";
-    location.reload();
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -114,7 +112,6 @@ function openModal3(courseID) {
                     document.getElementById("daysEdit").value = response[i].day;
                     document.getElementById("timefromEdit").value = response[i].timefrom;
                     document.getElementById("timetoEdit").value = response[i].timeto;
-                    document.getElementById("capacityEdit").value = response[i].capacity;
 
 
                     // var teacher_id = $('#teacher_id').val();
@@ -127,7 +124,6 @@ function openModal3(courseID) {
                         url : 'http://localhost/Interlearn/public/receptionist/course/getInstructors?course_id='+courseID,
                         // data:{'course_id':courseID, 'day': day, 'timefrom': timeFrom, 'timeto': timeTo},
                         success:function(response){
-
                             console.log("submit here");
                             console.log(response == 'false');
                             if(response == 'false'){
@@ -137,8 +133,7 @@ function openModal3(courseID) {
                               document.getElementById("noInstructors").innerHTML = "No instructors to show!";
                             }
                             response = JSON.parse(response);
-                            console.log(response);
-                            const MainElement = document.getElementById("ins_teach_name");
+
                             for(var i=0; i<response.length; i++){
                               // console.log(response[i].instructorName);
                               //
@@ -146,70 +141,28 @@ function openModal3(courseID) {
                               // // console.log(response[i].instructorName);
                               // document.getElementById("instructorID").value = response[i].emp_id;
                               // document.getElementById("courseID").value = courseID;
-                            //   var instructor_id = response[i].emp_id;
-                            //   console.log(instructor_id);
-                            //   document.getElementById("instructorName").value = response[i].instructorName;
-                              const input = document.createElement('input');
-                              input.classList.add("edit-class-disable");
-                              input.id = "instructorName";
-                                input.value =  response[i].instructorName;
+                              var instructor_id = response[i].emp_id;
+                              console.log(instructor_id);
 
-                                const containerElement = document.createElement("div");
-                            // Create instructorID input element
-                            var instructorIDInput = document.createElement("input");
-                            instructorIDInput.setAttribute("type", "hidden");
-                            instructorIDInput.setAttribute("value", response[i].emp_id);
-                            instructorIDInput.setAttribute("id", "instructorID");
-                            instructorIDInput.setAttribute("name", "instructorID");
+                            function removeInstructor(instructor_id, courseID){
+                                event.preventDefault();
+                                console.log("inside remove");
+                                console.log(instructor_id);
+                                var div = this.parentElement;
+                                console.log(div);
+                                div.style.display = "none";
+                                $.ajax({
+                                    method:"GET",
+                                    url : 'http://localhost/Interlearn/public/receptionist/course/removeInstructors?instructor_id='+instructor_id+'&course_id='+courseID,
+                                    success:function(response){
+                                      console.log(response);
+                                    },
+                                    error:function(xhr,status,error){
+                                      console.log("Error: " + error);
+                                    }
+                                });
+                            }
 
-                            // Create courseID input element
-                            var courseIDInput = document.createElement("input");
-                            courseIDInput.setAttribute("type", "hidden");
-                            courseIDInput.setAttribute("value", response[i].course_id);
-                            courseIDInput.setAttribute("id", "courseID");
-                            courseIDInput.setAttribute("name", "courseID");
-
-                            // Create submit-remove-instructor button
-                            var removeInstructorButton = document.createElement("button");
-                            removeInstructorButton.setAttribute("type", "button");
-                            removeInstructorButton.setAttribute("id", "submit-remove-instructor");
-                            removeInstructorButton.setAttribute("class", "remove_instructor");
-                            removeInstructorButton.setAttribute("onclick", "removeInstructor(this,"+response[i].emp_id+","+response[i].course_id+")");
-
-                            // Create instructor-remove span
-                            var instructorRemoveSpan = document.createElement("span");
-                            instructorRemoveSpan.setAttribute("class", "instructor-remove");
-                            instructorRemoveSpan.innerHTML = "&times;";
-
-                            // Append instructor-remove span to the removeInstructorButton
-                            removeInstructorButton.appendChild(instructorRemoveSpan);
-
-                            containerElement.appendChild(input);
-                            containerElement.appendChild(instructorIDInput);
-                            containerElement.appendChild(courseIDInput);
-                            containerElement.appendChild(removeInstructorButton);
-                            MainElement.appendChild(containerElement);
-                            //   <input type="text" value="<?= $teach_in->instructorName ?>" id="instructorName" class="edit-class-disable" disabled>
-                            
-                            // function removeInstructor(instructor_id, courseID){
-                            //     event.preventDefault();
-                            //     console.log("inside remove");
-                            //     console.log(instructor_id);
-                            //     var div = this.parentElement;
-                            //     console.log(div);
-                            //     div.style.display = "none";
-                            //     $.ajax({
-                            //         method:"GET",
-                            //         url : 'http://localhost/Interlearn/public/receptionist/course/removeInstructors?instructor_id='+instructor_id+'&course_id='+courseID,
-                            //         success:function(response){
-                            //           console.log(response);
-                            //         },
-                            //         error:function(xhr,status,error){
-                            //           console.log("Error: " + error);
-                            //         }
-                            //     });
-                            // }
-                            
                             }
 
                         },
@@ -258,7 +211,6 @@ function openModal3(courseID) {
 function closeModal3() {
     const modal3 = document.getElementById("profileModal3");
     modal3.style.display = "none";
-    location.reload();
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -292,7 +244,6 @@ function openModal4(number) {
 // When the user clicks on <span> (x), close the modal
 function closeModal4() {
     modal4.style.display = "none";
-    location.reload();
 }
 
 // When the user clicks anywhere outside of the modal, close it

@@ -9,16 +9,16 @@ class BankPayment extends Model
         'NameOnSlip',
         'Address',
         'CourseID',
-        'PayerNIC',
+        'month',
         'SlipImage',
         'PaymentDate',
-        'Amount',
+        'monthlyFee',
         'Bank',
         'Branch',
         'ChequeNo',
         'BankPaymentID',
         'status',
-        'StudentID'
+        'StudentId'
     ];
 
     public function validateBankPayment()
@@ -31,6 +31,12 @@ class BankPayment extends Model
         }
 
         return $data;
+    }
+
+    public function submitBP($data)
+    {   
+
+        $this->insert($data);
     }
 
     public function removefromBankPayment ($bankPaymentID){
@@ -49,6 +55,8 @@ class BankPayment extends Model
 
         $this->query($query);
     }
+
+
 
 
     public function getEachBPdata($BP_ID)

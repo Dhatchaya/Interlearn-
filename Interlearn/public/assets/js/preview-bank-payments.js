@@ -2,9 +2,8 @@
 const paymentDivs = document.querySelectorAll('.each-payment');
 const studentID = document.querySelector('#preview-StudentID');
 const NameOnSlip = document.querySelector('#preview-name-on-slip');
-const Address = document.querySelector('#preview-address');
+const month = document.querySelector('#preview-month');
 const CourseName = document.querySelector('#preview-course-name');
-const NIC = document.querySelector('#preview-nic');
 const BPAmount = document.querySelector('#preview-amount');
 const BPDate = document.querySelector('#preview-payment-day');
 const BankName = document.querySelector('#preview-bank');
@@ -35,9 +34,8 @@ paymentDivs.forEach(paymentDiv => {
       console.log(data); // log the response from the server
 
       NameOnSlip.innerHTML = data[0].NameOnSlip;
-      Address.innerHTML = data[0].Address;
+      month.innerHTML = data[0].month;
       CourseName.innerHTML = data[0].CourseID;
-      NIC.innerHTML = data[0].PayerNIC ;
       BPAmount.innerHTML = data[0].monthlyFee;
       BPDate.innerHTML = data[0].PaymentDate;
       BankName.innerHTML = data[0].Bank;

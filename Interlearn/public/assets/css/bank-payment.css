@@ -20,7 +20,7 @@
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   width: 850px;
-  height: 100%;
+  height: 700px;
   min-width: 800px;
   padding: 40px;
   text-align: center;
@@ -30,7 +30,6 @@
 
 }
 
-  
 .payment-form{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -56,16 +55,27 @@
   border: 0;
   cursor: pointer;
   font-size: 1.5em;
+  z-index: inherit;
 }
 
-.div-adject-4 {
+#file-upload {
+  position: absolute;
+  width: 200px;
+  left: 0px;
+  top: 30px;
+}
+#upload-button{
+  position: absolute;
   top: 50px;
+  left: 80px;
 }
 
-
+.hidden {
+  display: none;
+}
 .submit-button {
   position: relative;
-  bottom: 55px;
+  top: -50px;
   width: 100px;
   padding: 10px 0;
   background-color:#3E206D;
@@ -79,7 +89,7 @@
 
 #upload-button{
   position: relative;
-  top: -20px;
+  top: 100px;
   right: 150px;
   width: 80px;
   padding: 5px 0;
@@ -102,4 +112,14 @@
   color: red;
   font-size: 20px;
   font-weight: bold;
+}
+
+
+.pending-payment-record.disabled {
+  pointer-events: none;
+  background-color: #ccc;
+}
+
+.pending-payment-data.disabled {
+  opacity: 0.5;
 }

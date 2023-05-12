@@ -14,7 +14,7 @@ class ZQuiz extends Model
         'quiz_description',
         'display_question',
         'total_points',
-        'quiz_bank',
+        'category',
         'enable_time',
         'disable_time',
         'duration',

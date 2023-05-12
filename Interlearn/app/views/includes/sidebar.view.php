@@ -6,7 +6,7 @@
                 <div class="middle">
                     
                         <div class="profile">
-                            <a href="<?=ROOT?>/student/profile/view">
+                            <a href="<?=ROOT?>/student/profile">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/profile.png" alt="profile"></br>
                             <span>Edit Profile</span>
                             </a>
@@ -14,7 +14,7 @@
                     
                    
                         <div class="dashboard">
-                            <a href="<?=ROOT?>/student/course">
+                            <a href="<?=ROOT?>/student/home">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/dashboard.png" alt="Dashboard"></br>
                             <span>Dashboard</span>
                             </a>
@@ -44,7 +44,7 @@
                         </div>
                     
                         <div class="Courses">
-                            <a href="<?=ROOT?>/courses">
+                            <a href="<?=ROOT?>/student/course">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/book.png" alt="Courses"></br>
                             <span>Courses</span>
                             </a>

@@ -3578,14 +3578,6 @@ transition: width 1s, height 1s;
     transition: width 1s, height 1s;
     font-size: small;
 }
-.guest_crs_div{
-    align-items: center;
-    width: 15vw;
-    height: 16vh;
-    transition: width 1s, height 1s;
-    background-color: rgb(104, 44, 198,25%);
-    font-size: xx-large;
-}
 .grade-text{
     font-weight: bold;
     font-size: large;
@@ -4586,16 +4578,6 @@ tr:nth-child(even) {
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-.popupmodal-contenten {
-    background-color: #fff;
-    margin: 5% auto; /* 10% from the top and centered */
-    padding: 25px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    max-width: 450px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
 /* Style the close button */
 .ann_close {
     color: #af15ac;
@@ -5514,41 +5496,6 @@ flex-direction: row;
     max-width: 450px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
-.tchr-popupmodal-content4 {
-    background-color: #efefef;
-    margin: 10% auto; /* 10% from the top and centered */
-    padding: 25px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    max-width: 500px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    text-align: center;
-}
-/* .delete-std-remove{
-    display: flex;
-    text-align: center;
-    align-items: center;
-}
-.std-remove-img{
-    width: 4vw;
-    height: 5vh;
-} */
-.std-remove-btn{
-    width: 10vw;
-    height: 5vh;
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-    cursor: pointer;
-    margin-right: 2%;
-}
-/* .std-remove-btn-delete{
-    width: 10vw;
-    height: 5vh;
-    background-color: rgb(234, 48, 48);
-    color: rgb(0, 0, 0);
-    cursor: pointer;
-    margin-right: 2%;
-} */
 .teachr-popupmodal-content3 {
     background-color: #efefef;
     margin: 15% auto; /* 10% from the top and centered */
@@ -5784,11 +5731,6 @@ flex-direction: row;
     margin-left: 10%;
     width: 85vw;
 }
-.std-enroll-content-logged{
-    margin-top: 5%;
-    margin-left: 1%;
-    width: 85vw;
-}
 .std-enroll-table{
     border-collapse: collapse;
     width: 85vw;
@@ -5864,7 +5806,7 @@ flex-direction: row;
 
 
 .enroll-display{
-    width: 15vw;
+    width: 30vw;
     float: left;
     display: grid;
 }
@@ -6878,44 +6820,6 @@ left: 5rem;
 .text-upload-crs{
     color: #000;
 }
-
-.guest_crs_container{
-    width: 100%;
-    display: flex;
-}
-.guest_crs_content{
-    margin-top: 5%;
-    margin-left: 7%;
-    /* display: flex;
-    flex-wrap: wrap; */
-    width: 85vw;
-}
-.guest_crs_content-logged{
-    /* margin-top: 2%; */
-    margin-left: 1%;
-    /* display: flex;
-    flex-wrap: wrap; */
-    width: 85vw;
-}
-
-.std-details-enroll-row{
-    display: flex;
-}
-
-.enroll-details{
-    width: 30vw;
-    height: 4vh;
-    margin: 1px;
-}
-
-
-.std-details-enroll{
-    width: 60vw;
-}
-
-
-
-
 /*******************   Staff remove popup css   *******************/
 
 
@@ -6933,7 +6837,6 @@ left: 5rem;
     padding: 40px;
     text-align: center;
     display: none;
-    overflow: hidden;
   }
 
   .remove-staff-popup{

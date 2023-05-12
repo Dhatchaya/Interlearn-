@@ -24,7 +24,6 @@
                             Announcements
                             <img src="<?= ROOT ?>/assets/images/next.png" alt="" class="teacher-course-ann-img">
                         </a>
-                        <?php if(!empty($çourseWeeks)):?>
                         <?php
                         $i = 1;
                         foreach ($çourseWeeks as $value) {
@@ -38,7 +37,7 @@
                                     </div>
                                     <div class="teacher-card-body">
                                         <?php if (!empty($materials)) :
-
+                                            // var_dump($materials);
                                         ?>
                                             <?php foreach ($materials as $material) : ?>
                                                 <?php if ($material->week_no == $i) : ?>
@@ -105,11 +104,6 @@
                                                                 <?= $material->upload_name ?>
                                                             </a>
                                                         </p>
-                                                    <?php elseif ($material->type == "Note") : ?>
-                                                        <p class="text-upload-crs">
-                                                            <b><u><?= $material->upload_name ?></u></b><br>
-                                                            <?= $material->view_URL ?>
-                                                        </p>
                                                     <?php endif; ?>
                                                 <?php endif; ?>
                                             <?php endforeach; ?>
@@ -121,8 +115,6 @@
                             $i++;
                         }
                         ?>
-
-                         <?php endif; ?>
                     </div>
                 </div>
             </div>

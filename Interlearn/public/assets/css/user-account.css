@@ -170,13 +170,13 @@
   display: grid;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: auto;
   width: 100%;
   background-color: #fff;
   border-radius: 10px;
   overflow: hidden;
   margin-top: 10px;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
 }
 
