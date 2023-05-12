@@ -413,4 +413,23 @@ class Course extends Model
         }
     }
 
+    public function CourseStaffSubject($data= null){
+
+        $keys = array_keys($data);
+        $query = "SELECT c.course_id, st.first_name, s.subject, s.grade from course c 
+        INNER JOIN staff st ON st.emp_id=c.teacher_ID
+        INNER JOIN  subject s ON s.subject_id = c.subject_id where ";
+
+
+        foreach($keys as $key){
+            $query .= $key. " =:".$key." && ";
+        }
+        $query = trim($query,"&& ");
+        $res = $this -> query($query,$data);
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;
+    }
 }

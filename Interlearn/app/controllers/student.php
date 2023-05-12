@@ -287,6 +287,10 @@ class Student extends Controller
 
             $exam = new ZExam();
             $data['rows'] = $exam->ExamResult(['course_id' => $id, 'studentID' => $student_id]);
+
+            $course = new Course();
+            $data['stdetails'] = $course->CourseStaffSubject(['course_id' => $id]);
+            // show($stdetail);die();
             // $this->view('student/view_progress', $newArray);
             $this->view('student/view_progress', $data);
             exit();
