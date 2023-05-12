@@ -155,7 +155,7 @@ class Course extends Model
 
     public function getMonthlyFee($courseId){
         $courseID = $courseId; 
-        $query = "SELECT monthlyFee,course_id FROM course where course_id = " . $courseID ;
+        $query = "SELECT monthlyFee FROM course where course_id = " . $courseID ;
         $res = $this -> query($query);
 
         if ($res == NULL) {

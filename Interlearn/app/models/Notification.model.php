@@ -24,7 +24,7 @@ class Notification extends Model
     public function notificationUsercheck()
     {   
     $userid=Auth::getUID();
-        $query ="select * from ".$this->table." INNER JOIN notify_user on notification.Nid=notify_user.Nid LEFT JOIN subjectcoursestaff on subjectcoursestaff.course_id=notification.course_id where notify_user.uid='$userid'";
+        $query ="select * from ".$this->table." INNER JOIN notify_user on notification.Nid=notify_user.Nid INNER JOIN subjectcoursestaff on subjectcoursestaff.course_id=notification.course_id where notify_user.uid='$userid'";
 
         $res = $this -> query($query,[]);
 

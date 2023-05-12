@@ -2,13 +2,7 @@
 
 
 <div class="main-body-div">
-<?php if(Auth::getrole() == "Receptionist"):?>
-        <?php $this->view("includes/sidebar_recep");?>
-<?php else:?>
-        <?php  if(Auth::getrole() == "Manager"):?>
-            <?php $this->view("includes/sidebar_man"); ?>
-<?php endif;?>
-<?php endif;?>
+    <?php $this->view("includes/sidebar_man"); ?>
     <div class="top-to-bottom-content">
 
         <?php $this->view("includes/nav"); ?>
@@ -50,17 +44,10 @@
                                 <?= esc($row->last_name) ?>
                             </div>
                             <div class="head2-content-std">
-                                <a href="<?=ROOT?>/receptionist/allprofiles/student/<?=esc($row->uid)?>">
+                                <a href="#">
                                     <button class="view_enq_btn">View</button>
                                 </a>
-                         
-                           
-
-                           <button class="view_enq_btn remove-btn" data-student-id="<?= $row->studentID?>">Delete</button>
-              
-                         
                             </div>
-                        
                         </div>
                     <?php endforeach; ?>
                 <?php else : ?>
@@ -71,27 +58,11 @@
                 <?php endif; ?>
 
             </div>
-            <div class="bank-payment-form-popup remove-staff-popup">
-        <div class="remove-employee-dialog-box">
-            <label class="ask" for="">Are you sure to remove this Student....?</label>
-            <div class="btn-container">
-                <button  onclick="btnyes(this);" class="yes">Yes</button>
-                <button class="no">No</button>
-            </div>
-        </div>
-        <div class="success-message">
-            <label class="ask" for="refresh">Successfully removed the Student</label>
-            <br>
-            <div class="btn-container ">
-                <button onclick="refreshPage()" class="refresh"> click to refresh</button>
-            </div>
-        </div>
-    </div>
+
         </div>
 
     </div>
 </div>
-<script defer src="<?= ROOT ?>/assets/js/removestudent.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?= ROOT ?>/assets/js/Registrations.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?= ROOT ?>/assets/js/addregistration.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?= ROOT ?>/assets/js/recepSearchStd.js?v=<?php echo time(); ?>"></script>

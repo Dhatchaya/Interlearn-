@@ -19,72 +19,72 @@ next_payment.addEventListener('click', function() {
         }
     }
 
+    
+    
     else{
-        fetch('/Interlearn/public/receptionist/nextCashPayment', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({courseID: CourseID.value,studentName: studentName.value, studentID: studentId.value, month: Month.value, amount: Amount.value}),
-        })
-        .then(response => response.text())
-        .then(data => {
-            console.log(data);
-            // Last_payment.value = data[0]['PaymentID']
-            // Last_payment.innerHTML = "Last Payment ID: " + Last_payment.value;
-        })
-        .catch(error => console.log(error));
-    }
-    CourseID.value = "";
-    studentId.value = "";
-    studentName.value = "";
-    Month.value = "";
-    Amount.value = "";
-});
+    fetch('/Interlearn/public/receptionist/nextCashPayment', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({courseID: CourseID.value,studentName: studentName.value, studentID: studentId.value, month: Month.value, amount: Amount.value}),
+    })
+    .then(response => response.json())
+    .then(response => {
+        console.log("asdf");
+        Last_payment.value = data[0]['PaymentID']
+        Last_payment.innerHTML = "Last Payment ID: " + Last_payment.value;
+    }).catch(error=>console.log(error));
+    // console.log(studentId.value);
+}
+CourseID.value = "";
+studentId.value = "";
+studentName.value = "";
+Month.value = "";
+Amount.value = "";
 
+}
+)
 
-submit_payment.addEventListener('click', function(e) {
-console.log(studentId.value);
-e.preventDefault();
+submit_payment.addEventListener('click', function() {
+
     if(studentId.value == ''){
         error1.innerHTML = "Please insert a student ID";
-        return;
-    }
         if(CourseID.value == ''){
             error2.innerHTML = "Please insert a course ID";
-            return;
-        }
             if(Month.value == ''){
-                error3.innerHTML = "Please select a month";
-                return;
+                error3.innerHTML = "Please insert a month";
             }
-
-
-    else{
-        let hi = "hello";
-        console.log(JSON.stringify({courseID: CourseID.value,studentName: studentName.value, studentID: studentId.value, month: Month.value, amount: Amount.value}));
-        fetch('/Interlearn/public/receptionist/nextCashPayment', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body:JSON.stringify({courseID: CourseID.value,studentName: studentName.value, studentID: studentId.value, month: Month.value, amount: Amount.value}),
-        })
-        .then(response => response.json())
-        .then(response => {
-            console.log(response);
-            CourseID.value = "";
-            studentId.value = "";
-            studentName.value = "";
-            Month.value = "";
-            Amount.value = "";
-            // Last_payment.value = data[0]['PaymentID']
-        })
-        .catch(error => console.log(error));
+        }
     }
 
+    
+    
+    else{
+    fetch('/Interlearn/public/receptionist/nextCashPayment', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({courseID: CourseID.value,studentName: studentName.value, studentID: studentId.value, month: Month.value, amount: Amount.value}),
+    })
+    .then(response => response.json())
+    .then(response => {
+        console.log("asdf");
+        Last_payment.value = data[0]['PaymentID']
+    }).catch(error=>console.log(error));
+    // console.log(studentId.value);
+    
+    setTimeout(hiddenDiv2.style.display = "none", 500);
+}
+CourseID.value = "";
+studentId.value = "";
+studentName.value = "";
+Month.value = "";
+Amount.value = "";
 
-    setTimeout(() => hiddenDiv2.style.display = "none", 500);
-});
 
+
+}
+)
 

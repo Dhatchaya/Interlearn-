@@ -167,17 +167,6 @@ class Instructor extends Controller
                 exit;
             }
 
-            // if($option == 'editUploadName')
-            // {
-            //     if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
-
-            //         $result = $course_content->UpdateUploadName($id,$_POST['cid'],$_POST['upload_name']);
-
-            //         echo json_encode($result);
-            //         exit;
-            //     }
-            // }
-
             if($option == 'editWeekName'){
                 // show($_GET);die;
                 // $result = $course_week->getWeekName($id,$_GET['week_no']);
@@ -190,21 +179,17 @@ class Instructor extends Controller
 
             if($option == 'getTextName'){
                 // show($_GET);die;
-                $result = $course_content->getUploads($id,$week);
+                $result = $course_content->getUploads($id,$_GET['week_no']);
 
                 echo json_encode($result);
                 exit;
             }
 
             if($option == 'editTextName'){
-                // show("hi");
-                if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                    $result = $course_content->UpdateUploadText($id,$_POST['cid'],$_POST['upload_name'],$_POST['view_URL']);
+                $result = $course_content->UpdateUploadText($id,$_POST['cid'],$_POST['upload_name'],$_POST['view_URL']);
 
-                    echo json_encode($result);
-                    exit;
-                }
-
+                echo json_encode($result);
+                exit;
             }
 
 
@@ -287,7 +272,7 @@ class Instructor extends Controller
             // show($data['rows']);die;
             $data['sums']= $subject -> teacherCourse([],$user_id);
             // show($data['sums']);die;
-            // $data['courses'] = $subject -> CoursePage(['course_id' => $id],$user_id);
+            $data['courses'] = $subject -> CoursePage(['course_id' => $id],$user_id);
             $data['week_no'] = $week;
 
             $this->view('instructor/upload',$data);
@@ -323,7 +308,7 @@ class Instructor extends Controller
             // show($data['rows']);die;
             $data['sums']= $subject -> teacherCourse([],$user_id);
             //show($data['sums']);die;
-            // $data['courses'] = $subject -> CoursePage(['course_id' => $id],$user_id);
+            $data['courses'] = $subject -> CoursePage(['course_id' => $id],$user_id);
             $data['week_no'] = $week;
             // show($data['week_no']);die;
             //   show($data['courses']);die;
@@ -349,7 +334,7 @@ class Instructor extends Controller
                     $result2 = $course_content -> insert($_POST);
                     // $result = $course_url->insert($_POST);
                     echo "Note successfully published!";
-                    header("Location:http://localhost/Interlearn/public/instructor/course/view/".$id);
+                    header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
                 // }
                 // else{
                 //     $data['errors'] =  $course_content->error;
@@ -360,7 +345,7 @@ class Instructor extends Controller
             //show($data['rows']);die;
             $data['sums']= $subject -> teacherCourse([],$user_id);
             //show($data['sums']);die;
-            // $data['courses'] = $subject -> CoursePage(['course_id' => $id],$user_id);
+            $data['courses'] = $subject -> CoursePage(['course_id' => $id],$user_id);
             $data['week_no'] = $week;
             // show($data['week_no']);die;
             //   show($data['courses']);die;
@@ -497,7 +482,7 @@ class Instructor extends Controller
         }
 
         if($action == 'submitEditAnnouncement'){
-            // show($_POST) ;die;
+            show($_POST) ;die;
 
             // $file = $_FILES['attachment'];
                             // show($_FILES);die;

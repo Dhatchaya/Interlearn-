@@ -1,6 +1,6 @@
 // Get all the payment divs
 const paymentDivs = document.querySelectorAll('.each-payment');
-const studentID = document.querySelector('#preview-StudentID');
+
 const NameOnSlip = document.querySelector('#preview-name-on-slip');
 const Address = document.querySelector('#preview-address');
 const CourseName = document.querySelector('#preview-course-name');
@@ -10,7 +10,7 @@ const BPDate = document.querySelector('#preview-payment-day');
 const BankName = document.querySelector('#preview-bank');
 const BranchName = document.querySelector('#preview-branch');
 const ChequeNumber = document.querySelector('#preview-cheque-no');
-const bankpaymentID = document.querySelector('#bankpaymentID');
+
 // Add click event listener to each payment div
 paymentDivs.forEach(paymentDiv => {
   paymentDiv.addEventListener('click', function() {
@@ -42,12 +42,10 @@ paymentDivs.forEach(paymentDiv => {
       BPDate.innerHTML = data[0].PaymentDate;
       BankName.innerHTML = data[0].Bank;
       BranchName.innerHTML = data[0].Branch;
-      studentID.innerHTML=data[0].StudentID;
-      bankpaymentID.value = data[0].BankPaymentID;
       if(data[0].ChequeNo == 0){
         ChequeNumber.innerHTML = "N/A";
       }else{
-        ChequeNumber.innerHTML = data[0].ChequeNo;
+        ChequeNumber.innerHTML = data[0].ChequeNumber;
       }
 
     })

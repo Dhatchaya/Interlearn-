@@ -68,8 +68,6 @@ function openModal3(aid) {
                             data:{'aid' : aid},
                             success:function(response){
                               console.log(response);
-                              document.getElementById("attachment_file").value="";
-                              document.getElementById("file_name_teacher").value = "";
                             },
                             error:function(xhr,status,error){
                               console.log("Error: " + error);

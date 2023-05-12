@@ -36,106 +36,17 @@ class Student extends Controller
 
         $this->view('student/home',$data);
     }
-    public function profile($action = null)
+    public function profile($id = null)
     { 
         if(!Auth::is_student()){
             redirect('home');
            
         }
-
-        if($action == "editUser")
-        {
-
-            header('Content-Type: application/json; charset=utf-8');
-
-
-
-            if($_SERVER['REQUEST_METHOD'] == "POST") {
-                header('Content-Type: application/json; charset=utf-8');
-              
-                $user = new User();
-
-                $data = $_POST;
-
-                $data['uid'] = $id ?? Auth::getUID();
-                $row = $user->first([
-                    'uid' => $data['uid'],
-
-                ], 'uid');
-
-                if (isset($_FILES['display_picture']['name']) and !empty($_FILES['display_picture']['name'])) {
-                    $pic_tmp = $_FILES['display_picture']["tmp_name"];
-                    $pic_name = $_FILES['display_picture']["name"];
-                    $error = $_FILES['display_picture']['error'];
-                    if ($error === 0) {
-                        $img_ext = pathinfo($pic_name, PATHINFO_EXTENSION);
-                        $img_final_ext = strtolower($img_ext);
-                        $allowed_ext = array('jpg', 'png', 'jpeg');
-                        if (in_array($img_final_ext, $allowed_ext)) {
-                            $new_image_name = uniqid($row->username, true) . '.' . $img_final_ext;
-                            $destination = "uploads/images/" . $new_image_name;
-                            move_uploaded_file($pic_tmp, $destination);
-                            $data['display_picture'] = $new_image_name;
-                            $response = array('status' => 'success', 'message' => 'Image uploaded successfully');
-                        } else {
-                            $response = array('status' => 'error', 'message' => 'You cannot upload this type of file');
-                        }
-                    } else {
-                        $response = array('status' => 'error', 'message' => 'Unknown error occurred');
-                    }
-                }
-                //            echo $data['password'];
-                if (isset($data['password'])&&$data['password']!="null") {
-
-                    if (!password_verify($data['curr_pass'], $row->password)) {
-                        $data['password'] = '';
-                        $response = array('status' => 'error', 'message' => 'Current password is incorrect');
-                        echo json_encode($response);
-                        exit;
-                    } else {
-                        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-                    }
-                }
-
-                $changeProfile = new Students();
-
-                $response1 = $changeProfile->updateProfiles(['uid' => $data['uid']], $data);
-                $response2 = $user->updateProfiles(['uid' => $data['uid']], $data);
-             
-                if ($response1 && $response2) {
-                    $response = array('status' => 'success');
-
-                }
-                echo json_encode($response);
-                exit;
-            }
-
-            exit;
-        }
-        if($action=="view")
-        {
-
-            $ProfileData['title'] = "Profile";
-            if($action="view"){
-                $currentUserID = Auth::getUID();
-
-                $student = new Students();
-                $studentData =  $student->studentConnectCourse(['uid'=>$currentUserID],'studentID');
-
-
-
-                if (!$studentData) {
-                    redirect('home');
-                }
-
-                $ProfileData['userData'] = $studentData;
-                $this->view('student/user', $ProfileData);
-            }
-
-
-
-
-        }
+        $id = $id ?? Auth::getUID();
+        $user = new User();
+        $data['row'] = $user->first(['uid'=>$id],'uid');
+        
+        $this->view('student/profile');
     }
 
 
@@ -865,7 +776,9 @@ class Student extends Controller
                         array('text' => $row->choice4, 'marks' => intval($row->choice4_mark))
                     ),
                     'mark' => $row->question_mark,
-                    'quiz_description' => $row->quiz_description
+                    'quiz_description' => $row->quiz_description,
+                    'duration' => $row->duration,
+                    'disable_time' => $row->disable_time
                 );
                 array_push($quiz, $question);
             }
@@ -994,7 +907,7 @@ class Student extends Controller
         if (!Auth::is_student()) {
             redirect('home');
         }
-        $currentUserID = $id ?? Auth::getUID();
+        $currentStudentID = $id ?? Auth::getUID();
 
         // $payment_model = new Payment();
         // $haveToPay = $payment_model->pendingPayments();
@@ -1002,15 +915,13 @@ class Student extends Controller
         ////////////////////////////////
 
         $payment_history = new Payment();
-        $each_s_p_h = $payment_history->eachStudentPaymentHistory($currentUserID);
+        $each_s_p_h = $payment_history->eachStudentPaymentHistory($currentStudentID);
 
 
-        if($each_s_p_h[0] == null){
-            $each_s_p_h = array();
-        }
+
 
         $pending_payment_model = new Payment();
-        $haveToPay = $pending_payment_model->eachStudentPendingPayment($currentUserID);
+        $haveToPay = $pending_payment_model->eachStudentPendingPayment($currentStudentID);
 
         $this->view('student/student-payment',['payment_history_list'=>$each_s_p_h,'haveToPaySet'=>$haveToPay]);
 

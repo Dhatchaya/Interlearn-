@@ -6,7 +6,7 @@
     right: 0;
     background: rgba(0,0, 0, 0.3);
     width: auto;
-    height: auto;
+    height: 100%;
     z-index: 999;
     display: none;
     
