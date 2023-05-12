@@ -3578,6 +3578,14 @@ transition: width 1s, height 1s;
     transition: width 1s, height 1s;
     font-size: small;
 }
+.guest_crs_div{
+    align-items: center;
+    width: 15vw;
+    height: 16vh;
+    transition: width 1s, height 1s;
+    background-color: rgb(104, 44, 198,25%);
+    font-size: xx-large;
+}
 .grade-text{
     font-weight: bold;
     font-size: large;
@@ -4575,6 +4583,16 @@ tr:nth-child(even) {
     border: 1px solid #ccc;
     border-radius: 5px;
     max-width: 800px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.popupmodal-contenten {
+    background-color: #fff;
+    margin: 5% auto; /* 10% from the top and centered */
+    padding: 25px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 450px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
@@ -5806,7 +5824,7 @@ flex-direction: row;
 
 
 .enroll-display{
-    width: 30vw;
+    width: 15vw;
     float: left;
     display: grid;
 }

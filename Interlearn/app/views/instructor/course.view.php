@@ -12,7 +12,6 @@
                     <img src="<?= ROOT ?>/assets/images/tchrview.png" class="teacher_crs_topimg">
                     <div class="teacher_crs_tophead">
                         <?php if (!empty($courses)) : ?>
-                            <a href="<?= ROOT ?>/instructor/course/progress/<?= $course_id ?>/0/view" class="teacher-course-announcement">View Progress</a>
                             <div id="course_id" style="display: none;"><?= $courses[0]->course_id ?></div>
                             <h2 class="teacher_crs_subject">Grade <?= esc($courses[0]->grade) ?> - <?= esc($courses[0]->subject) ?></h2>
                             <div class="instructor-prg-butn">
@@ -312,7 +311,7 @@
                                 <input type="text" class="teacher-edit-text" name="upload-text" id="edit-text"><br>
                                 <label for="upload-title" class="teacher-edit">Content: </label>
                                 <input type="text" class="teacher-edit-content" name="upload-content" id="edit-text-content"><br><br>
-                                <button type="button" class="teacher_upl_btn" name="submit-upload" id="edit-text-btn">Update</button>
+                                <button type="button" class="teacher_upl_btn" name="submit-upload" id="edit-text-btn" onclick="closeModal7()">Update</button>
                                 <button type="reset" class="teacher_upl_btn" id="cancel-btn">Cancel</button>
                             </div>
                         </form>

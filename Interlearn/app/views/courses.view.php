@@ -1,17 +1,20 @@
 <?php $this->view("includes/header");?>
 <?php $this->view("includes/nav");?>
 
-<div class="recp_crs_container">
-<?php $this->view("includes/sidebar_recep");?>
-    <div class="recp_crs_content">
+<div class="guest_crs_container">
+    <div class="guest_crs_content">
         <!-- <div class="recp_crs_butn">
             <a href="<?=ROOT?>/receptionist/addCourse">
                 <button class="recp_crs_btn">Add new course</button>
             </a>
         </div><br><br> -->
- 
+        <div class="class-search-box">
+            <input type="text" name="class-search" id="class-search" onkeyup="search_classes()" placeholder="Search for subject name..">
+        </div>
+
         <?php if(!empty($sums)):?>
             <?php foreach($sums as $sum):?>
+                <div class="empty-class-message" id="empty-class-message"></div>
         <div class="guest_crs_rectangle">
         
             <div class="guest-view-image">
@@ -59,4 +62,6 @@
         
     </div>
 </div>
+<script defer src="<?=ROOT?>/assets/js/courseSearch.js?v=<?php echo time(); ?>"></script>
+
 <?php $this->view("includes/footer");?>

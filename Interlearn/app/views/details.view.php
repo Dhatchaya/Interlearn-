@@ -141,21 +141,34 @@ $sub_id = $_GET['id'];
                 <h3>Enroll Me</h3><br>
                 <form action="" method="post" class="up-profile">
                 <input type="hidden" value="" id="modal_subject_id" name="subject_id">
-                    <label for="teacherID">Teacher ID: </label><br>
+                <div>
+                <label for="teacherID">Teacher ID: </label><br>
                     <select name="teacher" id="teacher" class="recp_ann_clz" onchange="getDateTime('<?php echo $subject_id?>')">
-                        <option value="teacher" selected>--Select teacher name--</option>
+                        <option value="" selected>--Select teacher name--</option>
                         <?php if(!empty($distinctTeachers)):?>
                         <?php foreach($distinctTeachers as $teacher):?>
                         <option value="<?=esc($teacher->teacher_ID)?>"><?=esc($teacher->teacherName)?></option>
                         <?php endforeach;?>
                         <?php endif?>
-                    </select><br>
-
+                    </select>
+                    <?php if(!empty($errors)):?>
+                <p class="warning"><?=$errors['teacher'];?></p>
+                <?php endif;?>
+                </div>
+                    <br>
+                    <div>
                     <label for="DayTime">Day & Time: </label><br>
                     <select name="day" id="day" class="recp_ann_clz">
-                        <option value="day" selected>--Select day and time--</option>
-                    </select><br><br>
-                    <button name="enroll-me" type="submit" class="recp_det_btn" onclick="enroll_student()">Enroll</button>
+                        <option value="" selected>--Select day and time--</option>
+                    </select>
+                    <?php if(!empty($errors)):?>
+                <p class="warning"><?=$errors['day'];?></p>
+                <?php endif;?>
+                    <br>
+                    <button name="enroll-me" type="submit" id="enroll-std" class="recp_det_btn" onclick="enroll_student()">Enroll</button>
+                    </div>
+                    <br><br><br>
+
 
                 </form>
             </div>

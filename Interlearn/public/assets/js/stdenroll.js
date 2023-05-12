@@ -1,3 +1,9 @@
+if ( window.history.replaceState ) {
+
+    window.history.replaceState( null, null, window.location.href );
+  }
+
+
 // Get the modal
 const modal = document.getElementById("profileModal");
 
@@ -76,8 +82,11 @@ function getDateTime(subject) {
 
 }
 
-
-function enroll_student(){
+var enroll = document.getElementById('enroll-std');
+enroll.addEventListener('submit',function(event){
     const day = document.getElementById("day").value;
     const selectedTimeSlot = document.getElementById("day").value;
-}
+    event.preventDefault();
+
+    console.log(day, selectedTimeSlot);
+});
