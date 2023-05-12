@@ -3,7 +3,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
+<?php $this->view("includes/header");?>
 <head>
     <title><?=$title?></title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user-account.css?v=<?php echo time(); ?>">
@@ -13,7 +13,12 @@
 </head>
 
 <body style="background-color: #FFFFFF;">
+<div class="main-body-div">
+<?php $this->view("includes/sidebar")?>
 
+
+
+<div class="top-to-bottom-content">
 
     <?php $this->view("includes/nav"); ?>
 
@@ -143,6 +148,8 @@
 
 </div>
 
+</div>
+</div>
 
     <div class="footer-support"></div>
 

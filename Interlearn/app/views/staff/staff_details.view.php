@@ -50,13 +50,13 @@
                                 <?= esc($row->last_name) ?>
                             </div>
                             <div class="head2-content-std">
-                                <a href="<?=ROOT?>/receptionist/allprofiles/student/<?=esc($row->uid)?>">
+                                <a href="<?=ROOT?>/receptionist/allprofiles/staff/<?=esc($row->uid)?>">
                                     <button class="view_enq_btn">View</button>
                                 </a>
                          
                            
 
-                           <button class="view_enq_btn remove-btn" data-student-id="<?= $row->studentID?>">Delete</button>
+                           <!-- <button class="view_enq_btn remove-btn" data-student-id="<?= $row->studentID?>">Delete</button> -->
               
                          
                             </div>
@@ -71,22 +71,7 @@
                 <?php endif; ?>
 
             </div>
-            <div class="bank-payment-form-popup remove-staff-popup">
-        <div class="remove-employee-dialog-box">
-            <label class="ask" for="">Are you sure to remove this Student....?</label>
-            <div class="btn-container">
-                <button  onclick="btnyes(this);" class="yes">Yes</button>
-                <button class="no">No</button>
-            </div>
-        </div>
-        <div class="success-message">
-            <label class="ask" for="refresh">Successfully removed the Student</label>
-            <br>
-            <div class="btn-container ">
-                <button onclick="refreshPage()" class="refresh"> click to refresh</button>
-            </div>
-        </div>
-    </div>
+
         </div>
 
     </div>

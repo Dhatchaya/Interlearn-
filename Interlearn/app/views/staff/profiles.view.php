@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-    <title><?=$title?></title>
+    <title>Profiles</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user-account.css?v=<?php echo time(); ?>">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -14,6 +14,23 @@
 
 <body style="background-color: #FFFFFF;">
 
+
+<div class="main-body-div">
+<?php if(Auth::getrole() == "Receptionist"):?>
+        <?php $this->view("includes/sidebar_recep");?>
+<?php else:?>
+        <?php  if(Auth::getrole() == "Manager"):?>
+            <?php $this->view("includes/sidebar_man"); ?>
+
+              
+
+<?php endif;?>
+<?php endif;?>
+
+
+
+
+<div class="top-to-bottom-content">
 
     <?php $this->view("includes/nav"); ?>
 
@@ -114,7 +131,8 @@
     </form>
 
 </div>
-
+</div>
+</div>
 
 <?php $this->view("includes/footer");?>
 

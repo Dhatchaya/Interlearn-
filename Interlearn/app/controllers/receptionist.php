@@ -26,6 +26,7 @@ class Receptionist extends Controller
         if($action=="student"){
             $details = $student->studentConnectCourse(['uid'=>$uid],'studentID');
             $data['userData']=$details;
+ 
             $this->view('student/profiles',$data);
         }
         if($action=="staff"){

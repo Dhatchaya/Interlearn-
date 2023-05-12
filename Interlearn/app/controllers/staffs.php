@@ -31,7 +31,7 @@ class Staffs extends Controller
         $staff = new Staff();
         $details = $staff->joinstudentUser([],'first_name','asc');
         $data['rows']=$details;
-        $this->view('staff/student_details',$data);
+        $this->view('staff/staff_details',$data);
     }
     public function myprofile($action=null)
     {

@@ -844,7 +844,7 @@ border-radius: 41px;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 3rem;
-    background-color: var(--secondary-color);
+    background-color: var(--secondary-color)
     color: var(--primary-color);
    
 }

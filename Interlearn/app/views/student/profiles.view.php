@@ -15,6 +15,23 @@
 <body style="background-color: #FFFFFF;">
 
 
+<div class="main-body-div">
+<?php if(Auth::getrole() == "Receptionist"):?>
+        <?php $this->view("includes/sidebar_recep");?>
+<?php else:?>
+        <?php  if(Auth::getrole() == "Manager"):?>
+            <?php $this->view("includes/sidebar_man"); ?>
+
+              
+
+<?php endif;?>
+<?php endif;?>
+
+
+
+
+<div class="top-to-bottom-content">
+
     <?php $this->view("includes/nav"); ?>
 
 
@@ -29,7 +46,7 @@
 
             <div class="profile-data " style="height:15rem; display: flex;">
 
-
+           
                     <div class="circle-container">
                         <label class="user-data-label" for="display-picture">PROFILE PICTURE</label>
                         <img id="dp" class="display-picture" src="<?= ROOT ?>/uploads/images/<?=esc($userData[0]->display_picture)?>" alt="No profile picture" />
@@ -117,6 +134,8 @@
 
     </form>
 
+</div>
+</div>
 </div>
 
 <?php $this->view("includes/footer");?>

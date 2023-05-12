@@ -52,7 +52,7 @@ class Student extends Controller
 
             if($_SERVER['REQUEST_METHOD'] == "POST") {
                 header('Content-Type: application/json; charset=utf-8');
-
+              
                 $user = new User();
 
                 $data = $_POST;
@@ -101,6 +101,7 @@ class Student extends Controller
 
                 $response1 = $changeProfile->updateProfiles(['uid' => $data['uid']], $data);
                 $response2 = $user->updateProfiles(['uid' => $data['uid']], $data);
+             
                 if ($response1 && $response2) {
                     $response = array('status' => 'success');
 

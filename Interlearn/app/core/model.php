@@ -239,7 +239,7 @@ public function ForgotPW($data){
 	}
     public function updateProfiles($cred=[],$data=[])
     {
-
+      
         //remove unwanted columns
         if(!empty($this->allowed_columns))
         {

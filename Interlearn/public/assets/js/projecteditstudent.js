@@ -118,7 +118,7 @@ saveBtn.addEventListener('click', (e) => {
         last_name: lName.value.trim() !== '' ? lName.value : null,
         email: email.value.trim() !== '' ? email.value : null,
         Addressline1: address.value.trim() !== '' ? address.value : null,
-        mobile_no: mobileNo.value.trim() !== '' ? mobileNo.value : null,
+        mobile_number: mobileNo.value.trim() !== '' ? mobileNo.value : null,
         parent_name: p_name.value.trim() !== '' ? p_name.value : null,
         parent_email: p_email.value.trim() !== '' ? p_email.value : null,
         parent_mobile: p_mobile.value.trim() !== '' ? p_mobile.value : null,
