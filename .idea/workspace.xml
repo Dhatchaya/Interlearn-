@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="eeccaff2-1398-4ed1-939e-7255de6e7aca" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/controllers/student.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/controllers/student.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/core/model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/core/model.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +73,7 @@
       <workItem from="1683743335940" duration="928000" />
       <workItem from="1683819517844" duration="5000" />
       <workItem from="1683870791320" duration="7000" />
-      <workItem from="1683870799741" duration="379000" />
+      <workItem from="1683870799741" duration="1199000" />
     </task>
     <servers />
   </component>

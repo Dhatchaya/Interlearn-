@@ -237,6 +237,48 @@ public function ForgotPW($data){
         }
 
 	}
+    public function updateProfiles($cred=[],$data=[])
+    {
+
+        //remove unwanted columns
+        if(!empty($this->allowed_columns))
+        {
+            foreach ($data as $key => $value) {
+                if(!in_array($key, $this->allowed_columns))
+                {
+                    unset($data[$key]);
+                }
+                if(empty($value)||$value=="null")
+                {
+                    unset($data[$key]);
+                }
+            }
+        }
+
+        $id = array_keys($cred);
+        $keys = array_keys($data);
+        $query = "update ".$this->table." set ";
+
+        foreach ($keys as $key) {
+            $query .= $key ."=:" . $key . ",";
+
+        }
+
+        $query = trim($query,",");
+        $query .= " where ".$id[0]." =:".$id[0];
+
+        $data[$id[0]] = array_values($cred)[0] ;
+
+        $result=$this->update_table($query,$data);
+
+        if($result){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
     public function joinDiscuss($data=[],$orderby=null,$order='desc'){
         $query= "SELECT discussion.*, forum.course_id, users.username, users.display_picture from $this->table INNER JOIN forum on forum.forum_id=discussion.forum_id INNER JOIN users on users.uid =discussion.uid";
         $query .= " order by $orderby  $order";
