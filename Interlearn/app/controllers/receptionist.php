@@ -398,7 +398,8 @@ class Receptionist extends Controller
         }
 
         if($action == 'removeCourse'){
-            $result2 = $course->deleteCourse($_GET['course_id']);
+            // show($_POST);die;
+            $result2 = $course->deleteCourse($_POST['course_id']);
 
             echo json_encode($result2);
             exit;
@@ -466,6 +467,7 @@ class Receptionist extends Controller
         }
 
         if($action == 'checkAvailableEdit'){
+            // show($_POST);die;
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
                 $result = $course -> getTimeEdit($_POST['teacher_id'], $_POST['day'],$_POST['course_id']);
