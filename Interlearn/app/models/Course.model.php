@@ -40,13 +40,13 @@ class Course extends Model
             {
                 $this -> error['subject'] = "Please provide a name for the subject";
             }
-            if(empty($data['grade']))
+            if(empty($data['grades']))
             {
-                $this -> error['grade'] = "Please select a grade";
+                $this -> error['grades'] = "Please select a grade";
             }
-            if(empty($data['language_medium']))
+            if(empty($data['mediums']))
             {
-                $this -> error['language_medium'] = "Please select a language_medium";
+                $this -> error['mediums'] = "Please select a language_medium";
             }
             if(empty($data['day']))
             {
@@ -413,4 +413,23 @@ class Course extends Model
         }
     }
 
+    public function CourseStaffSubject($data= null){
+        
+        $keys = array_keys($data);
+        $query = "SELECT c.course_id, st.first_name, s.subject, s.grade from course c 
+        INNER JOIN staff st ON st.emp_id=c.teacher_ID
+        INNER JOIN  subject s ON s.subject_id = c.subject_id where ";
+
+
+        foreach($keys as $key){
+            $query .= $key. " =:".$key." && ";
+        }
+        $query = trim($query,"&& ");
+        $res = $this -> query($query,$data);
+
+        if(is_array($res)){
+            return $res;
+        }
+        return false;     
+    }
 }

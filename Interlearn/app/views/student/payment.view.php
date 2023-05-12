@@ -356,7 +356,7 @@
       </div>
     </div>
   </div>
-
+  <div class="footer-support"></div>
 
   <footer class="footer">
     <div class="container">

@@ -42,6 +42,7 @@ let availableOptions = [];
 let correctAnswers = 0;
 let attempt = 0;
 let totalMarks = 0;
+let MaxPoints = 0;
 
 //set duration -------------------------------------------------------------------------------//
  // 5 minutes in seconds
@@ -143,9 +144,12 @@ function getNewQuestion() {
 function getResult(Element) {
     const id = parseInt(Element.id);
     // console.log(currentQuestion.options[id].marks);
-
+    // console.log(currentQuestion.mark);
+    console.log('hi');
     totalMarks = totalMarks + currentQuestion.options[id].marks * currentQuestion.mark;
-
+    // MaxPoints = MaxPoints + currentQuestion.mark;
+    // console.log(MaxPoints);
+    console.log(currentQuestion.options[id].marks*currentQuestion.mark/currentQuestion.options[id].marks);
     // its clicked as answer
     Element.classList.add('answered');
 
@@ -273,7 +277,7 @@ function tryAgainQuiz() {
 
     resetQuiz();
     StartQuiz();
-
+    
 }
 // window.onload = function () {
 

@@ -65,8 +65,8 @@ xhr.onload = () => {
             quiz.push(question);
         });
        timeRemaining = data[0].duration*60;
-
-
+       
+      
     } else {
         console.error('Error fetching quiz data');
     } 
@@ -81,10 +81,10 @@ function StartQuiz() {
 // Display the timer -------------------------------------------//
     const timerDisplay = document.querySelector('.timer');
     timerDisplay.innerHTML = formatTime(timeRemaining);
-
+    
     // Create the countdown timer
     const timer = setInterval(() => {
-
+    
     // const remainTime = document.querySelector('.remain-time');
     timeRemaining--;
     timerDisplay.innerHTML = formatTime(timeRemaining);

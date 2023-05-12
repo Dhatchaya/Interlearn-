@@ -105,7 +105,7 @@
                         <!-- <div> -->
                             <select name="format_time" id="format_time">
                                     <option value="minutes"> minutes </option>
-                                    <option value="hours"> hours </option>
+                                    <!-- <option value="hours"> hours </option> -->
                             </select>
                         <!-- </div> -->
                     </div>

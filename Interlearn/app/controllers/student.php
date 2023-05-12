@@ -170,7 +170,7 @@ class Student extends Controller
 
             // $data['materials'] = $subject -> studentCourseMaterials([],$id);
             $data['materials'] = $course_content -> studentCourseContent([],$id);
-
+            // show($data['materials']);die;
 
             // $data['files'] = $course_material -> downloadFiles([],$id);
 
@@ -189,7 +189,7 @@ class Student extends Controller
 
             if(!empty($_GET['file_id'])){
                 $fid = $_GET['file_id'];
-
+                echo $fid;die;
                 $result = $course_material -> downloadFiles([],$fid);
                 $filename = basename($_GET['file_id']);
                 $filepath = 'uploads/documents/'.$filename;
@@ -212,8 +212,7 @@ class Student extends Controller
             }
             
             $this->view('student/coursepg',$data);
-            exit;
-
+                
         }
         $data['rows']= $course->select([],'course_id');
         // show($user_id);die;
@@ -287,6 +286,10 @@ class Student extends Controller
 
             $exam = new ZExam();
             $data['rows'] = $exam->ExamResult(['course_id' => $id, 'studentID' => $student_id]);
+
+            $course = new Course();
+            $data['stdetails'] = $course->CourseStaffSubject(['course_id' => $id]);
+            // show($stdetail);die();
             // $this->view('student/view_progress', $newArray);
             $this->view('student/view_progress', $data);
             exit();
@@ -1008,11 +1011,9 @@ class Student extends Controller
         $each_s_p_h = $payment_history->eachStudentPaymentHistory($currentUserID);
 
 
-    if( $each_s_p_h){
         if($each_s_p_h[0] == null){
             $each_s_p_h = array();
         }
-    }
 
         $pending_payment_model = new Payment();
         $haveToPay = $pending_payment_model->eachStudentPendingPayment($currentUserID);

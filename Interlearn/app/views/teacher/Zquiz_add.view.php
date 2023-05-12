@@ -62,7 +62,7 @@
             </div>
             <span id="enable-disable-error" style="color:red"></span>
             <br>
-            <label for="time_period">Duration <strong> *</strong> : </label><br>
+            <label for="time_period">Duration in minutes<strong> *</strong> : </label><br>
             <div class="select_duration">
                 <!-- <div> -->
                     <input class="time_period" type=number name="duration" value="<?= set_value('duration')?>" placeholder="">
@@ -70,7 +70,7 @@
                 <!-- <div> -->
                     <select name="format_time" id="format_time">
                             <option value="minutes"> minutes </option>
-                            <option value="hours"> hours </option>
+                            <!-- <option value="hours"> hours </option> -->
                     </select>
                 <!-- </div> -->
             </div>

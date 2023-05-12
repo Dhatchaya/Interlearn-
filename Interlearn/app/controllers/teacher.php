@@ -323,7 +323,7 @@ class Teacher extends Controller
 
                     }
                     else {
-                        $data['errors']['file'] =  "Enter a file!";
+                        $data['errors']['file'] =  "Unknown error occured!";
 
                     }
                 }
@@ -336,7 +336,7 @@ class Teacher extends Controller
             // show($data['rows']);die;
             $data['sums']= $subject -> teacherCourse([],$user_id);
             // show($data['sums']);die;
-            // $data['courses'] = $subject -> CoursePage(['course_id' => $id],$user_id);
+            $data['courses'] = $subject -> CoursePage(['course_id' => $id],$user_id);
             $data['week_no'] = $week;
 
             $this->view('teacher/upload',$data);
@@ -372,7 +372,7 @@ class Teacher extends Controller
             //show($data['rows']);die;
             $data['sums']= $subject -> teacherCourse([],$user_id);
             //show($data['sums']);die;
-            // $data['courses'] = $subject -> CoursePage(['course_id' => $id],$user_id);
+            $data['courses'] = $subject -> CoursePage(['course_id' => $id],$user_id);
             $data['week_no'] = $week;
             // show($data['week_no']);die;
             //   show($data['courses']);die;
@@ -382,7 +382,7 @@ class Teacher extends Controller
         if($action == "text"){
             if(isset($_POST['submit']))
             {
-                if($course_content -> validateNote($_POST)){
+                // if($course_content -> validate($_POST)){
                     $cid = uniqid();
                     // $viewURL="http://localhost/Interlearn/public/teacher/course/submissions/".$id."/".$week."/?id=".$cid;
                     $viewURL = $_POST['content'];
@@ -399,17 +399,17 @@ class Teacher extends Controller
                     // $result = $course_url->insert($_POST);
                     echo "Note successfully published!";
                     header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
-                }
-                else{
-                    $data['errors'] =  $course_content->error;
+                // }
+                // else{
+                //     $data['errors'] =  $course_content->error;
 
-                }
+                // }
             }
             $data['rows']= $course->select([],'course_id');
             //show($data['rows']);die;
             $data['sums']= $subject -> teacherCourse([],$user_id);
             //show($data['sums']);die;
-            // $data['courses'] = $subject -> CoursePage(['course_id' => $id],$user_id);
+            $data['courses'] = $subject -> CoursePage(['course_id' => $id],$user_id);
             $data['week_no'] = $week;
             // show($data['week_no']);die;
             //   show($data['courses']);die;
@@ -1050,6 +1050,9 @@ class Teacher extends Controller
             if(isset($_GET['qnum'])) {
                 $qnum = $_GET['qnum'];
             }
+            if(isset($_GET['quiznum'])) {
+                $quiznum = $_GET['quiznum'];
+            }
 
 
             if($option == 'create') {
@@ -1122,7 +1125,7 @@ class Teacher extends Controller
 
                                 $_POST['view_URL'] = 'http://localhost/Interlearn/public/teacher/course/quiz/'.$id.'/'.$week.'/quiz_view/?id='.$quiz_id;
                                 $_POST['edit_URL'] =  'http://localhost/Interlearn/public/teacher/course/quiz/4/79/edit';
-                                $_POST['delete_URL'] = 'http://localhost/Interlearn/public/teacher/course/quiz/4/79/edit';
+                                $_POST['delete_URL'] = 'http://localhost/Interlearn/public/teacher/course/quiz/'.$id.'/'.$week.'/quiz_delete/?quiznum='.$quiz_id;
                                 // http://localhost/Interlearn/public/student/course/view/103
                                 $_POST['studentView_URL'] = 'http://localhost/Interlearn/public/student/quiz?quiz_id='.$quiz_id;
 
@@ -1196,7 +1199,7 @@ class Teacher extends Controller
                 // echo $qid;
 
                 $data['rows'] = $quiz->ViewQuiz(['quiz_id' => $qid]);
-                // show($result);die;
+                // show($data['rows']);die;
 
                 if(isset($_POST['edit_quiz'])){
                     // echo $_POST['duration'];die;
@@ -1208,6 +1211,14 @@ class Teacher extends Controller
                 }
 
                 $this->view('teacher/Zquiz_edit', $data);
+                exit();
+            }
+
+            if($option == 'quiz_delete') {
+                // $id = $_GET['id'];
+                // show($quiznum);die();
+                $result = $quiz->delete(['quiz_id'=>$quiznum]);
+                header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
                 exit();
             }
 
