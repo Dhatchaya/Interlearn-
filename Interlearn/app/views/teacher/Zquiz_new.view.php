@@ -1,14 +1,11 @@
-<?php $this->view("includes/header"); ?>
-<div class="main-body-div">
-    <?php $this->view("includes/sidebar_teach"); ?>
-    <div class="top-to-bottom-content">
-        <?php $this->view("includes/nav"); ?>
-        <div class="all-middle-content">
-<div class="mid-container2">
+<?php $this -> view('includes/header'); ?>
+<?php $this -> view('includes/nav'); ?>
+<div class="mid-container">
     <div class="quizz_left">
+        <?php $this -> view('includes/sidebar_teach'); ?>
     </div>
 
-    <div class="question_right2">
+    <div class="question_right">
             
         <h1>Create Question</h1>
         <p>Here, you can add the questions to the question bank </p>
@@ -144,6 +141,5 @@
         </form>   
     </div>
 </div>
-        </div></div></div>
 <script defer src="<?=ROOT?>/assets/js/validate_quiz.js?v=<?php echo time(); ?>"></script>
 <?php $this -> view('includes/footer'); ?>

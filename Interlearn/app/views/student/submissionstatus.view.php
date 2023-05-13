@@ -11,19 +11,16 @@
 
 
         <div class="std_sub_grd_content">
-            <h2><?=esc($assignment->title)?></h2><br>
-            <!-- <p style="font-size: large;"><?=esc($assignment->title)?></p><br> -->
-
-            <p> <?=esc($assignment->description)?> </p><br>
-            <a href="../../../../uploads/<?=esc($assignment->courseId)?>/assignments/<?=esc($assignment->assignmentId)?>/<?=esc($assignment->filename)?>"  class= "attachment-link">View Attachment</a>
-            <br><br>
+            <h2><?=esc($assignment->subject)?> - <?=esc($assignment->grade)?></h2><br>
+            <p style="font-size: large;"><?=esc($assignment->title)?></p><br>
+            <p> <?=esc($assignment->description)?> </p><br><br>
             <div class="std_subm_container2">
                 <div class="std_sub_grd_row1">
                     <p class="std_sub_grd_col1">assignment Status</p>
                     <?php if ($assignment->deadline<$assignment->modified):?>
                         <p class="warning">Late Submission</p>
                     <?php else:?>
-                    <p class="success"><?=esc($assignment->status)?></p>
+                    <p><?=esc($assignment->status)?></p>
                     <?php endif;?>
                 </div>
                 <!-- <div class="std_sub_grd_row2">
@@ -34,15 +31,9 @@
                     <p class="std_sub_grd_col1">Due Date</p>
                     <p><?=esc($assignment->deadline)?></p>
                 </div>
-
                 <div class="std_sub_grd_row1">
-                <p class="std_sub_grd_col1">Time Remaining</p>
-                    <?php if($assignment->overdue):?>
-                        <p class="std_sub_grd_col1 warning">Assignment overdue by </p>
-                        <p class="warning"><?=esc($assignment->remaining)?></p>
-                    <?php else:?>
+                    <p class="std_sub_grd_col1">Time Remaining</p>
                     <p><?=esc($assignment->remaining)?></p>
-                    <?php endif;?>
                 </div>
                 <div class="std_sub_grd_row2">
                     <p class="std_sub_grd_col1">Last Modified</p>
@@ -72,4 +63,4 @@
         </div>
     </div>
 
-    <?php $this->view("includes/footer");?>
+    <!-- <?php $this->view("includes/footer");?> -->

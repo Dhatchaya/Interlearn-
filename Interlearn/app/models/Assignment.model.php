@@ -97,20 +97,19 @@ class Assignment extends Model
     {
         $keys = array_keys($data);
 
-        $query = " select subject.subject, subject.grade,assignment_files.*,assignment.* FROM ".$this->table;
-        $query .= " INNER JOIN course on course.course_id =assignment.courseId INNER JOIN subject on course.subject_id= subject.subject_id left join assignment_files on";
-        $query .= " assignment.assignmentId = assignment_files.assignmentId where assignment.";
+        $query = " select assignment.*, subject.subject, subject.grade FROM ".$this->table;
+        $query .= " INNER JOIN course on course.course_id =assignment.courseId INNER JOIN subject on course.subject_id= subject.subject_id where ";
         foreach($keys as $key){
             $query .= $key. " =:".$key." && ";
         }
+    
 
     
         $query = trim($query,"&& ");
-
+        $query .= " order by $orderby  $order limit 1";
 
         $res = $this -> query($query,$data);
-
-
+      
         if(is_array($res)){
            return $res[0];
         }

@@ -16,7 +16,7 @@
 
     <div class="pro_Insright">
 
-    <a href="<?=ROOT?>/Instructor/course/progress/<?=esc($course_id)?>/1/add"><button class="home_myform_sbt">Add New Progress</button></a>
+    <a href="<?=ROOT?>/Instructor/course/progress/<?=esc($course_id)?>/1/add"><button class="home_myform_sbt">Add New Exam Results</button></a>
         <?php if(!empty($rows)):?>
         <div class="pro_view_container">
             <?php foreach($rows as $row):?>

@@ -1,24 +1,23 @@
-<?php $this->view("includes/header"); ?>
-<div class="main-body-div">
-    <?php $this->view("includes/sidebar_teach"); ?>
-    <div class="top-to-bottom-content">
-        <?php $this->view("includes/nav"); ?>
-        <div class="all-middle-content">
+<?php $this -> view('includes/header'); ?>
+<?php $this -> view('includes/nav'); ?>
 <div class="mid-container">
     <div class="quizz_left">
+        <?php $this -> view('includes/sidebar_teach'); ?>
     </div>
     <div class="question_right">
         <h1>Add a Quiz</h1>
         <p>Add the time slots and confirmation details</p>
         <br>
         
-        <form name="confirmForm" action="" method="POST" onsubmit="return validateConfirmForm();" id="my-form">
+        <form name="confirmForm" action="" method="POST" onsubmit="" id="my-form">
 
             <label for="quiz_name">Quiz name <strong> *</strong> : </label>
             <input class="home_cnt_inp" type=text name="quiz_name" value="<?= set_value('quiz_name')?>" placeholder="Eg : sample quiz">
-        
+            <span id="name-error" style="color:red"></span><br>
+
             <label for="question_total">Quiz Description <strong> *</strong> : </label>
             <textarea class="home_cnt_inp" id="message" name="quiz_description" placeholder="Insert a quiz description" style="height:50px" value="<?= set_value('quiz_description')?>"><?= set_value('quiz_description')?></textarea>
+            <br><span id="descriptions-error" style="color:red"></span>
 
             <div class="enable_disable">
                 <div class="enable">
@@ -28,7 +27,7 @@
                         <span style="color:red"><?=$question_error?></span>
                     <?php endif;?>
                 </div>
-                <span id="total-error" style="color:red"></span>
+                
                 <div class="enable">
                     <label for="time_period">Total Marks <strong> *</strong> : </label>
                     <input class="time_period" type=number name="total_points" value="<?= set_value('total_points')?>" placeholder="">
@@ -43,9 +42,11 @@
                         <?php endif;?>
                     </select>
                 </div>
-                <span id="points-error" style="color:red"></span>
+                
+                <!-- <span id="bank-error" style="color:red"></span> -->
             </div>
-
+            <span id="total-error" style="color:red"></span>
+            <span id="points-error" style="color:red"></span>
             <div class="enable_disable">
                 <!-- <div class="enable">
                     <label for="time_period">Quizz Date<strong> *</strong> : </label>
@@ -79,11 +80,10 @@
             </div>
             <span id="duration-error" style="color:red"></span>
             <br><br>
-            <input  class = "home_sbtd" type="submit" value="Confirm">
+            <input  class = "home_sbtd" type="submit" value="Confirm" id="Myconfirm">
         </form>
            
     </div>
 </div>
-        </div></div></div>
 <script defer src="<?=ROOT?>/assets/js/validate_quiz.js?v=<?php echo time(); ?>"></script>
 <?php $this -> view('includes/footer'); ?>
