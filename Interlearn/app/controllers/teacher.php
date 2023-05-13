@@ -1201,16 +1201,13 @@ class Teacher extends Controller
                 $data['rows'] = $quiz->ViewQuiz(['quiz_id' => $qid]);
                 // show($data['rows']);die;
 
-                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                    // show($_POST);die;
-                    // if(isset($_POST['edit_quiz'])){
-                        // echo $_POST['duration'];die;
-                        // echo $_POST['id'];die;
-                        $qid = $_GET['id'];
-                        // echo $qid;die;
-                        // echo $_POST['quiz_name'];die;
-                        $result = $quiz->UpdateQuiz($qid, $_POST['duration'], $_POST['quiz_description'], $_POST['quiz_name'], $_POST['total_points'], $_POST['enable_time'], $_POST['disable_time'], $_POST['format_time']);
-                    // }
+                if(isset($_POST['edit_quiz'])){
+                    // echo $_POST['duration'];die;
+                    // echo $_POST['id'];die;
+                    $qid = $_GET['id'];
+                    // echo $qid;die;
+                    // echo $_POST['quiz_name'];die;
+                    $result = $quiz->UpdateQuiz($qid, $_POST['duration'], $_POST['quiz_description'], $_POST['quiz_name'], $_POST['total_points'], $_POST['enable_time'], $_POST['disable_time'], $_POST['format_time']);
                 }
 
                 $this->view('teacher/Zquiz_edit', $data);
@@ -1255,14 +1252,19 @@ class Teacher extends Controller
         if($action == "forum")
         {
             $mainForum = new mainForum();
+            $user = new user();
+            $staff = new staff();
             $data['course']  = $subject -> coursedetails(['course_id'=>$id]);
 
             if($_SERVER["REQUEST_METHOD"]=="POST"){
+                if($mainForum -> validate($_POST)){
+                $userid = Auth::getuid();
+                $row = $staff-> first(["uid"=>$userid],'emp_id');
                 $mainforum_id = uniqid('F',true);
                 $_POST['mainforum_id']=$mainforum_id;
                 $_POST['course_id']= $id;
-
-                $editURL = "#";
+                $_POST['emp_id']=$row->emp_id;
+                $editURL = "http://localhost/Interlearn/public/forums/forumedit/view/".$id."/?main=".$mainforum_id;
                 $viewURL="http://localhost/Interlearn/public/forums/".$id."/".$week."/?main=".$mainforum_id;
                 $deleteURL="http://localhost/Interlearn/public/forums/deleteMain?id=".$mainforum_id;
                 $cid = uniqid();
@@ -1282,27 +1284,18 @@ class Teacher extends Controller
                     header('location:http://localhost/Interlearn/public/forums/'.$id.'/'.$week.'/?main='.$mainforum_id);
                 }
             }
-
-            $this->view('teacher/mainForum',$data);
-        }
-
-        if($action == "progress") {
-
-            if($option == 'view') {
-
-                $results = new ZResult();
-                $exam_id = $_GET['overall'];
-                $data['rows2'] = $results->ResultForStudent($exam_id);
-                $this->view('teacher/myview_progress', $data);
-                exit();
+            else{
+               
+                $data['errors']= $mainForum->error;
+            
             }
-            $data['course_id'] = $id;
-            $exam = new ZExam();
-            $data['rows'] = $exam->ExamForCourse(['course_id'=>$id]);
-            $this->view('teacher/progress', $data);
-        }
-    }
 
+        }
+        
+        $this->view('teacher/mainForum',$data);
+        exit;
+    }
+    }
     // public function upload()
     // {
     //     if(!Auth::is_teacher()){
@@ -1415,16 +1408,15 @@ class Teacher extends Controller
     //     $this->view('teacher/upload',$data);
     // }
 
-    // public function progress()
-    // {
-    //     if(!Auth::is_teacher()){
-    //         redirect('home');
-    //        exit;
-    //     }
+    public function progress()
+    { 
+        if(!Auth::is_teacher()){
+            redirect('home');
+           exit;
+        }
 
-
-    //     $this->view('teacher/progress');
-    // }
+        $this->view('teacher/progress');
+    }
 
 
 

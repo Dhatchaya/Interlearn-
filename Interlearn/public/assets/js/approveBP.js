@@ -17,25 +17,26 @@ approveBtn.addEventListener('click', function() {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      BankPaymentID: bankPaymentID,
-      PaymentID: PaymentID.innerHTML,
+      NameOnSlip: NameOnSlip.innerHTML,
+      StudentID: studentID.innerHTML,
+      Address: Address.innerHTML,
+      CourseID: CourseName.innerHTML,
+      NIC: NIC.innerHTML,
+      BPAmount: BPAmount.innerHTML,
+      BPDate: BPDate.innerHTML,
+      BankName: BankName.innerHTML,
+      BranchName: BranchName.innerHTML,
+      ChequeNumber: ChequeNumber.innerHTML,
+      BankPaymentID: bankpaymentID.value
     }),
   })
   .then(response => response.text())
   .then(data => {
     console.log(data);
-    let ApprovedDiv = document.getElementById(bankPaymentID);
-    ApprovedDiv.style.backgroundColor = '#98D8AA';
-    ApprovedDiv.style.color = 'black';
-    // this.disabled = true;
-
-
   })
   .catch(error => console.log(error));
 });
 });
-
-
 declineBtn.addEventListener('click', function() {
   fetch('/Interlearn/public/receptionist/declineBP', {
     method: 'POST',
@@ -44,15 +45,16 @@ declineBtn.addEventListener('click', function() {
     },
     body: JSON.stringify({
       BankPaymentID: bankPaymentID,
-      PaymentID: PaymentID.innerHTML,
     }),
   })
   .then(response => response.text())
   .then(data => {
+    console.log(data);
     let declinedDiv = document.getElementById(bankPaymentID);
     declinedDiv.style.backgroundColor = '#D21312';
     declinedDiv.style.color = 'white';
-    // declinedDiv.approveBtn.disabled = true;
+    this.disabled = true;
+    approveBtn.disabled = true;
   })
   .catch(error => console.log(error));
 });

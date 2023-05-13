@@ -3244,8 +3244,7 @@ width: 45vw;
 .teacher_crs_tophead{
     text-align: right;
     width: 70vw;
-    padding-top: 1%;
-    margin-right: 3%;
+    padding-top: 5%;
 }
 
 .teacher_crs_tophead a{
@@ -3907,7 +3906,6 @@ transition: width 1s, height 1s;
 /* quiz page */
 
 .mid-container {
-    width: 100%;
     display:flex;
     flex-direction: row;
     /* justify-content: space-around; */
@@ -5790,8 +5788,8 @@ flex-direction: row;
     transform: scale(1.02);
 }
 .std-enroll-content{
-    margin-top: 7%;
-    margin-left: 3%;
+    margin-top: 5%;
+    margin-left: 10%;
     width: 85vw;
 }
 .std-enroll-content-logged{

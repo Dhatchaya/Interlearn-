@@ -1202,6 +1202,10 @@ class Receptionist extends Controller
 
 
 
+        if(date("d") == "01"){
+            addNewPendingPayments();
+        }
+
 
         $payment_model = new Payment();
         $payment_history = $payment_model->getAll();
@@ -1213,32 +1217,32 @@ class Receptionist extends Controller
         $this->view('receptionist/receptionist-payments',  ['bankPayments' => $BankPaymentData, 'transactions' => $payment_history]);
     }
 
-    // public function addNewPendingPayments(){
-    //     if (!Auth::is_receptionist()) {
-    //         redirect('home');
-    //     }
-    //     $currentMonth = date('m');
-    //     $months = array(
-    //         "01" => "January",
-    //         "02" => "February",
-    //         "03" => "March",
-    //         "04" => "April",
-    //         "05" => "May",
-    //         "06" => "June",
-    //         "07" => "July",
-    //         "08" => "August",
-    //         "09" => "September",
-    //         "10" => "October",
-    //         "11" => "November",
-    //         "12" => "December"
-    //     );
+    public function addNewPendingPayments(){
+        if (!Auth::is_receptionist()) {
+            redirect('home');
+        }
+        $currentMonth = date('m');
+        $months = array(
+            "01" => "January",
+            "02" => "February",
+            "03" => "March",
+            "04" => "April",
+            "05" => "May",
+            "06" => "June",
+            "07" => "July",
+            "08" => "August",
+            "09" => "September",
+            "10" => "October",
+            "11" => "November",
+            "12" => "December"
+        );
 
-    //     $month = $months[$currentMonth];
-    //     $student = new StudentCourse();
-    //     $student->getAll($month);
+        $month = $months[$currentMonth];
+        $student = new StudentCourse();
+        $student->getAll($month);
 
-    //     exit;
-    // }
+        exit;
+    }
 
 
     public function nextCashPayment()
@@ -1272,17 +1276,40 @@ class Receptionist extends Controller
 
         $data = json_decode(file_get_contents("php://input"), true);
 
+        $currentMonth = date('m');
+        $months = array(
+            "01" => "January",
+            "02" => "February",
+            "03" => "March",
+            "04" => "April",
+            "05" => "May",
+            "06" => "June",
+            "07" => "July",
+            "08" => "August",
+            "09" => "September",
+            "10" => "October",
+            "11" => "November",
+            "12" => "December"
+        );
 
-        $PaymentID = $data['PaymentID'];
-        $BankPaymentID = $data['BankPaymentID'];
+        $data['month' ]= $months[$currentMonth];
+             $data['payment_status'] = '1';
+             $data['method'] = 'bank deposit';
 
 
             $approveBP = new Payment();
-            $res =$approveBP->approveBP($PaymentID);
-            if($res == 'success'){
+            $return = $approveBP->approveBP($data);
+
+            if($return == "success"){
+            
                 $removefromBankPayment = new BankPayment();
-                $respond = $removefromBankPayment->removefromBankPayment($BankPaymentID);
+                $respond = $removefromBankPayment->removefromBankPayment($data['BankPaymentID']);
             }
+
+            // $removefromBankPayment = new BankPayment();
+            // $respond = $removefromBankPayment->removefromBankPayment($data['BankPaymentID']);
+
+
         echo json_encode($respond);
     }
 
@@ -1294,17 +1321,11 @@ class Receptionist extends Controller
         $data = json_decode(file_get_contents("php://input"), true);
 
 
+             $data['method'] = 'bank deposit';
+
             $removefromBankPayment = new BankPayment();
             $respond = $removefromBankPayment->declined($data['BankPaymentID']);
 
-            if($respond == 'success'){
-                $declinedBP = new Payment();
-                $respond =$declinedBP->declinedBP($data['PaymentID']);
-            }
-
-            else{
-                $respond = 'error';
-            }
 
         echo json_encode($respond);
     }
@@ -1347,7 +1368,7 @@ class Receptionist extends Controller
         $getEachBPdata = new BankPayment();
         $BankPaymentData = $getEachBPdata->getEachBPdata($data['bankPaymentID']);
 
-        header('Content-Type: application/json');// set the content type to JSON
+        header('Content-Type: application/json'); // set the content type to JSON
         echo json_encode($BankPaymentData);
     }
 
@@ -1436,7 +1457,11 @@ class Receptionist extends Controller
         
      }
      if($action == "delete"){
+        $user = new User();
+        $row = $tempStudent -> first(['studentID'=>$id],'uid');
+        $result2 = $user -> delete(['uid'=>$row->uid]);
         $result = $tempStudent -> delete(['studentID'=>$id]);
+        header("Location:http://localhost/Interlearn/public/receptionist/registration");
      }
      $this->view('receptionist/Registrations',$data);
     }

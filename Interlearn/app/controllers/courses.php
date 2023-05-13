@@ -240,7 +240,7 @@ public function enrollme($id=null){
         $data = [];
         $subject = new Subject();
         if($enroll_req -> validate($_POST)){
-
+         
             $teacher_id = $_POST['teacher'];
             $_POST['emp_id'] = $teacher_id;
             // show($_POST);die;

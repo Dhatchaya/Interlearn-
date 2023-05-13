@@ -22,7 +22,7 @@ class Database{
         {
            
             $check = $stmt -> execute($data);
-         
+   
             if($check){
              
                 if($type == 'object'){

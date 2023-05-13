@@ -116,8 +116,8 @@ class Model extends Database {
                 $mail -> Host = 'smtp.gmail.com';
                 $mail->Port = 465;
                 $mail -> SMTPAuth = true;
-                $mail -> Username ='add interlearn email';
-                $mail -> Password = 'add your password';
+                $mail -> Username ='interlearnsl@gmail.com';
+                $mail -> Password = 'qeffokfsaebqwngl';
                 $mail->SMTPSecure ='ssl';
                 $mail->SMTPOptions = array(
                     'ssl' => array(
@@ -162,8 +162,8 @@ public function ForgotPW($data){
             $mail -> Host = 'smtp.gmail.com';
             $mail->Port = 465;
             $mail -> SMTPAuth = true;
-            $mail -> Username ='add interlearn email';
-            $mail -> Password = 'add your password';
+            $mail -> Username ='interlearnsl@gmail.com';
+                $mail -> Password = 'qeffokfsaebqwngl';
             $mail->SMTPSecure ='ssl';
             $mail->SMTPOptions = array(
                 'ssl' => array(
@@ -732,7 +732,7 @@ public function ForgotPW($data){
         // $query .= " WHERE course.course_id = $id ";
         // $query .= " group by course_material.course_material";
          $query = "SELECT course_material.*,course_content.*,staff.role FROM course_content ";
-         $query .= " LEFT JOIN course_material ON course_content.cid = course_material.cid LEFT JOIN staff ON staff.emp_id = course_content.emp_id";
+         $query .= " LEFT JOIN course_material ON course_content.cid = course_material.cid INNER JOIN staff ON staff.emp_id = course_content.emp_id";
          $query .= " WHERE course_content.course_id = $id;";
         //var_dump($_SESSION);exit;
         //show($query);die;
