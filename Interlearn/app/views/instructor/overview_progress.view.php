@@ -89,10 +89,11 @@
             </div>
         </div>
         <div class="header_fixed">
+            <?php $overall = $_GET['overall']; ?>
             <table class="progress_tbl">
                 <thread>
                     <tr>
-                        <th>ID</th>
+                        <!-- <th>ID</th> -->
                         <th>Student Number</th>
                         <th>Marks</th>
                         <th>Actions</th>
@@ -104,7 +105,7 @@
                     <?php foreach($rows2 as $row):?>
                         
                     <tr>
-                        <td><?=esc($row->id)?></td>
+                        <!-- <td><?=esc($row->id)?></td> -->
                         <td><?=esc($row->studentID)?></td>
                         <td><?=esc($row->marks)?></td>
                         <td>
@@ -113,7 +114,7 @@
                                     <button onclick="toModal(<?=esc($row->marks)?>)">edit</button>
                                 </div>
                                 <div class="delete">
-                                    <a href="<?=ROOT?>/instructor/course/progress/<?=esc($course_id)?>/1/delete?qnum=<?=esc($row->id)?>"><button>delete</button></a>
+                                    <a href="<?=ROOT?>/instructor/course/progress/<?=esc($course_id)?>/1/delete?qnum=<?=esc($row->id)?>&&overview=<?php echo($overall) ?>"><button>delete</button></a>
                                 </div>
                             </div>
                             
