@@ -1,14 +1,11 @@
-<?php $this->view("includes/header"); ?>
-<div class="main-body-div">
-    <?php $this->view("includes/sidebar_teach"); ?>
-    <div class="top-to-bottom-content">
-        <?php $this->view("includes/nav"); ?>
-        <div class="all-middle-content">
+<?php $this -> view('includes/header'); ?>
+<?php $this -> view('includes/nav'); ?>
 <head>
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles5.css">
 </head>
-<div class="mid-container2">
+<div class="mid-container">
     <div class="quizz_left">
+        <?php $this -> view('includes/sidebar_teach'); ?>
     </div>
     <!-- <h1>hello</h1> -->
     <div class="question_right">
