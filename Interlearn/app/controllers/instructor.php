@@ -674,7 +674,7 @@ class Instructor extends Controller
                 // echo $json_data;
                 // show($newArray);
 
-                $data['rows2'] = $results->ResultForStudent($exam_id);
+                $data['rows2'] = $results->ResultForStudent(['exam_id'=>$exam_id]);
                 
                 $data['newArray'] = $newArray;
                 // show($data['newArray']);die;

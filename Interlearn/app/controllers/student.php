@@ -872,8 +872,7 @@ class Student extends Controller
                     'mark' => $row->question_mark,
                     'quiz_description' => $row->quiz_description,
                     'duration' => $row->duration,
-                    'disable_time' => $row->disable_time,
-                    'total_points' => $row->total_points
+                    'disable_time' => $row->disable_time
                 );
                 array_push($quiz, $question);
             }

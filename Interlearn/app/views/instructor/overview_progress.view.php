@@ -1,11 +1,5 @@
-<?php $this->view("includes/header"); ?>
-<div class="main-body-div">
-
-    <?php $this->view("includes/sidebar_ins"); ?>
-
-    <div class="top-to-bottom-content">
-        <?php $this->view("includes/nav"); ?>
-        <div class="all-middle-content"></div>
+<?php $this -> view('includes/header'); ?>
+<?php $this -> view('includes/nav'); ?>
 <head>
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles4.css">
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles6.css">
@@ -32,7 +26,7 @@
 </head>
 <div class="mid-container">
     <div class="quizz_left">
-
+        <?php $this -> view('includes/sidebar_ins'); ?>
     </div>
     <!-- <div class="quizz_right"> -->
         <!-- <a href=""><button>Add Question</button></a> -->
@@ -134,9 +128,6 @@
         </div>
         <!-- <p>Hello I'm all</p> -->
     </div>
-</div>
-</div>
-</div>
 </div>
 <script defer src="<?=ROOT?>/assets/js/progress_popup.js?v=<?php echo time(); ?>"></script>
 <!-- <script defer src="<?=ROOT?>/assets/js/progress.js?v=<?php echo time(); ?>"></script> -->

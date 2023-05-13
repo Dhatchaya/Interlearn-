@@ -1,20 +1,14 @@
-<?php $this->view("includes/header"); ?>
-<div class="main-body-div">
-
-    <?php $this->view("includes/sidebar_ins"); ?>
-
-    <div class="top-to-bottom-content">
-        <?php $this->view("includes/nav"); ?>
-        <div class="all-middle-content">
+<?php $this -> view('includes/header'); ?>
+<?php $this -> view('includes/nav'); ?>
 <head>
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles3.css">
 </head>
 <div class="mid-container">
     <div class="quizz_left">
-
+        <?php $this -> view('includes/sidebar_ins'); ?>
     </div>
 
-    <div class="pro_Insright">
+    <div class="question_right">
 
     <a href="<?=ROOT?>/Instructor/course/progress/<?=esc($course_id)?>/1/add"><button class="home_myform_sbt">Add New Progress</button></a>
         <?php if(!empty($rows)):?>
@@ -34,9 +28,6 @@
     </div>
 
     <!-- </div> -->
-</div>
-</div>
-</div>
 </div>
 
 <?php $this -> view('includes/footer'); ?>

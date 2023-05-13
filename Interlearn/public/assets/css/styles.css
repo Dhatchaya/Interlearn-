@@ -3244,7 +3244,8 @@ width: 45vw;
 .teacher_crs_tophead{
     text-align: right;
     width: 70vw;
-    padding-top: 5%;
+    padding-top: 1%;
+    margin-right: 3%;
 }
 
 .teacher_crs_tophead a{
@@ -3906,7 +3907,6 @@ transition: width 1s, height 1s;
 /* quiz page */
 
 .mid-container {
-    width: 100%;
     display:flex;
     flex-direction: row;
     /* justify-content: space-around; */

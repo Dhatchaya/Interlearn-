@@ -1,38 +1,67 @@
-<?php $this->view("includes/header"); ?>
-<div class="main-body-div">
-    <?php $this->view("includes/sidebar_teach"); ?>
-    <div class="top-to-bottom-content">
-        <?php $this->view("includes/nav"); ?>
-        <div class="all-middle-content">
+<?php $this->view("includes/header");?>
+<?php $this->view("includes/nav");?>
 
-<head>
-
-    <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles1.css">
-    <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles3.css">
-</head>
-<div class="mid-container">
-
-    <div class="do_quiz_rig">
-        <h1>Progess</h1>
-        <p>Here, you can view progresses of each exams </p>
-        <br>
-        <?php if(!empty($rows)):?>
-            <div class="pro_view_container">
-                <?php foreach($rows as $row):?>
-                <div class="progress">
-                    <h2><?=esc($row->exam_name)?></h2>
-                    <a href="<?=ROOT?>/Teacher/course/progress/<?=esc($course_id)?>/0/view?overall=<?=esc($row->exam_id)?>"><button>view</button></a>
+<div class="teacher_prg_container">
+<?php $this->view("includes/sidebar_teach");?>
+        <div class="teacher_prg_content">
+            <div class="teacher_prg_topstd">
+                <h2>Top Students</h2>
+                <div class="teacher_prg_std">
+                    <p class="teacher_prg_name">1. Dhatchaya Prabhakaran</p>
+                    <p class="teacher_prg_mark">98%</p>
                 </div>
-
-                <?php endforeach;?>
+                <div class="teacher_prg_std">
+                    <p class="teacher_prg_name">2. Gagana Samarasekara</p>
+                    <p class="teacher_prg_mark">97%</p>
+                </div>
+                <div class="teacher_prg_std">
+                    <p class="teacher_prg_name">3. Manoj Pavithra</p>
+                    <p class="teacher_prg_mark">96%</p>
+                </div>
+                <div class="teacher_prg_std">
+                    <p class="teacher_prg_name">4. Nisaf Ahamed</p>
+                    <p class="teacher_prg_mark">95%</p>
+                </div>
+                <div class="teacher_prg_std">
+                    <p class="teacher_prg_name">5. Danodya Supun</p>
+                    <p class="teacher_prg_mark">88%</p>
+                </div>
+                <div class="teacher_prg_std">
+                    <p class="teacher_prg_name">6. Viharsha Jayathilake</p>
+                    <p class="teacher_prg_mark">78%</p>
+                </div>
+                <div class="teacher_prg_std">
+                    <p class="teacher_prg_name">7. Kavindu Kaushika</p>
+                    <p class="teacher_prg_mark">75%</p>
+                </div>
+                <div class="teacher_prg_std">
+                    <p class="teacher_prg_name">8. Imasha Anjalee</p>
+                    <p class="teacher_prg_mark">72%</p>
+                </div>
+                <div class="teacher_prg_std">
+                    <p class="teacher_prg_name">9. Hashini DeSilva</p>
+                    <p class="teacher_prg_mark">65%</p>
+                </div>
+                <div class="teacher_prg_std">
+                    <p class="teacher_prg_name">10. Danodya Supun</p>
+                    <p class="teacher_prg_mark">64%</p>
+                </div>
             </div>
-
-            <?php else:?>
-            <h3>No records found!</h3>
-        <?php endif;?>
+            <div class="teacher_prg_viewmark">
+                <div class="teacher_prg_view">
+                    <div class="teacher_prg_mkinput">
+                        <label for="pmark">Enter Pass Mark: </label>
+                        <input type="text" class="teacher_prg_mktext">
+                    </div>
+                    <div>
+                        <button class="teacher_prg_btn">View</button>
+                    </div>
+                </div>
+                <div class="teacher_prg_loader">
+                    <p class="teacher_prg_perc">47.5%</p>
+                </div>
+            </div>
+            
+        </div>
     </div>
-</div>
-</div>
-</div>
-</div>
-<?php $this->view("includes/footer");?>
+    <?php $this->view("includes/footer");?>
