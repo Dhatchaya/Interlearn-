@@ -39,7 +39,7 @@
                         </tr>
    
                         <?php if(!empty($rows)):?>
-                            <!-- <?php show($rows);?> -->
+
                         <?php foreach($rows as $row):?>
                         <tr>
                             <td><?=esc($row->eid)?></td>
@@ -62,11 +62,13 @@
                             <td>
                         
                             <div class="enq_actions">
-                            <!-- <div class="enq_delete">
-                                <a href="<?=ROOT?>/receptionist/enquiry/delete/<?=esc($row->eid)?>">
-                                <button class="delete_enq_btn">Delete</button>
-                                </a>
-                                </div> -->
+                            <div class="enq_delete">
+                            <?php if($row->status== 'resolved'):?>
+
+                                <button class="delete_enq_btn"  onclick ="deletebtnclickrece(<?=esc($row->eid)?>);">Delete</button>
+
+                                </div>
+                            <?php endif;?>
                             <div class="enq_view">
                                 <a href="<?=ROOT?>/receptionist/enquiry/view/<?=esc($row->eid)?>">
                                 <button class="view_enq_btn">View</button>
@@ -118,9 +120,9 @@
                             
                                 <div class="enq_actions">
                                 <div class="enq_delete">
-                                <a href="<?=ROOT?>/receptionist/enquiry/delete/<?=esc($row->eid)?>">
-                                <button class="delete_enq_btn">Delete</button>
-                                </a>
+                                <!-- <a href="<?=ROOT?>/receptionist/enquiry/delete/<?=esc($row->eid)?>"> -->
+                                <button class="delete_enq_btn"  onclick ="deletebtnclickrece(<?=esc($row->eid)?>);">Delete</button>
+                                <!-- </a> -->
                                 </div>
                             <div class="enq_view">
                                 <a href="<?=ROOT?>/receptionist/enquiry/view/<?=esc($row->eid)?>">
@@ -194,7 +196,22 @@
             </div>
             <!-- end of tab content -->
         </div>
-        
+        <div class="bank-payment-form-popup remove-staff-popup">
+        <div class="remove-employee-dialog-box">
+            <label class="ask" for="">Are you sure to remove this Enquiry?</label>
+            <div class="btn-container">
+                <button   class="yes">Yes</button>
+                <button onclick="refresh()" class="no">No</button>
+            </div>
+        </div>
+        <div class="success-message">
+            <label class="ask" for="refresh">Successfully removed the Student</label>
+            <br>
+            <div class="btn-container ">
+                <button onclick="refresh()" class="refresh"> click to refresh</button>
+            </div>
+        </div>
+    </div>
     </div>  
     <div  id="overlay"></div>
     <script defer src="<?=ROOT?>/assets/js/enquiry.js?v=<?php echo time(); ?>">

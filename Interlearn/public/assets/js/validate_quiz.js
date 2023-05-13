@@ -100,7 +100,7 @@ const form = document.getElementById("my-form");
     if (enableTime >= disableTime) {
         // disable form submission or show error message
         document.getElementById("enable-disable-error").innerHTML = "Enable time should be lesser than  to disable time";
-        alert("Enable time should be lesser than to disable time");
+        // alert("Enable time should be lesser than to disable time");
         return false;
     }
     else {

@@ -2,7 +2,7 @@
 <?php $this -> view('includes/nav'); ?>
 <div class="mid-container">
     <div class="quizz_left">
-        <?php $this -> view('includes/sidebar_teach'); ?>
+        <?php $this -> view('includes/sidebar_ins'); ?>
     </div>
     <div class="question_right">
         <h1>Confirmation Path</h1>

@@ -4,14 +4,20 @@
                 <img src="http://localhost/Interlearn/public/assets/images/logo_bg_rm.png" alt="logo" class="sidebar-logo">
                 </div>
                 <div class="middle">
-                    
+
+
                         <div class="profile">
                             <a href="<?=ROOT?>/student/profile/view">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/profile.png" alt="profile"></br>
                             <span>Edit Profile</span>
                             </a>
                         </div>
-                    
+                        <div class="Home">
+                            <a href="<?=ROOT?>/student/home">
+                            <img src="<?=ROOT?>/assets/images/sidebar_icons/home.png" alt="profile"></br>
+                            <span>Home</span>
+                            </a>
+                        </div>
                    
                         <div class="dashboard">
                             <a href="<?=ROOT?>/student/course">

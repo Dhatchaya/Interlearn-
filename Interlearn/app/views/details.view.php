@@ -14,7 +14,33 @@
     <?php if (Auth::logged_in()): ?>
         <?php if(Auth::getrole() == "Student"):?>
             <?php $this->view("includes/nav");?>
-       <?php endif; ?>
+        <?php else:?>
+            <header class="staff_login_nav">
+            <div class="staff_login_nav-left">
+                <img src="<?=ROOT?>/assets/images/logo_bg_rm.png" alt="logo">
+            </div>
+            <div class="header_right">
+                <div class="login-nav" id="login-nav">
+                    <ul>
+                    <li class="nav-li"> <a href="<?=ROOT?>/home">Home</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <div class="loginas">
+                        <button class="dropbtn">Login as</button>
+                        <i class="material-icons">arrow_drop_down</i>
+                    </div>
+                    <div class="login-content">
+
+                    <li class="nav-li">  <a href="<?= ROOT ?>/login/student">Student</a></li>
+                    <li class="nav-li">  <a href="<?= ROOT ?>/login/staff">Staff</a></li>
+
+                    </div>
+                </div>
+            </div>
+        </header>
+    <?php endif; ?>
+
        <?php else:?>
             <header class="staff_login_nav">
             <div class="staff_login_nav-left">

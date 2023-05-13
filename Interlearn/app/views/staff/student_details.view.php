@@ -76,7 +76,7 @@
             <label class="ask" for="">Are you sure to remove this Student....?</label>
             <div class="btn-container">
                 <button  onclick="btnyes(this);" class="yes">Yes</button>
-                <button class="no">No</button>
+                <button onclick="refreshPage()" class="no">No</button>
             </div>
         </div>
         <div class="success-message">
