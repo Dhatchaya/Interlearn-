@@ -34,7 +34,7 @@
                                         <?php elseif ($sum->grade == 9) : ?>
                                             <img src="<?= ROOT ?>/assets/images/grades/9.png" alt="" class="guest_crs_img">
                                         <?php elseif ($sum->grade == 10) : ?>
-                                            <img src="<?= ROOT ?>/assets/images/grades/10.png" alt="" class="guest_crs_img">
+                                            <img src="<?= ROOT ?>/assets/images/grades/10new.png" alt="" class="guest_crs_img">
                                         <?php elseif ($sum->grade == 11) : ?>
                                             <img src="<?= ROOT ?>/assets/images/grades/11.png" alt="" class="guest_crs_img">
                                         <?php elseif ($sum->grade == 12) : ?>
