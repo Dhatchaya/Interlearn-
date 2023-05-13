@@ -55,8 +55,29 @@ table {
 }
 
 .clm3{
-    margin: 2rem;
+    /* box-shadow: 0 2px 10px rgba(0, 67, 115, 0.2); */
+    border: 3px solid black;
+    padding: 15px;
+    margin: 0rem 3rem 1rem 0rem;
+    border-radius: 8px;
     width: 90%;
+}
+
+.inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 50px;
+    width: 50%;
+    margin-left: 25%;
+    align-items: center;
+    border-radius: 10%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.inner:hover{
+    transition: all 350ms ease;
+    transform: scale(1.09)  ;
 }
 
 .progress_tbl{
