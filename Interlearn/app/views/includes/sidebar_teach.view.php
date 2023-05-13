@@ -31,13 +31,13 @@
                        
                     </a>
                     </div>
-                    <div class="Progress">
+                    <!-- <div class="Progress">
                             <a href="#">
 
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/progress.svg" alt="progress"></br>
                             <span>Progress</span>
                             </a>
-                    </div>
+                    </div> -->
                     
                  
                 
