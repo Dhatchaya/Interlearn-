@@ -821,11 +821,6 @@ body{
     font-size: 1rem;
     font-weight: 600;
 }
-.success{
-    color: green;
-    font-size: 1rem;
-    font-weight: 600;
-}
 .home_parent{
     display: flex;
     flex-direction: column;
@@ -3906,6 +3901,7 @@ transition: width 1s, height 1s;
 /* quiz page */
 
 .mid-container {
+    width: 100%;
     display:flex;
     flex-direction: row;
     /* justify-content: space-around; */
@@ -5788,8 +5784,8 @@ flex-direction: row;
     transform: scale(1.02);
 }
 .std-enroll-content{
-    margin-top: 7%;
-    margin-left: 3%;
+    margin-top: 5%;
+    margin-left: 10%;
     width: 85vw;
 }
 .std-enroll-content-logged{

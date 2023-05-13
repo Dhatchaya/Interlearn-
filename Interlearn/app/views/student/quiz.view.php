@@ -27,8 +27,6 @@
                     <p style="color:red">This quiz ends at : <?php echo($rows->disable_time) ?></p>
                     <button type="button" class="btn2" onclick="">Start Quiz</button>
                 <?php endif; ?>
-            <?php endforeach;?>
-            <?php endif; ?>
         </div>
 
         <div class="quiz-box custom-box hide">
@@ -94,9 +92,11 @@
                 </tr>
             </table>
             <!-- <button type="button" class="btn" onclick="tryAgainQuiz()">Try Again</button> -->
-            <button type="button" class="btn" onclick="goToHome()">Goto Home</button>
+            <a href="<?=ROOT?>/student/course/view/<?php echo($rows->course_id) ?>"><button type="button" class="btn" onclick="goToHome()">Goto Home</button></a>
         </div>
-        </div>
+            <?php endforeach;?>
+            <?php endif; ?>
+    </div>
 </div>
     
 

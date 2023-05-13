@@ -1,13 +1,20 @@
-<?php $this -> view('includes/header'); ?>
-<?php $this -> view('includes/nav'); ?>
+<?php $this->view("includes/header"); ?>
+<div class="main-body-div">
+
+    <?php $this->view("includes/sidebar_ins"); ?>
+
+    <div class="top-to-bottom-content">
+        <?php $this->view("includes/nav"); ?>
+        <div class="all-middle-content">
+</div>
 <head>
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles3.css">
 </head>
 <div class="mid-container">
     <div class="quizz_left">
-        <?php $this -> view('includes/sidebar_ins'); ?>
+        
     </div>
-    <div class="quizz_right">
+    <div class="pro_right">
         <div class="quiz-head">
             <h2>Add Information About Exam</h2>
             <p>
@@ -67,5 +74,9 @@
         </div>
     </div>
 </div>
+</div>
+</div>
+</div>
+
 
 <?php $this -> view('includes/footer'); ?>

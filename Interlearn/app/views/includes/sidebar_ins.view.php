@@ -30,12 +30,12 @@
                        
                     </a>
                     </div>
-                    <!-- <div class="Courses">
+                    <div class="Courses">
                             <a href="<?=ROOT?>/instructor/course">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/book.png" alt="Courses"></br>
                             <span>Courses</span>
                             </a>
-                        </div> -->
+                        </div>
                     
                  
                 

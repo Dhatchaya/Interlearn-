@@ -76,4 +76,28 @@ ul li {
 }
 
 
+.pro_right {
+    width: 80%;
+    background: white;
+    /* border: 2px solid #808080bf; */
+    padding: 4rem;
+    margin: 1rem 0 1rem 0;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+}
 
+.pro_Insright {
+    width: 80%;
+    background: white;
+    /* border: 2px solid #808080bf; */
+    padding: 4rem;
+    margin: 3rem 0 2rem 0;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+}

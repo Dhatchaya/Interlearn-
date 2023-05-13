@@ -6,7 +6,12 @@
         <div class="all-middle-content">
             <div class="teacher_crs_main">
 
-
+                <!-- <div class="instructor-prg-butn">
+                    <a href="<?= ROOT ?>/Teacher/course/progress/<?= $course_id ?>/0" class="teacher-course-announcement">
+                        View Progress
+                        <img src="<?= ROOT ?>/assets/images/next.png" alt="" class="teacher-course-ann-img">
+                    </a>
+                </div> -->
                 <div class="teacher_crs_content">
                     <img src="<?= ROOT ?>/assets/images/tchrview.png" class="teacher_crs_topimg">
                     <div class="teacher_crs_tophead">
@@ -16,7 +21,10 @@
                             <h4 class="teacher_crs_subject"><?= esc($courses[0]->language_medium) ?> Medium</h4>
                         <?php endif; ?>
                     </div>
+                    
                 </div>
+                
+                
                 <div class="teacher_crs_content2" id="aaa">
                     <a href="<?= ROOT ?>/teacher/course/announcement/<?= $course_id ?>/0" class="teacher-course-announcement">
                         Announcements

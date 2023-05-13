@@ -58,7 +58,7 @@ class ZQuiz extends Model
 
         $keys = array_keys($data);
         
-        $query = "SELECT quiz_name, quiz_description, display_question, enable_time, disable_time FROM myquiz where ";
+        $query = "SELECT quiz_name, quiz_description, display_question, enable_time, disable_time, course_id FROM myquiz where ";
 
         foreach($keys as $key){
             $query .= $key. " =:".$key." && ";

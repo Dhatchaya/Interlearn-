@@ -47,6 +47,8 @@ console.log(id);
 const quiz = [];
 let timeRemaining =0;
 let totques = 0;
+let total_points = 0;
+
 // make an AJAX request to retrieve the quiz data
 const xhr = new XMLHttpRequest();
 
@@ -59,13 +61,14 @@ xhr.onload = () => {
         const data = JSON.parse(xhr.responseText);
         
         console.log(data[0].duration);
+        console.log(data[0].total_points);
         console.log(data.length);
         totques = data.length;
         data.forEach(question => {
             quiz.push(question);
         });
        timeRemaining = data[0].duration*60;
-
+       total_points = data[0].total_points*1;
 
     } else {
         console.error('Error fetching quiz data');
@@ -74,6 +77,7 @@ xhr.onload = () => {
 function StartQuiz() {
     //1st we set all questions in availableQuestions array
     console.log(timeRemaining);
+    console.log(total_points);
     homeBox.classList.add("hide");
 
     quizBox.classList.remove("hide");
