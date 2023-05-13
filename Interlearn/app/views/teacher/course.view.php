@@ -13,13 +13,7 @@
                         <?php if (!empty($courses)) : ?>
                             <div id="course_id" style="display: none;"><?= $courses[0]->course_id ?></div>
                             <h2 class="teacher_crs_subject">Grade <?= esc($courses[0]->grade) ?> - <?= esc($courses[0]->subject) ?></h2>
-                            <h4 class="teacher_crs_subject"><?= esc($courses[0]->language_medium) ?> Medium</h4><br>
-                            <div class="instructor-prg-butn">
-                                <a href="<?= ROOT ?>/instructor/course/progress/<?= $course_id ?>/0/view" class="teacher-course-announcement">
-                                    View Progress
-                                    <img src="<?= ROOT ?>/assets/images/next.png" alt="" class="teacher-course-ann-img">
-                                </a>
-                            </div>
+                            <h4 class="teacher_crs_subject"><?= esc($courses[0]->language_medium) ?> Medium</h4>
                         <?php endif; ?>
                     </div>
                 </div>

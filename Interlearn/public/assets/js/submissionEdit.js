@@ -119,9 +119,9 @@ console.log(formData);
 
   $(document).on("click",".delete_file_btn", function(){
     const fileid = $(this).data("file-id");
-    // const confirmation = confirm("Are you sure you want to delete this file?");
+    const confirmation = confirm("Are you sure you want to delete this file?");
 
-    // if(confirmation){
+    if(confirmation){
       const deleteBtn = $(this); 
       deleteBtn.closest('.file_div').remove();
       console.log(`http://localhost/Interlearn/public/teacher/course/assignment/${course}/${week}/edit/d?id=${id}`);
@@ -137,7 +137,7 @@ console.log(formData);
           console.log("Error: " + error);
         }
       });
-    // }
+    }
   });
 
 }

@@ -25,14 +25,13 @@ class RequestEnroll extends Model
     public function validate($data)
     {   
         $this->error = [];
-        if(empty($data['teacher']))
-        {
-            $this -> error['teacher'] = "Please select a teacher";
-        }
-        if(empty($data['day']))
-        {
-            $this -> error['day'] = "Please select a time slot";
-        }
+        foreach($data as $key => $value)
+        { 
+            if(empty($data[$key]))
+            {
+                $this -> error[$key] = ucfirst($key)." is required";
+            }
+         }
     
             // // checks email is valid if so it'll check whther it already exists
             // if(!filter_var($data['email'],FILTER_VALIDATE_EMAIL))
@@ -74,9 +73,7 @@ class RequestEnroll extends Model
         subject.*,
         concat (staff.first_name,' ',staff.last_name) AS teacherName,
         concat (student.first_name,' ',student.last_name) AS studentName,
-        (course.capacity - (SELECT COUNT(student_course.student_id) FROM student_course 
-INNER JOIN request_enroll ON student_course.student_id = request_enroll.student_id
-WHERE request_enroll.request_id = :reqID)) AS available FROM ".$this->table;
+        (course.capacity - (SELECT COUNT(student_course.student_id) FROM student_course WHERE student_course.course_id = request_enroll.course_id AND student_course.student_id = request_enroll.student_id)) AS available FROM ".$this->table;
         $query .= " INNER JOIN course ON course.course_id = request_enroll.course_id
         INNER JOIN subject ON subject.subject_id = course.subject_Id
         INNER JOIN staff ON staff.emp_id = course.teacher_ID
@@ -107,7 +104,6 @@ WHERE request_enroll.request_id = :reqID)) AS available FROM ".$this->table;
 
 
         if(is_array($res)){
-            // show($res);die;
             return $res;
         }
         return false;

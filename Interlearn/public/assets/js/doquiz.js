@@ -42,9 +42,10 @@ let availableOptions = [];
 let correctAnswers = 0;
 let attempt = 0;
 let totalMarks = 0;
-let MaxMarks = 0;
+
 //set duration -------------------------------------------------------------------------------//
- // 5 minutes in seconds
+const duration = 300; // 5 minutes in seconds
+let timeRemaining = duration;
 
 // Format the remaining time as MM:SS
 function formatTime(time) {
@@ -72,28 +73,6 @@ function getNewQuestion() {
     const questionIndex = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
     currentQuestion = questionIndex;
     questionText.innerHTML = currentQuestion.q;
-    console.log(currentQuestion.duration);
-
-    console.log(currentQuestion.disable_time);
-
-    var now = new Date();
-    var year = now.getFullYear().toString();
-    var month = ('0' + (now.getMonth() + 1)).slice(-2);
-    var day = ('0' + now.getDate()).slice(-2);
-    var hours = ('0' + now.getHours()).slice(-2);
-    var minutes = ('0' + now.getMinutes()).slice(-2);
-    var seconds = ('0' + now.getSeconds()).slice(-2);
-
-    var currentDateTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
-    // console.log(currentDateTime);
-
-    console.log('hello');
-    console.log(currentDateTime);
-
-    if(currentQuestion.disable_time <= currentDateTime) {
-        clearInterval(timer);
-        quizOver();
-    }
 
     //get the position of the questionIndex from the availableQuestions array\
     const index1 = availableQuestions.indexOf(questionIndex);
@@ -148,15 +127,8 @@ function getResult(Element) {
 
     // its clicked as answer
     Element.classList.add('answered');
-    console.log('hehe');
-    console.log(typeof(currentQuestion.mark));
-    parseInt(currentQuestion.mark);
 
-    console.log(parseInt(currentQuestion.mark));
-
-    MaxMarks = MaxMarks + parseInt(currentQuestion.mark)
     console.log(totalMarks);
-    console.log(MaxMarks);
     // Check answer comparing clicked option
     if(id === currentQuestion.answer) {
         //set green color for correct answer
@@ -248,16 +220,13 @@ function getQuizIdFromUrl() {
 // URL
 
 function quizResults() {
-    let num = (totalMarks / MaxMarks)*total_points;
     ResultBox.querySelector(".total-question").innerHTML = quiz.length;
-    ResultBox.querySelector(".total-score").innerHTML = num.toFixed(2)  + ' / ' + total_points;
+    ResultBox.querySelector(".total-score").innerHTML = totalMarks;
 
     let x = 5;
-    let newTot = num*100/total_points;
     const quizId = getQuizIdFromUrl();
     console.log(quizId);
     console.log(totalMarks);
-    console.log(newTot);
     // Send totalMarks to the server using AJAX
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost/Interlearn/public/Student/quiz/marks", true);
@@ -267,7 +236,7 @@ function quizResults() {
         console.log(this.responseText);
         }
     };
-    xhr.send("totalMarks=" + newTot + "&quizId=" + quizId);
+    xhr.send("totalMarks=" + totalMarks + "&quizId=" + quizId);
 
 }
 
@@ -283,15 +252,49 @@ function tryAgainQuiz() {
 
     resetQuiz();
     StartQuiz();
-
 }
 // window.onload = function () {
+function StartQuiz() {
+    //1st we set all questions in availableQuestions array
 
+    homeBox.classList.add("hide");
 
-// window.onload = function () {
-//     // homeBox.querySelector(".total-question").innerHTML = totques;
-//     homeBox.querySelector(".description").innerHTML = quiz.description;
-// }
+    quizBox.classList.remove("hide");
+
+// Display the timer -------------------------------------------//
+    const timerDisplay = document.querySelector('.timer');
+    timerDisplay.innerHTML = formatTime(timeRemaining);
+    
+    // Create the countdown timer
+    const timer = setInterval(() => {
+    
+    // const remainTime = document.querySelector('.remain-time');
+    timeRemaining--;
+    timerDisplay.innerHTML = formatTime(timeRemaining);
+        // console.log(timeRemaining);
+    // Alert participants when time is running out
+    if (timeRemaining < 60) {
+        timerDisplay.classList.add('warning');
+    }
+
+    // Submit answers automatically when time is up
+    if (timeRemaining <= 0) {
+        clearInterval(timer);
+        quizOver();
+    }
+    }, 1000);
+//-----------------------------------------------------------------//
+    setAvailableQuestions();
+    // 2nd we call getNewQuestion(); function
+    getNewQuestion();
+
+    answerIndicator();
+}
+
+window.onload = function () {
+    homeBox.querySelector(".total-question").innerHTML = totques;
+    homeBox.querySelector(".description").innerHTML = quiz.description;
+}
 
 
 // Set the totalMarks variable

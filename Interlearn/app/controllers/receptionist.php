@@ -175,13 +175,13 @@ class Receptionist extends Controller
         
             if ($_SERVER['REQUEST_METHOD'] == 'POST') 
             {   
-                // show($_POST);die;
+                // echo "check 1";die;
                 // show($_POST);die;
                 if($course -> validate($_POST)){
                     $subject_id = uniqid();
                     //uniqueid("S",true)
-                    // echo "check 2";die;
-                    //  show($_POST);die;
+
+                    // show($_POST);die;
 
                     // if(isset($_POST['courseSubmitBtn'])){
 
@@ -202,17 +202,14 @@ class Receptionist extends Controller
                     $id= $course->getLastCourse()[0]->course_id;
                     // // // print_r($Course);die;
                     $course_week->createWeek($id, 1);
-                    $response = array("status"=>"success");
-                    echo json_encode($response);
-                    exit;
-                    //header("Location:http://localhost/Interlearn/public/receptionist/course");
+                    header("Location:http://localhost/Interlearn/public/receptionist/course");
 
                 }
                 else{
 
                     $data['errors'] =  $course->error;
                     // show($data['errors']);die;
-                    echo json_encode($data['errors']);
+
                     // $data['error']['invalid'] = "There is an unknown error occured!";
                 }
             }
@@ -334,7 +331,7 @@ class Receptionist extends Controller
                     //     show($inputs);die;
                     //     $course->insert($inputs);
                     if($course -> validateAdd($_POST)){
-                        $inputs=array("subject_Id"=>$_POST['subject_Id'],"teacher_id"=>$_POST['teacher_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto'],"capacity"=>$_POST['capacity']);
+                        $inputs=array("subject_id"=>$_GET['id'],"teacher_id"=>$_POST['teacher_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto'],"capacity"=>$_POST['capacity']);
                         // show($inputs);die;
                         $course->insert($inputs);
                         $id= $course->getLastCourse()[0]->course_id;
@@ -385,7 +382,6 @@ class Receptionist extends Controller
                         // show($std_id);die;
 
                         $student_course -> deleteStudent($std_id,$id);
-                        header("Location:http://localhost/Interlearn/public/receptionist/course/view/".$id."/student_view");
                     }
 
                     $this->view('receptionist/student_view',$data);
@@ -398,8 +394,7 @@ class Receptionist extends Controller
         }
 
         if($action == 'removeCourse'){
-            // show($_POST);die;
-            $result2 = $course->deleteCourse($_POST['course_id']);
+            $result2 = $course->deleteCourse($_GET['course_id']);
 
             echo json_encode($result2);
             exit;
@@ -467,7 +462,6 @@ class Receptionist extends Controller
         }
 
         if($action == 'checkAvailableEdit'){
-            // show($_POST);die;
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
                 $result = $course -> getTimeEdit($_POST['teacher_id'], $_POST['day'],$_POST['course_id']);
@@ -478,7 +472,6 @@ class Receptionist extends Controller
 
         if($action == 'checkAvailable1'){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                // show($_POST);die;
 
                 $result = $course -> getTime($_POST['teacher_id'], $_POST['day']);
                 echo json_encode($result);
@@ -495,25 +488,6 @@ class Receptionist extends Controller
                 die;
             }
             exit;
-        }
-
-        if($action == 'addTeacher')
-        {
-            // show($_GET['id']);die;
-            // $data['id'] = $id;
-
-            if($course -> validateAdd($_POST))
-            {
-                $inputs=array("subject_id"=>$_POST['subject_Id'],"teacher_id"=>$_POST['teacher_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto'],"capacity"=>$_POST['capacity']);
-                // show($inputs);die;
-                $course->insert($inputs);
-                $id= $course->getLastCourse()[0]->course_id;
-                // // // print_r($Course);die;
-                $course_week->createWeek($id, 1);
-            }
-            else{
-                $data['errors'] =  $course->error;
-            }
         }
 
 
@@ -1202,10 +1176,6 @@ class Receptionist extends Controller
 
 
 
-        if(date("d") == "01"){
-            addNewPendingPayments();
-        }
-
 
         $payment_model = new Payment();
         $payment_history = $payment_model->getAll();
@@ -1217,32 +1187,32 @@ class Receptionist extends Controller
         $this->view('receptionist/receptionist-payments',  ['bankPayments' => $BankPaymentData, 'transactions' => $payment_history]);
     }
 
-    public function addNewPendingPayments(){
-        if (!Auth::is_receptionist()) {
-            redirect('home');
-        }
-        $currentMonth = date('m');
-        $months = array(
-            "01" => "January",
-            "02" => "February",
-            "03" => "March",
-            "04" => "April",
-            "05" => "May",
-            "06" => "June",
-            "07" => "July",
-            "08" => "August",
-            "09" => "September",
-            "10" => "October",
-            "11" => "November",
-            "12" => "December"
-        );
+    // public function addNewPendingPayments(){
+    //     if (!Auth::is_receptionist()) {
+    //         redirect('home');
+    //     }
+    //     $currentMonth = date('m');
+    //     $months = array(
+    //         "01" => "January",
+    //         "02" => "February",
+    //         "03" => "March",
+    //         "04" => "April",
+    //         "05" => "May",
+    //         "06" => "June",
+    //         "07" => "July",
+    //         "08" => "August",
+    //         "09" => "September",
+    //         "10" => "October",
+    //         "11" => "November",
+    //         "12" => "December"
+    //     );
 
-        $month = $months[$currentMonth];
-        $student = new StudentCourse();
-        $student->getAll($month);
+    //     $month = $months[$currentMonth];
+    //     $student = new StudentCourse();
+    //     $student->getAll($month);
 
-        exit;
-    }
+    //     exit;
+    // }
 
 
     public function nextCashPayment()
@@ -1276,40 +1246,17 @@ class Receptionist extends Controller
 
         $data = json_decode(file_get_contents("php://input"), true);
 
-        $currentMonth = date('m');
-        $months = array(
-            "01" => "January",
-            "02" => "February",
-            "03" => "March",
-            "04" => "April",
-            "05" => "May",
-            "06" => "June",
-            "07" => "July",
-            "08" => "August",
-            "09" => "September",
-            "10" => "October",
-            "11" => "November",
-            "12" => "December"
-        );
 
-        $data['month' ]= $months[$currentMonth];
-             $data['payment_status'] = '1';
-             $data['method'] = 'bank deposit';
+        $PaymentID = $data['PaymentID'];
+        $BankPaymentID = $data['BankPaymentID'];
 
 
             $approveBP = new Payment();
-            $return = $approveBP->approveBP($data);
-
-            if($return == "success"){
-            
+            $res =$approveBP->approveBP($PaymentID);
+            if($res == 'success'){
                 $removefromBankPayment = new BankPayment();
-                $respond = $removefromBankPayment->removefromBankPayment($data['BankPaymentID']);
+                $respond = $removefromBankPayment->removefromBankPayment($BankPaymentID);
             }
-
-            // $removefromBankPayment = new BankPayment();
-            // $respond = $removefromBankPayment->removefromBankPayment($data['BankPaymentID']);
-
-
         echo json_encode($respond);
     }
 
@@ -1321,11 +1268,17 @@ class Receptionist extends Controller
         $data = json_decode(file_get_contents("php://input"), true);
 
 
-             $data['method'] = 'bank deposit';
-
             $removefromBankPayment = new BankPayment();
             $respond = $removefromBankPayment->declined($data['BankPaymentID']);
 
+            if($respond == 'success'){
+                $declinedBP = new Payment();
+                $respond =$declinedBP->declinedBP($data['PaymentID']);
+            }
+
+            else{
+                $respond = 'error';
+            }
 
         echo json_encode($respond);
     }
@@ -1368,7 +1321,7 @@ class Receptionist extends Controller
         $getEachBPdata = new BankPayment();
         $BankPaymentData = $getEachBPdata->getEachBPdata($data['bankPaymentID']);
 
-        header('Content-Type: application/json'); // set the content type to JSON
+        header('Content-Type: application/json');// set the content type to JSON
         echo json_encode($BankPaymentData);
     }
 

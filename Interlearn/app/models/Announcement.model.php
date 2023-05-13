@@ -164,21 +164,6 @@ class Announcement extends Model{
 
     }
 
-    public function allStdAnnouncements($data=[],$id=null,$orderby=null,$order = 'desc'){
-
-        $query ="SELECT announcement.* FROM ".$this->table;
-        $query .= " WHERE announcement.role = 'Receptionist' AND ";
-        $query .= " order by announcement.date_time  $order";
-    // echo $query;die;
-        $res = $this -> query($query,$data);
-
-        if(is_array($res)){
-            return $res;
-        }
-        return false;
-
-    }
-
     public function getAnnouncements($aid,$order = 'desc'){
 
         $query ="SELECT announcement.* FROM ".$this->table;

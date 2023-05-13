@@ -20,13 +20,9 @@
             <p>Total number of questions : <?php echo($rows->display_question) ?>
             <!-- <span class="total-question"></span> -->
             </p>
-                <?php if((strtotime($rows->enable_time) < strtotime(date("Y/m/d h:i:sa"))) && (strtotime($rows->disable_time) > strtotime(date("Y/m/d h:i:sa")))):?>
-                    <button type="button" class="btn" onclick="StartQuiz()">Start Quiz</button>
-                <?php else: ?>
-                    <p style="color:red">This quiz opens at : <?php echo($rows->enable_time) ?></p>
-                    <p style="color:red">This quiz ends at : <?php echo($rows->disable_time) ?></p>
-                    <button type="button" class="btn2" onclick="">Start Quiz</button>
-                <?php endif; ?>
+            <?php endforeach;?>
+            <?php endif; ?>
+            <button type="button" class="btn" onclick="StartQuiz()">Start Quiz</button>
         </div>
 
         <div class="quiz-box custom-box hide">
@@ -92,11 +88,9 @@
                 </tr>
             </table>
             <!-- <button type="button" class="btn" onclick="tryAgainQuiz()">Try Again</button> -->
-            <a href="<?=ROOT?>/student/course/view/<?php echo($rows->course_id) ?>"><button type="button" class="btn" onclick="goToHome()">Goto Home</button></a>
+            <button type="button" class="btn" onclick="goToHome()">Goto Home</button>
         </div>
-            <?php endforeach;?>
-            <?php endif; ?>
-    </div>
+        </div>
 </div>
     
 

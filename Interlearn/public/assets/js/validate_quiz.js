@@ -57,7 +57,6 @@ function validateConfirmForm() {
         return false;
     }
 
-
     // var enableTimeError = new Time(document.forms["confirmForm"]["quizz_date"].value);
     // if (selectedDate <= today || selectedDate == "") {
     //     document.getElementById("date-error").innerHTML = "Please select a date today or after today";
@@ -100,7 +99,7 @@ const form = document.getElementById("my-form");
     if (enableTime >= disableTime) {
         // disable form submission or show error message
         document.getElementById("enable-disable-error").innerHTML = "Enable time should be lesser than  to disable time";
-        // alert("Enable time should be lesser than to disable time");
+        alert("Enable time should be lesser than to disable time");
         return false;
     }
     else {
@@ -108,61 +107,7 @@ const form = document.getElementById("my-form");
     }
 });
 
-function validateQuizPopUp() {
 
-    var duration = document.forms["confirmEditForm"]["duration"].value;
-    if (duration == "") {
-        document.getElementById("duration-error").innerHTML = "Please enter a duration";
-        return false;
-    }
 
-}
 
-function validateQuestionPopUp() {
-
-    var question = document.forms["myForm"]["question_title"].value;
-    var marks = document.forms["myForm"]["mymarks"].value;
-    var choice1 = document.forms["myForm"]["choice_1"].value;
-    var choice2 = document.forms["myForm"]["choice_2"].value;
-    var choice3 = document.forms["myForm"]["choice_3"].value;
-    var choice4 = document.forms["myForm"]["choice_4"].value;
-
-    var choice1_mark = parseFloat(document.forms["myForm"]["format_time1"].value);
-    var choice2_mark = parseFloat(document.forms["myForm"]["format_time2"].value);
-    var choice3_mark = parseFloat(document.forms["myForm"]["format_time3"].value);
-    var choice4_mark = parseFloat(document.forms["myForm"]["format_time4"].value);
-    var sum = choice1_mark + choice2_mark + choice3_mark + choice4_mark;
-
-    if (sum != 1) {
-        document.getElementById("sum-error").innerHTML = "The sum of the fields must equal 1";
-        return false;
-    }
-
-    if (question == "") {
-        document.getElementById("question-error").innerHTML = "Please enter question";
-        return false;
-    }
-
-    if (marks == "") {
-        document.getElementById("marks-error").innerHTML = "Please enter marks";
-        return false;
-    }
-
-    if (choice1 == "") {
-        document.getElementById("choice1-error").innerHTML = "Please enter choice for the question";
-        return false;
-    }
-    if (choice2 == "") {
-        document.getElementById("choice2-error").innerHTML = "Please enter choice for the question";
-        return false;
-    }
-    if (choice3 == "") {
-        document.getElementById("choice3-error").innerHTML = "Please enter choice for the question";
-        return false;
-    }
-    if (choice4 == "") {
-        document.getElementById("choice4-error").innerHTML = "Please enter choice for the question";
-        return false;
-    }
-}
 

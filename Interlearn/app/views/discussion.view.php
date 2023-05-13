@@ -1,17 +1,7 @@
 <?php $this->view("includes/header");?>
 
 <div class="main-body-div">
-<?php if(Auth::getrole() == "Student"):?>
-        <?php $this->view("includes/sidebar");?>
-    <?php else:?>
-        <?php  if(Auth::getrole() == "Teacher"):?>
-            <?php $this->view("includes/sidebar_teach");?>
-    <?php else:?>
-        <?php if(Auth::getrole() == "Instructor"):?>
-            <?php $this->view("includes/sidebar_ins");?>
-    <?php endif;?>
-    <?php endif;?>
-    <?php endif;?>
+<?php $this -> view('includes/sidebar'); ?>
 
 <div class="discuss_body  top-to-bottom-content">
 <?php $this -> view('includes/nav'); ?>

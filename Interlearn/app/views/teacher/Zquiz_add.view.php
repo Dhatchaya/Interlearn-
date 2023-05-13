@@ -12,23 +12,20 @@
         <form name="confirmForm" action="" method="POST" onsubmit="return validateConfirmForm();" id="my-form">
 
             <label for="quiz_name">Quiz name <strong> *</strong> : </label>
-            <input class="home_cnt_inp" type=text name="quiz_name" value="<?= set_value('quiz_name')?>" placeholder="Eg : sample quiz">
+            <input class="home_cnt_inp" type=text name="quiz_name" value="" placeholder="Eg : sample quiz">
         
             <label for="question_total">Quiz Description <strong> *</strong> : </label>
-            <textarea class="home_cnt_inp" id="message" name="quiz_description" placeholder="Insert a quiz description" style="height:50px" value="<?= set_value('quiz_description')?>"><?= set_value('quiz_description')?></textarea>
+            <textarea class="home_cnt_inp" id="message" name="quiz_description" placeholder="Insert a quiz description" style="height:50px"></textarea>
 
             <div class="enable_disable">
                 <div class="enable">
                     <label for="question_total">Total Question <strong> *</strong> : </label>
-                    <input class="time_period" type=number name="display_question" value="<?= set_value('display_question')?>" placeholder="Total number of questions">
-                    <?php if(!empty($question_error)):?>
-                        <span style="color:red"><?=$question_error?></span>
-                    <?php endif;?>
+                    <input class="time_period" type=number name="display_question" value="" placeholder="Total number of questions">
                 </div>
                 <span id="total-error" style="color:red"></span>
                 <div class="enable">
                     <label for="time_period">Total Marks <strong> *</strong> : </label>
-                    <input class="time_period" type=number name="total_points" value="<?= set_value('total_points')?>" placeholder="">
+                    <input class="time_period" type=number name="total_points" value="" placeholder="">
                 </div>
                 <div class="enable">
                     <label for="quiz_bank">Quiz Bank No. <strong> *</strong> : </label>
@@ -51,26 +48,26 @@
                 <span id="date-error" style="color:red"></span> -->
                 <div class="enable">
                     <label for="time_period">Enable time <strong> *</strong> : </label>
-                    <input class="time_period" type=datetime-local name="enable_time" id="enable_time" value="<?= set_value('enable_time')?>" placeholder="">
+                    <input class="time_period" type=datetime-local name="enable_time" id="enable_time" value="" placeholder="">
                 </div>
                 <!-- validate time -->
                 <div class="enable">
                     <label for="time_period">Disable time <strong> *</strong> : </label>
-                    <input class="time_period" type=datetime-local name="disable_time" id="disable_time" value="<?= set_value('disable_time')?>" placeholder="">
+                    <input class="time_period" type=datetime-local name="disable_time" id="disable_time" value="" placeholder="">
                 </div>
                 
             </div>
             <span id="enable-disable-error" style="color:red"></span>
             <br>
-            <label for="time_period">Duration in minutes<strong> *</strong> : </label><br>
+            <label for="time_period">Duration <strong> *</strong> : </label><br>
             <div class="select_duration">
                 <!-- <div> -->
-                    <input class="time_period" type=number name="duration" value="<?= set_value('duration')?>" placeholder="">
+                    <input class="time_period" type=number name="duration" value="" placeholder="">
                 <!-- </div>   -->
                 <!-- <div> -->
                     <select name="format_time" id="format_time">
                             <option value="minutes"> minutes </option>
-                            <!-- <option value="hours"> hours </option> -->
+                            <option value="hours"> hours </option>
                     </select>
                 <!-- </div> -->
             </div>
