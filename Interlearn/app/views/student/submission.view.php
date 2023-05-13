@@ -8,9 +8,7 @@
 <?php $this->view("includes/nav");?>
 
         <div class="std_subm_content">
-            <h2>Mathematics</h2><br>
-            <h3>Homework 1 - Submission</h3>
-            <br><br>
+          
             <div class="std_sub_description"> </div>
             <div class="std_subm_outerline">
                 <p>Maximum File Size: 5MB</p>
@@ -59,4 +57,4 @@
 <!-- <script defer src="<?=ROOT?>/assets/js/submissionEdit.js?v=<?php echo time(); ?>"></script> -->
 <script defer src="<?=ROOT?>/assets/js/submission.js?v=<?php echo time(); ?>"></script>
 
-    <!-- <?php $this->view("includes/footer");?> -->
+    <?php $this->view("includes/footer");?>

@@ -849,7 +849,7 @@ border-radius: 41px;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 3rem;
-    background-color: var(--secondary-color)
+    background-color: var(--secondary-color);
     color: var(--primary-color);
    
 }
@@ -5700,7 +5700,7 @@ flex-direction: row;
 .mainforum_right{
 
     position: relative;
-    bottom: 0;
+    bottom: 1rem;
     float: right;
 }
 .mainforum_desc{
@@ -5740,7 +5740,7 @@ flex-direction: row;
   padding: 2rem;
   margin-top: 2%;
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
-  position: absolute;
+  position: relative;
 
 }
 

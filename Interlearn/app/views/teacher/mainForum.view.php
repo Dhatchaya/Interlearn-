@@ -20,14 +20,16 @@
         <div class="main_discussion" id="main_discussion">
             <form method= "POST" enctype="multipart/form-data" >
                 <label class="mainforum_subject" for="fsubject"> Subject: </label></br>
+                <p class="warning" id="error1"></p>
                 <?php if(!empty($errors['subject'])):?>
-                <p class="warning"><?=esc($errors['subject'])?></p>
+                <p class="warning" ><?=esc($errors['subject'])?></p>
                 <?php endif;?>
                 <input type ="text" id="subject" name="subject"/>
               </br>
                 <label class="mainforum_subject" for="fsubject"> Description: </label></br>
+                <p class="warning" id="error2"></p>
                 <?php if(!empty($errors['description'])):?>
-                <p class="warning"><?=esc($errors['description'])?></p>
+                <p class="warning" id="error2"><?=esc($errors['description'])?></p>
                 <?php endif;?>
                 <textarea id="descrip" class="mainforumdes" name="description" rows="15" cols="100"></textarea>
 

@@ -503,14 +503,14 @@ class Forums extends Controller
 
         $data=[];
         $mainForum = new mainForum();
+        $role = Auth::getrole();
         if($action =="edit"){
-            $row = $mainForum-> first(["mainforum_id"=>$id],'mainforum_id');
-            echo json_encode($row);
+           
 
             if($_SERVER["REQUEST_METHOD"]=="POST"){
                 if($mainForum -> validate($_POST)){
                     $result= $mainForum->update(["mainforum_id"=>$id],$_POST);
-                    $success = array("status"=>"success");
+                    $success = array("status"=>"success","url"=>"http://localhost/Interlearn/public/".$role."/course/view/".$course);
                     echo json_encode($success);
                     exit;
                 }
@@ -523,6 +523,8 @@ class Forums extends Controller
                 }
 
             }
+            $row = $mainForum-> first(["mainforum_id"=>$id],'mainforum_id');
+            echo json_encode($row);
             exit;
         }
         if($action =="view"){

@@ -11,8 +11,8 @@
 
 
         <div class="std_sub_grd_content">
-            <h2><?=esc($assignment->subject)?> - <?=esc($assignment->grade)?></h2><br>
-            <p style="font-size: large;"><?=esc($assignment->title)?></p><br>
+            <h2><?=esc($assignment->title)?></h2><br>
+            <!-- <p style="font-size: large;"><?=esc($assignment->title)?></p><br> -->
 
             <p> <?=esc($assignment->description)?> </p><br>
             <a href="../../../../uploads/<?=esc($assignment->courseId)?>/assignments/<?=esc($assignment->assignmentId)?>/<?=esc($assignment->filename)?>"  class= "attachment-link">View Attachment</a>
@@ -23,7 +23,7 @@
                     <?php if ($assignment->deadline<$assignment->modified):?>
                         <p class="warning">Late Submission</p>
                     <?php else:?>
-                    <p><?=esc($assignment->status)?></p>
+                    <p class="success"><?=esc($assignment->status)?></p>
                     <?php endif;?>
                 </div>
                 <!-- <div class="std_sub_grd_row2">
@@ -72,4 +72,4 @@
         </div>
     </div>
 
-    <!-- <?php $this->view("includes/footer");?> -->
+    <?php $this->view("includes/footer");?>
