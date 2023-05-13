@@ -139,7 +139,7 @@
                         <br>
                         <!-- content table -->
                         <div class="recp_cl_staff">
-                        <p class="warning" id = "success"></p>
+                        <p class="success" id = "success"></p>
                             <table class="std-enroll-table">
                                 <th>Day</th>
                                 <th>Time</th>
