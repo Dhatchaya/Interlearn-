@@ -161,9 +161,9 @@ let assignmentID = "";
     $(document).on("click",".delete_file_btn", function(){
       const fileid = $(this).data("file-id");
       console.log(fileid);
-      const confirmation = confirm("Are you sure you want to delete this file?");
+      // const confirmation = confirm("Are you sure you want to delete this file?");
   
-      if(confirmation){
+      // if(confirmation){
         const deleteBtn = $(this); 
         deleteBtn.closest('.sub-file-item').remove();
         console.log(`http://localhost/Interlearn/public/student/coursepg/submission/${course}/edit/d?sub_id=${id}`);
@@ -180,7 +180,7 @@ let assignmentID = "";
             console.log("Error: " + error);
           }
         });
-      }
+      // }
     });
     cancel.addEventListener('click',function(){
       window.location.href = `http://localhost/Interlearn/public/student/coursepg/submissionstatus/${course}/?id=${assignmentID}`;

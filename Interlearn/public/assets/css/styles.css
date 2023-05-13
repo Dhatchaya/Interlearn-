@@ -2798,10 +2798,9 @@ std_view_bottom{
     transition: width 0.5s, height 0.5s;
     cursor: pointer;
     text-align: center;
-    /* border-style: groove; */
+    border-style: groove;
     display: flex;
     text-align: center;
-    box-shadow: 0 2px 10px rgba(0, 67, 115, 0.2);
 }
 
 .std_crs_ov_op{
@@ -4362,8 +4361,6 @@ tr:nth-child(even) {
 }
 
 .std_op_progress{
-    /* display: flex;
-    flex-wrap: wrap; */
     float: left;
 }
 
@@ -5517,41 +5514,6 @@ flex-direction: row;
     max-width: 450px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
-.tchr-popupmodal-content4 {
-    background-color: #efefef;
-    margin: 10% auto; /* 10% from the top and centered */
-    padding: 25px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    max-width: 500px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    text-align: center;
-}
-/* .delete-std-remove{
-    display: flex;
-    text-align: center;
-    align-items: center;
-}
-.std-remove-img{
-    width: 4vw;
-    height: 5vh;
-} */
-.std-remove-btn{
-    width: 10vw;
-    height: 5vh;
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-    cursor: pointer;
-    margin-right: 2%;
-}
-/* .std-remove-btn-delete{
-    width: 10vw;
-    height: 5vh;
-    background-color: rgb(234, 48, 48);
-    color: rgb(0, 0, 0);
-    cursor: pointer;
-    margin-right: 2%;
-} */
 .teachr-popupmodal-content3 {
     background-color: #efefef;
     margin: 15% auto; /* 10% from the top and centered */

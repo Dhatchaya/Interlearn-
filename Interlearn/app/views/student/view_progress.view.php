@@ -1,7 +1,6 @@
 <?php $this->view("includes/header");?>
 <?php $this->view("includes/nav");?>
 <head>
-    <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles6.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 <div class="std_crs_ov_container">
@@ -9,15 +8,10 @@
         <div class="std_crs_ov_content">
             <h2>Course Progress</h2>
             <div class="std_crs_ov_top">
-                <?php if(!empty($stdetails)):?>
-                <?php foreach($stdetails as $row):?>
                 <div class="std_crs_ov_name">
-                    <h3>Grade   <?=esc($row->grade)?></h3>
-                    <h3><?=esc($row->subject)?></h3>
-                    <h4>Mr. <?=esc($row->first_name)?></h4>
+                    <h3>Grade 9 - Science</h3>
+                    <h4>Mr. V.J. Viraj</h4>
                 </div>
-                <?php endforeach;?>
-                <?php endif;?>
                 <div class="std_crs_ov_progress">
                     <h3 class="std_crs_ov_op">Overall Progress</h3>
                     <!-- <div class="std_crs_ov_loader">
@@ -65,16 +59,16 @@
             <br><br>
             <h2>Progress Report</h2><br>
             <div>
-                <table class="progress_tbl">
-                    <th>Exam Month</th>
-                    <th>Exam Name</th>
-                    <th>Marks</th>
-                    <th>Grade</th>
+                <table class="std_crs_ov_tablep">
+                    <th class="std_crs_ov_heading">Exam Month</th>
+                    <th class="std_crs_ov_heading"> Number</th>
+                    <th class="std_crs_ov_heading">Marks</th>
+                    <th class="std_crs_ov_heading">Grade</th>
                     
                     <?php if(!empty($rows)):?>
                         <?php foreach($rows as $row):?>
-                            <tr>
-                                <td><?=esc($row->exam_month)?></td>
+                            <tr class="std_crs_ov_trow">
+                                <td class="std_crs_ov_col1"><?=esc($row->exam_month)?></td>
                                 <td><?=esc($row->exam_name)?></td>
                                 <td><?=esc($row->marks)?></td>
                                 <?php if ($row->marks >= 75): ?>

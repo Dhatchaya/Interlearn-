@@ -98,9 +98,9 @@
                               <button class="edit_enq_btn">Edit</button>
                             </div>
                             <div class="enq_delete">
-                                <a href="<?=ROOT?>/academic/enquiry/delete/<?=esc($row->eid)?>">
-                                <button class="delete_enq_btn">Delete</button>
-                                </a>
+                            
+                                <button class="delete_enq_btn" onclick ="deletebtnclick(<?=esc($row->eid)?>);">Delete</button>
+                     
                                 </div>
                             <div class="enq_view">
                                 <a href="<?=ROOT?>/academic/enquiry/view/<?=esc($row->eid)?>">
@@ -117,6 +117,22 @@
                     </table>
         </div>
     </div>  
+    <div class="bank-payment-form-popup remove-staff-popup">
+        <div class="remove-employee-dialog-box">
+            <label class="ask" for="">Are you sure to remove this Enquiry?</label>
+            <div class="btn-container">
+                <button   class="yes">Yes</button>
+                <button onclick="refresh()" class="no">No</button>
+            </div>
+        </div>
+        <div class="success-message">
+            <label class="ask" for="refresh">Successfully removed the Student</label>
+            <br>
+            <div class="btn-container ">
+                <button onclick="refresh()" class="refresh"> click to refresh</button>
+            </div>
+        </div>
+    </div>
     </div>
     <div  id="overlay"></div>
     <script defer src="<?=ROOT?>/assets/js/enquiry.js?v=<?php echo time(); ?>"></script>

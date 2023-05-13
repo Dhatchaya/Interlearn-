@@ -334,7 +334,7 @@ class Receptionist extends Controller
                     //     show($inputs);die;
                     //     $course->insert($inputs);
                     if($course -> validateAdd($_POST)){
-                        $inputs=array("subject_Id"=>$_POST['subject_Id'],"teacher_id"=>$_POST['teacher_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto'],"capacity"=>$_POST['capacity']);
+                        $inputs=array("subject_id"=>$_GET['id'],"teacher_id"=>$_POST['teacher_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto'],"capacity"=>$_POST['capacity']);
                         // show($inputs);die;
                         $course->insert($inputs);
                         $id= $course->getLastCourse()[0]->course_id;
@@ -385,7 +385,6 @@ class Receptionist extends Controller
                         // show($std_id);die;
 
                         $student_course -> deleteStudent($std_id,$id);
-                        header("Location:http://localhost/Interlearn/public/receptionist/course/view/".$id."/student_view");
                     }
 
                     $this->view('receptionist/student_view',$data);
@@ -398,8 +397,7 @@ class Receptionist extends Controller
         }
 
         if($action == 'removeCourse'){
-            // show($_POST);die;
-            $result2 = $course->deleteCourse($_POST['course_id']);
+            $result2 = $course->deleteCourse($_GET['course_id']);
 
             echo json_encode($result2);
             exit;
@@ -467,7 +465,6 @@ class Receptionist extends Controller
         }
 
         if($action == 'checkAvailableEdit'){
-            // show($_POST);die;
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
                 $result = $course -> getTimeEdit($_POST['teacher_id'], $_POST['day'],$_POST['course_id']);
@@ -499,13 +496,13 @@ class Receptionist extends Controller
 
         if($action == 'addTeacher')
         {
-            // show($_GET['id']);die;
-            // $data['id'] = $id;
+            show($_GET['id']);die;
+            $data['id'] = $id;
 
             if($course -> validateAdd($_POST))
             {
-                $inputs=array("subject_id"=>$_POST['subject_Id'],"teacher_id"=>$_POST['teacher_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto'],"capacity"=>$_POST['capacity']);
-                // show($inputs);die;
+                $inputs=array("subject_id"=>$_GET['id'],"teacher_id"=>$_POST['teacher_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto'],"capacity"=>$_POST['capacity']);
+                show($inputs);die;
                 $course->insert($inputs);
                 $id= $course->getLastCourse()[0]->course_id;
                 // // // print_r($Course);die;

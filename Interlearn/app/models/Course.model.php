@@ -295,6 +295,7 @@ class Course extends Model
     }
 
     public function getCourseID($subject_id, $teacher_id, $day, $timefrom, $timeto){
+    
         $query = "SELECT course.course_id FROM ".$this->table;
         $query .= " INNER JOIN subject ON subject.subject_id = course.subject_id";
         $query .= " WHERE course.subject_id =:subjectID AND course.teacher_id =:teacherID AND course.day =:Day AND course.timefrom =:timeFrom AND course.timeto =:timeTo";
@@ -303,10 +304,10 @@ class Course extends Model
         $data['Day'] = $day;
         $data['timeFrom'] = $timefrom;
         $data['timeTo'] = $timeto;
-
+  
         $res = $this -> query($query,$data);
         //  show($query);die;
-
+    
         if(is_array($res)){
             // echo $res;die;
             return $res;
@@ -413,23 +414,4 @@ class Course extends Model
         }
     }
 
-    public function CourseStaffSubject($data= null){
-
-        $keys = array_keys($data);
-        $query = "SELECT c.course_id, st.first_name, s.subject, s.grade from course c 
-        INNER JOIN staff st ON st.emp_id=c.teacher_ID
-        INNER JOIN  subject s ON s.subject_id = c.subject_id where ";
-
-
-        foreach($keys as $key){
-            $query .= $key. " =:".$key." && ";
-        }
-        $query = trim($query,"&& ");
-        $res = $this -> query($query,$data);
-
-        if(is_array($res)){
-            return $res;
-        }
-        return false;
-    }
 }

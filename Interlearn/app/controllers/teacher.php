@@ -1050,9 +1050,6 @@ class Teacher extends Controller
             if(isset($_GET['qnum'])) {
                 $qnum = $_GET['qnum'];
             }
-            if(isset($_GET['quiznum'])) {
-                $quiznum = $_GET['quiznum'];
-            }
 
 
             if($option == 'create') {
@@ -1125,7 +1122,7 @@ class Teacher extends Controller
 
                                 $_POST['view_URL'] = 'http://localhost/Interlearn/public/teacher/course/quiz/'.$id.'/'.$week.'/quiz_view/?id='.$quiz_id;
                                 $_POST['edit_URL'] =  'http://localhost/Interlearn/public/teacher/course/quiz/4/79/edit';
-                                $_POST['delete_URL'] = 'http://localhost/Interlearn/public/teacher/course/quiz/'.$id.'/'.$week.'/quiz_delete/?quiznum='.$quiz_id;
+                                $_POST['delete_URL'] = 'http://localhost/Interlearn/public/teacher/course/quiz/4/79/edit';
                                 // http://localhost/Interlearn/public/student/course/view/103
                                 $_POST['studentView_URL'] = 'http://localhost/Interlearn/public/student/quiz?quiz_id='.$quiz_id;
 
@@ -1199,7 +1196,7 @@ class Teacher extends Controller
                 // echo $qid;
 
                 $data['rows'] = $quiz->ViewQuiz(['quiz_id' => $qid]);
-                // show($data['rows']);die;
+                // show($result);die;
 
                 if(isset($_POST['edit_quiz'])){
                     // echo $_POST['duration'];die;
@@ -1211,14 +1208,6 @@ class Teacher extends Controller
                 }
 
                 $this->view('teacher/Zquiz_edit', $data);
-                exit();
-            }
-
-            if($option == 'quiz_delete') {
-                // $id = $_GET['id'];
-                // show($quiznum);die();
-                $result = $quiz->delete(['quiz_id'=>$quiznum]);
-                header("Location:http://localhost/Interlearn/public/teacher/course/view/".$id);
                 exit();
             }
 

@@ -209,7 +209,7 @@
                                     <input type="text" name="capacity" id="capacityEdit" value="" class="edit-class-disable">
                                 </div><br>
                                 <!-- <br><br> -->
-                                <button name="edit-teacher" type="button" id="edit_class_submit" class="recp_det_btn">Save</button>
+                                <button name="edit-teacher" type="submit" id="edit_class_submit" class="recp_det_btn">Save</button>
                                 <br><br>
                             </form>
                         </div>
@@ -228,7 +228,7 @@
                                     <input type="hidden" value="" name="delete-course" id="delete-course">
                                     <br><br>
                                     <!-- <a href="<?= ROOT ?>/receptionist/course/view/1/?id=<?= esc($teacher->subject_id) ?>"> -->
-                                    <button type="button" class="teacher_upl_btn" name="submit-delete-course" id="delete-course-btn">Yes</button>
+                                    <button type="submit" class="teacher_upl_btn" name="submit-delete-course" id="delete-course-btn">Yes</button>
                                     <!-- </a> -->
                                     <button type="reset" class="teacher_upl_btn" id="cancel-btn" onclick="closeModal4()">Cancel</button>
                                 </div>

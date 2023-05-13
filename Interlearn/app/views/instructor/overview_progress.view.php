@@ -2,13 +2,12 @@
 <?php $this -> view('includes/nav'); ?>
 <head>
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles4.css">
-    <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles6.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <style>
         .edit_delete {
             display: flex;
             flex-direction: row;
-            justify-content: space-around;
+            justify-content: space-between;
         }
 
         .edit, .delete {
@@ -31,60 +30,57 @@
     <!-- <div class="quizz_right"> -->
         <!-- <a href=""><button>Add Question</button></a> -->
         <!-- <div class="report_table"></div> -->
-        <div class="clm3">
-            <!-- <div class="std_crs_ov_progress"> -->
-                <h3>Overview Result</h3>
-                <!-- <h2 class="add_heading_init">Overview Result</h2> -->
-                <!-- <div class="progress-report"></div> -->
-                <canvas id="myChart" style="width:100%;max-width:500px"></canvas><br>
-                        <!-- add form -->
-                <div class="modal1" id="modal1">
-                    <script>
-                        // var x = 'A';
-                        // var y = 'B';
-                        // var z = 'C';
-                        // var p = 'S';
-                        // var q = 'W';
-                        // var xValues = [x, y, z, p, q];
-                        // console.log($newArray);
-                        var xValues = <?php echo json_encode(array_keys($newArray)); ?>;
-                        console.log(xValues);
-                        var yValues = <?php echo json_encode(array_values($newArray)); ?>;
-                        var barColors = [
-                        "#0D3C4F",
-                        "#2D7A8A",
-                        "#489BAE",
-                        "#7AD0D9",
-                        "#DAF6ED"
-                        ];
+        <div class="clm2">
+            <h2 class="add_heading_init">Overview Result</h2>
+            <!-- <div class="progress-report"></div> -->
+            <canvas id="myChart" style="width:100%;max-width:700px"></canvas><br>
+                    <!-- add form -->
+            <div class="modal1" id="modal1">
+                <script>
+                    // var x = 'A';
+                    // var y = 'B';
+                    // var z = 'C';
+                    // var p = 'S';
+                    // var q = 'W';
+                    // var xValues = [x, y, z, p, q];
+                    // console.log($newArray);
+                    var xValues = <?php echo json_encode(array_keys($newArray)); ?>;
+                    console.log(xValues);
+                    var yValues = <?php echo json_encode(array_values($newArray)); ?>;
+                    var barColors = [
+                    "#0D3C4F",
+                    "#2D7A8A",
+                    "#489BAE",
+                    "#7AD0D9",
+                    "#DAF6ED"
+                    ];
 
-                        new Chart("myChart", {
-                        type: "pie",
-                        data: {
-                            labels: xValues,
-                            datasets: [{
-                            backgroundColor: barColors,
-                            data: yValues
-                            }]
-                        },
-                        options: {
-                            title: {
-                            display: true,
-                            text: "Statistics"
-                            }
+                    new Chart("myChart", {
+                    type: "pie",
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                        }]
+                    },
+                    options: {
+                        title: {
+                        display: true,
+                        text: "Mathematics"
                         }
-                        });
-                    </script>
-            <!-- </div> -->
+                    }
+                    });
+                </script>
         </div>
         <div class="header_fixed">
-            <table class="progress_tbl">
+            <table >
                 <thread>
-                    <tr>
-                        <th>ID</th>
-                        <th>Student Number</th>
-                        <th>Marks</th>
-                        <th>Actions</th>
+                    <tr class="std_crs_ov_tablep">
+                        <th class="std_crs_ov_heading">ID</th>
+                        <th class="std_crs_ov_heading">Student Number</th>
+                        <th class="std_crs_ov_heading">Marks</th>
+                        <th class="std_crs_ov_heading">Actions</th>
                     </tr>
                 </thread>
                 <tbody>
@@ -92,11 +88,11 @@
                 
                     <?php foreach($rows2 as $row):?>
                         
-                    <tr>
-                        <td><?=esc($row->id)?></td>
-                        <td><?=esc($row->studentID)?></td>
-                        <td><?=esc($row->marks)?></td>
-                        <td>
+                    <tr class="std_crs_ov_trow">
+                        <td class="std_crs_ov_col1"><?=esc($row->id)?></td>
+                        <td class="std_crs_ov_col1"><?=esc($row->studentID)?></td>
+                        <td class="std_crs_ov_col1"><?=esc($row->marks)?></td>
+                        <td class="std_crs_ov_col1">
                             <div class="edit_delete">
                                 <div class="edit" onclick=editQuestion(<?=esc($row->id)?>)>
                                     <button onclick="toModal(<?=esc($row->marks)?>)">edit</button>

@@ -7,7 +7,7 @@
                 <div class="middle">
                     
                         <div class="profile">
-                            <a href="<?=ROOT?>/manager/profile">
+                        <a href="<?=ROOT?>/staffs/myprofile/view">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/profile.png" alt="profile"></br>
                             <span>Edit Profile</span>
                             </a>

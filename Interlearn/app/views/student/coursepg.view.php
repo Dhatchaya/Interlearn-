@@ -105,11 +105,6 @@
                                                                 <?= $material->upload_name ?>
                                                             </a>
                                                         </p>
-                                                    <?php elseif ($material->type == "Note") : ?>
-                                                        <p class="text-upload-crs">
-                                                            <b><u><?= $material->upload_name ?></u></b><br>
-                                                            <?= $material->view_URL ?>
-                                                        </p>
                                                     <?php endif; ?>
                                                 <?php endif; ?>
                                             <?php endforeach; ?>
