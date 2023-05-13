@@ -1,4 +1,5 @@
 <?php $this -> view('includes/header'); ?>
+<link rel="shortcut icon" href="<?=ROOT?>/assets/images/favicon/fv.png" type="image/x-icon">
 <?php $this -> view('includes/nav'); ?>
 
 <div >

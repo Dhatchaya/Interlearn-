@@ -1255,14 +1255,19 @@ class Teacher extends Controller
         if($action == "forum")
         {
             $mainForum = new mainForum();
+            $user = new user();
+            $staff = new staff();
             $data['course']  = $subject -> coursedetails(['course_id'=>$id]);
 
             if($_SERVER["REQUEST_METHOD"]=="POST"){
+                if($mainForum -> validate($_POST)){
+                $userid = Auth::getuid();
+                $row = $staff-> first(["uid"=>$userid],'emp_id');
                 $mainforum_id = uniqid('F',true);
                 $_POST['mainforum_id']=$mainforum_id;
                 $_POST['course_id']= $id;
-
-                $editURL = "#";
+                $_POST['emp_id']=$row->emp_id;
+                $editURL = "http://localhost/Interlearn/public/forums/forumedit/view/".$id."/?main=".$mainforum_id;
                 $viewURL="http://localhost/Interlearn/public/forums/".$id."/".$week."/?main=".$mainforum_id;
                 $deleteURL="http://localhost/Interlearn/public/forums/deleteMain?id=".$mainforum_id;
                 $cid = uniqid();
@@ -1278,12 +1283,17 @@ class Teacher extends Controller
                 $material = $course_content->insert($_POST);
                 $result =  $mainForum -> insert($_POST);
 
-                if($result){
-                    header('location:http://localhost/Interlearn/public/forums/'.$id.'/'.$week.'/?main='.$mainforum_id);
+                    if ($result) {
+                        header('location:http://localhost/Interlearn/public/forums/' . $id . '/' . $week . '/?main=' . $mainforum_id);
+                    }
+                } else {
+
+                    $data['errors'] = $mainForum->error;
+
                 }
             }
-
             $this->view('teacher/mainForum',$data);
+            exit;
         }
 
         if($action == "progress") {

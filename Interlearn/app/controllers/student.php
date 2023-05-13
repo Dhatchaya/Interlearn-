@@ -336,6 +336,7 @@ class Student extends Controller
 
             $result = $assignment->joinCourseAssignment(['assignmentId'=>$sub_id,'course_id'=>$id],'assignmentId');
             $data['assignment']= $result;
+
             $getstatus = $submission -> Checkstatus(['assignmentId'=>$sub_id,'uid'=>Auth::getUID()],'assignmentId');
         //  show($getstatus);die;
             if($getstatus){
@@ -353,6 +354,13 @@ class Student extends Controller
             $now = new DateTime();
             $deadline =new DateTime($result->deadline);
             $remainingtime= $now->diff($deadline);
+            $checkoverdue = $remainingtime->format('%r%a days %r%h hours %r%i minutes');
+            if($checkoverdue <0){
+                $data['assignment']->overdue=true;
+            }
+            else{
+                $data['assignment']->overdue=false;
+            }
             $remaining = $remainingtime->format('%a days %h hours %i minutes');
             $data['assignment']->remaining = $remaining;
            // show($data);die;
@@ -987,6 +995,14 @@ class Student extends Controller
         }
         $this->view('student/success');
     }
+    public function cancel()
+    {
+        if (!Auth::is_student()) {
+            redirect('home');
+        }
+        $this->view('student/cancel');
+    }
+
 
 
     public function payment($id = null)
@@ -1004,10 +1020,12 @@ class Student extends Controller
         $payment_history = new Payment();
         $each_s_p_h = $payment_history->eachStudentPaymentHistory($currentUserID);
 
-        if($each_s_p_h){
-            if($each_s_p_h[0] == null){
+
+    if( $each_s_p_h){
+        if($each_s_p_h[0] == null){
             $each_s_p_h = array();
-        }}
+        }
+    }
 
         $pending_payment_model = new Payment();
         $haveToPay = $pending_payment_model->eachStudentPendingPayment($currentUserID);
