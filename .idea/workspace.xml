@@ -6,18 +6,38 @@
   <component name="ChangeListManager">
     <list default="true" id="eeccaff2-1398-4ed1-939e-7255de6e7aca" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/controllers/calendar.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/controllers/calendar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/controllers/student.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/controllers/student.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/core/model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/core/model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/discussion.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/discussion.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/controllers/courses.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/controllers/courses.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/academic/enquiry.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/academic/enquiry.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/courses.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/courses.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/details.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/details.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Interlearn/app/views/forums.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/forums.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Interlearn/app/views/includes/sidebar.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/includes/sidebar.view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Interlearn/app/views/includes/sidebar_ins.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/includes/sidebar_ins.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/instructor/home.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/instructor/home.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/student/coursepg.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/student/coursepg.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/student/payment.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/student/payment.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/public/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/public/assets/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/public/assets/css/user-account.css" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/public/assets/css/user-account.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/includes/sidebar_man.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/includes/sidebar_man.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/includes/sidebar_recep.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/includes/sidebar_recep.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/includes/sidebar_teach.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/includes/sidebar_teach.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/instructor/addAnnouncement.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/instructor/addAnnouncement.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/instructor/add_progress.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/instructor/add_progress.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/instructor/announcement.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/instructor/announcement.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/instructor/course.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/instructor/course.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/instructor/note.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/instructor/note.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/instructor/overview_progress.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/instructor/overview_progress.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/instructor/quiz-add.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/instructor/quiz-add.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/instructor/quizz-final.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/instructor/quizz-final.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/instructor/quizz.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/instructor/quizz.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/instructor/submission.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/instructor/submission.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/instructor/upload.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/instructor/upload.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/instructor/url.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/instructor/url.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/instructor/view_progress.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/instructor/view_progress.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/manager/enquiry.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/manager/enquiry.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/receptionist/enquiry.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/receptionist/enquiry.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/staff/student_details.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/staff/student_details.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/staff/user.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/staff/user.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/public/assets/js/enquiry.js" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/public/assets/js/enquiry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/public/assets/js/forum.js" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/public/assets/js/forum.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/public/assets/js/submission.js" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/public/assets/js/submission.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/public/assets/js/submissionEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/public/assets/js/submissionEdit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/public/assets/js/validate_quiz.js" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/public/assets/js/validate_quiz.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +50,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="fewnewupdates" />
+        <entry key="$PROJECT_DIR$" value="hometosidebar" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -87,6 +107,8 @@
       <workItem from="1683870799741" duration="1788000" />
       <workItem from="1683884598743" duration="1818000" />
       <workItem from="1683892773555" duration="332000" />
+      <workItem from="1683937569944" duration="12000" />
+      <workItem from="1683937585118" duration="508000" />
     </task>
     <servers />
   </component>

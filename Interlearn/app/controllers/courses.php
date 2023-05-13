@@ -279,39 +279,42 @@ public function enrollme($id=null){
                 $courses = $data['courses'];
                 // show($data['courses']);die;
 
-                        $data['requestedCourses'] = $enroll_req->getRequestedCourses($_POST['student_id']);
-                        // show($data['requestedCourses'] == null);die;
-                        $reqCourses = $data['requestedCourses'];
-                        // show($reqCourses);die;
+                $data['requestedCourses'] = $enroll_req->getRequestedCourses($_POST['student_id']);
+                // show($data['requestedCourses'] == null);die;
+                $reqCourses = $data['requestedCourses'];
+                // show($reqCourses);die;
 
-                        $flag = 0;
-                        if (!empty($courses)) {
-                            // show($courses);die;
-                            foreach ($courses as $enroll_course => $val) {
-                                // show($courses);
-                                foreach ($val as $req_course => $value) {
-                                    // show($value);
-                                    if ($value == $_POST['course_id']) {
-                                        $flag = 1;
-                                        break;
-                                    }
-                                }
-                            }
-                            // die;
-                        }
+                $flag = 0;
 
-                        if (!empty($reqCourses)) {
-                            foreach ($reqCourses as $val) {
-                                // show($requested_course);
-                                foreach ($val as $req_course => $value) {
-                                    // show($value);
-                                    if ($value == $_POST['course_id']) {
-                                        $flag = 2;
-                                        break;
-                                    }
-                                }
+                if (!empty($courses)) {
+                    // show($courses);die;
+                    foreach ($courses as $enroll_course => $val) {
+                        // show($courses);
+                        foreach ($val as $req_course => $value) {
+                            // show($value);
+                            if ($value == $_POST['course_id']) {
+                                $flag = 1;
+                                break;
                             }
                         }
+                    }
+                    // die;
+                }
+
+                if (!empty($reqCourses)) {
+
+                    foreach ($reqCourses as $val) {
+                        // show($requested_course);
+                        foreach ($val as $req_course => $value) {
+                            // show($value);
+                            if ($value == $_POST['course_id']) {
+
+                                $flag = 2;
+                                break;
+                            }
+                        }
+                    }
+                }
 
 
                 if ($flag == 0) {
@@ -348,41 +351,18 @@ public function enrollme($id=null){
         }
 
 
-                // if(!Auth::is_student()){
-                //     redirect('home');
+        // if(!Auth::is_student()){
+        //     redirect('home');
 
-                //     $user = Auth::getUID();
-                //     show($user);die;
-                //     $course_id = $course -> getCourseID($subject_id, $teacher_id, $day, $timefrom, $timeto);
-                //     $result = $enroll_req -> insert($_POST['emp_id'],$user,$course_id);
-                //     show($result);die;
+        //     $user = Auth::getUID();
+        //     show($user);die;
+        //     $course_id = $course -> getCourseID($subject_id, $teacher_id, $day, $timefrom, $timeto);
+        //     $result = $enroll_req -> insert($_POST['emp_id'],$user,$course_id);
+        //     show($result);die;
 
-                // }
-            }
-
-            $data['teachers'] = $staff->select([], 'emp_id', 'asc');
-            $data['instructors'] = $staff->select([], 'emp_id', 'asc');
-
-            $this->view('details', $data);
-            exit;
-        }
-
-        if ($action == 'select') {
-            $subject_id = $_POST['subjectId'];
-            $teacher_id = $_POST['teacherId'];
-            $result = $course->getDays($subject_id, $teacher_id);
-
-            echo json_encode($result);
-            die;
-        }
-
-        $data['rows'] = $course->select([], 'course_id');
-        $data['sums'] = $subject->distinctSubject([], 'subject');
-        //show($data['sums']);die;
-        $this->view('courses', $data);
+        // }
     }
-
-
+}
     // public function edit()
     // {
     //     echo "edit page";

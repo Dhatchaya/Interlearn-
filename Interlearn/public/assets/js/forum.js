@@ -6,6 +6,14 @@ const form = document.getElementById('formo');
 var title = document.getElementsByName('topic')[0];
 var content = document.getElementsByName('content')[0];
 var attachment = document.getElementsByName('attachment')[0];
+
+const removeButtons = document.querySelectorAll(".remove-btn");
+const removePopup = document.querySelector(".remove-staff-popup");
+const dialogBox = document.querySelector(".remove-employee-dialog-box");
+const successMessage = document.querySelector(".success-message");
+
+const noButton = removePopup.querySelector(".no");
+const refreshBtn = removePopup.querySelector(".refresh");
 const regex = /^.{0,25}$/;
 const regex2 = /^.{0,1000}$/;
 title.addEventListener('change',function(){
@@ -21,6 +29,7 @@ title.addEventListener('change',function(){
     target.innerHTML="";
   }
 });
+
 content.addEventListener('change',function(){
   let target = document.getElementById("err_content");
   if (!regex2.test(content.value)) {
@@ -66,13 +75,17 @@ function deleteForum(id){
     data:{id: id},
     success:function(response){
       console.log(response);
-     
+      dialogBox.style.display = "none";
+      successMessage.style.display = "block";
     },
     error:function(xhr,status,error){
       console.log("Error: " + error);
     }
   });
 
+}
+function refresh(){
+  location.reload();
 }
 submits.addEventListener('click',function(e){
 e.preventDefault();
@@ -128,3 +141,13 @@ $.ajax({
   }
   });
 });
+
+function deletebtnclick(forum){
+  removePopup.style.display = "block";
+  const yesButton = removePopup.querySelector(".yes");
+  const yesButtonClickHandler = async function (event) {
+    deleteForum(forum);
+    yesButton.removeEventListener("click", yesButtonClickHandler);
+  }
+  yesButton.addEventListener("click", yesButtonClickHandler);
+}

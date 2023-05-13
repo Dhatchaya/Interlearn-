@@ -19,9 +19,14 @@
 <?php else:?>
         <?php  if(Auth::getrole() == "Manager"):?>
             <?php $this->view("includes/sidebar_man"); ?>
-
-              
-
+<?php else:?>
+        <?php  if(Auth::getrole() == "Teacher"):?>
+            <?php $this->view("includes/sidebar_teach");?>
+<?php else:?>
+        <?php if(Auth::getrole() == "Instructor"):?>
+            <?php $this->view("includes/sidebar_ins");?>
+<?php endif;?>
+<?php endif;?>
 <?php endif;?>
 <?php endif;?>
 
