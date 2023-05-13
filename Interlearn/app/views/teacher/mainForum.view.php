@@ -2,13 +2,7 @@
 
 
 <div class="main-body-div">
-<?php  if(Auth::getrole() == "Teacher"):?>
-            <?php $this->view("includes/sidebar_teach");?>
-    <?php else:?>
-        <?php if(Auth::getrole() == "Instructor"):?>
-            <?php $this->view("includes/sidebar_ins");?>
-    <?php endif;?>
-    <?php endif;?>
+<?php $this -> view('includes/sidebar'); ?>
     <div class="forum_body top-to-bottom-content">
     <?php $this -> view('includes/nav'); ?>
     <div class="mainforum_discussion">
@@ -20,21 +14,12 @@
         <div class="main_discussion" id="main_discussion">
             <form method= "POST" enctype="multipart/form-data" >
                 <label class="mainforum_subject" for="fsubject"> Subject: </label></br>
-                <p class="warning" id="error1"></p>
-                <?php if(!empty($errors['subject'])):?>
-                <p class="warning" ><?=esc($errors['subject'])?></p>
-                <?php endif;?>
-                <input type ="text" id="subject" name="subject"/>
-              </br>
+                <input type ="text" name="subject"/></br>
                 <label class="mainforum_subject" for="fsubject"> Description: </label></br>
-                <p class="warning" id="error2"></p>
-                <?php if(!empty($errors['description'])):?>
-                <p class="warning" id="error2"><?=esc($errors['description'])?></p>
-                <?php endif;?>
-                <textarea id="descrip" class="mainforumdes" name="description" rows="15" cols="100"></textarea>
-
-                </br></br>
-                <input type ="submit" id = "mainforumsub" name = "submit" class = "home_form_sbt mainforum_right" value="Submit"/>
+                <textarea id="descrip" class="mainforumdes" name="description" rows="15" cols="100"></textarea></br></br>
+                <!-- <label class="forum_subject" for="fsubject"> Attachments: </label></br></br>
+                <input type ="file" class = "file_attachment" name="attachment" /></br></br> -->
+                <input type ="submit" name = "submit" class = "home_form_sbt mainforum_right" value="Submit"/>
     
             </form>
         </div>

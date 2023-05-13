@@ -367,17 +367,6 @@ class Instructor extends Controller
             $this->view('instructor/note',$data);
         }
 
-        if($action == 'student_view'){
-            // show($id);die;
-            // $course_id = $_GET['id'];
-            // show($course_id);die;
-
-            $data['students'] = $student_course -> getStudents($id);
-
-            $this->view('instructor/student_view',$data);
-            exit;
-        }
-
 
         if($action == "announcement")
         {

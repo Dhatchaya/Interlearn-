@@ -1,10 +1,16 @@
-<?php $this -> view('includes/header'); ?>
-<?php $this -> view('includes/nav'); ?>
+<?php $this->view("includes/header"); ?>
+<div class="main-body-div">
+
+    <?php $this->view("includes/sidebar_ins"); ?>
+
+    <div class="top-to-bottom-content">
+        <?php $this->view("includes/nav"); ?>
+        <div class="all-middle-content"></div>
 <div class="mid-container">
     <div class="quizz_left">
-        <?php $this -> view('includes/sidebar_teach'); ?>
+
     </div>
-    <div class="question_right">
+    <div class="question_right1">
         <h1>Add a Quiz</h1>
         <p>Add the time slots and confirmation details</p>
         <br>
@@ -84,6 +90,9 @@
         </form>
            
     </div>
+</div>
+</div>
+</div>
 </div>
 <script defer src="<?=ROOT?>/assets/js/validate_quiz.js?v=<?php echo time(); ?>"></script>
 <?php $this -> view('includes/footer'); ?>

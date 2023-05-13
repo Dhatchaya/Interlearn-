@@ -416,17 +416,6 @@ class Teacher extends Controller
             $this->view('teacher/note',$data);
         }
 
-        if($action == 'student_view'){
-            // show($id);die;
-            // $course_id = $_GET['id'];
-            // show($course_id);die;
-
-            $data['students'] = $student_course -> getStudents($id);
-
-            $this->view('teacher/student_view',$data);
-            exit;
-        }
-
         if($action == "announcement") {
             $announcement = new Announcement();
             $ann_course = new AnnouncementCourse();

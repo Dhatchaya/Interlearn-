@@ -139,6 +139,58 @@ const form = document.getElementById("my-form");
     }
 });
 
+
+const Form = document.getElementById("My-form");
+
+  Form.addEventListener("submit", function(event) {
+    event.preventDefault(); // prevent form submission
+
+    var quiz_name = document.forms["confirmEditForm"]["quiz_name"].value;
+    if (quiz_name == "") {
+        document.getElementById("name-error").innerHTML = "Please enter name of the quiz";
+        return false;
+    }
+
+    var quiz_description = document.forms["confirmEditForm"]["quiz_description"].value;
+    if (quiz_description == "") {
+        document.getElementById("name-error").innerHTML = "Please enter description of the quiz";
+        return false;
+    }
+
+    var total_question = document.forms["confirmEditForm"]["display_question"].value;
+    if (total_question == "") {
+        document.getElementById("total-error").innerHTML = "Please enter total number of questions";
+        return false;
+    }
+
+
+
+    var points = document.forms["confirmEditForm"]["total_points"].value;
+    if (points == "") {
+        document.getElementById("points-error").innerHTML = "Please enter the total marks";
+        return false;
+    }
+
+    var duration = document.forms["confirmEditForm"]["duration"].value;
+    if (duration == "") {
+        document.getElementById("duration-error").innerHTML = "Please enter a duration";
+        return false;
+    }
+    const enableTime = new Date(form.elements["enable_time"].value);
+    const disableTime = new Date(form.elements["disable_time"].value);
+
+    console.log(enableTime);
+    if (enableTime >= disableTime) {
+        // disable form submission or show error message
+        document.getElementById("enable-disable-error").innerHTML = "Enable time should be lesser than  to disable time";
+        // alert("Enable time should be lesser than to disable time");
+        return false;
+    }
+    else {
+        form.submit();
+    }
+});
+
 function validateQuizPopUp() {
 
     var duration = document.forms["confirmEditForm"]["duration"].value;

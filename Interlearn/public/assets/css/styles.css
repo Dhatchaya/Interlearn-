@@ -3250,10 +3250,6 @@ width: 45vw;
 
 .teacher_crs_tophead a{
     text-decoration: none;
-    /* color: black; */
-}
-.teacher_crs_subject{
-    text-decoration: none;
     color: black;
 }
 .teacher_crs_dropbtn {
@@ -4000,6 +3996,47 @@ transition: width 1s, height 1s;
     /* border: 2px solid #808080bf; */
     padding: 3rem;
     margin: 4rem 0 2rem 0;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+}
+
+.question_right1 {
+    width: 80%;
+    background: white;
+    /* border: 2px solid #808080bf; */
+    padding: 3rem;
+    margin: 2rem 5rem 1rem 0;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+}
+
+.question_right2 {
+    width: 80%;
+    background: white;
+    height: 600px;
+    /* border: 2px solid #808080bf; */
+    padding: 3rem;
+    margin: 2rem 5rem 1rem 0;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+}
+
+.question_right3 {
+    width: 80%;
+    background: white;
+    height: auto;
+    /* border: 2px solid #808080bf; */
+    padding: 3rem;
+    margin: 5rem 5rem 1rem 0;
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
     /* display: flex;
@@ -6011,6 +6048,12 @@ flex-direction: row;
     justify-content: space-evenly;
     margin: 4rem 1rem 2rem 1rem;
 }
+.all-middle-content-add{
+    display: flex;
+    /* background-color: white; */
+    justify-content: space-evenly;
+    /* margin: 4rem 1rem 2rem 1rem; */
+}
 .all-middle-content-staff{
     /* display: flex; */
     /* background-color: white; */
@@ -6994,16 +7037,3 @@ left: 5rem;
   .success-message, .rejoin-success-message{
     display: none;
   }
-
-.teacher-crs-links{
-    color: rgb(104, 44, 198,100%);
-    font-weight: bold;
-    font-size: large;
-    /* font-display:var(--primary-color); */
-}
-
-.teacher-crs-links:hover{
-    transform: scale(1.02);
-    color: rgb(104, 44, 198,55%);
-    text-shadow: 1px 1px #3E206D;
-}

@@ -89,10 +89,7 @@
           <label class="preview-label">Cheque No.:</label>
           <span class="preview-value" id="preview-cheque-no"></span>
         </div>
-        <div class="preview-group">
-          <label class="preview-label1">Bank Slip:</label>
-         <a href="" id="slipimage" class= "attachment-link">View Attachment</a>
-        </div>
+
 
         <button class="paynow " id="approve" type="submit">Approve</button>
         <button class="next-payment " id="decline" type="submit">Decline</button>
