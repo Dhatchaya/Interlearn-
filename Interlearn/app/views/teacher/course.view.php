@@ -13,21 +13,21 @@
                         <?php if (!empty($courses)) : ?>
                             <div id="course_id" style="display: none;"><?= $courses[0]->course_id ?></div>
                             <h2 class="teacher_crs_subject">Grade <?= esc($courses[0]->grade) ?> - <?= esc($courses[0]->subject) ?></h2>
-                            <h4 class="teacher_crs_subject"><?= esc($courses[0]->language_medium) ?> Medium</h4><br>
-                            <div class="instructor-prg-butn">
-                                <a href="<?= ROOT ?>/Teacher/course/progress/<?= $course_id ?>/0" class="teacher-course-announcement">
-                                    View Progress
-                                    <img src="<?= ROOT ?>/assets/images/next.png" alt="" class="teacher-course-ann-img">
-                                </a>
-                            </div>
+                            <h4 class="teacher_crs_subject"><?= esc($courses[0]->language_medium) ?> Medium</h4><br><br><br>
+                            <p>
+                                <a href="<?= ROOT ?>/teacher/course/announcement/<?= $course_id ?>/0" class="teacher-crs-links">Announcements   |  </a> 
+                                <a href="<?= ROOT ?>/Teacher/course/progress/<?= $course_id ?>/0" class="teacher-crs-links">Progress   |  </a> 
+                                <a href="<?= ROOT ?>/teacher/course/student_view/<?= $course_id ?>/0" class="teacher-crs-links">Students  </a> 
+                            </p>
+                            
                         <?php endif; ?>
                     </div>
                 </div>
                 <div class="teacher_crs_content2" id="aaa">
-                    <a href="<?= ROOT ?>/teacher/course/announcement/<?= $course_id ?>/0" class="teacher-course-announcement">
+                    <!-- <a href="<?= ROOT ?>/teacher/course/announcement/<?= $course_id ?>/0" class="teacher-course-announcement">
                         Announcements
                         <img src="<?= ROOT ?>/assets/images/next.png" alt="" class="teacher-course-ann-img">
-                    </a>
+                    </a> -->
                     <?php if (!empty($courseWeeks)) : ?>
                         <?php
                         $i = 1;
@@ -106,9 +106,6 @@
                                                         <p><a href=<?= $material->view_URL ?> class="teacher-content">
                                                                 <img src="<?= ROOT ?>/assets/images/assignment.png" alt="" class="teacher_card_img3">
                                                                 <?= $material->upload_name ?>
-                                                            </a>
-                                                            <a href=<?= $material->edit_URL ?>>
-                                                                <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32">
                                                             </a>
                                                             <!-- <a href=<?= $material->delete_URL ?>> -->
                                                             <!-- <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>')"> -->

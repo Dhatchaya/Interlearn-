@@ -416,6 +416,17 @@ class Teacher extends Controller
             $this->view('teacher/note',$data);
         }
 
+        if($action == 'student_view'){
+            // show($id);die;
+            // $course_id = $_GET['id'];
+            // show($course_id);die;
+
+            $data['students'] = $student_course -> getStudents($id);
+
+            $this->view('teacher/student_view',$data);
+            exit;
+        }
+
         if($action == "announcement") {
             $announcement = new Announcement();
             $ann_course = new AnnouncementCourse();
@@ -1255,19 +1266,14 @@ class Teacher extends Controller
         if($action == "forum")
         {
             $mainForum = new mainForum();
-            $user = new user();
-            $staff = new staff();
             $data['course']  = $subject -> coursedetails(['course_id'=>$id]);
 
             if($_SERVER["REQUEST_METHOD"]=="POST"){
-                if($mainForum -> validate($_POST)){
-                $userid = Auth::getuid();
-                $row = $staff-> first(["uid"=>$userid],'emp_id');
                 $mainforum_id = uniqid('F',true);
                 $_POST['mainforum_id']=$mainforum_id;
                 $_POST['course_id']= $id;
-                $_POST['emp_id']=$row->emp_id;
-                $editURL = "http://localhost/Interlearn/public/forums/forumedit/view/".$id."/?main=".$mainforum_id;
+
+                $editURL = "#";
                 $viewURL="http://localhost/Interlearn/public/forums/".$id."/".$week."/?main=".$mainforum_id;
                 $deleteURL="http://localhost/Interlearn/public/forums/deleteMain?id=".$mainforum_id;
                 $cid = uniqid();
@@ -1283,17 +1289,12 @@ class Teacher extends Controller
                 $material = $course_content->insert($_POST);
                 $result =  $mainForum -> insert($_POST);
 
-                    if ($result) {
-                        header('location:http://localhost/Interlearn/public/forums/' . $id . '/' . $week . '/?main=' . $mainforum_id);
-                    }
-                } else {
-
-                    $data['errors'] = $mainForum->error;
-
+                if($result){
+                    header('location:http://localhost/Interlearn/public/forums/'.$id.'/'.$week.'/?main='.$mainforum_id);
                 }
             }
+
             $this->view('teacher/mainForum',$data);
-            exit;
         }
 
         if($action == "progress") {

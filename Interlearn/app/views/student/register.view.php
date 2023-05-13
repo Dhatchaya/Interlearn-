@@ -1,6 +1,6 @@
 
 <?php $this->view("includes/header");?>
-<link rel="shortcut icon" href="<?=ROOT?>/assets/images/favicon/fv.png" type="image/x-icon">
+
 <body>
     <div class="reg_header">
         <img src="<?=ROOT?>/assets/images/logo_bg_rm.png" alt="" class="logo">

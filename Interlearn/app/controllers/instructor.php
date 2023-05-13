@@ -367,6 +367,17 @@ class Instructor extends Controller
             $this->view('instructor/note',$data);
         }
 
+        if($action == 'student_view'){
+            // show($id);die;
+            // $course_id = $_GET['id'];
+            // show($course_id);die;
+
+            $data['students'] = $student_course -> getStudents($id);
+
+            $this->view('instructor/student_view',$data);
+            exit;
+        }
+
 
         if($action == "announcement")
         {
@@ -691,12 +702,11 @@ class Instructor extends Controller
             }
 
             if($option == 'delete') {
-                $qnumid = $_GET['qnum'];
-                $over = $_GET['overview'];
+                $id = $_GET['qnum'];
                 // show($id);
                 // show($GLOBALS['exam_id']);
-                $result = $results->delete(['id'=>$qnumid]);
-                header("Location:http://localhost/Interlearn/public/instructor/course/progress/".$id."/".$week."/overview?overall=".$over);
+                $result = $results->delete(['id'=>$id]);
+                // header("Location:http://localhost/Interlearn/public/instructor/course/progress/".$id."/".$week."overview?overall=".$overall);
                 exit();
             }
 
@@ -707,43 +717,31 @@ class Instructor extends Controller
         if($action == "forum")
         {
             $mainForum = new mainForum();
-            $data=[];
-            $user = new user();
-            $staff = new staff();
             $data['course']  = $subject -> coursedetails(['course_id'=>$id]);
 
             if($_SERVER["REQUEST_METHOD"]=="POST"){
-                if($mainForum -> validate($_POST)){
-                    $mainforum_id = uniqid('F',true);
-                    $_POST['mainforum_id']=$mainforum_id;
-                    $_POST['course_id']= $id;
-                    $userid = Auth::getuid();
-                    $row = $staff-> first(["uid"=>$userid],'emp_id');
-                    $_POST['emp_id']=$row->emp_id;
-                    $editURL = "http://localhost/Interlearn/public/forums/forumedit/view/".$id."/?main=".$mainforum_id;
-                    $viewURL="http://localhost/Interlearn/public/forums/".$id."/".$week."/?main=".$mainforum_id;
-                    $deleteURL="http://localhost/Interlearn/public/forums/deleteMain?id=".$mainforum_id;
-                    $cid = uniqid();
-                    $_POST['cid']=$cid;
-                    $_POST['edit_URL']=$editURL;
-                    $_POST['view_URL']=$viewURL;
-                    $_POST['delete_URL']=$deleteURL;
-                    $_POST['week_no']=$week;
-                    // $_POST['course_material']="Home Work";
-                    $_POST['upload_name']=$_POST['subject'];
-                    $_POST['type']="forum";
-                    //  $_POST['course_id'] = $id;
-                    $material = $course_content->insert($_POST);
-                    $result =  $mainForum -> insert($_POST);
+                $mainforum_id = uniqid('F',true);
+                $_POST['mainforum_id']=$mainforum_id;
+                $_POST['course_id']= $id;
 
-                    if($result){
-                        header('location:http://localhost/Interlearn/public/forums/'.$id.'/'.$week.'/?main='.$mainforum_id);
-                    }
-                }
-                else{
+                $editURL = "#";
+                $viewURL="http://localhost/Interlearn/public/forums/".$id."/".$week."/?main=".$mainforum_id;
+                $deleteURL="http://localhost/Interlearn/public/forums/deleteMain?id=".$mainforum_id;
+                $cid = uniqid();
+                $_POST['cid']=$cid;
+                $_POST['edit_URL']=$editURL;
+                $_POST['view_URL']=$viewURL;
+                $_POST['delete_URL']=$deleteURL;
+                $_POST['week_no']=$week;
+                // $_POST['course_material']="Home Work";
+                $_POST['upload_name']=$_POST['subject'];
+                $_POST['type']="forum";
+              //  $_POST['course_id'] = $id;
+                $material = $course_content->insert($_POST);
+                $result =  $mainForum -> insert($_POST);
 
-                    $data['errors']= $mainForum->error;
-
+                if($result){
+                    header('location:http://localhost/Interlearn/public/forums/'.$id.'/'.$week.'/?main='.$mainforum_id);
                 }
             }
 
@@ -754,7 +752,7 @@ class Instructor extends Controller
 
 
     }
-
+   
     public function submission()
     { 
         if(!Auth::is_instructor()){

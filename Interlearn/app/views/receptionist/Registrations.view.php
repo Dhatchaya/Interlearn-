@@ -96,9 +96,9 @@
                             
                                 <div class="enq_actions">
                                 <div class="enq_delete">
-                                <!-- <a href="<?=ROOT?>/receptionist/registration/delete/<?=esc($row->studentID)?>"> -->
-                                <button class="delete_enq_btn remove-btn" data-student-id="<?= $row->studentID?>">Delete</button>
-                                <!-- </a> -->
+                                <a href="<?=ROOT?>/receptionist/registration/delete/<?=esc($row->studentID)?>">
+                                <button class="delete_enq_btn">Delete</button>
+                                </a>
                                 </div>
                             <div class="enq_view">
                                 <a href="<?=ROOT?>/receptionist/registration/view/<?=esc($row->studentID)?>">
@@ -120,24 +120,8 @@
         </div>
         
     </div>
-    <div class="bank-payment-form-popup remove-staff-popup">
-        <div class="remove-employee-dialog-box">
-            <label class="ask" for="">Are you sure to remove this Student....?</label>
-            <div class="btn-container">
-                <button  onclick="btnyes(this);" class="yes">Yes</button>
-                <button onclick="refreshPage()" class="no">No</button>
-            </div>
-        </div>
-        <div class="success-message">
-            <label class="ask" for="refresh">Successfully removed the Student</label>
-            <br>
-            <div class="btn-container ">
-                <button onclick="refreshPage()" class="refresh"> click to refresh</button>
-            </div>
-        </div>
-    </div>
 </div>
-<script defer src="<?= ROOT ?>/assets/js/removeregisterstd.js?v=<?php echo time(); ?>"></script>
+  
     <script defer src="<?=ROOT?>/assets/js/Registrations.js?v=<?php echo time(); ?>"></script>
        <script defer src="<?=ROOT?>/assets/js/addregistration.js?v=<?php echo time(); ?>">
 

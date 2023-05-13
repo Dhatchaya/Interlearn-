@@ -21,8 +21,6 @@
             <!-- <span class="total-question"></span> -->
             </p>
                 <?php if((strtotime($rows->enable_time) < strtotime(date("Y/m/d h:i:sa"))) && (strtotime($rows->disable_time) > strtotime(date("Y/m/d h:i:sa")))):?>
-                    <p style="color:green">This quiz opens at : <?php echo($rows->enable_time) ?></p>
-                    <p style="color:green">This quiz ends at : <?php echo($rows->disable_time) ?></p>
                     <button type="button" class="btn" onclick="StartQuiz()">Start Quiz</button>
                 <?php else: ?>
                     <p style="color:red">This quiz opens at : <?php echo($rows->enable_time) ?></p>
