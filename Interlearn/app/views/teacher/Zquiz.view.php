@@ -1,12 +1,15 @@
-<?php $this -> view('includes/header'); ?>
-<?php $this -> view('includes/nav'); ?>
+<?php $this->view("includes/header"); ?>
+<div class="main-body-div">
+    <?php $this->view("includes/sidebar_teach"); ?>
+    <div class="top-to-bottom-content">
+        <?php $this->view("includes/nav"); ?>
+        <div class="all-middle-content">
 <head>
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles2.css">
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles6.css">
 </head>
-<div class="mid-container">
+<div class="mid-container2">
     <div class="quizz_left">
-        <?php $this -> view('includes/sidebar_teach'); ?>
     </div>
 
 
@@ -71,10 +74,14 @@
                         <td>
                             <div class="edit_delete">
                                 <div class="edit">
-                                    <button onclick="editQuestion('<?=esc($row->question_title)?>' , <?=esc($row->question_mark)?>, '<?=esc($row->choice1)?>', '<?=esc($row->choice2)?>', '<?=esc($row->choice3)?>', '<?=esc($row->choice4)?>', <?=esc($row->choice1_mark)?>)">edit</button>
+                                    <img src="<?= ROOT ?>/assets/images/edit.png" class="teacher_card_img2" alt="" onclick="editQuestion('<?=esc($row->question_title)?>' , <?=esc($row->question_mark)?>, '<?=esc($row->choice1)?>', '<?=esc($row->choice2)?>', '<?=esc($row->choice3)?>', '<?=esc($row->choice4)?>', <?=esc($row->choice1_mark)?>)">
+                                    <!-- <button onclick="editQuestion('<?=esc($row->question_title)?>' , <?=esc($row->question_mark)?>, '<?=esc($row->choice1)?>', '<?=esc($row->choice2)?>', '<?=esc($row->choice3)?>', '<?=esc($row->choice4)?>', <?=esc($row->choice1_mark)?>)">edit</button> -->
                                 </div>
                                 <div class="delete">
-                                    <a href="<?=ROOT?>/teacher/course/quiz/<?php echo($id) ?>/1/delete?qnum=<?=esc($row->question_number)?>"><button>delete</button></a>
+
+                                    <a href="<?=ROOT?>/teacher/course/quiz/<?php echo($id) ?>/1/delete?qnum=<?=esc($row->question_number)?>">
+                                    <img src="<?= ROOT ?>/assets/images/delete.png" alt="" class="teacher_card_img2">
+                                </a>
                                 </div>
                             </div>
                             
@@ -196,6 +203,7 @@
         <!-- <p>Hello I'm all</p> -->
     </div>
 </div>
+        </div></div></div>
 <script defer src="<?=ROOT?>/assets/js/zquiz.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?=ROOT?>/assets/js/validate_quiz.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?=ROOT?>/assets/js/course.js?v=<?php echo time(); ?>"></script>

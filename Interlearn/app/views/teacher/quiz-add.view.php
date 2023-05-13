@@ -1,8 +1,12 @@
-<?php $this -> view('includes/header'); ?>
-<?php $this -> view('includes/nav'); ?>
+<?php $this->view("includes/header"); ?>
+<div class="main-body-div">
+    <?php $this->view("includes/sidebar_teach"); ?>
+    <div class="top-to-bottom-content">
+        <?php $this->view("includes/nav"); ?>
+        <div class="all-middle-content">
 <div class="mid-container">
     <div class="quizz_left">
-        <?php $this -> view('includes/sidebar_teach'); ?>
+        <!-- <?php $this -> view('includes/sidebar_teach'); ?> -->
     </div>
 
     <div class="question_right">
