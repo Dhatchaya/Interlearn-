@@ -42,7 +42,7 @@ let availableOptions = [];
 let correctAnswers = 0;
 let attempt = 0;
 let totalMarks = 0;
-
+let MaxMarks = 0;
 //set duration -------------------------------------------------------------------------------//
  // 5 minutes in seconds
 
@@ -148,8 +148,15 @@ function getResult(Element) {
 
     // its clicked as answer
     Element.classList.add('answered');
+    console.log('hehe');
+    console.log(typeof(currentQuestion.mark));
+    parseInt(currentQuestion.mark);
 
+    console.log(parseInt(currentQuestion.mark));
+
+    MaxMarks = MaxMarks + parseInt(currentQuestion.mark)
     console.log(totalMarks);
+    console.log(MaxMarks);
     // Check answer comparing clicked option
     if(id === currentQuestion.answer) {
         //set green color for correct answer
@@ -241,13 +248,16 @@ function getQuizIdFromUrl() {
 // URL
 
 function quizResults() {
+    let num = (totalMarks / MaxMarks)*total_points;
     ResultBox.querySelector(".total-question").innerHTML = quiz.length;
-    ResultBox.querySelector(".total-score").innerHTML = totalMarks;
+    ResultBox.querySelector(".total-score").innerHTML = num.toFixed(2)  + ' / ' + total_points;
 
     let x = 5;
+    let newTot = num*100/total_points;
     const quizId = getQuizIdFromUrl();
     console.log(quizId);
     console.log(totalMarks);
+    console.log(newTot);
     // Send totalMarks to the server using AJAX
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost/Interlearn/public/Student/quiz/marks", true);
@@ -257,7 +267,7 @@ function quizResults() {
         console.log(this.responseText);
         }
     };
-    xhr.send("totalMarks=" + totalMarks + "&quizId=" + quizId);
+    xhr.send("totalMarks=" + newTot + "&quizId=" + quizId);
 
 }
 

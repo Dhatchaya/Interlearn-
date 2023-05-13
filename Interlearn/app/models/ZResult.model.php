@@ -64,16 +64,15 @@ class ZResult extends Model
            
     // }
 
-    public function ResultForStudent($data= null){
+    public function ResultForStudent($examID){
         
-        $keys = array_keys($data);
-        $query = "SELECT  id, studentID, marks FROM myresult where ";
+        // $keys = array_keys($data);
+        $query = "SELECT  id, studentID, marks FROM myresult where exam_id = :examID order by marks desc";
 
+        $data['examID'] = $examID;
 
-        foreach($keys as $key){
-            $query .= $key. " =:".$key." && ";
-        }
-        $query = trim($query,"&& ");
+        // $query .=where();
+        // $query = trim($query,"&& ");
         $res = $this -> query($query,$data);
 
         if(is_array($res)){
