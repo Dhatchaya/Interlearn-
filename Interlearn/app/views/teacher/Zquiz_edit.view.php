@@ -1,14 +1,21 @@
-<?php $this -> view('includes/header'); ?>
-<?php $this -> view('includes/nav'); ?>
+<?php $this->view("includes/header"); ?>
+<div class="main-body-div">
+
+    <?php $this->view("includes/sidebar_ins"); ?>
+
+    <div class="top-to-bottom-content">
+        <?php $this->view("includes/nav"); ?>
+        <div class="all-middle-content"></div>
 <head>
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles5.css">
+    <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles3.css">
 </head>
 <div class="mid-container">
     <div class="quizz_left">
-        <?php $this -> view('includes/sidebar_teach'); ?>
+
     </div>
     <!-- <h1>hello</h1> -->
-    <div class="question_right">
+    <div class="question_right2">
         <h1>Quiz Details</h1>
         <p>Here, you can edit the quiz </p>
         <br>
@@ -61,7 +68,7 @@
         <div class="bg_modal" id="modal">
             <div class="box_modal">
                 <h3> -- Update Quiz -- </h3><br>
-                <form name="confirmEditForm" action="" method="POST" onsubmit="return validateQuizPopUp();" id="my-form">
+                <form name="confirmEditForm" action="" method="POST" id="My-form">
                     <!-- <input type="hidden" value="" name="id" id="id"> -->
                     
                     <label for="question_total">Quiz Description <strong> *</strong> : </label>
@@ -127,6 +134,9 @@
     </div>
     
 
+</div>
+</div>
+</div>
 </div>
 <script defer src="<?=ROOT?>/assets/js/quizEdit.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?=ROOT?>/assets/js/validate_quiz.js?v=<?php echo time(); ?>"></script>

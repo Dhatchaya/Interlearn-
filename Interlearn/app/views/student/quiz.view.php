@@ -20,15 +20,24 @@
             <p>Total number of questions : <?php echo($rows->display_question) ?>
             <!-- <span class="total-question"></span> -->
             </p>
-                <?php if((strtotime($rows->enable_time) < strtotime(date("Y/m/d h:i:sa"))) && (strtotime($rows->disable_time) > strtotime(date("Y/m/d h:i:sa")))):?>
-                    <p style="color:green">This quiz opens at : <?php echo($rows->enable_time) ?></p>
-                    <p style="color:green">This quiz ends at : <?php echo($rows->disable_time) ?></p>
-                    <button type="button" class="btn" onclick="StartQuiz()">Start Quiz</button>
-                <?php else: ?>
-                    <p style="color:red">This quiz opens at : <?php echo($rows->enable_time) ?></p>
-                    <p style="color:red">This quiz ends at : <?php echo($rows->disable_time) ?></p>
+            <?php if (!empty($results)) : ?>
+            <?php foreach($results as $res):?>
+                <?php if ($res->count == 0) : ?>
+                    <?php if((strtotime($rows->enable_time) < strtotime(date("Y/m/d h:i:sa"))) && (strtotime($rows->disable_time) > strtotime(date("Y/m/d h:i:sa")))):?>
+                        <p style="color:green">This quiz opens at : <?php echo($rows->enable_time) ?></p>
+                        <p style="color:green">This quiz ends at : <?php echo($rows->disable_time) ?></p>
+                        <button type="button" class="btn" onclick="StartQuiz()">Start Quiz</button>
+                    <?php else: ?>
+                        <p style="color:red">This quiz opens at : <?php echo($rows->enable_time) ?></p>
+                        <p style="color:red">This quiz ends at : <?php echo($rows->disable_time) ?></p>
+                        <button type="button" class="btn2" onclick="">Start Quiz</button>
+                    <?php endif; ?>
+                <?php else : ?>
+                    <p style="color:red">You have attempt the quiz before</p>
                     <button type="button" class="btn2" onclick="">Start Quiz</button>
                 <?php endif; ?>
+            <?php endforeach;?>
+            <?php endif; ?>
         </div>
 
         <div class="quiz-box custom-box hide">

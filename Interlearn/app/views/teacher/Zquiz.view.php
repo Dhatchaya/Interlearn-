@@ -1,12 +1,17 @@
-<?php $this -> view('includes/header'); ?>
-<?php $this -> view('includes/nav'); ?>
+<div class="main-body-div">
+
+    <?php $this->view("includes/sidebar_ins"); ?>
+
+    <div class="top-to-bottom-content">
+        <?php $this->view("includes/nav"); ?>
+        <div class="all-middle-content-add"></div>
 <head>
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles2.css">
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles6.css">
 </head>
 <div class="mid-container">
     <div class="quizz_left">
-        <?php $this -> view('includes/sidebar_teach'); ?>
+
     </div>
 
 
@@ -195,6 +200,9 @@
 
         <!-- <p>Hello I'm all</p> -->
     </div>
+</div>
+</div>
+</div>
 </div>
 <script defer src="<?=ROOT?>/assets/js/zquiz.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?=ROOT?>/assets/js/validate_quiz.js?v=<?php echo time(); ?>"></script>

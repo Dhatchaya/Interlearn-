@@ -933,8 +933,25 @@ class Student extends Controller
         // show($quiz_json);
         $myquiz = new ZQuiz();
         $quizID = $_GET['quiz_id'];
+
+        $student = new Students();
+        $user_id = Auth::getuid();
+
+        // show($user_id);
+        // $result = $student->getStudentName($user_id);
+        // show($result);
+        $result = $student->getStudentID($user_id);
+        // show($result);
+        $student_value = $result[0];
+        $student_id = $student_value->studentID;
+
+        $exam = new ZResult();
+        $data['results'] = $exam->ResultStudentCount(['exam_id' => $quizID, 'studentID' => $student_id]);
+        // show($data['results']);die();
+
         // echo $quizID;die;
         $data['row'] = $myquiz->GetQuiz(['quiz_id' => $quizID]);
+
         // show($data);die;
         $this->view('student/quiz', $data);
 
