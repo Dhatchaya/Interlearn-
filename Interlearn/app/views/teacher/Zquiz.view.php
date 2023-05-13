@@ -1,15 +1,12 @@
-<?php $this->view("includes/header"); ?>
-<div class="main-body-div">
-    <?php $this->view("includes/sidebar_teach"); ?>
-    <div class="top-to-bottom-content">
-        <?php $this->view("includes/nav"); ?>
-        <div class="all-middle-content">
+<?php $this -> view('includes/header'); ?>
+<?php $this -> view('includes/nav'); ?>
 <head>
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles2.css">
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles6.css">
 </head>
-<div class="mid-container2">
+<div class="mid-container">
     <div class="quizz_left">
+        <?php $this -> view('includes/sidebar_teach'); ?>
     </div>
 
 
@@ -31,7 +28,7 @@
             <table class="question_tbl">
                 <thread>
                     <tr>
-                        <th rowspan="2">Question ID</th>
+                        <!-- <th rowspan="2">Question ID</th> -->
                         <th rowspan="2">Question</th>
                         <th colspan="8">Choices</th>
                         <th rowspan="2">Quizbank</th>
@@ -55,7 +52,7 @@
                     <?php foreach($rows as $row):?>
                         
                     <tr>
-                        <td><?=esc($row->question_number)?></td>
+                        <!-- <td><?=esc($row->question_number)?></td> -->
                         <td><?=esc($row->question_title)?></td>
                         <td><?=esc($row->choice1)?></td>
                         <td><?=esc($row->choice1_mark)?></td>
@@ -74,14 +71,10 @@
                         <td>
                             <div class="edit_delete">
                                 <div class="edit">
-                                    <img src="<?= ROOT ?>/assets/images/edit.png" class="teacher_card_img2" alt="" onclick="editQuestion('<?=esc($row->question_title)?>' , <?=esc($row->question_mark)?>, '<?=esc($row->choice1)?>', '<?=esc($row->choice2)?>', '<?=esc($row->choice3)?>', '<?=esc($row->choice4)?>', <?=esc($row->choice1_mark)?>)">
-                                    <!-- <button onclick="editQuestion('<?=esc($row->question_title)?>' , <?=esc($row->question_mark)?>, '<?=esc($row->choice1)?>', '<?=esc($row->choice2)?>', '<?=esc($row->choice3)?>', '<?=esc($row->choice4)?>', <?=esc($row->choice1_mark)?>)">edit</button> -->
+                                    <button onclick="editQuestion('<?=esc($row->question_title)?>' , <?=esc($row->question_mark)?>, '<?=esc($row->choice1)?>', '<?=esc($row->choice2)?>', '<?=esc($row->choice3)?>', '<?=esc($row->choice4)?>', <?=esc($row->choice1_mark)?>, <?=esc($row->choice2_mark)?>, <?=esc($row->choice3_mark)?>, <?=esc($row->choice4_mark)?>)">edit</button>
                                 </div>
                                 <div class="delete">
-
-                                    <a href="<?=ROOT?>/teacher/course/quiz/<?php echo($id) ?>/1/delete?qnum=<?=esc($row->question_number)?>">
-                                    <img src="<?= ROOT ?>/assets/images/delete.png" alt="" class="teacher_card_img2">
-                                </a>
+                                    <a href="<?=ROOT?>/teacher/course/quiz/<?php echo($id) ?>/1/delete?qnum=<?=esc($row->question_number)?>"><button>delete</button></a>
                                 </div>
                             </div>
                             
@@ -115,15 +108,15 @@
                         <!-- </div>   -->
                         <!-- <div> -->
                             <select name="format_time1" id="format_time1">
-                                <option value="-1.00"> -100% </option>
+                                <option value="-1"> -100% </option>
                                 <option value="-0.75"> -75% </option>
-                                <option value="-0.50"> -50% </option>
+                                <option value="-0.5"> -50% </option>
                                 <option value="-0.25"> -25% </option>
                                 <option value="0"> 0% </option>
                                 <option value="0.25"> 25% </option>
                                 <option value="0.33"> 33.3% </option>
-                                <option value="0.50"> 50% </option>
-                                <option value="1.00"> 100% </option>
+                                <option value="0.5"> 50% </option>
+                                <option value="1"> 100% </option>
                             </select>
                         <!-- </div> -->
                     </div>
@@ -136,15 +129,15 @@
                             <!-- </div>   -->
                         <!-- <div> -->
                             <select name="format_time2" id="format_time2">
-                                <option value="-1.00"> -100% </option>
+                                <option value="-1"> -100% </option>
                                 <option value="-0.75"> -75% </option>
-                                <option value="-0.50"> -50% </option>
+                                <option value="-0.5"> -50% </option>
                                 <option value="-0.25"> -25% </option>
                                 <option value="0"> 0% </option>
                                 <option value="0.25"> 25% </option>
                                 <option value="0.33"> 33.3% </option>
-                                <option value="0.50"> 50% </option>
-                                <option value="1.00"> 100% </option>
+                                <option value="0.5"> 50% </option>
+                                <option value="1"> 100% </option>
                             </select>
                         <!-- </div> -->
                     </div>
@@ -157,15 +150,15 @@
                             <!-- </div>   -->
                         <!-- <div> -->
                             <select name="format_time3" id="format_time3">
-                                <option value="-1.00"> -100% </option>
+                                <option value="-1"> -100% </option>
                                 <option value="-0.75"> -75% </option>
-                                <option value="-0.50"> -50% </option>
+                                <option value="-0.5"> -50% </option>
                                 <option value="-0.25"> -25% </option>
                                 <option value="0"> 0% </option>
                                 <option value="0.25"> 25% </option>
                                 <option value="0.33"> 33.3% </option>
-                                <option value="0.50"> 50% </option>
-                                <option value="1.00"> 100% </option>
+                                <option value="0.5"> 50% </option>
+                                <option value="1"> 100% </option>
                             </select>
                         <!-- </div> -->
                     </div>
@@ -178,15 +171,15 @@
                             <!-- </div>   -->
                         <!-- <div> -->
                             <select name="format_time4" id="format_time4">
-                                <option value="-1.00"> -100% </option>
+                                <option value="-1"> -100% </option>
                                 <option value="-0.75"> -75% </option>
-                                <option value="-0.50"> -50% </option>
+                                <option value="-0.5"> -50% </option>
                                 <option value="-0.25"> -25% </option>
                                 <option value="0"> 0% </option>
                                 <option value="0.25"> 25% </option>
                                 <option value="0.33"> 33.3% </option>
-                                <option value="0.50"> 50% </option>
-                                <option value="1.00"> 100% </option>
+                                <option value="0.5"> 50% </option>
+                                <option value="1"> 100% </option>
                             </select>
                         <!-- </div> -->
                     </div>
@@ -203,7 +196,6 @@
         <!-- <p>Hello I'm all</p> -->
     </div>
 </div>
-        </div></div></div>
 <script defer src="<?=ROOT?>/assets/js/zquiz.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?=ROOT?>/assets/js/validate_quiz.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?=ROOT?>/assets/js/course.js?v=<?php echo time(); ?>"></script>

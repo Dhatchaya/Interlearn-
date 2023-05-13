@@ -498,44 +498,7 @@ class Forums extends Controller
         
         $this->view('instructor/profile');
     }
-    public function forumEdit($action=null, $course=null,$id=null)
-    {
 
-        $data=[];
-        $mainForum = new mainForum();
-        $role = Auth::getrole();
-        if($action =="edit"){
-           
-
-            if($_SERVER["REQUEST_METHOD"]=="POST"){
-                if($mainForum -> validate($_POST)){
-                    $result= $mainForum->update(["mainforum_id"=>$id],$_POST);
-                    $success = array("status"=>"success","url"=>"http://localhost/Interlearn/public/".$role."/course/view/".$course);
-                    echo json_encode($success);
-                    exit;
-                }
-                else{
-
-                    $data['errors']= $mainForum->error;
-                    $errors = array("error"=>$data['errors']);
-                    echo json_encode($errors);
-                    exit;
-                }
-
-            }
-            $row = $mainForum-> first(["mainforum_id"=>$id],'mainforum_id');
-            echo json_encode($row);
-            exit;
-        }
-        if($action =="view"){
-            $subject = new Subject();
-            $data['course']  = $subject -> coursedetails(['course_id'=>$course]);
-            $this->view('teacher/mainForum',$data);
-            exit;
-        }
-
-
-}
     public function update()
     { 
        

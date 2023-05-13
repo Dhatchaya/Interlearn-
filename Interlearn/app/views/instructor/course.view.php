@@ -95,7 +95,7 @@
                                                             </p>
                                                         <?php endif; ?>
                                                     <?php elseif ($material->type == "assignment") : ?>
-                                                        <p><a href=<?= $material->view_URL ?> class="teacher-content">
+                                                        <p><a href="#" class="teacher-content">
                                                                 <img src="<?= ROOT ?>/assets/images/assignment.png" alt="" class="teacher_card_img3">
 
                                                                 <?= $material->upload_name ?>
@@ -104,7 +104,7 @@
                                                                 <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32">
                                                             </a> -->
                                                             <!-- <a href=<?= $material->delete_URL ?>> -->
-                                                            <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?= $material->cid ?>')">
+                                                            <!-- <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?= $material->cid ?>')"> -->
                                                             <!-- </a></p> -->
                                                         </p>
                                                     <?php elseif ($material->type == "forum") : ?>
@@ -112,14 +112,10 @@
                                                                 <img src="<?= ROOT ?>/assets/images/assignment.png" alt="" class="teacher_card_img3">
                                                                 <?= $material->upload_name ?>
                                                             </a>
-                                                            <?php if ($material->role === "Instructor") : ?>
-                                                              <a href=<?= $material->edit_URL ?>>
-                                                                <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32">
-                                                            </a>
-
+                                                            <!-- <a href=<?= $material->delete_URL ?>> -->
+                                                            <!-- <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?= $material->cid ?>')"> -->
                                                             <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?= $material->cid ?>')">
-
-                                                            <?php endif; ?>
+                                                            <!-- </a></p> -->
                                                         </p>
                                                     <?php elseif ($material->type == "URL") : ?>
                                                         <p>

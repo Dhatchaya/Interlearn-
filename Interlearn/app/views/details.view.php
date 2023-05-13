@@ -1,5 +1,4 @@
 <?php $this->view("includes/header"); ?>
-<link rel="shortcut icon" href="<?=ROOT?>/assets/images/favicon/fv.png" type="image/x-icon">
 <div class="main-body-div">
 <?php   $url = $_GET['url'];
             $url = rtrim($url, '/');
