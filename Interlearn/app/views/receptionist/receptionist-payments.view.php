@@ -34,15 +34,15 @@
     <button class=" close-button-4" id="close-button-1">&times</button>
     <div class="validation-container">
       <div class="pending-list">
-        <?php foreach ($bankPayments as $bankPayment) : ?>
-          <div class="pending-item each-payment" id="<?= $bankPayment->BankPaymentID ?>">
-            <h4><?= $bankPayment->CourseID  ?></h4>
-            <h4><?= $bankPayment->NameOnSlip  ?></h4>
-            <h4><?= $bankPayment->monthlyFee ?></h4>
-            <h4><?= $bankPayment->PaymentDate  ?></h4>
+      <?php foreach ($bankPayments as $bankPayment) : ?>
+  <div class="pending-item each-payment" id="<?= $bankPayment->BankPaymentID ?>" data-status="<?= $bankPayment->status ?>">
+    <h4><?= $bankPayment->CourseID  ?></h4>
+    <h4><?= $bankPayment->NameOnSlip  ?></h4>
+    <h4><?= $bankPayment->monthlyFee ?></h4>
+    <h4><?= $bankPayment->PaymentDate  ?></h4>
+  </div>
+<?php endforeach; ?>
 
-          </div>
-        <?php endforeach; ?>
 
       </div>
 
@@ -55,19 +55,16 @@
         <input type="hidden" value="" id="bankpaymentID"/>
         <div class="preview-group">
           <label class="preview-label">StudentID:</label>
+          <span class="hidden" id="PaymentID"></span>
           <span class="preview-value" id="preview-StudentID"></span>
         </div>
         <div class="preview-group">
-          <label class="preview-label">Address:</label>
-          <span class="preview-value" id="preview-address"></span>
-        </div>
-        <div class="preview-group">
-          <label class="preview-label">Course Name:</label>
+          <label class="preview-label">Course ID:</label>
           <span class="preview-value" id="preview-course-name"></span>
         </div>
         <div class="preview-group">
-          <label class="preview-label">NIC Number:</label>
-          <span class="preview-value" id="preview-nic"></span>
+          <label class="preview-label">month:</label>
+          <span class="preview-value" id="preview-month"></span>
         </div>
 
         <br>
@@ -213,47 +210,6 @@
   <?php $this->view("includes/manojge_footer_eka"); ?>
 
   <!-- <script src="salaryCal.js"></script> -->
-
-  <script>
-    // *******************************************************************************//
-
-
-
-    const footer = document.querySelector(".footer")
-    const sidebar = document.querySelector(".side-col")
-    const container = document.querySelector(".sidebar-container")
-
-    const footerApperOptions = {
-      rootMargin: "0px 0px -100px 0px"
-    };
-
-    const observer = new IntersectionObserver(function(
-        entries,
-        observer
-      ) {
-        entries.forEach(entry => {
-          // console.log(entry.target)
-          if (entry.isIntersecting) {
-            sidebar.classList.add("sidebar-short");
-            container.classList.add("segment-out");
-          } else {
-            sidebar.classList.remove("sidebar-short");
-            container.classList.remove("segment-out");
-          }
-        });
-      },
-      footerApperOptions);
-
-    observer.observe(footer);
-
-
-    //***********************footer support hright changer********************************//
-
-
-    var div1 = document.querySelector(".student-payment");
-    var div2 = document.querySelector(".footer-support");
-    div2.style.height = div1.offsetHeight + "px";
-  </script>
 
 
 

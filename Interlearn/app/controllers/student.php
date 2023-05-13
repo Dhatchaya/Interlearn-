@@ -987,14 +987,6 @@ class Student extends Controller
         }
         $this->view('student/success');
     }
-    public function cancel()
-    {
-        if (!Auth::is_student()) {
-            redirect('home');
-        }
-        $this->view('student/cancel');
-    }
-
 
 
     public function payment($id = null)
@@ -1012,12 +1004,10 @@ class Student extends Controller
         $payment_history = new Payment();
         $each_s_p_h = $payment_history->eachStudentPaymentHistory($currentUserID);
 
-
-    if( $each_s_p_h){
-        if($each_s_p_h[0] == null){
+        if($each_s_p_h){
+            if($each_s_p_h[0] == null){
             $each_s_p_h = array();
-        }
-    }
+        }}
 
         $pending_payment_model = new Payment();
         $haveToPay = $pending_payment_model->eachStudentPendingPayment($currentUserID);
@@ -1028,22 +1018,6 @@ class Student extends Controller
 
 
 
-    // $currentDate = date('Y-m-d');
-
-    // check if it is the first of the month
-    // if (date('d', strtotime($currentDate)) == 1) {
-    // // retrieve the data from the Course table
-    // $sql = "SELECT * FROM Course";
-    // $result = $this->query($sql);
-
-    // // insert the data into the pending-payment table
-    // while ($row = mysqli_fetch_assoc($result)) {
-    //     $sql2 = "INSERT INTO pending-payment (course_name, course_fee) VALUES ('".$row['course_name']."', '".$row['course_fee']."')";
-    //     $this->query($sql2);
-    //      }
-    // }
-
-    /////////////////////////////////
 
 
     public function test($id = null)
@@ -1067,22 +1041,52 @@ class Student extends Controller
         var_dump ($payment_history);
     }
 
-
-    public function getBankPayment()
+    public function submitBP()
     {
         if (!Auth::is_student()) {
             redirect('home');
         }
 
-
-        if (isset($_POST)) {
-            // $_POST['payment_status'] = '1';
-            $payment_model = new BankPayment();
-            $payment_model->insert($_POST);
-            $this->view("student/student-payment");
+        $pdfCustomName = '';
+        if (isset($_FILES['file-upload']) && $_FILES['file-upload']['error'] === UPLOAD_ERR_OK) {
+            $pdfName = $_FILES['file-upload']['name'];
+            $pdfTmpName = $_FILES['file-upload']['tmp_name'];
+            $pdfExtension = pathinfo($pdfName, PATHINFO_EXTENSION);
+            $pdfCustomName = uniqid(). '.' . $pdfExtension;
+            $pdfPath = "uploads/images/".$pdfCustomName;
+            move_uploaded_file($pdfTmpName, $pdfPath);
         }
-        $this->view("student/student-payment");
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = [
+                'NameOnSlip' => $_POST['NameOnSlip'],
+                'StudentId' => $_POST['StudentId'],
+                'CourseID' => $_POST['CourseID'],
+                'monthlyFee' => $_POST['monthlyFee'],
+                'PaymentDate' => $_POST['PaymentDate'],
+                'month' => $_POST['month'],
+                'Bank' => $_POST['Bank'],
+                'Branch' => $_POST['Branch'],
+                'ChequeNo' => $_POST['ChequeNo'],
+                'status' => 1,
+                'SlipImage' => $pdfCustomName,
+                'PaymentID' => $_POST['PaymentID'] // add PaymentID key to the data array
+            ];
+
+            $BPsubmission = new BankPayment();
+            $result = $BPsubmission->submitBP($data);
+
+            $pendingBPreview = new Payment();
+            $pendingBPreview->pendingReview($data['PaymentID']); // use PaymentID from the data array
+
+            echo json_encode($result);
+        }
     }
+
+
+
+
+
 
 
 }

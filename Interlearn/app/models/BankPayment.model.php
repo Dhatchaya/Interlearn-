@@ -9,16 +9,17 @@ class BankPayment extends Model
         'NameOnSlip',
         'Address',
         'CourseID',
-        'PayerNIC',
+        'month',
         'SlipImage',
         'PaymentDate',
-        'Amount',
+        'monthlyFee',
         'Bank',
         'Branch',
         'ChequeNo',
         'BankPaymentID',
         'status',
-        'StudentID'
+        'StudentId',
+        'PaymentID',
     ];
 
     public function validateBankPayment()
@@ -31,6 +32,14 @@ class BankPayment extends Model
         }
 
         return $data;
+    }
+
+    public function submitBP($data)
+    {
+
+        $this->insert($data);
+
+
     }
 
     public function removefromBankPayment ($bankPaymentID){
@@ -47,8 +56,19 @@ class BankPayment extends Model
         $query = "UPDATE bank_payment SET status = '2' WHERE BankPaymentID = '$bankPaymentID'";
 
 
-        $this->query($query);
+        $res = $this->query($query);
+
+        if ($res !== NULL) {
+            return "success";
+            exit;
+        }
+        else{
+            $res = 'failed';
+            exit;
+        }
     }
+
+
 
 
     public function getEachBPdata($BP_ID)
