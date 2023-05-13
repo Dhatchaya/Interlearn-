@@ -138,8 +138,9 @@
                                                             <?php endif; ?>
                                                         </p>
                                                     <?php elseif($material->type == "quiz"):?>
-                                                        <p><a href=<?=$material->view_URL?>>
-                                                                <img src="<?=ROOT?>/assets/images/quiz.png" alt="" class="teacher_card_img3">
+                                                        <p>
+                                                            <a href=<?=$material->view_URL?> class="teacher-content">
+                                                                <img src="<?=ROOT?>/assets/images/quiz-new.png" alt="" class="teacher_card_img3">
                                                                 <?=$material->upload_name?>
                                                             </a>
                                                             <?php if ($material->role === "Instructor") : ?>

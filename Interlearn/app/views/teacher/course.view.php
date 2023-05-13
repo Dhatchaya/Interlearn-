@@ -15,7 +15,7 @@
                             <h2 class="teacher_crs_subject">Grade <?= esc($courses[0]->grade) ?> - <?= esc($courses[0]->subject) ?></h2>
                             <h4 class="teacher_crs_subject"><?= esc($courses[0]->language_medium) ?> Medium</h4><br>
                             <div class="instructor-prg-butn">
-                                <a href="<?= ROOT ?>/Teacher/course/progress/<?= $course_id ?>/0" class="teacher-course-announcement">
+                                <a href="<?= ROOT ?>/instructor/course/progress/<?= $course_id ?>/0/view" class="teacher-course-announcement">
                                     View Progress
                                     <img src="<?= ROOT ?>/assets/images/next.png" alt="" class="teacher-course-ann-img">
                                 </a>
@@ -129,8 +129,8 @@
                                                             <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal8('<?= $material->cid ?>')">
                                                         </p>
                                                     <?php elseif($material->type == "quiz"):?>
-                                                        <p><a href=<?=$material->view_URL?>>
-                                                                <img src="<?=ROOT?>/assets/images/quiz.png" alt="" class="teacher_card_img3">
+                                                        <p><a href=<?=$material->view_URL?> class="teacher-content">
+                                                                <img src="<?=ROOT?>/assets/images/quiz-new.png" alt="" class="teacher_card_img3">
                                                                 <?=$material->upload_name?>
                                                             </a>
                                                             <img src="<?=ROOT?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32" onclick="openModal5('<?=$material->cid?>')">

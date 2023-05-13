@@ -36,11 +36,6 @@ ul li {
     /* background-color: #084cdf; */
 }
 
-.progress:hover {
-    transition: all 350ms ease;
-    transform: scale(1.09)  ;
-}
-
 .home_myform_sbt {
     /* position: absolute;
     top: 85%;
@@ -102,7 +97,6 @@ ul li {
     margin: 3rem 0 2rem 0;
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
-    /* border: 3px solid blue; */
     /* display: flex;
     flex-direction: column;
     justify-content: center; */
