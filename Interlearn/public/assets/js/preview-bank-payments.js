@@ -11,6 +11,8 @@ const BranchName = document.querySelector('#preview-branch');
 const ChequeNumber = document.querySelector('#preview-cheque-no');
 const bankpaymentID = document.querySelector('#bankpaymentID');
 const PaymentID = document.querySelector('#PaymentID');
+const slipimage = document.querySelector('#slipimage');
+slipimage.style.display="none";
 // Add click event listener to each payment div
 paymentDivs.forEach(paymentDiv => {
   paymentDiv.addEventListener('click', function() {
@@ -31,6 +33,7 @@ paymentDivs.forEach(paymentDiv => {
       return response.json(); // modify to parse the response as JSON
     })
     .then(data => { // log the response from the server
+      slipimage.style.display="block";
       NameOnSlip.innerHTML = data[0].NameOnSlip;
       month.innerHTML = data[0].month;
       CourseName.innerHTML = data[0].CourseID;
@@ -41,6 +44,8 @@ paymentDivs.forEach(paymentDiv => {
       studentID.innerHTML=data[0].StudentID;
       bankpaymentID.innerHTML = data[0].BankPaymentID;
       PaymentID.innerHTML = data[0].PaymentID;
+      slipimage.setAttribute("href","http://localhost/Interlearn/public/uploads/images/"+data[0].SlipImage);
+      console.log(data);
       if(data[0].ChequeNo == 0){
         ChequeNumber.innerHTML = "N/A";
       }else{

@@ -22,6 +22,7 @@ class Staff extends Model
         'uid',
         'contractEndingDate',
         'ResignedDate',
+        'role',
     ];
 
     protected $staffs = [
