@@ -79,9 +79,9 @@
 
 
             <div class="recp_view_rectangle nomargin">
-                <a href="#">
+                <a href="<?=ROOT?>/courses">
                     <img src="<?=ROOT?>/assets/images/homepage/register1.png" alt="" class="recp_view_img">
-                    <p>System log</p>
+                    <p>Courses</p>
                 </a>
             </div>
 

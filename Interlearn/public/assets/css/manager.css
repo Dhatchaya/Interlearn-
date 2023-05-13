@@ -18,7 +18,8 @@
 
 #show-password-btn {
     position: absolute;
-    right: 100px;
+    right: 13px;
+    top: 48px;
     background: transparent;
     border: none;
     color: #3E206D;

@@ -649,7 +649,15 @@ class Student extends Controller
             }
                 exit;
             }
+            if(isset($_GET['sub_id'])){
+                $submissionID = $_GET['sub_id'];
 
+            }
+            $assignment = new Assignment();
+            $rowSub = $submission -> first(['submissionId'=>$submissionID],'submissionId');
+             $result = $assignment->joinCourseAssignment(['assignmentId'=>$rowSub->assignmentId,'course_id'=>$id],'assignmentId');
+     
+            $data['subDetails']=$result;
             $data['errors'] =  $submission->error;
 
             $this->view('student/submission',$data);
@@ -1066,16 +1074,18 @@ class Student extends Controller
         }
 
         $pdfCustomName = '';
-        if (isset($_FILES['file-upload']) && $_FILES['file-upload']['error'] === UPLOAD_ERR_OK) {
-            $pdfName = $_FILES['file-upload']['name'];
-            $pdfTmpName = $_FILES['file-upload']['tmp_name'];
-            $pdfExtension = pathinfo($pdfName, PATHINFO_EXTENSION);
-            $pdfCustomName = uniqid(). '.' . $pdfExtension;
-            $pdfPath = "uploads/images/".$pdfCustomName;
-            move_uploaded_file($pdfTmpName, $pdfPath);
-        }
-
+     
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+          
+            $pdfCustomName = uniqid();
+            if (isset($_FILES['slipPDF']) && $_FILES['slipPDF']['error'] === UPLOAD_ERR_OK) {
+                $pdfName = $_FILES['slipPDF']['name'];
+                $pdfTmpName = $_FILES['slipPDF']['tmp_name'];
+                $pdfExtension = pathinfo($pdfName, PATHINFO_EXTENSION);
+                $pdfCustomName =  $pdfCustomName. '.' . $pdfExtension;
+                $pdfPath = "uploads/images/".$pdfCustomName;
+                move_uploaded_file($pdfTmpName, $pdfPath);
+            }
             $data = [
                 'NameOnSlip' => $_POST['NameOnSlip'],
                 'StudentId' => $_POST['StudentId'],
@@ -1090,7 +1100,9 @@ class Student extends Controller
                 'SlipImage' => $pdfCustomName,
                 'PaymentID' => $_POST['PaymentID'] // add PaymentID key to the data array
             ];
-
+         
+   
+    
             $BPsubmission = new BankPayment();
             $result = $BPsubmission->submitBP($data);
 

@@ -32,7 +32,7 @@
                     </a>
                     </div>
                     <div class="Courses">
-                            <a href="<?=ROOT?>/manager/course">
+                            <a href="<?=ROOT?>/courses">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/book.png" alt="Courses"></br>
                             <span>Courses</span>
                             </a>
