@@ -18,8 +18,7 @@ btn1.addEventListener("click", function() {
     const status = item.dataset.status; // get the status value from the data-status attribute
     if (status === '2') {
       item.style.backgroundColor = '#D21312';
-      item.style.color = "white";
-      console.log("Meka rathupata wenwa"); // set background color to red
+      item.style.color = "white";// set background color to red
     }
   });
 

@@ -18,7 +18,8 @@ class BankPayment extends Model
         'ChequeNo',
         'BankPaymentID',
         'status',
-        'StudentId'
+        'StudentId',
+        'PaymentID',
     ];
 
     public function validateBankPayment()
@@ -37,6 +38,8 @@ class BankPayment extends Model
     {   
 
         $this->insert($data);
+
+        
     }
 
     public function removefromBankPayment ($bankPaymentID){

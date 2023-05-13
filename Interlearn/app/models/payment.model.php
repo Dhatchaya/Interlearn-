@@ -53,31 +53,24 @@ class Payment extends Model
         return $data;
     }
 
-    public function approveBP($data)
+    public function approveBP($PaymentID)
     {
-
-
+        
         $query = "UPDATE payment 
                     SET 
-                        amount = '".$data['BPAmount']."',
-                        method = '".$data['method']."',
-                        payment_status = '1',
-                        studentName = '".$data['NameOnSlip']."'
+                        method = 'bank deposit',
+                        payment_status = '1''
                     WHERE 
-                        studentID = '".$data['StudentID']."' AND 
-                        courseID = '".$data['CourseID']."'
-                        AND month = '".$data['month']."'";
-            
+                    PaymentID = '$PaymentID'";
+    
         $res = $this->query($query);
-
+    
         if ($res !== NULL) {
             return "success";
         }
-        show($res); 
-
         return $res;
     }
-
+    
     public function pendingReview($paymentID)
     {
         show($paymentID);

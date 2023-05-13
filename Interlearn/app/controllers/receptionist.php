@@ -1246,40 +1246,17 @@ class Receptionist extends Controller
 
         $data = json_decode(file_get_contents("php://input"), true);
 
-        $currentMonth = date('m');
-        $months = array(
-            "01" => "January",
-            "02" => "February",
-            "03" => "March",
-            "04" => "April",
-            "05" => "May",
-            "06" => "June",
-            "07" => "July",
-            "08" => "August",
-            "09" => "September",
-            "10" => "October",
-            "11" => "November",
-            "12" => "December"
-        );
+        $PaymentID = $data['PaymentID'];
+        $BankPaymentID = $data['BankPaymentID'];
 
-        // $data['month' ]= $months[$currentMonth];
-             $data['payment_status'] = '1';
-             $data['method'] = 'bank deposit';
 
 
             $approveBP = new Payment();
-            $return = $approveBP->approveBP($data);
-
-            if($return == "success"){
-            
+            $res =$approveBP->approveBP($PaymentID);
+            if($res == 'success'){
                 $removefromBankPayment = new BankPayment();
-                $respond = $removefromBankPayment->removefromBankPayment($data['BankPaymentID']);
+                $respond = $removefromBankPayment->removefromBankPayment($BankPaymentID);
             }
-
-            // $removefromBankPayment = new BankPayment();
-            // $respond = $removefromBankPayment->removefromBankPayment($data['BankPaymentID']);
-
-
         echo json_encode($respond);
     }
 
@@ -1338,7 +1315,7 @@ class Receptionist extends Controller
         $getEachBPdata = new BankPayment();
         $BankPaymentData = $getEachBPdata->getEachBPdata($data['bankPaymentID']);
 
-        header('Content-Type: application/json'); // set the content type to JSON
+        header('Content-Type: application/json');// set the content type to JSON
         echo json_encode($BankPaymentData);
     }
 
