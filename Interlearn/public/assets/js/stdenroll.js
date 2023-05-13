@@ -71,7 +71,7 @@ function getDateTime(subject) {
 
             let selectField = document.getElementById("day");
 
-            selectField.innerHTML = `<option value="" selected>--Select day and time--</option>`
+            selectField.innerHTML = `<option value="day" selected>--Select day and time--</option>`
 
             response.forEach(element => {
                 selectField.innerHTML += `<option value="${element.day}-${element.timefrom}-${element.timeto}">${element.day} => <span id="timefrom">${element.timefrom}</span> - <span id="timeto">${element.timeto}</span></option>`
@@ -124,10 +124,10 @@ enroll.addEventListener('click',function(event){
           else if(data.error){
               
             if(data.error.day){
-                error2.innerHTML=data.error.day;
+                error1.innerHTML=data.error.day;
             }
             if(data.error.teacher){
-                error1.innerHTML=data.error.teacher;
+                error2.innerHTML=data.error.teacher;
             }
           }
          

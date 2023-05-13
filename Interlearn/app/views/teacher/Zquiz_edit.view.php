@@ -1,11 +1,14 @@
-<?php $this -> view('includes/header'); ?>
-<?php $this -> view('includes/nav'); ?>
+<?php $this->view("includes/header"); ?>
+<div class="main-body-div">
+    <?php $this->view("includes/sidebar_teach"); ?>
+    <div class="top-to-bottom-content">
+        <?php $this->view("includes/nav"); ?>
+        <div class="all-middle-content">
 <head>
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles5.css">
 </head>
-<div class="mid-container">
+<div class="mid-container2">
     <div class="quizz_left">
-        <?php $this -> view('includes/sidebar_teach'); ?>
     </div>
     <!-- <h1>hello</h1> -->
     <div class="question_right">
@@ -126,7 +129,7 @@
         
     </div>
     
-    
+</div></div></div>
 </div>
 <script defer src="<?=ROOT?>/assets/js/quizEdit.js?v=<?php echo time(); ?>"></script>
 <script defer src="<?=ROOT?>/assets/js/validate_quiz.js?v=<?php echo time(); ?>"></script>

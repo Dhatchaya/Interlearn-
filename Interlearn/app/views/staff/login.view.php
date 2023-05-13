@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title><?=ucfirst(APP::$page)?> - <?=APP_NAME?></title>
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles.css?v=<?php echo time(); ?>">
-    <link rel="shortcut icon" href="<?=ROOT?>/assets/images/favicon/fv.png" type="image/x-icon">
 </head>
 <body class="staff_login">
     <header class="staff_login_nav">
