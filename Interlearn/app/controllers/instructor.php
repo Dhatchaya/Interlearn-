@@ -691,12 +691,11 @@ class Instructor extends Controller
             }
 
             if($option == 'delete') {
-                $qnumid = $_GET['qnum'];
-                $over = $_GET['overview'];
+                $id = $_GET['qnum'];
                 // show($id);
                 // show($GLOBALS['exam_id']);
-                $result = $results->delete(['id'=>$qnumid]);
-                header("Location:http://localhost/Interlearn/public/instructor/course/progress/".$id."/".$week."/overview?overall=".$over);
+                $result = $results->delete(['id'=>$id]);
+                // header("Location:http://localhost/Interlearn/public/instructor/course/progress/".$id."/".$week."overview?overall=".$overall);
                 exit();
             }
 
