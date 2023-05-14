@@ -50,7 +50,7 @@
                                 <?= esc($row->last_name) ?>
                             </div>
                             <div class="head2-content-std">
-                                <a href="<?=ROOT?>/receptionist/allprofiles/staff/<?=esc($row->uid)?>">
+                                <a href="<?=ROOT?>/staffs/allprofiles/staff/<?=esc($row->uid)?>">
                                     <button class="view_enq_btn">View</button>
                                 </a>
                          
