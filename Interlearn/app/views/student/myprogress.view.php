@@ -1,8 +1,13 @@
-<?php $this -> view('includes/header'); ?>
-<?php $this -> view('includes/nav'); ?>
+<div class="main-body-div">
+
+    <?php $this->view("includes/sidebar"); ?>
+
+    <div class="top-to-bottom-content">
+        <?php $this->view("includes/nav"); ?>
+        <div class="all-middle-content-add"></div>
 <div class="mid-container">
     <div class="quizz_left">
-        <?php $this -> view('includes/sidebar'); ?>
+
     </div>
     <div class="question_right">
         <!-- <h3>Hello progress !</h3> -->
@@ -30,5 +35,7 @@
         </div>
     </div>
 </div>
-
+</div>
+</div>
+</div>
 <?php $this -> view('includes/footer'); ?>

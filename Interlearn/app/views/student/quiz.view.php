@@ -1,5 +1,10 @@
-<?php $this -> view('includes/header'); ?>
-<?php $this -> view('includes/nav'); ?>
+<div class="main-body-div">
+
+    <?php $this->view("includes/sidebar"); ?>
+
+    <div class="top-to-bottom-content">
+        <?php $this->view("includes/nav"); ?>
+        <div class="all-middle-content-add"></div>
 
 <head>
     
@@ -7,7 +12,7 @@
 </head>
 <div class="mid-container">
     <div class="quizz_left">
-        <?php $this -> view('includes/sidebar_teach'); ?>
+        
     </div>
     <div class="do_quiz_right">
         <div class="home-box custom-box">
@@ -109,7 +114,9 @@
             <?php endif; ?>
     </div>
 </div>
-    
+</div>
+</div>
+</div>
 
     <!-- <script defer src="quiz.js?v=<?php //echo time(); ?>"></script>
     <script defer src="app.js?v=<?php //echo time(); ?>"></script> -->

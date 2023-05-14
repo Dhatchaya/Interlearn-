@@ -108,8 +108,8 @@
                     <label for="time_period">Choice 1 <strong> *</strong> : </label><br>
                     <div class="select_duration">
                         <!-- <div> -->
-                            <input class="time_period1" type=number name="choice_1" value="" id="input_choice1" placeholder="">
-                            <span id="choice1-error" style="color:red"></span>
+                            <input class="time_period1" type=text name="choice_1" value="" id="input_choice1" placeholder="">
+                            
                         <!-- </div>   -->
                         <!-- <div> -->
                             <select name="format_time1" id="format_time1">
@@ -125,12 +125,12 @@
                             </select>
                         <!-- </div> -->
                     </div>
-
+                    <span id="choice1-error" style="color:red"></span><br>
                     <label for="time_period">Choice 2 <strong> *</strong> : </label><br>
                     <div class="select_duration">
                         <!-- <div> -->
-                            <input class="time_period1" type=number name="choice_2" value="" id="input_choice2" placeholder="">
-                            <span id="choice2-error" style="color:red"></span>
+                            <input class="time_period1" type=text name="choice_2" value="" id="input_choice2" placeholder="">
+                            
                             <!-- </div>   -->
                         <!-- <div> -->
                             <select name="format_time2" id="format_time2">
@@ -146,12 +146,13 @@
                             </select>
                         <!-- </div> -->
                     </div>
+                    <span id="choice2-error" style="color:red"></span><br>
 
                     <label for="time_period">Choice 3 <strong> *</strong> : </label><br>
                     <div class="select_duration">
                         <!-- <div> -->
-                            <input class="time_period1" type=number name="choice_3" value="" id="input_choice3" placeholder="">
-                            <span id="choice3-error" style="color:red"></span>
+                            <input class="time_period1" type=text name="choice_3" value="" id="input_choice3" placeholder="">
+                            
                             <!-- </div>   -->
                         <!-- <div> -->
                             <select name="format_time3" id="format_time3">
@@ -167,12 +168,12 @@
                             </select>
                         <!-- </div> -->
                     </div>
-
+                    <span id="choice3-error" style="color:red"></span><br>
                     <label for="time_period">Choice 4 <strong> *</strong> : </label><br>
                     <div class="select_duration">
                         <!-- <div> -->
-                            <input class="time_period1" type=number name="choice_4" value="" id="input_choice4" placeholder="">
-                            <span id="choice4-error" style="color:red"></span>
+                            <input class="time_period1" type=text name="choice_4" value="" id="input_choice4" placeholder="">
+                            
                             <!-- </div>   -->
                         <!-- <div> -->
                             <select name="format_time4" id="format_time4">
@@ -188,6 +189,7 @@
                             </select>
                         <!-- </div> -->
                     </div>
+                    <span id="choice4-error" style="color:red"></span><br>
 
                     <label for="question_name" style="font-size:16px; font-weight:500;">Question Marks<strong> *</strong> : </label><br>
                     <input type="number" id="input_marks" name="mymarks" class="time_period" placeholder="Question marks">

@@ -16,6 +16,7 @@ function editQuestion(question, marks, choice1, choice2, choice3, choice4, time1
     window.onclick = function() {
         if(event.target == modal) {
             modal.style.display = 'none';
+            window.location.reload();
         }
     }
 }
