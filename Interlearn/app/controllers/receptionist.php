@@ -441,11 +441,13 @@ class Receptionist extends Controller
                 $day = $_POST['day'];
                 $timefrom = $_POST['timefrom'];
                 $timeto = $_POST['timeto'];
+                $capacity = $_POST['capacity'];
+                $fee = $_POST['monthlyFee'];
                 // show($course_id);
                 // show($day);
                 // show($timefrom);
                 // show($timeto);die;
-                $result = $course -> updateCourse($course_id, $day, $timefrom, $timeto);
+                $result = $course -> updateCourse($course_id, $day, $timefrom, $timeto, $capacity, $fee);
                 echo json_encode($result);
             }
             exit;

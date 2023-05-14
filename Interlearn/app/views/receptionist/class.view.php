@@ -208,6 +208,10 @@
                                     <h4>Capacity: </h4>
                                     <input type="text" name="capacity" id="capacityEdit" value="" class="edit-class-disable">
                                 </div><br>
+                                <div class="class-edit-box">
+                                    <h4>Monthly Fee: </h4>
+                                    <input type="text" name="monthlyFee" id="feeEdit" value="" class="edit-class-disable">
+                                </div><br>
                                 <!-- <br><br> -->
                                 <button name="edit-teacher" type="button" id="edit_class_submit" class="recp_det_btn">Save</button>
                                 <br><br>
