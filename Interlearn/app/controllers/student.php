@@ -654,10 +654,10 @@ class Student extends Controller
 
             }
             $assignment = new Assignment();
-            // $rowSub = $submission -> first(['submissionId'=>$submissionID],'submissionId');
-            //  $result = $assignment->joinCourseAssignment(['assignmentId'=>$rowSub->assignmentId,'course_id'=>$id],'assignmentId');
+            $rowSub = $submission -> first(['submissionId'=>$submissionID],'submissionId');
+             $result = $assignment->joinCourseAssignment(['assignmentId'=>$rowSub->assignmentId,'course_id'=>$id],'assignmentId');
 
-            // $data['subDetails']=$result;
+            $data['subDetails']=$result;
             $data['errors'] =  $submission->error;
 
             $this->view('student/submission',$data);

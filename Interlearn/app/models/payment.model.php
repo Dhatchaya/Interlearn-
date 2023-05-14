@@ -107,13 +107,14 @@ class Payment extends Model
     public function submitCashPayment($data)
     {
         
-        $query = "INSERT INTO payment (studentID, month, amount, method, courseID, payment_status, studentName) VALUES (".$data['studentID'].", 
-        '".$data['month']."', 
-        ".$data['amount'].", 
-        '".$data['method']."', 
-        ".$data['courseID'].", 
-        ".$data['payment_status'].", 
-        '".$data['studentName']."' )";
+        $query = "INSERT INTO payment (studentID, month, amount, method, courseID, payment_status, studentName) 
+        VALUES ('".$data['studentID']."', 
+                '".$data['month']."', 
+                ".$data['amount'].", 
+                '".$data['method']."', 
+                '".$data['courseID']."', 
+                '".$data['payment_status']."', 
+                '".$data['studentName']."')";
 
         $result = $this->query($query);
      
@@ -122,49 +123,62 @@ class Payment extends Model
     }
 
 
-
     public function eachStudentPaymentHistory($uid)
     {
         $get_uid = $uid;
         $query_get_StudentID = "SELECT studentID from student WHERE uid ='$get_uid'";
         $student_ID = $this->query($query_get_StudentID);
-
-        if (!isset($student_ID['studentID'])) {
+    
+        // Check if $student_ID is a boolean false
+        if ($student_ID === false) {
+            return array();
         }
-
+    
+        // Check if the studentID property is set on the first element of the array
+        if (!isset($student_ID[0]->studentID)) {
+            return array();
+        }
+    
         $currentSID = $student_ID[0]->studentID;
         $query = "SELECT * FROM payment where  studentID = '$currentSID'  AND payment_status = '1'";
         $data = $this->query($query);
-
+    
         if ($data == NULL) {
             $data = array();
         }
-
+    
         return $data;
     }
-
+    
     public function eachStudentPendingPayment($uid)
     {
         $get_uid = $uid;
+    
         $query_get_StudentID = "SELECT studentID from student WHERE uid ='$get_uid'";
         $student_ID = $this->query($query_get_StudentID);
-
-        
-        if (!isset($student_ID['studentID'])) {
+    
+        // Check if $student_ID is a boolean false
+        if ($student_ID === false) {
+            return array();
         }
-
+    
+        // Check if the studentID property is set on the first element of the array
+        if (!isset($student_ID[0]->studentID)) {
+            return array();
+        }
+    
         $currentSID = $student_ID[0]->studentID;
-
-
+    
         $query = "SELECT * FROM payment WHERE studentID = '$currentSID' AND payment_status IN ('0', '2', '3')";
         $data = $this->query($query);
-
+    
         if ($data == NULL) {
             $data = array();
         }
-
+    
         return $data;
     }
+    
 
 
     public function checkAlreadyPaid($courseId, $studentID, $month){

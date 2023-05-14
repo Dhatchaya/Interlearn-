@@ -16,26 +16,18 @@
 
 
 <div class="main-body-div">
-
-<?php if(Auth::getrole() == "Student"):?>
-        <?php $this->view("includes/sidebar");?>
-<?php else:?>
-<?php  if(Auth::getrole() == "Teacher"):?>
-            <?php $this->view("includes/sidebar_teach");?>
-    <?php else:?>
-<?php if(Auth::getrole() == "Instructor"):?>
-            <?php $this->view("includes/sidebar_ins");?>
-    <?php else:?>
-<?php  if(Auth::getrole() == "Manager"):?>
-    <?php $this->view("includes/sidebar_man"); ?>
-    <?php else:?>
 <?php if(Auth::getrole() == "Receptionist"):?>
-    <?php $this->view("includes/sidebar_recep");?>
-    <?php endif;?>
-    <?php endif;?>
-    <?php endif;?>
-    <?php endif;?>
-    <?php endif;?>
+        <?php $this->view("includes/sidebar_recep");?>
+<?php else:?>
+        <?php  if(Auth::getrole() == "Manager"):?>
+            <?php $this->view("includes/sidebar_man"); ?>
+
+              
+
+<?php endif;?>
+<?php endif;?>
+
+
 
 
 <div class="top-to-bottom-content">

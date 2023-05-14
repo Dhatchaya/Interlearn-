@@ -85,6 +85,8 @@ e.preventDefault();
 
 
     setTimeout(() => hiddenDiv2.style.display = "none", 500);
+    location.reload();
+
 });
 
 

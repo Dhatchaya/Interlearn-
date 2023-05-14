@@ -30,8 +30,7 @@
                             <th>Category</th>
                             <th>Status</th>
                             <th>Enquiry Date</th>
-                            <th>User Name</th>
-                            <th>Role</th>
+                            <th>User</th>
                             <th>Actions</th>
                         </tr>
 
@@ -55,7 +54,6 @@
 
 
                             <td><?=esc($row->date)?></td>
-                            <td><?=esc($row->username)?></td>
                             <td><?=esc($row->role)?></td>
                             <td>
 
@@ -90,8 +88,7 @@
                                 <th>Category</th>
                                 <th>Status</th>
                                 <th>Enquiry Date</th>
-                                <th>User Name</th>
-                                <th>Role</th>
+                                <th>User</th>
                                 <th class="enq_action_clm2">Actions</th>
                             </tr>
 
@@ -114,7 +111,6 @@
                             </td>
                                 
                                 <td><?=esc($row->date)?></td>
-                                <td><?=esc($row->username)?></td>
                                 <td><?=esc($row->role)?></td>
                                 <td>
                             

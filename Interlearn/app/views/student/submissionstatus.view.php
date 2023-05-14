@@ -15,7 +15,7 @@
             <!-- <p style="font-size: large;"><?=esc($assignment->title)?></p><br> -->
 
             <p> <?=esc($assignment->description)?> </p><br>
-            <a href="http://localhost/Interlearn/uploads/<?=esc($assignment->courseId)?>/assignments/<?=esc($assignment->assignmentId)?>/<?=esc($assignment->filename)?>"  class= "attachment-link">View Attachment</a>
+            <a href="../../../../uploads/<?=esc($assignment->courseId)?>/assignments/<?=esc($assignment->assignmentId)?>/<?=esc($assignment->filename)?>"  class= "attachment-link">View Attachment</a>
             <br><br>
             <div class="std_subm_container2">
                 <div class="std_sub_grd_row1">

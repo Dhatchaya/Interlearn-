@@ -115,7 +115,6 @@ function openModal3(courseID) {
                     document.getElementById("timefromEdit").value = response[i].timefrom;
                     document.getElementById("timetoEdit").value = response[i].timeto;
                     document.getElementById("capacityEdit").value = response[i].capacity;
-                    document.getElementById("feeEdit").value = response[i].monthlyFee;
 
 
                     // var teacher_id = $('#teacher_id').val();
@@ -254,7 +253,7 @@ function openModal3(courseID) {
     });
 
 
-    // time check when editing the course
+    // time check when adding the course
 var submitCheck = document.getElementById('edit_class_submit');
 submitCheck.addEventListener('click',function(event){
   event.preventDefault();
@@ -262,8 +261,7 @@ submitCheck.addEventListener('click',function(event){
   var day = document.getElementById('daysEdit').value;
   var timeFrom = document.getElementById('timefromEdit').value;
   var timeTo = document.getElementById('timetoEdit').value;
-  var capacity = document.getElementById('capacityEdit').value;
-  var fee = document.getElementById('feeEdit').value;
+  var capacity = document.getElementById('capacity').value;
 
 
   let formData = new FormData();
@@ -356,7 +354,6 @@ console.log(timeTo);
         formData.append('timefrom', timeFrom);
         formData.append('timeto', timeTo);
         formData.append('capacity', capacity);
-        formData.append('monthlyFee', fee);
 
         console.log(formData);
         $.ajax({

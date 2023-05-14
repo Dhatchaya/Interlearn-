@@ -8,7 +8,7 @@
 <?php $this->view("includes/nav");?>
 
         <div class="std_subm_content">
-      
+        <h2><?=esc($subDetails->title)?></h2><br>
             <div class="std_sub_description"> </div>
             <div class="std_subm_outerline">
                 <p>Maximum File Size: 5MB</p>

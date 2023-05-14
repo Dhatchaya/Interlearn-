@@ -30,9 +30,9 @@
             NIC:<label for="nic "style="color:red;"> (optional if age below 16)</label><p id="nic_err" class="warning"></p>
             <input class="reg_inp" type="text" name="NIC" id = "nic"placeholder="Enter your NIC No" ><br>
             Gender:<label for="gender" style="color:red;"> *</label><br> <br>
-            <input class="reg_inp reg_radio genderradio" type="radio" name="gender" id="male" value="male">
+            <input class="reg_inp reg_radio" type="radio" name="gender" id="male" value="male">
             <label for="male">Male&nbsp;&nbsp;</label>
-            <input class="reg_inp reg_radio genderradio" type="radio" name="gender" id="female" value="female">
+            <input class="reg_inp reg_radio" type="radio" name="gender" id="female" value="female">
             <label for="female">Female&nbsp;&nbsp;</label><br> <br>
 
             Email:<label for="email" style="color:red;"> *</label><p id="s_email" class="warning"></p>
@@ -90,7 +90,7 @@
         
             <label for="grade">Grade:<label for="grade" style="color:red;"> *</label></label><br>
             <select class="reg_select" name="grade" id = "grade">
-                <option value="">--</option>
+                <option value="-">--</option>
                 <option value="6">Grade 6</option>
                 <option value="7">Grade 7</option>
                 <option value="8">Grade 8</option>
@@ -112,7 +112,6 @@
             
             
             <div id="allcourses"></div>
-            <input class="" type="hidden" name="course">
             <!-- <div id="AL"class = "grade-select">
                 <label for="grade">A/L Exam Year:</label><br>
                 <select class="reg_select" name="grade" id="year">
