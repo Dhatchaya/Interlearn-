@@ -1013,13 +1013,8 @@ class Student extends Controller
         $this->view('student/checkout');
     }
 
-    public function success()
-    {
-        if (!Auth::is_student()) {
-            redirect('home');
-        }
-        $this->view('student/success');
-    }
+
+
     public function cancel()
     {
         if (!Auth::is_student()) {
@@ -1046,21 +1041,36 @@ class Student extends Controller
         $each_s_p_h = $payment_history->eachStudentPaymentHistory($currentUserID);
 
 
-    if( $each_s_p_h){
-        if($each_s_p_h[0] == null){
-            $each_s_p_h = array();
+            if( $each_s_p_h){
+                if($each_s_p_h[0] == null){
+                    $each_s_p_h = array();
+                }
+            }
+
+                $pending_payment_model = new Payment();
+                $haveToPay = $pending_payment_model->eachStudentPendingPayment($currentUserID);
+
+                $this->view('student/student-payment',['payment_history_list'=>$each_s_p_h,'haveToPaySet'=>$haveToPay]);
+
+    }
+
+
+
+    public function success()
+    {
+        if (!Auth::is_student()) {
+            redirect('home');
         }
+
+        $paymentID = $_POST['PaymentID'];
+        $method = "card";
+        $payment_model = new Payment();
+         $payment_model->updateCardPayment($paymentID, $method);
+
+        $id = Auth::getUID();
+        $example = new Student();
+        $example->payment($id);
     }
-
-        $pending_payment_model = new Payment();
-        $haveToPay = $pending_payment_model->eachStudentPendingPayment($currentUserID);
-
-        $this->view('student/student-payment',['payment_history_list'=>$each_s_p_h,'haveToPaySet'=>$haveToPay]);
-
-    }
-
-
-
 
 
     public function test($id = null)
