@@ -19,6 +19,8 @@ studentId.addEventListener('keyup', function() {
 CourseID.addEventListener('keyup', function() {
 
     CourseID.style.color = 'black';
+        studentName.value ="";
+        studentName.style.color = 'black';
     
     Amount.value ="";
     fetch('/Interlearn/public/receptionist/getStudentName', {
