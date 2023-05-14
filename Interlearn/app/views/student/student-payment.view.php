@@ -72,7 +72,7 @@
                           <td pending-payment-data>
                             <!-- <button id="" class="card-btn" >paynow</button> -->
                             <?php
-                            echo '<form action="' . ROOT . '/student/success" method="POST">
+                            echo '<form action="' . ROOT . '/student/payment" method="POST">
                   <input type="text" name="PaymentID" value="' . $pendingPayment->PaymentID . '" hidden>
                   <input type="number" name="amount" value="' . $pendingPayment->amount . ' " hidden>
                   <input type="text" name="rest_key" value="' . skey . '" hidden>

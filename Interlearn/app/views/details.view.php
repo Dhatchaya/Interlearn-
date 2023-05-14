@@ -84,10 +84,11 @@
                             }
                             // show($subject_id);die;
                             ?>
+                            <?php if(Auth::getrole() == "Student"):?>
                             <a href="">
                                 <button type="submit" class="std-enroll-btn" name="enroll-btn" id="button28" onclick="openModal()">Enroll Me</button>
                             </a>
-
+                            <?php endif; ?>
 
                             <h2>Grade <?= esc($subjects[0][0]->grade) ?> - <?= esc($subjects[0][0]->subject) ?></h2>
                             <br><br>
