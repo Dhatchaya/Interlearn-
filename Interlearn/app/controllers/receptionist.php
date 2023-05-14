@@ -177,11 +177,14 @@ class Receptionist extends Controller
             {   
                 // show($_POST);die;
                 // show($_POST);die;
+                // echo json_encode($_POST);
+                //     exit;
                 if($course -> validate($_POST)){
                     $subject_id = uniqid();
                     //uniqueid("S",true)
                     // echo "check 2";die;
-                    //  show($_POST);die;
+                    // echo json_encode($_POST);
+                    // exit;
 
                     // if(isset($_POST['courseSubmitBtn'])){
 
@@ -501,15 +504,21 @@ class Receptionist extends Controller
         {
             // show($_GET['id']);die;
             // $data['id'] = $id;
+            // show($_POST);die;
 
             if($course -> validateAdd($_POST))
             {
-                $inputs=array("subject_id"=>$_POST['subject_Id'],"teacher_id"=>$_POST['teacher_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto'],"capacity"=>$_POST['capacity']);
+                // echo json_encode($_POST);die;
+                $inputs=array("subject_id"=>$_POST['subject_Id'],"teacher_id"=>$_POST['teacher_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto'],"capacity"=>$_POST['capacity'],"monthlyFee"=>$_POST['monthlyFee']);
                 // show($inputs);die;
+                // echo json_encode($inputs);
+                // die;
                 $course->insert($inputs);
                 $id= $course->getLastCourse()[0]->course_id;
                 // // // print_r($Course);die;
                 $course_week->createWeek($id, 1);
+                // echo json_encode($inputs);
+                // die;
             }
             else{
                 $data['errors'] =  $course->error;
