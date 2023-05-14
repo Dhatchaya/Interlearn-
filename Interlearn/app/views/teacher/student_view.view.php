@@ -29,7 +29,7 @@
                                     <td>
                                         <div class="enq_actions">
                                             <div class="enq_view">
-                                                <a href="<?=ROOT?>/staffs/allprofiles/student/<?=esc($row->uid)?>">
+                                                <a href="<?=ROOT?>/receptionist/allprofiles/student/<?=esc($row->uid)?>">
                                                     <button class="view_enq_btn" >View</button>
                                                 </a>
                                             </div>
