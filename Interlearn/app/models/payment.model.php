@@ -142,7 +142,7 @@ class Payment extends Model
 
         return $data;
     }
-
+    
     public function eachStudentPendingPayment($uid)
     {
         $get_uid = $uid;
