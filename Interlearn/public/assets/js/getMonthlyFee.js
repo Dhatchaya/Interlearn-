@@ -1,4 +1,3 @@
-
 const studentId2 = document.getElementById('student-id');
 const courseID = document.getElementById('couese-ID');
 const Month = document.getElementById('month');
@@ -58,7 +57,3 @@ Month.addEventListener('change', function() {
             nxtBtn.disabled = false;
         }
     }
-    
-
-
-

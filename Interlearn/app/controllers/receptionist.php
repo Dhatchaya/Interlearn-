@@ -1430,7 +1430,6 @@ class Receptionist extends Controller
         }
         
     }
-
     public function registration($action = null,$id = null)
     {
      $data = [];
