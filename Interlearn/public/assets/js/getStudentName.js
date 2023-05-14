@@ -19,8 +19,8 @@ studentId.addEventListener('keyup', function() {
 CourseID.addEventListener('keyup', function() {
 
     CourseID.style.color = 'black';
-        studentName.value ="";
         studentName.style.color = 'black';
+
     
     Amount.value ="";
     fetch('/Interlearn/public/receptionist/getStudentName', {
@@ -40,7 +40,6 @@ CourseID.addEventListener('keyup', function() {
 
 function getStudentNAme(data) {
     if(studentName.value == 0){
-        studentName.style.color = 'red';
         studentName.value = ['Student ID is in correct']  ;
         sbmtBtn1.disabled = true;
         nxtBtn1.disabled = true;
