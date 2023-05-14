@@ -191,13 +191,6 @@ const Form = document.getElementById("My-form");
     }
 });
 
-// let qname = document.getElementById("quiz_name");
-// qname.addEventListener('change',function hideSubject(e){
-//     if (e.target.previousElementSibling.classList.contains("question-error")) {
-//       e.target.previousElementSibling.innerHTML="";
-//     }
-// });
-
 function validateQuizPopUp() {
 
     var duration = document.forms["confirmEditForm"]["duration"].value;

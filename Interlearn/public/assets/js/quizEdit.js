@@ -14,7 +14,6 @@ function toModal(duration, total, description, iname, enable_time, disable_time)
     window.onclick = function() {
         if(event.target == modal) {
             modal.style.display = 'none';
-            window.location.reload();
         }
     }
 }
