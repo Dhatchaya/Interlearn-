@@ -321,9 +321,10 @@ class Course extends Model
 
         $data['teahcerID'] = $teacher_id;
         $data['Day'] = $day;
-
+    
         $res = $this -> query($query,$data);
         //  show($query);die;
+  //  show($result);die;
 
         if(is_array($res)){
             // echo $res;die;

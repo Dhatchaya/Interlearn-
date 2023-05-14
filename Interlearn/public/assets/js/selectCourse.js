@@ -191,6 +191,12 @@ desc.addEventListener('input',function(){
   }
 });
 
+var description = document.getElementById('description');
+description.addEventListener('change',function(event){
+  if(description != ''){
+    document.getElementById('alert-div4').style.display = 'none';  // show the alert div
+  }
+});
 
 // select teacher
 var teacher = document.getElementById('teacher_id');

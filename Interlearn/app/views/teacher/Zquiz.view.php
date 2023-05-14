@@ -1,6 +1,6 @@
 <div class="main-body-div">
 
-    <?php $this->view("includes/sidebar_ins"); ?>
+    <?php $this->view("includes/sidebar_teach"); ?>
 
     <div class="top-to-bottom-content">
         <?php $this->view("includes/nav"); ?>

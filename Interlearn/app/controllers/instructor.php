@@ -585,7 +585,8 @@ class Instructor extends Controller
                     $allowedType = array('csv');
                     if(!in_array($fileExtension, $allowedType)) {
                         // display error message
-                        echo "add csv file";die;
+                        // echo "add csv file";die;
+                        $data['csv_error'] = 'Add a csv file';
                     }
                     else {
                         $exam_id = uniqid();

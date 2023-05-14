@@ -68,7 +68,9 @@
                 <!-- before -->
                 <label for="upload_file">Choose csv file <strong> *</strong> : </label><br>
                 <input type="file" name="myfile" class="form-control"><br><br>
-
+                <?php if(!empty($csv_error)):?>
+                        <span style="color:red"><?=$csv_error?></span>
+                <?php endif;?><br>
                 <input  class = "home_form_sbt" type="submit" value="Save">
             </form>
         </div>
