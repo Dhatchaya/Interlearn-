@@ -107,13 +107,14 @@ class Payment extends Model
     public function submitCashPayment($data)
     {
         
-        $query = "INSERT INTO payment (studentID, month, amount, method, courseID, payment_status, studentName) VALUES (".$data['studentID'].", 
-        '".$data['month']."', 
-        ".$data['amount'].", 
-        '".$data['method']."', 
-        ".$data['courseID'].", 
-        ".$data['payment_status'].", 
-        '".$data['studentName']."' )";
+        $query = "INSERT INTO payment (studentID, month, amount, method, courseID, payment_status, studentName) 
+        VALUES ('".$data['studentID']."', 
+                '".$data['month']."', 
+                ".$data['amount'].", 
+                '".$data['method']."', 
+                '".$data['courseID']."', 
+                '".$data['payment_status']."', 
+                '".$data['studentName']."')";
 
         $result = $this->query($query);
      
@@ -129,7 +130,14 @@ class Payment extends Model
         $query_get_StudentID = "SELECT studentID from student WHERE uid ='$get_uid'";
         $student_ID = $this->query($query_get_StudentID);
 
-        if (!isset($student_ID['studentID'])) {
+        // Check if $student_ID is a boolean false
+        if ($student_ID === false) {
+            return array();
+        }
+
+        // Check if the studentID property is set on the first element of the array
+        if (!isset($student_ID[0]->studentID)) {
+            return array();
         }
 
         $currentSID = $student_ID[0]->studentID;
@@ -149,8 +157,14 @@ class Payment extends Model
         $query_get_StudentID = "SELECT studentID from student WHERE uid ='$get_uid'";
         $student_ID = $this->query($query_get_StudentID);
 
-        
-        if (!isset($student_ID['studentID'])) {
+        // Check if $student_ID is a boolean false
+        if ($student_ID === false) {
+            return array();
+        }
+
+        // Check if the studentID property is set on the first element of the array
+        if (!isset($student_ID[0]->studentID)) {
+            return array();
         }
 
         $currentSID = $student_ID[0]->studentID;

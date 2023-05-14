@@ -147,7 +147,6 @@ class Course extends Model
     //     }
     // }
 
-
     public function checkStudent($courseId, $studentId) {
         $studentID = $studentId;
 
