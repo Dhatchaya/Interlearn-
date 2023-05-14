@@ -104,7 +104,7 @@
                                                         </p>
                                                     <?php elseif ($material->type == "forum") : ?>
                                                         <p><a href=<?= $material->view_URL ?> class="teacher-content">
-                                                                <img src="<?= ROOT ?>/assets/images/assignment.png" alt="" class="teacher_card_img3">
+                                                                <img src="<?= ROOT ?>/assets/images/discussion.png" alt="" class="teacher_card_img3">
                                                                 <?= $material->upload_name ?>
                                                             </a>
                                                             <a href=<?= $material->edit_URL ?>>

@@ -138,7 +138,7 @@ class Staffs extends Controller
     {
 
         $data = [];
-        $data['title']='Staff-Profiles';
+        $data['title']='Profiles';
         $student = new Students();
         $staff = new Staff();
         if($action=="student"){
