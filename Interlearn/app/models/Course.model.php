@@ -74,7 +74,11 @@ class Course extends Model
             }
             if(empty($data['capacity']))
             {
-                $this -> error['capacity'] = "Please select a capcity for the class";
+                $this -> error['capacity'] = "Please enter a capcity for the class";
+            }
+            if(empty($data['monthlyFee']))
+            {
+                $this -> error['monthlyFee'] = "Please enter a monthly fee for the class";
             }
                 
 
@@ -113,7 +117,11 @@ class Course extends Model
         {
             $this -> error['capacity'] = "Please select a capcity for the class";
         }
-
+        if(empty($data['monthlyFee']))
+        {
+            $this -> error['monthlyFee'] = "Please enter a monthly fee for the class";
+        }
+// show($this->error);die;
         if(empty($this->error)){
             return true;
 

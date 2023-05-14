@@ -126,8 +126,17 @@
                 <?php if(!empty($errors['capacity'])):?>
                 <p class="warning"><?=$errors['capacity'];?></p>
                 <?php endif;?>
-            </div>
-            <div id="alert-div8" style="display:none;" class="warning"></div>
+            </div><br><br>
+            <div id="alert-div8" style="display:none;" class="warning"></div><br>
+            <!-- <div id="alert-div8" style="display:none;" class="warning"></div> -->
+            <div class="recp_det_box">
+                <h4>Monthly Fee:</h4><br>
+                <input type="number" class="recp_det_name" name="fee" id="fee">
+                <?php if(!empty($errors['fee'])):?>
+                <p class="warning"><?=$errors['fee'];?></p>
+                <?php endif;?>
+            </div><br><br>
+            <div id="alert-div9" style="display:none;" class="warning"></div>
             <br><br>
             <div class="recp_add_butn">
                 <a href="<?=ROOT?>/receptionist/course">
