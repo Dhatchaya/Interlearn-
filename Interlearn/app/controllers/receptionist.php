@@ -1394,17 +1394,20 @@ class Receptionist extends Controller
         $monthlyFee = new Course();
         $respond1 = $monthlyFee->getMonthlyFee($courseId);
 
-        echo json_encode($respond1);
-        exit;
 
-        if( $respond1){
-      
+        if( $respond1 == null){
+
+            $respond = array(array("course_id" => "noCourse"));
+            echo json_encode($respond);
+            exit;
+        }
+
+        else{
+
             $studentFtCourse = new Course();
             $respond2 = $studentFtCourse->checkStudent($courseId, $studentID);
-            echo json_encode($respond2);
-            exit;
 
-            if ($respond2) {
+            if ($respond2 != null) {
                 $alreadyPaid = new Payment();
                 $respond3 = $alreadyPaid->checkAlreadyPaid($courseId, $studentID, $month);
 
@@ -1421,13 +1424,6 @@ class Receptionist extends Controller
                 exit;
             }
 
-
-
-        }
-        else{
-            $respond = array(array("course_id" => "noCourse"));
-            echo json_encode($respond);
-            exit;
         }
         
     }

@@ -1118,8 +1118,6 @@ class Student extends Controller
                 'PaymentID' => $_POST['PaymentID'] // add PaymentID key to the data array
             ];
 
-
-
             $BPsubmission = new BankPayment();
             $result = $BPsubmission->submitBP($data);
 

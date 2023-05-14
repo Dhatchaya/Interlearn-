@@ -152,11 +152,7 @@ class Course extends Model
     
         $query = "SELECT * FROM student_course WHERE student_id = " . $studentID . " AND course_id = " . $courseId;
         $res = $this->query($query);
-        
-        
-        if ($res == NULL) {
-            $res = array();
-        }
+
         return $res;
     }
     
@@ -166,10 +162,6 @@ class Course extends Model
         $query = "SELECT monthlyFee,course_id FROM course where course_id = " . $courseID ;
         $res = $this -> query($query);
 
-        if ($res == NULL) {
-            $res = array();
-        }
-        
         return $res;
     }
 
