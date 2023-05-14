@@ -114,7 +114,7 @@ class Payment extends Model
         ".$data['courseID'].", 
         ".$data['payment_status'].", 
         '".$data['studentName']."' )";
-       
+
         $result = $this->query($query);
      
            
