@@ -149,7 +149,7 @@ class Course extends Model
 
     public function checkStudent($courseId, $studentId) {
         $studentID = $studentId;
-
+    
         $query = "SELECT * FROM student_course WHERE student_id = " . $studentID . " AND course_id = " . $courseId;
         $res = $this->query($query);
 
@@ -366,14 +366,16 @@ class Course extends Model
         }
     }
 
-    public function updateCourse($course_id,$day,$timefrom,$timeto){
+    public function updateCourse($course_id,$day,$timefrom,$timeto,$capacity, $fee){
         $query = "UPDATE ".$this->table;
-        $query .= " SET day =:Day, timefrom =:Timefrom, timeto =:Timeto";
+        $query .= " SET day =:Day, timefrom =:Timefrom, timeto =:Timeto, capacity =:capacity, monthlyFee =:Fee";
         $query .= " WHERE course_id =:courseID";
         $data['courseID'] = $course_id;
         $data['Day'] = $day;
         $data['Timefrom'] = $timefrom;
         $data['Timeto'] = $timeto;
+        $data['capacity'] = $capacity;
+        $data['Fee'] = $fee;
         $res = $this -> update_table($query, $data);
         // show($query);die;
 

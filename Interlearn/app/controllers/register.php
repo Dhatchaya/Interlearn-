@@ -14,7 +14,7 @@ class Register extends Controller
          if($action == "view"){
             if($_SERVER['REQUEST_METHOD'] == "POST"){
 
-                $_POST['studentID'] = $student_id = uniqid();
+                $_POST['studentID'] = $student_id =   $student->generateUniqid();
                 if($user -> validate($_POST))
                 {
                     $user_otp= rand(100000,999999);

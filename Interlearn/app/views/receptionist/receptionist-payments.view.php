@@ -24,7 +24,7 @@
   <div class="all-payment-content">
 
 
-  
+
 
   <button id="val-bank-btn" class="val-bank-ban">Validate Bank Payment</button>
   <button id="cash-btn" class="cash-btn" style="cursor: pointer">Cash Payments</button>
@@ -106,7 +106,7 @@
   <div class="payment-form-popup" id="hiddenDiv-2">
   <button class="close-button" id="close-button-2">&times</button>
     <div class=" payment-form-container">
-   
+
       <div class="payment-form-header">
 
       </div>
@@ -163,7 +163,6 @@
           <button class="paynow" id="payment-submission" type="button">Submit Payment</button>
           <button class="next-payment" id="next-payment" type="button">Next Payment</button>
         </form>
-        <div class="last-cash-payment" value="" name="last-Payment-ID">last cash payment shows here</div>
       </div>
     </div>
   </div>

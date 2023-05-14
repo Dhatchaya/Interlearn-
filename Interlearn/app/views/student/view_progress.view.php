@@ -1,11 +1,17 @@
-<?php $this->view("includes/header");?>
-<?php $this->view("includes/nav");?>
+<?php $this->view("includes/header"); ?>
+<div class="main-body-div">
+
+    <?php $this->view("includes/sidebar_ins"); ?>
+
+    <div class="top-to-bottom-content">
+        <?php $this->view("includes/nav"); ?>
+        <div class="all-middle-content-add"></div>
 <head>
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles6.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 <div class="std_crs_ov_container">
-<?php $this->view("includes/sidebar");?>
+
         <div class="std_crs_ov_content">
             <h2>Course Progress</h2>
             <div class="std_crs_ov_top">
@@ -100,5 +106,8 @@
             </div>
         </div>
         
+    </div>
+    </div>
+    </div>
     </div>
     <?php $this->view("includes/footer");?>

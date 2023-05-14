@@ -358,17 +358,17 @@ class Receptionist extends Controller
                     $course_instructor->insert($inputs1);
                 }
 
-                if(isset($_POST['edit-teacher'])){
-                    $course_id = $_POST['course_id'];
-                    $day = $_POST['day'];
-                    $timefrom = $_POST['timefrom'];
-                    $timeto = $_POST['timeto'];
-                    // show($course_id);
-                    // show($day);
-                    // show($timefrom);
-                    // show($timeto);die;
-                    $course -> updateCourse($course_id, $day, $timefrom, $timeto);
-                }
+                // if(isset($_POST['edit-teacher'])){
+                //     $course_id = $_POST['course_id'];
+                //     $day = $_POST['day'];
+                //     $timefrom = $_POST['timefrom'];
+                //     $timeto = $_POST['timeto'];
+                //     // show($course_id);
+                //     // show($day);
+                //     // show($timefrom);
+                //     // show($timeto);die;
+                //     $course -> updateCourse($course_id, $day, $timefrom, $timeto);
+                // }
 
                 // if(isset($_POST['submit-delete-course'])){
                 //     show($_POST['course_id']);die;
@@ -382,6 +382,7 @@ class Receptionist extends Controller
                     // show($course_id);die;
 
                     $data['students'] = $student_course -> getStudents($id);
+                    // show($data['students']);die;
 
                     if(isset($_POST['submit-delete-student'])){
                         $std_id = $_POST['delete-student'];
@@ -441,11 +442,13 @@ class Receptionist extends Controller
                 $day = $_POST['day'];
                 $timefrom = $_POST['timefrom'];
                 $timeto = $_POST['timeto'];
+                $capacity = $_POST['capacity'];
+                $fee = $_POST['monthlyFee'];
                 // show($course_id);
                 // show($day);
                 // show($timefrom);
                 // show($timeto);die;
-                $result = $course -> updateCourse($course_id, $day, $timefrom, $timeto);
+                $result = $course -> updateCourse($course_id, $day, $timefrom, $timeto, $capacity, $fee);
                 echo json_encode($result);
             }
             exit;

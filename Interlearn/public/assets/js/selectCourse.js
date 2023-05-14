@@ -320,6 +320,7 @@ console.log(subject,grade,medium);
         if(timeFrom<response[i].timeto && timeFrom>=response[i].timefrom){
           console.log("in" + response[i].timefrom);
           document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
+          document.getElementById('addCourseerror').style.display = "block";
           flag = 1;
           break;
         }

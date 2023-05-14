@@ -29,9 +29,123 @@ let  selected_subject = [];
 // let  selected_course = [];
 let count = 0;
 let details = null;
+const cNIC = document.getElementsByName("NIC")[0];
+const cfirst_name = document.getElementsByName("first_name")[0];
+const clast_name = document.getElementsByName("last_name")[0];
+const cbirthday = document.getElementsByName("birthday")[0];
+// const cgender = document.getElementsByName("gender")[0].value[0];
+const csemail = document.getElementsByName("email")[0];
+const cmobile_number = document.getElementsByName("mobile_number")[0];
+const caddress = document.getElementsByName("address")[0];
+const cschool = document.getElementsByName("school")[0];
+const cparent_name = document.getElementsByName("parent_name")[0];
+const cparent_email = document.getElementsByName("parent_email")[0];
+const cparent_mobile = document.getElementsByName("parent_mobile")[0];
+const ccourseid = document.getElementsByName("course")[0];
+const cusername = document.getElementsByName("username")[0];
+const cpassword = document.getElementsByName("password")[0];
 
-grade.addEventListener('change',function hideSubject(){
+const cgender = document.getElementsByName("gender")[0];
 
+const cmedium = document.getElementsByName("medium")[0];
+
+displayPicture.addEventListener('input',function(e){
+  if (e.target.previousElementSibling.classList.contains("err_show")) {
+    e.target.previousElementSibling.innerHTML="";
+  }
+});
+
+ccourseid.addEventListener('change',function(e){
+    if (e.target.previousElementSibling.classList.contains("err_show")) {
+      e.target.previousElementSibling.innerHTML="";
+    }
+  });
+
+
+cNIC.addEventListener('input',function(e){
+  if (e.target.previousElementSibling.classList.contains("err_show")) {
+    e.target.previousElementSibling.innerHTML="";
+  }
+});
+
+cfirst_name .addEventListener('input',function(e){
+  if (e.target.previousElementSibling.classList.contains("err_show")) {
+    e.target.previousElementSibling.innerHTML="";
+  }
+});
+clast_name .addEventListener('input',function(e){
+  if (e.target.previousElementSibling.classList.contains("err_show")) {
+    e.target.previousElementSibling.innerHTML="";
+  }
+});
+// cbirthday .addEventListener('change',function(e){
+//   if (e.target.previousElementSibling.classList.contains("err_show")) {
+//     e.target.previousElementSibling.innerHTML="";
+//   }
+// });
+csemail .addEventListener('input',function(e){
+  if (e.target.previousElementSibling.classList.contains("err_show")) {
+    e.target.previousElementSibling.innerHTML="";
+  }
+});
+cmobile_number .addEventListener('input',function(e){
+  if (e.target.previousElementSibling.classList.contains("err_show")) {
+    e.target.previousElementSibling.innerHTML="";
+  }
+});
+caddress .addEventListener('input',function(e){
+  if (e.target.previousElementSibling.classList.contains("err_show")) {
+    e.target.previousElementSibling.innerHTML="";
+  }
+});
+cschool .addEventListener('input',function(e){
+  if (e.target.previousElementSibling.classList.contains("err_show")) {
+    e.target.previousElementSibling.innerHTML="";
+  }
+});
+cparent_name .addEventListener('input',function(e){
+  if (e.target.previousElementSibling.classList.contains("err_show")) {
+    e.target.previousElementSibling.innerHTML="";
+  }
+});
+cparent_email .addEventListener('input',function(e){
+  if (e.target.previousElementSibling.classList.contains("err_show")) {
+    e.target.previousElementSibling.innerHTML="";
+  }
+});
+cparent_mobile .addEventListener('input',function(e){
+  if (e.target.previousElementSibling.classList.contains("err_show")) {
+    e.target.previousElementSibling.innerHTML="";
+  }
+});
+cusername .addEventListener('input',function(e){
+  if (e.target.previousElementSibling.classList.contains("err_show")) {
+    e.target.previousElementSibling.innerHTML="";
+  }
+});
+cpassword .addEventListener('input',function(e){
+  if (e.target.previousElementSibling.classList.contains("err_show")) {
+    e.target.previousElementSibling.innerHTML="";
+  }
+});
+
+
+cmedium .addEventListener('click',function(e){
+  if (e.target.previousElementSibling.classList.contains("err_show")) {
+    e.target.previousElementSibling.innerHTML="";
+  }
+});
+
+grade.addEventListener('change',function hideSubject(e){
+  if (e.target.previousElementSibling.classList.contains("err_show")) {
+    e.target.previousElementSibling.innerHTML="";
+  }
+  if (ccourseid.previousElementSibling.classList.contains("err_show")) {
+    ccourseid.previousElementSibling.innerHTML="";
+  }
+  if (cmedium.previousElementSibling.classList.contains("err_show")) {
+    cmedium.previousElementSibling.innerHTML="";
+  }
     if (allcourses.firstChild instanceof Node) {
         console.log("triggered");
         allcourses.innerHTML = "";
@@ -155,7 +269,7 @@ $.ajax({
                                 selectSubject.setAttribute('data-count',count);
                                 count++;
                                 let option = document.createElement("option");
-                                option.setAttribute('value', "-");
+                                option.setAttribute('value', "");
                                 option.textContent="--";
                                 selectSubject.appendChild(option);
                                 console.log(data);
@@ -220,7 +334,7 @@ $.ajax({
                         selectTeacher.id="selectteacher";
                         // teacherdiv.addEventListener('change', handlecourse);
                         let option = document.createElement("option");
-                        option.setAttribute('value', "-");
+                        option.setAttribute('value', "");
                         option.textContent="--";
                         
                         selectTeacher.appendChild(option);
@@ -288,7 +402,7 @@ $.ajax({
                  count++;
                 selectSubject.id="selectsubject";
                 let option = document.createElement("option");
-                option.setAttribute('value', "-");
+                option.setAttribute('value', "");
                 option.textContent="No Subjects Available";
                 selectSubject.appendChild(option);
                 selectdiv.appendChild(selectSubject);
@@ -352,9 +466,15 @@ submitbtn.addEventListener("click",function(e){
           break;
         }
       }
+
       const courseid = document.getElementsByName("course_id");
+
+
       let temp_course = [];
         if(courseid.length > 0){
+
+
+
             for (let i = 0; i < courseid.length; i++) {
                 temp_course.push(courseid[i].value);
             }
@@ -378,7 +498,7 @@ submitbtn.addEventListener("click",function(e){
     formData.append('medium', selectedMedium);
     formData.append('username', username);
     formData.append('password', password);
-
+    formData.append('course', temp_course[0]);
     formData.append('pic', displayPicture.files[0]);
     // Serialize the form data as a string
     // let formSerialized = $(form).serialize();
@@ -409,6 +529,7 @@ submitbtn.addEventListener("click",function(e){
            if(response.errors){
                 for(i in response.errors){
                    let errorTag= document.getElementsByName(i)[0];
+                   console.log(errorTag);
                    const errormsg = document.createElement("p");
                    errormsg.classList.add('warning');
                    errormsg.classList.add('err_show');

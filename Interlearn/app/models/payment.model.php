@@ -114,7 +114,7 @@ class Payment extends Model
         ".$data['courseID'].", 
         ".$data['payment_status'].", 
         '".$data['studentName']."' )";
-
+     
         $result = $this->query($query);
      
            
@@ -142,15 +142,14 @@ class Payment extends Model
 
         return $data;
     }
-    
+
     public function eachStudentPendingPayment($uid)
     {
         $get_uid = $uid;
-    
         $query_get_StudentID = "SELECT studentID from student WHERE uid ='$get_uid'";
         $student_ID = $this->query($query_get_StudentID);
 
-
+        
         if (!isset($student_ID['studentID'])) {
         }
 

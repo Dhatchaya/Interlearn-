@@ -95,8 +95,8 @@ class StudentCourse extends Model
     }
 
     public function getStudents($course_id){
-        $query = "SELECT student_course.student_id, student.* FROM ".$this->table;
-        $query .= " INNER JOIN student ON student.studentID = student_course.student_id";
+        $query = "SELECT student_course.student_id, student.*,users.display_picture FROM ".$this->table;
+        $query .= " INNER JOIN student ON student.studentID = student_course.student_id INNER JOIN users ON student.uid = users.uid";
         $query .= " WHERE course_id =:courseId";
         $data['courseId'] = $course_id;
         // show($student_id) ;die;
