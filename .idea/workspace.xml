@@ -5,12 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eeccaff2-1398-4ed1-939e-7255de6e7aca" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/controllers/student.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/controllers/student.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/models/Staff.model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/models/Staff.model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/includes/sidebar_man.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/includes/sidebar_man.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/manager/home.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/manager/home.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/receptionist/receptionist-payments.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/receptionist/receptionist-payments.view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/student/submission.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/student/submission.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/controllers/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/controllers/register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/controllers/staffs.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/controllers/staffs.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/core/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/core/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/models/Tempstudent.model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/models/Tempstudent.model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/models/User.model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/models/User.model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/academic/enquiry.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/academic/enquiry.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/instructor/student_view.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/instructor/student_view.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/manager/enquiry.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/manager/enquiry.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/receptionist/enquiry.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/receptionist/enquiry.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/staff/staff_details.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/staff/staff_details.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/staff/student_details.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/staff/student_details.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/student/register.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/student/register.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/app/views/teacher/student_view.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/app/views/teacher/student_view.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interlearn/public/assets/js/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/Interlearn/public/assets/js/register.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +31,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="attachmentbank" />
+        <entry key="$PROJECT_DIR$" value="final-changes" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
