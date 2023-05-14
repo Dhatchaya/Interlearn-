@@ -5,7 +5,7 @@
 
     <div class="top-to-bottom-content">
         <?php $this->view("includes/nav"); ?>
-        <div class="all-middle-content"></div>
+        <div class="all-middle-content-add"></div>
 <div class="mid-container">
     <div class="quizz_left">
 
