@@ -49,6 +49,11 @@ const cgender = document.getElementsByName("gender")[0];
 
 const cmedium = document.getElementsByName("medium")[0];
 
+displayPicture.addEventListener('input',function(e){
+  if (e.target.previousElementSibling.classList.contains("err_show")) {
+    e.target.previousElementSibling.innerHTML="";
+  }
+});
 
 ccourseid.addEventListener('change',function(e){
     if (e.target.previousElementSibling.classList.contains("err_show")) {
