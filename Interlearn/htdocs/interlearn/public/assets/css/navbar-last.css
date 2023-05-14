@@ -1,0 +1,381 @@
+ *{
+    margin: 0;
+    padding: 0;
+}
+
+.nav-bar{
+    z-index: 100;
+    position: fixed;
+    height: 80px;
+    width: 100%;
+    background-color: #3E206D;
+}
+
+.profile-dwn, .profile-up, .notifi-up, .notifi-dwn{
+
+    top: 15x;
+    height: 50px;
+}
+#navbar-logo{ 
+    position: fixed;
+    top: -20px;
+    height: 140px;
+    float: left;
+    left: 3vw;
+}
+.punchi-logo{
+    display: none;
+}
+
+
+
+
+/*  search bar  */
+.search-bar{
+    position: fixed;
+    left: 12vw;
+    height: 40px;
+    width: 300px;
+    margin: 20px;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+
+}
+.search-bar:hover{
+    max-width: 350px;
+    height: 44px;
+    margin: 18px;
+}
+/*  nav bar  */
+#myTopnav {
+    position: fixed;
+    right: 230px;
+    top: 10px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #3E206D;
+    /*background-color: #333;*/
+  }
+
+  .nav-list #myTopnav .nav-li a{
+    text-decoration: underline;
+  }
+
+
+  .nav-li {
+    float: left;
+  }
+
+  .nav-li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 20px 25px;
+    text-decoration: none;
+  }
+
+  .nav-li a:hover{
+    background-color: #682CC6;
+  }
+
+   .dropdown:hover .dropbtn {
+    background-color: #3E206D;
+  }
+
+  .nav-li .dropdown {
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: fixed;
+    background-color: #682CC6;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px #532689;
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    color: rgb(255, 255, 255);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    text-decoration: none;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #3E206D;
+    }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .notification:hover .dropdown-content {
+    display: block;
+  }
+
+  .icon{
+    display: none;
+  }
+
+
+/*notification*/
+
+.notification{
+    display: inline-block;
+}
+
+.notification{
+    position: fixed;
+    right: 160px;
+    padding-top: 10px;
+    display: inline-block;
+}
+
+.notifi-up{
+    position: absolute;
+    left: 0px;
+    opacity: 0;
+    transition: all 0.2s ease;
+
+    background-color:#682CC6 ;
+}
+
+.notifi-up:hover{
+    opacity: 1;
+}
+
+/*profile*/
+.profile-dwn:hover{
+    opacity: 0;
+}
+
+.profile{
+    position: absolute;
+    right: 100px;
+    padding-top: 10px;
+    display: inline-block;
+}
+
+.profile-dwn{
+    position: absolute;
+    right: 0px;
+}
+
+.profile-up{
+    position: absolute;
+    top: 11.5px;
+    right: 2.1px;
+    opacity: 0;
+}
+
+.profile-up:hover{
+    opacity: 1;
+    transition: all 0.2s ease;
+}
+
+.nav-bar .profile-up:hover{
+    
+    background-color:#682CC6 ;
+}
+.profile-dwn:hover{
+    opacity: 0;
+}
+
+/* Side bar */
+
+.side-col{
+    position: fixed;
+    top: 18vh;
+    left: 37px;
+    border-radius: 10px;
+    width: 10vw;
+    height: 75%;
+    min-height: 400px;
+    background-color: #3E206D;
+}
+.sidebar-container{
+    width: 8vw;
+    left: 1vw;
+    height: auto;
+}
+
+
+.side-col .segment:hover{
+    background-color: #682CC6;
+}
+.side-col .logout:hover{
+    background-color: #682CC6;
+}
+
+.side-col .profile:hover .profile-dwn{
+    opacity: 0;
+}
+
+.side-col .profile{
+    position: absolute;
+    width: 8vw;
+    height: 52px;
+    left: 1vw;
+    top: 10px;
+    border-radius: 10px;
+    display: block;
+}
+
+.side-col .profile-dwn{
+    height: 52px;
+    position: absolute;
+    top: 5px;
+    left: 0;
+}
+
+.side-col .profile-up{
+    height: 50px;
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    opacity: 0;
+}
+
+.side-col .profile:hover .profile-up {
+    opacity: 1;
+    transition: all 0.2s ease;
+}
+.side-col .profile:hover .profile-dwn{
+    opacity: 0;
+}
+
+
+
+
+h3{
+    position: absolute;
+    width: 72px;
+    height: 20.83px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration-line: underline;
+    text-transform: capitalize;
+
+    color: #FFFFFF;
+
+    text-align: center;
+}
+
+#user-name{
+    top: 22px;
+    left: 3vw;
+}
+
+.side-col div{
+    position: absolute;
+    width: 8vw;
+    height: 60px;
+    border-radius: 10px;
+    display: block;
+
+}
+
+.edit-profile{
+    top: 15vh;
+}
+
+
+.edit-img{
+    margin: auto;
+    height: 34px;
+    display: flex;
+}
+
+.side-bar-txt{
+    width: 8vw;
+    height: auto;
+    margin: auto;
+    top: auto;
+}
+
+.dashboard{
+    top: 28vh;
+}
+
+.payment{
+    top: 41vh;
+}
+
+.enquiry{
+    top: 54vh;
+}
+
+.logout{
+    bottom: 10px;
+    left: 1vw;
+}
+
+
+#logout-img{
+    position: absolute;
+    top: 2vh;
+    left: 0.8vw;
+    height: 30px;
+    display: block;
+}
+
+#logout-txt{
+    position: absolute;
+    left: 3vw;
+    top: 20px;
+}
+
+/* staff payment*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*when footer appier*/
+
+.sidebar-short{
+    height: 15vh;
+    min-height: 150px;
+} 
+.side-col .segment-out{
+    display: none;
+    transition-duration: 1s;
+}
+
+.no-hover:hover{
+    display: none;
+}
+
+
+/*............*/
+
+
+
+

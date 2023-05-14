@@ -5,13 +5,6 @@ const currentURL = "http://localhost/Interlearn/public/academic/enquiry";
 const newURL = "http://localhost/Interlearn/public/academic/enquiry/add";
 
 const enqStatus = document.getElementById('status');
-const removeButtons = document.querySelectorAll(".remove-btn");
-const removePopup = document.querySelector(".remove-staff-popup");
-const dialogBox = document.querySelector(".remove-employee-dialog-box");
-const successMessage = document.querySelector(".success-message");
-
-const noButton = removePopup.querySelector(".no");
-const refreshBtn = removePopup.querySelector(".refresh");
 
 
 function changeStatus(id,value,role){
@@ -152,9 +145,6 @@ if(flag==0){
 });
 
 }
-function refresh(){
-  location.reload();
-}
 
 function closeEnquiry(){
   const currentURL = "http://localhost/Interlearn/public/academic/enquiry";
@@ -167,33 +157,8 @@ function closeEnquiry(){
 }
 
 
-function deletebtnclick(id){
-  removePopup.style.display = "block";
-  const yesButton = removePopup.querySelector(".yes");
-  const yesButtonClickHandler = async function (event) {
-    location.href="http://localhost/Interlearn/public/academic/enquiry/delete/"+id;
-    yesButton.removeEventListener("click", yesButtonClickHandler);
-  }
-  yesButton.addEventListener("click", yesButtonClickHandler);
-}
-function deletebtnclickrece(id){
-  removePopup.style.display = "block";
-  const yesButton = removePopup.querySelector(".yes");
-  const yesButtonClickHandler = async function (event) {
-    location.href="http://localhost/Interlearn/public/receptionist/enquiry/delete/"+id;
-    yesButton.removeEventListener("click", yesButtonClickHandler);
-  }
-  yesButton.addEventListener("click", yesButtonClickHandler);
-}
-function deletebtnclickmana(id){
-  removePopup.style.display = "block";
-  const yesButton = removePopup.querySelector(".yes");
-  const yesButtonClickHandler = async function (event) {
-    location.href="http://localhost/Interlearn/public/manager/enquiry/delete/"+id;
-    yesButton.removeEventListener("click", yesButtonClickHandler);
-  }
-  yesButton.addEventListener("click", yesButtonClickHandler);
-}
+
+
 
 function editEnquiry(id){
 

@@ -15,7 +15,7 @@ class Payment extends Model
         'status',
         'date',
         'payment_status',
-        'PaymentID '
+        'PaymentID '	
 
     ];
     public function addNewPendingPayments(){
@@ -55,16 +55,16 @@ class Payment extends Model
 
     public function approveBP($PaymentID)
     {
-
+        
         $query = "UPDATE payment 
                     SET 
                         method = 'bank deposit',
                         payment_status = 1
                     WHERE 
                     PaymentID = $PaymentID";
-
+    
         $res = $this->query($query);
-
+    
         if ($res !== NULL) {
             return "success";
         }
@@ -73,24 +73,23 @@ class Payment extends Model
 
     public function declinedBP($PaymentID)
     {
-
+        
         $query = "UPDATE payment 
                     SET 
                         method = 'bank deposit',
                         payment_status = 3
                     WHERE 
                     PaymentID = $PaymentID";
-
+    
         $res = $this->query($query);
-
+    
         if ($res !== NULL) {
             return "success";
         }
-
         return $res;
     }
 
-
+    
     public function pendingReview($paymentID)
     {
         show($paymentID);

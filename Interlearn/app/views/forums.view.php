@@ -2,17 +2,7 @@
 
 
 <div class="main-body-div">
-<?php if(Auth::getrole() == "Student"):?>
-        <?php $this->view("includes/sidebar");?>
-    <?php else:?>
-        <?php  if(Auth::getrole() == "Teacher"):?>
-            <?php $this->view("includes/sidebar_teach");?>
-    <?php else:?>
-        <?php if(Auth::getrole() == "Instructor"):?>
-            <?php $this->view("includes/sidebar_ins");?>
-    <?php endif;?>
-    <?php endif;?>
-    <?php endif;?>
+<?php $this -> view('includes/sidebar'); ?>
     <div class="forum_body top-to-bottom-content">
     <?php $this -> view('includes/nav'); ?>
     <div class="forum_discussion">
@@ -82,7 +72,7 @@
                                         <button class="view_enq_btn">View</button>
                                         </a>
                                         <?php  if($role == "Teacher" ||$role == "Instructor"):?>
-                                        <button onclick = "deletebtnclick(<?=esc($row->forum_id)?>)" class="view_enq_btn">Delete</button>
+                                        <button onclick = "deleteForum(<?=esc($row->forum_id)?>)" class="view_enq_btn">Delete</button>
                                          <?php endif?>
                                     </div>
                                    
@@ -95,22 +85,6 @@
                     <?php endif;?>
             </table>
         </div>
-        <div class="bank-payment-form-popup remove-staff-popup">
-        <div class="remove-employee-dialog-box">
-            <label class="ask" for="">Are you sure to remove this Discussion?</label>
-            <div class="btn-container">
-                <button   class="yes">Yes</button>
-                <button onclick="refresh()" class="no">No</button>
-            </div>
-        </div>
-        <div class="success-message">
-            <label class="ask" for="refresh">Successfully removed the Student</label>
-            <br>
-            <div class="btn-container ">
-                <button onclick="refresh()" class="refresh"> click to refresh</button>
-            </div>
-        </div>
-    </div>
     </div>
     </div>
 

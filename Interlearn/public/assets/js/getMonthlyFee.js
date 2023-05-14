@@ -11,6 +11,9 @@ nxtBtn.disabled = true;
 
 
 Month.addEventListener('change', function() {
+
+    
+    Amount.style.color = 'black';
     
     console.log("event listner works month is", Month.value);
         fetch('/Interlearn/public/receptionist/getMonthlyFee', {
@@ -33,22 +36,24 @@ Month.addEventListener('change', function() {
 
 
     function getAmount(data) {
-        console.log(data);
         if (data[0]['course_id'] == 'noCourse') {
             console.log('noCourse');
             // courseID.value = '';
             courseID.value = 'check the course ID';
+            courseID.style.color = 'red';
             Amount.value = ' ';
             sbmtBtn.disabled = true;
             nxtBtn.disabled = true;
         } else if (data[0]['course_id'] === 'notRegistered') {
             console.log('notRegistered');
             Amount.value = 'Student is not registered for this course';
+            Amount.style.color = 'red';
             sbmtBtn.disabled = true;
             nxtBtn.disabled = true;
         } else if (data[0]['course_id'] === 'alreadyPaid') {
             console.log('notRegistered');
             Amount.value = 'Already paid for this month';
+            Amount.style.color = 'red';
             sbmtBtn.disabled = true;
             nxtBtn.disabled = true;
         }else {

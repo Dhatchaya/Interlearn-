@@ -6,7 +6,7 @@
                 <div class="middle">
                     
                         <div class="profile">
-                            <a href="<?=ROOT?>/staffs/myprofile/view">
+                            <a href="<?=ROOT?>/instructor/profile">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/profile.png" alt="profile"></br>
                             <span>Edit Profile</span>
                             </a>
@@ -24,18 +24,18 @@
                       
                     
                     <div class="enquiry">
-                    <a href="<?=ROOT?>/academic/enquiry">
+                    <a href="<?=ROOT?>/instructor/enquiry">       
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/enquiry.png" alt="enquiry"></br>
                             <span>Enquiry</span>
                        
                     </a>
                     </div>
-                    <!-- <div class="Courses">
+                    <div class="Courses">
                             <a href="<?=ROOT?>/instructor/course">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/book.png" alt="Courses"></br>
                             <span>Courses</span>
                             </a>
-                        </div> -->
+                        </div>
                     
                  
                 

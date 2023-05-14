@@ -25,7 +25,7 @@ function disablePaidPayments() {
       const tds = rows[i].querySelectorAll('td');
       const lastTd = tds[tds.length - 1];
       lastTd.innerHTML = ' Payment declined contact receptionist';
-
+      
       // Append warning message to row
       rows[i].appendChild(warningTd);
     }

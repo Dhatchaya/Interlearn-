@@ -35,11 +35,11 @@ class BankPayment extends Model
     }
 
     public function submitBP($data)
-    {
+    {   
 
         $this->insert($data);
 
-
+        
     }
 
     public function removefromBankPayment ($bankPaymentID){

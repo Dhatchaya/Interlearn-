@@ -33,16 +33,11 @@
                     </div>
                 </div>
                 <div class="student_calendar">
-                <?php $this->view("includes/calendar");?>
-                <div id = "assignment_today" class ="assignment_today">
-
-
-        </div>
-    </div>
+                    <?php $this->view("includes/calendar"); ?>
+                </div>
             </div>
         </div>
 </div>
 <!-- <div  id="overlay"></div> -->
 </div>
-<script defer src="<?=ROOT?>/assets/js/calendar_ins.js?v=<?php echo time(); ?>"></script>
 <?php $this->view("includes/footer"); ?>

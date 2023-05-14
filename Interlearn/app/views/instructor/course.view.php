@@ -1,7 +1,7 @@
 <?php $this->view("includes/header"); ?>
 <div class="main-body-div">
 
-    <?php $this->view("includes/sidebar_ins"); ?>
+    <?php $this->view("includes/sidebar_teach"); ?>
 
     <div class="top-to-bottom-content">
         <?php $this->view("includes/nav"); ?>
@@ -12,9 +12,9 @@
                     <img src="<?= ROOT ?>/assets/images/tchrview.png" class="teacher_crs_topimg">
                     <div class="teacher_crs_tophead">
                         <?php if (!empty($courses)) : ?>
+                            <a href="<?= ROOT ?>/instructor/course/progress/<?= $course_id ?>/0/view" class="teacher-course-announcement">View Progress</a>
                             <div id="course_id" style="display: none;"><?= $courses[0]->course_id ?></div>
                             <h2 class="teacher_crs_subject">Grade <?= esc($courses[0]->grade) ?> - <?= esc($courses[0]->subject) ?></h2>
-                            <h4 class="teacher_crs_subject"><?= esc($courses[0]->language_medium) ?> Medium</h4>
                             <div class="instructor-prg-butn">
                                 <a href="<?= ROOT ?>/instructor/course/progress/<?= $course_id ?>/0/view" class="teacher-course-announcement">
                                     View Progress
@@ -95,16 +95,16 @@
                                                             </p>
                                                         <?php endif; ?>
                                                     <?php elseif ($material->type == "assignment") : ?>
-                                                        <p><a href="#" class="teacher-content">
+                                                        <p><a href=<?= $material->view_URL ?> class="teacher-content">
                                                                 <img src="<?= ROOT ?>/assets/images/assignment.png" alt="" class="teacher_card_img3">
 
                                                                 <?= $material->upload_name ?>
                                                             </a>
-                                                            <!-- <a href=<?= $material->edit_URL ?>>
+                                                            <a href=<?= $material->edit_URL ?>>
                                                                 <img src="<?= ROOT ?>/assets/images/edit.png" alt="" class="teacher_card_img2" id="button32">
-                                                            </a> -->
+                                                            </a>
                                                             <!-- <a href=<?= $material->delete_URL ?>> -->
-                                                            <!-- <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?= $material->cid ?>')"> -->
+                                                            <img src="<?= ROOT ?>/assets/images/delete.png" class="teacher_card_img2" id="button33" onclick="openModal6('<?= $material->cid ?>')">
                                                             <!-- </a></p> -->
                                                         </p>
                                                     <?php elseif ($material->type == "forum") : ?>
@@ -312,7 +312,7 @@
                                 <input type="text" class="teacher-edit-text" name="upload-text" id="edit-text"><br>
                                 <label for="upload-title" class="teacher-edit">Content: </label>
                                 <input type="text" class="teacher-edit-content" name="upload-content" id="edit-text-content"><br><br>
-                                <button type="button" class="teacher_upl_btn" name="submit-upload" id="edit-text-btn" onclick="closeModal7()">Update</button>
+                                <button type="button" class="teacher_upl_btn" name="submit-upload" id="edit-text-btn">Update</button>
                                 <button type="reset" class="teacher_upl_btn" id="cancel-btn">Cancel</button>
                             </div>
                         </form>

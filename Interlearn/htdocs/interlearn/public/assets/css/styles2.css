@@ -1,0 +1,68 @@
+.clm3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.header_fixed {
+    max-height: 100vh;
+    width: 100%;
+    overflow: auto;
+    border: 1px solid #dddddd;
+    margin-right:15px;
+}
+
+.header_fixed thead th {
+    position: sticky;
+    top: 0;
+    background-color: black;
+    color: #e6e7e8;
+    font-size: 15px;
+}
+
+th {
+    background-color: #aa84e8;
+}
+th,
+td {
+    border-bottom: 1px solid #dddddd;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+tr:nth-child(odd) {
+    background-color: #edeef1;
+}
+
+tr:hover td {
+    color: #3E206D;
+    cursor: pointer;
+    background-color: #ffffff;
+}
+
+td button {
+    border: none;
+    padding: 7px 8px;
+    border-radius: 20px;
+    background-color: black;
+    color: #e6e7e8;
+}
+
+.edit_delete {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.edit, .delete {
+    padding-left: 5px;
+    padding-right: 5px;
+}

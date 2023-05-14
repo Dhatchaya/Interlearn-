@@ -96,7 +96,7 @@
                                       data-amount="<?= $pendingPayment->amount ?>"
                                       data-PaymentID="<?= $pendingPayment->PaymentID ?>"
                                       data-payment_status="<?= $pendingPayment->payment_status ?>"
-
+                                      
                                       >Bank Payment</button>
                             </td >
                         </tr>
@@ -136,7 +136,7 @@
 
                   <div class="payment-form" action="#" method="post"   encType='multipart/form-data'>
                     <div class="sub-container">
-                      <div class="form-group">
+                      <div class="form-group">  
                         <label class="payment-label" for="student-id">Student ID </label>
                         <div class="errorSpace1" id="errorSpace1"></div>
                         <input name="studentID" class="payment-input" type="text" id="student-id" value="<?= $studentID ?>" maxlength="20" readonly>
@@ -287,7 +287,7 @@
     <script src="<?= ROOT ?>/assets/js/submitBP.js"></script>
     <script src="<?= ROOT ?>/assets/js/switching.js"></script>
 
-
+   
 
 
   </body>

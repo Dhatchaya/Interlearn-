@@ -7,7 +7,7 @@
                 <div class="middle">
                     
                         <div class="profile">
-                        <a href="<?=ROOT?>/staffs/myprofile/view">
+                            <a href="<?=ROOT?>/teacher/profile">
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/profile.png" alt="profile"></br>
                             <span>Edit Profile</span>
                             </a>
@@ -31,13 +31,13 @@
                        
                     </a>
                     </div>
-                    <!-- <div class="Progress">
+                    <div class="Progress">
                             <a href="#">
 
                             <img src="<?=ROOT?>/assets/images/sidebar_icons/progress.svg" alt="progress"></br>
                             <span>Progress</span>
                             </a>
-                    </div> -->
+                    </div>
                     
                  
                 

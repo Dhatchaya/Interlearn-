@@ -10,13 +10,25 @@ sbmtBtn1.disabled = true;
 nxtBtn1.disabled = true;
 
 studentId.addEventListener('keyup', function() {
+    studentName.style.color = 'black'  ;
     Amount.value ="";
     CourseID.value ="";
     studentName.value ="";
+    Amount.style.color = 'black';
 })
+
+courseID.addEventListener('click', function() {
+    
+    studentName.style.color = 'black'  ;
+    CourseID.value = '';
+    CourseID.style.color = 'black';
+});
 
 
 CourseID.addEventListener('keyup', function() {
+    studentName.style.color = 'black'  ;
+    courseID.style.color = 'black';
+    Amount.style.color = 'black';
 
 
     Amount.value ="";
@@ -36,13 +48,17 @@ CourseID.addEventListener('keyup', function() {
 );
 
 function getStudentNAme(data) {
-    if(studentName.value == 0){
+    if(data[0]['student_id'] === 'noStudent'){
         studentName.value = ['Student ID is in correct']  ;
+        studentName.style.color = 'red'  ;
         sbmtBtn1.disabled = true;
         nxtBtn1.disabled = true;
     }
-    studentName.value = data[0]['first_name'] + " " + data[0]['last_name'];
-    sbmtBtn1.disabled = false;
-    nxtBtn1.disabled = false;
+    else{
+        studentName.value = data[0]['first_name'] + " " + data[0]['last_name'];
+        sbmtBtn1.disabled = false;
+        nxtBtn1.disabled = false;
+    }
+
 }
 

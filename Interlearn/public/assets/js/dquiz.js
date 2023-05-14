@@ -45,10 +45,7 @@ console.log(id);
 //   ]
 
 const quiz = [];
-let timeRemaining =0;
 let totques = 0;
-let total_points = 0;
-
 // make an AJAX request to retrieve the quiz data
 const xhr = new XMLHttpRequest();
 
@@ -60,56 +57,17 @@ xhr.onload = () => {
         // console.log(xhr.responseText.length);
         const data = JSON.parse(xhr.responseText);
         
-        console.log(data[0].duration);
-        console.log(data[0].total_points);
+        console.log(data);
         console.log(data.length);
         totques = data.length;
         data.forEach(question => {
             quiz.push(question);
         });
-       timeRemaining = data[0].duration*60;
-       total_points = data[0].total_points*1;
-
     } else {
         console.error('Error fetching quiz data');
     } 
 };
-function StartQuiz() {
-    //1st we set all questions in availableQuestions array
-    console.log(timeRemaining);
-    console.log(total_points);
-    homeBox.classList.add("hide");
 
-    quizBox.classList.remove("hide");
-
-// Display the timer -------------------------------------------//
-    const timerDisplay = document.querySelector('.timer');
-    timerDisplay.innerHTML = formatTime(timeRemaining);
-
-    // Create the countdown timer
-    const timer = setInterval(() => {
-
-    // const remainTime = document.querySelector('.remain-time');
-    timeRemaining--;
-    timerDisplay.innerHTML = formatTime(timeRemaining);
-        // console.log(timeRemaining);
-    // Alert participants when time is running out
-    if (timeRemaining < 60) {
-        timerDisplay.classList.add('warning');
-    }
-
-    // Submit answers automatically when time is up
-    if (timeRemaining <= 0) {
-        clearInterval(timer);
-        quizOver();
-    }
-    }, 1000);
-//-----------------------------------------------------------------//
-    setAvailableQuestions();
-    // 2nd we call getNewQuestion(); function
-    getNewQuestion();
-
-    answerIndicator();
-}
 xhr.send();
 
+console.log(quiz);
