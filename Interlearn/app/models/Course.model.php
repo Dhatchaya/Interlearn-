@@ -149,8 +149,9 @@ class Course extends Model
 
     public function checkStudent($courseId, $studentId) {
         $studentID = $studentId;
-    
-        $query = "SELECT * FROM student_course WHERE student_id = " . $studentID . " AND course_id = " . $courseId;
+
+        $query = "SELECT * FROM student_course WHERE student_id = '" . $studentID . "' AND course_id = '" . $courseId . "'";
+
         $res = $this->query($query);
 
         return $res;
@@ -159,7 +160,7 @@ class Course extends Model
 
     public function getMonthlyFee($courseId){
         $courseID = $courseId; 
-        $query = "SELECT monthlyFee,course_id FROM course where course_id = " . $courseID ;
+        $query = "SELECT monthlyFee,course_id FROM course where course_id = '" . $courseID . "'";
         $res = $this -> query($query);
 
         return $res;
@@ -366,16 +367,14 @@ class Course extends Model
         }
     }
 
-    public function updateCourse($course_id,$day,$timefrom,$timeto,$capacity, $fee){
+    public function updateCourse($course_id,$day,$timefrom,$timeto){
         $query = "UPDATE ".$this->table;
-        $query .= " SET day =:Day, timefrom =:Timefrom, timeto =:Timeto, capacity =:capacity, monthlyFee =:Fee";
+        $query .= " SET day =:Day, timefrom =:Timefrom, timeto =:Timeto";
         $query .= " WHERE course_id =:courseID";
         $data['courseID'] = $course_id;
         $data['Day'] = $day;
         $data['Timefrom'] = $timefrom;
         $data['Timeto'] = $timeto;
-        $data['capacity'] = $capacity;
-        $data['Fee'] = $fee;
         $res = $this -> update_table($query, $data);
         // show($query);die;
 

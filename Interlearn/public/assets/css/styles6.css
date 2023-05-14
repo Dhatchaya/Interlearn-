@@ -24,12 +24,12 @@
 
 .box_modal {
     position: fixed;
-    top: 15%;
+    top: 20%;
     bottom: 0;
     left: 30%;
     right: 0;
     width: 50%;
-    height: 82vh;
+    height: 550px;
     background: white;
     border-radius: 5px;
     padding: 3vw;

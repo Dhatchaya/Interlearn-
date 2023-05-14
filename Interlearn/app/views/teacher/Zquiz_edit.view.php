@@ -5,7 +5,7 @@
 
     <div class="top-to-bottom-content">
         <?php $this->view("includes/nav"); ?>
-        <div class="all-middle-content-add"></div>
+        <div class="all-middle-content"></div>
 <head>
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles5.css">
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/styles3.css">
@@ -68,12 +68,12 @@
         <div class="bg_modal" id="modal">
             <div class="box_modal">
                 <h3> -- Update Quiz -- </h3><br>
-                <form name="confirmEditForm" action="" method="POST" id="my-form">
+                <form name="confirmEditForm" action="" method="POST" id="My-form">
                     <!-- <input type="hidden" value="" name="id" id="id"> -->
                     
                     <label for="question_total">Quiz Description <strong> *</strong> : </label>
                     <textarea class="home_cnt_inp" name="quiz_description" id="input_description" placeholder="Insert a quiz description" style="height:50px"></textarea>
-                    <br><span id="descriptions-error" style="color:red"></span>
+                    
                     <div class="enable_disable">
                         <div class="enable">
                             <label for="question_total">Quiz Name <strong> *</strong> : </label>
@@ -85,8 +85,7 @@
                             <input class="time_period" type=number name="total_points" value="" id="input_total" placeholder="">
                         </div>
                     </div>
-                    <span id="name-error" style="color:red"></span><br>
-                    <span id="points-error" style="color:red"></span>
+
                     <div class="enable_disable">
                         <!-- <div class="enable">
                             <label for="time_period">Quizz Date<strong> *</strong> : </label>
@@ -117,7 +116,7 @@
                             </select>
                         <!-- </div> -->
                     </div>
-                    <span id="duration-error" style="color:red"></span>
+
                     <!-- <input type="number" id="input_marks" name="mymarks" class="time_period" placeholder="update marks"> -->
 
                     <input type="submit" value="Update" class = "home_form_sbt" name="edit_quiz">
@@ -140,5 +139,5 @@
 </div>
 </div>
 <script defer src="<?=ROOT?>/assets/js/quizEdit.js?v=<?php echo time(); ?>"></script>
-<script defer src="<?=ROOT?>/assets/js/validateEditQuiz.js?v=<?php echo time(); ?>"></script>
+<script defer src="<?=ROOT?>/assets/js/validate_quiz.js?v=<?php echo time(); ?>"></script>
 <?php $this -> view('includes/footer'); ?>

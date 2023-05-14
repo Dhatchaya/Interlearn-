@@ -2,7 +2,7 @@
 
 
 <div class="main-body-div">
-    <?php $this->view("includes/sidebar_recep"); ?>
+    <?php $this->view("includes/sidebar_man"); ?>
     <div class="top-to-bottom-content">
 
         <?php $this->view("includes/nav"); ?>
@@ -29,9 +29,6 @@
                                     <td>
                                         <div class="enq_actions">
                                             <div class="enq_view">
-                                            <a href="<?=ROOT?>/staffs/allprofiles/student/<?=esc($row->uid)?>">
-                                                <button class="view_enq_btn">View</button>
-                                            </a>
                                                 <a href="#">
                                                     <button class="view_enq_btn" onclick="openModal4('<?= esc($row->student_id) ?>')">Delete</button>
                                                 </a>
