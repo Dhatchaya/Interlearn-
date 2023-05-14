@@ -1,0 +1,10 @@
+{
+  "folders": [
+	{
+		"path": "../../../xampp/htdocs/interlearn"
+	}
+],
+  "settings": {
+    "liveServer.settings.port": 5501
+  }
+}

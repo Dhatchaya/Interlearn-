@@ -1,3 +1,4 @@
+
 const studentId2 = document.getElementById('student-id');
 const courseID = document.getElementById('couese-ID');
 const Month = document.getElementById('month');
@@ -36,24 +37,32 @@ Month.addEventListener('change', function() {
         if (data[0]['course_id'] == 'noCourse') {
             console.log('noCourse');
             // courseID.value = '';
+            courseID.style.color = 'red';
             courseID.value = 'check the course ID';
             Amount.value = ' ';
             sbmtBtn.disabled = true;
             nxtBtn.disabled = true;
         } else if (data[0]['course_id'] === 'notRegistered') {
             console.log('notRegistered');
+            Amount.style.color = 'red';
             Amount.value = 'Student is not registered for this course';
             sbmtBtn.disabled = true;
             nxtBtn.disabled = true;
         } else if (data[0]['course_id'] === 'alreadyPaid') {
             console.log('notRegistered');
+            Amount.style.color = 'red';
             Amount.value = 'Already paid for this month';
             sbmtBtn.disabled = true;
             nxtBtn.disabled = true;
         }else {
             console.log('default');
+            Amount.style.color = 'black';
             Amount.value = data[0].monthlyFee;
             sbmtBtn.disabled = false;
             nxtBtn.disabled = false;
         }
     }
+    
+
+
+

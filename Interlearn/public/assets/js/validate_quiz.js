@@ -14,7 +14,7 @@ function validateForm() {
     var choice4_mark = parseFloat(document.forms["myForm"]["choice4_mark"].value);
     var sum = choice1_mark + choice2_mark + choice3_mark + choice4_mark;
 
-    if (sum != 1 && sum != 0.99) {
+    if (sum < 0.99) {
         document.getElementById("sum-error").innerHTML = "The sum of the fields must equal 100%";
         return false;
     }
@@ -191,13 +191,6 @@ const Form = document.getElementById("My-form");
     }
 });
 
-// let qname = document.getElementById("quiz_name");
-// qname.addEventListener('change',function hideSubject(e){
-//     if (e.target.previousElementSibling.classList.contains("question-error")) {
-//       e.target.previousElementSibling.innerHTML="";
-//     }
-// });
-
 function validateQuizPopUp() {
 
     var duration = document.forms["confirmEditForm"]["duration"].value;
@@ -223,7 +216,7 @@ function validateQuestionPopUp() {
     var choice4_mark = parseFloat(document.forms["myForm"]["format_time4"].value);
     var sum = choice1_mark + choice2_mark + choice3_mark + choice4_mark;
 
-    if (sum != 1 && sum != 0.99) {
+    if (sum < 0.99) {
         document.getElementById("sum-error").innerHTML = "The sum of the fields must equal 100%";
         return false;
     }

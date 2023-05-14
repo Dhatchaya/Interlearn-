@@ -20,8 +20,8 @@
 
             <span id="sum-error" class="sum-error" style="color:red; margin-left:35%"></span><br>
             <label for="question_name" style="font-size:16px; font-weight:500;">Question <strong> *</strong> : </label>
-            <input class="home_cnt_inp" type=text name="question_title" value="" placeholder="Eg : When UCSC is established ?" id="quiz_name">
-            <span id="question-error" class="question-error" style="color:red"></span><br>
+            <input class="home_cnt_inp" type=text name="question_title" value="" placeholder="Eg : When UCSC is established ?">
+            <span id="question-error" style="color:red"></span>
 
             <label for="category">Quiz bank No.<strong> *</strong> : </label><br>
             <input class="home_cnt_inp" type=number name="quiz_bank" value="" placeholder="Eg : 1">

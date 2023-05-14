@@ -97,7 +97,7 @@
                             <div class="enq_edit"  <?php if($row->status == 'pending'):?> onclick=editEnquiry(<?=esc($row->eid)?>) <?php else:?> style="display:none" <?php endif;?>>
                               <button class="edit_enq_btn">Edit</button>
                             </div>
-                            <div class="enq_delete"<?php if($row->status == 'pending'):?> style="display:block"  <?php else:?> style="display:none" <?php endif;?>>
+                            <div class="enq_delete">
 
                                 <button class="delete_enq_btn" onclick ="deletebtnclick(<?=esc($row->eid)?>);">Delete</button>
 

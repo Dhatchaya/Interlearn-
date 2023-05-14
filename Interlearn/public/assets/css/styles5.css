@@ -93,12 +93,12 @@ tr:nth-child(odd) {
 
 .box_modal {
     position: fixed;
-    top: 20%;
+    top: 30%;
     bottom: 0;
     left: 30%;
     right: 0;
     width: 50%;
-    height: 70vh;
+    height: 500px;
     background: white;
     border-radius: 5px;
     padding: 3vw;
