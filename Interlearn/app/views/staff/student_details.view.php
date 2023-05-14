@@ -4,10 +4,12 @@
 <div class="main-body-div">
 <?php if(Auth::getrole() == "Receptionist"):?>
         <?php $this->view("includes/sidebar_recep");?>
-<?php else:?>
-        <?php  if(Auth::getrole() == "Manager"):?>
+<?php elseif(Auth::getrole() == "Manager"):?>
             <?php $this->view("includes/sidebar_man"); ?>
-<?php endif;?>
+        <?php elseif(Auth::getrole() == "Teacher"):?>
+            <?php $this->view("includes/sidebar_teach"); ?>
+        <?php elseif(Auth::getrole() == "Instructor"):?>
+            <?php $this->view("includes/sidebar_ins"); ?>
 <?php endif;?>
     <div class="top-to-bottom-content">
 
