@@ -258,6 +258,90 @@ day1.addEventListener('change',function(event){
             }
           });
 
+
+
+        // var time5 = document.getElementById('timefrom');
+        // time5.addEventListener('change', function(){
+        //   // console.log("here");
+        //   var timeFrom = document.getElementById('timefrom').value;
+        //   var timeTo = document.getElementById('timeto').value;
+
+
+        //   for(i in response){
+        //     console.log(response[i]);
+        //     let getMinute = timeFrom.split(':')[1];
+        //     getMinute = parseInt(getMinute) + 1;
+        //     let getHours = timeFrom.split(':')[0];
+        //     getHours = parseInt(getHours);
+
+
+        //     if(getMinute < 0 ){
+        //       getMinute = 59;
+        //       getHours = getHours - 1;
+        //     }
+
+        //     let newDay = getHours + ':' + getMinute;
+        //     console.log(newDay);
+        //     console.log(timeFrom);
+
+
+        //     console.log(timeFrom>=response[i].timefrom);
+        //     console.log(timeFrom<=response[i].timeto);
+        //     if(timeFrom<response[i].timeto && timeFrom>=response[i].timefrom){
+        //       console.log("in" + response[i].timefrom);
+        //       document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
+        //       flag = 1;
+        //       break;
+        //     }else{
+        //       flag = 0;
+        //     }
+        //   }
+
+        //   console.log(flag);
+
+        //   if(flag == 0){
+        //     document.getElementById('addCourseerror').style.display = "none";
+        //   }
+        // });
+
+        // var time6 = document.getElementById('timeto');
+        // time6.addEventListener('change', function(){
+        //   console.log("here");
+        //   var timeFrom = document.getElementById('timefrom').value;
+        //   var timeTo = document.getElementById('timeto').value;
+
+        //   for(i in response){
+        //     console.log(response[i]);
+        //     console.log(timeTo);
+        //     console.log(timeFrom);
+        //     console.log(timeTo>=response[i].timefrom);
+        //     if(timeFrom > timeTo){
+        //       console.log("inside");
+        //       document.getElementById('addCourseerror').innerHTML = "Ending time should be greater than start time";
+        //       document.getElementById('addCourseerror').style.display = "block";
+        //       flag = 1;
+        //       break;
+
+        //     }
+        //     else{
+        //       flag = 0;
+        //     }
+        //     if(timeTo<=response[i].timeto && timeTo>=response[i].timefrom){
+        //       document.getElementById('addCourseerror').innerHTML = "Teacher already has a class";
+        //       document.getElementById('addCourseerror').style.display = "block";
+        //       flag = 1;
+        //       break;
+        //     }
+        //     else{
+        //       flag = 0;
+        //     }
+        //   }
+
+        //   if(flag == 0){
+        //     document.getElementById('addCourseerror').style.display = "none";
+        //   }
+        // });
+
           }
         });
   }
@@ -278,7 +362,6 @@ submitCheck.addEventListener('click',function(event){
   var timeFrom = document.getElementById('timefrom').value;
   var timeTo = document.getElementById('timeto').value;
   var capacity = document.getElementById('capacity').value;
-  var fee = document.getElementById('fee').value;
 
   let formData = new FormData();
 
@@ -397,12 +480,6 @@ console.log(subject,grade,medium);
         document.getElementById('capacity').value = '';  // clear the selected grade
         flag = 1;
       }
-      if(fee == ''){
-        document.getElementById('alert-div9').innerHTML = 'Please enter a fee.';  // set the message in the alert div
-        document.getElementById('alert-div9').style.display = 'block';  // show the alert div
-        document.getElementById('fee').value = '';  // clear the selected grade
-        flag = 1;
-      }
 
       if(flag == 0){
 
@@ -415,9 +492,8 @@ console.log(subject,grade,medium);
         formData.append('timefrom', timeFrom);
         formData.append('timeto', timeTo);
         formData.append('capacity', capacity);
-        formData.append('monthlyFee', fee);
 
-        console.log(subject,grade,medium,fee);
+        console.log(subject,grade,medium);
         $.ajax({
 
 
@@ -430,7 +506,6 @@ console.log(subject,grade,medium);
 
             console.log("success");
             response = JSON.parse(response);
-            console.log(response);
             console.log(response.status);
 
             console.log(response.status === "success");
@@ -527,34 +602,6 @@ capacity.addEventListener('input',function(event){
     else{
       console.log("number");
       document.getElementById('alert-div8').style.display = 'none';
-    }
-    // document.getElementById('alert-div8').style.display = 'none';
-  }
-
-});
-
-
-
-var fee = document.getElementById('fee');
-fee.addEventListener('input',function(event){
-  var subject = document.getElementById('subject').value;
-  var grade = document.getElementById('grades').value;
-  var teacher_id = document.getElementById('teacher_id').value;
-  var day = document.getElementById('day').value;
-  var timeFrom = document.getElementById('timefrom').value;
-  var timeTo = document.getElementById('timeto').value;
-
-  if(fee != ''){
-    console.log(typeof fee.value);
-    if(isNaN(fee.value)){
-      console.log("not a number");
-      document.getElementById('alert-div9').innerHTML = 'Please enter a numeric value.';  // set the message in the alert div
-      document.getElementById('alert-div9').style.display = 'block';  // show the alert div
-      document.getElementById('description').value = '';  // clear the selected grade
-    }
-    else{
-      console.log("number");
-      document.getElementById('alert-div9').style.display = 'none';
     }
     // document.getElementById('alert-div8').style.display = 'none';
   }

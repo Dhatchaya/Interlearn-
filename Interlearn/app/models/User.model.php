@@ -86,6 +86,10 @@ class User extends Model
                     $this->error['email'] = "Email already exists";
                 
             }
+            if(!filter_var($data['parent_email'],FILTER_VALIDATE_EMAIL))
+            {
+                $this->error['parent_email'] = "Email is not valid";
+            }
             if(empty($data['NIC'])){
                 if(!empty($data['birthday'])){
                     $today = date('Y-m-d');
@@ -98,6 +102,7 @@ class User extends Model
                 }
               
             }
+            
            
         if(empty($this->error)){
             return true;

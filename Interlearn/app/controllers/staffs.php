@@ -134,5 +134,28 @@ class Staffs extends Controller
 
             }
     }
+    public function allprofiles($action = null,$uid=null)
+    {
+       
+        $data = [];
+        $data['title']='Staff-Profiles';
+        $student = new Students();
+        $staff = new Staff();
+        if($action=="student"){
+            $details = $student->studentConnectCourse(['uid'=>$uid],'studentID');
+            $data['userData']=$details;
+ 
+            $this->view('student/profiles',$data);
+        }
+        if($action=="staff"){
+            $details = $staff->ProfileDetails($uid);
+            $data['userData']=$details;
+
+            $this->view('staff/profiles',$data);
+        }
+
+
+        exit;
+    }
 
 }

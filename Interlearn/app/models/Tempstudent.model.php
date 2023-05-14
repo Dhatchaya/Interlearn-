@@ -31,7 +31,14 @@ class Tempstudent extends Model
         'email',
 
     ];
-
+    function generateUniqid() {
+        $alphabet = range('A', 'Z'); // Create an array of uppercase letters
+        $letters = $alphabet[rand(0, 25)].$alphabet[rand(0, 25)]; // Get two random letters
+        
+        $numbers = str_pad(rand(0, 999), 3, '0', STR_PAD_LEFT); // Generate three random numbers with leading zeros
+        
+        return $letters.$numbers;
+    }
     // public function validate($data)
     // {   
     //     $this->error = [];

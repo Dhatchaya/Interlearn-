@@ -13,8 +13,8 @@ class Register extends Controller
         $tempStudentcourse = new TempStudentCourse();
          if($action == "view"){
             if($_SERVER['REQUEST_METHOD'] == "POST"){
-
-                $_POST['studentID'] = $student_id = uniqid();
+              
+                $_POST['studentID'] = $student_id =   $student->generateUniqid();
                 if($user -> validate($_POST))
                 {
                     $user_otp= rand(100000,999999);
@@ -120,6 +120,7 @@ class Register extends Controller
       
     }
     public function course(){
+        $result=false;
         $tempStudentcourse = new TempStudentCourse();
             //  show($_POST);die;
             if($_SERVER['REQUEST_METHOD'] == "POST"){

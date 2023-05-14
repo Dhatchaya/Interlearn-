@@ -25,7 +25,7 @@ Month.addEventListener('change', function() {
             console.log("response comes");
             getAmount(response);
             // console.log(response);
-    
+
         }).catch(error=>console.log(error));
         // console.log(studentId.value);
     }
@@ -58,7 +58,7 @@ Month.addEventListener('change', function() {
             nxtBtn.disabled = false;
         }
     }
-    
+
 
 
 

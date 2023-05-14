@@ -14,31 +14,7 @@ class Receptionist extends Controller
 
         $this->view('receptionist/home');
     }
-    public function allprofiles($action = null,$uid=null)
-    {
-        if(!Auth::is_receptionist()){
-            redirect('home');
-        }
-        $data = [];
-        $data['title']='Staff-Profiles';
-        $student = new Students();
-        $staff = new Staff();
-        if($action=="student"){
-            $details = $student->studentConnectCourse(['uid'=>$uid],'studentID');
-            $data['userData']=$details;
  
-            $this->view('student/profiles',$data);
-        }
-        if($action=="staff"){
-            $details = $staff->ProfileDetails($uid);
-            $data['userData']=$details;
-
-            $this->view('staff/profiles',$data);
-        }
-
-
-        exit;
-    }
     public function course($action = null, $id = null, $option = null)
     { 
         if(!Auth::is_receptionist()){
@@ -177,14 +153,11 @@ class Receptionist extends Controller
             {   
                 // show($_POST);die;
                 // show($_POST);die;
-                // echo json_encode($_POST);
-                //     exit;
                 if($course -> validate($_POST)){
                     $subject_id = uniqid();
                     //uniqueid("S",true)
                     // echo "check 2";die;
-                    // echo json_encode($_POST);
-                    // exit;
+                    //  show($_POST);die;
 
                     // if(isset($_POST['courseSubmitBtn'])){
 
@@ -441,13 +414,11 @@ class Receptionist extends Controller
                 $day = $_POST['day'];
                 $timefrom = $_POST['timefrom'];
                 $timeto = $_POST['timeto'];
-                $capacity = $_POST['capacity'];
-                $fee = $_POST['monthlyFee'];
                 // show($course_id);
                 // show($day);
                 // show($timefrom);
                 // show($timeto);die;
-                $result = $course -> updateCourse($course_id, $day, $timefrom, $timeto, $capacity, $fee);
+                $result = $course -> updateCourse($course_id, $day, $timefrom, $timeto);
                 echo json_encode($result);
             }
             exit;
@@ -506,21 +477,15 @@ class Receptionist extends Controller
         {
             // show($_GET['id']);die;
             // $data['id'] = $id;
-            // show($_POST);die;
 
             if($course -> validateAdd($_POST))
             {
-                // echo json_encode($_POST);die;
-                $inputs=array("subject_id"=>$_POST['subject_Id'],"teacher_id"=>$_POST['teacher_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto'],"capacity"=>$_POST['capacity'],"monthlyFee"=>$_POST['monthlyFee']);
+                $inputs=array("subject_id"=>$_POST['subject_Id'],"teacher_id"=>$_POST['teacher_id'],"day"=>$_POST['day'],"timefrom"=>$_POST['timefrom'],"timeto"=>$_POST['timeto'],"capacity"=>$_POST['capacity']);
                 // show($inputs);die;
-                // echo json_encode($inputs);
-                // die;
                 $course->insert($inputs);
                 $id= $course->getLastCourse()[0]->course_id;
                 // // // print_r($Course);die;
                 $course_week->createWeek($id, 1);
-                // echo json_encode($inputs);
-                // die;
             }
             else{
                 $data['errors'] =  $course->error;
@@ -1396,20 +1361,17 @@ class Receptionist extends Controller
         $monthlyFee = new Course();
         $respond1 = $monthlyFee->getMonthlyFee($courseId);
 
+        echo json_encode($respond1);
+        exit;
 
-        if( $respond1 == null){
-
-            $respond = array(array("course_id" => "noCourse"));
-            echo json_encode($respond);
-            exit;
-        }
-
-        else{
-
+        if( $respond1){
+      
             $studentFtCourse = new Course();
             $respond2 = $studentFtCourse->checkStudent($courseId, $studentID);
+            echo json_encode($respond2);
+            exit;
 
-            if ($respond2 != null) {
+            if ($respond2) {
                 $alreadyPaid = new Payment();
                 $respond3 = $alreadyPaid->checkAlreadyPaid($courseId, $studentID, $month);
 
@@ -1426,6 +1388,13 @@ class Receptionist extends Controller
                 exit;
             }
 
+
+
+        }
+        else{
+            $respond = array(array("course_id" => "noCourse"));
+            echo json_encode($respond);
+            exit;
         }
         
     }

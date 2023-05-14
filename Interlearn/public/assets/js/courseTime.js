@@ -80,16 +80,9 @@ timeta.addEventListener('change',function(event){
 
 
 var capacity = document.getElementById('capacity');
-capacity.addEventListener('input',function(event){
+capacity.addEventListener('change',function(event){
   if(capacity != ''){
     document.getElementById('alert-div8').style.display = 'none';  // show the alert div
-  }
-});
-
-var fee = document.getElementById('fee');
-fee.addEventListener('input',function(event){
-  if(fee != ''){
-    document.getElementById('alert-div9').style.display = 'none';  // show the alert div
   }
 });
 
@@ -169,11 +162,10 @@ submitCheck.addEventListener('click',function(event){
   var timeFrom = document.getElementById('timefrom').value;
   var timeTo = document.getElementById('timeto').value;
   var capacity = document.getElementById('capacity').value;
-  var fee = document.getElementById('fee').value;
 
   let formData = new FormData();
 
-console.log(fee);
+// console.log(teacher_id,grade,medium);
   $.ajax({
     url: 'http://localhost/Interlearn/public/receptionist/course/checkAvailable1',
     type: 'POST',
@@ -265,12 +257,6 @@ console.log(fee);
         document.getElementById('capacity').value = '';  // clear the selected grade
         flag = 1;
       }
-      if(fee == ''){
-        document.getElementById('alert-div9').innerHTML = 'Please enter a monthly fee.';  // set the message in the alert div
-        document.getElementById('alert-div9').style.display = 'block';  // show the alert div
-        document.getElementById('fee').value = '';  // clear the selected grade
-        flag = 1;
-      }
 
       if(flag == 0){
 
@@ -282,7 +268,6 @@ console.log(fee);
         formData.append('timefrom', timeFrom);
         formData.append('timeto', timeTo);
         formData.append('capacity', capacity);
-        formData.append('monthlyFee', fee);
 
         // console.log(subject,grade,medium);
         $.ajax({

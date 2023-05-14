@@ -116,8 +116,8 @@ class Model extends Database {
                 $mail -> Host = 'smtp.gmail.com';
                 $mail->Port = 465;
                 $mail -> SMTPAuth = true;
-                $mail -> Username ='add interlearn email';
-                $mail -> Password = 'add your password';
+                $mail -> Username ='interlearnsl@gmail.com';
+                $mail -> Password = 'qeffokfsaebqwngl';
                 $mail->SMTPSecure ='ssl';
                 $mail->SMTPOptions = array(
                     'ssl' => array(
@@ -162,8 +162,8 @@ public function ForgotPW($data){
             $mail -> Host = 'smtp.gmail.com';
             $mail->Port = 465;
             $mail -> SMTPAuth = true;
-            $mail -> Username ='add interlearn email';
-            $mail -> Password = 'add your password';
+            $mail -> Username ='interlearnsl@gmail.com';
+            $mail -> Password = 'qeffokfsaebqwngl';
             $mail->SMTPSecure ='ssl';
             $mail->SMTPOptions = array(
                 'ssl' => array(

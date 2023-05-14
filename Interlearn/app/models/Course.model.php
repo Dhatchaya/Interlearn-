@@ -74,11 +74,7 @@ class Course extends Model
             }
             if(empty($data['capacity']))
             {
-                $this -> error['capacity'] = "Please enter a capcity for the class";
-            }
-            if(empty($data['monthlyFee']))
-            {
-                $this -> error['monthlyFee'] = "Please enter a monthly fee for the class";
+                $this -> error['capacity'] = "Please select a capcity for the class";
             }
                 
 
@@ -117,11 +113,7 @@ class Course extends Model
         {
             $this -> error['capacity'] = "Please select a capcity for the class";
         }
-        if(empty($data['monthlyFee']))
-        {
-            $this -> error['monthlyFee'] = "Please enter a monthly fee for the class";
-        }
-// show($this->error);die;
+
         if(empty($this->error)){
             return true;
 
@@ -152,7 +144,11 @@ class Course extends Model
     
         $query = "SELECT * FROM student_course WHERE student_id = " . $studentID . " AND course_id = " . $courseId;
         $res = $this->query($query);
-
+        
+        
+        if ($res == NULL) {
+            $res = array();
+        }
         return $res;
     }
     
@@ -162,6 +158,10 @@ class Course extends Model
         $query = "SELECT monthlyFee,course_id FROM course where course_id = " . $courseID ;
         $res = $this -> query($query);
 
+        if ($res == NULL) {
+            $res = array();
+        }
+        
         return $res;
     }
 
@@ -366,16 +366,14 @@ class Course extends Model
         }
     }
 
-    public function updateCourse($course_id,$day,$timefrom,$timeto,$capacity, $fee){
+    public function updateCourse($course_id,$day,$timefrom,$timeto){
         $query = "UPDATE ".$this->table;
-        $query .= " SET day =:Day, timefrom =:Timefrom, timeto =:Timeto, capacity =:capacity, monthlyFee =:Fee";
+        $query .= " SET day =:Day, timefrom =:Timefrom, timeto =:Timeto";
         $query .= " WHERE course_id =:courseID";
         $data['courseID'] = $course_id;
         $data['Day'] = $day;
         $data['Timefrom'] = $timefrom;
         $data['Timeto'] = $timeto;
-        $data['capacity'] = $capacity;
-        $data['Fee'] = $fee;
         $res = $this -> update_table($query, $data);
         // show($query);die;
 
